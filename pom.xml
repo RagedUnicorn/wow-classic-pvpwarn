@@ -161,7 +161,7 @@
                 </resource>
                 <resource>
                   <directory>${basedir}/target/generated-${profile.id.value}</directory>
-                  <targetPath>${basedir}/Code</targetPath>
+                  <targetPath>${basedir}/code</targetPath>
                   <filtering>false</filtering>
                   <includes>
                     <include>PVPW_Environment.lua</include>
