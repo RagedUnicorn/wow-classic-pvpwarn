@@ -1,6 +1,4 @@
---[[ 
-  THIS FILE IS AUTO-GENERATED. ALL CHANGES ARE OVERWRITTEN
-]]--
+${addon.comment.generated.lua}
 
 --[[
   MIT License
@@ -28,8 +26,8 @@
 ]]--
 
 RGPVPW_ENVIRONMENT = {
-  ADDON_IDENTIFIER = "com.ragedunicorn.wow.classic.pvpwarn",
-  LOG_LEVEL = 4,
-  LOG_EVENT = true,
-  DEBUG = true
+  ADDON_IDENTIFIER = "${addon.identifier}",
+  LOG_LEVEL = ${addon.logLevel},
+  LOG_EVENT = ${addon.logEvent},
+  DEBUG = ${addon.debug}
 }

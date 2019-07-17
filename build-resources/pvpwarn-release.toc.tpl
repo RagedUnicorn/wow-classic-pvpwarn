@@ -1,9 +1,9 @@
-## Interface: 80100
-## Title: PVPWarn
-## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
-## Notes: PVPWarn aims to warns players visually and acoustically about pvp events
-## Version: v1.0.0
-## SavedVariablesPerCharacter: PVPWarnConfiguration
+## Interface: ${addon.interface}
+## Title: ${addon.name}
+## Author: ${addon.author}
+## Notes: ${addon.description}
+## Version: ${addon.tag.version}
+## SavedVariablesPerCharacter: ${addon.savedVariablesPerCharacter}
 
 # constant values
 code/PVPW_Constants.lua
@@ -20,9 +20,6 @@ code/PVPW_Logger.lua
 code/PVPW_Filter.lua
 code/PVPW_Sound.lua
 code/PVPW_Visual.lua
-
-# debug
-code/PVPW_Debug.lua
 
 # gui
 gui/PVPW_Frame.xml
