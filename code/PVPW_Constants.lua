@@ -24,6 +24,7 @@
 ]]--
 
 RGPVPW_CONSTANTS = {
+  ADDON_NAME = "PVPWarn",
   --[[
     Warn textures
   ]]--

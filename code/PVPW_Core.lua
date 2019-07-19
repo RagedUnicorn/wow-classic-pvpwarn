@@ -65,5 +65,15 @@ end
 function me.Initialize()
   me.logger.LogDebug(me.tag, "Initialize addon")
 
-  print(string.format(GetAddOnMetadata("PVPWarn", "Title") .. rgpvpw.L["help"], GetAddOnMetadata("PVPWarn", "Version")))
+  me.ShowWelcomeMessage()
+end
+
+--[[
+  Show welcome message to user
+]]--
+function me.ShowWelcomeMessage()
+  print(
+    string.format(RGPVPW_CONSTANTS.ADDON_NAME .. rgpvpw.L["help"],
+    GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
+  )
 end
