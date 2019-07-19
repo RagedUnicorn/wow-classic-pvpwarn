@@ -15,7 +15,7 @@
     <addon.name.short>PVPW</addon.name.short>
     <addon.tag.version>v${project.version}</addon.tag.version>
     <addon.interface>80100</addon.interface>
-    <addon.identifier>com.ragedunicorn.wow.classic.pvpwarn</addon.identifier>
+    <addon.identifier>${project.groupId}.${project.artifactId}</addon.identifier>
   </properties>
 
   <profiles>
