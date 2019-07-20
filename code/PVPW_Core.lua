@@ -74,6 +74,6 @@ end
 function me.ShowWelcomeMessage()
   print(
     string.format(RGPVPW_CONSTANTS.ADDON_NAME .. rgpvpw.L["help"],
-    GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
+    GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"))
   )
 end
