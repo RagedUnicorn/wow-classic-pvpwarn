@@ -1,4 +1,4 @@
-## Interface: 80100
+## Interface: 11302
 ## Title: PVPWarn
 ## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
 ## Notes: PVPWarn aims to warns players visually and acoustically about pvp events
