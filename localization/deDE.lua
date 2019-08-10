@@ -5,8 +5,8 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["name"] = "PVPWarn"
 
   -- console
-  rgpvpw.L["help"] = "|cFFFFFF00(%s)|r: Benutze |cFFFFFF00/rgpvpw|r oder |cFFFFFF00/pvpwarn|r für eine Liste der verfügbaren Optionen"
-  rgpvpw.L["opt"] = "|cFFFFFF00opt|r - zeige Optionsmenu an"
-  rgpvpw.L["reload"] = "|cFFFFFF00reload|r - UI neu laden"
-  rgpvpw.L["info_title"] = "|cFFFFFF00PVPWarn:|r"
+  rgpvpw.L["help"] = "|cFFFFC300(%s)|r: Benutze |cFFFFC300/rgpvpw|r oder |cFFFFC300/pvpwarn|r für eine Liste der verfügbaren Optionen"
+  rgpvpw.L["opt"] = "|cFFFFC300opt|r - zeige Optionsmenu an"
+  rgpvpw.L["reload"] = "|cFFFFC300reload|r - UI neu laden"
+  rgpvpw.L["info_title"] = "|cFF00FFB0PVPWarn:|r"
 end
