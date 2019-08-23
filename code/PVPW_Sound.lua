@@ -22,6 +22,8 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals PlaySoundFile
+
 local mod = rgpvpw
 local me = {}
 mod.sound = me
@@ -94,7 +96,7 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
 
   ]]
 
-  soundPath = BASE_PATH .. soundCategory .. "\\" .. soundFileName .. FILE_TYPE
+  local soundPath = BASE_PATH .. soundCategory .. "\\" .. soundFileName .. FILE_TYPE
 
   mod.logger.LogDebug(me.tag, string.format("Playing: %s", soundPath))
   local status = PlaySoundFile(soundPath, "Master")

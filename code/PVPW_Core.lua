@@ -22,6 +22,8 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals GetAddOnMetadata
+
 rgpvpw = rgpvpw or {}
 local me = rgpvpw
 

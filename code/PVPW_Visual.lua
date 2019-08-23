@@ -22,6 +22,8 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals CreateFrame UIParent WorldFrame UIFrameFlash C_Timer GetCursorPosition
+
 local mod = rgpvpw
 local me = {}
 mod.visual = me
@@ -53,33 +55,9 @@ end
     see PVPW_CONSTANTS.TEXTURES for color values
 ]]--
 function me.ShowVisualAlert(colorValue)
-  texturePath = TEXTURE_BASE_PATH .. "texture_yellow"
+  local texturePath = TEXTURE_BASE_PATH .. "texture_yellow"
   mod.logger.LogDebug(me.tag, "Displaying warning texture - " .. "texture_yellow")
 
   alertTexture:SetTexture(texturePath)
   UIFrameFlash(alertFrame, .2, .5, .7, false, 0, 0)
-end
-
--- /run _G["__PVPW__DEBUG__TEST"]()
--- _G["PointerTexture"]:SetRotation(1)
-function me.CreateFramePointer()
-  local test = CreateFrame("Frame", "PointerFrame", UIParent)
-  test:SetSize(70, 70)
-  local texture = test:CreateTexture("PointerTexture", "BACKGROUND")
-  texture:SetTexture([[Interface\AddOns\PVPWarn\assets\images\pointer]])
-  texture:SetVertexColor(0, 0.5, 1)
-  texture:SetPoint("TOPLEFT", test, "TOPLEFT")
-  texture:SetPoint("BOTTOMRIGHT", test, "BOTTOMRIGHT")
-  test:SetPoint("BOTTOMLEFT", 1498, 599)
-
-  C_Timer.NewTicker(
-    0.02, function()
-      local scale, l, b, w, h = test:GetEffectiveScale(), test:GetRect()
-      local x, y = GetCursorPosition()
-      local dx, dy = (x / scale) - (l + w / 2), (y / scale) - (b + h / 2)
-      local angle = atan2(dy, dx) % 360
-      mod.logger.LogWarn(me.tag, "angle: " .. angle)
-      texture:SetRotation(angle/180*3.1415926535898 - 90/180*3.1415926535898)
-    end
-  )
 end
