@@ -38,7 +38,3 @@ _G["__PVPW__DEBUG__SHOWEXAMPLEALERT"] = function()
   mod.visual.CreateVisualAlertFrame()
   mod.visual.ShowVisualAlert()
 end
-
-_G["__PVPW__DEBUG__TEST"] = function()
-  mod.visual.CreateFramePointer()
-end

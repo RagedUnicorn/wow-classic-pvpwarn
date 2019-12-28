@@ -22,47 +22,17 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame UIParent WorldFrame UIFrameFlash C_Timer GetCursorPosition
-
 local mod = rgpvpw
 local me = {}
-mod.visual = me
+mod.alert = me
 
-me.tag = "Visual"
+me.tag = "Alert"
 
---[[
-  Private
-]]--
-local TEXTURE_BASE_PATH = "Interface\\AddOns\\PVPWarn\\assets\\images\\"
-local alertFrame
-local alertTexture
 
 --[[
-  Create the basic world frame and its texture that displays alert flashes
+  spell
 ]]--
-function me.CreateVisualAlertFrame()
-  alertFrame = CreateFrame("Frame", RGPVPW_CONSTANTS.ELEMENT_ALERT_FRAME, UIParent)
-  alertTexture = alertFrame:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_ALERT_TEXTURE, "BACKGROUND")
-
-  alertTexture:SetBlendMode("ADD")
-  alertTexture:SetAllPoints(WorldFrame)
-end
-
---[[
-  Show a visual warning to the user
-
-  @param {number} colorValue
-    see PVPW_CONSTANTS.TEXTURES for color values
-]]--
-function me.ShowVisualAlert(colorValue)
-  local texturePath = TEXTURE_BASE_PATH .. "texture_yellow" -- TODO hardcoded
-  mod.logger.LogDebug(me.tag, "Displaying warning texture - " .. "texture_yellow")
-
-  if alertTexture == nil then
-    -- initialize frameholder
-    me.CreateVisualAlertFrame()
-  end
-
-  alertTexture:SetTexture(texturePath)
-  UIFrameFlash(alertFrame, .2, .5, .7, false, 0, 0)
+function me.PlayAlert(category, spell)
+  mod.sound.PlaySound(category, nil, spell.soundFileName)
+  mod.visual.ShowVisualAlert("green")
 end

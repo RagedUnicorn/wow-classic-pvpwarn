@@ -39,6 +39,23 @@ function me.OnLoad(self)
 end
 
 --[[
+  Register addon events
+
+  @param {table} self
+]]--
+function me.RegisterEvents(self)
+  -- Register to player login event also fires on /reload
+  self:RegisterEvent("PLAYER_LOGIN")
+  --[[
+    Register to combat event unfiltered
+
+    COMBAT_LOG_EVENT_UNFILTERED - show all logs independent of what the player has configured
+    COMBAT_LOG_EVENT - shows only the logs that the player has configured
+  ]]--
+  self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+end
+
+--[[
   MainFrame OnEvent handler
 
   @param {string} event
@@ -48,17 +65,10 @@ function me.OnEvent(event, ...)
   if event == "PLAYER_LOGIN" then
     me.logger.LogEvent(me.tag, "PLAYER_LOGIN")
     me.Initialize()
+  elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
+    me.logger.LogEvent(me.tag, "COMBAT_LOG_EVENT_UNFILTERED")
+    me.combatLog.ProcessUnfilteredCombatLogEvent()
   end
-end
-
---[[
-  Register addon events
-
-  @param {table} self
-]]--
-function me.RegisterEvents(self)
-  -- Register to player login event also fires on /reload
-  self:RegisterEvent("PLAYER_LOGIN")
 end
 
 --[[

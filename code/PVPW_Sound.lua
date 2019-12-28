@@ -41,6 +41,7 @@ local FILE_FOLDER_ENEMY_AVOIDED
 local FILE_FOLDER_SELF_AVOIDED
 local FILE_TYPE = ".mp3"
 
+-- TODO we should get the name directly from the localization file instead of having the text here in different languages
 if (GetLocale() == "deDE") then
   BASE_PATH = "Interface\\AddOns\\PVPWarn\\assets\\sounds\\de\\"
   FILE_NAME_DOWN = "_unten"
