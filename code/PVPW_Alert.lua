@@ -30,7 +30,9 @@ me.tag = "Alert"
 
 
 --[[
-  spell
+  @param {string} category
+  @param {number} spellType
+  @param {table} spell
 ]]--
 function me.PlayAlert(category, spellType, spell)
   if not spell.hasFade and spellType == RGPVPW_CONSTANTS.SPELL_TYPE.REMOVED then

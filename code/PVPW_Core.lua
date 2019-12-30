@@ -76,6 +76,12 @@ end
 ]]--
 function me.Initialize()
   me.logger.LogDebug(me.tag, "Initialize addon")
+  -- setup slash commands
+  -- me.cmd.SetupSlashCmdList() TODO
+  -- load addon variables
+  -- me.configuration.SetupConfiguration() TODO
+  -- setup addon configuration ui
+  me.addonConfiguration.SetupAddonConfiguration()
 
   me.ShowWelcomeMessage()
 end

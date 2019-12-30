@@ -30,3 +30,6 @@ code/PVPW_Debug.lua
 
 # gui
 gui/PVPW_Frame.xml
+gui/PVPW_AddonConfiguration.lua
+gui/PVPW_AboutContent.lua
+gui/PVPW_GeneralMenu.lua

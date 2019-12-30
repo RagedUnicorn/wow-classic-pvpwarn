@@ -111,7 +111,251 @@ if (GetLocale() == "deDE") then
 else
   spellMap = {
     ["warrior"] = {
+      ["berserker_rage"] = {
+        ["name"] = "Berserker Rage",
+        ["soundFileName"] = "berserker_rage",
+        ["spellId"] = 18499,
+        ["spellIcon"] = "spell_nature_ancestralguardian",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+        }
+        -- TODO spell verified
+      },
+      ["recklessness"] = {
+        ["name"] = "Recklessness",
+        ["soundFileName"] = "recklessness",
+        ["spellId"] = 1719,
+        ["spellIcon"] = "ability_criticalstrike",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+        }
+        -- TODO spell verified
+      },
+      ["death_wish"] = {
+        ["name"] = "Death Wish",
+        ["soundFileName"] = "death_wish",
+        ["spellId"] = 12328,
+        ["spellIcon"] = "spell_shadow_deathpact",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+        }
+        -- TODO spell verified
+      },
+      ["shield_wall"] = {
+        ["name"] = "Shield Wall",
+        ["soundFileName"] = "shield_wall",
+        ["spellId"] = 871,
+        ["spellIcon"] = "ability_warrior_shieldwall",
+        ["hasFade"] = true,
+        ["active"] = true
+        -- TODO NOT VERIFIED
+      },
+      --[[
+        TODO Note that there is also a removed event fired for a stance.
+        Realistically however I think we are only interested in what stance the
+        warrior just got and not what he had before. Additionaly the player would
+        hear two sound then playing if all stances are tracked. First the stance removed
+        sound and the the stance gained sound. Not really helpfull TODO
+      ]]--
+      ["battle_stance"] = {
+        ["name"] = "Battle Stance",
+        ["soundFileName"] = "battle_stance",
+        ["spellId"] = 2457,
+        ["spellIcon"] = "ability_warrior_offensivestance",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+        }
+        -- TODO spell verified
+      },
+      ["berserker_stance"] = {
+        ["name"] = "Berserker Stance",
+        ["soundFileName"] = "berserker_stance",
+        ["spellId"] = 2458,
+        ["spellIcon"] = "ability_racial_avatar",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+        }
+        -- TODO spell verified
+      },
+      ["defensive_stance"] = {
+        ["name"] = "Defensive Stance",
+        ["soundFileName"] = "defensive_stance",
+        ["spellId"] = 71,
+        ["spellIcon"] = "ability_warrior_defensivestance",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+        }
+        -- TODO spell verified
+      },
+      --[[
+        TODO should be verified
 
+        Example:
+
+        {
+          ["spellName"] = "Intercept",
+          ["target"] = "Player-4741-00B8C51A",
+          ["targetName"] = "Holynot-Noggenfogger",
+          ["event"] = "SPELL_CAST_SUCCESS",
+          ["sourceFlags"] = 1300,
+        }, -- [9318]
+      ]]--
+      ["intercept"] = {
+        ["name"] = "Intercept",
+        ["soundFileName"] = "intercept",
+        ["spellId"] = 20252,
+        ["spellIcon"] = "ability_rogue_sprint",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+        -- TODO spell verified
+      },
+      ["last_stand"] = {
+        ["name"] = "Last Stand",
+        ["soundFileName"] = "last_stand",
+        ["spellId"] = 12975,
+        ["spellIcon"] = "spell_holy_ashestoashes",
+        ["hasFade"] = true,
+        ["active"] = true
+        -- TODO NOT VERIFIED
+      },
+      ["disarm"] = {
+        ["name"] = "Disarm",
+        ["soundFileName"] = "disarm",
+        ["spellId"] = 676,
+        ["spellIcon"] = "ability_warrior_disarm",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+        -- TODO spell verified
+      },
+      ["concussion_blow"] = {
+        ["name"] = "Concussion Blow",
+        ["soundFileName"] = "concussion_blow",
+        ["spellId"] = 12809,
+        ["spellIcon"] = "ability_thunderbolt",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+        -- TODO spell verified
+      },
+      ["bloodrage"] = {
+        ["name"] = "Bloodrage",
+        ["soundFileName"] = "bloodrage",
+        ["spellId"] = 2687,
+        ["spellIcon"] = "ability_racial_bloodrage",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+        -- TODO spell verified
+      },
+      ["pummel"] = {
+        ["name"] = "Pummel",
+        ["soundFileName"] = "pummel",
+        ["spellId"] = 6552,
+        ["spellIcon"] = "inv_gauntlets_04",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+        -- TODO spell verified
+      },
+      --[[
+        TODO should be verified
+
+        Example:
+
+        {
+          ["spellName"] = "Charge",
+          ["target"] = "Player-4741-00EB3A56",
+          ["targetName"] = "Wire-Noggenfogger",
+          ["event"] = "SPELL_CAST_SUCCESS",
+          ["sourceFlags"] = 1352,
+        }, -- [14671]
+      ]]--
+      ["charge"] = {
+        ["name"] = "Charge",
+        ["soundFileName"] = "charge",
+        ["spellId"] = 11578,
+        ["spellIcon"] = "ability_warrior_charge",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+        -- TODO spell verified
+      },
+      ["intimidating_shout"] = {
+        ["name"] = "Intimidating Shout",
+        ["soundFileName"] = "intimidating_shout",
+        ["spellId"] = 29544,
+        ["spellIcon"] = "ability_golemthunderclap",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+        -- TODO spell verified
+      },
+      ["shield_block"] = {
+        ["name"] = "Shield Block",
+        ["soundFileName"] = "shield_block",
+        ["spellId"] = 2565,
+        ["spellIcon"] = "ability_defend",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["shield_bash"] = {
+        ["name"] = "Shield Bash",
+        ["soundFileName"] = "shield_bash",
+        ["spellId"] = 1672,
+        ["spellIcon"] = "ability_warrior_shieldbash",
+        ["hasFade"] = false,
+        ["active"] = true
+        -- TODO NOT VERIFIED
+      },
+
+      ["shield_slam"] = {
+        ["name"] = "Shield Slam",
+        ["soundFileName"] = "shield_slam",
+        ["spellId"] = 23925, -- rank 4
+        ["spellIcon"] = "inv_shield_05",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+        -- TODO spell verified
+      }
     },
     ["priest"] = {
       ["psychic_scream"] = {
@@ -388,7 +632,155 @@ else
       -- TODO spell verified
     },
     ["mage"] = {
+      ["ice_block"] = {
+        ["name"] = "Ice Block",
+        ["soundFileName"] = "ice_block",
+        ["spellId"] = 11958,
+        ["spellIcon"] = "spell_frost_frost",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+        -- TODO spell verified
+      },
+      --[[
+        TODO
 
+        This is also causing a
+
+        {
+          ["target"] = "",
+          ["spellName"] = "Polymorph",
+          ["event"] = "SPELL_CAST_START",
+          ["sourceFlags"] = 1300,
+        }, -- [13278]
+
+        Might consider this  as a separate category (announce casts or something
+
+      TODO)
+      ]]--
+      ["polymorph"] = {
+        ["name"] = "Polymorph",
+        ["soundFileName"] = "polymorph",
+        ["spellId"] = 12826,
+        ["spellIcon"] = "spell_nature_polymorph",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+        -- TODO spell verified
+      },
+      ["blink"] = {
+        ["name"] = "Blink",
+        ["soundFileName"] = "blink",
+        ["spellId"] = 1953,
+        ["spellIcon"] = "spell_arcane_blink",
+        ["hasFade"] = false,
+        ["active"] = true
+      },
+      ["fire_ward"] = {
+        ["name"] = "Fire Ward",
+        ["soundFileName"] = "fire_ward",
+        ["spellId"] = 10226, -- rank 5
+        ["spellIcon"] = "spell_fire_firearmor",
+        ["hasFade"] = true,
+        ["active"] = true
+      },
+      ["frost_ward"] = {
+        ["name"] = "Frost Ward",
+        ["soundFileName"] = "frost_ward",
+        ["spellId"] = 28609, -- rank 5
+        ["spellIcon"] = "spell_frost_frostward",
+        ["hasFade"] = true,
+        ["active"] = true
+      },
+      ["counterspell_silenced"] = {
+        ["name"] = "Counterspell - Silenced",
+        ["soundFileName"] = "counterspell",
+        ["spellId"] = 2139,
+        ["spellIcon"] = "spell_frost_iceshock",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["ignoreEvents"] = {
+          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        }
+      },
+      ["mana_shield"] = {
+        ["name"] = "Mana Shield",
+        ["soundFileName"] = "mana_shield",
+        ["spellId"] = 10193, -- rank 6
+        ["spellIcon"] = "spell_shadow_detectlesserinvisibility",
+        ["hasFade"] = true,
+        ["active"] = true
+      },
+      ["ice_barrier"] = {
+        ["name"] = "Ice Barrier",
+        ["soundFileName"] = "ice_barrier",
+        ["spellId"] = 13033, -- rank 4
+        ["spellIcon"] = "spell_ice_lament",
+        ["hasFade"] = true,
+        ["active"] = true
+      },
+      ["frost_nova"] = {
+        ["name"] = "Frost Nova",
+        ["soundFileName"] = "frost_nova",
+        ["spellId"] = 10230, -- rank 4
+        ["spellIcon"] = "spell_frost_frostnova",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["ignoreEvents"] = {
+          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        }
+      },
+      ["arcane_power"] = {
+        ["name"] = "Arcane Power",
+        ["soundFileName"] = "arcane_power",
+        ["spellId"] = 12042,
+        ["spellIcon"] = "spell_nature_lightning",
+        ["hasFade"] = true,
+        ["active"] = true
+      },
+      ["evocation"] = {
+        ["name"] = "Evocation",
+        ["soundFileName"] = "evocation",
+        ["spellId"] = 12051,
+        ["spellIcon"] = "spell_nature_purge",
+        ["hasFade"] = false,
+        ["active"] = true
+      },
+      ["presence_of_mind"] = {
+        ["name"] = "Presence of Mind",
+        ["soundFileName"] = "presence_of_mind",
+        ["spellId"] = 12043,
+        ["spellIcon"] = "spell_nature_enchantarmor",
+        ["hasFade"] = true,
+        ["active"] = true
+      },
+      ["combustion"] = {
+        ["name"] = "Combustion",
+        ["soundFileName"] = "combustion",
+        ["spellId"] = 11129,
+        ["spellIcon"] = "spell_fire_sealoffire",
+        ["hasFade"] = true,
+        ["active"] = true
+      },
+      ["blast_wave"] = {
+        ["name"] = "Blast Wave",
+        ["soundFileName"] = "blast_wave",
+        ["spellId"] = 13021, -- rank 5
+        ["spellIcon"] = "spell_holy_excorcism_02",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["ignoreEvents"] = {
+          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        }
+      }
     },
     ["hunter"] = {
 

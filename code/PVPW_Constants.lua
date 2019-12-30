@@ -81,4 +81,21 @@ RGPVPW_CONSTANTS = {
   ]]--
   ELEMENT_ALERT_FRAME = "PVPW_AlertFrame",
   ELEMENT_ALERT_TEXTURE = "PVPW_AlertTexture",
+  --[[
+    Addon configuration
+  ]]--
+  ELEMENT_ADDON_PANEL = "PVPW_AddonPanel",
+  ELEMENT_TOOLTIP = "GameTooltip", -- default blizzard frames tooltip
+  --[[
+    About
+  ]]--
+  ELEMENT_ABOUT_LOGO = "PVPW_AboutLogo",
+  ELEMENT_ABOUT_AUTHOR_FONT_STRING = "PVPW_AboutAuthor",
+  ELEMENT_ABOUT_EMAIL_FONT_STRING = "PVPW_AboutEmail",
+  ELEMENT_ABOUT_VERSION_FONT_STRING = "PVPW_AboutVersion",
+  ELEMENT_ABOUT_ISSUES_FONT_STRING = "PVPW_AboutIssues",
+  --[[
+    General
+  ]]--
+  ELEMENT_GENERAL_SUB_OPTION_FRAME = "PVPW_GeneralMenuOptionsFrame",
 }

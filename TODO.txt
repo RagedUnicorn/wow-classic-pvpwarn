@@ -25,3 +25,58 @@ For spells such as kidney shot we need to have a concept how we wanna track/anno
 
 - Am I interested in just if my target is casting a cheapshot
 - Does the cheapshot have to be applied to me?
+
+
+-- TODO ignored for now
+-- skilled shield bash has a silence effect
+["shield_bash_silenced"] = {
+  ["name"] = "Shield Bash - Silenced",
+  ["soundFileName"] = "shield_bash_silenced",
+  ["spellId"] = 18498,
+  ["spellIcon"] = "ability_warrior_shieldbash",
+  ["hasFade"] = false,
+  ["active"] = true
+},
+
+
+-- TODO ignored mage spells for now
+
+,
+["polymorph_cow"] = {
+  ["name"] = "Polymorph: Cow",
+  ["soundFileName"] = "polymorph",
+  ["spellId"] = 28270,
+  ["spellIcon"] = "spell_nature_polymorph_cow",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["ignoreEvents"] = {
+    "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+    "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+  }
+},
+["polymorph_pig"] = {
+  ["name"] = "Polymorph: Pig",
+  ["soundFileName"] = "polymorph",
+  ["spellId"] = 28272,
+  ["spellIcon"] = "spell_magic_polymorphpig",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["ignoreEvents"] = {
+    "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+    "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+  }
+},
+["polymorph_turtle"] = {
+  ["name"] = "Polymorph: Turtle",
+  ["soundFileName"] = "polymorph",
+  ["spellId"] = 28271,
+  ["spellIcon"] = "ability_hunter_pet_turtle",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["ignoreEvents"] = {
+    "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+    "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+  }
+}
+
+Those do not currenlty exist check patch status and how they are displayed in the combat log
