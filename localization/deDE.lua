@@ -13,4 +13,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["opt"] = "|cFFFFC300opt|r - zeige Optionsmenu an"
   rgpvpw.L["reload"] = "|cFFFFC300reload|r - UI neu laden"
   rgpvpw.L["info_title"] = "|cFF00FFB0PVPWarn:|r"
+
+  -- file name pattern
+  rgpvpw.L["removed"] = "_unten"
 end

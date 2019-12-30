@@ -38,3 +38,22 @@ _G["__PVPW__DEBUG__SHOWEXAMPLEALERT"] = function()
   mod.visual.CreateVisualAlertFrame()
   mod.visual.ShowVisualAlert()
 end
+
+--[[
+  TODO
+]]--
+function me.TrackLogEvent(event, sourceFlags, target, targetName, spellName)
+  if PVPWarnLogTracker == nil then
+    PVPWarnLogTracker = {}
+  end
+
+  local logEvent = {
+    ["event"] = event,
+    ["sourceFlags"] = sourceFlags,
+    ["target"] = target,
+    ["targetName"] = targetName,
+    ["spellName"] = spellName
+  }
+
+  table.insert(PVPWarnLogTracker, logEvent)
+end

@@ -69,7 +69,13 @@ RGPVPW_CONSTANTS = {
       textureName = "texture_light_blue",
       colorValue = 10
     }
-  },-- TODO why not an array instead
+  },
+  SPELL_TYPE = {
+    ["NORMAL"] = 1, -- SPELL_CAST_SUCCESS
+    ["APPLIED"] = 2, -- SPELL_AURA_APPLIED
+    ["REMOVED"] = 3, -- SPELL_AURA_REMOVED
+    ["REFRESH"] = 4 -- SPELL_AURA_REFRESH
+  },
   --[[
     Alert UI
   ]]--

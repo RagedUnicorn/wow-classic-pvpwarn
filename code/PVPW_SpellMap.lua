@@ -44,7 +44,6 @@ me.tag = "SpellMap"
         {string} asset name of the icon
       ["hasFade"] = false,
         {boolean} if set to true means there is a sound file to announce Aura down/fade
-      ["canCrit"] = false,
         {boolean} optional field, default false if field is missing
       ["links"] = { 0000 },
         {table} optional field, link to other spells by their spellId. Spells that are linked together
@@ -52,11 +51,7 @@ me.tag = "SpellMap"
       ["active"] = false,
         -- {boolean} Whether the spell is active or inactive
       ["trackedEvents"] = {
-        "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-        "CHAT_MSG_SPELL_HOSTILEPLAYER_DAMAGE",
-        "CHAT_MSG_SPELL_HOSTILEPLAYER_BUFF",
-        "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_BUFFS".
-        "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        TODO add all possible spell events
       }
         {table} marks events that are tracked for this spell
 
@@ -138,10 +133,10 @@ else
         ["spellIcon"] = "spell_shadow_impphaseshift",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
         }
+        -- TODO spell verified
       },
       ["power_infusion"] = {
         ["name"] = "Power Infusion",
@@ -149,7 +144,13 @@ else
         ["spellId"] = 10060,
         ["spellIcon"] = "spell_holy_powerinfusion",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REFRESH"
+        }
+        -- TODO NOT VERIFIED
       },
       ["inner_fire"] = {
         ["name"] = "Inner Fire",
@@ -157,7 +158,13 @@ else
         ["spellId"] = 10952, -- rank 6
         ["spellIcon"] = "spell_holy_innerfire",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REFRESH"
+        }
+        -- TODO spell verified
       },
       ["vampiric_embrace"] = {
         ["name"] = "Vampiric Embrace",
@@ -166,10 +173,12 @@ else
         ["spellIcon"] = "spell_shadow_unsummonbuilding",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          -- "SPELL_AURA_REMOVED", ignoring fade
+          "SPELL_AURA_REFRESH"
         }
+        -- TODO spell verified
       },
       ["desperate_prayer"] = {
         ["name"] = "Desperate Prayer",
@@ -177,7 +186,6 @@ else
         ["spellId"] = 19243, -- rank 7
         ["spellIcon"] = "spell_holy_restoration",
         ["hasFade"] = false,
-        ["canCrit"] = true,
         ["active"] = true
       },
       ["devouring_plague"] = {
@@ -187,11 +195,11 @@ else
         ["spellIcon"] = "spell_shadow_blackplague",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_HOSTILEPLAYER_DAMAGE",
-          "CHAT_MSG_SPELL_HOSTILEPLAYER_BUFF"
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
         }
+        -- TODO spell verified
       },
       ["touch_of_weakness"] = {
         ["name"] = "Touch of Weakness",
@@ -200,9 +208,12 @@ else
         ["spellIcon"] = "spell_shadow_deadofnight",
         ["hasFade"] = true,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REFRESH"
         }
+        -- TODO spell verified
       },
       ["fear_ward"] = {
         ["name"] = "Fear Ward",
@@ -210,7 +221,13 @@ else
         ["spellId"] = 6346,
         ["spellIcon"] = "spell_holy_excorcism",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REFRESH"
+        }
+        -- TODO spell verified
       },
       ["elunes_grace"] = {
         ["name"] = "Elune's Grace",
@@ -218,7 +235,12 @@ else
         ["spellId"] = 19293, -- rank 5
         ["spellIcon"] = "spell_holy_elunesgrace",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+        }
+        -- TODO NOT VERIFIED
       },
       ["starshards"] = {
         ["name"] = "Starshards",
@@ -227,10 +249,10 @@ else
         ["spellIcon"] = "spell_arcane_starfire",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
         }
+        -- TODO NOT VERIFIED
       },
       ["hex_of_weakness"] = {
         ["name"] = "Hex of Weakness",
@@ -239,10 +261,12 @@ else
         ["spellIcon"] = "spell_shadow_fingerofdeath",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          -- "SPELL_AURA_REMOVED", ignoring fade
+          "SPELL_AURA_REFRESH"
         }
+        -- TODO NOT VERIFIED
       }
     },
     ["rogue"] = {
@@ -253,10 +277,12 @@ else
         ["spellIcon"] = "spell_shadow_mindsteal",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          -- "SPELL_AURA_REMOVED", ignoring fade
+          "SPELL_AURA_REFRESH"
         }
+        -- TODO spell verified
       },
       ["kick"] = {
         ["name"] = "Kick",
@@ -264,20 +290,11 @@ else
         ["spellId"] = 1769,
         ["spellIcon"] = "ability_kick",
         ["hasFade"] = false,
-        ["canCrit"] = true,
-        ["active"] = true
-      },
-      ["kick_silenced"] = {
-        ["name"] = "Kick - Silenced",
-        ["soundFileName"] = "kick",
-        ["spellId"] = 13867,
-        ["spellIcon"] = "ability_kick",
-        ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
         }
+        -- TODO spell verified
       },
       ["sprint"] = {
         ["name"] = "Sprint",
@@ -285,7 +302,12 @@ else
         ["spellId"] = 11305, -- rank 3
         ["spellIcon"] = "ability_rogue_sprint",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+        }
+        -- TODO spell verified
       },
       ["evasion"] = {
         ["name"] = "Evasion",
@@ -293,7 +315,12 @@ else
         ["spellId"] = 5277,
         ["spellIcon"] = "spell_shadow_shadowward",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+        -- TODO spell verified
       },
       ["kidney_shot"] = {
         ["name"] = "Kidney Shot",
@@ -302,10 +329,10 @@ else
         ["spellIcon"] = "ability_rogue_kidneyshot",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
         }
+        -- TODO spell verified
       },
       ["cheap_shot"] = {
         ["name"] = "Cheap Shot",
@@ -314,10 +341,10 @@ else
         ["spellIcon"] = "ability_cheapshot",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
         }
+        -- TODO spell verified
       },
       ["adrenaline_rush"] = {
         ["name"] = "Adrenaline Rush",
@@ -325,15 +352,26 @@ else
         ["spellId"] = 13750,
         ["spellIcon"] = "spell_shadow_shadowworddominate",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+        -- TODO spell verified
       },
+
       ["blade_flurry"] = {
         ["name"] = "Blade Flurry",
         ["soundFileName"] = "blade_flurry",
         ["spellId"] = 13877,
         ["spellIcon"] = "ability_warrior_punishingblow",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+        -- TODO spell verified
       },
       ["cold_blood"] = {
         ["name"] = "Cold Blood",
@@ -341,8 +379,13 @@ else
         ["spellId"] = 14177,
         ["spellIcon"] = "spell_ice_lament",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
+      -- TODO spell verified
     },
     ["mage"] = {
 

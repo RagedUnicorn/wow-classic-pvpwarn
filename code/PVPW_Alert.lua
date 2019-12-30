@@ -32,7 +32,13 @@ me.tag = "Alert"
 --[[
   spell
 ]]--
-function me.PlayAlert(category, spell)
-  mod.sound.PlaySound(category, nil, spell.soundFileName)
+function me.PlayAlert(category, spellType, spell)
+  if not spell.hasFade and spellType == RGPVPW_CONSTANTS.SPELL_TYPE.REMOVED then
+    mod.logger.LogError(me.tag, string.format("Tried to play removed sound for spell '%s' that indicated no"
+      .. " support for such. Check spellMap for a potential error", spell.name))
+    return
+  end
+
+  mod.sound.PlaySound(category, spellType, spell.soundFileName)
   mod.visual.ShowVisualAlert("green")
 end

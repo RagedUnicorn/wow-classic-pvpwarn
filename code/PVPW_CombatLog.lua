@@ -23,8 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals CombatLogGetCurrentEventInfo CombatLog_Object_IsA GetTime COMBATLOG_FILTER_MINE
--- luacheck: globals COMBATLOG_FILTER_HOSTILE_PLAYERS COMBATLOG_FILTER_HOSTILE_UNITS GetComboPoints
+-- luacheck: globals CombatLogGetCurrentEventInfo CombatLog_Object_IsA COMBATLOG_FILTER_HOSTILE_PLAYERS
 
 local mod = rgpvpw
 local me = {}
@@ -37,14 +36,34 @@ me.tag = "CombatLog"
 ]]--
 function me.ProcessUnfilteredCombatLogEvent()
   local _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName = CombatLogGetCurrentEventInfo()
+
+  if RGPVPW_ENVIRONMENT.DEBUG then
+    mod.debug.TrackLogEvent(event, sourceFlags, target, targetName, spellName)
+  end
   --[[
     Filter for hostile player events only
   ]]--
   if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_HOSTILE_PLAYERS) then
-    mod.logger.LogError(me.tag, "Hostile player event detected: " .. event)
-
+    --and CombatLog_Object_IsA(sourceFlags, COMBATLOG_OBJECT_TARGET)
     if event == "SPELL_CAST_SUCCESS" then
-      mod.logger.LogInfo(me.tag, "Detected casted spell: " .. spellName)
+      mod.logger.LogInfo(me.tag, "Detected 'SPELL_CAST_SUCCESS': " .. spellName)
+
+      local category, spell = mod.spellMap.SearchByName(spellName, event)
+
+      if category ~= nil and spell ~= nil then
+        mod.alert.PlayAlert(category, RGPVPW_CONSTANTS.SPELL_TYPE.NORMAL, spell)
+      end
+    elseif event == "SPELL_AURA_APPLIED" then
+      mod.logger.LogError(me.tag, "Target: " .. target)
+      -- TODO this is probably used for all buff related alerts suchs as mage x gets arcane power
+      local category, spell = mod.spellMap.SearchByName(spellName, event)
+
+      if category ~= nil and spell ~= nil then
+        mod.logger.LogDebug(me.tag, "Found tracked spell")
+        mod.alert.PlayAlert(category, spell)
+      end
+    elseif event == "SPELL_AURA_REMOVED" then
+      -- TODO this is probably going to be used for most "down/faded" sound. E.g. recklesness runs out
 
       local category, spell = mod.spellMap.SearchByName(spellName, event)
 
@@ -52,11 +71,14 @@ function me.ProcessUnfilteredCombatLogEvent()
         mod.logger.LogDebug(me.tag, "Found tracked spell")
         mod.alert.PlayAlert(category, spell)
       end
-    elseif event == "SPELL_AURA_APPLIED" then
-      -- TODO this is probably used for all buff related alerts suchs as mage x gets arcane power
-      mod.logger.LogInfo(me.tag, "Detected casted spell: " .. spellName)
-    elseif event == "SPELL_AURA_REMOVED" then
-      -- TODO this is probably going to be used for most "down/faded" sound. E.g. recklesness runs out
+    elseif event == "SPELL_AURA_REFRESH" then
+      -- TODO this event is used when something is reseted while it is still active e.g. inner fire rebuff
+      local category, spell = mod.spellMap.SearchByName(spellName, event)
+
+      if category ~= nil and spell ~= nil then
+        mod.logger.LogDebug(me.tag, "Found tracked spell")
+        mod.alert.PlayAlert(category, spell)
+      end
     else
       mod.logger.LogDebug(me.tag, "Ignore unsupported event: " .. event)
     end

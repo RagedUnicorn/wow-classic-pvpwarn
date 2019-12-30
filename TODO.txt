@@ -1,0 +1,27 @@
+Trinket is SPELL_CAST_SUCCESS
+
+THen depending on the class a different name?
+
+immune_charm/fear/polymorph - rogue
+immune_fear/polymorph/stun - priest
+immune_root/snare/stun - warrior
+
+
+This require to rewrite the normalizing function to replace / with _
+
+
+This happens when a debuff is extended. Check if this works with sheep?
+Example player already has vampiric embrace on him. Priest casts it again (duration gets refreshed)
+SPELL_AURA_REFRESH
+
+Need a tactic to how to work with certain spells such as touch of weakness
+
+tow triggers when buffed
+tow triggers when buff disappears
+tow triggers when buff is applied to player (me)
+
+
+For spells such as kidney shot we need to have a concept how we wanna track/announce them
+
+- Am I interested in just if my target is casting a cheapshot
+- Does the cheapshot have to be applied to me?
