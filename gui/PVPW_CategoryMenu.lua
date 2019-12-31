@@ -22,7 +22,8 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT FauxScrollFrame_Update FauxScrollFrame_GetOffset
+-- luacheck: globals GetSpellInfo
 
 local mod = rgpvpw
 local me = {}
@@ -37,37 +38,51 @@ local spellRows = {}
 local spellScrollFrame
 -- track whether the menu was already built
 local builtMenu = false
-
-local activeCategory = ""
+--[[
+  Cached spelllist for reusing while the player scrolls through the spelllist. Wiped
+  when the category changes
+]]--
+local cachedCategoryData = nil
 
 --[[
-  TODO
-  TODO
+  Build or update (if already built) the category menus for configuring spells
+
   @param {table} frame
     The addon configuration frame to attach to
+  @param {string} category
+]]--
+function me.MenuOnShow(self)
+  if builtMenu then
+    -- cleaned cached data from previous category
+    cachedCategoryData = nil
+    mod.logger.LogInfo(me.tag, "Wiped cached spellist after category switch")
+    -- changing the scrollframes parent to the respective active category panel
+    spellScrollFrame:SetParent(self)
+    -- update the scrolllist with new category data
+    me.FauxScrollFrameOnUpdate(spellScrollFrame, self.categoryName)
+  else
+    me.BuildUi(self, self.categoryName)
+  end
+end
+
+--[[
+  Create the spelllist configuration menu
+
+  @param {table} frame
+  @param {string} category
 ]]--
 function me.BuildUi(frame, category)
-  mod.logger.LogError(me.tag, "category: " .. category)
-  me.SetCategory(category)
-
-  if not builtMenu then
-    spellScrollFrame = me.CreateSpellList(frame)
-  end
-
-  -- changing the scrollframes parent to the respective category panel so it is actually shown
-  spellScrollFrame:SetParent(frame)
-  -- initial load of spellList list
-  me.FauxScrollFrameOnUpdate(spellScrollFrame)
-
+  spellScrollFrame = me.CreateSpellList(frame, category)
+  me.FauxScrollFrameOnUpdate(spellScrollFrame, category)
   builtMenu = true
 end
 
-function me.SetCategory(category)
-  activeCategory = category
-end
-
 --[[
-  TODO TODO!!
+  Create the scrollist for the spelllist
+
+  @param {table} frame
+
+  @return {table}
 ]]--
 function me.CreateSpellList(frame)
   local scrollFrame = me.CreateFauxScrollFrame(
@@ -101,20 +116,15 @@ function me.CreateFauxScrollFrame(scrollFrameName, frame, width, callback, stora
   scrollFrame:SetWidth(width)
   scrollFrame:SetHeight(RGPVPW_CONSTANTS.SPELL_LIST_ROW_HEIGHT * RGPVPW_CONSTANTS.SPELL_LIST_MAX_ROWS)
   scrollFrame:EnableMouseWheel(true)
-  scrollFrame:SetBackdrop({
-    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background"
-  })
-
 
   scrollFrame:SetScript("OnVerticalScroll", function(self, offset)
     self.ScrollBar:SetValue(offset)
     self.offset = math.floor(offset / RGPVPW_CONSTANTS.SPELL_LIST_ROW_HEIGHT + 0.5)
-    callback(self)
+    callback(self, self:GetParent().categoryName)
   end)
-  scrollFrame:SetScript("OnVerticalScroll", me.SpellListOnVerticalScroll)
 
   for i = 1, RGPVPW_CONSTANTS.SPELL_LIST_MAX_ROWS do
-    table.insert(storage, me.CreateRowFrames(scrollFrame, i))
+    table.insert(storage, me.CreateRowFrame(scrollFrame, i))
   end
 
   return scrollFrame
@@ -127,19 +137,99 @@ end
   @return {table}
     The created row
 ]]--
-function me.CreateRowFrames(frame, position)
+function me.CreateRowFrame(frame, position)
   local row = CreateFrame("Button", RGPVPW_CONSTANTS.ELEMENT_SPELL_LIST_CONTENT_FRAME .. position, frame)
   row:SetSize(frame:GetWidth(), RGPVPW_CONSTANTS.SPELL_LIST_ROW_HEIGHT)
   row:SetPoint("TOPLEFT", frame, 0, (position -1) * RGPVPW_CONSTANTS.SPELL_LIST_ROW_HEIGHT * -1)
 
-  local itemNameFontString = row:CreateFontString(nil, "OVERLAY")
-  itemNameFontString:SetFont(STANDARD_TEXT_FONT, 14)
-  itemNameFontString:SetPoint("LEFT", 16 + 5, 0)
-  itemNameFontString:SetWidth(row:GetWidth() - 16 - 5)
+  row:SetBackdrop({
+    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+    insets = {left = 0, right = 0, top = 0, bottom = 0},
+  })
 
-  row.name = itemNameFontString
+  if math.fmod(position, 2) == 0 then
+    row:SetBackdropColor(0.37, 0.37, 0.37, .4)
+  else
+    row:SetBackdropColor(.25, .25, .25, .8)
+  end
+
+  row.cooldownIcon = me.CreateCooldownSpellIcon(row)
+  row.cooldownStatus = me.CreateCooldownSpell(row)
 
   return row
+end
+
+--[[
+  @param {table} spellFrame
+  TODO might need rework
+
+  @return {table}
+    The created icon texture holder
+]]--
+function me.CreateCooldownSpellIcon(spellFrame)
+  local iconHolder = CreateFrame("Frame", nil, spellFrame)
+  iconHolder:SetSize(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 5,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 5
+  )
+  iconHolder:SetPoint("LEFT", 10, 0)
+
+  local cooldownIcon = iconHolder:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON, "ARTWORK")
+  cooldownIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+  cooldownIcon:SetPoint("CENTER", 0, 0)
+  cooldownIcon:SetSize(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE
+  )
+
+  local backdrop = {
+    bgFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
+    edgeFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
+    tile = false,
+    tileSize = 32,
+    edgeSize = 20,
+    insets = {
+      left = 12,
+      right = 12,
+      top = 12,
+      bottom = 12
+    }
+  }
+
+  iconHolder:SetBackdrop(backdrop)
+  -- Set color based on class
+  iconHolder:SetBackdropColor(0.15, 0.15, 0.15, 1)
+  iconHolder:SetBackdropBorderColor(0.47, 0.21, 0.74, 1)
+
+  return cooldownIcon
+end
+
+--[[
+  @param {table} spellFrame
+
+  @return {table}
+    The created checkbox
+]]--
+function me.CreateCooldownSpell(spellFrame)
+  local cooldownSpellStatusCheckBox = CreateFrame(
+    "CheckButton",
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_STATUS,
+    spellFrame,
+    "UICheckButtonTemplate"
+  )
+  cooldownSpellStatusCheckBox:SetSize(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_STATUS_SIZE,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_STATUS_SIZE
+  )
+  cooldownSpellStatusCheckBox:SetPoint("LEFT", RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 20, 0)
+
+  cooldownSpellStatusCheckBox.text = _G[cooldownSpellStatusCheckBox:GetName() .. 'Text']
+  cooldownSpellStatusCheckBox.text:SetFont(STANDARD_TEXT_FONT, 15)
+  cooldownSpellStatusCheckBox.text:SetTextColor(.95, .95, .95)
+
+  cooldownSpellStatusCheckBox:SetScript("OnClick", me.CooldownEntryOnClick)
+
+  return cooldownSpellStatusCheckBox
 end
 
 --[[
@@ -150,11 +240,14 @@ end
 
   @param {table} scrollFrame
 ]]--
-function me.FauxScrollFrameOnUpdate(scrollFrame)
-  mod.logger.LogError(me.tag, "Fauxupdate")
-  local spells = mod.spellMap.GetAllForCategory(activeCategory)
-  local maxValue = mod.common.TableLength(spells) or 0
-  p = spells
+function me.FauxScrollFrameOnUpdate(scrollFrame, category)
+  if cachedCategoryData == nil then
+    mod.logger.LogInfo(me.tag, string.format("Warmed up cached spelllist for category '%s'", category))
+    cachedCategoryData = mod.spellMap.GetAllForCategory(category)
+  end
+
+  local maxValue = mod.common.TableLength(cachedCategoryData) or 0
+
   if maxValue <= RGPVPW_CONSTANTS.SPELL_LIST_MAX_ROWS then
     maxValue = RGPVPW_CONSTANTS.SPELL_LIST_MAX_ROWS + 1
   end
@@ -173,13 +266,26 @@ function me.FauxScrollFrameOnUpdate(scrollFrame)
 
     if value <= maxValue then
       local row = spellRows[i]
-      mod.logger.LogError(me.tag, "Updating now ... value: " .. value .. spells[value].name)
 
-      row.name:SetText("just some text to test " .. spells[value].name)
+      if cachedCategoryData[value] ~= nil then
+        local _, _, iconId = GetSpellInfo(cachedCategoryData[value].spellId)
+        -- local enabled = mod.configuration.GetCooldownConfigurationState(category, cooldown.spellId) TODO get status from configuration
 
-      row:Show()
-    else
-      spellRows[i]:Hide()
+        row.cooldownIcon:SetTexture(iconId)
+        row.cooldownStatus.text:SetText(cachedCategoryData[value].name)
+
+        local enabled = true -- TODO hardcoded
+
+        if enabled then
+          row.cooldownStatus:SetChecked(true)
+        else
+          row.cooldownStatus:SetChecked(false)
+        end
+
+        row:Show()
+      else
+        spellRows[i]:Hide()
+      end
     end
   end
 end

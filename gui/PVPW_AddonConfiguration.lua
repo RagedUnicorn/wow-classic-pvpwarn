@@ -24,7 +24,6 @@
 ]]--
 
 -- luacheck: globals CreateFrame UIParent InterfaceOptions_AddCategory InterfaceOptionsFrame_OpenToCategory
--- luacheck: globals RGPVPW_CLASSLIST
 
 local mod = rgpvpw
 local me = {}
@@ -40,6 +39,7 @@ function me.SetupAddonConfiguration()
   local panel = {}
 
   panel.main = me.BuildCategory(RGPVPW_CONSTANTS.ELEMENT_ADDON_PANEL, nil, rgpvpw.L["addon_name"])
+
   me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
     panel.main,
@@ -47,113 +47,7 @@ function me.SetupAddonConfiguration()
     mod.generalMenu.BuildUi
   )
 
-  me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_druid"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["DRUID"])
-    end
-  )
-
-  me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_hunter"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["HUNTER"])
-    end
-  )
-
-  me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_mage"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["MAGE"])
-    end
-  )
-
-  me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_paladin"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["PALADIN"])
-    end
-  )
-
-  me.BuildCategory( -- TODO remove
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_priest"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["PRIEST"])
-    end
-  )
-
-  local a = me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_rogue"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["ROGUE"])
-    end
-  )
-
-  me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_shaman"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["SHAMAN"])
-    end
-  )
-
-  me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_warlock"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["WARLOCK"])
-    end
-  )
-
-  me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_warrior"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["WARRIOR"])
-    end
-  )
-
-  me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_items"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["ITEMS"])
-    end
-  )
-
-  me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_racials"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["RACIALS"])
-    end
-  )
-
-  me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
-    panel.main,
-    rgpvpw.L["category_misc"],
-    function(self)
-        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["MISC"])
-    end
-  )
+  me.BuildSpellCategories(panel.main)
 
   --[[
     For development purpose the InterfaceOptionsFrame_OpenToCategory function can be used to directly
@@ -167,8 +61,7 @@ function me.SetupAddonConfiguration()
     Note: The behavior with how events fire might change quite a bit when using the above debug method.
     Because of this it is important that the "normal" manuall way of opening the menu is tested as well.
   ]]--
-  InterfaceOptionsFrame_OpenToCategory(a) -- TODO remove
-  InterfaceOptionsFrame_OpenToCategory(a) -- TODO remove
+  me.OpenAddonPanel() -- TODO debug only remove this later
 
   mod.aboutContent.BuildAboutContent(panel.main)
 end
@@ -204,6 +97,26 @@ function me.BuildCategory(frameName, parent, panelText, onShowCallback)
   InterfaceOptions_AddCategory(menu)
 
   return menu
+end
+
+--[[
+  Build configuration panels for all categories
+  @param {table} configurationPanel
+]]--
+function me.BuildSpellCategories(parent)
+  for index, category in ipairs(RGPVPW_CONSTANTS.CATEGORIES) do
+    local menu = CreateFrame("Frame", category.name, parent)
+    menu.name = rgpvpw.L[category.localizationKey]
+    menu.parent = parent.name
+    menu.value = index
+    menu.categoryName = category.categoryName
+
+    menu:SetScript("OnShow", mod.categoryMenu.MenuOnShow)
+    -- Important to hide panel initially. Interface addon options will take care of showing the menu
+    menu:Hide()
+    -- Add the child to the Interface Options
+    InterfaceOptions_AddCategory(menu)
+  end
 end
 
 --[[

@@ -99,6 +99,72 @@ RGPVPW_CONSTANTS = {
   ]]--
   ELEMENT_GENERAL_SUB_OPTION_FRAME = "PVPW_GeneralMenuOptionsFrame",
   --[[
+    A list of available categories consisting of all classes, racials, items and a
+    misc category
+  ]]--
+  CATEGORIES = {
+    [1] = {
+      ["categoryName"] = "druid",
+      ["localizationKey"] = "category_druid",
+      ["name"] = "PVPW_DruidOptionsFrame"
+    },
+    [2] = {
+      ["categoryName"] = "hunter",
+      ["localizationKey"] = "category_hunter",
+      ["name"] = "PVPW_HunterOptionsFrame"
+    },
+    [3] = {
+      ["categoryName"] = "mage",
+      ["localizationKey"] = "category_mage",
+      ["name"] = "PVPW_MageOptionsFrame"
+    },
+    [4] = {
+      ["categoryName"] = "paladin",
+      ["localizationKey"] = "category_paladin",
+      ["name"] = "PVPW_PaladinOptionsFrame"
+    },
+    [5] = {
+      ["categoryName"] = "priest",
+      ["localizationKey"] = "category_priest",
+      ["name"] = "PVPW_PriestOptionsFrame"
+    },
+    [6] = {
+      ["categoryName"] = "rogue",
+      ["localizationKey"] = "category_rogue",
+      ["name"] = "PVPW_RogueOptionsFrame"
+    },
+    [7] = {
+      ["categoryName"] = "shaman",
+      ["localizationKey"] = "category_shaman",
+      ["name"] = "PVPW_ShamanOptionsFrame"
+    },
+    [8] = {
+      ["categoryName"] = "warlock",
+      ["localizationKey"] = "category_warlock",
+      ["name"] = "PVPW_WarlockOptionsFrame"
+    },
+    [9] = {
+      ["categoryName"] = "warrior",
+      ["localizationKey"] = "category_warrior",
+      ["name"] = "PVPW_WarriorOptionsFrame"
+    },
+    [10] = {
+      ["categoryName"] = "items",
+      ["localizationKey"] = "category_items",
+      ["name"] = "PVPW_ItemsOptionsFrame"
+    },
+    [11] = {
+      ["categoryName"] = "racials",
+      ["localizationKey"] = "category_racials",
+      ["name"] = "PVPW_RacialsOptionsFrame"
+    },
+    [12] = {
+      ["categoryName"] = "misc",
+      ["localizationKey"] = "category_misc",
+      ["name"] = "PVPW_ItemsOptionsFrame"
+    }
+  },
+  --[[
     Categorymenu
   ]]--
   ELEMENT_CATEGORY_SUB_OPTION_FRAME = "PVPW_CategoryMenuOptionsFrame",
@@ -108,25 +174,11 @@ RGPVPW_CONSTANTS = {
   ELEMENT_SPELL_LIST_SCROLL_FRAME_SLIDER = "PVPW_QuickChangeFromScrollFrameSlider",
   ELEMENT_SPELL_LIST_CONTENT_FRAME = "PVPW_QuickChangeFromContentFrame",
   SPELL_LIST_CONTENT_FRAME_WIDTH = 560,
-  SPELL_LIST_MAX_ROWS = 5,
+  SPELL_LIST_MAX_ROWS = 11,
   SPELL_LIST_ROW_HEIGHT = 50,
-}
-
---[[
-  A list of available categories consisting of all classes, racials, items and a
-  misc category
-]]--
-RGPVPW_CLASSLIST = {
-  DRUID = "druid",
-  HUNTER = "hunter",
-  MAGE = "mage",
-  PALADIN = "paladin",
-  PRIEST = "priest",
-  ROGUE = "rogue",
-  SHAMAN = "shaman",
-  WARLOCK = "warlock",
-  WARRIOR = "warrior",
-  ITEMS = "items",
-  RACIALS = "racials",
-  MISC = "misc"
+  -- spell configuration (single row)
+  ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON = "$parentIcon",
+  ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE = 32,
+  ELEMENT_CATEGORY_COOLDOWN_SPELL_STATUS = "$parentStatus",
+  ELEMENT_CATEGORY_COOLDOWN_SPELL_STATUS_SIZE = 32,
 }
