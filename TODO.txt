@@ -1,3 +1,8 @@
+Debugging
+
+/run a = {["soundFileName"] = "blade_flurry", ["name"] = "Blade Flurry"}; rgpvpw.alert.PlayAlert("rogue", 3, a)
+/run rgpvpw.alert.PlayAlert("rogue", 3, a)
+
 Trinket is SPELL_CAST_SUCCESS
 
 THen depending on the class a different name?

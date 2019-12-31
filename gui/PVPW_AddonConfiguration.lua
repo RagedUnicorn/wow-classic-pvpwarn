@@ -24,6 +24,7 @@
 ]]--
 
 -- luacheck: globals CreateFrame UIParent InterfaceOptions_AddCategory InterfaceOptionsFrame_OpenToCategory
+-- luacheck: globals RGPVPW_CLASSLIST
 
 local mod = rgpvpw
 local me = {}
@@ -46,6 +47,114 @@ function me.SetupAddonConfiguration()
     mod.generalMenu.BuildUi
   )
 
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_druid"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["DRUID"])
+    end
+  )
+
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_hunter"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["HUNTER"])
+    end
+  )
+
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_mage"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["MAGE"])
+    end
+  )
+
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_paladin"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["PALADIN"])
+    end
+  )
+
+  me.BuildCategory( -- TODO remove
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_priest"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["PRIEST"])
+    end
+  )
+
+  local a = me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_rogue"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["ROGUE"])
+    end
+  )
+
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_shaman"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["SHAMAN"])
+    end
+  )
+
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_warlock"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["WARLOCK"])
+    end
+  )
+
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_warrior"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["WARRIOR"])
+    end
+  )
+
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_items"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["ITEMS"])
+    end
+  )
+
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_racials"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["RACIALS"])
+    end
+  )
+
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["category_misc"],
+    function(self)
+        mod.categoryMenu.BuildUi(self, RGPVPW_CLASSLIST["MISC"])
+    end
+  )
+
   --[[
     For development purpose the InterfaceOptionsFrame_OpenToCategory function can be used to directly
     open a specific category. Because of a blizzard bug this usually has to be called twice to actually work.
@@ -58,6 +167,9 @@ function me.SetupAddonConfiguration()
     Note: The behavior with how events fire might change quite a bit when using the above debug method.
     Because of this it is important that the "normal" manuall way of opening the menu is tested as well.
   ]]--
+  InterfaceOptionsFrame_OpenToCategory(a) -- TODO remove
+  InterfaceOptionsFrame_OpenToCategory(a) -- TODO remove
+
   mod.aboutContent.BuildAboutContent(panel.main)
 end
 

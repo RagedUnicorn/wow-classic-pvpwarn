@@ -95,7 +95,38 @@ RGPVPW_CONSTANTS = {
   ELEMENT_ABOUT_VERSION_FONT_STRING = "PVPW_AboutVersion",
   ELEMENT_ABOUT_ISSUES_FONT_STRING = "PVPW_AboutIssues",
   --[[
-    General
+    Generalmenu
   ]]--
   ELEMENT_GENERAL_SUB_OPTION_FRAME = "PVPW_GeneralMenuOptionsFrame",
+  --[[
+    Categorymenu
+  ]]--
+  ELEMENT_CATEGORY_SUB_OPTION_FRAME = "PVPW_CategoryMenuOptionsFrame",
+
+  -- scroll list
+  ELEMENT_SPELL_LIST_SCROLL_FRAME = "PVPW_QuickChangeFromScrollFrame",
+  ELEMENT_SPELL_LIST_SCROLL_FRAME_SLIDER = "PVPW_QuickChangeFromScrollFrameSlider",
+  ELEMENT_SPELL_LIST_CONTENT_FRAME = "PVPW_QuickChangeFromContentFrame",
+  SPELL_LIST_CONTENT_FRAME_WIDTH = 560,
+  SPELL_LIST_MAX_ROWS = 5,
+  SPELL_LIST_ROW_HEIGHT = 50,
+}
+
+--[[
+  A list of available categories consisting of all classes, racials, items and a
+  misc category
+]]--
+RGPVPW_CLASSLIST = {
+  DRUID = "druid",
+  HUNTER = "hunter",
+  MAGE = "mage",
+  PALADIN = "paladin",
+  PRIEST = "priest",
+  ROGUE = "rogue",
+  SHAMAN = "shaman",
+  WARLOCK = "warlock",
+  WARRIOR = "warrior",
+  ITEMS = "items",
+  RACIALS = "racials",
+  MISC = "misc"
 }

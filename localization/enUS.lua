@@ -21,3 +21,17 @@ rgpvpw.L["issues"] = "Issues: https://github.com/RagedUnicorn/wow-classic-pvpwar
 -- general
 rgpvpw.L["general_category_name"] = "General"
 rgpvpw.L["general_title"] = "General Configuration"
+
+-- categories
+rgpvpw.L["category_druid"] = "Druid"
+rgpvpw.L["category_hunter"] = "Hunter"
+rgpvpw.L["category_mage"] = "Mage"
+rgpvpw.L["category_paladin"] = "Paladin"
+rgpvpw.L["category_priest"] = "Priest"
+rgpvpw.L["category_rogue"] = "Rogue"
+rgpvpw.L["category_shaman"] = "Shaman"
+rgpvpw.L["category_warlock"] = "Warlock"
+rgpvpw.L["category_warrior"] = "Warrior"
+rgpvpw.L["category_items"] = "Items"
+rgpvpw.L["category_racials"] = "Racials"
+rgpvpw.L["category_misc"] = "Misc"

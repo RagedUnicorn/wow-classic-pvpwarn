@@ -860,5 +860,11 @@ end
 function me.GetAllForCategory(category)
   if not category then return nil end
 
-  return mod.common.Clone(spellMap[category])
+  local spellList = {}
+
+  for _, spell in pairs(spellMap[category]) do
+    table.insert(spellList, mod.common.Clone(spell))
+  end
+
+  return spellList
 end

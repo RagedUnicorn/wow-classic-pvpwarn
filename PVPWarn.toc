@@ -33,3 +33,4 @@ gui/PVPW_Frame.xml
 gui/PVPW_AddonConfiguration.lua
 gui/PVPW_AboutContent.lua
 gui/PVPW_GeneralMenu.lua
+gui/PVPW_CategoryMenu.lua
