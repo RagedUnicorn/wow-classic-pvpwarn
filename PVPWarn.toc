@@ -18,12 +18,14 @@ localization/deDE.lua
 code/PVPW_Core.lua
 code/PVPW_Logger.lua
 code/PVPW_Filter.lua
-code/PVPW_Alert.lua
+code/PVPW_Ticker.lua
+code/PVPW_Warn.lua
 code/PVPW_Sound.lua
 code/PVPW_Visual.lua
 code/PVPW_CombatLog.lua
 code/PVPW_SpellMap.lua
 code/PVPW_Common.lua
+code/PVPW_WarnQueue.lua
 
 # debug
 code/PVPW_Debug.lua

@@ -51,7 +51,7 @@ function me.ProcessUnfilteredCombatLogEvent()
       local category, spell = mod.spellMap.SearchByName(spellName, event)
 
       if category ~= nil and spell ~= nil then
-        mod.alert.PlayAlert(category, RGPVPW_CONSTANTS.SPELL_TYPE.NORMAL, spell)
+        mod.alert.PlayAlert(category, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spell)
       end
     elseif event == "SPELL_AURA_APPLIED" then
       mod.logger.LogError(me.tag, "Target: " .. target)
@@ -60,7 +60,7 @@ function me.ProcessUnfilteredCombatLogEvent()
 
       if category ~= nil and spell ~= nil then
         mod.logger.LogDebug(me.tag, "Found tracked spell")
-        mod.alert.PlayAlert(category, spell)
+        mod.alert.PlayAlert(category, RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spell)
       end
     elseif event == "SPELL_AURA_REMOVED" then
       -- TODO this is probably going to be used for most "down/faded" sound. E.g. recklesness runs out
@@ -69,7 +69,7 @@ function me.ProcessUnfilteredCombatLogEvent()
 
       if category ~= nil and spell ~= nil then
         mod.logger.LogDebug(me.tag, "Found tracked spell")
-        mod.alert.PlayAlert(category, spell)
+        mod.alert.PlayAlert(category, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spell)
       end
     elseif event == "SPELL_AURA_REFRESH" then
       -- TODO this event is used when something is reseted while it is still active e.g. inner fire rebuff
@@ -77,7 +77,7 @@ function me.ProcessUnfilteredCombatLogEvent()
 
       if category ~= nil and spell ~= nil then
         mod.logger.LogDebug(me.tag, "Found tracked spell")
-        mod.alert.PlayAlert(category, spell)
+        mod.alert.PlayAlert(category, RGPVPW_CONSTANTS.SPELL_TYPES.REFRESHED, spell)
       end
     else
       mod.logger.LogDebug(me.tag, "Ignore unsupported event: " .. event)

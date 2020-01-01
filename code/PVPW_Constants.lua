@@ -26,6 +26,10 @@
 RGPVPW_CONSTANTS = {
   ADDON_NAME = "PVPWarn",
   --[[
+    Intervals
+  ]]--
+  WARN_QUEUE_UPDATE_INTERVAL = 0.1,
+  --[[
     Warn textures
   ]]--
   TEXTURES = {
@@ -70,12 +74,17 @@ RGPVPW_CONSTANTS = {
       colorValue = 10
     }
   },
-  SPELL_TYPE = {
+  SPELL_TYPES = {
     ["NORMAL"] = 1, -- SPELL_CAST_SUCCESS
     ["APPLIED"] = 2, -- SPELL_AURA_APPLIED
     ["REMOVED"] = 3, -- SPELL_AURA_REMOVED
     ["REFRESH"] = 4 -- SPELL_AURA_REFRESH
   },
+  --[[
+    Max age in seconds of a warn message before it is considered to old. Messages
+    that are to old are dropped from the queue.
+  ]]--
+  MAX_WARN_AGE = 5,
   --[[
     Alert UI
   ]]--

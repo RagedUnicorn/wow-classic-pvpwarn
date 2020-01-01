@@ -61,7 +61,7 @@ end
   @param {string} event
   @param {table} vararg
 ]]--
-function me.OnEvent(event, ...)
+function me.OnEvent(event, ...) -- TODO unused parameter
   if event == "PLAYER_LOGIN" then
     me.logger.LogEvent(me.tag, "PLAYER_LOGIN")
     me.Initialize()
@@ -82,6 +82,8 @@ function me.Initialize()
   -- me.configuration.SetupConfiguration() TODO
   -- setup addon configuration ui
   me.addonConfiguration.SetupAddonConfiguration()
+  -- start ticker intervals
+  me.ticker.StartTickerWarnQueue()
 
   me.ShowWelcomeMessage()
 end

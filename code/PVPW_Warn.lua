@@ -41,6 +41,13 @@ function me.PlayAlert(category, spellType, spell)
     return
   end
 
-  mod.sound.PlaySound(category, spellType, spell.soundFileName)
-  mod.visual.ShowVisualAlert("green")
+  -- check in configuration if the spells should be processed
+  -- if not mod.opt.IsSpellActive(spellList, soundCategory, normalizedSpellName) then
+    -- mod.logger.LogDebug(me.tag, "Skipping add to queue for disabled spell - " .. normalizedSpellName)
+    -- return
+  -- end
+
+
+  -- queue spell into warnqueue
+  mod.warnQueue.AddToQueue(tostring(math.floor(math.random() * 100000)), category, spellType, spell, true, true)
 end
