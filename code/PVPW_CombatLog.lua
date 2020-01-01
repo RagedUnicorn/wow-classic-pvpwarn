@@ -33,8 +33,11 @@ me.tag = "CombatLog"
 
 --[[
   Processing the details of the current combat log event. Invoked when 'COMBAT_LOG_EVENT_UNFILTERED' is fired
+
+  @param {function} callback
+    Optional function that is invoked with status infos. Currently only used for testing
 ]]--
-function me.ProcessUnfilteredCombatLogEvent()
+function me.ProcessUnfilteredCombatLogEvent(callback)
   local _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName = CombatLogGetCurrentEventInfo()
 
   if RGPVPW_ENVIRONMENT.DEBUG then
@@ -46,42 +49,29 @@ function me.ProcessUnfilteredCombatLogEvent()
   if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_HOSTILE_PLAYERS) then
     --and CombatLog_Object_IsA(sourceFlags, COMBATLOG_OBJECT_TARGET)
     if event == "SPELL_CAST_SUCCESS" then
-      mod.logger.LogInfo(me.tag, "Detected 'SPELL_CAST_SUCCESS': " .. spellName)
-
       local category, spell = mod.spellMap.SearchByName(spellName, event)
-
-      if category ~= nil and spell ~= nil then
-        mod.alert.PlayAlert(category, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spell)
-      end
+      mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spell, callback)
     elseif event == "SPELL_AURA_APPLIED" then
-      mod.logger.LogError(me.tag, "Target: " .. target)
       -- TODO this is probably used for all buff related alerts suchs as mage x gets arcane power
-      local category, spell = mod.spellMap.SearchByName(spellName, event)
 
-      if category ~= nil and spell ~= nil then
-        mod.logger.LogDebug(me.tag, "Found tracked spell")
-        mod.alert.PlayAlert(category, RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spell)
-      end
+      local category, spell = mod.spellMap.SearchByName(spellName, event)
+      mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spell, callback)
     elseif event == "SPELL_AURA_REMOVED" then
       -- TODO this is probably going to be used for most "down/faded" sound. E.g. recklesness runs out
 
       local category, spell = mod.spellMap.SearchByName(spellName, event)
-
-      if category ~= nil and spell ~= nil then
-        mod.logger.LogDebug(me.tag, "Found tracked spell")
-        mod.alert.PlayAlert(category, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spell)
-      end
+      mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spell, callback)
     elseif event == "SPELL_AURA_REFRESH" then
       -- TODO this event is used when something is reseted while it is still active e.g. inner fire rebuff
-      local category, spell = mod.spellMap.SearchByName(spellName, event)
 
-      if category ~= nil and spell ~= nil then
-        mod.logger.LogDebug(me.tag, "Found tracked spell")
-        mod.alert.PlayAlert(category, RGPVPW_CONSTANTS.SPELL_TYPES.REFRESHED, spell)
-      end
+      local category, spell = mod.spellMap.SearchByName(spellName, event)
+      mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.REFRESHED, spell, callback)
     else
       mod.logger.LogDebug(me.tag, "Ignore unsupported event: " .. event)
-    end
 
+      if callback then
+        callback()
+      end
+    end
   end
 end

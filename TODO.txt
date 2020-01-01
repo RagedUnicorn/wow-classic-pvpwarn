@@ -85,3 +85,12 @@ For spells such as kidney shot we need to have a concept how we wanna track/anno
 }
 
 Those do not currenlty exist check patch status and how they are displayed in the combat log
+
+
+-----------------------------
+Need to check sourceflags
+
+Tested in duell and got
+local sourceFlags = 1352
+
+Might be different against an alliance player?

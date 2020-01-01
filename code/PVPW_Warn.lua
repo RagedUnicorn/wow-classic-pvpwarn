@@ -24,18 +24,33 @@
 
 local mod = rgpvpw
 local me = {}
-mod.alert = me
+mod.warn = me
 
-me.tag = "Alert"
+me.tag = "Warn"
 
 
 --[[
   @param {string} category
   @param {number} spellType
   @param {table} spell
+  @param {function} callback
+    Optional function that is invoked with status infos. Currently only used for testing
 ]]--
-function me.PlayAlert(category, spellType, spell)
-  if not spell.hasFade and spellType == RGPVPW_CONSTANTS.SPELL_TYPE.REMOVED then
+function me.PlayWarning(category, spellType, spell, callback)
+  if category == nil or spellType == nil or spell == nil then
+    if callback ~= nil then
+      assert(type(callback) == "function",
+        string.format(
+          "bad argument #4 to `ProcessUnfilteredCombatLogEvent` (expected function got %s)", type(callback))
+        )
+
+      callback(category, spellType, spell)
+    end
+
+    return
+  end
+
+  if not spell.hasFade and spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
     mod.logger.LogError(me.tag, string.format("Tried to play removed sound for spell '%s' that indicated no"
       .. " support for such. Check spellMap for a potential error", spell.name))
     return

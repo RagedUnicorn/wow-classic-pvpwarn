@@ -61,9 +61,9 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
 
   local soundPath = BASE_PATH .. soundCategory .. "\\" .. soundFileName
 
-  if spellType == RGPVPW_CONSTANTS.SPELL_TYPE.NORMAL or spellType == RGPVPW_CONSTANTS.SPELL_TYPE.APPLIED then
+  if spellType == RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL or spellType == RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED then
     soundPath =  soundPath .. FILE_TYPE
-  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPE.REMOVED then
+  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
     soundPath = soundPath .. FILE_NAME_DOWN .. FILE_TYPE
   else
     mod.logger.LogWarn(me.tag, "Invalid spellType: " .. spellType)

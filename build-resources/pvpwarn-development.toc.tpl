@@ -26,6 +26,8 @@ code/PVPW_CombatLog.lua
 code/PVPW_SpellMap.lua
 code/PVPW_Common.lua
 code/PVPW_WarnQueue.lua
+code/PVPW_Configuration.lua
+code/PVPW_Profile.lua
 
 # debug
 code/PVPW_Debug.lua
@@ -36,3 +38,8 @@ gui/PVPW_AddonConfiguration.lua
 gui/PVPW_AboutContent.lua
 gui/PVPW_GeneralMenu.lua
 gui/PVPW_CategoryMenu.lua
+
+# test
+test/PVPW_TestReporter.lua
+test/PVPW_TestHelper.lua
+test/PVPW_TestCombatEventsRogueEn.lua

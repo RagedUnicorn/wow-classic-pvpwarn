@@ -820,7 +820,7 @@ end
   @return ({string} {table}) | {nil}
 ]]--
 function me.SearchByName(name, event)
-  if not name then return nil end
+  if not name then return nil end -- TODO improve this make it more safe
 
   local spellName = mod.common.NormalizeSpellname(name)
 
@@ -837,7 +837,7 @@ function me.SearchByName(name, event)
 
             local clonedSpell = mod.common.Clone(spellMap[category][spellEntry])
             clonedSpell.normalizedSpellName = spellEntry -- add normalizedSpellName that would get lost otherwise
-
+            mod.logger.LogError(me.tag, "Category: " .. category)
             return category, clonedSpell
           end
         end
