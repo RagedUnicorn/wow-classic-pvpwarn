@@ -53,7 +53,6 @@ local isQueueBusy = false
     Whether to play a visual warning or not depending on the users preferences
 ]]--
 function me.AddToQueue(warnName, category, spellType, spell, playSound, playVisual)
-  mod.logger.LogError(me.tag, "AddToQueue")
   local warning = {
     ["warnName"] = warnName,
     ["category"] = category,
@@ -97,8 +96,12 @@ function me.ProcessQueue()
       local playedVisual = false
 
       if warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL or
-        warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED then
+        warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED or
+        warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH then
         playedSound = me.PlaySound(warning, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL)
+        playedVisual = me.PlayVisual(warning)
+      elseif warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
+        playedSound = me.PlaySound(warning, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED)
         playedVisual = me.PlayVisual(warning)
       else
         mod.logger.LogError(me.tag, "Found invalid spelltype: " .. warning.spellType)

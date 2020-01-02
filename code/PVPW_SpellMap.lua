@@ -513,7 +513,7 @@ else
         -- TODO NOT VERIFIED
       }
     },
-    ["rogue"] = {
+    ["rogue"] = { -- completely verified
       ["blind"] = {
         ["name"] = "Blind",
         ["soundFileName"] = "blind",
@@ -523,10 +523,8 @@ else
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED",
-          -- "SPELL_AURA_REMOVED", ignoring fade
           "SPELL_AURA_REFRESH"
         }
-        -- TODO spell verified
       },
       ["kick"] = {
         ["name"] = "Kick",
@@ -538,7 +536,6 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-        -- TODO spell verified
       },
       ["sprint"] = {
         ["name"] = "Sprint",
@@ -551,7 +548,6 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED",
         }
-        -- TODO spell verified
       },
       ["evasion"] = {
         ["name"] = "Evasion",
@@ -564,7 +560,6 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
-        -- TODO spell verified
       },
       ["kidney_shot"] = {
         ["name"] = "Kidney Shot",
@@ -576,7 +571,6 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-        -- TODO spell verified
       },
       ["cheap_shot"] = {
         ["name"] = "Cheap Shot",
@@ -588,7 +582,6 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-        -- TODO spell verified
       },
       ["adrenaline_rush"] = {
         ["name"] = "Adrenaline Rush",
@@ -601,7 +594,6 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
-        -- TODO spell verified
       },
 
       ["blade_flurry"] = {
@@ -615,7 +607,6 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
-        -- TODO spell verified
       },
       ["cold_blood"] = {
         ["name"] = "Cold Blood",
@@ -629,7 +620,6 @@ else
           "SPELL_AURA_REMOVED"
         }
       }
-      -- TODO spell verified
     },
     ["mage"] = {
       ["ice_block"] = {
@@ -837,7 +827,7 @@ function me.SearchByName(name, event)
 
             local clonedSpell = mod.common.Clone(spellMap[category][spellEntry])
             clonedSpell.normalizedSpellName = spellEntry -- add normalizedSpellName that would get lost otherwise
-            mod.logger.LogError(me.tag, "Category: " .. category)
+
             return category, clonedSpell
           end
         end

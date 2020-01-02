@@ -61,7 +61,8 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
 
   local soundPath = BASE_PATH .. soundCategory .. "\\" .. soundFileName
 
-  if spellType == RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL or spellType == RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED then
+  if spellType == RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL or spellType == RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED
+    or spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH then
     soundPath =  soundPath .. FILE_TYPE
   elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
     soundPath = soundPath .. FILE_NAME_DOWN .. FILE_TYPE

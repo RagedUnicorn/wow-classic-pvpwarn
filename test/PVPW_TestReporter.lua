@@ -22,7 +22,9 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetAddOnMetadata DEFAULT_CHAT_FRAME
+-- luacheck: globals GetAddOnMetadata DEFAULT_CHAT_FRAME C_Timer
+
+-- TODO rework complete module to match new style (mostly comments)
 
 local mod = rgpvpw
 local me = {}
@@ -34,6 +36,8 @@ local testManager = {
   ["currentTestGroup"] = nil,
   ["currentTest"] = nil
 }
+
+local testQueueWithDelay = {}
 
 if PVPWarnTestLog == nil then
   PVPWarnTestLog = {}
@@ -197,4 +201,31 @@ function me.ReportFailureTestRun(reason)
 
   -- reset
   testManager.currentTest = nil
+end
+
+--[[
+  add a function to the testqueue
+  @param {function} testFunction
+    testfunction to execute
+]]--
+function me.AddToTestQueueWithDelay(testFunction)
+  table.insert(testQueueWithDelay, testFunction)
+end
+
+--[[
+  @param {function} callback
+    TODO explain
+]]--
+function me.PlayTestQueueWithDelay(callback)
+  if testQueueWithDelay[1] ~= nil then
+    testQueueWithDelay[1]()
+    table.remove(testQueueWithDelay, 1)
+  else
+    callback()
+    return -- queue is empty abort...
+  end
+
+  C_Timer.After(0.8, function()
+    me.PlayTestQueueWithDelay(callback)
+  end)
 end

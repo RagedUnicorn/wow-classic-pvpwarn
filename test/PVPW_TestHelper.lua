@@ -33,6 +33,11 @@ me.tag = "TestHelper"
 local origCombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 
 --[[
+  Reused failure reasons
+]]--
+mod.testHelper.unableToPlay = "Unable to play sound"
+
+--[[
   Hooks the CombatLogGetCurrentEventInfo function and replaces it with the passed function. Hooking this function
   breaks the complete functionality and should never used with other addons running. The sole purpose is for testing.
 

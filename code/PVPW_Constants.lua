@@ -80,6 +80,10 @@ RGPVPW_CONSTANTS = {
     ["REMOVED"] = 3, -- SPELL_AURA_REMOVED
     ["REFRESH"] = 4 -- SPELL_AURA_REFRESH
   },
+  EVENT_SPELL_CAST_SUCCESS = "SPELL_CAST_SUCCESS",
+  EVENT_SPELL_AURA_APPLIED = "SPELL_AURA_APPLIED",
+  EVENT_SPELL_AURA_REMOVED = "SPELL_AURA_REMOVED",
+  EVENT_SPELL_AURA_REFRESH = "SPELL_AURA_REFRESH",
   --[[
     Max age in seconds of a warn message before it is considered to old. Messages
     that are to old are dropped from the queue.

@@ -65,7 +65,7 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
       -- TODO this event is used when something is reseted while it is still active e.g. inner fire rebuff
 
       local category, spell = mod.spellMap.SearchByName(spellName, event)
-      mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.REFRESHED, spell, callback)
+      mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH, spell, callback)
     else
       mod.logger.LogDebug(me.tag, "Ignore unsupported event: " .. event)
 

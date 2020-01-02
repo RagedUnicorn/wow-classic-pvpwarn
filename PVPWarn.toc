@@ -42,4 +42,7 @@ gui/PVPW_CategoryMenu.lua
 # test
 test/PVPW_TestReporter.lua
 test/PVPW_TestHelper.lua
+
+# rogue
+test/PVPW_TestSoundRogueEn.lua
 test/PVPW_TestCombatEventsRogueEn.lua
