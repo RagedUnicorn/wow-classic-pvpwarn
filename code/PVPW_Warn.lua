@@ -38,15 +38,6 @@ me.tag = "Warn"
 ]]--
 function me.PlayWarning(category, spellType, spell, callback)
   if category == nil or spellType == nil or spell == nil then
-    if callback ~= nil then
-      assert(type(callback) == "function",
-        string.format(
-          "bad argument #4 to `ProcessUnfilteredCombatLogEvent` (expected function got %s)", type(callback))
-        )
-
-      callback(category, spellType, spell)
-    end
-
     return
   end
 
@@ -65,4 +56,13 @@ function me.PlayWarning(category, spellType, spell, callback)
 
   -- queue spell into warnqueue
   mod.warnQueue.AddToQueue(tostring(math.floor(math.random() * 100000)), category, spellType, spell, true, true)
+
+  if callback ~= nil then
+    assert(type(callback) == "function",
+      string.format(
+        "bad argument #4 to `ProcessUnfilteredCombatLogEvent` (expected function got %s)", type(callback))
+      )
+
+    callback(category, spellType, spell)
+  end
 end

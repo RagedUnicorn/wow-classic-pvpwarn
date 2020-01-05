@@ -26,46 +26,51 @@
 
 local mod = rgpvpw
 local me = {}
-mod.testCombatEventsRogueEn = me
+mod.testCombatEventsWarriorEn = me
 
-me.tag = "TestCombatEventsRogueEn"
+me.tag = "TestCombatEventsWarriorEn"
 
-local testGroupName = "CombatEventsRogueEn"
-local testCategory = "rogue"
+local testGroupName = "CombatEventsWarriorEn"
+local testCategory = "warrior"
 
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlindApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlindRefresh)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventKickSuccess)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSprintApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSprintRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEvasionApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEvasionRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventKidneyShotSuccess)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCheapShotSuccess)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAdrenalineRushApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAdrenalineRushRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBladeFlurryApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBladeFlurryRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventColdBloodApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventColdBloodRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkerRageApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkerRageRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRecklessnessApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRecklessnessRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeathWishApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeathWishRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBattleStanceApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkerStanceApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDefensiveStanceApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInterceptSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDisarmSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConcussionBlowSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBloodrageApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBloodrageRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPummelSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChargeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIntimidatingShoutSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBlockApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBlockRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldSlamSuccess)
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
   end)
 end
 
-function me.TestCombatEventBlindApplied()
-  local testName = "TestCombatEventBlindApplied"
+function me.TestCombatEventBerserkerRageApplied()
+  local testName = "TestCombatEventBerserkerRageApplied"
   mod.testReporter.StartTestRun(testName)
 
   local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
   local sourceFlags = 1352
   local target = mod.testHelper.GetGenericEnemyId()
   local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Blind"
+  local spellName = "Berserker Rage"
   local failureReason
 
   local fakeSpellCastCombatEvent = function()
@@ -95,15 +100,15 @@ function me.TestCombatEventBlindApplied()
   end
 end
 
-function me.TestCombatEventBlindRefresh()
-  local testName = "TestCombatEventBlindRefresh"
+function me.TestCombatEventBerserkerRageRemoved()
+  local testName = "TestCombatEventBerserkerRageRemoved"
   mod.testReporter.StartTestRun(testName)
 
-  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REFRESH
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
   local sourceFlags = 1352
   local target = mod.testHelper.GetGenericEnemyId()
   local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Blind"
+  local spellName = "Berserker Rage"
   local failureReason
 
   local fakeSpellCastCombatEvent = function()
@@ -116,8 +121,8 @@ function me.TestCombatEventBlindRefresh()
       failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
     end
 
-    if RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH ~= spellType then
-      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH, spellType)
+    if RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
     end
 
     if not spell then
@@ -133,15 +138,281 @@ function me.TestCombatEventBlindRefresh()
   end
 end
 
-function me.TestCombatEventKickSuccess()
-  local testName = "TestCombatEventKickSuccess"
+function me.TestCombatEventRecklessnessApplied()
+  local testName = "TestCombatEventRecklessnessApplied"
+  mod.testReporter.StartTestRun(testName)
+
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
+  local sourceFlags = 1352
+  local target = mod.testHelper.GetGenericEnemyId()
+  local targetName = mod.testHelper.GetGenericEnemyName()
+  local spellName = "Recklessness"
+  local failureReason
+
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
+    end
+
+    if not spell then
+      failureReason = "Did not get any spell metadata"
+    end
+  end)
+  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+function me.TestCombatEventRecklessnessRemoved()
+  local testName = "TestCombatEventRecklessnessRemoved"
+  mod.testReporter.StartTestRun(testName)
+
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
+  local sourceFlags = 1352
+  local target = mod.testHelper.GetGenericEnemyId()
+  local targetName = mod.testHelper.GetGenericEnemyName()
+  local spellName = "Recklessness"
+  local failureReason
+
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
+    end
+
+    if not spell then
+      failureReason = "Did not get any spell metadata"
+    end
+  end)
+  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+function me.TestCombatEventDeathWishApplied()
+  local testName = "TestCombatEventDeathWishApplied"
+  mod.testReporter.StartTestRun(testName)
+
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
+  local sourceFlags = 1352
+  local target = mod.testHelper.GetGenericEnemyId()
+  local targetName = mod.testHelper.GetGenericEnemyName()
+  local spellName = "Death Wish"
+  local failureReason
+
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
+    end
+
+    if not spell then
+      failureReason = "Did not get any spell metadata"
+    end
+  end)
+  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+function me.TestCombatEventDeathWishRemoved()
+  local testName = "TestCombatEventDeathWishRemoved"
+  mod.testReporter.StartTestRun(testName)
+
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
+  local sourceFlags = 1352
+  local target = mod.testHelper.GetGenericEnemyId()
+  local targetName = mod.testHelper.GetGenericEnemyName()
+  local spellName = "Death Wish"
+  local failureReason
+
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
+    end
+
+    if not spell then
+      failureReason = "Did not get any spell metadata"
+    end
+  end)
+  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+function me.TestCombatEventBattleStanceApplied()
+  local testName = "TestCombatEventBattleStanceApplied"
+  mod.testReporter.StartTestRun(testName)
+
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
+  local sourceFlags = 1352
+  local target = mod.testHelper.GetGenericEnemyId()
+  local targetName = mod.testHelper.GetGenericEnemyName()
+  local spellName = "Battle Stance"
+  local failureReason
+
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
+    end
+
+    if not spell then
+      failureReason = "Did not get any spell metadata"
+    end
+  end)
+  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+function me.TestCombatEventBerserkerStanceApplied()
+  local testName = "TestCombatEventBerserkerStanceApplied"
+  mod.testReporter.StartTestRun(testName)
+
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
+  local sourceFlags = 1352
+  local target = mod.testHelper.GetGenericEnemyId()
+  local targetName = mod.testHelper.GetGenericEnemyName()
+  local spellName = "Berserker Stance"
+  local failureReason
+
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
+    end
+
+    if not spell then
+      failureReason = "Did not get any spell metadata"
+    end
+  end)
+  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+function me.TestCombatEventDefensiveStanceApplied()
+  local testName = "TestCombatEventDefensiveStanceApplied"
+  mod.testReporter.StartTestRun(testName)
+
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
+  local sourceFlags = 1352
+  local target = mod.testHelper.GetGenericEnemyId()
+  local targetName = mod.testHelper.GetGenericEnemyName()
+  local spellName = "Defensive Stance"
+  local failureReason
+
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
+    end
+
+    if not spell then
+      failureReason = "Did not get any spell metadata"
+    end
+  end)
+  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+function me.TestCombatEventInterceptSuccess()
+  local testName = "TestCombatEventInterceptSuccess"
   mod.testReporter.StartTestRun(testName)
 
   local event = RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS
   local sourceFlags = 1352
   local target = mod.testHelper.GetGenericEnemyId()
   local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Kick"
+  local spellName = "Intercept"
   local failureReason
 
   local fakeSpellCastCombatEvent = function()
@@ -171,167 +442,15 @@ function me.TestCombatEventKickSuccess()
   end
 end
 
-function me.TestCombatEventSprintApplied()
-  local testName = "TestCombatEventSprintApplied"
-  mod.testReporter.StartTestRun(testName)
-
-  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
-  local sourceFlags = 1352
-  local target = mod.testHelper.GetGenericEnemyId()
-  local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Sprint"
-  local failureReason
-
-  local fakeSpellCastCombatEvent = function()
-    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
-  end
-
-  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
-  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
-    if testCategory ~= category then
-      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
-    end
-
-    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
-      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
-    end
-
-    if not spell then
-      failureReason = "Did not get any spell metadata"
-    end
-  end)
-  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
-
-  if failureReason ~= nil then
-    mod.testReporter.ReportFailureTestRun(failureReason)
-  else
-    mod.testReporter.ReportSuccessTestRun()
-  end
-end
-
-function me.TestCombatEventSprintRemoved()
-  local testName = "TestCombatEventSprintRemoved"
-  mod.testReporter.StartTestRun(testName)
-
-  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
-  local sourceFlags = 1352
-  local target = mod.testHelper.GetGenericEnemyId()
-  local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Sprint"
-  local failureReason
-
-  local fakeSpellCastCombatEvent = function()
-    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
-  end
-
-  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
-  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
-    if testCategory ~= category then
-      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
-    end
-
-    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
-      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
-    end
-
-    if not spell then
-      failureReason = "Did not get any spell metadata"
-    end
-  end)
-  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
-
-  if failureReason ~= nil then
-    mod.testReporter.ReportFailureTestRun(failureReason)
-  else
-    mod.testReporter.ReportSuccessTestRun()
-  end
-end
-
-function me.TestCombatEventEvasionApplied()
-  local testName = "TestCombatEventEvasionApplied"
-  mod.testReporter.StartTestRun(testName)
-
-  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
-  local sourceFlags = 1352
-  local target = mod.testHelper.GetGenericEnemyId()
-  local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Evasion"
-  local failureReason
-
-  local fakeSpellCastCombatEvent = function()
-    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
-  end
-
-  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
-  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
-    if testCategory ~= category then
-      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
-    end
-
-    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
-      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
-    end
-
-    if not spell then
-      failureReason = "Did not get any spell metadata"
-    end
-  end)
-  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
-
-  if failureReason ~= nil then
-    mod.testReporter.ReportFailureTestRun(failureReason)
-  else
-    mod.testReporter.ReportSuccessTestRun()
-  end
-end
-
-function me.TestCombatEventEvasionRemoved()
-  local testName = "TestCombatEventEvasionRemoved"
-  mod.testReporter.StartTestRun(testName)
-
-  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
-  local sourceFlags = 1352
-  local target = mod.testHelper.GetGenericEnemyId()
-  local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Evasion"
-  local failureReason
-
-  local fakeSpellCastCombatEvent = function()
-    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
-  end
-
-  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
-  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
-    if testCategory ~= category then
-      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
-    end
-
-    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
-      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
-    end
-
-    if not spell then
-      failureReason = "Did not get any spell metadata"
-    end
-  end)
-  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
-
-  if failureReason ~= nil then
-    mod.testReporter.ReportFailureTestRun(failureReason)
-  else
-    mod.testReporter.ReportSuccessTestRun()
-  end
-end
-
-function me.TestCombatEventKidneyShotSuccess()
-  local testName = "TestCombatEventKidneyShotSuccess"
+function me.TestCombatEventDisarmSuccess()
+  local testName = "TestCombatEventDisarmSuccess"
   mod.testReporter.StartTestRun(testName)
 
   local event = RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS
   local sourceFlags = 1352
   local target = mod.testHelper.GetGenericEnemyId()
   local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Kidney Shot"
+  local spellName = "Disarm"
   local failureReason
 
   local fakeSpellCastCombatEvent = function()
@@ -361,15 +480,15 @@ function me.TestCombatEventKidneyShotSuccess()
   end
 end
 
-function me.TestCombatEventCheapShotSuccess()
-  local testName = "TestCombatEventCheapShotSuccess"
+function me.TestCombatEventConcussionBlowSuccess()
+  local testName = "TestCombatEventConcussionBlowSuccess"
   mod.testReporter.StartTestRun(testName)
 
   local event = RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS
   local sourceFlags = 1352
   local target = mod.testHelper.GetGenericEnemyId()
   local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Cheap Shot"
+  local spellName = "Concussion Blow"
   local failureReason
 
   local fakeSpellCastCombatEvent = function()
@@ -399,15 +518,15 @@ function me.TestCombatEventCheapShotSuccess()
   end
 end
 
-function me.TestCombatEventAdrenalineRushApplied()
-  local testName = "TestCombatEventAdrenalineRushApplied"
+function me.TestCombatEventBloodrageApplied()
+  local testName = "TestCombatEventBloodrageApplied"
   mod.testReporter.StartTestRun(testName)
 
   local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
   local sourceFlags = 1352
   local target = mod.testHelper.GetGenericEnemyId()
   local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Adrenaline Rush"
+  local spellName = "Bloodrage"
   local failureReason
 
   local fakeSpellCastCombatEvent = function()
@@ -437,15 +556,15 @@ function me.TestCombatEventAdrenalineRushApplied()
   end
 end
 
-function me.TestCombatEventAdrenalineRushRemoved()
-  local testName = "TestCombatEventAdrenalineRushRemoved"
+function me.TestCombatEventBloodrageRemoved()
+  local testName = "TestCombatEventBloodrageRemoved"
   mod.testReporter.StartTestRun(testName)
 
   local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
   local sourceFlags = 1352
   local target = mod.testHelper.GetGenericEnemyId()
   local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Adrenaline Rush"
+  local spellName = "Bloodrage"
   local failureReason
 
   local fakeSpellCastCombatEvent = function()
@@ -458,7 +577,7 @@ function me.TestCombatEventAdrenalineRushRemoved()
       failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
     end
 
-    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
+    if RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED ~= spellType then
       failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
     end
 
@@ -475,15 +594,129 @@ function me.TestCombatEventAdrenalineRushRemoved()
   end
 end
 
-function me.TestCombatEventBladeFlurryApplied()
-  local testName = "TestCombatEventBladeFlurryApplied"
+function me.TestCombatEventPummelSuccess()
+  local testName = "TestCombatEventPummelSuccess"
+  mod.testReporter.StartTestRun(testName)
+
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS
+  local sourceFlags = 1352
+  local target = mod.testHelper.GetGenericEnemyId()
+  local targetName = mod.testHelper.GetGenericEnemyName()
+  local spellName = "Pummel"
+  local failureReason
+
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spellType)
+    end
+
+    if not spell then
+      failureReason = "Did not get any spell metadata"
+    end
+  end)
+  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+function me.TestCombatEventChargeSuccess()
+  local testName = "TestCombatEventChargeSuccess"
+  mod.testReporter.StartTestRun(testName)
+
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS
+  local sourceFlags = 1352
+  local target = mod.testHelper.GetGenericEnemyId()
+  local targetName = mod.testHelper.GetGenericEnemyName()
+  local spellName = "Charge"
+  local failureReason
+
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spellType)
+    end
+
+    if not spell then
+      failureReason = "Did not get any spell metadata"
+    end
+  end)
+  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+function me.TestCombatEventIntimidatingShoutSuccess()
+  local testName = "TestCombatEventIntimidatingShoutSuccess"
+  mod.testReporter.StartTestRun(testName)
+
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS
+  local sourceFlags = 1352
+  local target = mod.testHelper.GetGenericEnemyId()
+  local targetName = mod.testHelper.GetGenericEnemyName()
+  local spellName = "Intimidating Shout"
+  local failureReason
+
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spellType)
+    end
+
+    if not spell then
+      failureReason = "Did not get any spell metadata"
+    end
+  end)
+  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+function me.TestCombatEventShieldBlockApplied()
+  local testName = "TestCombatEventShieldBlockApplied"
   mod.testReporter.StartTestRun(testName)
 
   local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
   local sourceFlags = 1352
   local target = mod.testHelper.GetGenericEnemyId()
   local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Blade Flurry"
+  local spellName = "Shield Block"
   local failureReason
 
   local fakeSpellCastCombatEvent = function()
@@ -513,15 +746,15 @@ function me.TestCombatEventBladeFlurryApplied()
   end
 end
 
-function me.TestCombatEventBladeFlurryRemoved()
-  local testName = "TestCombatEventBladeFlurryRemoved"
+function me.TestCombatEventShieldBlockRemoved()
+  local testName = "TestCombatEventShieldBlockRemoved"
   mod.testReporter.StartTestRun(testName)
 
   local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
   local sourceFlags = 1352
   local target = mod.testHelper.GetGenericEnemyId()
   local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Blade Flurry"
+  local spellName = "Shield Block"
   local failureReason
 
   local fakeSpellCastCombatEvent = function()
@@ -534,7 +767,7 @@ function me.TestCombatEventBladeFlurryRemoved()
       failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
     end
 
-    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
+    if RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED ~= spellType then
       failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
     end
 
@@ -551,15 +784,15 @@ function me.TestCombatEventBladeFlurryRemoved()
   end
 end
 
-function me.TestCombatEventColdBloodApplied()
-  local testName = "TestCombatEventColdBloodApplied"
+function me.TestCombatEventShieldSlamSuccess()
+  local testName = "TestCombatEventShieldSlamSuccess"
   mod.testReporter.StartTestRun(testName)
 
-  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
+  local event = RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS
   local sourceFlags = 1352
   local target = mod.testHelper.GetGenericEnemyId()
   local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Cold Blood"
+  local spellName = "Shield Slam"
   local failureReason
 
   local fakeSpellCastCombatEvent = function()
@@ -572,46 +805,8 @@ function me.TestCombatEventColdBloodApplied()
       failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
     end
 
-    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
-      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
-    end
-
-    if not spell then
-      failureReason = "Did not get any spell metadata"
-    end
-  end)
-  mod.testHelper.RestoreCombatLogGetCurrentEventInfo()
-
-  if failureReason ~= nil then
-    mod.testReporter.ReportFailureTestRun(failureReason)
-  else
-    mod.testReporter.ReportSuccessTestRun()
-  end
-end
-
-function me.TestCombatEventColdBloodRemoved()
-  local testName = "TestCombatEventColdBloodRemoved"
-  mod.testReporter.StartTestRun(testName)
-
-  local event = RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
-  local sourceFlags = 1352
-  local target = mod.testHelper.GetGenericEnemyId()
-  local targetName = mod.testHelper.GetGenericEnemyName()
-  local spellName = "Cold Blood"
-  local failureReason
-
-  local fakeSpellCastCombatEvent = function()
-    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
-  end
-
-  mod.testHelper.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
-  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
-    if testCategory ~= category then
-      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
-    end
-
-    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
-      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
+    if RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spellType)
     end
 
     if not spell then

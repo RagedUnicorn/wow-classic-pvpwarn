@@ -46,3 +46,9 @@ test/PVPW_TestHelper.lua
 # rogue
 test/PVPW_TestSoundRogueEn.lua
 test/PVPW_TestCombatEventsRogueEn.lua
+# warrior
+test/PVPW_TestSoundWarriorEn.lua
+test/PVPW_TestCombatEventsWarriorEn.lua
+# priest
+test/PVPW_TestSoundPriestEn.lua
+test/PVPW_TestCombatEventsPriestEn.lua

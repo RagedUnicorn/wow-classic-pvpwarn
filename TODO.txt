@@ -94,3 +94,129 @@ Tested in duell and got
 local sourceFlags = 1352
 
 Might be different against an alliance player?
+
+
+-----
+
+Warrior add last stand
+
+["last_stand"] = {
+  ["name"] = "Last Stand",
+  ["soundFileName"] = "last_stand",
+  ["spellId"] = 12975,
+  ["spellIcon"] = "spell_holy_ashestoashes",
+  ["hasFade"] = true,
+  ["active"] = true
+  -- TODO NOT VERIFIED
+},
+
+["shield_bash"] = {
+  ["name"] = "Shield Bash",
+  ["soundFileName"] = "shield_bash",
+  ["spellId"] = 1672,
+  ["spellIcon"] = "ability_warrior_shieldbash",
+  ["hasFade"] = false,
+  ["active"] = true
+  -- TODO NOT VERIFIED
+},
+
+["shield_wall"] = {
+  ["name"] = "Shield Wall",
+  ["soundFileName"] = "shield_wall",
+  ["spellId"] = 871,
+  ["spellIcon"] = "ability_warrior_shieldwall",
+  ["hasFade"] = true,
+  ["active"] = true
+  -- TODO NOT VERIFIED
+},
+
+function me.TestSoundShieldWall()
+  local testName = "TestSoundShieldWall"
+  local spellName = "Shield Wall"
+  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED)
+
+  mod.testReporter.StartTestRun(testName)
+
+  local status = mod.sound.PlaySound(
+    testCategory,
+    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL,
+    spellData.soundFileName
+  )
+
+  if status then
+    mod.testReporter.ReportSuccessTestRun()
+  else
+    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
+  end
+end
+
+function me.TestSoundDownShieldWall()
+  local testName = "TestSoundDownShieldWall"
+  local spellName = "Shield Wall"
+  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED)
+
+  mod.testReporter.StartTestRun(testName)
+
+  local status = mod.sound.PlaySound(
+    testCategory,
+    RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED,
+    spellData.soundFileName
+  )
+
+  if status then
+    mod.testReporter.ReportSuccessTestRun()
+  else
+    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
+  end
+end
+
+-- TODO add priest spells to spellmap
+
+["desperate_prayer"] = {
+  ["name"] = "Desperate Prayer",
+  ["soundFileName"] = "desperate_prayer",
+  ["spellId"] = 19243, -- rank 7
+  ["spellIcon"] = "spell_holy_restoration",
+  ["hasFade"] = false,
+  ["active"] = true
+},
+
+["elunes_grace"] = {
+  ["name"] = "Elune's Grace",
+  ["soundFileName"] = "elunes_grace",
+  ["spellId"] = 19293, -- rank 5
+  ["spellIcon"] = "spell_holy_elunesgrace",
+  ["hasFade"] = true,
+  ["active"] = true,
+  ["trackedEvents"] = {
+    "SPELL_AURA_APPLIED",
+    "SPELL_AURA_REMOVED",
+  }
+  -- TODO NOT VERIFIED
+},
+["starshards"] = {
+  ["name"] = "Starshards",
+  ["soundFileName"] = "starshards",
+  ["spellId"] = 19305, -- rank 7
+  ["spellIcon"] = "spell_arcane_starfire",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["trackedEvents"] = {
+    "SPELL_CAST_SUCCESS"
+  }
+  -- TODO NOT VERIFIED
+},
+["hex_of_weakness"] = {
+  ["name"] = "Hex of Weakness",
+  ["soundFileName"] = "hex_of_weakness",
+  ["spellId"] = 19285, -- rank 6
+  ["spellIcon"] = "spell_shadow_fingerofdeath",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["trackedEvents"] = {
+    "SPELL_AURA_APPLIED",
+    -- "SPELL_AURA_REMOVED", ignoring fade
+    "SPELL_AURA_REFRESH"
+  }
+  -- TODO NOT VERIFIED
+}
