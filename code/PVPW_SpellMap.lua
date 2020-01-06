@@ -489,7 +489,7 @@ else
         }
       }
     },
-    ["mage"] = {
+    ["mage"] = { -- completely verified
       ["ice_block"] = {
         ["name"] = "Ice Block",
         ["soundFileName"] = "ice_block",
@@ -501,7 +501,6 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
-        -- TODO spell verified
       },
       ["polymorph"] = {
         ["name"] = "Polymorph",
@@ -513,7 +512,6 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-        -- TODO spell verified
       },
       ["blink"] = {
         ["name"] = "Blink",
@@ -658,7 +656,152 @@ else
       }
     },
     ["hunter"] = {
-
+      ["concussive_shot"] = {
+        ["name"] = "Concussive Shot",
+        ["soundFileName"] = "concussive_shot",
+        ["spellId"] = 5116,
+        ["spellIcon"] = "spell_frost_stun",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["aspect_of_the_monkey"] = {
+        ["name"] = "Aspect of the Monkey",
+        ["soundFileName"] = "aspect_of_the_monkey",
+        ["spellId"] = 13163,
+        ["spellIcon"] = "ability_hunter_aspectofthemonkey",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["aspect_of_the_hawk"] = {
+        ["name"] = "Aspect of the Hawk",
+        ["soundFileName"] = "aspect_of_the_hawk",
+        ["spellId"] = 25296, -- rank 7
+        ["spellIcon"] = "spell_nature_ravenform",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["rapid_fire"] = {
+        ["name"] = "Rapid Fire",
+        ["soundFileName"] = "rapid_fire",
+        ["spellId"] = 3045,
+        ["spellIcon"] = "ability_hunter_runningshot",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["explosive_trap"] = {
+        ["name"] = "Explosive Trap",
+        ["soundFileName"] = "explosive_trap",
+        ["spellId"] = 14317, -- rank 3
+        ["spellIcon"] = "spell_fire_selfdestruct",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["freezing_trap"] = {
+        ["name"] = "Freezing Trap",
+        ["soundFileName"] = "freezing_trap",
+        ["spellId"] = 27753, -- rank 3
+        ["spellIcon"] = "spell_frost_chainsofice",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["immolation_trap"] = {
+        ["name"] = "Immolation Trap",
+        ["soundFileName"] = "immolation_trap",
+        ["spellId"] = 14305, -- rank 5
+        ["spellIcon"] = "spell_fire_flameshock",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["frost_trap"] = {
+        ["name"] = "Frost Trap",
+        ["soundFileName"] = "frost_trap",
+        ["spellId"] = 13809,
+        ["spellIcon"] = "spell_frost_freezingbreath",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["viper_sting"] = {
+        ["name"] = "Viper Sting",
+        ["soundFileName"] = "viper_sting",
+        ["spellId"] = 14280, -- rank 3
+        ["spellIcon"] = "ability_hunter_aimedshot",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["scatter_shot"] = {
+        ["name"] = "Scatter Shot",
+        ["soundFileName"] = "scatter_shot",
+        ["spellId"] = 19503,
+        ["spellIcon"] = "ability_golemstormbolt",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["flare"] = {
+        ["name"] = "Flare",
+        ["soundFileName"] = "flare",
+        ["spellId"] = 1543,
+        ["spellIcon"] = "spell_fire_flare",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["intimidation"] = {
+        ["name"] = "Intimidation",
+        ["soundFileName"] = "intimidation",
+        ["spellId"] = 24394,
+        ["spellIcon"] = "ability_devour",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["bestial_wrath"] = {
+        ["name"] = "Bestial Wrath",
+        ["soundFileName"] = "bestial_wrath",
+        ["spellId"] = 19574,
+        ["spellIcon"] = "ability_druid_ferociousbite",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      }
     },
     ["warlock"] = {
 

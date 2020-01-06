@@ -239,3 +239,65 @@ end
 
 TODO)
 ]]--
+
+-- HUNTER spells
+["improved_concussive_shot"] = {
+  ["name"] = "Improved Concussive Shot",
+  ["soundFileName"] = "concussive_shot",
+  ["spellId"] = 19410,
+  ["spellIcon"] = "spell_frost_stun",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["ignoreEvents"] = {
+    "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+    "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+  }
+},
+
+["deterrence"] = {
+  ["name"] = "Deterrence",
+  ["soundFileName"] = "deterrence",
+  ["spellId"] = 19263,
+  ["spellIcon"] = "ability_whirlwind",
+  ["hasFade"] = true,
+  ["active"] = true
+},
+
+["wyvern_sting"] = {
+  ["name"] = "Wyvern Sting",
+  ["soundFileName"] = "wyvern_sting",
+  ["spellId"] = 24135,
+  ["spellIcon"] = "inv_spear_02",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["ignoreEvents"] = {
+    "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+    "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE",
+     -- TODO this might be a private server bug. Should a target really get a buff
+     -- that he can dismiss by right clicking? Shouldn't he get a debuff?!
+    "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_BUFFS"
+  }
+},
+
+["scare_beast"] = {
+  ["name"] = "Scare Beast",
+  ["soundFileName"] = "scare_beast",
+  ["spellId"] = 14327,
+  ["spellIcon"] = "ability_druid_cower",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["ignoreEvents"] = {
+    "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+    "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+  }
+},
+
+--[[,
+-- not trackable in the combat log
+["feign_death"] = {
+  ["name"] = "Feign Death",
+  ["soundFileName"] = "feign_death",
+  ["spellId"] = 5384,
+  ["spellIcon"] = "ability_rogue_feigndeath",
+  ["active"] = true
+}]]--

@@ -55,3 +55,6 @@ test/PVPW_TestCombatEventsPriestEn.lua
 # mage
 test/PVPW_TestSoundMageEn.lua
 test/PVPW_TestCombatEventsMageEn.lua
+# hunter
+test/PVPW_TestSoundHunterEn.lua
+test/PVPW_TestCombatEventsHunterEn.lua
