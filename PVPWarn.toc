@@ -52,3 +52,6 @@ test/PVPW_TestCombatEventsWarriorEn.lua
 # priest
 test/PVPW_TestSoundPriestEn.lua
 test/PVPW_TestCombatEventsPriestEn.lua
+# mage
+test/PVPW_TestSoundMageEn.lua
+test/PVPW_TestCombatEventsMageEn.lua

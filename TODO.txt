@@ -220,3 +220,22 @@ end
   }
   -- TODO NOT VERIFIED
 }
+
+-- MAGE
+
+--[[
+  TODO
+
+  This is also causing a
+
+  {
+    ["target"] = "",
+    ["spellName"] = "Polymorph",
+    ["event"] = "SPELL_CAST_START",
+    ["sourceFlags"] = 1300,
+  }, -- [13278]
+
+  Might consider this  as a separate category (announce casts or something
+
+TODO)
+]]--

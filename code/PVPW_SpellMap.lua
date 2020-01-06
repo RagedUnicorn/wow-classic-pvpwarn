@@ -282,7 +282,7 @@ else
         }
       }
     },
-    ["priest"] = {
+    ["priest"] = { -- completely verified
       ["psychic_scream"] = {
         ["name"] = "Psychic Scream",
         ["soundFileName"] = "psychic_scream",
@@ -293,7 +293,6 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-        -- TODO spell verified
       },
       ["silence"] = {
         ["name"] = "Silence",
@@ -305,7 +304,6 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-        -- TODO spell verified
       },
       ["power_infusion"] = {
         ["name"] = "Power Infusion",
@@ -332,7 +330,6 @@ else
           "SPELL_AURA_REMOVED",
           "SPELL_AURA_REFRESH"
         }
-        -- TODO spell verified
       },
       ["vampiric_embrace"] = {
         ["name"] = "Vampiric Embrace",
@@ -345,7 +342,6 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REFRESH"
         }
-        -- TODO spell verified
       },
       ["devouring_plague"] = {
         ["name"] = "Devouring Plague",
@@ -357,7 +353,6 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-        -- TODO spell verified
       },
       ["touch_of_weakness"] = {
         ["name"] = "Touch of Weakness",
@@ -371,7 +366,6 @@ else
           "SPELL_AURA_REMOVED",
           "SPELL_AURA_REFRESH"
         }
-        -- TODO spell verified
       },
       ["fear_ward"] = {
         ["name"] = "Fear Ward",
@@ -385,7 +379,6 @@ else
           "SPELL_AURA_REMOVED",
           "SPELL_AURA_REFRESH"
         }
-        -- TODO spell verified
       },
     },
     ["rogue"] = { -- completely verified
@@ -510,22 +503,6 @@ else
         }
         -- TODO spell verified
       },
-      --[[
-        TODO
-
-        This is also causing a
-
-        {
-          ["target"] = "",
-          ["spellName"] = "Polymorph",
-          ["event"] = "SPELL_CAST_START",
-          ["sourceFlags"] = 1300,
-        }, -- [13278]
-
-        Might consider this  as a separate category (announce casts or something
-
-      TODO)
-      ]]--
       ["polymorph"] = {
         ["name"] = "Polymorph",
         ["soundFileName"] = "polymorph",
@@ -544,7 +521,10 @@ else
         ["spellId"] = 1953,
         ["spellIcon"] = "spell_arcane_blink",
         ["hasFade"] = false,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       },
       ["fire_ward"] = {
         ["name"] = "Fire Ward",
@@ -552,7 +532,11 @@ else
         ["spellId"] = 10226, -- rank 5
         ["spellIcon"] = "spell_fire_firearmor",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       },
       ["frost_ward"] = {
         ["name"] = "Frost Ward",
@@ -560,18 +544,21 @@ else
         ["spellId"] = 28609, -- rank 5
         ["spellIcon"] = "spell_frost_frostward",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       },
-      ["counterspell_silenced"] = {
-        ["name"] = "Counterspell - Silenced",
+      ["counterspell"] = {
+        ["name"] = "Counterspell",
         ["soundFileName"] = "counterspell",
         ["spellId"] = 2139,
         ["spellIcon"] = "spell_frost_iceshock",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
         }
       },
       ["mana_shield"] = {
@@ -580,7 +567,12 @@ else
         ["spellId"] = 10193, -- rank 6
         ["spellIcon"] = "spell_shadow_detectlesserinvisibility",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REFRESH"
+        }
       },
       ["ice_barrier"] = {
         ["name"] = "Ice Barrier",
@@ -588,7 +580,12 @@ else
         ["spellId"] = 13033, -- rank 4
         ["spellIcon"] = "spell_ice_lament",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REFRESH"
+        }
       },
       ["frost_nova"] = {
         ["name"] = "Frost Nova",
@@ -597,9 +594,8 @@ else
         ["spellIcon"] = "spell_frost_frostnova",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
         }
       },
       ["arcane_power"] = {
@@ -608,7 +604,11 @@ else
         ["spellId"] = 12042,
         ["spellIcon"] = "spell_nature_lightning",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       },
       ["evocation"] = {
         ["name"] = "Evocation",
@@ -616,7 +616,10 @@ else
         ["spellId"] = 12051,
         ["spellIcon"] = "spell_nature_purge",
         ["hasFade"] = false,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       },
       ["presence_of_mind"] = {
         ["name"] = "Presence of Mind",
@@ -624,7 +627,11 @@ else
         ["spellId"] = 12043,
         ["spellIcon"] = "spell_nature_enchantarmor",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       },
       ["combustion"] = {
         ["name"] = "Combustion",
@@ -632,7 +639,11 @@ else
         ["spellId"] = 11129,
         ["spellIcon"] = "spell_fire_sealoffire",
         ["hasFade"] = true,
-        ["active"] = true
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       },
       ["blast_wave"] = {
         ["name"] = "Blast Wave",
@@ -641,9 +652,8 @@ else
         ["spellIcon"] = "spell_holy_excorcism_02",
         ["hasFade"] = false,
         ["active"] = true,
-        ["ignoreEvents"] = {
-          "CHAT_MSG_SPELL_AURA_GONE_OTHER",
-          "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
         }
       }
     },
