@@ -36,9 +36,215 @@ local testCategory = "items"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
-
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEphemeralPowerApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEphemeralPowerRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireReflectorApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireReflectorRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostReflectorApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostReflectorRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowReflectorApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowReflectorRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFleeApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFleeRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneRootApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneRootRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRecklessChargeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNetOMaticSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTidalCharmSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGnomishMindControlCapSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGnomishRocketBootsApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGnomishRocketBootsRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGoblinRocketBootsApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGoblinRocketBootsRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpeedApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpeedRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMithrilMechanicalDragonlingSuccess)
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
   end)
+end
+
+function me.TestCombatEventEphemeralPowerApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventEphemeralPowerApplied",
+    testCategory,
+    "Ephemeral Power"
+  )
+end
+
+function me.TestCombatEventEphemeralPowerRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventEphemeralPowerRemoved",
+    testCategory,
+    "Ephemeral Power"
+  )
+end
+
+function me.TestCombatEventFireReflectorApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFireReflectorApplied",
+    testCategory,
+    "Fire Reflector"
+  )
+end
+
+function me.TestCombatEventFireReflectorRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventFireReflectorRemoved",
+    testCategory,
+    "Fire Reflector"
+  )
+end
+
+function me.TestCombatEventFrostReflectorApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFrostReflectorApplied",
+    testCategory,
+    "Frost Reflector"
+  )
+end
+
+function me.TestCombatEventFrostReflectorRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventFrostReflectorRemoved",
+    testCategory,
+    "Frost Reflector"
+  )
+end
+
+function me.TestCombatEventShadowReflectorApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventShadowReflectorApplied",
+    testCategory,
+    "Shadow Reflector"
+  )
+end
+
+function me.TestCombatEventShadowReflectorRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventShadowReflectorRemoved",
+    testCategory,
+    "Shadow Reflector"
+  )
+end
+
+function me.TestCombatEventFleeApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFleeApplied",
+    testCategory,
+    "Flee"
+  )
+end
+
+function me.TestCombatEventFleeRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventFleeRemoved",
+    testCategory,
+    "Flee"
+  )
+end
+
+function me.TestCombatEventImmuneRootApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventImmuneRootApplied",
+    testCategory,
+    "Immune Root"
+  )
+end
+
+function me.TestCombatEventImmuneRootRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventImmuneRootRemoved",
+    testCategory,
+    "Immune Root"
+  )
+end
+
+function me.TestCombatEventRecklessChargeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventRecklessChargeSuccess",
+    testCategory,
+    "Reckless Charge"
+  )
+end
+
+function me.TestCombatEventNetOMaticSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventNetOMaticSuccess",
+    testCategory,
+    "Net-o-Matic"
+  )
+end
+
+function me.TestCombatEventTidalCharmSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventTidalCharmSuccess",
+    testCategory,
+    "Tidal Charm"
+  )
+end
+
+function me.TestCombatEventGnomishMindControlCapSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventGnomishMindControlCapSuccess",
+    testCategory,
+    "Gnomish Mind Control Cap"
+  )
+end
+
+function me.TestCombatEventGnomishRocketBootsApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventGnomishRocketBootsApplied",
+    testCategory,
+    "Gnomish Rocket Boots"
+  )
+end
+
+function me.TestCombatEventGnomishRocketBootsRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventGnomishRocketBootsRemoved",
+    testCategory,
+    "Gnomish Rocket Boots"
+  )
+end
+
+function me.TestCombatEventGoblinRocketBootsApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventGoblinRocketBootsApplied",
+    testCategory,
+    "Goblin Rocket Boots"
+  )
+end
+
+function me.TestCombatEventGoblinRocketBootsRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventGoblinRocketBootsRemoved",
+    testCategory,
+    "Goblin Rocket Boots"
+  )
+end
+
+function me.TestCombatEventSpeedApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventSpeedApplied",
+    testCategory,
+    "Speed"
+  )
+end
+
+function me.TestCombatEventSpeedRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventSpeedRemoved",
+    testCategory,
+    "Speed"
+  )
+end
+
+function me.TestCombatEventMithrilMechanicalDragonlingSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMithrilMechanicalDragonlingSuccess",
+    testCategory,
+    "Mithril Mechanical Dragonling"
+  )
 end

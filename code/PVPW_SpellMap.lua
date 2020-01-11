@@ -1530,7 +1530,183 @@ else
       }
     },
     ["items"] = {
-
+      ["ephemeral_power"] = {
+        ["name"] = "Ephemeral Power",
+        ["soundFileName"] = "ephemeral_power",
+        ["itemId"] = 18820,
+        ["spellId"] = 23271,
+        ["spellIcon"] = "inv_misc_stonetablet_11",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["fire_reflector"] = {
+        ["name"] = "Fire Reflector",
+        ["soundFileName"] = "fire_reflector",
+        ["itemId"] = 18638,
+        ["spellId"] = 23097,
+        ["spellIcon"] = "inv_misc_enggizmos_04",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["frost_reflector"] = {
+        ["name"] = "Frost Reflector",
+        ["soundFileName"] = "frost_reflector",
+        ["itemId"] = 18634,
+        ["spellId"] = 23131,
+        ["spellIcon"] = "inv_misc_enggizmos_02",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["shadow_reflector"] = {
+        ["name"] = "Shadow Reflector",
+        ["soundFileName"] = "shadow_reflector",
+        ["itemId"] = 18639,
+        ["spellId"] = 23132,
+        ["spellIcon"] = "inv_misc_enggizmos_16",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["flee"] = {
+        ["name"] = "Skull of Impending Doom",
+        ["soundFileName"] = "flee",
+        ["itemId"] = 4984,
+        ["spellId"] = 5024,
+        ["spellIcon"] = "inv_misc_bone_elfskull_01",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["immune_root"] = {
+        ["name"] = "Spider Belt",
+        ["soundFileName"] = "immune_root",
+        ["itemId"] = 4328,
+        ["spellId"] = 9774,
+        ["spellIcon"] = "inv_belt_25",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["reckless_charge"] = {
+        ["name"] = "Goblin Rocket Helmet",
+        ["soundFileName"] = "rocket_helmet",
+        ["itemId"] = 10588,
+        ["spellId"] = 22641,
+        ["spellIcon"] = "inv_helmet_49",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["net_o_matic"] = {
+        ["name"] = "Net-o-Matic",
+        ["soundFileName"] = "net_o_matic",
+        ["itemId"] = 10720,
+        ["spellId"] = 13120,
+        ["spellIcon"] = "ability_ensnare",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["tidal_charm"] = {
+        ["name"] = "Tidal Charm",
+        ["soundFileName"] = "tidal_charm",
+        ["itemId"] = 1404,
+        ["spellId"] = 835,
+        ["spellIcon"] = "inv_misc_rune_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["gnomish_mind_control_cap"] = {
+        ["name"] = "Gnomish Mind Control Cap",
+        ["soundFileName"] = "mind_control_cap",
+        ["itemId"] = 10726,
+        ["spellId"] = 13180,
+        ["spellIcon"] = "inv_helmet_49",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["gnomish_rocket_boots"] = {
+        ["name"] = "Gnomish Rocket Boots",
+        ["soundFileName"] = "gnomish_rocket_boots",
+        ["itemId"] = 10724,
+        ["spellId"] = 13141,
+        ["spellIcon"] = "inv_boots_02",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["goblin_rocket_boots"] = {
+        ["name"] = "Goblin Rocket Boots",
+        ["soundFileName"] = "goblin_rocket_boots",
+        ["itemId"] = 7189,
+        ["spellId"] = 8892,
+        ["spellIcon"] = "inv_gizmo_rocketboot_01",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["speed"] = {
+        ["name"] = "Speed",
+        ["soundFileName"] = "", -- TODO sound missing
+        ["itemId"] = 2820,
+        ["spellId"] = 14530,
+        ["spellIcon"] = "inv_misc_pocketwatch_01",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["mithril_mechanical_dragonling"] = {
+        ["name"] = "Mithril Mechanical Dragonling",
+        ["soundFileName"] = "", -- TODO sound missing
+        ["itemId"] = 10576,
+        ["spellId"] = 23075,
+        ["spellIcon"] = "inv_misc_head_dragon_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      }
     },
     ["misc"] = {
 

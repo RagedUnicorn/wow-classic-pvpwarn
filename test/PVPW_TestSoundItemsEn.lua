@@ -34,9 +34,216 @@ local testCategory = "items"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
-
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEphemeralPower)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEphemeralPower)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFireReflector)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFireReflector)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrostReflector)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFrostReflector)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowReflector)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowReflector)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFlee)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFlee)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneRoot)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownImmuneRoot)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRecklessCharge)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundNetOMatic)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTidalCharm)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGnomishMindControlCap)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGnomishRocketBoots)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGnomishRocketBoots)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGoblinRocketBoots)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGoblinRocketBoots)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpeed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSpeed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMithrilMechanicalDragonling)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMithrilMechanicalDragonling)
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
   end)
+end
+
+function me.TestSoundEphemeralPower()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundEphemeralPower",
+    testCategory,
+    "Ephemeral Power"
+  )
+end
+
+function me.TestSoundDownEphemeralPower()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownEphemeralPower",
+    testCategory,
+    "Ephemeral Power"
+  )
+end
+
+function me.TestSoundFireReflector()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundFireReflector",
+    testCategory,
+    "Fire Reflector"
+  )
+end
+
+function me.TestSoundDownFireReflector()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFireReflector",
+    testCategory,
+    "Fire Reflector"
+  )
+end
+
+function me.TestSoundFrostReflector()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundFrostReflector",
+    testCategory,
+    "Frost Reflector"
+  )
+end
+
+function me.TestSoundDownFrostReflector()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFrostReflector",
+    testCategory,
+    "Frost Reflector"
+  )
+end
+
+function me.TestSoundShadowReflector()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundShadowReflector",
+    testCategory,
+    "Shadow Reflector"
+  )
+end
+
+function me.TestSoundDownShadowReflector()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownShadowReflector",
+    testCategory,
+    "Shadow Reflector"
+  )
+end
+
+function me.TestSoundFlee()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundFlee",
+    testCategory,
+    "Flee"
+  )
+end
+
+function me.TestSoundDownFlee()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFlee",
+    testCategory,
+    "Flee"
+  )
+end
+
+function me.TestSoundImmuneRoot()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundImmuneRoot",
+    testCategory,
+    "Immune Root"
+  )
+end
+
+function me.TestSoundDownImmuneRoot()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownImmuneRoot",
+    testCategory,
+    "Immune Root"
+  )
+end
+
+function me.TestSoundRecklessCharge()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundRecklessCharge",
+    testCategory,
+    "Reckless Charge"
+  )
+end
+
+function me.TestSoundNetOMatic()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundNetOMatic",
+    testCategory,
+    "Net-o-Matic"
+  )
+end
+
+function me.TestSoundTidalCharm()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundTidalCharm",
+    testCategory,
+    "Tidal Charm"
+  )
+end
+
+function me.TestSoundGnomishMindControlCap()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundGnomishMindControlCap",
+    testCategory,
+    "Gnomish Mind Control Cap"
+  )
+end
+
+function me.TestSoundGnomishRocketBoots()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundGnomishRocketBoots",
+    testCategory,
+    "Gnomish Rocket Boots"
+  )
+end
+
+function me.TestSoundDownGnomishRocketBoots()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownGnomishRocketBoots",
+    testCategory,
+    "Gnomish Rocket Boots"
+  )
+end
+
+function me.TestSoundGoblinRocketBoots()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundGoblinRocketBoots",
+    testCategory,
+    "Goblin Rocket Boots"
+  )
+end
+
+function me.TestSoundDownGoblinRocketBoots()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownGoblinRocketBoots",
+    testCategory,
+    "Goblin Rocket Boots"
+  )
+end
+
+function me.TestSoundSpeed()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundSpeed",
+    testCategory,
+    "Speed"
+  )
+end
+
+function me.TestSoundDownSpeed()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownSpeed",
+    testCategory,
+    "Speed"
+  )
+end
+
+function me.TestSoundMithrilMechanicalDragonling()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMithrilMechanicalDragonling",
+    testCategory,
+    "Mithril Mechanical Dragonling"
+  )
 end

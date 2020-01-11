@@ -466,3 +466,19 @@ TODO)
 --------------- Shaman
 
 Missing spells that are cast on the weapon by the shaman
+
+
+-- items
+["aura_of_protection"] = {
+  ["name"] = "Arena Grand Master",
+  ["soundFileName"] = "aura_of_protection",
+  ["itemId"] = 19024,
+  ["spellId"] = 23506,
+  ["spellIcon"] = "inv_misc_armorkit_04",
+  ["hasFade"] = true,
+  ["active"] = true,
+  ["trackedEvents"] = {
+    "SPELL_AURA_APPLIED",
+    "SPELL_AURA_REMOVED"
+  }
+},
