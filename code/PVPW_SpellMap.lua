@@ -655,7 +655,7 @@ else
         }
       }
     },
-    ["hunter"] = {
+    ["hunter"] = { -- completely verified
       ["concussive_shot"] = {
         ["name"] = "Concussive Shot",
         ["soundFileName"] = "concussive_shot",
@@ -804,7 +804,98 @@ else
       }
     },
     ["warlock"] = {
+      ["fear"] = {
+        ["name"] = "Fear",
+        ["soundFileName"] = "fear",
+        ["spellId"] = 6215, -- rank 3
+        ["spellIcon"] = "spell_shadow_possession",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
 
+      ["shadowburn"] = {
+        ["name"] = "Shadowburn",
+        ["soundFileName"] = "shadowburn",
+        ["spellId"] = 18871, -- rank 6
+        ["spellIcon"] = "spell_shadow_scourgebuild",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["shadow_ward"] = {
+        ["name"] = "Shadow Ward",
+        ["soundFileName"] = "shadow_ward",
+        ["spellId"] = 28610, -- rank 4
+        ["spellIcon"] = "spell_shadow_antishadow",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["howl_of_terror"] = {
+        ["name"] = "Howl of Terror",
+        ["soundFileName"] = "howl_of_terror",
+        ["spellId"] = 17928, -- rank 2
+        ["spellIcon"] = "spell_shadow_deathscream",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["death_coil"] = {
+        ["name"] = "Death Coil",
+        ["soundFileName"] = "death_coil",
+        ["spellId"] = 17926,
+        ["spellIcon"] = "spell_shadow_deathcoil",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["amplify_curse"] = {
+        ["name"] = "Amplify Curse",
+        ["soundFileName"] = "amplify_curse",
+        ["spellId"] = 18288,
+        ["spellIcon"] = "spell_shadow_contagion",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["spell_lock"] = {
+        ["name"] = "Spell Lock",
+        ["soundFileName"] = "spell_lock",
+        ["spellId"] = 19647,
+        ["spellIcon"] = "spell_shadow_mindrot",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["soul_link"] = {
+        ["name"] = "Soul Link",
+        ["soundFileName"] = "soul_link",
+        ["spellId"] = 19028,
+        ["spellIcon"] = "spell_shadow_gathershadows",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      }
     },
     ["paladin"] = {
 

@@ -301,3 +301,132 @@ TODO)
   ["spellIcon"] = "ability_rogue_feigndeath",
   ["active"] = true
 }]]--
+
+
+----------- warlock
+["fel_domination"] = {
+  ["name"] = "Fel Domination",
+  ["soundFileName"] = "fel_domination",
+  ["spellId"] = 18708,
+  ["spellIcon"] = "spell_nature_removecurse",
+  ["hasFade"] = true,
+  ["active"] = true
+},
+
+["spellstone"] = {
+  ["name"] = "Spellstone",
+  ["soundFileName"] = "spellstone",
+  ["spellId"] = 128,
+  ["spellIcon"] = "inv_misc_gem_sapphire_01",
+  ["hasFade"] = true,
+  ["active"] = true
+},
+["greater_spellstone"] = {
+  ["name"] = "Greater Spellstone",
+  ["soundFileName"] = "greater_spellstone",
+  ["spellId"] = 17729,
+  ["spellIcon"] = "inv_misc_gem_sapphire_01",
+  ["hasFade"] = true,
+  ["active"] = true
+},
+["major_spellstone"] = {
+  ["name"] = "Major Spellstone",
+  ["soundFileName"] = "major_spellstone",
+  ["spellId"] = 17730,
+  ["spellIcon"] = "inv_misc_gem_sapphire_01",
+  ["hasFade"] = true,
+  ["active"] = true
+},
+
+["minor_healthstone"] = {
+  ["name"] = "Minor Healthstone",
+  ["soundFileName"] = "minor_healthstone",
+  ["spellId"] = 6262,
+  ["spellIcon"] = "inv_stone_04",
+  ["hasFade"] = false,
+  ["active"] = true
+},
+["lesser_healthstone"] = {
+  ["name"] = "Lesser Healthstone",
+  ["soundFileName"] = "lesser_healthstone",
+  ["spellId"] = 6263,
+  ["spellIcon"] = "inv_stone_04",
+  ["hasFade"] = false,
+  ["active"] = true
+},
+["healthstone"] = {
+  ["name"] = "Healthstone",
+  ["soundFileName"] = "healthstone",
+  ["spellId"] = 5699,
+  ["spellIcon"] = "inv_stone_04",
+  ["hasFade"] = false,
+  ["active"] = true
+},
+["greater_healthstone"] = {
+  ["name"] = "Greater Healthstone",
+  ["soundFileName"] = "greater_healthstone",
+  ["spellId"] = 5723,
+  ["spellIcon"] = "inv_stone_04",
+  ["hasFade"] = false,
+  ["active"] = true
+},
+["major_healthstone"] = {
+  ["name"] = "Major Healthstone",
+  ["soundFileName"] = "major_healthstone",
+  ["spellId"] = 11732,
+  ["spellIcon"] = "inv_stone_04",
+  ["hasFade"] = false,
+  ["active"] = true
+},
+
+["curse_of_exhaustion"] = {
+  ["name"] = "Curse of Exhaustion",
+  ["soundFileName"] = "curse_of_exhaustion",
+  ["spellId"] = 18223,
+  ["spellIcon"] = "spell_shadow_grimward",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["ignoreEvents"] = {
+    "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+    "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+  }
+},
+["curse_of_tongues"] = {
+  ["name"] = "Curse of Tongues",
+  ["soundFileName"] = "curse_of_tongues",
+  ["spellId"] = 11719, -- rank 2
+  ["spellIcon"] = "spell_shadow_curseoftounges",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["ignoreEvents"] = {
+    "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+    "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+  }
+},
+
+-- soulstone buff effect (name does not depend on the rank)
+["soulstone_resurrection"] = {
+  ["name"] = "Soulstone Resurrection",
+  ["soundFileName"] = "soulstone",
+  ["spellId"] = 20764, -- greater soulstone
+  ["spellIcon"] = "spell_shadow_soulgem",
+  ["hasFade"] = true,
+  ["active"] = true,
+  ["trackedEvents"] = {
+    "SPELL_AURA_APPLIED", -- when buffing
+    "SPELL_CAST_SUCCESS" -- when using
+  }
+},
+
+["seduction"] = {
+  ["name"] = "Seduction",
+  ["soundFileName"] = "seduction",
+  ["spellId"] = 6358,
+  ["spellIcon"] = "spell_shadow_mindsteal",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["ignoreEvents"] = {
+    "CHAT_MSG_SPELL_AURA_GONE_OTHER",
+    "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+  }
+}
