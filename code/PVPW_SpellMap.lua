@@ -898,7 +898,154 @@ else
       }
     },
     ["paladin"] = {
-
+      ["devotion_aura"] = {
+        ["name"] = "Devotion Aura",
+        ["soundFileName"] = "devotion_aura",
+        ["spellId"] = 10293, -- rank 7
+        ["spellIcon"] = "spell_holy_devotionaura",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED"
+        }
+      },
+      ["retribution_aura"] = {
+        ["name"] = "Retribution Aura",
+        ["soundFileName"] = "retribution_aura",
+        ["spellId"] = 10301, -- rank 5
+        ["spellIcon"] = "spell_holy_auraoflight",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED"
+        }
+      },
+      ["concentration_aura"] = {
+        ["name"] = "Concentration Aura",
+        ["soundFileName"] = "concentration_aura",
+        ["spellId"] = 19746,
+        ["spellIcon"] = "spell_holy_mindsooth",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED"
+        }
+      },
+      ["shadow_resistance_aura"] = {
+        ["name"] = "Shadow Resistance Aura",
+        ["soundFileName"] = "shadow_resistance_aura",
+        ["spellId"] = 19896,
+        ["spellIcon"] = "spell_shadow_sealofkings",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED"
+        }
+      },
+      ["frost_resistance_aura"] = {
+        ["name"] = "Frost Resistance Aura",
+        ["soundFileName"] = "frost_resistance_aura",
+        ["spellId"] = 19898, -- rank 3
+        ["spellIcon"] = "spell_frost_wizardmark",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED"
+        }
+      },
+      ["fire_resistance_aura"] = {
+        ["name"] = "Fire Resistance Aura",
+        ["soundFileName"] = "fire_resistance_aura",
+        ["spellId"] = 19900, -- rank 3
+        ["spellIcon"] = "spell_fire_sealoffire",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED"
+        }
+      },
+      ["blessing_of_protection"] = {
+        ["name"] = "Blessing of Protection",
+        ["soundFileName"] = "blessing_of_protection",
+        ["spellId"] = 10278, -- rank 3
+        ["spellIcon"] = "spell_holy_sealofprotection",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["blessing_of_freedom"] = {
+        ["name"] = "Blessing of Freedom",
+        ["soundFileName"] = "blessing_of_freedom",
+        ["spellId"] = 1044,
+        ["spellIcon"] = "spell_holy_sealofvalor",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["blessing_of_sacrifice"] = {
+        ["name"] = "Blessing of Sacrifice",
+        ["soundFileName"] = "blessing_of_sacrifice",
+        ["spellId"] = 20729,
+        ["spellIcon"] = "spell_holy_sealofsacrifice",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["hammer_of_justice"] = {
+        ["name"] = "Hammer of Justice",
+        ["soundFileName"] = "hammer_of_justice",
+        ["spellId"] = 10308,
+        ["spellIcon"] = "spell_holy_sealofmight",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["repentance"] = {
+        ["name"] = "Repentance",
+        ["soundFileName"] = "repentance",
+        ["spellId"] = 20066,
+        ["spellIcon"] = "spell_holy_prayerofhealing",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["divine_shield"] = {
+        ["name"] = "Divine Shield",
+        ["soundFileName"] = "divine_shield",
+        ["spellId"] = 642, -- rank 2
+        ["spellIcon"] = "spell_holy_divineintervention",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["forbearance"] = {
+        ["name"] = "Forbearance",
+        ["soundFileName"] = "forbearance",
+        ["spellId"] = 25771,
+        ["spellIcon"] = "spell_holy_removecurse",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      }
     },
     ["druid"] = {
 

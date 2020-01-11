@@ -226,7 +226,7 @@ function me.PlayTestQueueWithDelay(callback)
     return -- queue is empty abort...
   end
 
-  C_Timer.After(0.6, function()
+  C_Timer.After(0.8, function()
     me.PlayTestQueueWithDelay(callback)
   end)
 end

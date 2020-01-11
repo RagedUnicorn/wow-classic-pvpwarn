@@ -430,3 +430,34 @@ TODO)
     "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
   }
 }
+
+------------------------- paladin
+["hammer_of_wrath"] = {
+  ["name"] = "Hammer of Wrath",
+  ["soundFileName"] = "hammer_of_wrath",
+  ["spellId"] = 24239, -- rank 3
+  ["spellIcon"] = "ability_thunderclap",
+  ["hasFade"] = false,
+  ["active"] = true
+},
+
+["lay_on_hands"] = {
+  ["name"] = "Lay on Hands",
+  ["soundFileName"] = "lay_on_hands",
+  ["spellId"] = 10310, -- rank 3
+  ["spellIcon"] = "spell_holy_layonhands",
+  ["hasFade"] = false,
+  ["active"] = true,
+  ["trackedEvents"] = {
+    "SPELL_CAST_SUCCESS"
+  }
+},
+
+["divine_favor"] = {
+  ["name"] = "Divine Favor",
+  ["soundFileName"] = "divine_favor",
+  ["spellId"] = 20216,
+  ["spellIcon"] = "spell_holy_heal",
+  ["hasFade"] = true,
+  ["active"] = true
+},
