@@ -36,9 +36,108 @@ local testCategory = "racials"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
-
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPerceptionApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPerceptionRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWillOfTheForsakenApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWillOfTheForsakenRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventStoneformApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEscapeArtistSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWarStompSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkingApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkingRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowmeldSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBloodFurySuccess)
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
   end)
+end
+
+function me.TestCombatEventPerceptionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventPerceptionApplied",
+    testCategory,
+    "Perception"
+  )
+end
+
+function me.TestCombatEventPerceptionRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventPerceptionRemoved",
+    testCategory,
+    "Perception"
+  )
+end
+
+function me.TestCombatEventWillOfTheForsakenApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventWillOfTheForsakenApplied",
+    testCategory,
+    "Will of the Forsaken"
+  )
+end
+
+function me.TestCombatEventWillOfTheForsakenRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventWillOfTheForsakenRemoved",
+    testCategory,
+    "Will of the Forsaken"
+  )
+end
+
+function me.TestCombatEventStoneformApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventStoneformApplied",
+    testCategory,
+    "Stoneform"
+  )
+end
+
+function me.TestCombatEventEscapeArtistSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventEscapeArtistSuccess",
+    testCategory,
+    "Escape Artist"
+  )
+end
+
+function me.TestCombatEventWarStompSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventWarStompSuccess",
+    testCategory,
+    "War Stomp"
+  )
+end
+
+function me.TestCombatEventBerserkingApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventBerserkingApplied",
+    testCategory,
+    "Berserking"
+  )
+end
+
+function me.TestCombatEventBerserkingRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventBerserkingRemoved",
+    testCategory,
+    "Berserking"
+  )
+end
+
+function me.TestCombatEventShadowmeldSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShadowmeldSuccess",
+    testCategory,
+    "Shadowmeld"
+  )
+end
+
+-- TODO missing soundfile
+function me.TestCombatEventBloodFurySuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventBloodFurySuccess",
+    testCategory,
+    "Blood Fury"
+  )
 end

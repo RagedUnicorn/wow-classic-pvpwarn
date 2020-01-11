@@ -1436,7 +1436,98 @@ else
       }
     },
     ["racials"] = {
-
+      ["perception"] = {
+        ["name"] = "Perception",
+        ["soundFileName"] = "perception",
+        ["spellId"] = 20600,
+        ["spellIcon"] = "spell_nature_sleep",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["will_of_the_forsaken"] = {
+        ["name"] = "Will of the Forsaken",
+        ["soundFileName"] = "will_of_the_forsaken",
+        ["spellId"] = 7744,
+        ["spellIcon"] = "spell_shadow_raisedead",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["stoneform"] = {
+        ["name"] = "Stoneform",
+        ["soundFileName"] = "stoneform",
+        ["spellId"] = 20594,
+        ["spellIcon"] = "spell_shadow_unholystrength",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["escape_artist"] = {
+        ["name"] = "Escape Artist",
+        ["soundFileName"] = "escape_artist",
+        ["spellId"] = 20589,
+        ["spellIcon"] = "ability_rogue_trip",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["war_stomp"] = {
+        ["name"] = "War Stomp",
+        ["soundFileName"] = "war_stomp",
+        ["spellId"] = 20549,
+        ["spellIcon"] = "ability_warstomp",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["berserking"] = {
+        ["name"] = "Berserking",
+        ["soundFileName"] = "berserking",
+        ["spellId"] = 26296, -- depending on mana, rage, energy
+        ["spellIcon"] = "racial_troll_berserk",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["shadowmeld"] = {
+        ["name"] = "Shadowmeld",
+        ["soundFileName"] = "shadowmeld",
+        ["spellId"] = 20580,
+        ["spellIcon"] = "ability_ambush",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["blood_fury"] = {
+        ["name"] = "Blood Fury",
+        ["soundFileName"] = "", -- TODO missing soundfile
+        ["spellId"] = 20572,
+        ["spellIcon"] = "racial_orc_berserkerstrength",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      }
     },
     ["items"] = {
 

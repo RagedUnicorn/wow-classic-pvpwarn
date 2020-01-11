@@ -34,9 +34,116 @@ local testCategory = "racials"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
-
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPerception)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownPerception)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWillOfTheForsaken)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownWillOfTheForsaken)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundStoneform)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownStoneform)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEscapeArtist)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWarStomp)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBerserking)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBerserking)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowmeld)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBloodFury)
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
   end)
+end
+
+function me.TestSoundPerception()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundPerception",
+    testCategory,
+    "Perception"
+  )
+end
+
+function me.TestSoundDownPerception()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownPerception",
+    testCategory,
+    "Perception"
+  )
+end
+
+function me.TestSoundWillOfTheForsaken()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundWillOfTheForsaken",
+    testCategory,
+    "Will of the Forsaken"
+  )
+end
+
+function me.TestSoundDownWillOfTheForsaken()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownWillOfTheForsaken",
+    testCategory,
+    "Will of the Forsaken"
+  )
+end
+
+function me.TestSoundStoneform()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundStoneform",
+    testCategory,
+    "Stoneform"
+  )
+end
+
+function me.TestSoundDownStoneform()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownStoneform",
+    testCategory,
+    "Stoneform"
+  )
+end
+
+function me.TestSoundEscapeArtist()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundEscapeArtist",
+    testCategory,
+    "Escape Artist"
+  )
+end
+
+function me.TestSoundWarStomp()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundWarStomp",
+    testCategory,
+    "War Stomp"
+  )
+end
+
+function me.TestSoundBerserking()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundBerserking",
+    testCategory,
+    "Berserking"
+  )
+end
+
+function me.TestSoundDownBerserking()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownBerserking",
+    testCategory,
+    "Berserking"
+  )
+end
+
+function me.TestSoundShadowmeld()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShadowmeld",
+    testCategory,
+    "Shadowmeld"
+  )
+end
+
+function me.TestSoundBloodFury()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundBloodFury",
+    testCategory,
+    "Blood Fury"
+  )
 end
