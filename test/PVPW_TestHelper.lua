@@ -31,6 +31,7 @@ mod.testHelper = me
 me.tag = "TestHelper"
 
 local origCombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
+local origMaxWarnAge
 
 --[[
   Reused failure reasons
@@ -64,6 +65,23 @@ function me.RestoreCombatLogGetCurrentEventInfo()
 end
 
 --[[
+  Hooks the MAX_WARN_AGE constant and replaces it with a value better fitting for tests
+]]--
+function me.HookMaxWarnAge()
+  mod.logger.LogWarn(me.tag, "Warning hooking 'MAX_WARN_AGE' for debugging purposes")
+  origMaxWarnAge = RGPVPW_CONSTANTS.MAX_WARN_AGE
+  RGPVPW_CONSTANTS.MAX_WARN_AGE = 20
+end
+
+--[[
+  Restores the MAX_WARN_AGE constant to its normal state
+]]--
+function me.RestoreMaxWarnAge()
+  mod.logger.LogInfo(me.tag, "Restoring 'CombatLogGetCurrentEventInfo'")
+  RGPVPW_CONSTANTS.MAX_WARN_AGE = origMaxWarnAge
+end
+
+--[[
   @return {string}
 ]]--
 function me.GetGenericPlayerId()
@@ -89,6 +107,13 @@ end
 ]]--
 function me.GetGenericEnemyName()
   return "EnemyPlayer"
+end
+
+--[[
+   @return {number}
+]]--
+function me.GetEnemyPlayerSourceFlags()
+  return 1352
 end
 
 --[[
@@ -185,4 +210,174 @@ function me.TestSound(spellName, testCategory, event, spellType)
   )
 
   return status
+end
+
+--[[
+  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_AURA_APPLIED event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {string} spellName
+]]--
+function me.TestCombatEventApplied(testName, testCategory, spellName)
+  mod.testReporter.StartTestRun(testName)
+
+  local failureReason
+  local category, spellType, spell = me.TestCombatEvent(
+    spellName,
+    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
+  )
+
+  if testCategory ~= category then
+    failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+  end
+
+  if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
+    failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
+  end
+
+  if not spell then
+    failureReason = "Did not get any spell metadata"
+  end
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+--[[
+  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_AURA_REMOVED event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {string} spellName
+]]--
+function me.TestCombatEventRemoved(testName, testCategory, spellName)
+  mod.testReporter.StartTestRun(testName)
+
+  local failureReason
+  local category, spellType, spell = me.TestCombatEvent(
+    spellName,
+    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
+  )
+
+  if testCategory ~= category then
+    failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+  end
+
+  if RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED ~= spellType then
+    failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
+  end
+
+  if not spell then
+    failureReason = "Did not get any spell metadata"
+  end
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+--[[
+  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_AURA_REFRESH event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {string} spellName
+]]--
+function me.TestCombatEventRefresh(testName, testCategory, spellName)
+  mod.testReporter.StartTestRun(testName)
+
+  local failureReason
+  local category, spellType, spell = me.TestCombatEvent(
+    spellName,
+    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REFRESH
+  )
+
+  if testCategory ~= category then
+    failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+  end
+
+  if RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH ~= spellType then
+    failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH, spellType)
+  end
+
+  if not spell then
+    failureReason = "Did not get any spell metadata"
+  end
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+--[[
+  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_CAST_SUCCESS event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {string} spellName
+]]--
+function me.TestCombatEventSuccess(testName, testCategory, spellName)
+  mod.testReporter.StartTestRun(testName)
+
+  local failureReason
+  local category, spellType, spell = me.TestCombatEvent(
+    spellName,
+    RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS
+  )
+
+  if testCategory ~= category then
+    failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+  end
+
+  if RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL ~= spellType then
+    failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spellType)
+  end
+
+  if not spell then
+    failureReason = "Did not get any spell metadata"
+  end
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+--[[
+  @param {string} spellName
+  @param {string} event
+
+  @return {string}, {string}, {table}
+]]--
+function me.TestCombatEvent(spellName, event)
+  local sourceFlags = me.GetEnemyPlayerSourceFlags()
+  local target = me.GetGenericEnemyId()
+  local targetName = me.GetGenericEnemyName()
+  local actualCategory
+  local actualSpellType
+  local actualSpell
+
+  -- luacheck: ignore _
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  me.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    actualCategory = category
+    actualSpellType = spellType
+    actualSpell = spell
+  end)
+  me.RestoreCombatLogGetCurrentEventInfo()
+
+  return actualCategory, actualSpellType, actualSpell
 end

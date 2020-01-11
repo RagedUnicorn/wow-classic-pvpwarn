@@ -74,7 +74,6 @@ function me.ClearSavedTestReports()
   mod.logger.LogInfo(me.tag, "Cleared PVPWarnTestLog")
 end
 
-
 --[[
   Starting a new group of tests
 
@@ -94,6 +93,8 @@ function me.StartTestGroup(groupName)
   local logMessage = string.format("Starting testgroup with name %s", groupName)
   me.LogTestMessage(logMessage)
   me.AddLine()
+
+  mod.testHelper.HookMaxWarnAge()
 
   PVPWarnTestLog[groupName] = {}
   PVPWarnTestLog[groupName].testCount = 0
@@ -124,7 +125,7 @@ function me.StopTestGroup()
   me.AddLine()
 
   table.insert(PVPWarnTestLog[testManager.currentTestGroup], logMessage)
-
+  mod.testHelper.RestoreMaxWarnAge()
   -- reset
   testManager.currentTestGroup = nil
 end
@@ -225,7 +226,7 @@ function me.PlayTestQueueWithDelay(callback)
     return -- queue is empty abort...
   end
 
-  C_Timer.After(0.8, function()
+  C_Timer.After(0.6, function()
     me.PlayTestQueueWithDelay(callback)
   end)
 end
