@@ -461,3 +461,8 @@ TODO)
   ["hasFade"] = true,
   ["active"] = true
 },
+
+
+--------------- Shaman
+
+Missing spells that are cast on the weapon by the shaman

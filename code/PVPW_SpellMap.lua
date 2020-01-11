@@ -1167,7 +1167,273 @@ else
       }
     },
     ["shaman"] = {
-
+      ["elemental_mastery"] = {
+        ["name"] = "Elemental Mastery",
+        ["soundFileName"] = "elemental_mastery",
+        ["spellId"] = 16166,
+        ["spellIcon"] = "spell_nature_wispheal",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["natures_swiftness"] = {
+        ["name"] = "Nature's Swiftness",
+        ["soundFileName"] = "natures_swiftness",
+        ["spellId"] = 16188,
+        ["spellIcon"] = "spell_nature_ravenform",
+        ["hasFade"] = true,
+        ["links"] = { 17116 }, -- TODO how to handle links
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["tremor_totem"] = {
+        ["name"] = "Tremor Totem",
+        ["soundFileName"] = "tremor_totem",
+        ["spellId"] = 8143,
+        ["spellIcon"] = "spell_nature_tremortotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["poison_cleansing_totem"] = {
+        ["name"] = "Poison Cleansing Totem",
+        ["soundFileName"] = "poison_cleansing_totem",
+        ["spellId"] = 8166,
+        ["spellIcon"] = "spell_nature_poisoncleansingtotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["grounding_totem"] = {
+        ["name"] = "Grounding Totem",
+        ["soundFileName"] = "grounding_totem",
+        ["spellId"] = 8177,
+        ["spellIcon"] = "spell_nature_groundingtotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["fire_resistance_totem"] = {
+        ["name"] = "Fire Resistance Totem",
+        ["soundFileName"] = "fire_resistance_totem",
+        ["spellId"] = 10538, -- rank 3
+        ["spellIcon"] = "spell_fireresistancetotem_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["flametongue_totem"] = {
+        ["name"] = "Flametongue Totem",
+        ["soundFileName"] = "flametongue_totem",
+        ["spellId"] = 16387, -- rank 4
+        ["spellIcon"] = "spell_nature_guardianward",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["grace_of_air_totem"] = {
+        ["name"] = "Grace of Air Totem",
+        ["soundFileName"] = "grace_of_air_totem",
+        ["spellId"] = 25359, -- rank 3
+        ["spellIcon"] = "spell_nature_invisibilitytotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["nature_resistance_totem"] = {
+        ["name"] = "Nature Resistance Totem",
+        ["soundFileName"] = "nature_resistance_totem",
+        ["spellId"] = 10601, -- rank 3
+        ["spellIcon"] = "spell_nature_natureresistancetotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["stoneskin_totem"] = {
+        ["name"] = "Stoneskin Totem",
+        ["soundFileName"] = "stoneskin_totem",
+        ["spellId"] = 10408, -- rank 6
+        ["spellIcon"] = "spell_nature_stoneskintotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["strength_of_earth_totem"] = {
+        ["name"] = "Strength of Earth Totem",
+        ["soundFileName"] = "strength_of_earth_totem",
+        ["spellId"] = 25361, -- rank 5
+        ["spellIcon"] = "spell_nature_earthbindtotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["windfury_totem"] = {
+        ["name"] = "Windfury Totem",
+        ["soundFileName"] = "windfury_totem",
+        ["spellId"] = 10610, -- rank 3
+        ["spellIcon"] = "spell_nature_windfury",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["windwall_totem"] = {
+        ["name"] = "Windwall Totem",
+        ["soundFileName"] = "windwall_totem",
+        ["spellId"] = 15112, -- rank 3
+        ["spellIcon"] = "spell_nature_earthbind",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["earthbind_totem"] = {
+        ["name"] = "Earthbind Totem",
+        ["soundFileName"] = "earthbind_totem",
+        ["spellId"] = 2484,
+        ["spellIcon"] = "spell_nature_strengthofearthtotem02",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["fire_nova_totem"] = {
+        ["name"] = "Fire Nova Totem",
+        ["soundFileName"] = "fire_nova_totem",
+        ["spellId"] = 11315, -- rank 5
+        ["spellIcon"] = "spell_fire_sealoffire",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["magma_totem"] = {
+        ["name"] = "Magma Totem",
+        ["soundFileName"] = "magma_totem",
+        ["spellId"] = 10587, -- rank 4
+        ["spellIcon"] = "spell_fire_selfdestruct",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["searing_totem"] = {
+        ["name"] = "Searing Totem",
+        ["soundFileName"] = "searing_totem",
+        ["spellId"] = 10438, -- rank 6
+        ["spellIcon"] = "spell_fire_searingtotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["stoneclaw_totem"] = {
+        ["name"] = "Stoneclaw Totem",
+        ["soundFileName"] = "stoneclaw_totem",
+        ["spellId"] = 10428, -- rank 6
+        ["spellIcon"] = "spell_nature_stoneclawtotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["frost_resistance_totem"] = {
+        ["name"] = "Frost Resistance Totem",
+        ["soundFileName"] = "frost_resistance_totem",
+        ["spellId"] = 10479, -- rank 3
+        ["spellIcon"] = "spell_frostresistancetotem_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["healing_stream_totem"] = {
+        ["name"] = "Healing Stream Totem",
+        ["soundFileName"] = "healing_stream_totem",
+        ["spellId"] = 10463, -- rank 5
+        ["spellIcon"] = "inv_spear_04",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["disease_cleansing_totem"] = {
+        ["name"] = "Disease Cleansing Totem",
+        ["soundFileName"] = "disease_cleansing_totem",
+        ["spellId"] = 8170,
+        ["spellIcon"] = "spell_nature_diseasecleansingtotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["mana_spring_totem"] = {
+        ["name"] = "Mana Spring Totem",
+        ["soundFileName"] = "mana_spring_totem",
+        ["spellId"] = 10497, -- rank 4
+        ["spellIcon"] = "spell_nature_manaregentotem",
+        ["active"] = true,
+        ["hasFade"] = false,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["mana_tide_totem"] = {
+        ["name"] = "Mana Tide Totem",
+        ["soundFileName"] = "mana_tide_totem",
+        ["spellId"] = 17359, -- rank 3
+        ["spellIcon"] = "spell_frost_summonwaterelemental",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["tranquil_air_totem"] = {
+        ["name"] = "Tranquil Air Totem",
+        ["soundFileName"] = "tranquil_air_totem",
+        ["spellId"] = 25908,
+        ["spellIcon"] = "spell_nature_brilliance",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      }
     },
     ["racials"] = {
 

@@ -67,3 +67,15 @@ test/PVPW_TestCombatEventsPaladinEn.lua
 # druid
 test/PVPW_TestSoundDruidEn.lua
 test/PVPW_TestCombatEventsDruidEn.lua
+# shaman
+test/PVPW_TestSoundShamanEn.lua
+test/PVPW_TestCombatEventsShamanEn.lua
+# racials
+test/PVPW_TestSoundRacialsEn.lua
+test/PVPW_TestCombatEventsRacialsEn.lua
+# items
+test/PVPW_TestSoundItemsEn.lua
+test/PVPW_TestCombatEventsItemsEn.lua
+# misc
+test/PVPW_TestSoundMiscEn.lua
+test/PVPW_TestCombatEventsMiscEn.lua
