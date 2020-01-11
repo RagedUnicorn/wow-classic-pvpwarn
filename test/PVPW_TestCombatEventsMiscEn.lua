@@ -36,9 +36,71 @@ local testCategory = "misc"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
-
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRestoreEnergySuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMightyRagePotionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowProtectionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostProtectionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNatureProtectionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArcaneProtectionSuccess)
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
   end)
+end
+
+function me.TestCombatEventRestoreEnergySuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventRestoreEnergySuccess",
+    testCategory,
+    "Restore Energy"
+  )
+end
+
+function me.TestCombatEventMightyRagePotionSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMightyRagePotionSuccess",
+    testCategory,
+    "Mighty Rage Potion"
+  )
+end
+
+function me.TestCombatEventFirstAidSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFirstAidSuccess",
+    testCategory,
+    "First Aid"
+  )
+end
+
+function me.TestCombatEventShadowProtectionSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShadowProtectionSuccess",
+    testCategory,
+    "Shadow Protection"
+  )
+end
+
+function me.TestCombatEventFrostProtectionSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFrostProtectionSuccess",
+    testCategory,
+    "Frost Protection"
+  )
+end
+
+function me.TestCombatEventNatureProtectionSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventNatureProtectionSuccess",
+    testCategory,
+    "Nature Protection"
+  )
+end
+
+function me.TestCombatEventArcaneProtectionSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventArcaneProtectionSuccess",
+    testCategory,
+    "Arcane Protection"
+  )
 end

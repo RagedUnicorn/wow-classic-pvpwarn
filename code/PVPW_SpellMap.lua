@@ -1709,7 +1709,102 @@ else
       }
     },
     ["misc"] = {
-
+      ["restore_energy"] = {
+        ["name"] = "Thistle Tea",
+        ["soundFileName"] = "thistle_tea",
+        ["itemId"] = 7676,
+        ["spellId"] = 9512,
+        ["spellIcon"] = "inv_drink_milk_05",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["mighty_rage_potion"] = {
+        ["name"] = "Mighty Rage Potion",
+        ["soundFileName"] = "", -- TODO missing
+        ["itemId"] = 13442,
+        ["spellId"] = 17528,
+        ["spellIcon"] = "inv_potion_41",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["first_aid"] = {
+        ["name"] = "First Aid",
+        ["soundFileName"] = "first_aid",
+        ["itemId"] = 14530, -- depending on what bandage was used
+        ["spellId"] = 18610, -- rank 10
+        ["spellIcon"] = "inv_misc_bandage_12",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["shadow_protection"] = {
+        ["name"] = "Greater Shadow Protection Potion",
+        ["soundFileName"] = "shadow_protection",
+        ["itemId"] = 13459,
+        ["spellId"] = 17548,
+        ["spellIcon"] = "inv_potion_23",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["frost_protection"] = {
+        ["name"] = "Greater Frost Protection Potion",
+        ["soundFileName"] = "frost_protection",
+        ["itemId"] = 13456,
+        ["spellId"] = 17544,
+        ["spellIcon"] = "inv_potion_20",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["fire_protection"] = {
+        ["name"] = "Greater Fire Protection Potion",
+        ["soundFileName"] = "fire_protection",
+        ["itemId"] = 13457,
+        ["spellId"] = 17543,
+        ["spellIcon"] = "inv_potion_24",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["nature_protection"] = {
+        ["name"] = "Greater Nature Protection Potion",
+        ["soundFileName"] = "nature_protection",
+        ["itemId"] = 13458,
+        ["spellId"] = 17546,
+        ["spellIcon"] = "inv_potion_22",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["arcane_protection"] = {
+        ["name"] = "Greater Arcane Protection Potion",
+        ["soundFileName"] = "arcane_protection",
+        ["itemId"] = 13461,
+        ["spellId"] = 17549,
+        ["spellIcon"] = "inv_potion_83",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      }
     }
   }
 end

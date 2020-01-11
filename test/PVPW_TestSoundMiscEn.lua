@@ -34,9 +34,80 @@ local testCategory = "misc"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
-
+    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRestoreEnergy)
+    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMightyRagePotion)
+    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFirstAid)
+    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowProtection)
+    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrostProtection)
+    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFireProtection)
+    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundNatureProtection)
+    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundArcaneProtection)
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
   end)
+end
+
+function me.TestSoundRestoreEnergy()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundRestoreEnergy",
+    testCategory,
+    "Restore Energy"
+  )
+end
+
+function me.TestSoundMightyRagePotion()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMightyRagePotion",
+    testCategory,
+    "Mighty Rage Potion"
+  )
+end
+
+function me.TestSoundFirstAid()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFirstAid",
+    testCategory,
+    "First Aid"
+  )
+end
+
+function me.TestSoundShadowProtection()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShadowProtection",
+    testCategory,
+    "Shadow Protection"
+  )
+end
+
+function me.TestSoundFrostProtection()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFrostProtection",
+    testCategory,
+    "Frost Protection"
+  )
+end
+
+function me.TestSoundFireProtection()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFireProtection",
+    testCategory,
+    "Fire Protection"
+  )
+end
+
+function me.TestSoundNatureProtection()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundNatureProtection",
+    testCategory,
+    "Nature Protection"
+  )
+end
+
+function me.TestSoundArcaneProtection()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundArcaneProtection",
+    testCategory,
+    "Arcane Protection"
+  )
 end
