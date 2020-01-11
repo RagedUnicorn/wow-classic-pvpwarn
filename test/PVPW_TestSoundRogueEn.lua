@@ -55,281 +55,113 @@ function me.Test()
 end
 
 function me.TestSoundBlind()
-  local testName = "TestSoundBlind"
-  local spellName = "Blind"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundApplied(
+    "TestSoundBlind",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED,
-    spellData.soundFileName
+    "Blind"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundKick()
-  local testName = "TestSoundKick"
-  local spellName = "Kick"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundKick",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL,
-    spellData.soundFileName
+    "Kick"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundSprint()
-  local testName = "TestSoundSprint"
-  local spellName = "Sprint"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundApplied(
+    "TestSoundSprint",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL,
-    spellData.soundFileName
+    "Sprint"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundDownSprint()
-  local testName = "TestSoundDownSprint"
-  local spellName = "Sprint"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownSprint",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED,
-    spellData.soundFileName
+    "Sprint"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundEvasion()
-  local testName = "TestSoundEvasion"
-  local spellName = "Evasion"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundApplied(
+    "TestSoundEvasion",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL,
-    spellData.soundFileName
+    "Evasion"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundDownEvasion()
-  local testName = "TestSoundDownEvasion"
-  local spellName = "Evasion"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownEvasion",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED,
-    spellData.soundFileName
+    "Evasion"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundKidneyShot()
-  local testName = "TestSoundKidneyShot"
-  local spellName = "Kidney Shot"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundKidneyShot",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL,
-    spellData.soundFileName
+    "Kidney Shot"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundCheapShot()
-  local testName = "TestSoundCheapShot"
-  local spellName = "Cheap Shot"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundCheapShot",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL,
-    spellData.soundFileName
+    "Cheap Shot"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundAdrenalineRush()
-  local testName = "TestSoundAdrenalineRush"
-  local spellName = "Adrenaline Rush"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAdrenalineRush",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL,
-    spellData.soundFileName
+    "Adrenaline Rush"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundDownAdrenalineRush()
-  local testName = "TestSoundDownAdrenalineRush"
-  local spellName = "Adrenaline Rush"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAdrenalineRush",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED,
-    spellData.soundFileName
+    "Adrenaline Rush"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundBladeFlurry()
-  local testName = "TestSoundBladeFlurry"
-  local spellName = "Blade Flurry"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundApplied(
+    "TestSoundBladeFlurry",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL,
-    spellData.soundFileName
+    "Blade Flurry"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundDownBladeFlurry()
-  local testName = "TestSoundDownBladeFlurry"
-  local spellName = "Blade Flurry"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownBladeFlurry",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED,
-    spellData.soundFileName
+    "Blade Flurry"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundColdBlood()
-  local testName = "TestSoundColdBlood"
-  local spellName = "Cold Blood"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundApplied(
+    "TestSoundColdBlood",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL,
-    spellData.soundFileName
+    "Cold Blood"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end
 
 function me.TestSoundDownColdBlood()
-  local testName = "TestSoundDownColdBlood"
-  local spellName = "Cold Blood"
-  local _, spellData = mod.spellMap.SearchByName(spellName, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED)
-
-  mod.testReporter.StartTestRun(testName)
-
-  local status = mod.sound.PlaySound(
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownColdBlood",
     testCategory,
-    RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED,
-    spellData.soundFileName
+    "Cold Blood"
   )
-
-  if status then
-    mod.testReporter.ReportSuccessTestRun()
-  else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
-  end
 end

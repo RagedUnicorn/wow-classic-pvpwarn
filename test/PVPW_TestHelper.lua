@@ -90,3 +90,99 @@ end
 function me.GetGenericEnemyName()
   return "EnemyPlayer"
 end
+
+--[[
+  Tests wheter a sound can be played for a certain category, spellName and the SPELL_AURA_APPLIED event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {string} spellName
+]]--
+function me.TestSoundApplied(testName, testCategory, spellName)
+  mod.testReporter.StartTestRun(testName)
+
+  local status = me.TestSound(
+    spellName,
+    testCategory,
+    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED,
+    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL
+  )
+
+  if status then
+    mod.testReporter.ReportSuccessTestRun()
+  else
+    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
+  end
+end
+
+--[[
+  Tests wheter a sound can be played for a certain category, spellName and the SPELL_AURA_REMOVED event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {string} spellName
+]]--
+function me.TestSoundRemoved(testName, testCategory, spellName)
+  mod.testReporter.StartTestRun(testName)
+
+  local status = me.TestSound(
+    spellName,
+    testCategory,
+    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED,
+    RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED
+  )
+
+  if status then
+    mod.testReporter.ReportSuccessTestRun()
+  else
+    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
+  end
+end
+
+--[[
+  Tests wheter a sound can be played for a certain category, spellName and the SPELL_CAST_SUCCESS event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {string} spellName
+]]--
+function me.TestSoundSuccess(testName, testCategory, spellName)
+  mod.testReporter.StartTestRun(testName)
+
+  local status = me.TestSound(
+    spellName,
+    testCategory,
+    RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS,
+    RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL
+  )
+
+  if status then
+    mod.testReporter.ReportSuccessTestRun()
+  else
+    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
+  end
+end
+
+--[[
+  Play a sound and return whether this was possible or not
+
+  @param {string} spellName
+  @param {string} testCategory
+  @param {string} event
+  @param {string} spellType
+
+  @return {boolean}
+    true - If the sound could be played
+    false - If the sound could not be played
+]]--
+function me.TestSound(spellName, testCategory, event, spellType)
+  local _, spellData = mod.spellMap.SearchByName(spellName, event)
+
+  local status = mod.sound.PlaySound(
+    testCategory,
+    spellType,
+    spellData.soundFileName
+  )
+
+  return status
+end
