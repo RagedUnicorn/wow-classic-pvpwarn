@@ -1048,7 +1048,123 @@ else
       }
     },
     ["druid"] = {
-
+      ["barkskin"] = {
+        ["name"] = "Barkskin",
+        ["soundFileName"] = "barkskin",
+        ["spellId"] = 22812,
+        ["spellIcon"] = "spell_nature_stoneclawtotem",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["natures_grasp"] = {
+        ["name"] = "Nature's Grasp",
+        ["soundFileName"] = "natures_grasp",
+        ["spellId"] = 17329, -- rank 6
+        ["spellIcon"] = "spell_nature_natureswrath",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["bash"] = {
+        ["name"] = "Bash",
+        ["soundFileName"] = "bash",
+        ["spellId"] = 8983, -- rank 3
+        ["spellIcon"] = "ability_druid_bash",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["feral_charge"] = {
+        ["name"] = "Feral Charge",
+        ["soundFileName"] = "feral_charge",
+        ["spellId"] = 16979,
+        ["spellIcon"] = "ability_hunter_pet_bear",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["frenzied_regeneration"] = {
+        ["name"] = "Frenzied Regeneration",
+        ["soundFileName"] = "frenzied_regeneration",
+        ["spellId"] = 22896, -- rank 3
+        ["spellIcon"] = "ability_bullrush",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["abolish_poison"] = {
+        ["name"] = "Abolish Poison",
+        ["soundFileName"] = "abolish_poison",
+        ["spellId"] = 2893,
+        ["spellIcon"] = "spell_nature_nullifypoison_02",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["innervate"] = {
+        ["name"] = "Innervate",
+        ["soundFileName"] = "innervate",
+        ["spellId"] = 29166,
+        ["spellIcon"] = "spell_nature_lightning",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["natures_swiftness"] = {
+        ["name"] = "Nature's Swiftness",
+        ["soundFileName"] = "natures_swiftness",
+        ["spellId"] = 17116,
+        ["spellIcon"] = "spell_nature_ravenform",
+        ["hasFade"] = true,
+        ["links"] = { 16188 }, -- TODO how to handle "links"
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["faerie_fire"] = {
+        ["name"] = "Faerie Fire",
+        ["soundFileName"] = "faerie_fire",
+        ["spellId"] = 9907, -- rank 4
+        ["spellIcon"] = "spell_nature_faeriefire",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["faerie_fire_feral"] = {
+        ["name"] = "Faerie Fire (Feral)",
+        ["soundFileName"] = "faerie_fire",
+        ["spellId"] = 17392, -- rank 4
+        ["spellIcon"] = "spell_nature_faeriefire",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      }
     },
     ["shaman"] = {
 

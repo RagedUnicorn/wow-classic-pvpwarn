@@ -64,3 +64,6 @@ test/PVPW_TestCombatEventsWarlockEn.lua
 # paladin
 test/PVPW_TestSoundPaladinEn.lua
 test/PVPW_TestCombatEventsPaladinEn.lua
+# druid
+test/PVPW_TestSoundDruidEn.lua
+test/PVPW_TestCombatEventsDruidEn.lua
