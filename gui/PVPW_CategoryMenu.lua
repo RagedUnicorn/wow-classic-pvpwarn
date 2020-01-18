@@ -153,8 +153,8 @@ function me.CreateRowFrame(frame, position)
     row:SetBackdropColor(.25, .25, .25, .8)
   end
 
-  row.cooldownIcon = me.CreateCooldownSpellIcon(row)
-  row.cooldownStatus = me.CreateCooldownSpell(row)
+  row.cooldownStatus = me.CreateSpellStatusCheckbox(row)
+  row.cooldownIcon = me.CreateSpellIcon(row)
   row.spellTitle = me.CreateSpellTitle(row)
 
   row.enableSound = me.CreateSpellSoundCheckBox(row)
@@ -171,7 +171,7 @@ end
   @return {table}
     The created icon texture holder
 ]]--
-function me.CreateCooldownSpellIcon(spellFrame)
+function me.CreateSpellIcon(spellFrame)
   local iconHolder = CreateFrame("Frame", nil, spellFrame)
   iconHolder:SetSize(
     RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 5,
@@ -230,6 +230,31 @@ function me.CreateSpellTitle(spellFrame)
   spellTitleFontString:SetTextColor(.95, .95, .95)
 
   return spellTitleFontString
+end
+
+--[[
+  Create checkbox for configuring whether a spell is active or not
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created checkbox
+]]--
+function me.CreateSpellStatusCheckbox(spellFrame)
+  return me.CreateCheckBox(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SPELL,
+    spellFrame,
+    {"LEFT", 0, 0},
+    me.ClickConfigSpellCallback
+  )
+end
+
+--[[
+  Click callback for enabling/disabling spell alert
+]]--
+function me.ClickConfigSpellCallback()
+  -- TODO implement updating configuration
+  mod.logger.LogError(me.tag, "Spell callback")
 end
 
 --[[
@@ -350,36 +375,6 @@ function me.CreateCheckBox(frameName, parent, position, callback, text)
   checkBoxFrame:SetScript("OnClick", callback)
 
   return checkBoxFrame
-end
-
---[[
-
-TODO this might be replaceable with me.CreateCheckBox
-  @param {table} spellFrame
-
-  @return {table}
-    The created checkbox
-]]--
-function me.CreateCooldownSpell(spellFrame)
-  local cooldownSpellStatusCheckBox = CreateFrame(
-    "CheckButton",
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SPELL,
-    spellFrame,
-    "UICheckButtonTemplate"
-  )
-  cooldownSpellStatusCheckBox:SetSize(
-    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE,
-    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE
-  )
-  cooldownSpellStatusCheckBox:SetPoint("LEFT", 0, 0)
-
-  -- cooldownSpellStatusCheckBox.text = _G[cooldownSpellStatusCheckBox:GetName() .. 'Text']
-  -- cooldownSpellStatusCheckBox.text:SetFont(STANDARD_TEXT_FONT, 15)
-  -- cooldownSpellStatusCheckBox.text:SetTextColor(.95, .95, .95)
-
-  cooldownSpellStatusCheckBox:SetScript("OnClick", me.CooldownEntryOnClick)
-
-  return cooldownSpellStatusCheckBox
 end
 
 --[[
