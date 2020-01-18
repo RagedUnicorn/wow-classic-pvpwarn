@@ -94,7 +94,7 @@ function me.CreateSpellList(frame)
   )
 
   scrollFrame:ClearAllPoints()
-  scrollFrame:SetPoint("TOPLEFT", frame, 5, -10)
+  scrollFrame:SetPoint("TOPLEFT", frame, 5, -3)
 
   return scrollFrame
 end
@@ -155,6 +155,11 @@ function me.CreateRowFrame(frame, position)
 
   row.cooldownIcon = me.CreateCooldownSpellIcon(row)
   row.cooldownStatus = me.CreateCooldownSpell(row)
+  row.spellTitle = me.CreateSpellTitle(row)
+
+  row.enableSound = me.CreateSpellSoundCheckBox(row)
+  row.enableSoundDown = me.CreateSpellSoundDownCheckBox(row)
+  row.enableVisual = me.CreateSpellVisualCheckBox(row)
 
   return row
 end
@@ -169,17 +174,17 @@ end
 function me.CreateCooldownSpellIcon(spellFrame)
   local iconHolder = CreateFrame("Frame", nil, spellFrame)
   iconHolder:SetSize(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 5,
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 5
+    RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 5,
+    RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 5
   )
-  iconHolder:SetPoint("LEFT", 10, 0)
+  iconHolder:SetPoint("LEFT", 40, 0)
 
   local cooldownIcon = iconHolder:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON, "ARTWORK")
   cooldownIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
   cooldownIcon:SetPoint("CENTER", 0, 0)
   cooldownIcon:SetSize(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE,
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE
+    RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE,
+    RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE
   )
 
   local backdrop = {
@@ -205,6 +210,151 @@ function me.CreateCooldownSpellIcon(spellFrame)
 end
 
 --[[
+  Create fontstring for title of the spell to configure
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created fontstring
+]]--
+function me.CreateSpellTitle(spellFrame)
+  local spellTitleFontString = spellFrame:CreateFontString("TODO", "OVERLAY")
+  spellTitleFontString:SetFont(STANDARD_TEXT_FONT, 15)
+  spellTitleFontString:SetWidth(RGPVPW_CONSTANTS.SPELL_TITLE_WIDTH)
+  spellTitleFontString:SetPoint(
+    "LEFT",
+    spellFrame.cooldownIcon,
+    RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 10,
+    0
+  )
+  spellTitleFontString:SetTextColor(.95, .95, .95)
+
+  return spellTitleFontString
+end
+
+--[[
+  Create checkbox for configuring sound alert configuration
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created checkbox
+]]--
+function me.CreateSpellSoundCheckBox(spellFrame)
+  return me.CreateCheckBox(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SOUND,
+    spellFrame,
+    {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 25},
+    me.ClickConfigSoundCallback,
+    rgpvpw.L["label_enable_sound"]
+  )
+end
+
+--[[
+  Click callback for enabling/disabling sound alert
+]]--
+function me.ClickConfigSoundCallback()
+  -- TODO implement updating configuration
+  mod.logger.LogError(me.tag, "Sound")
+end
+
+--[[
+  Create checkbox for configuring sound down alert configuration
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created checkbox
+]]--
+function me.CreateSpellSoundDownCheckBox(spellFrame)
+  return me.CreateCheckBox(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SOUND_DOWN,
+    spellFrame,
+    {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 0},
+    me.ClickConfigSoundDownCallback,
+    rgpvpw.L["label_enable_sound_down"]
+  )
+end
+
+--[[
+  Click callback for enabling/disabling sound down alert
+]]--
+function me.ClickConfigSoundDownCallback()
+  -- TODO implement updating configuration
+  mod.logger.LogError(me.tag, "Sound down")
+end
+
+--[[
+  Create checkbox for configuring visual alert configuration
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created checkbox
+]]--
+function me.CreateSpellVisualCheckBox(spellFrame)
+  return me.CreateCheckBox(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_VISUAL,
+    spellFrame,
+    {"LEFT", spellFrame.spellTitle, "RIGHT", 0, -25},
+    me.ClickConfigVisualCallback,
+    rgpvpw.L["label_enable_visual"]
+  )
+end
+
+--[[
+  Click callback for enabling/disabling visual alert
+]]--
+function me.ClickConfigVisualCallback()
+  -- TODO implement updating configuration
+  mod.logger.LogError(me.tag, "Visual callback")
+end
+
+--[[
+  Create a configuration checkbox
+
+  @param {string} frameName
+  @param {table} parent
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+  @param {function} callback
+    Callback that is called onClick
+  @param {string} text
+    Text is used as label for the checkbox
+
+  @retun {table}
+    The created checkbox
+]]--
+function me.CreateCheckBox(frameName, parent, position, callback, text)
+  local checkBoxFrame = CreateFrame(
+    "CheckButton",
+    frameName,
+    parent,
+    "UICheckButtonTemplate"
+  )
+  checkBoxFrame:SetSize(
+    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE,
+    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE
+  )
+  checkBoxFrame:SetPoint(unpack(position))
+
+  checkBoxFrame.text = _G[checkBoxFrame:GetName() .. 'Text']
+  checkBoxFrame.text:SetFont(STANDARD_TEXT_FONT, 15)
+  checkBoxFrame.text:SetTextColor(.95, .95, .95)
+
+
+  if text ~= nil then
+    checkBoxFrame.text:SetText(text)
+  end
+
+  checkBoxFrame:SetScript("OnClick", callback)
+
+  return checkBoxFrame
+end
+
+--[[
+
+TODO this might be replaceable with me.CreateCheckBox
   @param {table} spellFrame
 
   @return {table}
@@ -213,19 +363,19 @@ end
 function me.CreateCooldownSpell(spellFrame)
   local cooldownSpellStatusCheckBox = CreateFrame(
     "CheckButton",
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_STATUS,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SPELL,
     spellFrame,
     "UICheckButtonTemplate"
   )
   cooldownSpellStatusCheckBox:SetSize(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_STATUS_SIZE,
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_STATUS_SIZE
+    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE,
+    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE
   )
-  cooldownSpellStatusCheckBox:SetPoint("LEFT", RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 20, 0)
+  cooldownSpellStatusCheckBox:SetPoint("LEFT", 0, 0)
 
-  cooldownSpellStatusCheckBox.text = _G[cooldownSpellStatusCheckBox:GetName() .. 'Text']
-  cooldownSpellStatusCheckBox.text:SetFont(STANDARD_TEXT_FONT, 15)
-  cooldownSpellStatusCheckBox.text:SetTextColor(.95, .95, .95)
+  -- cooldownSpellStatusCheckBox.text = _G[cooldownSpellStatusCheckBox:GetName() .. 'Text']
+  -- cooldownSpellStatusCheckBox.text:SetFont(STANDARD_TEXT_FONT, 15)
+  -- cooldownSpellStatusCheckBox.text:SetTextColor(.95, .95, .95)
 
   cooldownSpellStatusCheckBox:SetScript("OnClick", me.CooldownEntryOnClick)
 
@@ -272,7 +422,9 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         -- local enabled = mod.configuration.GetCooldownConfigurationState(category, cooldown.spellId) TODO get status from configuration
 
         row.cooldownIcon:SetTexture(iconId)
-        row.cooldownStatus.text:SetText(cachedCategoryData[value].name)
+        row.spellTitle:SetText(cachedCategoryData[value].name)
+
+--         row.enableSound.text:SetText("Lets try this out") TODO
 
         local enabled = true -- TODO hardcoded
 

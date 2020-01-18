@@ -35,3 +35,8 @@ rgpvpw.L["category_warrior"] = "Warrior"
 rgpvpw.L["category_items"] = "Items"
 rgpvpw.L["category_racials"] = "Racials"
 rgpvpw.L["category_misc"] = "Misc"
+
+-- category configuration
+rgpvpw.L["label_enable_sound"] = "Enable Sound"
+rgpvpw.L["label_enable_sound_down"] = "Enable Sound Down"
+rgpvpw.L["label_enable_visual"] = "Enable Visual Alert"
