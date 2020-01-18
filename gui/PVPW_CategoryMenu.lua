@@ -158,11 +158,76 @@ function me.CreateRowFrame(frame, position)
   row.spellTitle = me.CreateSpellTitle(row)
 
   row.enableSound = me.CreateSpellSoundCheckBox(row)
+  row.playSound = me.CreateSoundButton(row)
   row.enableSoundDown = me.CreateSpellSoundDownCheckBox(row)
+  row.playSoundDown = me.CreateSoundDownButton(row)
   row.enableVisual = me.CreateSpellVisualCheckBox(row)
+  row.playVisual = me.CreateVisualAlertButton(row)
 
   return row
 end
+
+--[[
+  TODO
+]]--
+function me.CreateSoundButton(spellFrame)
+  return mod.guiHelper.CreatePlayButton(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_BUTTON,
+    spellFrame,
+    {"LEFT", spellFrame.enableSound, "RIGHT", 200, 0},
+    me.PlaySoundButtonOnClick,
+    rgpvpw.L["label_play_sound"]
+  )
+end
+
+--[[
+  TODO
+]]--
+function me.PlaySoundButtonOnClick()
+  mod.logger.LogError(me.tag, "play sound on click todo")
+end
+
+--[[
+  TODO
+]]--
+function me.CreateSoundDownButton(spellFrame)
+  return mod.guiHelper.CreatePlayButton(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_DOWN_BUTTON,
+    spellFrame,
+    {"LEFT", spellFrame.enableSoundDown, "RIGHT", 200, 0},
+    me.PlaySoundDownButtonOnClick,
+    rgpvpw.L["label_play_sound_down"]
+  )
+end
+
+--[[
+  TODO
+]]--
+function me.PlaySoundDownButtonOnClick()
+  mod.logger.LogError(me.tag, "play sound down on click todo")
+end
+
+--[[
+  TODO
+]]--
+function me.CreateVisualAlertButton(spellFrame)
+  return mod.guiHelper.CreatePlayButton(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_VISUAL_ALERT_BUTTON,
+    spellFrame,
+    {"LEFT", spellFrame.enableVisual, "RIGHT", 200, 0},
+    me.PlayVisualAlertButtonOnClick,
+    rgpvpw.L["label_play_visual"]
+  )
+end
+
+--[[
+  TODO
+]]--
+function me.PlayVisualAlertButtonOnClick()
+  mod.logger.LogError(me.tag, "play visual alert on click todo")
+end
+
+
 
 --[[
   @param {table} spellFrame
