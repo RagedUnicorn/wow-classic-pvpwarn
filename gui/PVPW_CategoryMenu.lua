@@ -95,7 +95,7 @@ function me.CreateSpellList(frame)
   )
 
   scrollFrame:ClearAllPoints()
-  scrollFrame:SetPoint("TOPLEFT", frame, 5, -3)
+  scrollFrame:SetPoint("TOPLEFT", frame, 5, -7)
 
   return scrollFrame
 end
@@ -163,11 +163,39 @@ function me.CreateRowFrame(frame, position)
   row.playSound = me.CreateSoundButton(row)
   row.enableSoundDown = me.CreateSpellSoundDownCheckBox(row)
   row.playSoundDown = me.CreateSoundDownButton(row)
-  -- row.enableVisual = me.CreateSpellVisualCheckBox(row) TODO remove complete code for this
   row.chooseVisual = me.CreateVisualAlertDropdown(row)
+  row.createVisualLabel = me.CreateVisualLabel(row)
   row.playVisual = me.CreateVisualAlertButton(row)
 
   return row
+end
+
+--[[
+  TODO Move to better order for functions
+  TODO add documentation
+  TODO
+]]--
+function me.CreateVisualLabel(spellFrame)
+  local visualWarningLabelFontString = spellFrame:CreateFontString(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_VISUAL_WARNING_LABEL,
+    "OVERLAY"
+  )
+  visualWarningLabelFontString:SetFont(STANDARD_TEXT_FONT, 15)
+  visualWarningLabelFontString:SetPoint(
+    "RIGHT",
+    spellFrame.chooseVisual,
+    "LEFT",
+    0,
+    0
+  )
+  visualWarningLabelFontString:SetTextColor(.95, .95, .95)
+  visualWarningLabelFontString:SetText(rgpvpw.L["label_visual_warning"])
+
+  visualWarningLabelFontString:SetWidth(
+    visualWarningLabelFontString:GetStringWidth()
+  )
+
+  return visualWarningLabelFontString
 end
 
 --[[
@@ -177,7 +205,7 @@ function me.CreateSoundButton(spellFrame)
   return mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_BUTTON,
     spellFrame,
-    {"LEFT", spellFrame.enableSound, "RIGHT", 200, 0},
+    {"LEFT", spellFrame.enableSound, "RIGHT", 150, 0},
     me.PlaySoundButtonOnClick,
     rgpvpw.L["label_play_sound"]
   )
@@ -197,7 +225,7 @@ function me.CreateSoundDownButton(spellFrame)
   return mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_DOWN_BUTTON,
     spellFrame,
-    {"LEFT", spellFrame.enableSoundDown, "RIGHT", 200, 0},
+    {"LEFT", spellFrame.enableSoundDown, "RIGHT", 150, 0},
     me.PlaySoundDownButtonOnClick,
     rgpvpw.L["label_play_sound_down"]
   )
@@ -217,7 +245,7 @@ function me.CreateVisualAlertButton(spellFrame)
   return mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_VISUAL_ALERT_BUTTON,
     spellFrame,
-    {"LEFT", spellFrame.enableVisual, "RIGHT", 200, 0},
+    {"LEFT", spellFrame.chooseVisual, "RIGHT", 140, 0},
     me.PlayVisualAlertButtonOnClick,
     rgpvpw.L["label_play_visual"]
   )
@@ -286,7 +314,7 @@ end
     The created fontstring
 ]]--
 function me.CreateSpellTitle(spellFrame)
-  local spellTitleFontString = spellFrame:CreateFontString("TODO", "OVERLAY")
+  local spellTitleFontString = spellFrame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_NAME, "OVERLAY")
   spellTitleFontString:SetFont(STANDARD_TEXT_FONT, 15)
   spellTitleFontString:SetWidth(RGPVPW_CONSTANTS.SPELL_TITLE_WIDTH)
   spellTitleFontString:SetPoint(
@@ -378,32 +406,6 @@ function me.ClickConfigSoundDownCallback()
 end
 
 --[[
-  Create checkbox for configuring visual alert configuration
-
-  @param {table} spellFrame
-
-  @return {table}
-    The created checkbox
-]]--
-function me.CreateSpellVisualCheckBox(spellFrame)
-  return mod.guiHelper.CreateCheckBox(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_VISUAL,
-    spellFrame,
-    {"LEFT", spellFrame.spellTitle, "RIGHT", 0, -25},
-    me.ClickConfigVisualCallback,
-    rgpvpw.L["label_enable_visual"]
-  )
-end
-
---[[
-  Click callback for enabling/disabling visual alert
-]]--
-function me.ClickConfigVisualCallback()
-  -- TODO implement updating configuration
-  mod.logger.LogError(me.tag, "Visual callback")
-end
-
---[[
   TODO
 ]]--
 function me.CreateVisualAlertDropdown(spellFrame)
@@ -413,7 +415,7 @@ function me.CreateVisualAlertDropdown(spellFrame)
     spellFrame,
     "UIDropDownMenuTemplate"
   )
-  chooseVisualWarningDropdownMenu:SetPoint("TOPLEFT", 250, -50)
+  chooseVisualWarningDropdownMenu:SetPoint("TOPLEFT", 360, -60)
   chooseVisualWarningDropdownMenu.position = spellFrame.position
 
   UIDropDownMenu_Initialize(chooseVisualWarningDropdownMenu, me.InitializeVisualWarningDropdownMenu)

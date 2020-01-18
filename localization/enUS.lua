@@ -41,8 +41,9 @@ rgpvpw.L["label_enable_sound"] = "Enable Sound"
 rgpvpw.L["label_play_sound"] = "Play Sound"
 rgpvpw.L["label_enable_sound_down"] = "Enable Sound Down"
 rgpvpw.L["label_play_sound_down"] = "Play Sound Down"
-rgpvpw.L["label_enable_visual"] = "Enable Visual Alert"
-rgpvpw.L["label_play_visual"] = "Play Visual Alert"
+rgpvpw.L["label_visual_warning"] = "Visual Warning:"
+rgpvpw.L["label_play_visual"] = "Play"
+
 
 -- dropdown colors
 rgpvpw.L["texture_none"] = "None"
