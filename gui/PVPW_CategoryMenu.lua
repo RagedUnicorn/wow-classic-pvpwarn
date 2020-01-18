@@ -155,7 +155,7 @@ function me.CreateRowFrame(frame, position)
   end
 
   row.position = position
-  row.cooldownStatus = me.CreateSpellStatusCheckbox(row)
+  row.cooldownStatusCheckBox = me.CreateSpellStatusCheckbox(row)
   row.cooldownIcon = me.CreateSpellIcon(row)
   row.spellTitle = me.CreateSpellTitle(row)
 
@@ -165,104 +165,38 @@ function me.CreateRowFrame(frame, position)
   row.playSoundDown = me.CreateSoundDownButton(row)
   row.chooseVisual = me.CreateVisualAlertDropdown(row)
   row.createVisualLabel = me.CreateVisualLabel(row)
-  row.playVisual = me.CreateVisualAlertButton(row)
+  row.playVisual = me.CreateVisualWarningButton(row)
 
   return row
 end
 
 --[[
-  TODO Move to better order for functions
-  TODO add documentation
-  TODO
+  Create checkbox for configuring whether a spell is active or not
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created checkbox
 ]]--
-function me.CreateVisualLabel(spellFrame)
-  local visualWarningLabelFontString = spellFrame:CreateFontString(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_VISUAL_WARNING_LABEL,
-    "OVERLAY"
-  )
-  visualWarningLabelFontString:SetFont(STANDARD_TEXT_FONT, 15)
-  visualWarningLabelFontString:SetPoint(
-    "RIGHT",
-    spellFrame.chooseVisual,
-    "LEFT",
-    0,
-    0
-  )
-  visualWarningLabelFontString:SetTextColor(.95, .95, .95)
-  visualWarningLabelFontString:SetText(rgpvpw.L["label_visual_warning"])
-
-  visualWarningLabelFontString:SetWidth(
-    visualWarningLabelFontString:GetStringWidth()
-  )
-
-  return visualWarningLabelFontString
-end
-
---[[
-  TODO
-]]--
-function me.CreateSoundButton(spellFrame)
-  return mod.guiHelper.CreatePlayButton(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_BUTTON,
+function me.CreateSpellStatusCheckbox(spellFrame)
+  return mod.guiHelper.CreateCheckBox(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SPELL,
     spellFrame,
-    {"LEFT", spellFrame.enableSound, "RIGHT", 150, 0},
-    me.PlaySoundButtonOnClick,
-    rgpvpw.L["label_play_sound"]
+    {"LEFT", 0, 0},
+    me.ToggleSpellStatus
   )
 end
 
 --[[
-  TODO
+  Click callback for enabling/disabling spell alert
 ]]--
-function me.PlaySoundButtonOnClick()
-  mod.logger.LogError(me.tag, "play sound on click todo")
+function me.ToggleSpellStatus()
+  -- TODO implement updating configuration
+  mod.logger.LogError(me.tag, "Spell callback")
 end
-
---[[
-  TODO
-]]--
-function me.CreateSoundDownButton(spellFrame)
-  return mod.guiHelper.CreatePlayButton(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_DOWN_BUTTON,
-    spellFrame,
-    {"LEFT", spellFrame.enableSoundDown, "RIGHT", 150, 0},
-    me.PlaySoundDownButtonOnClick,
-    rgpvpw.L["label_play_sound_down"]
-  )
-end
-
---[[
-  TODO
-]]--
-function me.PlaySoundDownButtonOnClick()
-  mod.logger.LogError(me.tag, "play sound down on click todo")
-end
-
---[[
-  TODO
-]]--
-function me.CreateVisualAlertButton(spellFrame)
-  return mod.guiHelper.CreatePlayButton(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_VISUAL_ALERT_BUTTON,
-    spellFrame,
-    {"LEFT", spellFrame.chooseVisual, "RIGHT", 140, 0},
-    me.PlayVisualAlertButtonOnClick,
-    rgpvpw.L["label_play_visual"]
-  )
-end
-
---[[
-  TODO
-]]--
-function me.PlayVisualAlertButtonOnClick()
-  mod.logger.LogError(me.tag, "play visual alert on click todo")
-end
-
-
 
 --[[
   @param {table} spellFrame
-  TODO might need rework
 
   @return {table}
     The created icon texture holder
@@ -298,8 +232,8 @@ function me.CreateSpellIcon(spellFrame)
   }
 
   iconHolder:SetBackdrop(backdrop)
-  -- Set color based on class
   iconHolder:SetBackdropColor(0.15, 0.15, 0.15, 1)
+  -- Set color based on class TODO
   iconHolder:SetBackdropBorderColor(0.47, 0.21, 0.74, 1)
 
   return cooldownIcon
@@ -329,31 +263,6 @@ function me.CreateSpellTitle(spellFrame)
 end
 
 --[[
-  Create checkbox for configuring whether a spell is active or not
-
-  @param {table} spellFrame
-
-  @return {table}
-    The created checkbox
-]]--
-function me.CreateSpellStatusCheckbox(spellFrame)
-  return mod.guiHelper.CreateCheckBox(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SPELL,
-    spellFrame,
-    {"LEFT", 0, 0},
-    me.ClickConfigSpellCallback
-  )
-end
-
---[[
-  Click callback for enabling/disabling spell alert
-]]--
-function me.ClickConfigSpellCallback()
-  -- TODO implement updating configuration
-  mod.logger.LogError(me.tag, "Spell callback")
-end
-
---[[
   Create checkbox for configuring sound alert configuration
 
   @param {table} spellFrame
@@ -366,7 +275,7 @@ function me.CreateSpellSoundCheckBox(spellFrame)
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SOUND,
     spellFrame,
     {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 25},
-    me.ClickConfigSoundCallback,
+    me.ToggleSound,
     rgpvpw.L["label_enable_sound"]
   )
 end
@@ -374,9 +283,34 @@ end
 --[[
   Click callback for enabling/disabling sound alert
 ]]--
-function me.ClickConfigSoundCallback()
+function me.ToggleSound()
   -- TODO implement updating configuration
   mod.logger.LogError(me.tag, "Sound")
+end
+
+--[[
+  Create a sound button for testing the sound
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created button
+]]--
+function me.CreateSoundButton(spellFrame)
+  return mod.guiHelper.CreatePlayButton(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_BUTTON,
+    spellFrame,
+    {"LEFT", spellFrame.enableSound, "RIGHT", 150, 0},
+    me.PlaySoundButtonOnClick,
+    rgpvpw.L["label_play_sound"]
+  )
+end
+
+--[[
+  Click callback for sound button
+]]--
+function me.PlaySoundButtonOnClick()
+  mod.logger.LogError(me.tag, "play sound on click todo")
 end
 
 --[[
@@ -392,7 +326,7 @@ function me.CreateSpellSoundDownCheckBox(spellFrame)
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SOUND_DOWN,
     spellFrame,
     {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 0},
-    me.ClickConfigSoundDownCallback,
+    me.ToggleSoundDown,
     rgpvpw.L["label_enable_sound_down"]
   )
 end
@@ -400,13 +334,43 @@ end
 --[[
   Click callback for enabling/disabling sound down alert
 ]]--
-function me.ClickConfigSoundDownCallback()
+function me.ToggleSoundDown()
   -- TODO implement updating configuration
   mod.logger.LogError(me.tag, "Sound down")
 end
 
 --[[
-  TODO
+  Create a sound down button for testing the sound
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created button
+]]--
+function me.CreateSoundDownButton(spellFrame)
+  return mod.guiHelper.CreatePlayButton(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_DOWN_BUTTON,
+    spellFrame,
+    {"LEFT", spellFrame.enableSoundDown, "RIGHT", 150, 0},
+    me.PlaySoundDownButtonOnClick,
+    rgpvpw.L["label_play_sound_down"]
+  )
+end
+
+--[[
+  Click callback for sound down button
+]]--
+function me.PlaySoundDownButtonOnClick()
+  mod.logger.LogError(me.tag, "play sound down on click todo")
+end
+
+--[[
+  Create a dropdown with alert color textures to choose
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created dropdown
 ]]--
 function me.CreateVisualAlertDropdown(spellFrame)
   local chooseVisualWarningDropdownMenu = CreateFrame(
@@ -425,13 +389,15 @@ end
 
 --[[
   Create dropdownmenu for color selection
+
+  @param {table} self
+    A reference to the dropdown
 ]]--
 function me.InitializeVisualWarningDropdownMenu(self)
-  local colors = RGPVPW_CONSTANTS.TEXTURES
-
-  for colorName, color in pairs(colors) do
-    local button = mod.guiHelper.CreateDropdownButton(colorName, color.colorValue, me.DropDownMenuCallback)
-    UIDropDownMenu_AddButton(button)
+  for colorName, color in pairs(RGPVPW_CONSTANTS.TEXTURES) do
+    UIDropDownMenu_AddButton(
+      mod.guiHelper.CreateDropdownButton(colorName, color.colorValue, me.DropDownMenuCallback)
+    )
   end
 
   if (UIDropDownMenu_GetSelectedValue(_G[self:GetName()]) == nil) then
@@ -444,6 +410,9 @@ end
 
 --[[
   Callback for color dropdownmenu
+
+  @param {table} self
+    A reference to the dropdownbutton
 ]]--
 function me.DropDownMenuCallback(self)
   UIDropDownMenu_SetSelectedValue(
@@ -453,12 +422,68 @@ function me.DropDownMenuCallback(self)
 end
 
 --[[
-  TODO verify text
-  Update the item to switch scrollframe on vertical scroll events. Gathers all items for
-  the currently selected inventory type and displays them. This only includes items that
-  have an on use effect.
+  Create a label for the warn dropdown menu
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created label
+]]--
+function me.CreateVisualLabel(spellFrame)
+  local visualWarningLabelFontString = spellFrame:CreateFontString(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_VISUAL_WARNING_LABEL,
+    "OVERLAY"
+  )
+  visualWarningLabelFontString:SetFont(STANDARD_TEXT_FONT, 15)
+  visualWarningLabelFontString:SetPoint(
+    "RIGHT",
+    spellFrame.chooseVisual,
+    "LEFT",
+    0,
+    0
+  )
+  visualWarningLabelFontString:SetTextColor(.95, .95, .95)
+  visualWarningLabelFontString:SetText(rgpvpw.L["label_visual_warning"])
+
+  visualWarningLabelFontString:SetWidth(
+    visualWarningLabelFontString:GetStringWidth()
+  )
+
+  return visualWarningLabelFontString
+end
+
+--[[
+  Create a visual warn button for testing the sound
+
+  @param {table} spellFrame
+
+  @return {table}
+    The created button
+]]--
+function me.CreateVisualWarningButton(spellFrame)
+  return mod.guiHelper.CreatePlayButton(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_VISUAL_WARNING_BUTTON,
+    spellFrame,
+    {"LEFT", spellFrame.chooseVisual, "RIGHT", 140, 0},
+    me.ToggleVisualWarning,
+    rgpvpw.L["label_play_visual"]
+  )
+end
+
+--[[
+  Click callback for enabling/disabling visual warnings
+]]--
+function me.ToggleVisualWarning()
+  mod.logger.LogError(me.tag, "play visual warning on click todo")
+end
+
+--[[
+  Update the scrollframe on vertical scroll events and initialy. Gathers all items that
+  are intended to be displayed. To prevent a heavy load while retrieving the data this step
+  is only done once and the data is being cached for further update events.
 
   @param {table} scrollFrame
+  @param {string} category
 ]]--
 function me.FauxScrollFrameOnUpdate(scrollFrame, category)
   if cachedCategoryData == nil then
@@ -494,14 +519,12 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         row.cooldownIcon:SetTexture(iconId)
         row.spellTitle:SetText(cachedCategoryData[value].name)
 
---         row.enableSound.text:SetText("Lets try this out") TODO
-
         local enabled = true -- TODO hardcoded
 
         if enabled then
-          row.cooldownStatus:SetChecked(true)
+          row.cooldownStatusCheckBox:SetChecked(true)
         else
-          row.cooldownStatus:SetChecked(false)
+          row.cooldownStatusCheckBox:SetChecked(false)
         end
 
         row:Show()
