@@ -482,3 +482,9 @@ Missing spells that are cast on the weapon by the shaman
     "SPELL_AURA_REMOVED"
   }
 },
+
+
+----- TODO cleanup
+
+clic callbacks for checkboxes should probably be called togglesomething or similar
+TODO should decide on wording either warning like the addon name or alert (probably always use warning)

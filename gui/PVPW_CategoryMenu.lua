@@ -23,7 +23,8 @@
 ]]--
 
 -- luacheck: globals CreateFrame STANDARD_TEXT_FONT FauxScrollFrame_Update FauxScrollFrame_GetOffset
--- luacheck: globals GetSpellInfo
+-- luacheck: globals UIDropDownMenu_Initialize UIDropDownMenu_AddButton UIDropDownMenu_GetSelectedValue
+-- luacheck: globals UIDropDownMenu_SetSelectedValue GetSpellInfo
 
 local mod = rgpvpw
 local me = {}
@@ -153,6 +154,7 @@ function me.CreateRowFrame(frame, position)
     row:SetBackdropColor(.25, .25, .25, .8)
   end
 
+  row.position = position
   row.cooldownStatus = me.CreateSpellStatusCheckbox(row)
   row.cooldownIcon = me.CreateSpellIcon(row)
   row.spellTitle = me.CreateSpellTitle(row)
@@ -161,7 +163,8 @@ function me.CreateRowFrame(frame, position)
   row.playSound = me.CreateSoundButton(row)
   row.enableSoundDown = me.CreateSpellSoundDownCheckBox(row)
   row.playSoundDown = me.CreateSoundDownButton(row)
-  row.enableVisual = me.CreateSpellVisualCheckBox(row)
+  -- row.enableVisual = me.CreateSpellVisualCheckBox(row) TODO remove complete code for this
+  row.chooseVisual = me.CreateVisualAlertDropdown(row)
   row.playVisual = me.CreateVisualAlertButton(row)
 
   return row
@@ -306,7 +309,7 @@ end
     The created checkbox
 ]]--
 function me.CreateSpellStatusCheckbox(spellFrame)
-  return me.CreateCheckBox(
+  return mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SPELL,
     spellFrame,
     {"LEFT", 0, 0},
@@ -331,7 +334,7 @@ end
     The created checkbox
 ]]--
 function me.CreateSpellSoundCheckBox(spellFrame)
-  return me.CreateCheckBox(
+  return mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SOUND,
     spellFrame,
     {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 25},
@@ -357,7 +360,7 @@ end
     The created checkbox
 ]]--
 function me.CreateSpellSoundDownCheckBox(spellFrame)
-  return me.CreateCheckBox(
+  return mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SOUND_DOWN,
     spellFrame,
     {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 0},
@@ -383,7 +386,7 @@ end
     The created checkbox
 ]]--
 function me.CreateSpellVisualCheckBox(spellFrame)
-  return me.CreateCheckBox(
+  return mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_VISUAL,
     spellFrame,
     {"LEFT", spellFrame.spellTitle, "RIGHT", 0, -25},
@@ -401,45 +404,50 @@ function me.ClickConfigVisualCallback()
 end
 
 --[[
-  Create a configuration checkbox
-
-  @param {string} frameName
-  @param {table} parent
-  @param {table} position
-    An object containing configuration parameters for a SetPoint function call
-  @param {function} callback
-    Callback that is called onClick
-  @param {string} text
-    Text is used as label for the checkbox
-
-  @retun {table}
-    The created checkbox
+  TODO
 ]]--
-function me.CreateCheckBox(frameName, parent, position, callback, text)
-  local checkBoxFrame = CreateFrame(
-    "CheckButton",
-    frameName,
-    parent,
-    "UICheckButtonTemplate"
+function me.CreateVisualAlertDropdown(spellFrame)
+  local chooseVisualWarningDropdownMenu = CreateFrame(
+    "Button",
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_VISUAL_WARNING_DROPDOWN .. spellFrame.position,
+    spellFrame,
+    "UIDropDownMenuTemplate"
   )
-  checkBoxFrame:SetSize(
-    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE,
-    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE
-  )
-  checkBoxFrame:SetPoint(unpack(position))
+  chooseVisualWarningDropdownMenu:SetPoint("TOPLEFT", 250, -50)
+  chooseVisualWarningDropdownMenu.position = spellFrame.position
 
-  checkBoxFrame.text = _G[checkBoxFrame:GetName() .. 'Text']
-  checkBoxFrame.text:SetFont(STANDARD_TEXT_FONT, 15)
-  checkBoxFrame.text:SetTextColor(.95, .95, .95)
+  UIDropDownMenu_Initialize(chooseVisualWarningDropdownMenu, me.InitializeVisualWarningDropdownMenu)
 
+  return chooseVisualWarningDropdownMenu
+end
 
-  if text ~= nil then
-    checkBoxFrame.text:SetText(text)
+--[[
+  Create dropdownmenu for color selection
+]]--
+function me.InitializeVisualWarningDropdownMenu(self)
+  local colors = RGPVPW_CONSTANTS.TEXTURES
+
+  for colorName, color in pairs(colors) do
+    local button = mod.guiHelper.CreateDropdownButton(colorName, color.colorValue, me.DropDownMenuCallback)
+    UIDropDownMenu_AddButton(button)
   end
 
-  checkBoxFrame:SetScript("OnClick", callback)
+  if (UIDropDownMenu_GetSelectedValue(_G[self:GetName()]) == nil) then
+    UIDropDownMenu_SetSelectedValue(
+      _G[self:GetName()],
+      RGPVPW_CONSTANTS.TEXTURES.none.colorValue
+    )
+  end
+end
 
-  return checkBoxFrame
+--[[
+  Callback for color dropdownmenu
+]]--
+function me.DropDownMenuCallback(self)
+  UIDropDownMenu_SetSelectedValue(
+    _G[self:GetParent().dropdown:GetName()],
+    self.value
+  )
 end
 
 --[[

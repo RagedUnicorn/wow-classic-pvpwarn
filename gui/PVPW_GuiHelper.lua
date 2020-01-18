@@ -22,11 +22,55 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals CreateFrame
+
 local mod = rgpvpw
 local me = {}
 mod.guiHelper = me
 
 me.tag = "GuiHelper"
+
+--[[
+  Create a configuration checkbox
+
+  @param {string} frameName
+  @param {table} parent
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+  @param {function} callback
+    Callback that is called onClick
+  @param {string} text
+    Text is used as label for the checkbox
+
+  @retun {table}
+    The created checkbox
+]]--
+function me.CreateCheckBox(frameName, parent, position, callback, text)
+  local checkBoxFrame = CreateFrame(
+    "CheckButton",
+    frameName,
+    parent,
+    "UICheckButtonTemplate"
+  )
+  checkBoxFrame:SetSize(
+    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE,
+    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE
+  )
+  checkBoxFrame:SetPoint(unpack(position))
+
+  checkBoxFrame.text = _G[checkBoxFrame:GetName() .. 'Text']
+  checkBoxFrame.text:SetFont(STANDARD_TEXT_FONT, 15)
+  checkBoxFrame.text:SetTextColor(.95, .95, .95)
+
+
+  if text ~= nil then
+    checkBoxFrame.text:SetText(text)
+  end
+
+  checkBoxFrame:SetScript("OnClick", callback)
+
+  return checkBoxFrame
+end
 
 --[[
   TODO
@@ -51,4 +95,17 @@ function me.CreatePlayButton(frameName, parent, position, callback, text)
   )
 
   return playButton
+end
+
+--[[
+  TODO add documentation
+]]--
+function me.CreateDropdownButton(text, value, callback)
+  local button = {}
+
+  button.text = rgpvpw.L["texture_" .. text]
+  button.value = value
+  button.func = callback
+
+  return button
 end

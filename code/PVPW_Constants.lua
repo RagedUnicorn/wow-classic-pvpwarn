@@ -33,6 +33,10 @@ RGPVPW_CONSTANTS = {
     Warn textures
   ]]--
   TEXTURES = {
+    none = {
+      textureName = "texture_none",
+      colorValue = 0
+    },
     yellow = {
       textureName = "texture_yellow",
       colorValue = 1
@@ -197,7 +201,7 @@ RGPVPW_CONSTANTS = {
   ELEMENT_CATEGORY_ENABLE_SPELL = "$parentEnableSpell",
   ELEMENT_CATEGORY_ENABLE_SOUND = "$parentEnableSound",
   ELEMENT_CATEGORY_ENABLE_SOUND_DOWN = "$parentEnableSoundDown",
-  ELEMENT_CATEGORY_ENABLE_VISUAL = "$parentEnableVisual",
+  ELEMENT_CATEGORY_VISUAL_WARNING_DROPDOWN = "ChooseVisual_",
   ELEMENT_CATEGORY_PLAY_SOUND_BUTTON = "$parentPlaySound",
   ELEMENT_CATEGORY_PLAY_SOUND_DOWN_BUTTON = "$parentPlaySoundDown",
   ELEMENT_CATEGORY_PLAY_VISUAL_ALERT_BUTTON = "$parentPlayVisualAlert",
