@@ -24,9 +24,9 @@
 
 local mod = rgpvpw
 local me = {}
-mod.profile = me
+mod.paladinProfile = me
 
-me.tag = "Profile"
+me.tag = "PaladinProfile"
 
 --[[
   ["type"] = {
@@ -46,11 +46,47 @@ me.tag = "Profile"
     }
   }
 ]]--
-local defaultProfile = {}
+local defaultProfilePaladin = {
+  ["warrior"] = {
+
+  },
+  ["priest"] = {
+
+  },
+  ["rogue"] = {
+
+  },
+  ["mage"] = {
+
+  },
+  ["hunter"] = {
+
+  },
+  ["warlock"] = {
+
+  },
+  ["paladin"] = {
+
+  },
+  ["druid"] = {
+
+  },
+  ["shaman"] = {
+
+  },
+  ["racials"] = {
+  },
+  ["items"] = {
+
+  },
+  ["misc"] = {
+
+  }
+}
 
 --[[
-  Default profiles consider the class from the player that uses the addon. As an
-  example lets assume the player is a warrior. What are the spells a warrior absolutely
-  needs to know of. Depending on the class a spells importance might greatly differ
-  from very important to not interested at all.
+
 ]]--
+function me.GetProfile()
+
+end

@@ -79,9 +79,9 @@ function me.Initialize()
   -- setup slash commands
   -- me.cmd.SetupSlashCmdList() TODO
   -- load addon variables
-  -- me.configuration.SetupConfiguration() TODO
+  me.addonOptions.SetupConfiguration()
   -- setup addon configuration ui
-  me.addonConfiguration.SetupAddonConfiguration()
+  me.addonConfiguration.SetupAddonConfiguration() -- TODO remove this only for testing
   -- start ticker intervals
   me.ticker.StartTickerWarnQueue()
 

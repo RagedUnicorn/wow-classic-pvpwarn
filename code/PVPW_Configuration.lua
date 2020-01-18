@@ -52,6 +52,7 @@ function me.SetupConfiguration()
 
   -- initialize spelllist for the first time with default profile
   if PVPWarnOptions.spellList == nil then
+    PVPWarnOptions.spellList = {}
     -- PVPWarnOptions.spellList = mod.profile.GetDefaultProfile() TODO
   end
 end

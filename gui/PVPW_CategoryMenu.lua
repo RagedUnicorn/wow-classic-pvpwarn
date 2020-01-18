@@ -44,6 +44,10 @@ local builtMenu = false
   when the category changes
 ]]--
 local cachedCategoryData = nil
+--[[
+  Currently active category
+]]--
+local activeCategory = nil
 
 --[[
   Build or update (if already built) the category menus for configuring spells
@@ -73,7 +77,7 @@ end
   @param {string} category
 ]]--
 function me.BuildUi(frame, category)
-  spellScrollFrame = me.CreateSpellList(frame, category)
+  spellScrollFrame = me.CreateSpellList(frame)
   me.FauxScrollFrameOnUpdate(spellScrollFrame, category)
   builtMenu = true
 end
@@ -183,16 +187,27 @@ function me.CreateSpellStatusCheckbox(spellFrame)
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SPELL,
     spellFrame,
     {"LEFT", 0, 0},
-    me.ToggleSpellStatus
-  )
-end
+    function()
+      mod.spellConfiguration.ToggleSpellState(
+        RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+        activeCategory,
+        spellFrame.spellName
+      )
+    end,
+    function(self)
+      local isActive = mod.spellConfiguration.IsSpellActive(
+        RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+        activeCategory,
+        spellFrame.spellName
+      )
 
---[[
-  Click callback for enabling/disabling spell alert
-]]--
-function me.ToggleSpellStatus()
-  -- TODO implement updating configuration
-  mod.logger.LogError(me.tag, "Spell callback")
+      if isActive then
+        self:SetChecked(true)
+      else
+        self:SetChecked(false)
+      end
+    end
+  )
 end
 
 --[[
@@ -275,7 +290,26 @@ function me.CreateSpellSoundCheckBox(spellFrame)
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SOUND,
     spellFrame,
     {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 25},
-    me.ToggleSound,
+    function()
+      mod.spellConfiguration.ToggleSoundWarning(
+        RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+        activeCategory,
+        spellFrame.spellName
+      )
+    end,
+    function(self)
+      local isActive = mod.spellConfiguration.IsSoundWarningActive(
+        RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+        activeCategory,
+        spellFrame.spellName
+      )
+
+      if isActive then
+        self:SetChecked(true)
+      else
+        self:SetChecked(false)
+      end
+    end,
     rgpvpw.L["label_enable_sound"]
   )
 end
@@ -327,6 +361,7 @@ function me.CreateSpellSoundDownCheckBox(spellFrame)
     spellFrame,
     {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 0},
     me.ToggleSoundDown,
+    nil,
     rgpvpw.L["label_enable_sound_down"]
   )
 end
@@ -486,6 +521,8 @@ end
   @param {string} category
 ]]--
 function me.FauxScrollFrameOnUpdate(scrollFrame, category)
+  activeCategory = category
+  mod.logger.LogError(me.tag, "Category: " .. category)
   if cachedCategoryData == nil then
     mod.logger.LogInfo(me.tag, string.format("Warmed up cached spelllist for category '%s'", category))
     cachedCategoryData = mod.spellMap.GetAllForCategory(category)
@@ -516,6 +553,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         local _, _, iconId = GetSpellInfo(cachedCategoryData[value].spellId)
         -- local enabled = mod.configuration.GetCooldownConfigurationState(category, cooldown.spellId) TODO get status from configuration
 
+        row.spellName = cachedCategoryData[value].name
         row.cooldownIcon:SetTexture(iconId)
         row.spellTitle:SetText(cachedCategoryData[value].name)
 

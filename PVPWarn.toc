@@ -28,6 +28,7 @@ code/PVPW_Common.lua
 code/PVPW_WarnQueue.lua
 code/PVPW_Configuration.lua
 code/PVPW_Profile.lua
+code/PVPW_SpellConfiguration.lua
 
 # debug
 code/PVPW_Debug.lua

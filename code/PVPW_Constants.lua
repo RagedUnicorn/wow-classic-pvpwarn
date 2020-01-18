@@ -78,6 +78,10 @@ RGPVPW_CONSTANTS = {
       colorValue = 10
     }
   },
+  --[[
+    default color based on TEXTURES - colorValue
+  ]]--
+  DEFAULT_COLOR = 1,
   SPELL_TYPES = {
     ["NORMAL"] = 1, -- SPELL_CAST_SUCCESS
     ["APPLIED"] = 2, -- SPELL_AURA_APPLIED
@@ -88,6 +92,15 @@ RGPVPW_CONSTANTS = {
   EVENT_SPELL_AURA_APPLIED = "SPELL_AURA_APPLIED",
   EVENT_SPELL_AURA_REMOVED = "SPELL_AURA_REMOVED",
   EVENT_SPELL_AURA_REFRESH = "SPELL_AURA_REFRESH",
+  --[[
+    Spelllist corresponding to the saved addon variable and its configured
+    spelllists
+  ]]--
+  SPELL_TYPE = {
+    ["SPELL"] = "spellList",
+    -- ["SPELL_SELF_AVOID"] = "spellSelfAvoidList",
+    -- ["SPELL_ENEMY_AVOID"] = "spellEnemyAvoidList"
+  },
   --[[
     Max age in seconds of a warn message before it is considered to old. Messages
     that are to old are dropped from the queue.
@@ -187,9 +200,9 @@ RGPVPW_CONSTANTS = {
   ELEMENT_CATEGORY_SUB_OPTION_FRAME = "PVPW_CategoryMenuOptionsFrame",
 
   -- scroll list
-  ELEMENT_SPELL_LIST_SCROLL_FRAME = "PVPW_QuickChangeFromScrollFrame",
-  ELEMENT_SPELL_LIST_SCROLL_FRAME_SLIDER = "PVPW_QuickChangeFromScrollFrameSlider",
-  ELEMENT_SPELL_LIST_CONTENT_FRAME = "PVPW_QuickChangeFromContentFrame",
+  ELEMENT_SPELL_LIST_SCROLL_FRAME = "PVPW_SpellListScrollFrame",
+  ELEMENT_SPELL_LIST_SCROLL_FRAME_SLIDER = "PVPW_SpellListScrollFrameSlider",
+  ELEMENT_SPELL_LIST_CONTENT_FRAME = "PVPW_SpellListContentFrame",
   SPELL_LIST_CONTENT_FRAME_WIDTH = 580,
   SPELL_LIST_MAX_ROWS = 6,
   SPELL_LIST_ROW_HEIGHT = 92,

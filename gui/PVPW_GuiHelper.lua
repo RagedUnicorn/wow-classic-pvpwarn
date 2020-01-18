@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT
 
 local mod = rgpvpw
 local me = {}
@@ -37,15 +37,17 @@ me.tag = "GuiHelper"
   @param {table} parent
   @param {table} position
     An object containing configuration parameters for a SetPoint function call
-  @param {function} callback
+  @param {function} onClickCallback
     Callback that is called onClick
+    @param {function} onShowCallback
+      Callback that is called onShow
   @param {string} text
-    Text is used as label for the checkbox
+    Optional text that is used as label for the checkbox
 
   @retun {table}
     The created checkbox
 ]]--
-function me.CreateCheckBox(frameName, parent, position, callback, text)
+function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowCallback, text)
   local checkBoxFrame = CreateFrame(
     "CheckButton",
     frameName,
@@ -67,7 +69,11 @@ function me.CreateCheckBox(frameName, parent, position, callback, text)
     checkBoxFrame.text:SetText(text)
   end
 
-  checkBoxFrame:SetScript("OnClick", callback)
+  checkBoxFrame:SetScript("OnClick", onClickCallback)
+  -- TODO remove paramete is not optional
+  if onShowCallback ~= nil then
+    checkBoxFrame:SetScript("OnShow", onShowCallback)
+  end
 
   return checkBoxFrame
 end
