@@ -159,14 +159,14 @@ function me.CreateRowFrame(frame, position)
   end
 
   row.position = position
-  row.cooldownStatusCheckBox = me.CreateSpellStatusCheckbox(row)
+  row.spellStateCheckBox = me.CreateSpellStateCheckbox(row)
   row.cooldownIcon = me.CreateSpellIcon(row)
   row.spellTitle = me.CreateSpellTitle(row)
 
   row.enableSound = me.CreateSpellSoundCheckBox(row)
   row.playSound = me.CreateSoundButton(row)
-  row.enableSoundDown = me.CreateSpellSoundDownCheckBox(row)
-  row.playSoundDown = me.CreateSoundDownButton(row)
+  row.enableSoundFade = me.CreateSpellSoundFadeCheckBox(row)
+  row.playSoundFade = me.CreateSoundFadeButton(row)
   row.chooseVisual = me.CreateVisualAlertDropdown(row)
   row.createVisualLabel = me.CreateVisualLabel(row)
   row.playVisual = me.CreateVisualWarningButton(row)
@@ -182,7 +182,7 @@ end
   @return {table}
     The created checkbox
 ]]--
-function me.CreateSpellStatusCheckbox(spellFrame)
+function me.CreateSpellStateCheckbox(spellFrame)
   return mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SPELL,
     spellFrame,
@@ -315,14 +315,6 @@ function me.CreateSpellSoundCheckBox(spellFrame)
 end
 
 --[[
-  Click callback for enabling/disabling sound alert
-]]--
-function me.ToggleSound()
-  -- TODO implement updating configuration
-  mod.logger.LogError(me.tag, "Sound")
-end
-
---[[
   Create a sound button for testing the sound
 
   @param {table} spellFrame
@@ -355,48 +347,58 @@ end
   @return {table}
     The created checkbox
 ]]--
-function me.CreateSpellSoundDownCheckBox(spellFrame)
+function me.CreateSpellSoundFadeCheckBox(spellFrame)
   return mod.guiHelper.CreateCheckBox(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SOUND_DOWN,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SOUND_FADE,
     spellFrame,
     {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 0},
-    me.ToggleSoundDown,
-    nil,
-    rgpvpw.L["label_enable_sound_down"]
+    function()
+      mod.spellConfiguration.ToggleSoundFadeWarning(
+        RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+        activeCategory,
+        spellFrame.spellName
+      )
+    end,
+    function(self)
+      local isActive = mod.spellConfiguration.IsSoundFadeWarningActive(
+        RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+        activeCategory,
+        spellFrame.spellName
+      )
+
+      if isActive then
+        self:SetChecked(true)
+      else
+        self:SetChecked(false)
+      end
+    end,
+    rgpvpw.L["label_enable_sound_fade"]
   )
 end
 
 --[[
-  Click callback for enabling/disabling sound down alert
-]]--
-function me.ToggleSoundDown()
-  -- TODO implement updating configuration
-  mod.logger.LogError(me.tag, "Sound down")
-end
-
---[[
-  Create a sound down button for testing the sound
+  Create a sound fade button for testing the sound
 
   @param {table} spellFrame
 
   @return {table}
     The created button
 ]]--
-function me.CreateSoundDownButton(spellFrame)
+function me.CreateSoundFadeButton(spellFrame)
   return mod.guiHelper.CreatePlayButton(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_DOWN_BUTTON,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_FADE_BUTTON,
     spellFrame,
-    {"LEFT", spellFrame.enableSoundDown, "RIGHT", 150, 0},
-    me.PlaySoundDownButtonOnClick,
-    rgpvpw.L["label_play_sound_down"]
+    {"LEFT", spellFrame.enableSoundFade, "RIGHT", 150, 0},
+    me.PlaySoundFadeButtonOnClick,
+    rgpvpw.L["label_play_sound_fade"]
   )
 end
 
 --[[
-  Click callback for sound down button
+  Click callback for sound fade button
 ]]--
-function me.PlaySoundDownButtonOnClick()
-  mod.logger.LogError(me.tag, "play sound down on click todo")
+function me.PlaySoundFadeButtonOnClick()
+  mod.logger.LogError(me.tag, "play sound fade on click todo")
 end
 
 --[[
@@ -560,9 +562,9 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         local enabled = true -- TODO hardcoded
 
         if enabled then
-          row.cooldownStatusCheckBox:SetChecked(true)
+          row.spellStateCheckBox:SetChecked(true)
         else
-          row.cooldownStatusCheckBox:SetChecked(false)
+          row.spellStateCheckBox:SetChecked(false)
         end
 
         row:Show()

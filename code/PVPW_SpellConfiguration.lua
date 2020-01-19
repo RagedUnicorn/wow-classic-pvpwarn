@@ -205,6 +205,91 @@ end
   @param {string} categoryName
   @param {string} spellName
 ]]--
+function me.ToggleSoundFadeWarning(spellList, categoryName, spellName)
+  assert(type(spellList) == "string", string.format(
+    "bad argument #1 to `ToggleSoundFadeWarning` (expected string got %s)", type(spellList)))
+
+  assert(type(categoryName) == "string", string.format(
+    "bad argument #1 to `ToggleSoundFadeWarning` (expected string got %s)", type(categoryName)))
+
+  assert(type(spellName) == "string", string.format(
+    "bad argument #2 to `ToggleSoundFadeWarning` (expected string got %s)", type(spellName)))
+
+    me.ToggleSoundFade(
+      spellList,
+      categoryName,
+      spellName,
+      not me.IsSoundFadeWarningActive(spellList, categoryName, spellName)
+    )
+end
+
+--[[
+  @param {string} spellList
+    Decides upon which stored list should be used. Possible values:
+    * spellList - enemy spell detected
+    * spellSelfAvoidList - player avoided spell
+    * spellEnemyAvoidList - enemy player avoided spell
+  @param {string} categoryName
+  @param {string} spellName
+  @return {boolean}
+    true if the sound warning is active
+    false if the sound warning is inactive
+]]--
+function me.IsSoundFadeWarningActive(spellList, categoryName, spellName)
+  assert(type(spellList) == "string", string.format(
+    "bad argument #1 to `IsSoundFadeWarningActive` (expected string got %s)", type(spellList)))
+
+  assert(type(categoryName) == "string", string.format(
+    "bad argument #2 to `IsSoundFadeWarningActive` (expected string got %s)", type(categoryName)))
+
+  assert(type(spellName) == "string", string.format(
+    "bad argument #3 to `IsSoundFadeWarningActive` (expected string got %s)", type(spellName)))
+
+  if PVPWarnOptions[spellList][categoryName] then
+    if PVPWarnOptions[spellList][categoryName][spellName] then
+      return PVPWarnOptions[spellList][categoryName][spellName].soundFadeWarningActive
+    end
+  end
+
+  return false
+end
+
+--[[
+  @param {string} spellList
+    decides upon which stored list should be used. Possible values:
+    * spellList - enemy spell detected
+    * spellSelfAvoidList - player avoided spell
+    * spellEnemyAvoidList - enemy player avoided spell
+  @param {string} categoryName
+  @param {string} spellName
+  @param {boolean} state
+    true if the option should be active
+    false if the option should be inactive
+]]--
+function me.ToggleSoundFade(spellList, categoryName, spellName, state)
+  me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
+
+  mod.logger.LogDebug(me.tag,
+    string.format(
+      "Updating spell %s sounddownstate for category %s - current value: %s / new value: %s",
+      spellName,
+      categoryName,
+      tostring(PVPWarnOptions[spellList][categoryName][spellName].soundFadeWarningActive),
+      tostring(state)
+    )
+  )
+  PVPWarnOptions[spellList][categoryName][spellName].soundFadeWarningActive = state
+end
+
+--[[
+  @param {string} spellList
+    Decides upon which stored list should be used. Possible values:
+    * spellList - enemy spell detected
+    * spellSelfAvoidList - player avoided spell
+    * spellEnemyAvoidList - enemy player avoided spell
+  @param {string} categoryName
+  @param {string} spellName
+]]--
 function me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
   if not PVPWarnOptions[spellList][categoryName] then
     mod.logger.LogInfo(me.tag, "Class - " .. categoryName .. " does not exist. Creating new one...")

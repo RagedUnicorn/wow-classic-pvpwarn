@@ -488,3 +488,4 @@ Missing spells that are cast on the weapon by the shaman
 
 clic callbacks for checkboxes should probably be called togglesomething or similar
 TODO should decide on wording either warning like the addon name or alert (probably always use warning)
+TODO should decide whether to use sounddown or fade (fade/down)
