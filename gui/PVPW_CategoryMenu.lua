@@ -335,8 +335,8 @@ end
 --[[
   Click callback for sound button
 ]]--
-function me.PlaySoundButtonOnClick()
-  mod.logger.LogError(me.tag, "play sound on click todo")
+function me.PlaySoundButtonOnClick(self)
+  mod.sound.PlaySound(self.category, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, self.soundFileName)
 end
 
 --[[
@@ -397,8 +397,8 @@ end
 --[[
   Click callback for sound fade button
 ]]--
-function me.PlaySoundFadeButtonOnClick()
-  mod.logger.LogError(me.tag, "play sound fade on click todo")
+function me.PlaySoundFadeButtonOnClick(self)
+  mod.sound.PlaySound(self.category, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, self.soundFileName)
 end
 
 --[[
@@ -558,6 +558,13 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         row.spellName = cachedCategoryData[value].name
         row.cooldownIcon:SetTexture(iconId)
         row.spellTitle:SetText(cachedCategoryData[value].name)
+
+        -- TODO fade should only be displayed if the spell actually has a fade sound
+        row.playSound.category = category
+        row.playSound.soundFileName = cachedCategoryData[value].soundFileName
+
+        row.playSoundFade.category = category
+        row.playSoundFade.soundFileName = cachedCategoryData[value].soundFileName
 
         local enabled = true -- TODO hardcoded
 
