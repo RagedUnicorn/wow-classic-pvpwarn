@@ -34,14 +34,19 @@ local testCategory = "misc"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
-    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRestoreEnergy)
-    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMightyRagePotion)
-    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFirstAid)
-    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowProtection)
-    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrostProtection)
-    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFireProtection)
-    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundNatureProtection)
-    mod.testReporter.AddToTestQueueWithDelay(me.TestSoundArcaneProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRestoreEnergy)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMightyRagePotion)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFirstAid)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrostProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFrostProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFireProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFireProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundNatureProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownNatureProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundArcaneProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownArcaneProtection)
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
@@ -80,9 +85,25 @@ function me.TestSoundShadowProtection()
   )
 end
 
+function me.TestSoundDownShadowProtection()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownShadowProtection",
+    testCategory,
+    "Shadow Protection"
+  )
+end
+
 function me.TestSoundFrostProtection()
   mod.testHelper.TestSoundSuccess(
     "TestSoundFrostProtection",
+    testCategory,
+    "Frost Protection"
+  )
+end
+
+function me.TestSoundDownFrostProtection()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFrostProtection",
     testCategory,
     "Frost Protection"
   )
@@ -96,6 +117,14 @@ function me.TestSoundFireProtection()
   )
 end
 
+function me.TestSoundDownFireProtection()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFireProtection",
+    testCategory,
+    "Fire Protection"
+  )
+end
+
 function me.TestSoundNatureProtection()
   mod.testHelper.TestSoundSuccess(
     "TestSoundNatureProtection",
@@ -104,9 +133,25 @@ function me.TestSoundNatureProtection()
   )
 end
 
+function me.TestSoundDownNatureProtection()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownNatureProtection",
+    testCategory,
+    "Nature Protection"
+  )
+end
+
 function me.TestSoundArcaneProtection()
   mod.testHelper.TestSoundSuccess(
     "TestSoundArcaneProtection",
+    testCategory,
+    "Arcane Protection"
+  )
+end
+
+function me.TestSoundDownArcaneProtection()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownArcaneProtection",
     testCategory,
     "Arcane Protection"
   )

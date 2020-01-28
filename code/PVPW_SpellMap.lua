@@ -463,7 +463,6 @@ else
           "SPELL_AURA_REMOVED"
         }
       },
-
       ["blade_flurry"] = {
         ["name"] = "Blade Flurry",
         ["soundFileName"] = "blade_flurry",
@@ -1136,7 +1135,7 @@ else
         ["spellId"] = 17116,
         ["spellIcon"] = "spell_nature_ravenform",
         ["hasFade"] = true,
-        ["links"] = { 16188 }, -- TODO how to handle "links"
+        -- ["links"] = { 16188 }, -- TODO how to handle "links"
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED",
@@ -1236,6 +1235,28 @@ else
           "SPELL_CAST_SUCCESS"
         }
       },
+      ["frost_resistance_totem"] = {
+        ["name"] = "Frost Resistance Totem",
+        ["soundFileName"] = "frost_resistance_totem",
+        ["spellId"] = 10479, -- rank 3
+        ["spellIcon"] = "spell_frostresistancetotem_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["nature_resistance_totem"] = {
+        ["name"] = "Nature Resistance Totem",
+        ["soundFileName"] = "nature_resistance_totem",
+        ["spellId"] = 10601, -- rank 3
+        ["spellIcon"] = "spell_nature_natureresistancetotem",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
       ["flametongue_totem"] = {
         ["name"] = "Flametongue Totem",
         ["soundFileName"] = "flametongue_totem",
@@ -1252,17 +1273,6 @@ else
         ["soundFileName"] = "grace_of_air_totem",
         ["spellId"] = 25359, -- rank 3
         ["spellIcon"] = "spell_nature_invisibilitytotem",
-        ["hasFade"] = false,
-        ["active"] = true,
-        ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS"
-        }
-      },
-      ["nature_resistance_totem"] = {
-        ["name"] = "Nature Resistance Totem",
-        ["soundFileName"] = "nature_resistance_totem",
-        ["spellId"] = 10601, -- rank 3
-        ["spellIcon"] = "spell_nature_natureresistancetotem",
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
@@ -1362,17 +1372,6 @@ else
         ["soundFileName"] = "stoneclaw_totem",
         ["spellId"] = 10428, -- rank 6
         ["spellIcon"] = "spell_nature_stoneclawtotem",
-        ["hasFade"] = false,
-        ["active"] = true,
-        ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS"
-        }
-      },
-      ["frost_resistance_totem"] = {
-        ["name"] = "Frost Resistance Totem",
-        ["soundFileName"] = "frost_resistance_totem",
-        ["spellId"] = 10479, -- rank 3
-        ["spellIcon"] = "spell_frostresistancetotem_01",
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
@@ -1751,10 +1750,11 @@ else
         ["itemId"] = 13459,
         ["spellId"] = 17548,
         ["spellIcon"] = "inv_potion_23",
-        ["hasFade"] = false,
+        ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS"
+          "SPELL_CAST_SUCCESS",
+          "SPELL_AURA_REMOVED"
         }
       },
       ["frost_protection"] = {
@@ -1763,10 +1763,11 @@ else
         ["itemId"] = 13456,
         ["spellId"] = 17544,
         ["spellIcon"] = "inv_potion_20",
-        ["hasFade"] = false,
+        ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS"
+          "SPELL_CAST_SUCCESS",
+          "SPELL_AURA_REMOVED"
         }
       },
       ["fire_protection"] = {
@@ -1775,10 +1776,11 @@ else
         ["itemId"] = 13457,
         ["spellId"] = 17543,
         ["spellIcon"] = "inv_potion_24",
-        ["hasFade"] = false,
+        ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS"
+          "SPELL_CAST_SUCCESS",
+          "SPELL_AURA_REMOVED"
         }
       },
       ["nature_protection"] = {
@@ -1787,10 +1789,11 @@ else
         ["itemId"] = 13458,
         ["spellId"] = 17546,
         ["spellIcon"] = "inv_potion_22",
-        ["hasFade"] = false,
+        ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS"
+          "SPELL_CAST_SUCCESS",
+          "SPELL_AURA_REMOVED"
         }
       },
       ["arcane_protection"] = {
@@ -1799,10 +1802,11 @@ else
         ["itemId"] = 13461,
         ["spellId"] = 17549,
         ["spellIcon"] = "inv_potion_83",
-        ["hasFade"] = false,
+        ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS"
+          "SPELL_CAST_SUCCESS",
+          "SPELL_AURA_REMOVED"
         }
       }
     }

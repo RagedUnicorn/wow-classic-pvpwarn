@@ -489,3 +489,37 @@ Missing spells that are cast on the weapon by the shaman
 clic callbacks for checkboxes should probably be called togglesomething or similar
 TODO should decide on wording either warning like the addon name or alert (probably always use warning)
 TODO should decide whether to use sounddown or fade (fade/down)
+
+
+---------------
+
+When saving a profile add a version identifier for later upgrading
+
+
+--- Run all tests required
+/run rgpvpw.testSoundDruidEn.Test()
+/run rgpvpw.testSoundHunterEn.Test()
+/run rgpvpw.testSoundItemsEn.Test()
+/run rgpvpw.testSoundMageEn.Test()
+/run rgpvpw.testSoundMiscEn.Test()
+/run rgpvpw.testSoundPaladinEn.Test()
+/run rgpvpw.testSoundPriestEn.Test()
+/run rgpvpw.testSoundRacialsEn.Test()
+/run rgpvpw.testSoundRogueEn.Test()
+/run rgpvpw.testSoundShamanEn.Test()
+/run rgpvpw.testSoundWarlockEn.Test()
+/run rgpvpw.testSoundWarriorEn.Test()
+
+
+/run rgpvpw.testCombatEventsDruidEn.Test()
+/run rgpvpw.testCombatEventsHunterEn.Test()
+/run rgpvpw.testCombatEventsItemsEn.Test()
+/run rgpvpw.testCombatEventsMageEn.Test()
+/run rgpvpw.testCombatEventsMiscEn.Test()
+/run rgpvpw.testCombatEventsPaladinEn.Test()
+/run rgpvpw.testCombatEventsPriestEn.Test()
+/run rgpvpw.testCombatEventsRacialsEn.Test()
+/run rgpvpw.testCombatEventsRogueEn.Test()
+/run rgpvpw.testCombatEventsShamanEn.Test()
+/run rgpvpw.testCombatEventsWarlockEn.Test()
+/run rgpvpw.testCombatEventsWarriorEn.Test()
