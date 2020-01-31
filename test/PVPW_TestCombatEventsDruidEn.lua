@@ -42,6 +42,14 @@ local testCategory = "druid"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBarkskinApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBarkskinRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesGraspApplied)
@@ -58,10 +66,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesSwiftnessRemoved) -- TODO
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFaerieFireSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFaerieFireFeralSuccess)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventBarkskinApplied()

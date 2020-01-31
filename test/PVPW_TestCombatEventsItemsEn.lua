@@ -36,6 +36,14 @@ local testCategory = "items"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEphemeralPowerApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEphemeralPowerRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireReflectorApplied)
@@ -59,10 +67,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpeedApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpeedRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMithrilMechanicalDragonlingSuccess)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventEphemeralPowerApplied()

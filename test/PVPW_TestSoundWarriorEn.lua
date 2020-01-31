@@ -34,6 +34,14 @@ local testCategory = "warrior"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBerserkerRage)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBerserkerRage)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRecklessness)
@@ -54,10 +62,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShieldBlock)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShieldBlock)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShieldSlam)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestSoundBerserkerRage()

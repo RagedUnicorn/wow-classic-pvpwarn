@@ -34,6 +34,14 @@ local testCategory = "items"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEphemeralPower)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEphemeralPower)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFireReflector)
@@ -58,10 +66,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSpeed)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMithrilMechanicalDragonling)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMithrilMechanicalDragonling)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestSoundEphemeralPower()

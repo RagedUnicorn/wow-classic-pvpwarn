@@ -34,6 +34,14 @@ local testCategory = "paladin"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDevotionAuraApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetributionAuraApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConcentrationAuraApplied)
@@ -52,10 +60,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineShieldRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventForbearanceApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventForbearanceRemoved)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventDevotionAuraApplied()

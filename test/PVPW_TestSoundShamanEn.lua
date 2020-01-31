@@ -34,6 +34,14 @@ local testCategory = "shaman"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundElementalMastery)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownElementalMastery)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundNaturesSwiftness)
@@ -60,10 +68,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundManaSpringTotem)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundManaTideTotem)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTranquilAirTotem)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestSoundElementalMastery()

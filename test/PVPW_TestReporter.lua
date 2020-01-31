@@ -34,7 +34,8 @@ me.tag = "TestReporter"
 
 local testManager = {
   ["currentTestGroup"] = nil,
-  ["currentTest"] = nil
+  ["currentTest"] = nil,
+  ["currentFailedTests"] = {}
 }
 
 local testQueueWithDelay = {}
@@ -122,12 +123,24 @@ function me.StopTestGroup()
     PVPWarnTestLog[testManager.currentTestGroup].testCount)
 
   me.LogTestMessage(logMessage)
+
   me.AddLine()
+
+  -- display failed testnames if there where any
+  if #testManager.currentFailedTests > 0 then
+    me.LogTestMessage("Failed tests:")
+    for i = 1, #testManager.currentFailedTests do
+      me.LogTestMessage(testManager.currentFailedTests[i])
+    end
+
+    me.AddLine()
+  end
 
   table.insert(PVPWarnTestLog[testManager.currentTestGroup], logMessage)
   mod.testHelper.RestoreMaxWarnAge()
   -- reset
   testManager.currentTestGroup = nil
+  testManager.currentFailedTests = {}
 end
 
 --[[
@@ -179,10 +192,12 @@ end
 --[[
   Report a test as failed
 
+  @param {string} category
+  @param {string} testName
   @param {string} reason
     Option reason why a failure is getting reported
 ]]--
-function me.ReportFailureTestRun(reason)
+function me.ReportFailureTestRun(category, testName, reason)
   if testManager.currentTest == nil then
     mod.logger.LogError(me.tag, "Cannot report test status because there was no test started")
     return
@@ -192,13 +207,15 @@ function me.ReportFailureTestRun(reason)
   me.LogTestMessage(logMessage)
 
   if reason then
-    me.LogTestMessage(reason)
+    me.LogTestMessage(category .. " : " .. testName .. " - " .. reason)
   end
 
   PVPWarnTestLog[testManager.currentTestGroup].testFailure =
     PVPWarnTestLog[testManager.currentTestGroup].testFailure + 1
   PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest].status = "FAILURE"
   table.insert(PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest], logMessage)
+
+  table.insert(testManager.currentFailedTests, category .. " - " .. testName)
 
   -- reset
   testManager.currentTest = nil

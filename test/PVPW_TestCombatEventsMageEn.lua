@@ -36,6 +36,14 @@ local testCategory = "mage"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIceBlockApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIceBlockRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPolymorphSuccess)
@@ -60,10 +68,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCombustionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCombustionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlastWaveSuccess)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventIceBlockApplied()

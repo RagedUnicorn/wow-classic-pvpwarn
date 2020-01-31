@@ -36,6 +36,14 @@ local testCategory = "warrior"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkerRageApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkerRageRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRecklessnessApplied)
@@ -56,10 +64,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBlockApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBlockRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldSlamSuccess)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventBerserkerRageApplied()

@@ -34,6 +34,14 @@ local testCategory = "warlock"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFear)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowburn)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowWard)
@@ -45,10 +53,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpellLock)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSoulLink)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSoulLink)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestSoundFear()

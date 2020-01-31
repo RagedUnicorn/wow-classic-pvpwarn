@@ -36,6 +36,14 @@ local testCategory = "priest"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPsychicScreamSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSilenceSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPowerInfusionApplied)
@@ -53,10 +61,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFearWardApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFearWardRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFearWardRefresh)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventPsychicScreamSuccess()

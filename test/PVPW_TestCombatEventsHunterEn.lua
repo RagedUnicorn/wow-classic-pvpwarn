@@ -34,6 +34,14 @@ local testCategory = "hunter"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConcussiveShotSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheMonkeySuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkSuccess)
@@ -50,11 +58,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInitmidationRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBestialWrathApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBestialWrathRemoved)
-
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventConcussiveShotSuccess()

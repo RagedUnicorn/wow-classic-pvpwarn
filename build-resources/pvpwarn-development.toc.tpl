@@ -81,3 +81,6 @@ test/PVPW_TestCombatEventsItemsEn.lua
 # misc
 test/PVPW_TestSoundMiscEn.lua
 test/PVPW_TestCombatEventsMiscEn.lua
+
+# test all
+test/PVPW_TestAllEn.lua

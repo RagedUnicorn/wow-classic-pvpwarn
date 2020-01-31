@@ -34,6 +34,14 @@ local testCategory = "misc"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRestoreEnergy)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMightyRagePotion)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFirstAid)
@@ -47,10 +55,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownNatureProtection)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundArcaneProtection)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownArcaneProtection)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestSoundRestoreEnergy()

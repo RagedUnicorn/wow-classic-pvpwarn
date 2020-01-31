@@ -34,6 +34,14 @@ local testCategory = "paladin"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDevotionAura)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRetributionAura)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundConcentrationAura)
@@ -52,10 +60,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDivineShield)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundForbearance)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownForbearance)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestSoundDevotionAura()

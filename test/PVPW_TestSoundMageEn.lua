@@ -34,6 +34,14 @@ local testCategory = "mage"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundIceBlock)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownIceBlock)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPolymorph)
@@ -56,10 +64,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCombustion)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownCombustion)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBlastWave)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestSoundIceBlock()

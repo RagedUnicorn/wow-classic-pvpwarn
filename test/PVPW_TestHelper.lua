@@ -37,6 +37,7 @@ local origMaxWarnAge
   Reused failure reasons
 ]]--
 mod.testHelper.unableToPlay = "Unable to play sound"
+mod.testHelper.unableToGetMetadata = "Did not get any spell metadata"
 
 --[[
   Hooks the CombatLogGetCurrentEventInfo function and replaces it with the passed function. Hooking this function
@@ -136,7 +137,7 @@ function me.TestSoundApplied(testName, testCategory, spellName)
   if status then
     mod.testReporter.ReportSuccessTestRun()
   else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToPlay)
   end
 end
 
@@ -160,7 +161,7 @@ function me.TestSoundRemoved(testName, testCategory, spellName)
   if status then
     mod.testReporter.ReportSuccessTestRun()
   else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToPlay)
   end
 end
 
@@ -184,7 +185,7 @@ function me.TestSoundSuccess(testName, testCategory, spellName)
   if status then
     mod.testReporter.ReportSuccessTestRun()
   else
-    mod.testReporter.ReportFailureTestRun(mod.testHelper.unableToPlay)
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToPlay)
   end
 end
 
@@ -237,11 +238,11 @@ function me.TestCombatEventApplied(testName, testCategory, spellName)
   end
 
   if not spell then
-    failureReason = "Did not get any spell metadata"
+    failureReason = mod.testHelper.unableToGetMetadata
   end
 
   if failureReason ~= nil then
-    mod.testReporter.ReportFailureTestRun(failureReason)
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, failureReason)
   else
     mod.testReporter.ReportSuccessTestRun()
   end
@@ -272,11 +273,11 @@ function me.TestCombatEventRemoved(testName, testCategory, spellName)
   end
 
   if not spell then
-    failureReason = "Did not get any spell metadata"
+    failureReason = mod.testHelper.unableToGetMetadata
   end
 
   if failureReason ~= nil then
-    mod.testReporter.ReportFailureTestRun(failureReason)
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, failureReason)
   else
     mod.testReporter.ReportSuccessTestRun()
   end
@@ -307,11 +308,11 @@ function me.TestCombatEventRefresh(testName, testCategory, spellName)
   end
 
   if not spell then
-    failureReason = "Did not get any spell metadata"
+    failureReason = mod.testHelper.unableToGetMetadata
   end
 
   if failureReason ~= nil then
-    mod.testReporter.ReportFailureTestRun(failureReason)
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, failureReason)
   else
     mod.testReporter.ReportSuccessTestRun()
   end
@@ -342,11 +343,11 @@ function me.TestCombatEventSuccess(testName, testCategory, spellName)
   end
 
   if not spell then
-    failureReason = "Did not get any spell metadata"
+    failureReason = mod.testHelper.unableToGetMetadata
   end
 
   if failureReason ~= nil then
-    mod.testReporter.ReportFailureTestRun(failureReason)
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, failureReason)
   else
     mod.testReporter.ReportSuccessTestRun()
   end

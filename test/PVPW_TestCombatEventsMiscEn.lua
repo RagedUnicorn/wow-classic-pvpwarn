@@ -36,6 +36,14 @@ local testCategory = "misc"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRestoreEnergySuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMightyRagePotionSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess)
@@ -49,10 +57,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNatureProtectionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArcaneProtectionSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArcaneProtectionRemoved)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventRestoreEnergySuccess()

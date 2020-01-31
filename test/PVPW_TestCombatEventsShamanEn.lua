@@ -36,6 +36,14 @@ local testCategory = "shaman"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventElementalMasteryApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventElementalMasteryRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesSwiftnessApplied)
@@ -61,10 +69,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventManaSpringTotemSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventManaTideTotemSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTranquilAirTotemSuccess)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventElementalMasteryApplied()

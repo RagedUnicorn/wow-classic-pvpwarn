@@ -36,6 +36,14 @@ local testCategory = "rogue"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlindApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlindRefresh)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventKickSuccess)
@@ -51,10 +59,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBladeFlurryRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventColdBloodApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventColdBloodRemoved)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventBlindApplied()

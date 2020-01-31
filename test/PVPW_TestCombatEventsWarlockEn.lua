@@ -34,6 +34,14 @@ local testCategory = "warlock"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFearSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowburnSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowWardApplied)
@@ -45,10 +53,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpellLockSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSoulLinkApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSoulLinkRemoved)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventFearSuccess()

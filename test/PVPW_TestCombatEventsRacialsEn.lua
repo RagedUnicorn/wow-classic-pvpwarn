@@ -36,6 +36,14 @@ local testCategory = "racials"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPerceptionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPerceptionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWillOfTheForsakenApplied)
@@ -47,10 +55,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkingRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowmeldSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBloodFurySuccess)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestCombatEventPerceptionApplied()

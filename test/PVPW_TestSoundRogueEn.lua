@@ -34,6 +34,14 @@ local testCategory = "rogue"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundKick)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBlind)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSprint)
@@ -48,10 +56,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBladeFlurry)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundColdBlood)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownColdBlood)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestSoundBlind()

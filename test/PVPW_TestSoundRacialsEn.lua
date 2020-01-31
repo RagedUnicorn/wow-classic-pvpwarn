@@ -34,6 +34,14 @@ local testCategory = "racials"
 function me.Test()
   mod.testReporter.StartTestGroup(testGroupName)
 
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+  end)
+end
+
+function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPerception)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownPerception)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWillOfTheForsaken)
@@ -46,10 +54,6 @@ function me.Test()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBerserking)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowmeld)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBloodFury)
-
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
-  end)
 end
 
 function me.TestSoundPerception()
