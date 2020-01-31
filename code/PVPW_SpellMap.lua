@@ -110,7 +110,7 @@ if (GetLocale() == "deDE") then
   }
 else
   spellMap = {
-    ["warrior"] = { -- completely verified
+    ["warrior"] = {
       ["berserker_rage"] = {
         ["name"] = "Berserker Rage",
         ["soundFileName"] = "berserker_rage",
@@ -282,7 +282,7 @@ else
         }
       }
     },
-    ["priest"] = { -- completely verified
+    ["priest"] = {
       ["psychic_scream"] = {
         ["name"] = "Psychic Scream",
         ["soundFileName"] = "psychic_scream",
@@ -381,7 +381,7 @@ else
         }
       },
     },
-    ["rogue"] = { -- completely verified
+    ["rogue"] = {
       ["blind"] = {
         ["name"] = "Blind",
         ["soundFileName"] = "blind",
@@ -488,7 +488,7 @@ else
         }
       }
     },
-    ["mage"] = { -- completely verified
+    ["mage"] = {
       ["ice_block"] = {
         ["name"] = "Ice Block",
         ["soundFileName"] = "ice_block",
@@ -654,7 +654,7 @@ else
         }
       }
     },
-    ["hunter"] = { -- completely verified
+    ["hunter"] = {
       ["concussive_shot"] = {
         ["name"] = "Concussive Shot",
         ["soundFileName"] = "concussive_shot",
@@ -1518,7 +1518,7 @@ else
       },
       ["blood_fury"] = {
         ["name"] = "Blood Fury",
-        ["soundFileName"] = "", -- TODO missing soundfile
+        ["soundFileName"] = "blood_fury",
         ["spellId"] = 20572,
         ["spellIcon"] = "racial_orc_berserkerstrength",
         ["hasFade"] = false,
@@ -1683,7 +1683,7 @@ else
       },
       ["speed"] = {
         ["name"] = "Speed",
-        ["soundFileName"] = "", -- TODO sound missing
+        ["soundFileName"] = "nifty_stopwatch",
         ["itemId"] = 2820,
         ["spellId"] = 14530,
         ["spellIcon"] = "inv_misc_pocketwatch_01",
@@ -1696,7 +1696,7 @@ else
       },
       ["mithril_mechanical_dragonling"] = {
         ["name"] = "Mithril Mechanical Dragonling",
-        ["soundFileName"] = "", -- TODO sound missing
+        ["soundFileName"] = "mithril_dragonling",
         ["itemId"] = 10576,
         ["spellId"] = 23075,
         ["spellIcon"] = "inv_misc_head_dragon_01",
@@ -1722,7 +1722,7 @@ else
       },
       ["mighty_rage_potion"] = {
         ["name"] = "Mighty Rage Potion",
-        ["soundFileName"] = "", -- TODO missing
+        ["soundFileName"] = "mighty_rage_potion",
         ["itemId"] = 13442,
         ["spellId"] = 17528,
         ["spellIcon"] = "inv_potion_41",
