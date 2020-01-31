@@ -39,7 +39,7 @@ function me.TestAllEn()
   mod.testReporter.StartTestGroup(testGroupName)
 
   me.TestAllCombatEventsEn()
-  -- me.TestAllSoundEn()
+  me.TestAllSoundEn()
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
