@@ -55,14 +55,39 @@ end
     see PVPW_CONSTANTS.TEXTURES for color values
 ]]--
 function me.ShowVisualAlert(colorValue)
-  local texturePath = TEXTURE_BASE_PATH .. "texture_yellow" -- TODO hardcoded
-  mod.logger.LogDebug(me.tag, "Displaying warning texture - " .. "texture_yellow")
+  local texture = me.GetTexture(colorValue)
+
+  if texture == nil then
+    mod.logger.LogError(me.tag, "Unable to find a texture matching colorValue: " .. colorValue)
+    return
+  end
 
   if alertTexture == nil then
     -- initialize frameholder
     me.CreateVisualAlertFrame()
   end
 
-  alertTexture:SetTexture(texturePath)
+  alertTexture:SetTexture(TEXTURE_BASE_PATH .. texture)
   UIFrameFlash(alertFrame, .2, .5, .7, false, 0, 0)
+end
+
+--[[
+  Search for the texture matching the colorValue
+
+  @param {number} colorValue
+    see PVPW_CONSTANTS.TEXTURES for color values
+
+  @return {string | nil}
+    Returns the textureName found or nil if none can be found
+]]--
+function me.GetTexture(colorValue)
+  local textures = RGPVPW_CONSTANTS.TEXTURES
+
+  for _, color in pairs(textures) do
+    if color.colorValue == colorValue then
+      return color.textureName
+    end
+  end
+
+  return nil
 end

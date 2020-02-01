@@ -516,9 +516,16 @@ end
 
 --[[
   Click callback for enabling/disabling visual warnings
+
+  @param {table} self
 ]]--
-function me.ToggleVisualWarning()
-  mod.logger.LogError(me.tag, "play visual warning on click todo")
+function me.ToggleVisualWarning(self)
+  -- retrieve color for specific spell and category from configuration
+  mod.visual.ShowVisualAlert(mod.spellConfiguration.GetVisualWarningColor(
+    RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+    self.category,
+    self.spellName
+  ))
 end
 
 --[[
@@ -531,7 +538,7 @@ end
 ]]--
 function me.FauxScrollFrameOnUpdate(scrollFrame, category)
   activeCategory = category
-  mod.logger.LogError(me.tag, "Category: " .. category)
+
   if cachedCategoryData == nil then
     mod.logger.LogInfo(me.tag, string.format("Warmed up cached spelllist for category '%s'", category))
     cachedCategoryData = mod.spellMap.GetAllForCategory(category)
@@ -563,7 +570,6 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         -- local enabled = mod.configuration.GetCooldownConfigurationState(category, cooldown.spellId) TODO get status from configuration
 
         row.spellName = cachedCategoryData[value].name
-        mod.logger.LogError(me.tag, "set spellname: " .. row.spellName)
         row.cooldownIcon:SetTexture(iconId)
         row.spellTitle:SetText(cachedCategoryData[value].name)
 
@@ -573,6 +579,10 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
 
         row.playSoundFade.category = category
         row.playSoundFade.soundFileName = cachedCategoryData[value].soundFileName
+
+        row.playVisual.category = category
+        row.playVisual.spellName = cachedCategoryData[value].name
+
 
         local enabled = true -- TODO hardcoded
 
