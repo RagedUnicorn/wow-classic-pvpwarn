@@ -456,6 +456,13 @@ function me.DropDownMenuCallback(self)
     _G[self:GetParent().dropdown:GetName()],
     self.value
   )
+
+  mod.spellConfiguration.UpdateVisualWarningColor(
+    RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+    activeCategory,
+    self:GetParent().dropdown:GetParent().spellName,
+    self.value
+  )
 end
 
 --[[
@@ -556,6 +563,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         -- local enabled = mod.configuration.GetCooldownConfigurationState(category, cooldown.spellId) TODO get status from configuration
 
         row.spellName = cachedCategoryData[value].name
+        mod.logger.LogError(me.tag, "set spellname: " .. row.spellName)
         row.cooldownIcon:SetTexture(iconId)
         row.spellTitle:SetText(cachedCategoryData[value].name)
 

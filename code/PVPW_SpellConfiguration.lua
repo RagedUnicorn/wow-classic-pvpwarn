@@ -146,6 +146,7 @@ end
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
   @param {string} spellName
+
   @return {boolean}
     true if the sound warning is active
     false if the sound warning is inactive
@@ -231,6 +232,7 @@ end
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
   @param {string} spellName
+
   @return {boolean}
     true if the sound warning is active
     false if the sound warning is inactive
@@ -289,6 +291,64 @@ end
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
   @param {string} spellName
+
+  @return {number}
+    A number representing the current color. If none can be found the default color is returned
+]]--
+function me.GetVisualWarningColor(spellList, categoryName, spellName)
+  assert(type(spellList) == "string", string.format(
+    "bad argument #1 to `GetVisualWarningColor` (expected string got %s)", type(spellList)))
+
+  assert(type(categoryName) == "string", string.format(
+    "bad argument #2 to `GetVisualWarningColor` (expected string got %s)", type(categoryName)))
+
+  assert(type(spellName) == "string", string.format(
+    "bad argument #3 to `GetVisualWarningColor` (expected string got %s)", type(spellName)))
+
+  if PVPWarnOptions[spellList][categoryName] then
+    if PVPWarnOptions[spellList][categoryName][spellName] then
+      return PVPWarnOptions[spellList][categoryName][spellName].visualWarningColor
+    end
+  end
+
+  return RGPVPW_CONSTANTS.DEFAULT_COLOR
+end
+
+--[[
+  @param {string} spellList
+    decides upon which stored list should be used. Possible values:
+    * spellList - enemy spell detected
+    * spellSelfAvoidList - player avoided spell
+    * spellEnemyAvoidList - enemy player avoided spell
+  @param {string} categoryName
+  @param {string} spellName
+  @param {number} color
+    A number representing the color - see RGPVPW_CONSTANTS.TEXTURES
+]]--
+function me.UpdateVisualWarningColor(spellList, categoryName, spellName, color)
+  me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
+
+  mod.logger.LogDebug(me.tag,
+    string.format(
+      "Updating spell %s visualwarningcolor for category %s - current value: %s / new value: %s",
+      spellName,
+      categoryName,
+      tostring(PVPWarnOptions[spellList][categoryName][spellName].visualWarningColor),
+      tostring(color)
+    )
+  )
+
+  PVPWarnOptions[spellList][categoryName][spellName].visualWarningColor = color
+end
+
+--[[
+  @param {string} spellList
+    Decides upon which stored list should be used. Possible values:
+    * spellList - enemy spell detected
+    * spellSelfAvoidList - player avoided spell
+    * spellEnemyAvoidList - enemy player avoided spell
+  @param {string} categoryName
+  @param {string} spellName
 ]]--
 function me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
   if not PVPWarnOptions[spellList][categoryName] then
@@ -314,7 +374,6 @@ function me.GetDefaultSpellConfiguration()
     ["spellActive"] = false,
     ["soundWarningActive"] = false,
     ["soundFadeWarningActive"] = false,
-    ["visualWarningActive"] = false,
     ["visualWarningColor"] = RGPVPW_CONSTANTS.DEFAULT_COLOR
   }
 end
