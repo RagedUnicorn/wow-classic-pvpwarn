@@ -54,7 +54,6 @@ local activeCategory = nil
 
   @param {table} frame
     The addon configuration frame to attach to
-  @param {string} category
 ]]--
 function me.MenuOnShow(self)
   if builtMenu then
@@ -163,9 +162,9 @@ function me.CreateRowFrame(frame, position)
   row.cooldownIcon = me.CreateSpellIcon(row)
   row.spellTitle = me.CreateSpellTitle(row)
 
-  row.enableSound = me.CreateSpellSoundCheckBox(row)
+  row.soundCheckBox = me.CreateSpellSoundCheckBox(row)
   row.playSound = me.CreateSoundButton(row)
-  row.enableSoundFade = me.CreateSpellSoundFadeCheckBox(row)
+  row.soundFadeCheckBox = me.CreateSpellSoundFadeCheckBox(row)
   row.playSoundFade = me.CreateSoundFadeButton(row)
   row.chooseVisual = me.CreateVisualAlertDropdown(row)
   row.createVisualLabel = me.CreateVisualLabel(row)
@@ -326,7 +325,7 @@ function me.CreateSoundButton(spellFrame)
   return mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_BUTTON,
     spellFrame,
-    {"LEFT", spellFrame.enableSound, "RIGHT", 150, 0},
+    {"LEFT", spellFrame.soundCheckBox, "RIGHT", 150, 0},
     me.PlaySoundButtonOnClick,
     rgpvpw.L["label_play_sound"]
   )
@@ -334,6 +333,8 @@ end
 
 --[[
   Click callback for sound button
+
+  @param {table} self
 ]]--
 function me.PlaySoundButtonOnClick(self)
   mod.sound.PlaySound(self.category, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, self.soundFileName)
@@ -343,6 +344,9 @@ end
   Create checkbox for configuring sound down alert configuration
 
   @param {table} spellFrame
+
+  @return {table}
+    The created checkbox
 
   @return {table}
     The created checkbox
@@ -388,7 +392,7 @@ function me.CreateSoundFadeButton(spellFrame)
   return mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_FADE_BUTTON,
     spellFrame,
-    {"LEFT", spellFrame.enableSoundFade, "RIGHT", 150, 0},
+    {"LEFT", spellFrame.soundFadeCheckBox, "RIGHT", 150, 0},
     me.PlaySoundFadeButtonOnClick,
     rgpvpw.L["label_play_sound_fade"]
   )
@@ -396,6 +400,8 @@ end
 
 --[[
   Click callback for sound fade button
+
+  @param {table} self
 ]]--
 function me.PlaySoundFadeButtonOnClick(self)
   mod.sound.PlaySound(self.category, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, self.soundFileName)
@@ -567,15 +573,15 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
 
       if cachedCategoryData[value] ~= nil then
         local _, _, iconId = GetSpellInfo(cachedCategoryData[value].spellId)
-        -- local enabled = mod.configuration.GetCooldownConfigurationState(category, cooldown.spellId) TODO get status from configuration
 
         row.spellName = cachedCategoryData[value].name
         row.cooldownIcon:SetTexture(iconId)
         row.spellTitle:SetText(cachedCategoryData[value].name)
 
-        -- TODO fade should only be displayed if the spell actually has a fade sound
         row.playSound.category = category
         row.playSound.soundFileName = cachedCategoryData[value].soundFileName
+
+        row.playSound:Show()
 
         row.playSoundFade.category = category
         row.playSoundFade.soundFileName = cachedCategoryData[value].soundFileName
@@ -583,19 +589,77 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         row.playVisual.category = category
         row.playVisual.spellName = cachedCategoryData[value].name
 
-
-        local enabled = true -- TODO hardcoded
-
-        if enabled then
-          row.spellStateCheckBox:SetChecked(true)
-        else
-          row.spellStateCheckBox:SetChecked(false)
-        end
+        me.UpdateSpellStateCheckBox(row.spellStateCheckBox, category, cachedCategoryData[value].name)
+        me.UpdateSound(row.soundCheckBox, category, cachedCategoryData[value].name)
+        me.UpdateSoundFade(row.soundFadeCheckBox, row.playSoundFade, category, cachedCategoryData[value])
 
         row:Show()
       else
         spellRows[i]:Hide()
       end
     end
+  end
+end
+
+--[[
+  @param {table} spellStateCheckBox
+  @param {string} category
+  @param {string} spellName
+]]--
+function me.UpdateSpellStateCheckBox(spellStateCheckBox, category, spellName)
+  local isSpellActive = mod.spellConfiguration.IsSpellActive(
+    RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+    category,
+    spellName
+  )
+
+  if isSpellActive then
+    mod.logger.LogDebug(me.tag, string.format(
+      "Spell %s for category %s is active", spellName, category)
+    )
+    spellStateCheckBox:SetChecked(true)
+  else
+    mod.logger.LogDebug(me.tag, string.format(
+      "Spell %s for category %s is inactive", spellName, category)
+    )
+    -- disable all elements (play buttons as well?)
+    spellStateCheckBox:SetChecked(false)
+  end
+end
+
+--[[
+  @param {table} soundCheckBox
+  @param {string} category
+  @param {string} spellName
+]]--
+function me.UpdateSound(soundCheckBox, category, spellName)
+  -- update sound checkbox state
+  soundCheckBox:SetChecked(
+    mod.spellConfiguration.IsSoundWarningActive(
+      RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+      category,
+      spellName
+    )
+  )
+end
+
+--[[
+  @param {table} soundFadeCheckBox
+  @param {table} soundFadeButton
+  @param {string} category
+  @param {table} spell
+]]--
+function me.UpdateSoundFade(soundFadeCheckBox, soundFadeButton, category, spell)
+  if spell.hasFade then
+    soundFadeCheckBox:SetChecked(mod.spellConfiguration.IsSoundFadeWarningActive(
+      RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+      category,
+      spell.name
+    ))
+    soundFadeCheckBox:Show()
+    soundFadeButton:Show()
+  else
+    soundFadeCheckBox:Hide()
+    soundFadeButton:Hide()
   end
 end
