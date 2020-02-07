@@ -19,8 +19,15 @@ rgpvpw.L["version"] = "Version: " .. GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAM
 rgpvpw.L["issues"] = "Issues: https://github.com/RagedUnicorn/wow-classic-pvpwarn/issues"
 
 -- general
-rgpvpw.L["general_category_name"] = "General"
+rgpvpw.L["configuration_menu_general"] = "General"
 rgpvpw.L["general_title"] = "General Configuration"
+
+-- profiles
+rgpvpw.L["configuration_menu_profiles"] = "Profiles"
+
+rgpvpw.L["choose_profile_name_dialog_text"] = "Choose a name for the new profile"
+rgpvpw.L["choose_profile_name_accept_button"] = "Accept"
+rgpvpw.L["choose_profile_name_cancel_button"] = "Cancel"
 
 -- categories
 rgpvpw.L["category_druid"] = "Druid"

@@ -1872,3 +1872,11 @@ function me.GetAllForCategory(category)
 
   return spellList
 end
+
+--[[
+  TODO
+  NEVER returning the original list we dont want to give any one the option to modify it
+]]--
+function me.GetSpellConfiguration()
+  return mod.common.Clone(spellMap)
+end

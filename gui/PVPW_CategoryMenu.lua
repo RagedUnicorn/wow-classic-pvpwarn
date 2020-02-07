@@ -36,7 +36,7 @@ me.tag = "CategoryMenu"
   Local references to ui elements
 ]]--
 local spellRows = {}
-local spellScrollFrame
+local spellScrollFrame -- TODO still needed as global?
 -- track whether the menu was already built
 local builtMenu = false
 --[[

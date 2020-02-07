@@ -27,7 +27,7 @@ code/PVPW_SpellMap.lua
 code/PVPW_Common.lua
 code/PVPW_WarnQueue.lua
 code/PVPW_Configuration.lua
-code/PVPW_Profile.lua
+profiles/PVPW_Profile.lua
 code/PVPW_SpellConfiguration.lua
 
 # debug
@@ -39,6 +39,7 @@ gui/PVPW_AddonConfiguration.lua
 gui/PVPW_AboutContent.lua
 gui/PVPW_GeneralMenu.lua
 gui/PVPW_CategoryMenu.lua
+gui/PVPW_ProfileMenu.lua
 gui/PVPW_GuiHelper.lua
 
 # test

@@ -115,3 +115,16 @@ function me.CreateDropdownButton(text, value, callback)
 
   return button
 end
+
+--[[
+  Resize button width to the size if its text
+
+  @param {table} button
+]]--
+function me.ResizeButtonToText(button)
+  local buttonFontString = button:GetFontString()
+
+  button:SetWidth(
+    buttonFontString:GetStringWidth() + RGPVPW_CONSTANTS.BUTTON_DEFAULT_PADDING
+  )
+end

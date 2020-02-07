@@ -41,11 +41,6 @@ PVPWarnOptions = {
 }
 
 --[[
-  Saved addon variable
-]]--
-PVPWarnProfiles = {}
-
---[[
     Set default values if property is nil. This might happen after an addon upgrade
   ]]--
 function me.SetupConfiguration()

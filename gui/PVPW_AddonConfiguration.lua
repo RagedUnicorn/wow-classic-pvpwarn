@@ -43,8 +43,15 @@ function me.SetupAddonConfiguration()
   me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
     panel.main,
-    rgpvpw.L["general_category_name"],
+    rgpvpw.L["configuration_menu_general"],
     mod.generalMenu.BuildUi
+  )
+
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["configuration_menu_profiles"],
+    mod.profileMenu.BuildUi
   )
 
   me.BuildSpellCategories(panel.main)
