@@ -1,3 +1,29 @@
+--[[
+  MIT License
+
+  Copyright (c) 2020 Michael Wiesendanger
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+]]--
+
+-- luacheck: globals GetAddOnMetadata
+
 rgpvpw = rgpvpw or {}
 rgpvpw.L = {}
 
@@ -11,6 +37,7 @@ rgpvpw.L["help"] = "|cFFFFC300(%s)|r: Use |cFFFFC300/rgpvpw|r or |cFFFFC300/pvpw
 rgpvpw.L["opt"] = "|cFFFFC300opt|r - display Optionsmenu"
 rgpvpw.L["reload"] = "|cFFFFC300reload|r - reload UI"
 rgpvpw.L["info_title"] = "|cFF00FFB0PVPWarn:|r"
+rgpvpw.L["invalid_argument"] = "Invalid argument passed"
 
 -- about
 rgpvpw.L["author"] = "Author: Michael Wiesendanger"
@@ -24,10 +51,28 @@ rgpvpw.L["general_title"] = "General Configuration"
 
 -- profiles
 rgpvpw.L["configuration_menu_profiles"] = "Profiles"
+rgpvpw.L["save_current_profile_button"] = "Create new Profile"
+rgpvpw.L["delete_selected_profile_button"] = "Delete Profile"
+rgpvpw.L["load_selected_profile_button"] = "Load Profile"
 
+-- create new profile
 rgpvpw.L["choose_profile_name_dialog_text"] = "Choose a name for the new profile"
 rgpvpw.L["choose_profile_name_accept_button"] = "Accept"
 rgpvpw.L["choose_profile_name_cancel_button"] = "Cancel"
+-- delete profile
+rgpvpw.L["confirm_delete_profile_dialog_text"] = "This will delete your selected profile. Do you want to continue?"
+rgpvpw.L["confirm_delete_profile_yes_button"] = "Yes"
+rgpvpw.L["confirm_delete_profile_no_button"] = "No"
+-- load profile
+rgpvpw.L["confirm_override_profile_dialog_text"] = "This will override your current profile. Do you want to continue?"
+rgpvpw.L["confirm_override_profile_yes_button"] = "Yes"
+rgpvpw.L["confirm_override_profile_no_button"] = "No"
+-- user messages
+rgpvpw.L["user_message_select_profile_before_delete"] = "Select a profile to delete"
+rgpvpw.L["user_message_select_profile_before_load"] = "Select a profile to load"
+rgpvpw.L["user_message_select_profile_already_exists"] = "Profile already exist - choose another name"
+rgpvpw.L["user_message_add_new_profile_max_reached"] = "A maximum of %s profiles is allowed you reached the maximum"
+
 
 -- categories
 rgpvpw.L["category_druid"] = "Druid"

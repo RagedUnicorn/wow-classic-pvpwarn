@@ -72,24 +72,21 @@ function me.GetMaxProfileNameLength()
 end
 
 --[[
-  TODO
-  Add a new profile to the list of profiles
+  Create a new profile and add it to the list of profiles
 
   @param {string} profileName
 ]]--
-function me.AddNewProfile(profileName)
+function me.CreateProfile(profileName)
   if table.getn(PVPWarnProfiles) >= maxProfiles then
     mod.logger.PrintUserError(
-      -- string.format(pvpw.L["user_message_add_new_profile_max_reached"], maxProfiles) TODO
-      "max profiles reached PLACEHOLDER"
+      string.format(rgpvpw.L["user_message_add_new_profile_max_reached"], maxProfiles)
     )
     return
   end
 
   for i = 1, table.getn(PVPWarnProfiles) do
     if PVPWarnProfiles[i].name == profileName then
-      -- mod.logger.PrintUserError(pvpw.L["user_message_select_profile_already_exists"]) TODO
-      mod.logger.logError(me.tag, "PROFILE ALREADY exists PLACEHOLDER")
+      mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_already_exists"])
       return
     end
   end
@@ -100,5 +97,32 @@ function me.AddNewProfile(profileName)
   }
 
   table.insert(PVPWarnProfiles, profile)
-  mod.logger.LogDebug(me.tag, "Created new profile with name - " .. profileName)
+  mod.logger.LogInfo(me.tag, "Created new profile with name - " .. profileName)
+end
+
+--[[
+  Search and delete the profile with the passed name
+
+  @param {string} profileName
+]]--
+function me.DeleteProfile(profileName)
+  if profileName == nil then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_delete"])
+    return
+  end
+
+  for i = 1, #PVPWarnProfiles do
+    if PVPWarnProfiles[i].name == profileName then
+      table.remove(PVPWarnProfiles, i)
+      mod.logger.LogInfo(me.tag, "Deleted profile with name - " .. profileName)
+      return
+    end
+  end
+end
+
+function me.LoadProfile(profileName)
+  if profileName == nil then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_load"])
+    return
+  end
 end

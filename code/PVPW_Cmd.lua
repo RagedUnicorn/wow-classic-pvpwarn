@@ -22,21 +22,48 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetLocale
+-- luacheck: globals SLASH_PVPWARN1 SLASH_PVPWARN2 SlashCmdList ReloadUI
 
-if (GetLocale() == "deDE") then
-  rgpvpw = rgpvpw or {}
-  rgpvpw.L = {}
+local mod = rgpvpw
+local me = {}
+mod.cmd = me
 
-  rgpvpw.L["name"] = "PVPWarn"
+me.tag = "Cmd"
 
-  -- console
-  rgpvpw.L["help"] = "|cFFFFC300(%s)|r: Benutze |cFFFFC300/rgpvpw|r oder |cFFFFC300/pvpwarn|r "
-    .. "für eine Liste der verfügbaren Optionen"
-  rgpvpw.L["opt"] = "|cFFFFC300opt|r - zeige Optionsmenu an"
-  rgpvpw.L["reload"] = "|cFFFFC300reload|r - UI neu laden"
-  rgpvpw.L["info_title"] = "|cFF00FFB0PVPWarn:|r"
+--[[
+  Print cmd options for addon
+]]--
+local function ShowInfoMessage()
+  print(rgpvpw.L["info_title"])
+  print(rgpvpw.L["reload"])
+  print(rgpvpw.L["opt"])
+end
 
-  -- file name pattern
-  rgpvpw.L["removed"] = "_unten"
+--[[
+  Setup slash command handler
+]]--
+function me.SetupSlashCmdList()
+  SLASH_PVPWARN1 = "/rgpvpw"
+  SLASH_PVPWARN2 = "/pvpwarn"
+
+  SlashCmdList["PVPWARN"] = function(msg)
+    local args = {}
+
+    mod.logger.LogDebug(me.tag, "/rgpvpw passed argument: " .. msg)
+
+    -- parse arguments by whitespace
+    for arg in string.gmatch(msg, "%S+") do
+      table.insert(args, arg)
+    end
+
+    if args[1] == "" or args[1] == "help" or table.getn(args) == 0 then
+      ShowInfoMessage()
+    elseif args[1] == "rl" or args[1] == "reload" then
+      ReloadUI()
+    elseif args[1] == "opt" then
+      mod.addonConfiguration.OpenAddonPanel()
+    else
+      mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
+    end
+  end
 end

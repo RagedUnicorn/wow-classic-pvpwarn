@@ -22,7 +22,8 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame StaticPopupDialogs StaticPopup_Show
+-- luacheck: globals CreateFrame StaticPopupDialogs StaticPopup_Show STANDARD_TEXT_FONT
+-- luacheck: globals FauxScrollFrame_Update FauxScrollFrame_GetOffset
 
 local mod = rgpvpw
 local me = {}
@@ -31,6 +32,10 @@ mod.profileMenu = me
 me.tag = "ProfileMenu"
 
 local profileRows = {}
+-- holds a reference to the profile scrollFrame
+local profileListScrollFrame
+-- the name of the currently selected profile in the profile list
+local currentSelectedProfile = nil
 
 --[[
   Popup dialog for choosing a profile name
@@ -49,7 +54,8 @@ StaticPopupDialogs["RGPVPW_CHOOSE_PROFILE_NAME"] = {
     end
   end,
   OnAccept = function(self)
-    mod.profile.AddNewProfile(self.editBox:GetText())
+    mod.profile.CreateProfile(self.editBox:GetText())
+    me.ProfileListUpdateOnUpdate(profileListScrollFrame)
   end,
   EditBoxOnTextChanged = function(self)
     local editBox = self:GetParent().editBox
@@ -58,7 +64,6 @@ StaticPopupDialogs["RGPVPW_CHOOSE_PROFILE_NAME"] = {
     if editBox ~= nil and button1 ~= nil then
       if string.len(editBox:GetText()) > 0 then
         button1:Enable()
-
       else
         button1:Disable()
       end
@@ -72,28 +77,91 @@ StaticPopupDialogs["RGPVPW_CHOOSE_PROFILE_NAME"] = {
 }
 
 --[[
-  TODO
+  Popup dialog warning before deleting a profile
+]]--
+StaticPopupDialogs["PVPW_DELETE_PROFILE_WARNING"] = {
+  text = rgpvpw.L["confirm_delete_profile_dialog_text"],
+  button1 = rgpvpw.L["confirm_delete_profile_yes_button"],
+  button2 = rgpvpw.L["confirm_delete_profile_no_button"],
+  OnAccept = function()
+    mod.profile.DeleteProfile(currentSelectedProfile)
+    me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+  end,
+  timeout = 0,
+  whileDead = true,
+  preferredIndex = 4
+}
+
+--[[
+  Popup dialog warning before loading a profile
+]]--
+StaticPopupDialogs["PVPW_CHANGE_PROFILE_WARNING"] = {
+  text = rgpvpw.L["confirm_override_profile_dialog_text"],
+  button1 = rgpvpw.L["confirm_override_profile_yes_button"],
+  button2 = rgpvpw.L["confirm_override_profile_no_button"],
+  OnAccept = function(default) -- TODO default where is that coming from?
+    if default then
+      -- mod.profile.ActivateDefaultProfile()
+    else
+      -- mod.profile.ActivateProfile(currentSelectedProfile) TODO
+      -- me.ProfileListUpdate() -- update visual list
+    end
+  end,
+  timeout = 0,
+  whileDead = true,
+  preferredIndex = 4
+}
+
+--[[
+  @param {table} frame
 ]]--
 function me.BuildUi(frame)
-  mod.logger.LogDebug(me.tag, "Loaded ProfilesMenu")
+  me.CreateProfileTitle(frame)
+  profileListScrollFrame = me.CreateProfileListScrollFrame(frame)
+  local saveButton = me.CreateProfileSaveButton(frame, profileListScrollFrame)
+  local deleteButton = me.CreateDeleteProfileButton(frame, saveButton)
+  local loadButton = me.CreateLoadProfileButton(frame, deleteButton)
 
-  local scrollFrame = me.CreateProfilesScrollFrame(frame)
-  me.CreateProfileSaveButton(frame)
-  me.CreateDeleProfileButton(frame)
-
-  -- init TODO
-  me.FauxScrollFrameOnUpdate(scrollFrame)
+  -- init scrollFrame
+  me.ProfileListUpdateOnUpdate(profileListScrollFrame)
 end
 
 --[[
-  TODO
+  Create a label for profiles
+
+  @param {table} frame
+
+  @return {table}
+    The created fontString
 ]]--
-function me.CreateProfilesScrollFrame(frame)
-  local scrollFrame = CreateFrame("ScrollFrame", RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_SCROLL_FRAME, frame, "FauxScrollFrameTemplate")
+function me.CreateProfileTitle(frame)
+  local profileTitleFontString = frame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_PROFILE_TITLE, "OVERLAY")
+  profileTitleFontString:SetFont(STANDARD_TEXT_FONT, 15)
+  profileTitleFontString:SetPoint(
+    "TOPLEFT", 15, -15
+  )
+  profileTitleFontString:SetTextColor(.95, .95, .95)
+  profileTitleFontString:SetText(rgpvpw.L["configuration_menu_profiles"])
+
+  return profileTitleFontString
+end
+
+--[[
+  Create a scrollFrame with a list of all current profiles
+
+  @param {table} frame
+]]--
+function me.CreateProfileListScrollFrame(frame)
+  local scrollFrame = CreateFrame(
+    "ScrollFrame",
+    RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_SCROLL_FRAME,
+    frame,
+    "FauxScrollFrameTemplate"
+  )
   scrollFrame:SetWidth(RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH)
   scrollFrame:SetHeight(RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT * RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS)
   scrollFrame:EnableMouseWheel(true)
-  scrollFrame:SetPoint("TOPLEFT", frame, 5, -7)
+  scrollFrame:SetPoint("TOPLEFT", frame, 5, -50)
 
   scrollFrame:SetBackdrop({
     bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
@@ -103,7 +171,7 @@ function me.CreateProfilesScrollFrame(frame)
   scrollFrame:SetScript("OnVerticalScroll", function(self, offset)
     self.ScrollBar:SetValue(offset)
     self.offset = math.floor(offset / RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT + 0.5)
-    me.FauxScrollFrameOnUpdate(self)
+    me.ProfileListUpdateOnUpdate(self)
   end)
 
   for i = 1, RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS do
@@ -139,13 +207,15 @@ function me.CreateRowFrame(frame, position)
   end
 
   row.profileName = me.CreateProfileName(row)
+  row.highlight = me.CreateHighlightTexture(row)
+
+  row:SetScript("OnClick", me.ProfileListCellOnClick)
 
   return row
 end
 
 --[[
-  TODO
-  Create fontstring for title of the spell to configure
+  Create fontstring for title of the profile to configure
 
   @param {table} profileFrame
 
@@ -165,18 +235,36 @@ function me.CreateProfileName(profileFrame)
 end
 
 --[[
+  Create a texture that allows to mark the active state of a row
+
+  @param {table} row
+
+  @return {table}
+    The created texture
+]]--
+function me.CreateHighlightTexture(row)
+  local highlightTexture = row:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_ROW_HIGHLIGHT, "BACKGROUND")
+  highlightTexture:SetSize(row:GetWidth(), row:GetHeight())
+  highlightTexture:SetPoint("TOPLEFT")
+  highlightTexture:SetTexture("Interface\\QuestFrame\\UI-QuestLogTitleHighlight")
+  highlightTexture:SetBlendMode("ADD")
+  highlightTexture:Hide()
+
+  return highlightTexture
+end
+
+--[[
   FauxScrollFrame callback for profileslist
 
-  TODO parameters
+  @param {table} scrollFrame
 ]]--
-function me.FauxScrollFrameOnUpdate(scrollFrame)
+function me.ProfileListUpdateOnUpdate(scrollFrame)
   local profiles = PVPWarnProfiles
   local maxValue = mod.common.TableLength(profiles) or 0
 
   if maxValue <= RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS then
     maxValue = RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS + 1
   end
-  mod.logger.LogError(me.tag, "maxValue: " .. maxValue)
   -- Note: maxValue needs to be at least max_rows + 1
   FauxScrollFrame_Update(
     scrollFrame,
@@ -189,36 +277,74 @@ function me.FauxScrollFrameOnUpdate(scrollFrame)
 
   for i = 1, RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS do
     local row = profileRows[i]
-    mod.logger.LogError(me.tag, "Row: " .. i)
-    row.profileName:SetText("row: " .. i)
+    local profile = profiles[offset + i]
+
+    if profile ~= nil then
+      row.profileName:SetText(profiles[offset + i].name)
+    else
+      row.profileName:SetText("")
+    end
 
     row:Show()
   end
 end
 
 --[[
-  TODO
+  Cell onClick callback for profileslist cells
+
+  @param {table} self
+    A reference to the clicked row
 ]]--
-function me.CreateProfileSaveButton(frame)
+function me.ProfileListCellOnClick(self)
+  currentSelectedProfile = self.profileName:GetText()
+  -- clear all current highlighting
+  me.ClearCellList()
+
+  self.selectedRow = true
+  self.highlight:Show()
+end
+
+--[[
+  Hide the highlight of all rows
+]]--
+function me.ClearCellList()
+  for _, profileRow in pairs(profileRows) do
+    profileRow.selectedRow = false
+    profileRow.highlight:Hide()
+  end
+end
+
+--[[
+  Create a button that TODO
+
+  @param {table} parentFrame
+  @param {table} relativeFrame
+
+  @return {table}
+    The created button
+]]--
+function me.CreateProfileSaveButton(parentFrame, relativeFrame)
   -- create save configuration button
   local saveConfigurationButton = CreateFrame(
     "Button",
     RGPVPW_CONSTANTS.ELEMENT_SAVE_PROFILE_BUTTON,
-    frame,
+    parentFrame,
     "UIPanelButtonTemplate"
   )
 
   saveConfigurationButton:SetPoint(
     "BOTTOMLEFT",
-    0, 0
+    relativeFrame,
+    "BOTTOMLEFT",
+    0, -40
   )
 
-  saveConfigurationButton:SetHeight(32)
-  -- saveConfigurationButton:SetText(rgpvpw.L["save_current_profile_button"])
-  saveConfigurationButton:SetText("Test")
+  saveConfigurationButton:SetText(rgpvpw.L["save_current_profile_button"])
   saveConfigurationButton:SetScript('OnClick', me.SaveProfileOnClick)
 
   mod.guiHelper.ResizeButtonToText(saveConfigurationButton)
+
+  return saveConfigurationButton
 end
 
 --[[
@@ -230,27 +356,84 @@ function me.SaveProfileOnClick()
 end
 
 --[[
-  TODO
+  Create a button that allows to delete the selected profile
+
+  @param {table} parentFrame
+  @param {table} relativeFrame
+
+  @return {table}
+    The created button
 ]]--
-function me.CreateDeleProfileButton(frame)
+function me.CreateDeleteProfileButton(parentFrame, relativeFrame)
   local deleteProfileButton = CreateFrame(
     "Button",
     RGPVPW_CONSTANTS.ELEMENT_DELETE_PROFILE_BUTTON,
-    frame,
+    parentFrame,
     "UIPanelButtonTemplate"
   )
 
   deleteProfileButton:SetPoint(
-    "BOTTOMLEFT",
-    50, 0
+    "LEFT",
+    relativeFrame,
+    "RIGHT",
+    0, 0
   )
 
   deleteProfileButton:SetHeight(32)
-  -- deleteProfileButton:SetText(rgpvpw.L["delete_selected_profile_button"])
-  deleteProfileButton:SetText("delete button")
+  deleteProfileButton:SetText(rgpvpw.L["delete_selected_profile_button"])
   deleteProfileButton:SetScript("OnClick", me.DeleteSelectedProfileButtonOnClick) -- TODO
 
   mod.guiHelper.ResizeButtonToText(deleteProfileButton)
+
+  return deleteProfileButton
+end
+
+--[[
+  TODO
+]]--
+function me.DeleteSelectedProfileButtonOnClick()
+  StaticPopup_Show("PVPW_DELETE_PROFILE_WARNING")
+end
+
+--[[
+  Create a button that loads the selected profile
+
+  @param {table} parentFrame
+  @param {table} relativeFrame
+
+  @return {table}
+    The created button
+]]--
+function me.CreateLoadProfileButton(parentFrame, relativeFrame)
+  local loadProfileButton = CreateFrame(
+    "Button",
+    RGPVPW_CONSTANTS.ELEMENT_LOAD_PROFILE_BUTTON,
+    parentFrame,
+    "UIPanelButtonTemplate"
+  )
+
+  loadProfileButton:SetPoint(
+    "LEFT",
+    relativeFrame,
+    "RIGHT",
+    0, 0
+  )
+
+  loadProfileButton:SetHeight(32)
+  loadProfileButton:SetText(rgpvpw.L["load_selected_profile_button"])
+  loadProfileButton:SetScript("OnClick", me.LoadSelectedProfileButtonOnClick) -- TODO
+
+  mod.guiHelper.ResizeButtonToText(loadProfileButton)
+
+  return loadProfileButton
+end
+
+--[[
+  TODO
+]]--
+function me.LoadSelectedProfileButtonOnClick()
+  mod.logger.LogError(me.tag, "Load profile")
+  StaticPopup_Show("PVPW_CHANGE_PROFILE_WARNING")
 end
 
 --[[

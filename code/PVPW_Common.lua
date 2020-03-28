@@ -92,6 +92,9 @@ function me.Clone(obj)
   return res
 end
 
+--[[
+  TODO
+]]--
 function me.TableLength(t)
   local count = 0
 

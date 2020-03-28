@@ -64,22 +64,30 @@ function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowC
   checkBoxFrame.text:SetFont(STANDARD_TEXT_FONT, 15)
   checkBoxFrame.text:SetTextColor(.95, .95, .95)
 
-
   if text ~= nil then
     checkBoxFrame.text:SetText(text)
   end
 
   checkBoxFrame:SetScript("OnClick", onClickCallback)
-  -- TODO remove paramete is not optional
-  if onShowCallback ~= nil then
-    checkBoxFrame:SetScript("OnShow", onShowCallback)
-  end
+  checkBoxFrame:SetScript("OnShow", onShowCallback)
 
   return checkBoxFrame
 end
 
 --[[
-  TODO
+  @param {string} frameName
+    The name of the button
+  @param {table} parent
+    A parent frame to attach to
+  @param {table} position
+    A valid object for SetPoint function of a frame
+  @param {function} callback
+    Click callback function for the created button
+  @param {string} text
+    Text of the button
+
+  @return {table}
+    The created button
 ]]--
 function me.CreatePlayButton(frameName, parent, position, callback, text)
   local playButton = CreateFrame(
@@ -104,7 +112,12 @@ function me.CreatePlayButton(frameName, parent, position, callback, text)
 end
 
 --[[
-  TODO add documentation
+  @param {string} text
+  @param {number} value
+  @param {function} callback
+
+  @return {table}
+    The created button
 ]]--
 function me.CreateDropdownButton(text, value, callback)
   local button = {}
@@ -120,6 +133,7 @@ end
   Resize button width to the size if its text
 
   @param {table} button
+  TODO rename to resize to element isntead of only button
 ]]--
 function me.ResizeButtonToText(button)
   local buttonFontString = button:GetFontString()

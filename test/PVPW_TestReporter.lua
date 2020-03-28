@@ -24,8 +24,6 @@
 
 -- luacheck: globals GetAddOnMetadata DEFAULT_CHAT_FRAME C_Timer
 
--- TODO rework complete module to match new style (mostly comments)
-
 local mod = rgpvpw
 local me = {}
 mod.testReporter = me
@@ -232,7 +230,7 @@ end
 
 --[[
   @param {function} callback
-    TODO explain
+    Callback function that is invoked once the testqueue is empty/done
 ]]--
 function me.PlayTestQueueWithDelay(callback)
   if testQueueWithDelay[1] ~= nil then

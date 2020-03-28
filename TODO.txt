@@ -523,3 +523,12 @@ When saving a profile add a version identifier for later upgrading
 /run rgpvpw.testCombatEventsShamanEn.Test()
 /run rgpvpw.testCombatEventsWarlockEn.Test()
 /run rgpvpw.testCombatEventsWarriorEn.Test()
+
+-----
+TODO create documentation what is needed for adding a new spell
+
+
+---------------
+Spell idea buff procs such as instant shadowbolt, free casting, mage t2 set instant and overpower?
+
+Idea for an addon show based on rage and energy what spells the enemy can use

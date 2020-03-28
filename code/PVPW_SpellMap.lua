@@ -1821,6 +1821,7 @@ end
 
   @param {string} name
   @param {string} event
+
   @return ({string} {table}) | {nil}
 ]]--
 function me.SearchByName(name, event)
@@ -1858,6 +1859,7 @@ end
   Get map for a certain category
 
   @param {string} category
+
   @return {table}
     Map for the passed category
 ]]--
