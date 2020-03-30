@@ -22,6 +22,8 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals GetLocale
+
 local mod = rgpvpw
 local me = {}
 mod.common = me
@@ -93,7 +95,11 @@ function me.Clone(obj)
 end
 
 --[[
-  TODO
+  Calculate the length of a table
+
+  @param {table} t
+
+  return {number}
 ]]--
 function me.TableLength(t)
   local count = 0

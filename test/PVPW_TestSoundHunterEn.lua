@@ -51,7 +51,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrostTrap)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundViperString)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundViperSting)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundScatterShot)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFlare)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundIntimidation)
@@ -132,9 +132,9 @@ function me.TestSoundFrostTrap()
   )
 end
 
-function me.TestSoundViperString()
+function me.TestSoundViperSting()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundViperString",
+    "TestSoundViperSting",
     testCategory,
     "Viper Sting"
   )

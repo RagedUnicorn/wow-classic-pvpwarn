@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CombatLogGetCurrentEventInfo
+-- luacheck: globals CombatLogGetCurrentEventInfo GetLocale
 
 local mod = rgpvpw
 local me = {}
@@ -32,12 +32,74 @@ me.tag = "TestHelper"
 
 local origCombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 local origMaxWarnAge
+local languageMapping = {
+  ["enUS"] = "En",
+  ["enGB"] = "En",
+  ["deDE"] = "De"
+}
 
 --[[
   Reused failure reasons
 ]]--
 mod.testHelper.unableToPlay = "Unable to play sound"
 mod.testHelper.unableToGetMetadata = "Did not get any spell metadata"
+mod.testHelper.missingSoundTest = "Did not find a sound test for %s - %s"
+mod.testHelper.missingSoundDownTest = "Did not find a sound down test for %s - %s"
+
+--[[
+  Returns a matched language to a locale string
+
+  @return {string | nil}
+    string - if a language was found in the mapping
+    nil - if no language was found in the mapping
+]]--
+function me.GetLanguage()
+  return languageMapping[GetLocale()]
+end
+
+--[[
+  A testhelper function to get the spellMap for a specific categoryName
+
+  @param {string} categoryName
+    A valid categoryName such as "priest", "warrior" etc.
+
+  @return {table}
+    The spellMap for the passed categoryName
+]]--
+function me.GetAllForCategory(categoryName)
+  local spellMap = mod.spellMap.GetSpellConfiguration()
+
+  return mod.common.Clone(spellMap[categoryName])
+end
+
+--[[
+  Normalize a spellName so it can be matched against a functionname
+
+  @param {string} spellName
+
+  @return {string}
+    The normalized spellName
+]]--
+function me.NormalizeSpellName(spellName)
+  local name = ""
+
+  for match in string.gmatch(spellName, "%a+") do
+    name = name .. mod.common.FirstToUpper(match)
+  end
+
+  return name
+end
+
+--[[
+  Make first character of a string to uppercase
+
+  @param {string}
+
+  @return {string}
+]]--
+function me.FirstToUpper(str)
+    return (str:gsub("^%l", string.upper))
+end
 
 --[[
   Hooks the CombatLogGetCurrentEventInfo function and replaces it with the passed function. Hooking this function
