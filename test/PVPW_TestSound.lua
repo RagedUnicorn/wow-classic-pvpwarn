@@ -23,10 +23,12 @@
 ]]--
 
 --[[
+  Run all tests:
+    /run rgpvpw.testSound.Test(language [, categoryName])
   Run sound tests:
-    /run rgpvpw.testSound.ShouldHaveSoundTestForAllSpells()
+    /run rgpvpw.testSound.ShouldHaveSoundTestForAllSpells(language [, categoryName])
   Run sound down tests:
-    /run rgpvpw.testSound.ShouldHaveSoundDownTestForAllSpells()
+    /run rgpvpw.testSound.ShouldHaveSoundDownTestForAllSpells(language [, categoryName])
 ]]--
 
 local mod = rgpvpw
@@ -35,23 +37,41 @@ mod.testSound = me
 
 me.tag = "TestSound"
 
-local testGroupName = "ShouldHaveSoundTestAll"
+local testGroupName = "ShouldHaveSoundTestForAllSpells"
 
 --[[
-  Tests whether there is an appropriate testcase for every spell found in the spellmap
-
+  @param {string} language
+    A supported language such as En, De etc.
   @param {string} categoryName
-    A valid categoryName such as "priest", "warrior" etc.
+    Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
-function me.ShouldHaveSoundTestForAllSpells(categoryName)
+function me.Test(language, categoryName)
   mod.testReporter.StartTestGroup(testGroupName)
 
-  local language = mod.testHelper.GetLanguage()
-
   if language == nil then
-    mod.logger.LogError(me.tag, "Invalid or unsupported language - aborting...")
+    mod.logger.LogError(me.tag, "Missing language - aborting...")
     mod.testReporter.StopTestGroup()
 
+    return
+  end
+
+  me.ShouldHaveSoundTestForAllSpells(language, categoryName)
+  me.ShouldHaveSoundDownTestForAllSpells(language, categoryName)
+
+  mod.testReporter.StopTestGroup()
+end
+
+--[[
+  Tests whether there is an appropriate sound testcase for every spell found in the spellmap
+
+  @param {string} language
+    A supported language such as En, De etc.
+  @param {string} categoryName
+    Optional valid categoryName such as "priest", "warrior" etc.
+]]--
+function me.ShouldHaveSoundTestForAllSpells(language, categoryName)
+  if language == nil then
+    mod.logger.LogError(me.tag, "Missing language - aborting...")
     return
   end
 
@@ -60,8 +80,6 @@ function me.ShouldHaveSoundTestForAllSpells(categoryName)
   else
     me.ShouldHaveSoundTest(language)
   end
-
-  mod.testReporter.StopTestGroup()
 end
 
 --[[
@@ -105,7 +123,8 @@ function me.SoundTest(categoryName, categoryData, language)
 
     mod.testReporter.StartTestRun(testName)
 
-    local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName) .. language]["TestSound" .. spellName]
+    local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName) .. language]
+      ["TestSound" .. spellName]
 
     if type(func) ~= "function" then
       mod.testReporter.ReportFailureTestRun(
@@ -120,18 +139,16 @@ function me.SoundTest(categoryName, categoryData, language)
 end
 
 --[[
+  Tests whether there is an appropriate sound down testcase for every spell found in the spellmap
+
+  @param {string} language
+    A supported language such as En, De etc.
   @param {string} categoryName
     A valid categoryName such as "priest", "warrior" etc.
 ]]--
-function me.ShouldHaveSoundDownTestForAllSpells(categoryName)
-  mod.testReporter.StartTestGroup(testGroupName)
-
-  local language = mod.testHelper.GetLanguage()
-
+function me.ShouldHaveSoundDownTestForAllSpells(language, categoryName)
   if language == nil then
-    mod.logger.LogError(me.tag, "Invalid or unsupported language - aborting...")
-    mod.testReporter.StopTestGroup()
-
+    mod.logger.LogError(me.tag, "Missing language - aborting...")
     return
   end
 
@@ -140,8 +157,6 @@ function me.ShouldHaveSoundDownTestForAllSpells(categoryName)
   else
     me.ShouldHaveSoundDownTest(language)
   end
-
-  mod.testReporter.StopTestGroup()
 end
 
 --[[
@@ -187,7 +202,8 @@ function me.SoundDownTest(categoryName, categoryData, language)
 
       mod.testReporter.StartTestRun(testName)
 
-      local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName) .. language]["TestSoundDown" .. spellName]
+      local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName) .. language]
+        ["TestSoundDown" .. spellName]
 
       if type(func) ~= "function" then
         mod.testReporter.ReportFailureTestRun(

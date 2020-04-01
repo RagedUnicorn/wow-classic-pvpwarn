@@ -53,8 +53,12 @@ mod.testHelper.missingSoundDownTest = "Did not find a sound down test for %s - %
     string - if a language was found in the mapping
     nil - if no language was found in the mapping
 ]]--
-function me.GetLanguage()
-  return languageMapping[GetLocale()]
+function me.GetLanguage(language)
+  if language then
+    return languageMapping[language]
+  else
+    return languageMapping[GetLocale()]
+  end
 end
 
 --[[
@@ -84,7 +88,7 @@ function me.NormalizeSpellName(spellName)
   local name = ""
 
   for match in string.gmatch(spellName, "%a+") do
-    name = name .. mod.common.FirstToUpper(match)
+    name = name .. me.FirstToUpper(match)
   end
 
   return name

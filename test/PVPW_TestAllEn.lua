@@ -36,10 +36,15 @@ me.tag = "TestAllEn"
 local testGroupName = "TestAllEn"
 
 function me.TestAllEn()
+  local language = mod.testHelper.GetLanguage("enUS")
+
   mod.testReporter.StartTestGroup(testGroupName)
 
+  mod.testSound.ShouldHaveSoundTestForAllSpells(language)
+  mod.testSound.ShouldHaveSoundDownTestForAllSpells(language)
   me.TestAllCombatEventsEn()
   me.TestAllSoundEn()
+
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
