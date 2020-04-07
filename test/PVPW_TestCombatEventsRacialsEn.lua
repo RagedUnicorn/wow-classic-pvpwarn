@@ -49,6 +49,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWillOfTheForsakenApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWillOfTheForsakenRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventStoneformApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventStoneformRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEscapeArtistSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWarStompSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkingApplied)
@@ -92,6 +93,14 @@ end
 function me.TestCombatEventStoneformApplied()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventStoneformApplied",
+    testCategory,
+    "Stoneform"
+  )
+end
+
+function me.TestCombatEventStoneformRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventStoneformRemoved",
     testCategory,
     "Stoneform"
   )

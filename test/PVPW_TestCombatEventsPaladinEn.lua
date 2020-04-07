@@ -50,10 +50,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireResistanceAuraApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfProtectionRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfProtectionApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfProtectionRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfProtectionApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfProtectionRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfFreedomApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfFreedomRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfSacrificeApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfSacrificeRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHammerOfJusticeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRepentanceSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineShieldApplied)
@@ -126,33 +126,33 @@ function me.TestCombatEventBlessingOfProtectionRemoved()
   )
 end
 
-function me.TestCombatEventBlessingOfProtectionApplied()
+function me.TestCombatEventBlessingOfFreedomApplied()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventBlessingOfProtectionApplied",
+    "TestCombatEventBlessingOfFreedomApplied",
     testCategory,
     "Blessing of Freedom"
   )
 end
 
-function me.TestCombatEventBlessingOfProtectionRemoved()
+function me.TestCombatEventBlessingOfFreedomRemoved()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventBlessingOfProtectionRemoved",
+    "TestCombatEventBlessingOfFreedomRemoved",
     testCategory,
     "Blessing of Freedom"
   )
 end
 
-function me.TestCombatEventBlessingOfProtectionApplied()
+function me.TestCombatEventBlessingOfSacrificeApplied()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventBlessingOfProtectionApplied",
+    "TestCombatEventBlessingOfSacrificeApplied",
     testCategory,
     "Blessing of Sacrifice"
   )
 end
 
-function me.TestCombatEventBlessingOfProtectionRemoved()
+function me.TestCombatEventBlessingOfSacrificeRemoved()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventBlessingOfProtectionRemoved",
+    "TestCombatEventBlessingOfSacrificeRemoved",
     testCategory,
     "Blessing of Sacrifice"
   )

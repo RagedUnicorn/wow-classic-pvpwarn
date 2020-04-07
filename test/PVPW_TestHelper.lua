@@ -45,6 +45,8 @@ mod.testHelper.unableToPlay = "Unable to play sound"
 mod.testHelper.unableToGetMetadata = "Did not get any spell metadata"
 mod.testHelper.missingSoundTest = "Did not find a sound test for %s - %s"
 mod.testHelper.missingSoundDownTest = "Did not find a sound down test for %s - %s"
+mod.testHelper.invalidEvent = "Invalid event for %s - %s"
+mod.testHelper.missingCombatEventTest = "Did not find a combat event test for %s - %s"
 
 --[[
   Returns a matched language to a locale string
@@ -74,6 +76,26 @@ function me.GetAllForCategory(categoryName)
   local spellMap = mod.spellMap.GetSpellConfiguration()
 
   return mod.common.Clone(spellMap[categoryName])
+end
+
+--[[
+  Mapp a wow event name to a test function name
+
+  @param {string} event
+
+  return {string | nil}
+    string - if a matching event could be found
+    nil - if no matching event could be found
+]]--
+function me.MappEventToName(event)
+  local eventMap = {
+    ["SPELL_CAST_SUCCESS"] = "Success",
+    ["SPELL_AURA_APPLIED"] = "Applied",
+    ["SPELL_AURA_REMOVED"] = "Removed",
+    ["SPELL_AURA_REFRESH"] = "Refresh"
+  }
+
+  return eventMap[event]
 end
 
 --[[

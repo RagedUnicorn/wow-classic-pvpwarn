@@ -49,6 +49,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesSwiftnessApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesSwiftnessRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPoisonCleansingTotemSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTremorTotemSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGroundingTotemSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireResistanceTotemSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFlametongueTotemSuccess)
@@ -100,6 +101,14 @@ function me.TestCombatEventNaturesSwiftnessRemoved()
     "TestCombatEventNaturesSwiftnessRemoved",
     testCategory,
     "Nature's Swiftness"
+  )
+end
+
+function me.TestCombatEventTremorTotemSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventTremorTotemSuccess",
+    testCategory,
+    "Tremor Totem"
   )
 end
 

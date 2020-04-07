@@ -54,8 +54,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventViperStingSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventScatterShotSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFlareSuccess)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInitmidationApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInitmidationRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIntimidationApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIntimidationRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBestialWrathApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBestialWrathRemoved)
 end
@@ -156,17 +156,17 @@ function me.TestCombatEventFlareSuccess()
   )
 end
 
-function me.TestCombatEventInitmidationApplied()
+function me.TestCombatEventIntimidationApplied()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventInitmidationApplied",
+    "TestCombatEventIntimidationApplied",
     testCategory,
     "Intimidation"
   )
 end
 
-function me.TestCombatEventInitmidationRemoved()
+function me.TestCombatEventIntimidationRemoved()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventInitmidationRemoved",
+    "TestCombatEventIntimidationRemoved",
     testCategory,
     "Intimidation"
   )

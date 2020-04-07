@@ -49,6 +49,7 @@ test/PVPW_TestHelper.lua
 
 # testbase
 test/PVPW_TestSound.lua
+test/PVPW_TestCombatEvent.lua
 
 # rogue
 test/PVPW_TestSoundRogueEn.lua

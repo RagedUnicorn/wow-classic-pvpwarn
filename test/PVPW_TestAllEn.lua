@@ -42,6 +42,7 @@ function me.TestAllEn()
 
   mod.testSound.ShouldHaveSoundTestForAllSpells(language)
   mod.testSound.ShouldHaveSoundDownTestForAllSpells(language)
+  mod.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents(language)
   me.TestAllCombatEventsEn()
   me.TestAllSoundEn()
 

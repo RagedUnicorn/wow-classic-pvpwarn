@@ -86,12 +86,14 @@ end
   @param {string} categoryName
     A valid categoryName such as "priest", "warrior" etc.
   @param {string} language
+    A supported language such as En, De etc.
 ]]--
 function me.ShouldHaveSoundTestByCategory(categoryName, language)
   local spellMap = mod.testHelper.GetAllForCategory(categoryName)
 
   if spellMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
+    return
   end
 
   me.SoundTest(categoryName, spellMap, language)
@@ -99,6 +101,7 @@ end
 
 --[[
   @param {string} language
+    A supported language such as En, De etc.
 ]]--
 function me.ShouldHaveSoundTest(language)
   local spellMap = mod.spellMap.GetSpellConfiguration()
@@ -169,6 +172,7 @@ function me.ShouldHaveSoundDownTestByCategory(categoryName, language)
 
   if spellMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
+    return
   end
 
   me.SoundDownTest(categoryName, spellMap, language)
@@ -176,6 +180,7 @@ end
 
 --[[
   @param {string} language
+    A supported language such as En, De etc.
 ]]--
 function me.ShouldHaveSoundDownTest(language)
   local spellMap = mod.spellMap.GetSpellConfiguration()
@@ -192,6 +197,7 @@ end
     A valid categoryName such as "priest", "warrior" etc.
   @param {table} categoryData
   @param {string} language
+    A supported language such as En, De etc.
 ]]--
 function me.SoundDownTest(categoryName, categoryData, language)
   for name, spellData in pairs (categoryData) do
