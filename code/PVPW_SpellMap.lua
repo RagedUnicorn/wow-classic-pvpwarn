@@ -1135,7 +1135,9 @@ else
         ["spellId"] = 17116,
         ["spellIcon"] = "spell_nature_ravenform",
         ["hasFade"] = true,
-        -- ["links"] = { 16188 }, -- TODO how to handle "links"
+        ["links"] = {
+          16188
+        },
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED",
@@ -1184,7 +1186,9 @@ else
         ["spellId"] = 16188,
         ["spellIcon"] = "spell_nature_ravenform",
         ["hasFade"] = true,
-        ["links"] = { 17116 }, -- TODO how to handle links
+        ["links"] = {
+          17116
+        },
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED",
@@ -1876,9 +1880,78 @@ function me.GetAllForCategory(category)
 end
 
 --[[
-  TODO
-  NEVER returning the original list we dont want to give any one the option to modify it
+  NEVER returning the original list we dont want to give anyone the option to modify it
+
+  @return {table}
+   A clone of the spellMap
 ]]--
 function me.GetSpellConfiguration()
   return mod.common.Clone(spellMap)
+end
+
+--[[
+  Get all spellLinks for a certain spell and category
+
+  @param {string} category
+  @param {string} spellName
+
+  @return {boolean, table}
+    boolean
+      true - if the spell has a link to at least one other spell
+      false - if the spell has no link to other spells
+    table
+      table - The data of the spell that was matching category and spellName
+      nil - If no spell was found
+]]--
+function me.GetSpellLinks(category, spellName)
+  for categoryName, _ in pairs(spellMap) do
+    for _, spellData in pairs(spellMap[category]) do
+      if category == categoryName and spellName == spellData.name and spellData.links ~= nil then
+        return true, spellData
+      end
+    end
+  end
+
+  return false, nil
+end
+
+--[[
+  Search for a spell in the spellMap by its id
+
+  @param {number} spellId
+
+  @return {table | nil}
+    table - if the spell was found
+    nil - if no spell was found
+]]--
+function me.GetSpellById(spellId)
+  for category, _ in pairs(spellMap) do
+    for _, spellData in pairs(spellMap[category]) do
+      if spellData.spellId == spellId then
+        spellData.category = category
+        return spellData
+      end
+    end
+  end
+
+  return nil
+end
+
+--[[
+  Get the data of all linked spells
+
+  @param {table} spellData
+
+  @return {table}
+    A table with all spells that where linked to the passed spell
+]]--
+function me.GetLinkedSpells(spellData)
+  local linkedSpellsData = {}
+
+  for i = 1, #spellData.links do
+    local foundSpell = me.GetSpellById(spellData.links[i])
+    table.insert(linkedSpellsData, foundSpell)
+  end
+
+  return linkedSpellsData
 end

@@ -317,16 +317,25 @@ function me.TestCombatEventApplied(testName, testCategory, spellName)
     RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
   )
 
-  if testCategory ~= category then
-    failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
-  end
-
-  if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
-    failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
-  end
-
   if not spell then
-    failureReason = mod.testHelper.unableToGetMetadata
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToGetMetadata)
+    return
+  end
+
+  if spell.links ~= nil then
+    local linkedSpell = me.SearchLinkedSpellWithCategory(testCategory, category, spell)
+
+    if linkedSpell == nil then
+      failureReason = string.format("No matching category %s for linked spell found", testCategory)
+    end
+  else
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spellType)
+    end
   end
 
   if failureReason ~= nil then
@@ -352,16 +361,25 @@ function me.TestCombatEventRemoved(testName, testCategory, spellName)
     RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
   )
 
-  if testCategory ~= category then
-    failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
-  end
-
-  if RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED ~= spellType then
-    failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
-  end
-
   if not spell then
-    failureReason = mod.testHelper.unableToGetMetadata
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToGetMetadata)
+    return
+  end
+
+  if spell.links ~= nil then
+    local linkedSpell = me.SearchLinkedSpellWithCategory(testCategory, category, spell)
+
+    if linkedSpell == nil then
+      failureReason = string.format("No matching category %s for linked spell found", testCategory)
+    end
+  else
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spellType)
+    end
   end
 
   if failureReason ~= nil then
@@ -387,16 +405,25 @@ function me.TestCombatEventRefresh(testName, testCategory, spellName)
     RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REFRESH
   )
 
-  if testCategory ~= category then
-    failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
-  end
-
-  if RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH ~= spellType then
-    failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH, spellType)
-  end
-
   if not spell then
-    failureReason = mod.testHelper.unableToGetMetadata
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToGetMetadata)
+    return
+  end
+
+  if spell.links ~= nil then
+    local linkedSpell = me.SearchLinkedSpellWithCategory(testCategory, category, spell)
+
+    if linkedSpell == nil then
+      failureReason = string.format("No matching category %s for linked spell found", testCategory)
+    end
+  else
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH, spellType)
+    end
   end
 
   if failureReason ~= nil then
@@ -422,16 +449,25 @@ function me.TestCombatEventSuccess(testName, testCategory, spellName)
     RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS
   )
 
-  if testCategory ~= category then
-    failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
-  end
-
-  if RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL ~= spellType then
-    failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spellType)
-  end
-
   if not spell then
-    failureReason = mod.testHelper.unableToGetMetadata
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToGetMetadata)
+    return
+  end
+
+  if spell.links ~= nil then
+    local linkedSpell = me.SearchLinkedSpellWithCategory(testCategory, category, spell)
+
+    if linkedSpell == nil then
+      failureReason = string.format("No matching category %s for linked spell found", testCategory)
+    end
+  else
+    if testCategory ~= category then
+      failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+    end
+
+    if RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL ~= spellType then
+      failureReason = string.format("Expected spellType %i but got %i", RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spellType)
+    end
   end
 
   if failureReason ~= nil then
@@ -469,4 +505,35 @@ function me.TestCombatEvent(spellName, event)
   me.RestoreCombatLogGetCurrentEventInfo()
 
   return actualCategory, actualSpellType, actualSpell
+end
+
+--[[
+  Search the linked spell from the spellMap that matches the spellCategory. If the passed spell
+  already matches the expected category it will simply be returned
+
+  @param {string} testCategory
+    The category that the test is currently using
+  @param {string} spellCategory
+    The actual catgory of the spell
+  @param {table} spell
+    The spell to search for
+
+  @return {table | nil}
+    table - the linked spell that was found or the same spell that was passed
+    nil - if not matching spell could be found
+]]--
+function me.SearchLinkedSpellWithCategory(testCategory, spellCategory, spell)
+  if testCategory ~= spellCategory then
+    local linkedSpellsData = mod.spellMap.GetLinkedSpells(spell)
+
+    for _, linkedSpell in pairs(linkedSpellsData) do
+      if linkedSpell.category == testCategory then
+        return linkedSpell
+      end
+    end
+
+    return nil
+  else
+    return spell
+  end
 end

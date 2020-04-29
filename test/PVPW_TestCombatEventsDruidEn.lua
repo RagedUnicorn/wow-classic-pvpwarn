@@ -28,12 +28,6 @@ local mod = rgpvpw
 local me = {}
 mod.testCombatEventsDruidEn = me
 
---[[
-  TODO nature swiftness can currently fail because the category might be shaman instead of druid
-  depending on which one is found first in the spellmap. Need to find a solution for linked spells
-  first and also fixing those tests
-]]--
-
 me.tag = "TestCombatEventsDruidEn"
 
 local testGroupName = "CombatEventsDruidEn"
@@ -62,8 +56,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAbolishPoisonRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInnervateApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInnervateRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesSwiftnessApplied) -- TODO
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesSwiftnessRemoved) -- TODO
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesSwiftnessApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesSwiftnessRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFaerieFireSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFaerieFireFeralSuccess)
 end

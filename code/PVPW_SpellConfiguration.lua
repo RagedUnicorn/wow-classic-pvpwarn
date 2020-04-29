@@ -108,6 +108,23 @@ function me.ToggleSpell(spellList, categoryName, spellName, state)
       tostring(state)
     )
   )
+
+  -- check if spell has spellLinks to other spells
+  local hasLinks, spellData = mod.spellMap.GetSpellLinks(categoryName, spellName)
+
+  if hasLinks and spellData ~= nil then
+    local linkedSpells = mod.spellMap.GetLinkedSpells(spellData)
+    -- update all linked spell
+    for i = 1, #linkedSpells do
+      mod.logger.LogInfo(
+        me.tag,
+        "Updating linked spellStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
+      )
+      me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
+      PVPWarnOptions[spellList][linkedSpells[i].category][linkedSpells[i].name].spellActive = state
+    end
+  end
+  -- update actual clicked spell by player
   PVPWarnOptions[spellList][categoryName][spellName].spellActive = state
 end
 
@@ -194,6 +211,23 @@ function me.ToggleSound(spellList, categoryName, spellName, state)
       tostring(state)
     )
   )
+
+  -- check if spell has spellLinks to other spells
+  local hasLinks, spellData = mod.spellMap.GetSpellLinks(categoryName, spellName)
+
+  if hasLinks and spellData ~= nil then
+    local linkedSpells = mod.spellMap.GetLinkedSpells(spellData)
+    -- update all linked spell
+    for i = 1, #linkedSpells do
+      mod.logger.LogInfo(
+        me.tag,
+        "Updating linked spellSoundStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
+      )
+      me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
+      PVPWarnOptions[spellList][linkedSpells[i].category][linkedSpells[i].name].soundWarningActive = state
+    end
+  end
+  -- update actual clicked spell by player
   PVPWarnOptions[spellList][categoryName][spellName].soundWarningActive = state
 end
 
@@ -216,12 +250,12 @@ function me.ToggleSoundFadeWarning(spellList, categoryName, spellName)
   assert(type(spellName) == "string", string.format(
     "bad argument #2 to `ToggleSoundFadeWarning` (expected string got %s)", type(spellName)))
 
-    me.ToggleSoundFade(
-      spellList,
-      categoryName,
-      spellName,
-      not me.IsSoundFadeWarningActive(spellList, categoryName, spellName)
-    )
+  me.ToggleSoundFade(
+    spellList,
+    categoryName,
+    spellName,
+    not me.IsSoundFadeWarningActive(spellList, categoryName, spellName)
+  )
 end
 
 --[[
@@ -280,6 +314,23 @@ function me.ToggleSoundFade(spellList, categoryName, spellName, state)
       tostring(state)
     )
   )
+
+  -- check if spell has spellLinks to other spells
+  local hasLinks, spellData = mod.spellMap.GetSpellLinks(categoryName, spellName)
+
+  if hasLinks and spellData ~= nil then
+    local linkedSpells = mod.spellMap.GetLinkedSpells(spellData)
+    -- update all linked spell
+    for i = 1, #linkedSpells do
+      mod.logger.LogInfo(
+        me.tag,
+        "Updating linked spellSoundFadeStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
+      )
+      me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
+      PVPWarnOptions[spellList][linkedSpells[i].category][linkedSpells[i].name].soundFadeWarningActive = state
+    end
+  end
+  -- update actual clicked spell by player
   PVPWarnOptions[spellList][categoryName][spellName].soundFadeWarningActive = state
 end
 
@@ -338,6 +389,22 @@ function me.UpdateVisualWarningColor(spellList, categoryName, spellName, color)
     )
   )
 
+  -- check if spell has spellLinks to other spells
+  local hasLinks, spellData = mod.spellMap.GetSpellLinks(categoryName, spellName)
+
+  if hasLinks and spellData ~= nil then
+    local linkedSpells = mod.spellMap.GetLinkedSpells(spellData)
+    -- update all linked spell
+    for i = 1, #linkedSpells do
+      mod.logger.LogInfo(
+        me.tag,
+        "Updating linked spellVisualColor: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
+      )
+      me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
+      PVPWarnOptions[spellList][linkedSpells[i].category][linkedSpells[i].name].visualWarningColor = color
+    end
+  end
+  -- update actual clicked spell by player
   PVPWarnOptions[spellList][categoryName][spellName].visualWarningColor = color
 end
 
