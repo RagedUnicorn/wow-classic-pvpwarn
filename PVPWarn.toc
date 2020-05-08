@@ -25,7 +25,6 @@ code/PVPW_Visual.lua
 code/PVPW_CombatLog.lua
 code/PVPW_SpellMap.lua
 code/PVPW_Common.lua
-code/PVPW_WarnQueue.lua
 code/PVPW_Configuration.lua
 code/PVPW_SpellConfiguration.lua
 code/PVPW_Cmd.lua

@@ -497,11 +497,13 @@ function me.TestCombatEvent(spellName, event)
   end
 
   me.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+
   mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
     actualCategory = category
     actualSpellType = spellType
     actualSpell = spell
   end)
+
   me.RestoreCombatLogGetCurrentEventInfo()
 
   return actualCategory, actualSpellType, actualSpell

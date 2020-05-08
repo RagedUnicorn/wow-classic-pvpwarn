@@ -110,3 +110,26 @@ function me.TableLength(t)
 
   return count
 end
+
+--[[
+  Map wow events to a constant mapping
+
+  @param {string} event
+
+  @return {number | nil}
+    number - The number representing the event according to RGPVPW_CONSTANTS.SPELL_TYPES
+    nil - if the event is not supported
+]]--
+function me.GetSpellType(event)
+  if event == "SPELL_CAST_SUCCESS" then
+    return RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL
+  elseif event == "SPELL_AURA_APPLIED" then
+    return RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED
+  elseif event == "SPELL_AURA_REMOVED" then
+    return RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED
+  elseif event == "SPELL_AURA_REFRESH" then
+    return RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH
+  end
+
+  return nil
+end

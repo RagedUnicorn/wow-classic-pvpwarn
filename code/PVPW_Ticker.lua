@@ -39,7 +39,7 @@ local warnQueueTicker
 function me.StartTickerWarnQueue()
   if warnQueueTicker == nil or warnQueueTicker._cancelled then
     warnQueueTicker = C_Timer.NewTicker(
-      RGPVPW_CONSTANTS.WARN_QUEUE_UPDATE_INTERVAL, mod.warnQueue.ProcessQueue)
+      RGPVPW_CONSTANTS.WARN_QUEUE_UPDATE_INTERVAL, mod.warn.ProcessQueue)
       mod.logger.LogInfo(me.tag, "Started 'WarnQueueTicker'")
   end
 end
