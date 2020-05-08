@@ -575,23 +575,25 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         local _, _, iconId = GetSpellInfo(cachedCategoryData[value].spellId)
 
         row.spellName = cachedCategoryData[value].name
+        row.category = category
         row.cooldownIcon:SetTexture(iconId)
         row.spellTitle:SetText(cachedCategoryData[value].name)
 
-        row.playSound.category = category
+        row.playSound.category = category -- TODO moved to row.category
         row.playSound.soundFileName = cachedCategoryData[value].soundFileName
 
         row.playSound:Show()
 
-        row.playSoundFade.category = category
+        row.playSoundFade.category = category -- TODO moved to row.category
         row.playSoundFade.soundFileName = cachedCategoryData[value].soundFileName
 
-        row.playVisual.category = category
+        row.playVisual.category = category -- TODO moved to row.category
         row.playVisual.spellName = cachedCategoryData[value].name
 
         me.UpdateSpellStateCheckBox(row.spellStateCheckBox, category, cachedCategoryData[value].name)
         me.UpdateSound(row.soundCheckBox, category, cachedCategoryData[value].name)
         me.UpdateSoundFade(row.soundFadeCheckBox, row.playSoundFade, category, cachedCategoryData[value])
+        me.UpdateChooseVisualDropdownMenu(row.chooseVisual, category, cachedCategoryData[value].name)
 
         row:Show()
       else
@@ -599,6 +601,25 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
       end
     end
   end
+end
+
+
+--[[
+  @param {table} dropdownMenu
+  @param {string} category
+  @param {string} spellName
+]]--
+function me.UpdateChooseVisualDropdownMenu(dropdownMenu, category, spellName)
+  local colorValue = mod.spellConfiguration.GetVisualWarningColor(
+    RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+    category,
+    spellName
+  )
+
+  UIDropDownMenu_SetSelectedValue(
+    dropdownMenu,
+    colorValue
+  )
 end
 
 --[[

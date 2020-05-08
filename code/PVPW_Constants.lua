@@ -81,7 +81,7 @@ RGPVPW_CONSTANTS = {
   --[[
     default color based on TEXTURES - colorValue
   ]]--
-  DEFAULT_COLOR = 1,
+  DEFAULT_COLOR = 0, -- none
   SPELL_TYPES = {
     ["NORMAL"] = 1, -- SPELL_CAST_SUCCESS
     ["APPLIED"] = 2, -- SPELL_AURA_APPLIED
