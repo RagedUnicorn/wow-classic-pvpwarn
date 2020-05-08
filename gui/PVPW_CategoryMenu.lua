@@ -224,6 +224,7 @@ function me.CreateSpellIcon(spellFrame)
   iconHolder:SetPoint("LEFT", 40, 0)
 
   local cooldownIcon = iconHolder:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON, "ARTWORK")
+  cooldownIcon.iconHolder = iconHolder
   cooldownIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
   cooldownIcon:SetPoint("CENTER", 0, 0)
   cooldownIcon:SetSize(
@@ -247,8 +248,6 @@ function me.CreateSpellIcon(spellFrame)
 
   iconHolder:SetBackdrop(backdrop)
   iconHolder:SetBackdropColor(0.15, 0.15, 0.15, 1)
-  -- Set color based on class TODO
-  iconHolder:SetBackdropBorderColor(0.47, 0.21, 0.74, 1)
 
   return cooldownIcon
 end
@@ -337,7 +336,7 @@ end
   @param {table} self
 ]]--
 function me.PlaySoundButtonOnClick(self)
-  mod.sound.PlaySound(self.category, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, self.soundFileName)
+  mod.sound.PlaySound(self:GetParent().category, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, self.soundFileName)
 end
 
 --[[
@@ -404,7 +403,7 @@ end
   @param {table} self
 ]]--
 function me.PlaySoundFadeButtonOnClick(self)
-  mod.sound.PlaySound(self.category, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, self.soundFileName)
+  mod.sound.PlaySound(self:GetParent().category, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, self.soundFileName)
 end
 
 --[[
@@ -529,8 +528,8 @@ function me.ToggleVisualWarning(self)
   -- retrieve color for specific spell and category from configuration
   mod.visual.ShowVisualAlert(mod.spellConfiguration.GetVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
-    self.category,
-    self.spellName
+    self:GetParent().category,
+    self:GetParent().spellName
   ))
 end
 
@@ -572,24 +571,13 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
       local row = spellRows[i]
 
       if cachedCategoryData[value] ~= nil then
-        local _, _, iconId = GetSpellInfo(cachedCategoryData[value].spellId)
-
         row.spellName = cachedCategoryData[value].name
         row.category = category
-        row.cooldownIcon:SetTexture(iconId)
         row.spellTitle:SetText(cachedCategoryData[value].name)
-
-        row.playSound.category = category -- TODO moved to row.category
         row.playSound.soundFileName = cachedCategoryData[value].soundFileName
-
-        row.playSound:Show()
-
-        row.playSoundFade.category = category -- TODO moved to row.category
         row.playSoundFade.soundFileName = cachedCategoryData[value].soundFileName
 
-        row.playVisual.category = category -- TODO moved to row.category
-        row.playVisual.spellName = cachedCategoryData[value].name
-
+        me.UpdateIcon(row.cooldownIcon, category, cachedCategoryData[value].spellId)
         me.UpdateSpellStateCheckBox(row.spellStateCheckBox, category, cachedCategoryData[value].name)
         me.UpdateSound(row.soundCheckBox, category, cachedCategoryData[value].name)
         me.UpdateSoundFade(row.soundFadeCheckBox, row.playSoundFade, category, cachedCategoryData[value])
@@ -601,6 +589,19 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
       end
     end
   end
+end
+
+--[[
+@param {table} cooldownIcon
+@param {string} category
+@param {number} spellId
+]]--
+function me.UpdateIcon(cooldownIcon, category, spellId)
+  local _, _, iconId = GetSpellInfo(spellId)
+  local color = RGPVPW_CONSTANTS.CATEGORY_COLOR[category]
+
+  cooldownIcon:SetTexture(iconId)
+  cooldownIcon.iconHolder:SetBackdropBorderColor(unpack(color))
 end
 
 
@@ -616,6 +617,7 @@ function me.UpdateChooseVisualDropdownMenu(dropdownMenu, category, spellName)
     spellName
   )
 
+  --TODO this causes fps drops atm TODO possible solution could be check value before setting it
   UIDropDownMenu_SetSelectedValue(
     dropdownMenu,
     colorValue
