@@ -49,23 +49,13 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
   if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_HOSTILE_PLAYERS) then
     --and CombatLog_Object_IsA(sourceFlags, COMBATLOG_OBJECT_TARGET)
     if event == "SPELL_CAST_SUCCESS" then
-      local category, spell = mod.spellMap.SearchByName(spellName, event)
-      mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spell, callback)
+      me.ProcessEvent(spellName, event, callback)
     elseif event == "SPELL_AURA_APPLIED" then
-      -- TODO this is probably used for all buff related alerts suchs as mage x gets arcane power
-
-      local category, spell = mod.spellMap.SearchByName(spellName, event)
-      mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, spell, callback)
+      me.ProcessEvent(spellName, event, callback)
     elseif event == "SPELL_AURA_REMOVED" then
-      -- TODO this is probably going to be used for most "down/faded" sound. E.g. recklesness runs out
-
-      local category, spell = mod.spellMap.SearchByName(spellName, event)
-      mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spell, callback)
+      me.ProcessEvent(spellName, event, callback)
     elseif event == "SPELL_AURA_REFRESH" then
-      -- TODO this event is used when something is reseted while it is still active e.g. inner fire rebuff
-
-      local category, spell = mod.spellMap.SearchByName(spellName, event)
-      mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH, spell, callback)
+      me.ProcessEvent(spellName, event, callback)
     else
       mod.logger.LogDebug(me.tag, "Ignore unsupported event: " .. event)
 
@@ -73,5 +63,62 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
         callback()
       end
     end
+  end
+end
+
+--[[
+  @param {string} spellName
+  @param {string} event
+  @param {function} callback
+]]--
+function me.ProcessEvent(spellName, event, callback)
+  local category, spell = mod.spellMap.SearchByName(spellName, event)
+
+  if not category or not spell then
+    mod.logger.LogError(me.tag, "Ignore spell %s - %s because search in spellMap resulted in not found")
+    return
+  end
+
+  if not mod.spellConfiguration.IsSpellActive(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, spellName) then
+    mod.logger.LogDebug(me.tag, string.format(
+      "Ignore spell %s - %s because it is not active", category, spellName
+      )
+    )
+    return
+  end
+
+  if mod.spellConfiguration.IsSoundWarningActive(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, spellName) then
+    mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, spell, callback) -- TODO
+  else
+    mod.logger.LogDebug(me.tag, string.format(
+      "Ignore playing sound for %s - %s because it is not active", category, spellName
+      )
+    )
+    return
+  end
+
+  if mod.spellConfiguration.IsSoundFadeWarningActive(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, spellName) then
+    -- TODO fade warnings should never show a visual alert I guess
+    mod.warn.PlayWarning(category, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, spell, callback) -- TODO
+  else
+    mod.logger.LogDebug(me.tag, string.format(
+      "Ignore playing sound for %s - %s because it is not active", category, spellName
+      )
+    )
+    return
+  end
+
+  local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
+    RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, spellName
+  )
+
+  if visualWarningColor ~= RGPVPW_CONSTANTS.DEFAULT_COLOR then
+    mod.visual.ShowVisualAlert(visualWarningColor)
+  else
+    mod.logger.LogDebug(me.tag, string.format(
+      "Ignore playing sound for %s - %s because it is not active", category, spellName
+      )
+    )
+    return
   end
 end

@@ -1,1 +1,9 @@
-globals = {"rgpvpw", "RGPVPW_CONSTANTS", "RGPVPW_ENVIRONMENT", "PVPWarnTestLog", "PVPWarnOptions", "PVPWarnProfiles"}
+globals = {
+  "rgpvpw",
+  "RGPVPW_CONSTANTS",
+  "RGPVPW_ENVIRONMENT",
+  "PVPWarnTestLog",
+  "PVPWarnOptions",
+  "PVPWarnProfiles",
+  "PVPWarnLogTracker"
+}

@@ -40,7 +40,14 @@ _G["__PVPW__DEBUG__SHOWEXAMPLEALERT"] = function()
 end
 
 --[[
-  TODO
+  Take an event from CombatLogGetCurrentEventInfo and store it in a savedVariable. This allows to read a textfile with
+  all the logs after a reload.
+
+  @param {string} event
+  @param {number} sourceFlags
+  @param {string} target
+  @param {string} targetName
+  @param {string} spellName
 ]]--
 function me.TrackLogEvent(event, sourceFlags, target, targetName, spellName)
   if PVPWarnLogTracker == nil then
