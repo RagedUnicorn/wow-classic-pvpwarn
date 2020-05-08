@@ -95,6 +95,7 @@ rgpvpw.L["label_enable_sound_fade"] = "Enable Sound Fade"
 rgpvpw.L["label_play_sound_fade"] = "Play"
 rgpvpw.L["label_visual_warning"] = "Visual Warning:"
 rgpvpw.L["label_play_visual"] = "Play"
+rgpvpw.L["user_message_choose_color"] = "Unable to play visual alert - No color chosen"
 
 -- dropdown colors
 rgpvpw.L["texture_none"] = "None"

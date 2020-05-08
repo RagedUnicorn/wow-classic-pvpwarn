@@ -526,11 +526,18 @@ end
 ]]--
 function me.ToggleVisualWarning(self)
   -- retrieve color for specific spell and category from configuration
-  mod.visual.ShowVisualAlert(mod.spellConfiguration.GetVisualWarningColor(
+  local color = mod.spellConfiguration.GetVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
     self:GetParent().category,
     self:GetParent().spellName
-  ))
+  )
+
+  if color == RGPVPW_CONSTANTS.DEFAULT_COLOR then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_choose_color"])
+    return
+  end
+
+  mod.visual.ShowVisualAlert(color)
 end
 
 --[[
