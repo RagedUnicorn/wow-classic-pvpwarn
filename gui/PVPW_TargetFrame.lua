@@ -80,6 +80,7 @@ function me.BuildCombatStateUi()
   combatStateIcon.iconHolder:SetBackdropBorderColor(1, .1, 0, .8)
   -- set combat state active icon
   combatStateIcon:SetTexture(RGPVPW_CONSTANTS.COMBAT_STATE_ACTIVE_ICON_ID)
+  iconHolder:Hide()
 end
 
 --[[

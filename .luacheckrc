@@ -3,7 +3,7 @@ globals = {
   "RGPVPW_CONSTANTS",
   "RGPVPW_ENVIRONMENT",
   "PVPWarnTestLog",
-  "PVPWarnOptions",
+  "PVPWarnConfiguration",
   "PVPWarnProfiles",
   "PVPWarnLogTracker"
 }

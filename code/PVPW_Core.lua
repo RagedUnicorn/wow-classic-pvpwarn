@@ -84,7 +84,7 @@ function me.Initialize()
   -- setup slash commands
   -- me.cmd.SetupSlashCmdList() TODO
   -- load addon variables
-  me.addonOptions.SetupConfiguration()
+  me.configuration.SetupConfiguration()
   -- setup addon configuration ui
   me.addonConfiguration.SetupAddonConfiguration() -- TODO remove this only for testing
 

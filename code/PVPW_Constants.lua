@@ -155,6 +155,11 @@ RGPVPW_CONSTANTS = {
     Generalmenu
   ]]--
   ELEMENT_GENERAL_SUB_OPTION_FRAME = "PVPW_GeneralMenuOptionsFrame",
+  GENERAL_CHECK_OPTION_SIZE = 32,
+  ELEMENT_GENERAL_OPT = "PVPW_Opt",
+  ELEMENT_GENERAL_FRAME = "PVPW_GeneralFrame",
+  ELEMENT_GENERAL_TITLE = "PVPW_GeneralTitle",
+  ELEMENT_GENERAL_OPT_ENABLE_COMBAT_STATE = "PVPW_OptEnableCombatStateTracking",
   --[[
     A list of available categories consisting of all classes, racials, items and a
     misc category

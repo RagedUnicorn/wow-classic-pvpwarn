@@ -35,6 +35,8 @@ me.tag = "CombatState"
   Invoked when a new target is aquired
 ]]--
 function me.AcquiredTarget()
+  if not mod.configuration.IsCombatStateTrackingEnabled() then return end
+
   if UnitIsPlayer(RGPVPW_CONSTANTS.UNIT_ID_TARGET) and UnitIsEnemy(RGPVPW_CONSTANTS.UNIT_ID_PLAYER,
     RGPVPW_CONSTANTS.UNIT_ID_TARGET) and UnitIsPVP(RGPVPW_CONSTANTS.UNIT_ID_TARGET) then
     mod.logger.LogDebug(me.tag, "Aquired new enemy target - starting combatstate tracking")
@@ -69,4 +71,12 @@ function me.CombatStateUpdate()
 
   mod.logger.LogDebug(me.tag, "Targeted unit is affected by combat: " .. tostring(affectingCombat))
   mod.targetFrame.UpdateCombateStateUi(affectingCombat)
+end
+
+--[[
+  Disable the tracking of combatstate
+]]--
+function me.DisableCombatStateTracking()
+  mod.ticker.StopTickerCheckCombatState()
+  mod.targetFrame.HideCombatState()
 end

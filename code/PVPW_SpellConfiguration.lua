@@ -75,9 +75,9 @@ function me.IsSpellActive(spellList, categoryName, spellName)
   assert(type(spellName) == "string", string.format(
     "bad argument #3 to `IsSpellActive` (expected string got %s)", type(spellName)))
 
-  if PVPWarnOptions[spellList][categoryName] then
-    if PVPWarnOptions[spellList][categoryName][spellName] then
-      return PVPWarnOptions[spellList][categoryName][spellName].spellActive
+  if PVPWarnConfiguration[spellList][categoryName] then
+    if PVPWarnConfiguration[spellList][categoryName][spellName] then
+      return PVPWarnConfiguration[spellList][categoryName][spellName].spellActive
     end
   end
 
@@ -104,7 +104,7 @@ function me.ToggleSpell(spellList, categoryName, spellName, state)
       "Updating spell %s spellstate for category %s - current value: %s / new value: %s",
       spellName,
       categoryName,
-      tostring(PVPWarnOptions[spellList][categoryName][spellName].spellActive),
+      tostring(PVPWarnConfiguration[spellList][categoryName][spellName].spellActive),
       tostring(state)
     )
   )
@@ -121,11 +121,11 @@ function me.ToggleSpell(spellList, categoryName, spellName, state)
         "Updating linked spellStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
       )
       me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
-      PVPWarnOptions[spellList][linkedSpells[i].category][linkedSpells[i].name].spellActive = state
+      PVPWarnConfiguration[spellList][linkedSpells[i].category][linkedSpells[i].name].spellActive = state
     end
   end
   -- update actual clicked spell by player
-  PVPWarnOptions[spellList][categoryName][spellName].spellActive = state
+  PVPWarnConfiguration[spellList][categoryName][spellName].spellActive = state
 end
 
 --[[
@@ -178,9 +178,9 @@ function me.IsSoundWarningActive(spellList, categoryName, spellName)
   assert(type(spellName) == "string", string.format(
     "bad argument #3 to `IsSoundWarningActive` (expected string got %s)", type(spellName)))
 
-  if PVPWarnOptions[spellList][categoryName] then
-    if PVPWarnOptions[spellList][categoryName][spellName] then
-      return PVPWarnOptions[spellList][categoryName][spellName].soundWarningActive
+  if PVPWarnConfiguration[spellList][categoryName] then
+    if PVPWarnConfiguration[spellList][categoryName][spellName] then
+      return PVPWarnConfiguration[spellList][categoryName][spellName].soundWarningActive
     end
   end
 
@@ -207,7 +207,7 @@ function me.ToggleSound(spellList, categoryName, spellName, state)
       "Updating spell %s soundstate for category %s - current value: %s / new value: %s",
       spellName,
       categoryName,
-      tostring(PVPWarnOptions[spellList][categoryName][spellName].soundWarningActive),
+      tostring(PVPWarnConfiguration[spellList][categoryName][spellName].soundWarningActive),
       tostring(state)
     )
   )
@@ -224,11 +224,11 @@ function me.ToggleSound(spellList, categoryName, spellName, state)
         "Updating linked spellSoundStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
       )
       me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
-      PVPWarnOptions[spellList][linkedSpells[i].category][linkedSpells[i].name].soundWarningActive = state
+      PVPWarnConfiguration[spellList][linkedSpells[i].category][linkedSpells[i].name].soundWarningActive = state
     end
   end
   -- update actual clicked spell by player
-  PVPWarnOptions[spellList][categoryName][spellName].soundWarningActive = state
+  PVPWarnConfiguration[spellList][categoryName][spellName].soundWarningActive = state
 end
 
 --[[
@@ -281,9 +281,9 @@ function me.IsSoundFadeWarningActive(spellList, categoryName, spellName)
   assert(type(spellName) == "string", string.format(
     "bad argument #3 to `IsSoundFadeWarningActive` (expected string got %s)", type(spellName)))
 
-  if PVPWarnOptions[spellList][categoryName] then
-    if PVPWarnOptions[spellList][categoryName][spellName] then
-      return PVPWarnOptions[spellList][categoryName][spellName].soundFadeWarningActive
+  if PVPWarnConfiguration[spellList][categoryName] then
+    if PVPWarnConfiguration[spellList][categoryName][spellName] then
+      return PVPWarnConfiguration[spellList][categoryName][spellName].soundFadeWarningActive
     end
   end
 
@@ -310,7 +310,7 @@ function me.ToggleSoundFade(spellList, categoryName, spellName, state)
       "Updating spell %s sounddownstate for category %s - current value: %s / new value: %s",
       spellName,
       categoryName,
-      tostring(PVPWarnOptions[spellList][categoryName][spellName].soundFadeWarningActive),
+      tostring(PVPWarnConfiguration[spellList][categoryName][spellName].soundFadeWarningActive),
       tostring(state)
     )
   )
@@ -327,11 +327,11 @@ function me.ToggleSoundFade(spellList, categoryName, spellName, state)
         "Updating linked spellSoundFadeStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
       )
       me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
-      PVPWarnOptions[spellList][linkedSpells[i].category][linkedSpells[i].name].soundFadeWarningActive = state
+      PVPWarnConfiguration[spellList][linkedSpells[i].category][linkedSpells[i].name].soundFadeWarningActive = state
     end
   end
   -- update actual clicked spell by player
-  PVPWarnOptions[spellList][categoryName][spellName].soundFadeWarningActive = state
+  PVPWarnConfiguration[spellList][categoryName][spellName].soundFadeWarningActive = state
 end
 
 --[[
@@ -356,9 +356,9 @@ function me.GetVisualWarningColor(spellList, categoryName, spellName)
   assert(type(spellName) == "string", string.format(
     "bad argument #3 to `GetVisualWarningColor` (expected string got %s)", type(spellName)))
 
-  if PVPWarnOptions[spellList][categoryName] then
-    if PVPWarnOptions[spellList][categoryName][spellName] then
-      return PVPWarnOptions[spellList][categoryName][spellName].visualWarningColor
+  if PVPWarnConfiguration[spellList][categoryName] then
+    if PVPWarnConfiguration[spellList][categoryName][spellName] then
+      return PVPWarnConfiguration[spellList][categoryName][spellName].visualWarningColor
     end
   end
 
@@ -384,7 +384,7 @@ function me.UpdateVisualWarningColor(spellList, categoryName, spellName, color)
       "Updating spell %s visualwarningcolor for category %s - current value: %s / new value: %s",
       spellName,
       categoryName,
-      tostring(PVPWarnOptions[spellList][categoryName][spellName].visualWarningColor),
+      tostring(PVPWarnConfiguration[spellList][categoryName][spellName].visualWarningColor),
       tostring(color)
     )
   )
@@ -401,11 +401,11 @@ function me.UpdateVisualWarningColor(spellList, categoryName, spellName, color)
         "Updating linked spellVisualColor: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
       )
       me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
-      PVPWarnOptions[spellList][linkedSpells[i].category][linkedSpells[i].name].visualWarningColor = color
+      PVPWarnConfiguration[spellList][linkedSpells[i].category][linkedSpells[i].name].visualWarningColor = color
     end
   end
   -- update actual clicked spell by player
-  PVPWarnOptions[spellList][categoryName][spellName].visualWarningColor = color
+  PVPWarnConfiguration[spellList][categoryName][spellName].visualWarningColor = color
 end
 
 --[[
@@ -418,15 +418,15 @@ end
   @param {string} spellName
 ]]--
 function me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
-  if not PVPWarnOptions[spellList][categoryName] then
+  if not PVPWarnConfiguration[spellList][categoryName] then
     mod.logger.LogInfo(me.tag, "Class - " .. categoryName .. " does not exist. Creating new one...")
-    PVPWarnOptions[spellList][categoryName] = {}
+    PVPWarnConfiguration[spellList][categoryName] = {}
   end
 
-  if not PVPWarnOptions[spellList][categoryName][spellName] then
+  if not PVPWarnConfiguration[spellList][categoryName][spellName] then
     mod.logger.LogInfo(me.tag, "SpellName - " .. spellName .. " for class "
       .. categoryName .. " does not exist. Creating new one...")
-    PVPWarnOptions[spellList][categoryName][spellName] = me.GetDefaultSpellConfiguration()
+    PVPWarnConfiguration[spellList][categoryName][spellName] = me.GetDefaultSpellConfiguration()
   end
 end
 

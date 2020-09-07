@@ -30,6 +30,7 @@ code/PVPW_CombatState.lua
 code/PVPW_Configuration.lua
 code/PVPW_SpellConfiguration.lua
 code/PVPW_Cmd.lua
+code/PVPW_Tooltip.lua
 profiles/PVPW_Profile.lua
 
 # debug

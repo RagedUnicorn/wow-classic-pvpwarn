@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT
 
 local mod = rgpvpw
 local me = {}
@@ -34,7 +34,7 @@ me.tag = "GeneralMenu"
   Option texts for checkbutton options
 ]]--
 local options = {
-  -- {"WindowLockGearBar", rggm.L["window_lock_gear_bar"], rggm.L["window_lock_gear_bar_tooltip"]},
+  {"EnableCombatStateTracking", rgpvpw.L["enable_combat_state_tracking"], rgpvpw.L["enable_combat_state_tracking_tooltip"]},
 }
 
 -- track whether the menu was already built
@@ -47,19 +47,34 @@ local builtMenu = false
     The addon configuration frame to attach to
 ]]--
 function me.BuildUi(frame)
-  if true then return end -- TODO
-
   if builtMenu then return end
 
-  local titleFontString = frame:CreateFontString(RGGM_CONSTANTS.ELEMENT_GENERAL_TITLE, "OVERLAY")
+  me.BuildTitle(frame)
+
+  me.BuildCheckButtonOption(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_ENABLE_COMBAT_STATE,
+    20,
+    -80,
+    me.EnableCombatStateTrackingOnShow,
+    me.EnableCombatStateTrackingOnClick
+  )
+
+  builtMenu = true
+end
+
+--[[
+  Build the title for the general menu
+
+  @param {table} frame
+    The addon configuration frame to attach to
+]]--
+function me.BuildTitle(frame)
+  local titleFontString = frame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_GENERAL_TITLE, "OVERLAY")
   titleFontString:SetFont(STANDARD_TEXT_FONT, 20)
   titleFontString:SetPoint("TOP", 0, -20)
   titleFontString:SetSize(frame:GetWidth(), 20)
-  titleFontString:SetText(rggm.L["general_title"])
-
-
-
-  builtMenu = true
+  titleFontString:SetText(rgpvpw.L["general_title"])
 end
 
 --[[
@@ -75,8 +90,8 @@ end
 function me.BuildCheckButtonOption(parentFrame, optionFrameName, posX, posY, onShowCallback, onClickCallback)
   local checkButtonOptionFrame = CreateFrame("CheckButton", optionFrameName, parentFrame, "UICheckButtonTemplate")
   checkButtonOptionFrame:SetSize(
-    RGGM_CONSTANTS.GENERAL_CHECK_OPTION_SIZE,
-    RGGM_CONSTANTS.GENERAL_CHECK_OPTION_SIZE
+    RGPVPW_CONSTANTS.GENERAL_CHECK_OPTION_SIZE,
+    RGPVPW_CONSTANTS.GENERAL_CHECK_OPTION_SIZE
   )
   checkButtonOptionFrame:SetPoint("TOPLEFT", posX, posY)
 
@@ -111,7 +126,7 @@ function me.GetLabelText(frame)
   if not name then return end
 
   for i = 1, table.getn(options) do
-    if name == RGGM_CONSTANTS.ELEMENT_GENERAL_OPT .. options[i][1] then
+    if name == RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT .. options[i][1] then
       return options[i][2]
     end
   end
@@ -128,7 +143,7 @@ function me.OptTooltipOnEnter(self)
   if not name then return end
 
   for i = 1, table.getn(options) do
-    if name == RGGM_CONSTANTS.ELEMENT_GENERAL_OPT .. options[i][1] then
+    if name == RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT .. options[i][1] then
       mod.tooltip.BuildTooltipForOption(options[i][2], options[i][3])
       break
     end
@@ -139,5 +154,33 @@ end
   OnEnter callback for checkbuttons - hide tooltip
 ]]--
 function me.OptTooltipOnLeave()
-  _G[RGGM_CONSTANTS.ELEMENT_TOOLTIP]:Hide()
+  _G[RGPVPW_CONSTANTS.ELEMENT_TOOLTIP]:Hide()
+end
+
+--[[
+  OnShow callback for checkbuttons - enable combat state tracking
+
+  @param {table} self
+]]--
+function me.EnableCombatStateTrackingOnShow(self)
+  if mod.configuration.IsCombatStateTrackingEnabled() then
+    self:SetChecked(true)
+  else
+    self:SetChecked(false)
+  end
+end
+
+--[[
+  OnClick callback for checkbuttons - enable combat state tracking
+
+  @param {table} self
+]]--
+function me.EnableCombatStateTrackingOnClick(self)
+  local enabled = self:GetChecked()
+
+  if enabled then
+    mod.configuration.EnableCombatStateTracking()
+  else
+    mod.configuration.DisableCombatStateTracking()
+  end
 end

@@ -3,7 +3,7 @@
 ## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
 ## Notes: PVPWarn aims to warns players visually and acoustically about pvp events
 ## Version: v1.0.0
-## SavedVariablesPerCharacter: PVPWarnConfiguration PVPWarnLogTracker PVPWarnTestLog PVPWarnOptions PVPWarnProfiles
+## SavedVariablesPerCharacter: PVPWarnConfiguration PVPWarnLogTracker PVPWarnTestLog PVPWarnConfiguration PVPWarnProfiles
 
 # constant values
 code/PVPW_Constants.lua
@@ -30,6 +30,7 @@ code/PVPW_CombatState.lua
 code/PVPW_Configuration.lua
 code/PVPW_SpellConfiguration.lua
 code/PVPW_Cmd.lua
+code/PVPW_Tooltip.lua
 profiles/PVPW_Profile.lua
 
 # debug

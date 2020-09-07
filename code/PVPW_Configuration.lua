@@ -24,20 +24,24 @@
 
 local mod = rgpvpw
 local me = {}
-mod.addonOptions = me
+mod.configuration = me
 
 me.tag = "AddonOptions"
 
 --[[
   Saved addon variable
 ]]--
-PVPWarnOptions = {
+PVPWarnConfiguration = {
 
 
   --[[
     Enemy spells being casted/used/activated
   ]]--
   ["spellList"] = nil,
+  --[[
+    Whether combat state tracking is enabled or not
+  ]]--
+  ["enableCombatStateTracking"] = true
 }
 
 --[[
@@ -46,9 +50,14 @@ PVPWarnOptions = {
 function me.SetupConfiguration()
 
   -- initialize spelllist for the first time with default profile
-  if PVPWarnOptions.spellList == nil then
-    PVPWarnOptions.spellList = {}
-    -- PVPWarnOptions.spellList = mod.profile.GetDefaultProfile() TODO
+  if PVPWarnConfiguration.spellList == nil then
+    PVPWarnConfiguration.spellList = {}
+    -- PVPWarnConfiguration.spellList = mod.profile.GetDefaultProfile() TODO
+  end
+
+  if PVPWarnConfiguration.enableCombatStateTracking == nil then
+    mod.logger.LogInfo(me.tag, "enableCombatStateTracking has unexpected nil value")
+    PVPWarnConfiguration.enableCombatStateTracking = true
   end
 end
 
@@ -58,13 +67,13 @@ end
 ]]--
 function me.SetAddonVersion()
   -- if no version set so far make sure to set the current one
-  if PVPWarnOptions.addonVersion == nil then
-    PVPWarnOptions.addonVersion = RGPVPW_ENVIRONMENT.ADDON_VERSION
+  if PVPWarnConfiguration.addonVersion == nil then
+    PVPWarnConfiguration.addonVersion = RGPVPW_ENVIRONMENT.ADDON_VERSION
   end
 
   me.MigrationPath()
   -- migration done update addon version to current
-  PVPWarnOptions.addonVersion = RGPVPW_ENVIRONMENT.ADDON_VERSION
+  PVPWarnConfiguration.addonVersion = RGPVPW_ENVIRONMENT.ADDON_VERSION
 end
 
 --[[
@@ -74,8 +83,33 @@ end
 ]]--
 function me.MigrationPath()
   --[[
-  if PVPWarnOptions.addonVersion == "x.x.x" then
+  if PVPWarnConfiguration.addonVersion == "x.x.x" then
     me.PrexxxMigration()
   end
   ]]--
+end
+
+--[[
+  Enable combat state tracking
+]]--
+function me.EnableCombatStateTracking()
+  PVPWarnConfiguration.enableCombatStateTracking = true
+  -- no actual work needed. Combatstate tracking will start once the player acquires a target
+end
+
+--[[
+  Disable combat state tracking
+]]--
+function me.DisableCombatStateTracking()
+  PVPWarnConfiguration.enableCombatStateTracking = false
+  mod.combatState.DisableCombatStateTracking()
+end
+
+--[[
+  @return {boolean}
+    true - if combat state tracking is enabled
+    false - if combat state tracking is disabled
+]]--
+function me.IsCombatStateTrackingEnabled()
+  return PVPWarnConfiguration.enableCombatStateTracking
 end

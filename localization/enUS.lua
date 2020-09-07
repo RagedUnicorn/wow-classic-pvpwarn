@@ -48,6 +48,8 @@ rgpvpw.L["issues"] = "Issues: https://github.com/RagedUnicorn/wow-classic-pvpwar
 -- general
 rgpvpw.L["configuration_menu_general"] = "General"
 rgpvpw.L["general_title"] = "General Configuration"
+rgpvpw.L["enable_combat_state_tracking"] = "Enable combatstate tracking"
+rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Tracks the combatstate of an enemy target"
 
 -- profiles
 rgpvpw.L["configuration_menu_profiles"] = "Profiles"
