@@ -32,6 +32,7 @@ mod.ticker = me
 me.tag = "Ticker"
 
 local warnQueueTicker
+local checkCombatState
 
 --[[
   Start the repeating update ticker for warnQueue
@@ -51,5 +52,26 @@ function me.StopTickerWarnQueue()
   if warnQueueTicker then
     warnQueueTicker:Cancel()
     mod.logger.LogInfo(me.tag, "Stopped 'WarnQueueTicker'")
+  end
+end
+
+--[[
+  Start the repeating update ticker for combatState
+]]--
+function me.StartTickerCheckCombatState()
+  if checkCombatState == nil or checkCombatState._cancelled then
+    checkCombatState = C_Timer.NewTicker(
+      RGPVPW_CONSTANTS.CHECK_COMBAT_STATE_INTERVAL, mod.combatState.CombatStateUpdate)
+      mod.logger.LogInfo(me.tag, "Started 'CheckCombatState'")
+  end
+end
+
+--[[
+  Stop the repeating update ticker for combatState
+]]--
+function me.StopTickerCheckCombatState()
+  if checkCombatState then
+    checkCombatState:Cancel()
+    mod.logger.LogInfo(me.tag, "Stopped 'CheckCombatState'")
   end
 end

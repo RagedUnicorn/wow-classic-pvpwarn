@@ -38,6 +38,13 @@ me.tag = "CombatLog"
     Optional function that is invoked with status infos. Currently only used for testing
 ]]--
 function me.ProcessUnfilteredCombatLogEvent(callback)
+  -- local test = {CombatLogGetCurrentEventInfo()}
+  -- table.insert(PVPWarnLogTracker, test)
+
+  -- if true then
+    -- return
+  -- end
+
   local _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName = CombatLogGetCurrentEventInfo()
 
   if RGPVPW_ENVIRONMENT.DEBUG then

@@ -53,6 +53,9 @@ function me.RegisterEvents(self)
     COMBAT_LOG_EVENT - shows only the logs that the player has configured
   ]]--
   self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+  -- Register to the event that fires when the players target changes
+  self:RegisterEvent("PLAYER_TARGET_CHANGED")
+  -- Fires when the player leaves combat status
 end
 
 --[[
@@ -67,6 +70,9 @@ function me.OnEvent(event)
   elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
     me.logger.LogEvent(me.tag, "COMBAT_LOG_EVENT_UNFILTERED")
     me.combatLog.ProcessUnfilteredCombatLogEvent()
+  elseif event == "PLAYER_TARGET_CHANGED" then
+    me.logger.LogEvent(me.tag, "PLAYER_TARGET_CHANGED")
+    me.target.UpdateCurrentTarget()
   end
 end
 
@@ -81,6 +87,8 @@ function me.Initialize()
   me.addonOptions.SetupConfiguration()
   -- setup addon configuration ui
   me.addonConfiguration.SetupAddonConfiguration() -- TODO remove this only for testing
+
+  me.targetFrame.BuildCombatStateUi()
   -- start ticker intervals
   me.ticker.StartTickerWarnQueue()
 

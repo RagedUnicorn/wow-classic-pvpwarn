@@ -26,9 +26,15 @@
 RGPVPW_CONSTANTS = {
   ADDON_NAME = "PVPWarn",
   --[[
+    Unit ids
+  ]]--
+  UNIT_ID_PLAYER = "player",
+  UNIT_ID_TARGET = "target",
+  --[[
     Intervals
   ]]--
   WARN_QUEUE_UPDATE_INTERVAL = 0.1,
+  CHECK_COMBAT_STATE_INTERVAL = 0.4,
   --[[
     Warn textures
   ]]--
@@ -125,6 +131,13 @@ RGPVPW_CONSTANTS = {
   ]]--
   ELEMENT_ALERT_FRAME = "PVPW_AlertFrame",
   ELEMENT_ALERT_TEXTURE = "PVPW_AlertTexture",
+  --[[
+    TargetFrame combatState
+  ]]--
+  ELEMENT_COMBAT_STATE_FRAME = "PVPW_CombatStateFrame",
+  ELEMENT_COMBAT_STATE_TEXTURE = "PVPW_CombatStateTexture",
+  COMBAT_STATE_ICON_SIZE = 20,
+  COMBAT_STATE_ACTIVE_ICON_ID = 132349,
   --[[
     Addon configuration
   ]]--
