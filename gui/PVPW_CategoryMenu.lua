@@ -24,7 +24,8 @@
 
 -- luacheck: globals CreateFrame STANDARD_TEXT_FONT FauxScrollFrame_Update FauxScrollFrame_GetOffset
 -- luacheck: globals UIDropDownMenu_Initialize UIDropDownMenu_AddButton UIDropDownMenu_GetSelectedValue
--- luacheck: globals UIDropDownMenu_SetSelectedValue GetSpellInfo
+-- luacheck: globals UIDropDownMenu_SetSelectedValue GetSpellInfo UIDropDownMenu_EnableDropDown
+-- luacheck: globals UIDropDownMenu_DisableDropDown
 
 local mod = rgpvpw
 local me = {}
@@ -167,7 +168,7 @@ function me.CreateRowFrame(frame, position)
   row.soundFadeCheckBox = me.CreateSpellSoundFadeCheckBox(row)
   row.playSoundFade = me.CreateSoundFadeButton(row)
   row.chooseVisual = me.CreateVisualAlertDropdown(row)
-  row.createVisualLabel = me.CreateVisualLabel(row)
+  row.chooseVisualLabel = me.CreateVisualLabel(row)
   row.playVisual = me.CreateVisualWarningButton(row)
 
   return row
@@ -186,12 +187,18 @@ function me.CreateSpellStateCheckbox(spellFrame)
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SPELL,
     spellFrame,
     {"LEFT", 0, 0},
-    function()
+    function(self)
       mod.spellConfiguration.ToggleSpellState(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
         spellFrame.spellName
       )
+
+      local parentFrame = self:GetParent()
+
+      me.UpdateCheckButtonState(self, parentFrame.soundCheckBox)
+      me.UpdateCheckButtonState(self, parentFrame.soundFadeCheckBox)
+      me.UpdateChooseVisualDropdownMenuState(parentFrame, self:GetChecked())
     end,
     function(self)
       local isActive = mod.spellConfiguration.IsSpellActive(
@@ -611,7 +618,6 @@ function me.UpdateIcon(cooldownIcon, category, spellId)
   cooldownIcon.iconHolder:SetBackdropBorderColor(unpack(color))
 end
 
-
 --[[
   @param {table} dropdownMenu
   @param {string} category
@@ -643,17 +649,26 @@ function me.UpdateSpellStateCheckBox(spellStateCheckBox, category, spellName)
     spellName
   )
 
+  local parentFrame = spellStateCheckBox:GetParent()
+
   if isSpellActive then
     mod.logger.LogDebug(me.tag, string.format(
       "Spell %s for category %s is active", spellName, category)
     )
     spellStateCheckBox:SetChecked(true)
+
+    me.UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundCheckBox)
+    me.UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundFadeCheckBox)
+    me.UpdateChooseVisualDropdownMenuState(parentFrame, true)
   else
     mod.logger.LogDebug(me.tag, string.format(
       "Spell %s for category %s is inactive", spellName, category)
     )
-    -- disable all elements (play buttons as well?)
     spellStateCheckBox:SetChecked(false)
+
+    me.UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundCheckBox)
+    me.UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundFadeCheckBox)
+    me.UpdateChooseVisualDropdownMenuState(parentFrame, false)
   end
 end
 
@@ -691,5 +706,44 @@ function me.UpdateSoundFade(soundFadeCheckBox, soundFadeButton, category, spell)
   else
     soundFadeCheckBox:Hide()
     soundFadeButton:Hide()
+  end
+end
+
+--[[
+  Updates a checkbutton based on its state or a dependent checkButton
+
+  @param {table} checkButton
+  @param {table} dependentCheckButton
+]]--
+function me.UpdateCheckButtonState(checkButton, dependentCheckButton)
+  if checkButton:GetChecked() then
+    if dependentCheckButton ~= nil then
+      mod.guiHelper.EnableCheckButton(dependentCheckButton)
+    else
+      mod.guiHelper.EnableCheckButton(checkButton)
+    end
+  else
+    if dependentCheckButton ~= nil then
+      mod.guiHelper.DisableCheckButton(dependentCheckButton)
+    else
+      mod.guiHelper.DisableCheckButton(checkButton)
+    end
+  end
+end
+
+--[[
+  Enables or disables the chooseVisual dropdown and its label based
+  on the checkButton state of the spell itself
+
+  @param {table} frame
+  @param {boolean} enable
+]]--
+function me.UpdateChooseVisualDropdownMenuState(frame, enable)
+  if enable then
+    UIDropDownMenu_EnableDropDown(frame.chooseVisual)
+    frame.chooseVisualLabel:SetTextColor(1, 1, 1)
+  else
+    UIDropDownMenu_DisableDropDown(frame.chooseVisual)
+    frame.chooseVisualLabel:SetTextColor(0.66, 0.66, 0.66)
   end
 end
