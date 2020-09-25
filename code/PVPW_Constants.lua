@@ -160,6 +160,7 @@ RGPVPW_CONSTANTS = {
   ELEMENT_GENERAL_FRAME = "PVPW_GeneralFrame",
   ELEMENT_GENERAL_TITLE = "PVPW_GeneralTitle",
   ELEMENT_GENERAL_OPT_ENABLE_COMBAT_STATE = "PVPW_OptEnableCombatStateTracking",
+  ELEMENT_GENERAL_OPT_LOCK_FRAME_COMBAT_STATE = "PVPW_OptLockFrameCombatState",
   --[[
     A list of available categories consisting of all classes, racials, items and a
     misc category

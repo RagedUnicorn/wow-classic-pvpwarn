@@ -34,7 +34,15 @@ me.tag = "GeneralMenu"
   Option texts for checkbutton options
 ]]--
 local options = {
-  {"EnableCombatStateTracking", rgpvpw.L["enable_combat_state_tracking"], rgpvpw.L["enable_combat_state_tracking_tooltip"]},
+  {
+    "EnableCombatStateTracking",
+    rgpvpw.L["enable_combat_state_tracking"],
+    rgpvpw.L["enable_combat_state_tracking_tooltip"]
+  }, {
+    "LockFrameCombatState",
+    rgpvpw.L["lock_frame_combat_state"],
+    rgpvpw.L["lock_frame_combat_state_tooltip"]
+  }
 }
 
 -- track whether the menu was already built
@@ -50,15 +58,7 @@ function me.BuildUi(frame)
   if builtMenu then return end
 
   me.BuildTitle(frame)
-
-  me.BuildCheckButtonOption(
-    frame,
-    RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_ENABLE_COMBAT_STATE,
-    20,
-    -80,
-    me.EnableCombatStateTrackingOnShow,
-    me.EnableCombatStateTrackingOnClick
-  )
+  me.BuildCombatStateOptions(frame)
 
   builtMenu = true
 end
@@ -78,6 +78,33 @@ function me.BuildTitle(frame)
 end
 
 --[[
+  Creates all checkButtons for the combatState configuration. Make sure to create checkbuttons
+  that are dependant on others first
+
+  @param {table} frame
+]]--
+function me.BuildCombatStateOptions(frame)
+  me.BuildCheckButtonOption(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_COMBAT_STATE,
+    40,
+    -110,
+    me.LockFrameCombatStateOnShow,
+    me.LockFrameCombatStateOnClick
+  )
+
+  me.BuildCheckButtonOption(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_ENABLE_COMBAT_STATE,
+    20,
+    -80,
+    me.EnableCombatStateTrackingOnShow,
+    me.EnableCombatStateTrackingOnClick,
+    { RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_COMBAT_STATE }
+  )
+end
+
+--[[
   Build a checkbutton option
 
   @param {table} parentFrame
@@ -86,8 +113,12 @@ end
   @param {number} posY
   @param {function} onShowCallback
   @param {function} onClickCallback
+  @param {table} linkedCheckButtonNames
+    Linked checkbutton that enables/disables this option
 ]]--
-function me.BuildCheckButtonOption(parentFrame, optionFrameName, posX, posY, onShowCallback, onClickCallback)
+function me.BuildCheckButtonOption(parentFrame, optionFrameName, posX, posY, onShowCallback, onClickCallback,
+  linkedCheckButtonNames)
+
   local checkButtonOptionFrame = CreateFrame("CheckButton", optionFrameName, parentFrame, "UICheckButtonTemplate")
   checkButtonOptionFrame:SetSize(
     RGPVPW_CONSTANTS.GENERAL_CHECK_OPTION_SIZE,
@@ -102,6 +133,13 @@ function me.BuildCheckButtonOption(parentFrame, optionFrameName, posX, posY, onS
       region:SetText(me.GetLabelText(checkButtonOptionFrame))
       break
     end
+  end
+
+  --[[
+    Set a linked button that automatically gets enabled/disabled based on the checkButton state
+  ]]--
+  if linkedCheckButtonNames ~= nil then
+    checkButtonOptionFrame.linkedCheckButtonNames = linkedCheckButtonNames
   end
 
   checkButtonOptionFrame:SetScript("OnEnter", me.OptTooltipOnEnter)
@@ -165,8 +203,10 @@ end
 function me.EnableCombatStateTrackingOnShow(self)
   if mod.configuration.IsCombatStateTrackingEnabled() then
     self:SetChecked(true)
+    me.EnableCheckButtons(self.linkedCheckButtonNames)
   else
     self:SetChecked(false)
+    me.DisableCheckButtons(self.linkedCheckButtonNames)
   end
 end
 
@@ -180,7 +220,71 @@ function me.EnableCombatStateTrackingOnClick(self)
 
   if enabled then
     mod.configuration.EnableCombatStateTracking()
+    me.EnableCheckButtons(self.linkedCheckButtonNames)
   else
     mod.configuration.DisableCombatStateTracking()
+    me.DisableCheckButtons(self.linkedCheckButtonNames)
+  end
+end
+
+--[[
+  Enables a list of checkButtons
+
+  @param {table} checkButtonNames
+]]--
+function me.EnableCheckButtons(checkButtonNames)
+  for _, checkButtonName in pairs(checkButtonNames) do
+    local checkButtonFrame = _G[checkButtonName]
+
+    if checkButtonFrame ~= nil then
+      mod.guiHelper.EnableCheckButton(checkButtonFrame)
+    else
+      mod.logger.LogError(me.tag, "Tried to enable non-existent checkbutton")
+    end
+  end
+end
+
+--[[
+  Disables a list of checkButtons
+
+  @param {table} checkButtonNames
+]]--
+function me.DisableCheckButtons(checkButtonNames)
+  for _, checkButtonName in pairs(checkButtonNames) do
+    local checkButtonFrame = _G[checkButtonName]
+
+    if checkButtonFrame ~= nil then
+      mod.guiHelper.DisableCheckButton(checkButtonFrame)
+    else
+      mod.logger.LogError(me.tag, "Tried to disable non-existent checkbutton")
+    end
+  end
+end
+
+--[[
+  OnShow callback for checkbuttons - lock combat state frame
+
+  @param {table} self
+]]--
+function me.LockFrameCombatStateOnShow(self)
+  if mod.configuration.IsCombatStateFrameLocked() then
+    self:SetChecked(true)
+  else
+    self:SetChecked(false)
+  end
+end
+
+--[[
+  OnClick callback for checkbuttons - lock combat state frame
+
+  @param {table} self
+]]--
+function me.LockFrameCombatStateOnClick(self)
+  local enabled = self:GetChecked()
+
+  if enabled then
+    mod.configuration.LockCombatStateFrame()
+  else
+    mod.configuration.UnlockCombatStateFrame()
   end
 end

@@ -32,13 +32,13 @@ mod.target = me
 
 me.tag = "Target"
 
-local currentTargetGuid = ""
-local currentTargetName = ""
+local currentTargetGuid = nil
+local currentTargetName = nil
 
 --[[
   Returns the players current target uid or an empty string if the player has no target.
 
-  @return {string}
+  @return {string | nil}
 ]]--
 function me.GetCurrentTargetGuid()
   return currentTargetGuid
@@ -47,7 +47,7 @@ end
 --[[
   Returns the players current target name or an empty string if the player has no target.
 
-  @return {string}
+  @return {string | nil}
 ]]--
 function me.GetCurrentTargetName()
   return currentTargetName
@@ -61,7 +61,7 @@ function me.UpdateCurrentTarget()
   local targetName = UnitName(RGPVPW_CONSTANTS.UNIT_ID_TARGET)
 
   if targetId == nil then
-    currentTargetGuid = ""
+    currentTargetGuid = nil
     mod.logger.LogDebug(me.tag, "Update players targetGUID: [Empty-target]")
   else
     currentTargetGuid = targetId
@@ -69,7 +69,7 @@ function me.UpdateCurrentTarget()
   end
 
   if targetName == nil then
-    currentTargetName = ""
+    currentTargetName = nil
     mod.logger.LogDebug(me.tag, "Update players targetName: [Empty-target]")
   else
     currentTargetName = targetName
@@ -79,6 +79,7 @@ function me.UpdateCurrentTarget()
   -- updating combatState with changed target
   if targetId ~= nil and targetName ~= nil then
     mod.combatState.AcquiredTarget()
+    mod.auraState.AcquiredTarget()
   else
     mod.combatState.LostTarget()
   end

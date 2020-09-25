@@ -80,9 +80,11 @@ end
   Init function
 ]]--
 function me.Initialize()
+  me.filter.RegisterFilter("combatstate", "CombatState") -- filter combatstatelogs TODO
+
   me.logger.LogDebug(me.tag, "Initialize addon")
   -- setup slash commands
-  -- me.cmd.SetupSlashCmdList() TODO
+  me.cmd.SetupSlashCmdList()
   -- load addon variables
   me.configuration.SetupConfiguration()
   -- setup addon configuration ui

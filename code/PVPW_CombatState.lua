@@ -32,13 +32,18 @@ mod.combatState = me
 me.tag = "CombatState"
 
 --[[
+
+]]--
+local configurationMode = false
+
+--[[
   Invoked when a new target is aquired
 ]]--
 function me.AcquiredTarget()
   if not mod.configuration.IsCombatStateTrackingEnabled() then return end
 
   if UnitIsPlayer(RGPVPW_CONSTANTS.UNIT_ID_TARGET) and UnitIsEnemy(RGPVPW_CONSTANTS.UNIT_ID_PLAYER,
-    RGPVPW_CONSTANTS.UNIT_ID_TARGET) and UnitIsPVP(RGPVPW_CONSTANTS.UNIT_ID_TARGET) then
+    RGPVPW_CONSTANTS.UNIT_ID_TARGET) and UnitIsPVP(RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode == true then -- TODO
     mod.logger.LogDebug(me.tag, "Aquired new enemy target - starting combatstate tracking")
     -- after switching targets instantly update
     me.CombatStateUpdate()
@@ -67,7 +72,7 @@ end
   Update the combat state of the current target
 ]]--
 function me.CombatStateUpdate()
-  local affectingCombat = UnitAffectingCombat(RGPVPW_CONSTANTS.UNIT_ID_TARGET)
+  local affectingCombat = UnitAffectingCombat(RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode -- TODO
 
   mod.logger.LogDebug(me.tag, "Targeted unit is affected by combat: " .. tostring(affectingCombat))
   mod.targetFrame.UpdateCombateStateUi(affectingCombat)
@@ -78,5 +83,28 @@ end
 ]]--
 function me.DisableCombatStateTracking()
   mod.ticker.StopTickerCheckCombatState()
+  mod.targetFrame.HideCombatState()
+end
+
+--[[
+  Enable configuration mode
+]]--
+function me.EnableConfigurationMode()
+  configurationMode = true
+  mod.logger.LogInfo(me.tag, "Enabled combat state configuration mode")
+
+  if mod.target.GetCurrentTargetGuid() == nil then
+    mod.logger.PrintUserError("Make sure to target something to see the frame") -- TODO localize
+  end
+
+  mod.targetFrame.ShowCombatState()
+end
+
+--[[
+  Disabled configuration mode
+]]--
+function me.DisableConfigurationMode()
+  configurationMode = false
+  mod.logger.LogInfo(me.tag, "Disabled combat state configuration mode")
   mod.targetFrame.HideCombatState()
 end

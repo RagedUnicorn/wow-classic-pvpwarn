@@ -35,8 +35,9 @@ me.tag = "Cmd"
 ]]--
 local function ShowInfoMessage()
   print(rgpvpw.L["info_title"])
-  print(rgpvpw.L["reload"])
   print(rgpvpw.L["opt"])
+  print(rgpvpw.L["combatstate"])
+  print(rgpvpw.L["reload"])
 end
 
 --[[
@@ -62,6 +63,14 @@ function me.SetupSlashCmdList()
       ReloadUI()
     elseif args[1] == "opt" then
       mod.addonConfiguration.OpenAddonPanel()
+    elseif args[1] == "combatstate" then
+      if args[2] == "enable" then
+        mod.combatState.EnableConfigurationMode()
+      elseif args[2] == "disable" then
+        mod.combatState.DisableConfigurationMode()
+      else
+        mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
+      end
     else
       mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
     end

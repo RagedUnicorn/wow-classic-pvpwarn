@@ -52,6 +52,11 @@ function me.BuildCombatStateUi()
     RGPVPW_CONSTANTS.COMBAT_STATE_ICON_SIZE + 5
   )
   iconHolder:SetPoint("RIGHT", 0, 0)
+  iconHolder:SetMovable(true)
+  iconHolder:SetClampedToScreen(true)
+
+  mod.guiHelper.LoadFramePosition(iconHolder, RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME)
+  me.SetupDragFrame(iconHolder)
 
   local combatStateIcon = iconHolder:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_TEXTURE, "ARTWORK")
   combatStateIcon.iconHolder = iconHolder
@@ -81,6 +86,48 @@ function me.BuildCombatStateUi()
   -- set combat state active icon
   combatStateIcon:SetTexture(RGPVPW_CONSTANTS.COMBAT_STATE_ACTIVE_ICON_ID)
   iconHolder:Hide()
+end
+
+--[[
+  @param {table} frame
+    The frame to attach the drag handlers to
+]]--
+function me.SetupDragFrame(frame)
+  frame:SetScript("OnMouseDown", me.StartDragFrame)
+  frame:SetScript("OnMouseUp", me.StopDragFrame)
+end
+
+--[[
+  Frame callback to start moving the passed (self) frame
+
+  @param {table} self
+]]--
+function me.StartDragFrame(self)
+  if mod.configuration.IsCombatStateFrameLocked() then return end
+
+  self:StartMoving()
+end
+
+--[[
+  Frame callback to stop moving the passed (self) frame
+
+  @param {table} self
+]]--
+function me.StopDragFrame(self)
+  if mod.configuration.IsCombatStateFrameLocked() then return end
+
+  self:StopMovingOrSizing()
+
+  local point, relativeTo, relativePoint, posX, posY = self:GetPoint()
+
+  mod.configuration.SaveUserPlacedFramePosition(
+    RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME,
+    point,
+    relativeTo,
+    relativePoint,
+    posX,
+    posY
+  )
 end
 
 --[[

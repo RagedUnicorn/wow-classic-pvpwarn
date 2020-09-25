@@ -41,7 +41,24 @@ PVPWarnConfiguration = {
   --[[
     Whether combat state tracking is enabled or not
   ]]--
-  ["enableCombatStateTracking"] = true
+  ["enableCombatStateTracking"] = true,
+  --[[
+    Whether the frame to track an enemies combatstate is locked or not
+  ]]--
+  ["lockCombatStateFrame"] = true,
+  --[[
+    Framepositions for user draggable Frames
+    frames = {
+      -- should match the actual frame name
+      ["Framename"] = {
+      point: "CENTER",
+        posX: 0,
+        posY: 0
+      }
+      ...
+    }
+  ]]--
+  ["frames"] = {}
 }
 
 --[[
@@ -59,6 +76,22 @@ function me.SetupConfiguration()
     mod.logger.LogInfo(me.tag, "enableCombatStateTracking has unexpected nil value")
     PVPWarnConfiguration.enableCombatStateTracking = true
   end
+
+  if PVPWarnConfiguration.lockCombatStateFrame == nil then
+    mod.logger.LogInfo(me.tag, "lockCombatStateFrame has unexpected nil value")
+    PVPWarnConfiguration.lockCombatStateFrame = true
+  end
+
+  if PVPWarnConfiguration.frames == nil then
+    mod.logger.LogInfo(me.tag, "frames has unexpected nil value")
+    PVPWarnConfiguration.frames = {}
+  end
+
+  --[[
+    Set saved variables with addon version. This can be used later to determine whether
+    a migration path applies to the current saved variables or not
+  ]]--
+  me.SetAddonVersion()
 end
 
 --[[
@@ -112,4 +145,71 @@ end
 ]]--
 function me.IsCombatStateTrackingEnabled()
   return PVPWarnConfiguration.enableCombatStateTracking
+end
+
+--[[
+  Lock combat state frame
+]]--
+function me.LockCombatStateFrame()
+  PVPWarnConfiguration.lockCombatStateFrame = true
+  -- no actual work needed TODO
+end
+
+--[[
+  Unlock combat state frame
+]]--
+function me.UnlockCombatStateFrame()
+  PVPWarnConfiguration.lockCombatStateFrame = false
+  -- no actual work needed TODO
+end
+
+--[[
+  @return {boolean}
+    true - if combat state frame is locked
+    false - if combat state frame is unlocked
+]]--
+function me.IsCombatStateFrameLocked()
+  return PVPWarnConfiguration.lockCombatStateFrame
+end
+
+--[[
+  Save the position of a frame in the addon variables allowing to persist its position
+
+  @param {string} frameName
+  @param {string} point
+  @param {string} relativeTo
+  @param {string} relativePoint
+  @param {number} posX
+  @param {number} posY
+]]--
+function me.SaveUserPlacedFramePosition(frameName, point, relativeTo, relativePoint, posX, posY)
+  local frame = PVPWarnConfiguration.frames[frameName] or {}
+
+  frame.posX = posX
+  frame.posY = posY
+  frame.point = point
+  frame.relativeTo = relativeTo
+  frame.relativePoint = relativePoint
+
+  mod.logger.LogDebug(me.tag, "Saved frame position for - " .. frameName
+    .. " - new pos: posX " .. posX .. " posY " .. posY .. " point " .. point)
+end
+
+--[[
+  Get the position of a saved frame
+
+  @param {string} frameName
+
+  @return {table | nil}
+    table - the returned x and y position
+    nil - if no frame with the passed name could be found
+]]--
+function me.GetUserPlacedFramePosition(frameName)
+  local frameConfig = PVPWarnConfiguration.frames[frameName]
+
+  if type(frameConfig) == "table" then
+    return frameConfig
+  end
+
+  return nil
 end

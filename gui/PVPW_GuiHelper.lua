@@ -142,3 +142,50 @@ function me.ResizeButtonToText(button)
     buttonFontString:GetStringWidth() + RGPVPW_CONSTANTS.BUTTON_DEFAULT_PADDING
   )
 end
+
+--[[
+  Load a frames position from SavedVariablesPerCharacter
+
+  @param {table} slot
+]]--
+function me.LoadFramePosition(frame, frameName)
+  local framePosition = mod.configuration.GetUserPlacedFramePosition(frameName)
+  --[[
+    Set user frame position if there is one saved
+  ]]--
+  if framePosition ~= nil then
+    frame:ClearAllPoints() -- very important to clear all points first
+    frame:SetPoint(
+      framePosition.point,
+      framePosition.relativeTo,
+      framePosition.relativePoint,
+      framePosition.posX,
+      framePosition.posY
+    )
+  else
+    -- initial position for first time use
+    frame:SetPoint("CENTER", 0, 0)
+  end
+end
+
+--[[
+  Disables a checkButton and updates the text to greyed out
+
+  @param {table} checkButton
+    The checkButton to disable
+]]
+function me.DisableCheckButton(checkButton)
+  checkButton:Disable()
+  checkButton.text:SetTextColor(0.66, 0.66, 0.66)
+end
+
+--[[
+  Enables a checkButton and updates the text to white
+
+  @param {table} checkButton
+    The checkButton to enable
+]]
+function me.EnableCheckButton(checkButton)
+  checkButton:Enable()
+  checkButton.text:SetTextColor(1, 1, 1)
+end
