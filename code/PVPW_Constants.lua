@@ -228,6 +228,12 @@ RGPVPW_CONSTANTS = {
     }
   },
   --[[
+    Tab configuration
+  ]]--
+  ELEMENT_TAB_BUTTON = "PVPW_TabButton_",
+  ELEMENT_TAB_CONTENT_FRAME = "PVPW_TabContentFrame",
+
+  --[[
     Profilemenu
   ]]--
   ELEMENT_PROFILE_LIST_SCROLL_FRAME = "PVPW_ProfileListScrollFrame",

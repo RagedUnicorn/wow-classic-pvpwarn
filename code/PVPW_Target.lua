@@ -79,7 +79,7 @@ function me.UpdateCurrentTarget()
   -- updating combatState with changed target
   if targetId ~= nil and targetName ~= nil then
     mod.combatState.AcquiredTarget()
-    mod.auraState.AcquiredTarget()
+    -- mod.unitBuff.AcquiredTarget()
   else
     mod.combatState.LostTarget()
   end

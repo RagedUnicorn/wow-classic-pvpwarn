@@ -27,10 +27,13 @@ code/PVPW_SpellMap.lua
 code/PVPW_Common.lua
 code/PVPW_Target.lua
 code/PVPW_CombatState.lua
+code/PVPW_UnitBuff.lua
 code/PVPW_Configuration.lua
 code/PVPW_SpellConfiguration.lua
 code/PVPW_Cmd.lua
 code/PVPW_Tooltip.lua
+
+# profiles
 profiles/PVPW_Profile.lua
 
 # debug
@@ -45,6 +48,9 @@ gui/PVPW_CategoryMenu.lua
 gui/PVPW_ProfileMenu.lua
 gui/PVPW_GuiHelper.lua
 gui/PVPW_TargetFrame.lua
+
+gui/PVPW_CategoryMenuResistTab.lua
+gui/PVPW_CategoryMenuSpellsTab.lua
 
 # test
 test/PVPW_TestReporter.lua
