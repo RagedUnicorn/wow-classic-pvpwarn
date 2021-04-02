@@ -22,6 +22,7 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT
 
 local mod = rgpvpw
 local me = {}
@@ -52,8 +53,6 @@ local activeCategory = nil
   TODO
 ]]--
 function me.Init(frame, category)
-  mod.logger.LogError(me.tag, "called category: " .. category)
-  -- mod.logger.LogError(me.tag, "frame category: " .. frame.category)
   frame.categoryName = category
 
   if builtMenu then
@@ -98,7 +97,7 @@ function me.CreateSpellList(frame)
   )
 
   scrollFrame:ClearAllPoints()
-  scrollFrame:SetPoint("TOPLEFT", frame, 5, -7)
+  scrollFrame:SetPoint("TOPLEFT", frame)
 
   return scrollFrame
 end
@@ -124,7 +123,6 @@ function me.CreateFauxScrollFrame(scrollFrameName, frame, width, callback, stora
   scrollFrame:SetScript("OnVerticalScroll", function(self, offset)
     self.ScrollBar:SetValue(offset)
     self.offset = math.floor(offset / RGPVPW_CONSTANTS.SPELL_LIST_ROW_HEIGHT + 0.5)
-    pet = self
     callback(self, self:GetParent().categoryName)
   end)
 

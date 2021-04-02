@@ -25,7 +25,7 @@
 -- luacheck: globals CreateFrame STANDARD_TEXT_FONT FauxScrollFrame_Update FauxScrollFrame_GetOffset
 -- luacheck: globals UIDropDownMenu_Initialize UIDropDownMenu_AddButton UIDropDownMenu_GetSelectedValue
 -- luacheck: globals UIDropDownMenu_SetSelectedValue GetSpellInfo UIDropDownMenu_EnableDropDown
--- luacheck: globals UIDropDownMenu_DisableDropDown
+-- luacheck: globals UIDropDownMenu_DisableDropDown PanelTemplates_TabResize
 
 local mod = rgpvpw
 local me = {}
@@ -58,102 +58,173 @@ local navigation = {
 }
 
 --[[
+  Currently active category
+]]--
+local categoryName = nil
+
+local spellTab = 1
+local resistTab = 2
+
+--[[
+  Reference to the first tab switching button. The button changes its attached parent
+  when switching through the different categories
+]]--
+local tabButton1
+--[[
+  Reference to the second tab switching button. The button changes its attached parent
+  when switching through the different categories
+]]--
+local tabButton2
+--[[
+  Reference to the first content frame. The contentFrame changes its attached parent
+  when switching through the different categories. It then clears out its content and
+  displays the content of the current category.
+]]--
+local contentFrame1
+--[[
+  Reference to the second content frame. The contentFrame changes its attached parent
+  when switching through the different categories. It then clears out its content and
+  displays the content of the current category.
+]]--
+local contentFrame2
+
+--[[
   Build or update (if already built) the category menus for configuring spells
 
-  @param {table} frame
-    The addon configuration frame to attach to
+  @param {table} self
+    Reference to the addon configuration frame to attach to
 ]]--
 function me.MenuOnShow(self)
-  at = self
-  if builtMenu then
-    -- activate first tab and init it
-  else
-    Tabsexperiment(self)
+  if not builtMenu then
+    me.CreateCategoryMenu(self)
   end
+
+  me.ResetNavigation()
+  me.UpdateCategoryMenu(self)
+  me.ActivateTab(spellTab) -- activate the spell tab (first tab)
 end
 
-function Tabsexperiment(self)
+--[[
+  Create the initial elements for the category menu. This includes containers to switch between
+  the spelltab and the resisttab and the buttons to allow this switching process. This function should
+  only run once avoiding creating unnecessary ui elements.
+]]--
+function me.CreateCategoryMenu(self)
+  tabButton1 = me.CreateTabButton(
+    self,
+    RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. spellTab,
+    {"TOPLEFT", 5, 30},
+    rgpvpw.L["tab_button_spell"],
+    spellTab
+  )
 
-  self:SetBackdrop({
-    bgFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background", -- TODO development only
-  insets = {left = 0, right = 0, top = 0, bottom = 0},
-  })
-  self:SetBackdropColor(0.37, 0.37, 0.37, .4)
+  tabButton2 = me.CreateTabButton(
+    self,
+    RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. resistTab,
+    {"TOPLEFT", 70, 30},
+    rgpvpw.L["tab_button_resist"],
+    resistTab
+  )
 
-  local tab1Button = CreateFrame("Button", RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. 1, self, "TabButtonTemplate")
-  tab1Button.id = 1
-  tab1Button:SetPoint("LEFT", 40, 0)
-  tab1Button:SetText("tab1Button")
-  tab1Button:SetScript('OnClick', function(self)
-    mod.logger.LogError(me.tag, "clicked tab1")
+  contentFrame1 = me.CreateCategoryMenuContentFrame(
+    self,
+    RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. spellTab,
+    {"TOPLEFT", self, 5, -7}
+  )
+  navigation[spellTab].contentFrame = contentFrame1
+  navigation[spellTab].func = mod.categoryMenuSpellsTab.Init
+
+  contentFrame2 = me.CreateCategoryMenuContentFrame(
+    self,
+    RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. resistTab,
+    {"TOPLEFT", self, 5, -7}
+  )
+  navigation[resistTab].contentFrame = contentFrame2
+  navigation[resistTab].func = mod.categoryMenuResistTab.Init
+
+  builtMenu = true -- mark menu as built preventing from doing this step again
+end
+
+--[[
+  @param {table} parentFrame
+  @param {string} contentFrameName
+  @param {table} position
+  @param {string} text
+  @param {number} id
+
+  @return {table}
+]]--
+function me.CreateTabButton(parentFrame, tabButtonName, position, text, id)
+  local tabButton = CreateFrame("Button", tabButtonName, parentFrame, "TabButtonTemplate")
+  tabButton.id = id
+  tabButton:SetPoint(unpack(position))
+  tabButton:SetText(text)
+  PanelTemplates_TabResize(tabButton, 0)
+  tabButton:SetScript('OnClick', function(self)
     me.TabNavigationButtonOnClick(self)
   end)
 
-  local tab2Button = CreateFrame("Button", RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. 2, self, "TabButtonTemplate")
-  tab2Button.id = 2
-  tab2Button:SetPoint("LEFT", 80, 0)
-  tab2Button:SetText("tab2Button")
-  tab2Button:SetScript('OnClick', function(self)
-    mod.logger.LogError(me.tag, "clicked tab2")
-    me.TabNavigationButtonOnClick(self)
-  end)
+  return tabButton
+end
 
+--[[
+  @param {table} self
+  @param {string} contentFrameName
+  @param {table} position
 
-
-  local contentFrame1 = CreateFrame("Frame", RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. 1, self)
-  contentFrame1:SetPoint("TOPLEFT", self, "TOPLEFT")
-  contentFrame1:SetBackdrop({
+  @return {table}
+]]--
+function me.CreateCategoryMenuContentFrame(self, contentFrameName, position)
+  local contentFrame = CreateFrame("Frame", contentFrameName, self)
+  contentFrame:SetPoint(unpack(position))
+  contentFrame:SetBackdrop({ -- DEVELOPMENT ONLY
     bgFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
     insets = {left = 0, right = 0, top = 0, bottom = 0},
   })
-  contentFrame1:SetBackdropColor(1, 0.37, 0.5, .7)
-  contentFrame1:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)
-  contentFrame1:SetHeight(200)
-  navigation[1].contentFrame = contentFrame1
-  navigation[1].func = mod.categoryMenuSpellsTab.Init
-  -- UPDATE category
-  navigation[1].category = self.categoryName
+  contentFrame:SetBackdropColor(1, 0.37, 0.5, .7)
+  contentFrame:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)
+  contentFrame:SetHeight(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_HEIGHT)
 
-  local contentFrame2 = CreateFrame("Frame", RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. 2, self)
-  mod.logger.LogError(me.tag, "self name: " .. self:GetName())
-  mod.logger.LogError(me.tag, "contentFrame2 name: " .. contentFrame2:GetName())
-  contentFrame2:SetPoint("TOPLEFT", self, "TOPLEFT")
-  contentFrame2:SetBackdrop({
-    bgFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
-    insets = {left = 0, right = 0, top = 0, bottom = 0},
-  })
-  contentFrame2:SetBackdropColor(1, 0.9, 0, 1)
-  contentFrame2:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)
-  contentFrame2:SetHeight(200)
-  navigation[2].contentFrame = contentFrame2
-  navigation[2].func = mod.categoryMenuResistTab.Init
-  -- UPDATE category
-  navigation[2].category = self.categoryName
-
-
+  return contentFrame
 end
 
 --[[
   @param {table} self
 ]]--
 function me.TabNavigationButtonOnClick(self)
-  local tabId = self.id
-
-  if navigation[tabId].active then
-    -- window is already active
+  if navigation[self.id].active then
+    mod.logger.LogDebug(me.tag, "Tab is already active - skipping...")
     return
   end
 
-  me.Reset()
-  me.ActivateTab(tabId)
+  me.ResetNavigation()
+  me.ActivateTab(self.id)
 end
 
 --[[
-  Reset navigation before activating a new tab
+  Update the cateogry menu. This is invoked everytime the category changes. Buttons parents
+  need to be updated.
+
+  @param {table} self
 ]]--
-function me.Reset()
+function me.UpdateCategoryMenu(self)
+  -- update ui elements parentframe
+  tabButton1:SetParent(self)
+  tabButton2:SetParent(self)
+  contentFrame1:SetParent(self)
+  contentFrame2:SetParent(self)
+
+  -- update the current active category
+  categoryName = self.categoryName
+end
+
+--[[
+  Reset navigation
+]]--
+function me.ResetNavigation()
+  mod.logger.LogDebug(me.tag, "Resetting navigation")
+
   for position, _ in pairs(navigation) do
-    mod.logger.LogError(me.tag, "pos: " .. position)
     _G[RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. position]:UnlockHighlight()
 
     navigation[position].active = false
@@ -168,10 +239,12 @@ end
   @param {number} position
 ]]--
 function me.ActivateTab(position)
+  mod.logger.LogDebug(me.tag, "Activating tab position " .. position)
+
   local nav = navigation[position]
   _G[RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. position]:LockHighlight()
 
   nav.active = true
   nav.contentFrame:Show()
-  nav.func(nav.contentFrame, nav.category)
+  nav.func(nav.contentFrame, categoryName)
 end

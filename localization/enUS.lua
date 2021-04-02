@@ -93,6 +93,10 @@ rgpvpw.L["category_items"] = "Items"
 rgpvpw.L["category_racials"] = "Racials"
 rgpvpw.L["category_misc"] = "Misc"
 
+-- category navigation
+rgpvpw.L["tab_button_spell"] = "Spells"
+rgpvpw.L["tab_button_resist"] = "Resist"
+
 -- category configuration
 rgpvpw.L["label_enable_sound"] = "Enable Sound"
 rgpvpw.L["label_play_sound"] = "Play"
