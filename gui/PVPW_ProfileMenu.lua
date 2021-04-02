@@ -99,13 +99,23 @@ StaticPopupDialogs["PVPW_CHANGE_PROFILE_WARNING"] = {
   text = rgpvpw.L["confirm_override_profile_dialog_text"],
   button1 = rgpvpw.L["confirm_override_profile_yes_button"],
   button2 = rgpvpw.L["confirm_override_profile_no_button"],
-  OnAccept = function(default) -- TODO default where is that coming from?
-    if default then
-      -- mod.profile.ActivateDefaultProfile()
-    else
-      -- mod.profile.ActivateProfile(currentSelectedProfile) TODO
-      -- me.ProfileListUpdate() -- update visual list
-    end
+  OnAccept = function()
+    mod.profile.LoadProfile(currentSelectedProfile)
+  end,
+  timeout = 0,
+  whileDead = true,
+  preferredIndex = 4
+}
+
+--[[
+  Popup dialog warning before loading the default profile
+]]--
+StaticPopupDialogs["PVPW_CHANGE_DEFAULT_PROFILE_WARNING"] = {
+  text = rgpvpw.L["confirm_override_default_profile_dialog_text"],
+  button1 = rgpvpw.L["confirm_override_default_profile_yes_button"],
+  button2 = rgpvpw.L["confirm_override_default_profile_no_button"],
+  OnAccept = function()
+    mod.profile.LoadDefaultProfile()
   end,
   timeout = 0,
   whileDead = true,
@@ -118,9 +128,39 @@ StaticPopupDialogs["PVPW_CHANGE_PROFILE_WARNING"] = {
 function me.BuildUi(frame)
   me.CreateProfileTitle(frame)
   profileListScrollFrame = me.CreateProfileListScrollFrame(frame)
-  local saveButton = me.CreateProfileSaveButton(frame, profileListScrollFrame)
-  local deleteButton = me.CreateDeleteProfileButton(frame, saveButton)
-  local loadButton = me.CreateLoadProfileButton(frame, deleteButton)
+  -- creates a button that creates a new profile based on the current configuration
+  local saveButton = me.CreateConfigurationButton(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_SAVE_PROFILE_BUTTON,
+    {"BOTTOMLEFT", profileListScrollFrame, "BOTTOMLEFT", 0, -40},
+    rgpvpw.L["save_current_profile_button"],
+    me.SaveProfileOnClick
+  )
+  -- create a button that allows to delete the selected profile
+  local deleteButton = me.CreateConfigurationButton(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_DELETE_PROFILE_BUTTON,
+    {"LEFT", saveButton, "RIGHT", 0, 0},
+    rgpvpw.L["delete_selected_profile_button"],
+    me.DeleteSelectedProfileButtonOnClick
+  )
+  -- create a button that loads the selected profile
+  local loadButton = me.CreateConfigurationButton(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_LOAD_PROFILE_BUTTON,
+    {"LEFT", deleteButton, "RIGHT", 0, 0},
+    rgpvpw.L["load_selected_profile_button"],
+    me.LoadSelectedProfileButtonOnClick
+  )
+
+  -- create a button that loads the default profile
+  me.CreateConfigurationButton(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_LOAD_DEFAULT_PROFILE_BUTTON,
+    {"LEFT", loadButton, "RIGHT", 0, 0},
+    rgpvpw.L["load_default_profile_button"],
+    me.LoadDefaultProfileButtonOnClick
+  )
 
   -- init scrollFrame
   me.ProfileListUpdateOnUpdate(profileListScrollFrame)
@@ -182,8 +222,6 @@ function me.CreateProfileListScrollFrame(frame)
 end
 
 --[[
-  TODO
-
   @param {table} frame
   @param {number} position
 
@@ -225,7 +263,8 @@ end
 function me.CreateProfileName(profileFrame)
   local profileNameFontString = profileFrame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_PROFILE_NAME, "OVERLAY")
   profileNameFontString:SetFont(STANDARD_TEXT_FONT, 15)
-  profileNameFontString:SetWidth(RGPVPW_CONSTANTS.PROFILE_NAME_WIDTH)
+  profileNameFontString:SetJustifyH("LEFT")
+  profileNameFontString:SetWidth(profileFrame:GetWidth())
   profileNameFontString:SetPoint(
     "LEFT", 0, 0
   )
@@ -315,36 +354,32 @@ function me.ClearCellList()
 end
 
 --[[
-  Create a button that TODO
-
   @param {table} parentFrame
-  @param {table} relativeFrame
+  @param {string} frameName
+  @param {table} position
+  @param {string} text
+  @param {function} callback
 
   @return {table}
     The created button
 ]]--
-function me.CreateProfileSaveButton(parentFrame, relativeFrame)
+function me.CreateConfigurationButton(parentFrame, frameName, position, text, callback)
   -- create save configuration button
-  local saveConfigurationButton = CreateFrame(
+  local configurationButton = CreateFrame(
     "Button",
-    RGPVPW_CONSTANTS.ELEMENT_SAVE_PROFILE_BUTTON,
+    frameName,
     parentFrame,
     "UIPanelButtonTemplate"
   )
 
-  saveConfigurationButton:SetPoint(
-    "BOTTOMLEFT",
-    relativeFrame,
-    "BOTTOMLEFT",
-    0, -40
-  )
+  configurationButton:SetPoint(unpack(position))
+  configurationButton:SetHeight(RGPVPW_CONSTANTS.BUTTON_DEFAULT_HEIGHT)
+  configurationButton:SetText(text)
+  configurationButton:SetScript('OnClick', callback)
 
-  saveConfigurationButton:SetText(rgpvpw.L["save_current_profile_button"])
-  saveConfigurationButton:SetScript('OnClick', me.SaveProfileOnClick)
+  mod.guiHelper.ResizeButtonToText(configurationButton)
 
-  mod.guiHelper.ResizeButtonToText(saveConfigurationButton)
-
-  return saveConfigurationButton
+  return configurationButton
 end
 
 --[[
@@ -356,102 +391,25 @@ function me.SaveProfileOnClick()
 end
 
 --[[
-  Create a button that allows to delete the selected profile
-
-  @param {table} parentFrame
-  @param {table} relativeFrame
-
-  @return {table}
-    The created button
-]]--
-function me.CreateDeleteProfileButton(parentFrame, relativeFrame)
-  local deleteProfileButton = CreateFrame(
-    "Button",
-    RGPVPW_CONSTANTS.ELEMENT_DELETE_PROFILE_BUTTON,
-    parentFrame,
-    "UIPanelButtonTemplate"
-  )
-
-  deleteProfileButton:SetPoint(
-    "LEFT",
-    relativeFrame,
-    "RIGHT",
-    0, 0
-  )
-
-  deleteProfileButton:SetHeight(32)
-  deleteProfileButton:SetText(rgpvpw.L["delete_selected_profile_button"])
-  deleteProfileButton:SetScript("OnClick", me.DeleteSelectedProfileButtonOnClick) -- TODO
-
-  mod.guiHelper.ResizeButtonToText(deleteProfileButton)
-
-  return deleteProfileButton
-end
-
---[[
-  TODO
+  Button callback to delete the selected user configuration. This will invoke a popup
+  dialog for the user to confirm the action.
 ]]--
 function me.DeleteSelectedProfileButtonOnClick()
   StaticPopup_Show("PVPW_DELETE_PROFILE_WARNING")
 end
 
 --[[
-  Create a button that loads the selected profile
-
-  @param {table} parentFrame
-  @param {table} relativeFrame
-
-  @return {table}
-    The created button
-]]--
-function me.CreateLoadProfileButton(parentFrame, relativeFrame)
-  local loadProfileButton = CreateFrame(
-    "Button",
-    RGPVPW_CONSTANTS.ELEMENT_LOAD_PROFILE_BUTTON,
-    parentFrame,
-    "UIPanelButtonTemplate"
-  )
-
-  loadProfileButton:SetPoint(
-    "LEFT",
-    relativeFrame,
-    "RIGHT",
-    0, 0
-  )
-
-  loadProfileButton:SetHeight(32)
-  loadProfileButton:SetText(rgpvpw.L["load_selected_profile_button"])
-  loadProfileButton:SetScript("OnClick", me.LoadSelectedProfileButtonOnClick) -- TODO
-
-  mod.guiHelper.ResizeButtonToText(loadProfileButton)
-
-  return loadProfileButton
-end
-
---[[
-  TODO
+  Button callback to load the selected user configuration. This will invoke a popup
+  dialog for the user to confirm the action.
 ]]--
 function me.LoadSelectedProfileButtonOnClick()
-  mod.logger.LogError(me.tag, "Load profile")
   StaticPopup_Show("PVPW_CHANGE_PROFILE_WARNING")
 end
 
 --[[
-  Helper function to find elements inside a static popup dialog
-
-  @param {table} context
-  @param {string} elementName
-
-  @return {table | nil}
-    the element that was found or nil if none could be found
+  Button callback to load the default profile configuration. This will invoke a popup
+  dialog for the user to confirm the action.
 ]]--
-function me.FindDialogElementByName(context, elementName)
-  for _, child in ipairs({context:GetParent():GetChildren()}) do
-    a = child
-    if string.find(child:GetName(), elementName) then
-      return child
-    end
-  end
-
-  return nil
+function me.LoadDefaultProfileButtonOnClick()
+  StaticPopup_Show("PVPW_CHANGE_DEFAULT_PROFILE_WARNING")
 end

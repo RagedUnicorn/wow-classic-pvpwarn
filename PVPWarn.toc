@@ -34,6 +34,15 @@ code/PVPW_Tooltip.lua
 
 # profiles
 profiles/PVPW_Profile.lua
+profiles/PVPW_DruidProfile.lua
+profiles/PVPW_HunterProfile.lua
+profiles/PVPW_MageProfile.lua
+profiles/PVPW_PaladinProfile.lua
+profiles/PVPW_PriestProfile.lua
+profiles/PVPW_RogueProfile.lua
+profiles/PVPW_ShamanProfile.lua
+profiles/PVPW_WarlockProfile.lua
+profiles/PVPW_WarriorProfile.lua
 
 # debug
 code/PVPW_Debug.lua

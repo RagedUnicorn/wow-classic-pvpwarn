@@ -22,34 +22,16 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals UnitClass strlower
+
 local mod = rgpvpw
 local me = {}
 mod.profile = me
 
 me.tag = "Profile"
 
---[[
-  ["type"] = {
-    -- e.g. paladin, racials
-    ["spellName"] = {
-      -- e.g. lay_on_hands as found in SpellMap
-      ["spellActive"] = false,
-        -- default false
-      ["soundWarningActive"] = false,
-        -- default false
-      ["soundFadeWarningActive"] = false,
-        -- default false
-      ["visualWarningActive"] = false,
-        -- default false
-      ["visualWarningColor"] = [number] -- e.g. blue, orange see RGPVPW_CONSTANTS.TEXTURES
-        -- default color in RGPVPW_CONSTANTS.DEFAULT_COLOR
-    }
-  }
-]]--
-local defaultProfile = {}
-
 -- allow for a maximum of 10 profiles
-local maxProfiles = 10 -- TODO
+local maxProfiles = 10
 local maxProfileNameLength = 25
 
 --[[
@@ -65,7 +47,9 @@ PVPWarnProfiles = {}
 ]]--
 
 --[[
-  TODO
+  Returns the maximal length of a profile name
+
+  @return {number}
 ]]--
 function me.GetMaxProfileNameLength()
   return maxProfileNameLength
@@ -93,7 +77,7 @@ function me.CreateProfile(profileName)
 
   local profile = {
     name = profileName,
-    ["spellConfiguration"] = mod.spellMap.GetSpellConfiguration()
+    ["spellConfiguration"] = mod.configuration.GetSpellConfiguration()
   }
 
   table.insert(PVPWarnProfiles, profile)
@@ -101,7 +85,12 @@ function me.CreateProfile(profileName)
 end
 
 --[[
-  Search and delete the profile with the passed name
+  Search and delete the profile with the passed name.
+  Note: Deleting a profile has no effect on the current profile
+  even if the current profile is the deleted profile. There is no concept of a
+  reference of the current active profile. There is just a simple storage of
+  configurations. Once such a configuration is loaded there is no connection to
+  the stored profile.
 
   @param {string} profileName
 ]]--
@@ -120,9 +109,34 @@ function me.DeleteProfile(profileName)
   end
 end
 
+--[[
+  Search for the profile with the passed profile name and load it.
+  Note: Overrides the current spell configuration
+
+  @param {string} profileName
+]]--
 function me.LoadProfile(profileName)
   if profileName == nil then
     mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_load"])
     return
   end
+
+  for i = 1, #PVPWarnProfiles do
+    if PVPWarnProfiles[i].name == profileName then
+      mod.configuration.LoadSpellConfiguration(PVPWarnProfiles[i].spellConfiguration)
+      mod.logger.LogInfo(me.tag, "Loaded profile with name - " .. profileName)
+      return
+    end
+  end
+end
+
+--[[
+  Load the default profile for the current class
+  Note: Overrides the current spell configuration
+]]--
+function me.LoadDefaultProfile()
+  local _, englishClass = UnitClass(RGPVPW_CONSTANTS.UNIT_ID_PLAYER)
+
+  mod.configuration.LoadSpellConfiguration(mod[strlower(englishClass) .. "Profile"].GetProfile())
+  mod.logger.LogInfo(me.tag, "Loaded default profile for: " .. englishClass)
 end

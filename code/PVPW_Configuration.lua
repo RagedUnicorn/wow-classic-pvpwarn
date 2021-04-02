@@ -32,8 +32,6 @@ me.tag = "AddonOptions"
   Saved addon variable
 ]]--
 PVPWarnConfiguration = {
-
-
   --[[
     Enemy spells being casted/used/activated
   ]]--
@@ -69,7 +67,7 @@ function me.SetupConfiguration()
   -- initialize spelllist for the first time with default profile
   if PVPWarnConfiguration.spellList == nil then
     PVPWarnConfiguration.spellList = {}
-    -- PVPWarnConfiguration.spellList = mod.profile.GetDefaultProfile() TODO
+    PVPWarnConfiguration.spellList = mod.profile.GetDefaultProfile() -- TODO
   end
 
   if PVPWarnConfiguration.enableCombatStateTracking == nil then
@@ -212,4 +210,25 @@ function me.GetUserPlacedFramePosition(frameName)
   end
 
   return nil
+end
+
+--[[
+  Returns a clone of the current spell configuration. Cloning is used to prevent
+  any connection to the current spell configuration.
+
+  @return {table}
+    A copy of the current spell configuration
+]]--
+function me.GetSpellConfiguration()
+  return mod.common.Clone(PVPWarnConfiguration.spellList)
+end
+
+--[[
+  Loads the passed spell configuration as the new spell configuration.
+  Note: This will override the current configuration
+
+  @param {table} spellConfiguration
+]]--
+function me.LoadSpellConfiguration(spellConfiguration)
+  PVPWarnConfiguration.spellList = mod.common.Clone(spellConfiguration)
 end

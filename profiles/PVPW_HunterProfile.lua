@@ -85,8 +85,8 @@ local defaultProfileHunter = {
 }
 
 --[[
-
+  @return {table}
 ]]--
 function me.GetProfile()
-
+  return defaultProfileHunter
 end

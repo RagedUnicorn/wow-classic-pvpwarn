@@ -85,8 +85,8 @@ local defaultProfilePriest = {
 }
 
 --[[
-
+  @return {table}
 ]]--
 function me.GetProfile()
-
+  return defaultProfilePriest
 end

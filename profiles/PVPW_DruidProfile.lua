@@ -85,8 +85,8 @@ local defaultProfileDruid = {
 }
 
 --[[
-
+  @return {table}
 ]]--
 function me.GetProfile()
-
+  return defaultProfileDruid
 end

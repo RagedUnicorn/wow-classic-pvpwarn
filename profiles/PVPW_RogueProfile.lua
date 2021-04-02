@@ -85,8 +85,8 @@ local defaultProfileRogue = {
 }
 
 --[[
-
+  @return {table}
 ]]--
 function me.GetProfile()
-
+  return defaultProfileRogue
 end

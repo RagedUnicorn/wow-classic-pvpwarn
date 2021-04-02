@@ -80,8 +80,8 @@ local defaultProfileWarrior = {
 }
 
 --[[
-
+  @return {table}
 ]]--
 function me.GetProfile()
-
+  return defaultProfileWarrior
 end

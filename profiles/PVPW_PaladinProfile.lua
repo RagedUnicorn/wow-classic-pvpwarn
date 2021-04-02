@@ -85,8 +85,8 @@ local defaultProfilePaladin = {
 }
 
 --[[
-
+  @return {table}
 ]]--
 function me.GetProfile()
-
+  return defaultProfilePaladin
 end

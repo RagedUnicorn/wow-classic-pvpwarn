@@ -85,8 +85,8 @@ local defaultProfileWarlock = {
 }
 
 --[[
-
+  @return {table}
 ]]--
 function me.GetProfile()
-
+  return defaultProfileWarlock
 end

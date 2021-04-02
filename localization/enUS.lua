@@ -59,6 +59,7 @@ rgpvpw.L["configuration_menu_profiles"] = "Profiles"
 rgpvpw.L["save_current_profile_button"] = "Create new Profile"
 rgpvpw.L["delete_selected_profile_button"] = "Delete Profile"
 rgpvpw.L["load_selected_profile_button"] = "Load Profile"
+rgpvpw.L["load_default_profile_button"] = "Load Default Profile"
 
 -- create new profile
 rgpvpw.L["choose_profile_name_dialog_text"] = "Choose a name for the new profile"
@@ -72,6 +73,11 @@ rgpvpw.L["confirm_delete_profile_no_button"] = "No"
 rgpvpw.L["confirm_override_profile_dialog_text"] = "This will override your current profile. Do you want to continue?"
 rgpvpw.L["confirm_override_profile_yes_button"] = "Yes"
 rgpvpw.L["confirm_override_profile_no_button"] = "No"
+-- load default profile
+rgpvpw.L["confirm_override_default_profile_dialog_text"] = "This will load the default profile and override your"
+  .. " current configuration. Do you want to continue?"
+rgpvpw.L["confirm_override_default_profile_yes_button"] = "Yes"
+rgpvpw.L["confirm_override_default_profile_no_button"] = "No"
 -- user messages
 rgpvpw.L["user_message_select_profile_before_delete"] = "Select a profile to delete"
 rgpvpw.L["user_message_select_profile_before_load"] = "Select a profile to load"

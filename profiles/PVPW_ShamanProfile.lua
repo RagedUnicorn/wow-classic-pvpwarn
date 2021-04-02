@@ -85,8 +85,8 @@ local defaultProfileShaman = {
 }
 
 --[[
-
+  @return {table}
 ]]--
 function me.GetProfile()
-
+  return defaultProfileShaman
 end

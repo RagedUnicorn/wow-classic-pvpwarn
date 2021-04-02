@@ -85,8 +85,8 @@ local defaultProfileMage = {
 }
 
 --[[
-
+  @return {table}
 ]]--
 function me.GetProfile()
-
+  return defaultProfileMage
 end
