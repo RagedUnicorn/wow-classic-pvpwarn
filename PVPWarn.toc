@@ -27,7 +27,6 @@ code/PVPW_SpellMap.lua
 code/PVPW_Common.lua
 code/PVPW_Target.lua
 code/PVPW_CombatState.lua
-code/PVPW_UnitBuff.lua
 code/PVPW_Configuration.lua
 code/PVPW_SpellConfiguration.lua
 code/PVPW_Cmd.lua
