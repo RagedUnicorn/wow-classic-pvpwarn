@@ -22,7 +22,10 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT UIDropDownMenu_Initialize
+-- luacheck: globals UIDropDownMenu_AddButton UIDropDownMenu_GetSelectedValue UIDropDownMenu_SetSelectedValue
+-- luacheck: globals  FauxScrollFrame_Update FauxScrollFrame_GetOffset GetSpellInfo UIDropDownMenu_EnableDropDown
+-- luacheck: globals UIDropDownMenu_DisableDropDown
 
 local mod = rgpvpw
 local me = {}
@@ -581,7 +584,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
 
     if value <= maxValue then
       local row = spellRows[i]
-      art = row
+
       if cachedCategoryData[value] ~= nil then
         row.spellName = cachedCategoryData[value].name
         row.category = category
@@ -609,9 +612,6 @@ end
 @param {number} spellId
 ]]--
 function me.UpdateIcon(cooldownIcon, category, spellId)
-  -- mod.logger.LogError(me.tag, "cooldownIcon: " .. cooldownIcon)
-  mod.logger.LogError(me.tag, "category: " .. category)
-  mod.logger.LogError(me.tag, "spellId: " .. spellId)
   local _, _, iconId = GetSpellInfo(spellId)
   local color = RGPVPW_CONSTANTS.CATEGORY_COLOR[category]
 
@@ -631,7 +631,6 @@ function me.UpdateChooseVisualDropdownMenu(dropdownMenu, category, spellName)
     spellName
   )
 
-  --TODO this causes fps drops atm TODO possible solution could be check value before setting it
   UIDropDownMenu_SetSelectedValue(
     dropdownMenu,
     colorValue
