@@ -1872,8 +1872,10 @@ function me.GetAllForCategory(category)
 
   local spellList = {}
 
-  for _, spell in pairs(spellMap[category]) do
-    table.insert(spellList, mod.common.Clone(spell))
+  for normalizedSpellName, spell in pairs(spellMap[category]) do
+    local clonedSpell = mod.common.Clone(spell)
+    clonedSpell.normalizedSpellName = normalizedSpellName
+    table.insert(spellList, clonedSpell)
   end
 
   return spellList

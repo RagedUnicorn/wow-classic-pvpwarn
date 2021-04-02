@@ -192,7 +192,7 @@ function me.CreateSpellStateCheckbox(spellFrame)
       mod.spellConfiguration.ToggleSpellState(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
-        spellFrame.spellName
+        spellFrame.normalizedSpellName
       )
 
       local parentFrame = self:GetParent()
@@ -205,7 +205,7 @@ function me.CreateSpellStateCheckbox(spellFrame)
       local isActive = mod.spellConfiguration.IsSpellActive(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
-        spellFrame.spellName
+        spellFrame.normalizedSpellName
       )
 
       if isActive then
@@ -300,14 +300,14 @@ function me.CreateSpellSoundCheckBox(spellFrame)
       mod.spellConfiguration.ToggleSoundWarning(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
-        spellFrame.spellName
+        spellFrame.normalizedSpellName
       )
     end,
     function(self)
       local isActive = mod.spellConfiguration.IsSoundWarningActive(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
-        spellFrame.spellName
+        spellFrame.normalizedSpellName
       )
 
       if isActive then
@@ -367,14 +367,14 @@ function me.CreateSpellSoundFadeCheckBox(spellFrame)
       mod.spellConfiguration.ToggleSoundFadeWarning(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
-        spellFrame.spellName
+        spellFrame.normalizedSpellName
       )
     end,
     function(self)
       local isActive = mod.spellConfiguration.IsSoundFadeWarningActive(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
-        spellFrame.spellName
+        spellFrame.normalizedSpellName
       )
 
       if isActive then
@@ -473,7 +473,7 @@ function me.DropDownMenuCallback(self)
   mod.spellConfiguration.UpdateVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
     activeCategory,
-    self:GetParent().dropdown:GetParent().spellName,
+    self:GetParent().dropdown:GetParent().normalizedSpellName,
     self.value
   )
 end
@@ -537,7 +537,7 @@ function me.ToggleVisualWarningOnClick(self)
   local color = mod.spellConfiguration.GetVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
     self:GetParent().category,
-    self:GetParent().spellName
+    self:GetParent().normalizedSpellName
   )
 
   if color == RGPVPW_CONSTANTS.DEFAULT_COLOR then
@@ -586,17 +586,17 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
       local row = spellRows[i]
 
       if cachedCategoryData[value] ~= nil then
-        row.spellName = cachedCategoryData[value].name
+        row.normalizedSpellName = cachedCategoryData[value].normalizedSpellName
         row.category = category
         row.spellTitle:SetText(cachedCategoryData[value].name)
         row.playSound.soundFileName = cachedCategoryData[value].soundFileName
         row.playSoundFade.soundFileName = cachedCategoryData[value].soundFileName
 
         me.UpdateIcon(row.cooldownIcon, category, cachedCategoryData[value].spellId)
-        me.UpdateSpellStateCheckBox(row.spellStateCheckBox, category, cachedCategoryData[value].name)
-        me.UpdateSound(row.soundCheckBox, category, cachedCategoryData[value].name)
+        me.UpdateSpellStateCheckBox(row.spellStateCheckBox, category, cachedCategoryData[value].normalizedSpellName)
+        me.UpdateSound(row.soundCheckBox, category, cachedCategoryData[value].normalizedSpellName)
         me.UpdateSoundFade(row.soundFadeCheckBox, row.playSoundFade, category, cachedCategoryData[value])
-        me.UpdateChooseVisualDropdownMenu(row.chooseVisual, category, cachedCategoryData[value].name)
+        me.UpdateChooseVisualDropdownMenu(row.chooseVisual, category, cachedCategoryData[value].normalizedSpellName)
 
         row:Show()
       else
@@ -699,7 +699,7 @@ function me.UpdateSoundFade(soundFadeCheckBox, soundFadeButton, category, spell)
     soundFadeCheckBox:SetChecked(mod.spellConfiguration.IsSoundFadeWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
       category,
-      spell.name
+      spell.normalizedSpellName
     ))
     soundFadeCheckBox:Show()
     soundFadeButton:Show()
