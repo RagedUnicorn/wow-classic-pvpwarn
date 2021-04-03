@@ -79,7 +79,8 @@ end
   @param {function} callback
 ]]--
 function me.ProcessEvent(spellName, event, callback)
-  local category, spell = mod.spellMap.SearchByName(spellName, event)
+  local normalizedSpellName = mod.common.NormalizeSpellname(spellName)
+  local category, spell = mod.spellMap.SearchByName(normalizedSpellName, event)
   local spellType = mod.common.GetSpellType(event)
   local playSound
   local playVisual
@@ -95,33 +96,33 @@ function me.ProcessEvent(spellName, event, callback)
       it might not match to the event that happened
     ]]--
     mod.logger.LogInfo(me.tag, string.format(
-      "Ignore spell %s because search in spellMap resulted in not found", spellName
+      "Ignore spell %s because search in spellMap resulted in not found", normalizedSpellName
       )
     )
     return
   end
 
-  if not mod.spellConfiguration.IsSpellActive(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, spellName) then
+  if not mod.spellConfiguration.IsSpellActive(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, normalizedSpellName) then
     mod.logger.LogDebug(me.tag, string.format(
-      "Ignore spell %s - %s because it is not active", category, spellName
+      "Ignore spell %s - %s because it is not active", category, normalizedSpellName
       )
     )
     return -- spell not active no work todo
   end
 
-  if mod.spellConfiguration.IsSoundWarningActive(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, spellName)
+  if mod.spellConfiguration.IsSoundWarningActive(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, normalizedSpellName)
     or mod.spellConfiguration.IsSoundFadeWarningActive(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, spellName) then
     playSound = true
   else
     mod.logger.LogDebug(me.tag, string.format(
-      "Ignore playing sound/soundFade for %s - %s because it is not active", category, spellName
+      "Ignore playing sound/soundFade for %s - %s because it is not active", category, normalizedSpellName
       )
     )
     playSound = false
   end
 
   local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
-    RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, spellName
+    RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, normalizedSpellName
   )
 
   if visualWarningColor ~= RGPVPW_CONSTANTS.DEFAULT_COLOR then
@@ -130,7 +131,7 @@ function me.ProcessEvent(spellName, event, callback)
     spell.visualWarningColor = visualWarningColor
   else
     mod.logger.LogDebug(me.tag, string.format(
-      "Ignore playing sound for %s - %s because it is not active", category, spellName
+      "Ignore playing sound for %s - %s because it is not active", category, normalizedSpellName
       )
     )
     playVisual = false

@@ -1831,18 +1831,16 @@ end
 function me.SearchByName(name, event)
   if not name then return nil end -- TODO improve this make it more safe
 
-  local spellName = mod.common.NormalizeSpellname(name)
-
-  mod.logger.LogDebug(me.tag, string.format("Searching for %s in spellMap", spellName))
+  mod.logger.LogDebug(me.tag, string.format("Searching for %s in spellMap", name))
 
   for category, _ in pairs(spellMap) do
     for spellEntry, spellData in pairs(spellMap[category]) do
-      if spellEntry == spellName then
-        mod.logger.LogDebug(me.tag, string.format("Found spell - %s - in spellMap", spellName))
+      if spellEntry == name then
+        mod.logger.LogDebug(me.tag, string.format("Found spell - %s - in spellMap", name))
         -- check if the passed event is a valid tracked one for the found spell
         for _, trackedEvent in pairs(spellData.trackedEvents) do
           if trackedEvent == event then
-            mod.logger.LogDebug(me.tag, string.format("Found matching tracked event %s for spell %s", event, spellName))
+            mod.logger.LogDebug(me.tag, string.format("Found matching tracked event %s for spell %s", event, name))
 
             local clonedSpell = mod.common.Clone(spellMap[category][spellEntry])
             clonedSpell.normalizedSpellName = spellEntry -- add normalizedSpellName that would get lost otherwise
