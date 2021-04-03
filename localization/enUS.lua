@@ -84,7 +84,6 @@ rgpvpw.L["user_message_select_profile_before_load"] = "Select a profile to load"
 rgpvpw.L["user_message_select_profile_already_exists"] = "Profile already exist - choose another name"
 rgpvpw.L["user_message_add_new_profile_max_reached"] = "A maximum of %s profiles is allowed you reached the maximum"
 
-
 -- categories
 rgpvpw.L["category_druid"] = "Druid"
 rgpvpw.L["category_hunter"] = "Hunter"
@@ -124,3 +123,6 @@ rgpvpw.L["texture_orange"] = "Orange"
 rgpvpw.L["texture_red"] = "Red"
 rgpvpw.L["texture_violet"] = "Violet"
 rgpvpw.L["texture_yellow"] = "Yellow"
+
+-- combat state configuration
+rgpvpw.L["combat_state_missing_target_error"] = "Make sure to target something to see the frame"
