@@ -115,12 +115,15 @@ end
   Map wow events to a constant mapping
 
   @param {string} event
+  @param {number} targetModifier
+    Certain events require to define what was the source of an event to determine the correct
+    spelltype
 
   @return {number | nil}
     number - The number representing the event according to RGPVPW_CONSTANTS.SPELL_TYPES
     nil - if the event is not supported
 ]]--
-function me.GetSpellType(event)
+function me.GetSpellType(event, targetModifier)
   if event == "SPELL_CAST_SUCCESS" then
     return RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL
   elseif event == "SPELL_AURA_APPLIED" then
@@ -129,6 +132,12 @@ function me.GetSpellType(event)
     return RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED
   elseif event == "SPELL_AURA_REFRESH" then
     return RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH
+  elseif event == "SPELL_MISSED" then
+    if targetModifier == RGPVPW_CONSTANTS.TARGET_SELF then
+      return RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF
+    elseif targetModifier == RGPVPW_CONSTANTS.TARGET_ENEMY then
+      return RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
+    end
   end
 
   return nil

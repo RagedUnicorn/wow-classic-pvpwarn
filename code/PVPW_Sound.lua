@@ -34,7 +34,11 @@ me.tag = "Sound"
   Private
 ]]--
 local BASE_PATH = "Interface\\AddOns\\PVPWarn\\assets\\sounds\\en\\"
-local FILE_NAME_DOWN = rgpvpw.L["removed"]
+local FILE_NAME_DOWN = rgpvpw.L["removed"] -- TODO do we really need to localize this
+local PATH_SELF_AVOID = "self_avoid\\"
+local PATH_ENEMY_AVOID = "enemy_avoid\\"
+local FILE_NAME_SELF_AVOID = "you_avoided_"
+local FILE_NAME_ENEMY_AVOID = "enemy_avoided_"
 local FILE_TYPE = ".mp3"
 
 --[[
@@ -59,13 +63,17 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
   assert(type(soundFileName) == "string",
     string.format("bad argument #3 to `PlaySound` (expected string got %s)", type(soundFileName)))
 
-  local soundPath = BASE_PATH .. soundCategory .. "\\" .. soundFileName
+  local soundPath = BASE_PATH .. soundCategory .. "\\"
 
   if spellType == RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL or spellType == RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED
     or spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH then
-    soundPath =  soundPath .. FILE_TYPE
+    soundPath =  soundPath .. soundFileName .. FILE_TYPE
   elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
-    soundPath = soundPath .. FILE_NAME_DOWN .. FILE_TYPE
+    soundPath = soundPath .. soundFileName .. FILE_NAME_DOWN .. FILE_TYPE
+  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF then
+    soundPath = soundPath .. PATH_SELF_AVOID .. FILE_NAME_SELF_AVOID .. soundFileName.. FILE_TYPE
+  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY then
+    soundPath = soundPath .. PATH_ENEMY_AVOID .. FILE_NAME_ENEMY_AVOID .. soundFileName.. FILE_TYPE
   else
     mod.logger.LogWarn(me.tag, "Invalid spellType: " .. spellType)
   end

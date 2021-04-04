@@ -38,23 +38,17 @@ me.tag = "CombatLog"
     Optional function that is invoked with status infos. Currently only used for testing
 ]]--
 function me.ProcessUnfilteredCombatLogEvent(callback)
-  -- local test = {CombatLogGetCurrentEventInfo()}
-  -- table.insert(PVPWarnLogTracker, test)
-
-  -- if true then
-    -- return
-  -- end
-
   local _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName = CombatLogGetCurrentEventInfo()
 
   if RGPVPW_ENVIRONMENT.DEBUG then
     mod.debug.TrackLogEvent(event, sourceFlags, target, targetName, spellName)
   end
+
+  mod.logger.LogError(me.tag, "Event: " .. event)
   --[[
     Filter for hostile player events only
   ]]--
   if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_HOSTILE_PLAYERS) then
-    --and CombatLog_Object_IsA(sourceFlags, COMBATLOG_OBJECT_TARGET)
     if event == "SPELL_CAST_SUCCESS" then
       me.ProcessEvent(spellName, event, callback)
     elseif event == "SPELL_AURA_APPLIED" then
@@ -63,6 +57,10 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
       me.ProcessEvent(spellName, event, callback)
     elseif event == "SPELL_AURA_REFRESH" then
       me.ProcessEvent(spellName, event, callback)
+    elseif event == "SPELL_MISSED" then
+      -- TODO this event and the combine sourceflags mean that I as a player resisted
+      -- we consider this self avoid
+      me.ProcessSelfResist(spellName, event, callback)
     else
       mod.logger.LogDebug(me.tag, "Ignore unsupported event: " .. event)
 
@@ -70,8 +68,97 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
         callback()
       end
     end
+  elseif CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_MINE) then
+    if event == "SPELL_MISSED" then
+      -- TODO this means one of my casted spells was resisted
+      -- we consider this an enemy resist
+      me.ProcessEnemyResist(spellName, event, callback)
+    else
+      -- TODO log
+    end
   end
 end
+
+--[[
+ TODo in the end we might merge this function with ProcessEvent
+]]--
+function me.ProcessSelfResist(spellName, event, callback)
+  mod.logger.LogError(me.tag, "Self Resist event triggered")
+  mod.logger.LogError(me.tag, "spellname: " .. spellName)
+  mod.logger.LogError(me.tag, "event:" .. event)
+
+
+  local spellType = mod.common.GetSpellType(event, RGPVPW_CONSTANTS.TARGET_SELF)
+  local category, spell = mod.spellAvoidMap.SearchByName(spellName, event)
+  local playSound
+  local playVisual
+
+  if spellType == nil then
+    mod.logger.LogError(me.tag, "Unable to determine spellType - aborting...")
+    return
+  end
+
+  if category == nil or spell == nil then
+    --[[
+      This doesn't necessarily means that the spell does not exist in the spellMap but
+      it might not match to the event that happened
+    ]]--
+    mod.logger.LogInfo(me.tag, string.format(
+      "Ignore spell %s because search in spellAvoidMap resulted in not found", spellName
+      )
+    )
+    return
+  end
+
+  -- TODO check here if spell is configured to be active
+
+  playSound = true
+  playVisual = true
+
+
+  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
+end
+
+function me.ProcessEnemyResist(spellName, event, callback)
+  mod.logger.LogError(me.tag, "Enemy Resist event triggered")
+  mod.logger.LogError(me.tag, "spellname: " .. spellName)
+  mod.logger.LogError(me.tag, "event:" .. event)
+
+
+  local spellType = mod.common.GetSpellType(event, RGPVPW_CONSTANTS.TARGET_ENEMY)
+  local category, spell = mod.spellAvoidMap.SearchByName(spellName, event)
+  local playSound
+  local playVisual
+
+  if spellType == nil then
+    mod.logger.LogError(me.tag, "Unable to determine spellType - aborting...")
+    return
+  end
+
+  if category == nil or spell == nil then
+    --[[
+      This doesn't necessarily means that the spell does not exist in the spellMap but
+      it might not match to the event that happened
+    ]]--
+    mod.logger.LogInfo(me.tag, string.format(
+      "Ignore spell %s because search in spellAvoidMap resulted in not found", spellName
+      )
+    )
+    return
+  end
+
+  -- TODO check here if spell is configured to be active
+
+  playSound = true
+  playVisual = true
+
+
+  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
+end
+
+
+
+
 
 --[[
   @param {string} spellName

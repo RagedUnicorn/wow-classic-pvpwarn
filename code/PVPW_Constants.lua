@@ -106,9 +106,12 @@ RGPVPW_CONSTANTS = {
     ["NORMAL"] = 1, -- SPELL_CAST_SUCCESS
     ["APPLIED"] = 2, -- SPELL_AURA_APPLIED
     ["REMOVED"] = 3, -- SPELL_AURA_REMOVED
-    ["REFRESH"] = 4 -- SPELL_AURA_REFRESH
+    ["REFRESH"] = 4, -- SPELL_AURA_REFRESH
+    ["MISSED_SELF"] = 5, -- SPELL_MISSED
+    ["MISSED_ENEMY"] = 6, -- SPELL_MISSED
   },
   EVENT_SPELL_CAST_SUCCESS = "SPELL_CAST_SUCCESS",
+  EVENT_SPELL_MISSED = "SPELL_MISSED",
   EVENT_SPELL_AURA_APPLIED = "SPELL_AURA_APPLIED",
   EVENT_SPELL_AURA_REMOVED = "SPELL_AURA_REMOVED",
   EVENT_SPELL_AURA_REFRESH = "SPELL_AURA_REFRESH",
@@ -116,11 +119,18 @@ RGPVPW_CONSTANTS = {
     Spelllist corresponding to the saved addon variable and its configured
     spelllists
   ]]--
-  SPELL_TYPE = {
+  SPELL_TYPE = { -- TODO how is this used? and when?
+  -- used for the configuration part when we search whether a spell is active or not
     ["SPELL"] = "spellList",
-    -- ["SPELL_SELF_AVOID"] = "spellSelfAvoidList",
-    -- ["SPELL_ENEMY_AVOID"] = "spellEnemyAvoidList"
+    ["SPELL_SELF_AVOID"] = "spellSelfAvoidList",
+    ["SPELL_ENEMY_AVOID"] = "spellEnemyAvoidList"
   },
+  SPELL_AVOID_TYPE = {
+    ["SELF_AVOID"] = 1,
+    ["ENEMY_AVOID"] = 2
+  },
+  TARGET_SELF = 1,
+  TARGET_ENEMY = 2,
   --[[
     Max age in seconds of a warn message before it is considered to old. Messages
     that are to old are dropped from the queue.

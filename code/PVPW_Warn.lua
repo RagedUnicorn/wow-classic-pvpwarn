@@ -102,6 +102,10 @@ function me.ProcessQueue()
         playedVisual = me.PlayVisual(warning)
       elseif warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
         playedSound = me.PlaySound(warning, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED)
+      elseif warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF then
+        playedSound = me.PlaySound(warning, RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF)
+      elseif warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY then
+        playedSound = me.PlaySound(warning, RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY)
       else
         mod.logger.LogError(me.tag, "Found invalid spelltype: " .. warning.spellType)
       end
