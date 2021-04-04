@@ -206,7 +206,7 @@ function me.GetEnemyPlayerSourceFlags()
 end
 
 --[[
-  Tests wheter a sound can be played for a certain category, spellName and the SPELL_AURA_APPLIED event
+  Tests whether a sound can be played for a certain category, spellName and the SPELL_AURA_APPLIED event
 
   @param {string} testName
   @param {string} testCategory
@@ -230,7 +230,7 @@ function me.TestSoundApplied(testName, testCategory, spellName)
 end
 
 --[[
-  Tests wheter a sound can be played for a certain category, spellName and the SPELL_AURA_REMOVED event
+  Tests whether a sound can be played for a certain category, spellName and the SPELL_AURA_REMOVED event
 
   @param {string} testName
   @param {string} testCategory
@@ -254,7 +254,7 @@ function me.TestSoundRemoved(testName, testCategory, spellName)
 end
 
 --[[
-  Tests wheter a sound can be played for a certain category, spellName and the SPELL_CAST_SUCCESS event
+  Tests whether a sound can be played for a certain category, spellName and the SPELL_CAST_SUCCESS event
 
   @param {string} testName
   @param {string} testCategory
@@ -278,7 +278,56 @@ function me.TestSoundSuccess(testName, testCategory, spellName)
 end
 
 --[[
-  Play a sound and return whether this was possible or not
+  Tests whether a sound can be played for a certain category, spellName and the SPELL_MISSED event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {string} spellName
+]]--
+function me.TestSoundSpellMissedSelf(testName, testCategory, spellName)
+  mod.testReporter.StartTestRun(testName)
+
+  local status = me.TestSound(
+    spellName,
+    testCategory,
+    RGPVPW_CONSTANTS.EVENT_SPELL_MISSED,
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF
+  )
+
+  if status then
+    mod.testReporter.ReportSuccessTestRun()
+  else
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToPlay)
+  end
+end
+
+--[[
+  Tests whether a sound can be played for a certain category, spellName and the SPELL_MISSED event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {string} spellName
+]]--
+function me.TestSoundSpellMissedEnemy(testName, testCategory, spellName)
+  mod.testReporter.StartTestRun(testName)
+
+  local status = me.TestSound(
+    spellName,
+    testCategory,
+    RGPVPW_CONSTANTS.EVENT_SPELL_MISSED,
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
+  )
+
+  if status then
+    mod.testReporter.ReportSuccessTestRun()
+  else
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToPlay)
+  end
+end
+
+--[[
+  Play a sound and return whether this was possible or not. This function also
+  considers that for certain spellTypes a different spellMap needs to be usedw
 
   @param {string} spellName
   @param {string} testCategory
@@ -290,7 +339,14 @@ end
     false - If the sound could not be played
 ]]--
 function me.TestSound(spellName, testCategory, event, spellType)
-  local _, spellData = mod.spellMap.SearchByName(spellName, event)
+  local spellMap = mod.common.GetSpellMap(spellType)
+
+  if spellMap == nil then
+    mod.logger.LogError(me.tag, "Failed to retrieve spellMap")
+    return false
+  end
+
+  local _, spellData = mod[spellMap].SearchByName(spellName, event)
 
   local status = mod.sound.PlaySound(
     testCategory,

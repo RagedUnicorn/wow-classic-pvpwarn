@@ -129,6 +129,8 @@ RGPVPW_CONSTANTS = {
     ["SELF_AVOID"] = 1,
     ["ENEMY_AVOID"] = 2
   },
+  SPELL_AVOID_MAP = "spellAvoidMap",
+  SPELL_MAP = "SpellMap",
   TARGET_SELF = 1,
   TARGET_ENEMY = 2,
   --[[
