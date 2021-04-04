@@ -202,7 +202,14 @@ end
    @return {number}
 ]]--
 function me.GetEnemyPlayerSourceFlags()
-  return 1352
+  return COMBATLOG_FILTER_HOSTILE_PLAYERS -- 32078
+end
+
+--[[
+  @return {number}
+]]--
+function me.GetSelfPlayerSourceFlags()
+  return COMBATLOG_FILTER_MINE -- 17681
 end
 
 --[[
@@ -370,7 +377,8 @@ function me.TestCombatEventApplied(testName, testCategory, spellName)
   local failureReason
   local category, spellType, spell = me.TestCombatEvent(
     spellName,
-    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED
+    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED,
+    me.GetEnemyPlayerSourceFlags()
   )
 
   if not spell then
@@ -414,7 +422,8 @@ function me.TestCombatEventRemoved(testName, testCategory, spellName)
   local failureReason
   local category, spellType, spell = me.TestCombatEvent(
     spellName,
-    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED
+    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED,
+    me.GetEnemyPlayerSourceFlags()
   )
 
   if not spell then
@@ -458,7 +467,8 @@ function me.TestCombatEventRefresh(testName, testCategory, spellName)
   local failureReason
   local category, spellType, spell = me.TestCombatEvent(
     spellName,
-    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REFRESH
+    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REFRESH,
+    me.GetEnemyPlayerSourceFlags()
   )
 
   if not spell then
@@ -502,7 +512,8 @@ function me.TestCombatEventSuccess(testName, testCategory, spellName)
   local failureReason
   local category, spellType, spell = me.TestCombatEvent(
     spellName,
-    RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS
+    RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS,
+    me.GetEnemyPlayerSourceFlags()
   )
 
   if not spell then
@@ -534,13 +545,65 @@ function me.TestCombatEventSuccess(testName, testCategory, spellName)
 end
 
 --[[
+  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_MISSED event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {string} spellName
+  @param {string} expectedSpellType
+    One of RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF or RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
+]]--
+function me.TestCombatEventSpellMissed(testName, testCategory, spellName, expectedSpellType)
+  mod.testReporter.StartTestRun(testName)
+
+  local sourceFlags
+
+  if expectedSpellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF then
+    sourceFlags = me.GetEnemyPlayerSourceFlags()
+  elseif expectedSpellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY then
+    sourceFlags = me.GetSelfPlayerSourceFlags()
+  else
+    mod.logger.LogError(me.tag, "Unknown spelltype: " .. expectedSpellType)
+  end
+
+  local failureReason
+  local category, spellType, spell = me.TestCombatEvent(
+    spellName,
+    RGPVPW_CONSTANTS.EVENT_SPELL_MISSED,
+    sourceFlags
+  )
+
+  if not spell then
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToGetMetadata)
+    return
+  end
+
+  if testCategory ~= category then
+    failureReason = string.format("Expected category %s but got %s", testCategory, tostring(category))
+  end
+
+  if expectedSpellType ~= spellType then
+    failureReason = string.format(
+      "Expected spellType %i but got %i", expectedSpellType, spellType
+    )
+  end
+
+  if failureReason ~= nil then
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, failureReason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+--[[
   @param {string} spellName
   @param {string} event
+  @param {number} sourceFlags
+    Sourceflags to determine the source of the combatlog event
 
   @return {string}, {string}, {table}
 ]]--
-function me.TestCombatEvent(spellName, event)
-  local sourceFlags = me.GetEnemyPlayerSourceFlags()
+function me.TestCombatEvent(spellName, event, sourceFlags)
   local target = me.GetGenericEnemyId()
   local targetName = me.GetGenericEnemyName()
   local actualCategory

@@ -80,9 +80,11 @@ test/PVPW_TestSoundPriestEn.lua
 test/PVPW_TestCombatEventsPriestEn.lua
 # mage
 test/PVPW_TestSoundMageEn.lua
-test/PVPW_TestCombatEventsMageEn.lua
 test/PVPW_TestSoundSelfAvoidMageEn.lua
 test/PVPW_TestSoundEnemyAvoidMageEn.lua
+test/PVPW_TestCombatEventsMageEn.lua
+test/PVPW_TestCombatEventsSelfAvoidMageEn.lua
+test/PVPW_TestCombatEventsEnemyAvoidMageEn.lua
 # hunter
 test/PVPW_TestSoundHunterEn.lua
 test/PVPW_TestCombatEventsHunterEn.lua

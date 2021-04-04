@@ -66,6 +66,9 @@ end
     false if the spell is inactive
 ]]--
 function me.IsSpellActive(spellList, categoryName, spellName)
+  if RGPVPW_ENVIRONMENT.DEBUG then return true end
+  -- TODO tests should be able to ignore whether a spell is active or not
+
   assert(type(spellList) == "string", string.format(
     "bad argument #1 to `IsSpellActive` (expected string got %s)", type(spellList)))
 
