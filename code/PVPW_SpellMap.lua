@@ -22,6 +22,8 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals GetLocale
+
 local mod = rgpvpw
 local me = {}
 mod.spellMap = me
@@ -51,19 +53,9 @@ me.tag = "SpellMap"
       ["active"] = false,
         -- {boolean} Whether the spell is active or inactive
       ["trackedEvents"] = {
-        TODO add all possible spell events
+        -- {string} An event such as SPELL_AURA_APPLIED that should be tracked. If a spell is found
+        but no matching trackedEvent the spell is ignored and no warning is generated
       }
-        {table} marks events that are tracked for this spell
-
-        Ignoring events: TODO this is different in classic TODO
-          CHAT_MSG_SPELL_HOSTILEPLAYER_DAMAGE
-            -- helps ignoring the periodic damage from dots
-          CHAT_MSG_SPELL_HOSTILEPLAYER_BUFF
-            -- helps ignoring heal from debug e.g. from Devouring Plague
-          CHAT_MSG_SPELL_AURA_GONE_OTHER
-            - helps to ignore the fading of the debuff
-          CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_BUFFS
-            - helps ignoring bloodrage ticks
     }
   }
 ]]--
@@ -1817,8 +1809,6 @@ else
   }
 end
 
--- TODO create or modify to allow also for search with an event parameter
--- we might only work with certain events but the spellname might be showing up in different events
 --[[
   Retrieve a spell from the spellMap by name and tracked event. Certain spellnames might show up in different events
   that we don't want to track. Each spell in the spellmap defines when it should be considered a valid target
@@ -1829,7 +1819,7 @@ end
   @return ({string} {table}) | {nil}
 ]]--
 function me.SearchByName(name, event)
-  if not name then return nil end -- TODO improve this make it more safe
+  if not name then return nil end
 
   mod.logger.LogDebug(me.tag, string.format("Searching for %s in spellMap", name))
 
