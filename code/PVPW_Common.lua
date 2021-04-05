@@ -142,25 +142,3 @@ function me.GetSpellType(event, targetModifier)
 
   return nil
 end
-
---[[
-  Determines the correct spellMap based on the spellType
-
-  @param {number} spellType
-]]
-function me.GetSpellMap(spellType)
-  if spellType == RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL or
-      spellType == RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED or
-      spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED or
-      spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH then
-    return RGPVPW_CONSTANTS.SPELL_MAP
-  end
-
-  if spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF or
-      spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY then
-    return RGPVPW_CONSTANTS.SPELL_AVOID_MAP
-  end
-
-  mod.logger.LogError(me.tag, "Invalid spellType: " .. spellType)
-  return nil
-end
