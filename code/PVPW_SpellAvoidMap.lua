@@ -85,7 +85,7 @@ else
         ["immune"] = true,
         ["miss"] = false,
         ["block"] = false,
-        ["resist"] = false,
+        ["resist"] = true,
         ["self_avoid"] = true,
         ["enemy_avoid"] = true
       },
@@ -149,15 +149,32 @@ else
   }
 end
 
+--[[
+  NEVER returning the original list we dont want to give anyone the option to modify it
+
+  @return {table}
+   A clone of the spellMap
+]]--
+function me.GetSpellConfiguration()
+  return mod.common.Clone(spellAvoidMap)
+end
+
+--[[
+  Search the spellmap for a specific spell by its name
+
+  @param {string} name
+
+  @return ({string} {table}) | {nil}
+]]--
 function me.SearchByName(name)
-  if not name then return nil end -- TODO improve this make it more safe
+  if not name then return nil end
 
   local spellName = mod.common.NormalizeSpellname(name)
 
   mod.logger.LogDebug(me.tag, string.format("Searching for %s in spellAvoidMap", spellName))
 
   for category, _ in pairs(spellAvoidMap) do
-    for spellEntry, spellData in pairs(spellAvoidMap[category]) do
+    for spellEntry, _ in pairs(spellAvoidMap[category]) do
       if spellEntry == spellName then
         mod.logger.LogDebug(me.tag, string.format("Found spell - %s - in spellAvoidMap", spellName))
 

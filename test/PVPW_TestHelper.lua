@@ -22,7 +22,8 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CombatLogGetCurrentEventInfo GetLocale
+-- luacheck: globals CombatLogGetCurrentEventInfo GetLocale COMBATLOG_FILTER_HOSTILE_PLAYERS
+-- luacheck: globals COMBATLOG_FILTER_MINE
 
 local mod = rgpvpw
 local me = {}
@@ -47,6 +48,7 @@ mod.testHelper.missingSoundTest = "Did not find a sound test for %s - %s"
 mod.testHelper.missingSoundDownTest = "Did not find a sound down test for %s - %s"
 mod.testHelper.invalidEvent = "Invalid event for %s - %s"
 mod.testHelper.missingCombatEventTest = "Did not find a combat event test for %s - %s"
+mod.testHelper.missingCombatAvoidEventTest = "Did not find a combat avoid event test for %s - %s"
 
 --[[
   Returns a matched language to a locale string
@@ -66,16 +68,18 @@ end
 --[[
   A testhelper function to get the spellMap for a specific categoryName
 
+  @param {String} spellMap
+    RGPVPW_CONSTANTS.SPELL_MAP or RGPVPW_CONSTANTS.SPELL_AVOID_MAP
   @param {string} categoryName
     A valid categoryName such as "priest", "warrior" etc.
 
   @return {table}
     The spellMap for the passed categoryName
 ]]--
-function me.GetAllForCategory(categoryName)
-  local spellMap = mod.spellMap.GetSpellConfiguration()
+function me.GetAllForCategory(spellMap, categoryName)
+  local map = mod[spellMap].GetSpellConfiguration()
 
-  return mod.common.Clone(spellMap[categoryName])
+  return mod.common.Clone(map[categoryName])
 end
 
 --[[

@@ -22,8 +22,6 @@
   SOFTWARE.
 ]]--
 
--- luacheck: ignore _
-
 local mod = rgpvpw
 local me = {}
 mod.testCombatEventsSelfAvoidMageEn = me
@@ -44,53 +42,52 @@ function me.Test()
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidCounterspellMisse)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidCounterspellMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidCounterspellSilencedMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidPolymorphMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidFrostNovaMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidConeOfColdMissed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidCounterspellResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidCounterspellSilencedResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidPolymorphResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidFrostNovaResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidConeOfColdResisted)
 end
 
-function me.TestCombatEventSelfAvoidCounterspellMissed()
+function me.TestCombatEventSelfAvoidCounterspellResisted()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidCounterspellMissed",
+    "TestCombatEventSelfAvoidCounterspellResisted",
     testCategory,
     "Counterspell",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF
   )
 end
 
-function me.TestCombatEventSelfAvoidCounterspellSilencedMissed()
+function me.TestCombatEventSelfAvoidCounterspellSilencedResisted()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidCounterspellSilencedMissed",
+    "TestCombatEventSelfAvoidCounterspellSilencedResisted",
     testCategory,
     "Counterspell - Silenced",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF
   )
 end
 
-function me.TestCombatEventSelfAvoidPolymorphMissed()
+function me.TestCombatEventSelfAvoidPolymorphResisted()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidPolymorphMissed",
+    "TestCombatEventSelfAvoidPolymorphResisted",
     testCategory,
     "Polymorph",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF
   )
 end
 
-function me.TestCombatEventSelfAvoidFrostNovaMissed()
+function me.TestCombatEventSelfAvoidFrostNovaResisted()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidFrostNovaMissed",
+    "TestCombatEventSelfAvoidFrostNovaResisted",
     testCategory,
     "Frost Nova",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF
   )
 end
 
-function me.TestCombatEventSelfAvoidConeOfColdMissed()
+function me.TestCombatEventSelfAvoidConeOfColdResisted()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidConeOfColdMissed",
+    "TestCombatEventSelfAvoidConeOfColdResisted",
     testCategory,
     "Cone of Cold",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF
