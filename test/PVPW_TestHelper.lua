@@ -49,7 +49,7 @@ mod.testHelper.missingSoundAvoidTest = "Did not find a sound avoid test for %s -
 mod.testHelper.missingSoundDownTest = "Did not find a sound down test for %s - %s"
 mod.testHelper.invalidEvent = "Invalid event for %s - %s"
 mod.testHelper.missingCombatEventTest = "Did not find a combat event test for %s - %s"
-mod.testHelper.missingCombatAvoidEventTest = "Did not find a combat avoid event test for %s - %s"
+mod.testHelper.missingCombatEventAvoidTest = "Did not find a combat avoid event test for %s - %s"
 
 --[[
   Returns a matched language to a locale string

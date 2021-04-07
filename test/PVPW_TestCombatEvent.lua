@@ -27,6 +27,14 @@
     /run rgpvpw.testCombatEvent.Test(language [, categoryName])
   Run combat event tests:
     /run rgpvpw.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents(language [, categoryName])
+  Run combat event self avoid tests:
+    /run rgpvpw.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+      language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID [, categoryName]
+    )
+  Run combat event enemy avoid tests:
+    /run rgpvpw.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+      language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID [, categoryName]
+    )
 ]]--
 
 local mod = rgpvpw
@@ -54,10 +62,10 @@ function me.Test(language, categoryName)
   end
 
   me.ShouldHaveCombatEventTestForAllTrackedEvents(language, categoryName)
-  me.ShouldHaveCombatAvoidEventTestForAllTrackedEvents(
-    language, categoryName, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
-  me.ShouldHaveCombatAvoidEventTestForAllTrackedEvents(
-    language, categoryName, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+  me.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+    language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName)
+  me.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+    language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName)
 
   mod.testReporter.StopTestGroup()
 end
@@ -166,21 +174,21 @@ end
 
   @param {string} language
     A supported language such as en, de etc.
-  @param {string} categoryName
-    Optional valid categoryName such as "priest", "warrior" etc.
   @param {number} spellAvoidType
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+  @param {string} categoryName
+    Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
-function me.ShouldHaveCombatAvoidEventTestForAllTrackedEvents(language, categoryName, spellAvoidType)
+function me.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(language, spellAvoidType, categoryName)
   if language == nil then
     mod.logger.LogError(me.tag, "Missing language - aborting...")
     return
   end
 
   if categoryName ~= nil then
-    me.ShouldHaveCombatAvoidEventTestByCategory(categoryName, language, spellAvoidType)
+    me.ShouldHaveCombatEventAvoidTestByCategory(categoryName, language, spellAvoidType)
   else
-    me.ShouldHaveCombatAvoidEventTest(language, spellAvoidType)
+    me.ShouldHaveCombatEventAvoidTest(language, spellAvoidType)
   end
 end
 
@@ -192,15 +200,15 @@ end
   @param {number} spellAvoidType
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
-function me.ShouldHaveCombatAvoidEventTestByCategory(categoryName, language, spellAvoidType)
-  local spellMap = mod.testHelper.GetAllForCategory(RGPVPW_CONSTANTS.SPELL_AVOID_MAP, categoryName)
+function me.ShouldHaveCombatEventAvoidTestByCategory(categoryName, language, spellAvoidType)
+  local spellAvoidMap = mod.testHelper.GetAllForCategory(RGPVPW_CONSTANTS.SPELL_AVOID_MAP, categoryName)
 
-  if spellMap == nil then
-    mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
+  if spellAvoidMap == nil then
+    mod.logger.LogError(me.tag, "Unable to get spellAvoidMap for categoryName: " .. categoryName)
     return
   end
 
-  me.CombatAvoidEventTest(categoryName, spellMap, language, spellAvoidType)
+  me.CombatEventAvoidTest(categoryName, spellAvoidMap, language, spellAvoidType)
 end
 
 --[[
@@ -209,11 +217,11 @@ end
   @param {number} spellAvoidType
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
-function me.ShouldHaveCombatAvoidEventTest(language, spellAvoidType)
+function me.ShouldHaveCombatEventAvoidTest(language, spellAvoidType)
   local spellAvoidMap = mod.spellAvoidMap.GetSpellConfiguration()
 
   for category, categoryData in pairs(spellAvoidMap) do
-    me.CombatAvoidEventTest(category, categoryData, language, spellAvoidType)
+    me.CombatEventAvoidTest(category, categoryData, language, spellAvoidType)
   end
 end
 
@@ -228,7 +236,7 @@ end
   @param {number} spellAvoidType
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
-function me.CombatAvoidEventTest(categoryName, categoryData, language, spellAvoidType)
+function me.CombatEventAvoidTest(categoryName, categoryData, language, spellAvoidType)
   for name, spellData in pairs (categoryData) do
     local spellName = mod.testHelper.NormalizeSpellName(name)
     local moduleNameBase
@@ -265,7 +273,7 @@ function me.CombatAvoidEventTest(categoryName, categoryData, language, spellAvoi
           mod.testReporter.ReportFailureTestRun(
             categoryName,
             testName,
-            string.format(mod.testHelper.missingCombatAvoidEventTest, spellName, avoidTestName[index])
+            string.format(mod.testHelper.missingCombatEventAvoidTest, spellName, avoidTestName[index])
           )
         else
           mod.testReporter.ReportSuccessTestRun()
