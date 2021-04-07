@@ -45,6 +45,7 @@ local languageMapping = {
 mod.testHelper.unableToPlay = "Unable to play sound"
 mod.testHelper.unableToGetMetadata = "Did not get any spell metadata"
 mod.testHelper.missingSoundTest = "Did not find a sound test for %s - %s"
+mod.testHelper.missingSoundAvoidTest = "Did not find a sound avoid test for %s - %s"
 mod.testHelper.missingSoundDownTest = "Did not find a sound down test for %s - %s"
 mod.testHelper.invalidEvent = "Invalid event for %s - %s"
 mod.testHelper.missingCombatEventTest = "Did not find a combat event test for %s - %s"

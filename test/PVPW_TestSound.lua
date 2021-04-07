@@ -29,6 +29,14 @@
     /run rgpvpw.testSound.ShouldHaveSoundTestForAllSpells(language [, categoryName])
   Run sound down tests:
     /run rgpvpw.testSound.ShouldHaveSoundDownTestForAllSpells(language [, categoryName])
+  Run sound self avoid test:
+    /run rgpvpw.testSound.ShouldHaveSoundAvoidTestForAllSpells(
+      language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID [, categoryName]
+    )
+  Run sound enemy avoid test:
+    /run rgpvpw.testSound.ShouldHaveSoundAvoidTestForAllSpells(
+      language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID [, categoryName]
+    )
 ]]--
 
 local mod = rgpvpw
@@ -41,7 +49,7 @@ local testGroupName = "ShouldHaveSoundTestForAllSpells"
 
 --[[
   @param {string} language
-    A supported language such as En, De etc.
+    A supported language such as en, de etc.
   @param {string} categoryName
     Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
@@ -57,6 +65,8 @@ function me.Test(language, categoryName)
 
   me.ShouldHaveSoundTestForAllSpells(language, categoryName)
   me.ShouldHaveSoundDownTestForAllSpells(language, categoryName)
+  me.ShouldHaveSoundAvoidTestForAllSpells(language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName)
+  me.ShouldHaveSoundAvoidTestForAllSpells(language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName)
 
   mod.testReporter.StopTestGroup()
 end
@@ -65,7 +75,7 @@ end
   Tests whether there is an appropriate sound testcase for every spell found in the spellmap
 
   @param {string} language
-    A supported language such as En, De etc.
+    A supported language such as en, de etc.
   @param {string} categoryName
     Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
@@ -86,10 +96,10 @@ end
   @param {string} categoryName
     A valid categoryName such as "priest", "warrior" etc.
   @param {string} language
-    A supported language such as En, De etc.
+    A supported language such as en, de etc.
 ]]--
 function me.ShouldHaveSoundTestByCategory(categoryName, language)
-  local spellMap = mod.testHelper.GetAllForCategory(categoryName)
+  local spellMap = mod.testHelper.GetAllForCategory(RGPVPW_CONSTANTS.SPELL_MAP, categoryName)
 
   if spellMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
@@ -101,7 +111,7 @@ end
 
 --[[
   @param {string} language
-    A supported language such as En, De etc.
+    A supported language such as en, de etc.
 ]]--
 function me.ShouldHaveSoundTest(language)
   local spellMap = mod.spellMap.GetSpellConfiguration()
@@ -126,8 +136,8 @@ function me.SoundTest(categoryName, categoryData, language)
 
     mod.testReporter.StartTestRun(testName)
 
-    local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName) .. language]
-      ["TestSound" .. spellName]
+    local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName)
+      .. mod.testHelper.FirstToUpper(language)]["TestSound" .. spellName]
 
     if type(func) ~= "function" then
       mod.testReporter.ReportFailureTestRun(
@@ -145,7 +155,7 @@ end
   Tests whether there is an appropriate sound down testcase for every spell found in the spellmap
 
   @param {string} language
-    A supported language such as En, De etc.
+    A supported language such as en, de etc.
   @param {string} categoryName
     A valid categoryName such as "priest", "warrior" etc.
 ]]--
@@ -168,7 +178,7 @@ end
   @param {string} language
 ]]--
 function me.ShouldHaveSoundDownTestByCategory(categoryName, language)
-  local spellMap = mod.testHelper.GetAllForCategory(categoryName)
+  local spellMap = mod.testHelper.GetAllForCategory(RGPVPW_CONSTANTS.SPELL_MAP, categoryName)
 
   if spellMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
@@ -180,7 +190,7 @@ end
 
 --[[
   @param {string} language
-    A supported language such as En, De etc.
+    A supported language such as en, de etc.
 ]]--
 function me.ShouldHaveSoundDownTest(language)
   local spellMap = mod.spellMap.GetSpellConfiguration()
@@ -197,7 +207,7 @@ end
     A valid categoryName such as "priest", "warrior" etc.
   @param {table} categoryData
   @param {string} language
-    A supported language such as En, De etc.
+    A supported language such as en, de etc.
 ]]--
 function me.SoundDownTest(categoryName, categoryData, language)
   for name, spellData in pairs (categoryData) do
@@ -208,8 +218,8 @@ function me.SoundDownTest(categoryName, categoryData, language)
 
       mod.testReporter.StartTestRun(testName)
 
-      local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName) .. language]
-        ["TestSoundDown" .. spellName]
+      local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName)
+        .. mod.testHelper.FirstToUpper(language)]["TestSoundDown" .. spellName]
 
       if type(func) ~= "function" then
         mod.testReporter.ReportFailureTestRun(
@@ -220,6 +230,110 @@ function me.SoundDownTest(categoryName, categoryData, language)
       else
         mod.testReporter.ReportSuccessTestRun()
       end
+    end
+  end
+end
+
+--[[
+  Tests whether there is an appropriate sound testcase for every spell found in the spellAvoidMap
+
+  @param {string} language
+    A supported language such as en, de etc.
+  @param {number} spellAvoidType
+    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+  @param {string} categoryName
+    Optional valid categoryName such as "priest", "warrior" etc.
+]]--
+function me.ShouldHaveSoundAvoidTestForAllSpells(language, spellAvoidType, categoryName)
+  if language == nil then
+    mod.logger.LogError(me.tag, "Missing language - aborting...")
+    return
+  end
+
+  if categoryName ~= nil then
+    me.ShouldHaveSoundAvoidTestByCategory(categoryName, language, spellAvoidType)
+  else
+    me.ShouldHaveSoundAvoidTest(language, spellAvoidType)
+  end
+end
+
+--[[
+  @param {string} categoryName
+    A valid categoryName such as "priest", "warrior" etc.
+  @param {string} language
+    A supported language such as en, de etc.
+  @param {number} spellAvoidType
+    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+]]--
+function me.ShouldHaveSoundAvoidTestByCategory(categoryName, language, spellAvoidType)
+  local spellAvoidMap = mod.testHelper.GetAllForCategory(RGPVPW_CONSTANTS.SPELL_AVOID_MAP, categoryName)
+
+  if spellAvoidMap == nil then
+    mod.logger.LogError(me.tag, "Unable to get spellAvoidMap for categoryName: " .. categoryName)
+    return
+  end
+
+  me.SoundAvoidTest(categoryName, spellAvoidMap, language, spellAvoidType)
+end
+
+--[[
+  @param {string} language
+    A supported language such as en, de etc.
+  @param {number} spellAvoidType
+    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+]]--
+function me.ShouldHaveSoundAvoidTest(language, spellAvoidType)
+  local spellAvoidMap = mod.spellAvoidMap.GetSpellConfiguration()
+
+  for category, categoryData in pairs(spellAvoidMap) do
+    me.SoundAvoidTest(category, categoryData, language, spellAvoidType)
+  end
+end
+
+--[[
+  Do the actual test whether the expected function is present or not
+
+  @param {string} categoryName
+    A valid categoryName such as "priest", "warrior" etc.
+  @param {table} categoryData
+  @param {string} language
+  @param {number} spellAvoidType
+    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+]]--
+function me.SoundAvoidTest(categoryName, categoryData, language, spellAvoidType)
+  for name, _ in pairs (categoryData) do
+    local spellName = mod.testHelper.NormalizeSpellName(name)
+    local moduleNameBase
+    local testNameBase
+    local testFunctionBase
+
+    if spellAvoidType == RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID then
+      testNameBase = "SoundTestSelfAvoidPresent"
+      moduleNameBase = "testSoundSelfAvoid"
+      testFunctionBase = "TestSoundSelfAvoid"
+    elseif spellAvoidType == RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID then
+      testNameBase = "SoundTestEnemyAvoidPresent"
+      moduleNameBase = "testSoundEnemyAvoid"
+      testFunctionBase = "TestSoundEnemyAvoid"
+    else
+      mod.logger.LogError(me.tag, "Invalid spellAvoidType: " .. spellAvoidType)
+    end
+
+    local testName = testNameBase .. mod.testHelper.FirstToUpper(categoryName) .. spellName
+
+    mod.testReporter.StartTestRun(testName)
+
+    local func = mod[moduleNameBase .. mod.testHelper.FirstToUpper(categoryName)
+      .. mod.testHelper.FirstToUpper(language)][testFunctionBase .. spellName]
+
+    if type(func) ~= "function" then
+      mod.testReporter.ReportFailureTestRun(
+        categoryName,
+        testName,
+        string.format(mod.testHelper.missingSoundAvoidTest, categoryName, spellName)
+      )
+    else
+      mod.testReporter.ReportSuccessTestRun()
     end
   end
 end
