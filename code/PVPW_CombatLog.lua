@@ -24,6 +24,7 @@
 ]]--
 
 -- luacheck: globals CombatLogGetCurrentEventInfo CombatLog_Object_IsA COMBATLOG_FILTER_HOSTILE_PLAYERS
+-- luacheck: globals COMBATLOG_FILTER_MINE
 
 local mod = rgpvpw
 local me = {}
@@ -38,13 +39,13 @@ me.tag = "CombatLog"
     Optional function that is invoked with status infos. Currently only used for testing
 ]]--
 function me.ProcessUnfilteredCombatLogEvent(callback)
-  local _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName = CombatLogGetCurrentEventInfo()
+  local _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName, _, missType =
+    CombatLogGetCurrentEventInfo()
 
   if RGPVPW_ENVIRONMENT.DEBUG then
-    mod.debug.TrackLogEvent(event, sourceFlags, target, targetName, spellName)
-  end
+    mod.debug.TrackLogEvent(event, sourceFlags, target, targetName, spellName, missType)
 
-  mod.logger.LogError(me.tag, "Event: " .. event)
+  end
   --[[
     Filter for hostile player events only
   ]]--
@@ -58,9 +59,7 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
     elseif event == "SPELL_AURA_REFRESH" then
       me.ProcessEvent(spellName, event, callback)
     elseif event == "SPELL_MISSED" then
-      -- TODO this event and the combine sourceflags mean that I as a player resisted
-      -- we consider this self avoid
-      me.ProcessSelfResist(spellName, event, callback)
+      me.ProcessSelfResist(spellName, event, missType, callback)
     else
       mod.logger.LogDebug(me.tag, "Ignore unsupported event: " .. event)
 
@@ -70,19 +69,27 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
     end
   elseif CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_MINE) then
     if event == "SPELL_MISSED" then
-      -- TODO this means one of my casted spells was resisted
-      -- we consider this an enemy resist
-      me.ProcessEnemyResist(spellName, event, callback)
-    else
-      -- TODO log
+      me.ProcessEnemyResist(spellName, event, missType, callback)
     end
   end
 end
 
 --[[
- TODo in the end we might merge this function with ProcessEvent
+  Process event "SPELL_MISSED" for the players resists. An enemy casted something on the user of the addon
+  and this user resisted that spell
+
+  @param {string} spellName
+  @param {string} event
+  @param {string} missType
+    RGPVPW_CONSTANTS.MISS_TYPES
+  @param {function} callback
 ]]--
-function me.ProcessSelfResist(spellName, event, callback)
+function me.ProcessSelfResist(spellName, event, missType, callback)
+  if not mod.common.IsSupportedMissType(missType) then
+    mod.logger.LogDebug(me.tag, "ProcesseSelfResist ignore unsupported missType: " .. missType)
+    return
+  end
+
   mod.logger.LogError(me.tag, "Self Resist event triggered")
   mod.logger.LogError(me.tag, "spellname: " .. spellName)
   mod.logger.LogError(me.tag, "event:" .. event)
@@ -99,10 +106,6 @@ function me.ProcessSelfResist(spellName, event, callback)
   end
 
   if category == nil or spell == nil then
-    --[[
-      This doesn't necessarily means that the spell does not exist in the spellMap but
-      it might not match to the event that happened
-    ]]--
     mod.logger.LogInfo(me.tag, string.format(
       "Ignore spell %s because search in spellAvoidMap resulted in not found", spellName
       )
@@ -119,7 +122,22 @@ function me.ProcessSelfResist(spellName, event, callback)
   mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
 end
 
-function me.ProcessEnemyResist(spellName, event, callback)
+--[[
+  Process event "SPELL_MISSED" for the enemy players resists. The user of the addon casted
+  something on an enemy player and that player resisted the spell.
+
+  @param {string} spellName
+  @param {string} event
+  @param {string} missType
+    RGPVPW_CONSTANTS.MISS_TYPES
+  @param {function} callback
+]]--
+function me.ProcessEnemyResist(spellName, event, missType, callback)
+  if not mod.common.IsSupportedMissType(missType) then
+    mod.logger.LogDebug(me.tag, "ProcessEnemyResist ignore unsupported missType: " .. missType)
+    return
+  end
+
   mod.logger.LogError(me.tag, "Enemy Resist event triggered")
   mod.logger.LogError(me.tag, "spellname: " .. spellName)
   mod.logger.LogError(me.tag, "event:" .. event)

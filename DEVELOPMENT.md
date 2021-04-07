@@ -37,7 +37,7 @@ Example event for a resisted spell. This is from our view and we resisted the co
 }
 ```
 
-### Enemy Avoid
+#### Enemy Avoid
 
 For checking if an enemy avoided something from us we need to make sure to include `COMBATLOG_FILTER_MINE`. This filters for our own events.
 
@@ -58,3 +58,39 @@ Example event for a resisted spell. In this case counterspell was casted and the
   ["sourceFlags"] = 1297,
 }
 ```
+
+#### Event SPELL_MISSED
+
+The name spell missed might be a bit misleading. It is important to know that even physical spells are considered spells and thus the event `SPELL_MISSED` is used for everything that is related to avoiding a spell in some way. WoW supports the following misstypes.
+
+###### WoW full list missTypes
+
+* ABSORB
+* BLOCK
+* DEFLECT
+* DODGE
+* EVADE
+* IMMUNE
+* MISS
+* PARRY
+* REFLECT
+* RESIST
+
+###### PVPWarn supported missTypes
+
+* DODGE
+* PARRY
+* IMMUNE
+* MISS
+* BLOCK
+* RESIST
+
+PVPWarn uses the exact missType for two things.
+
+###### Filter Unwanted missType
+
+PVPWarn filters unwanted missType. See above for supported missTypes. As an example completely absorbing a spell such as `Cone of Cold` with a `Power Word: Shield` is in the eyes of PVPWarn not an avoid. By filtering `ABSORB` those events will not be processed.
+
+###### Filter Unsuported missType for Spell
+
+Certain spells might not support a specific misstype. The spellAvoidMap has the ultimate control in what PVPWarn thinks what possible avoids each spell has. Before an avoid event is announced the spellAvoidMap has to be consulted about whether the spell supports that misstype event.

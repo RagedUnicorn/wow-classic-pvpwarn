@@ -107,8 +107,19 @@ RGPVPW_CONSTANTS = {
     ["APPLIED"] = 2, -- SPELL_AURA_APPLIED
     ["REMOVED"] = 3, -- SPELL_AURA_REMOVED
     ["REFRESH"] = 4, -- SPELL_AURA_REFRESH
-    ["MISSED_SELF"] = 5, -- SPELL_MISSED (resist)
-    ["MISSED_ENEMY"] = 6, -- SPELL_MISSED (resist)
+    ["MISSED_SELF"] = 5, -- SPELL_MISSED
+    ["MISSED_ENEMY"] = 6, -- SPELL_MISSED
+  },
+  --[[
+    Subtype of SPELL_MISSED
+  ]]--
+  MISS_TYPES = {
+    ["DODGE"] = 1,
+    ["PARRY"] = 2,
+    ["IMMUNE"] = 3,
+    ["MISS"] = 4,
+    ["BLOCK"] = 5,
+    ["RESIST"] = 6
   },
   EVENT_SPELL_CAST_SUCCESS = "SPELL_CAST_SUCCESS",
   EVENT_SPELL_MISSED = "SPELL_MISSED",
