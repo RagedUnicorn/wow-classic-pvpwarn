@@ -28,8 +28,6 @@ mod.testSoundSelfAvoidPriestEn = me
 
 me.tag = "TestSoundSelfAvoidPriestEn"
 
--- /run rgpvpw.testSoundSelfAvoidPriestEn.Test()
-
 local testGroupName = "SoundSelfAvoidPriestEn"
 local testCategory = "priest"
 

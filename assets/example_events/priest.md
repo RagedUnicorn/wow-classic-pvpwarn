@@ -15,7 +15,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -26,7 +26,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -39,7 +39,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -50,7 +50,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -63,7 +63,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -74,7 +74,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -87,7 +87,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -98,7 +98,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -111,7 +111,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -122,7 +122,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -135,7 +135,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -146,7 +146,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -159,7 +159,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -170,7 +170,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -183,7 +183,7 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -194,6 +194,6 @@ There is no need to differentiate in those examples between enemy and self avoid
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
