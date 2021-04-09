@@ -43,10 +43,14 @@ end
 
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidCounterspellResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidCounterspellImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidCounterspellSilencedResisted)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidPolymorphResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidPolymorphImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidFrostNovaResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidFrostNovaImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidConeOfColdResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidConeOfColdImmune)
 end
 
 function me.TestCombatEventEnemyAvoidCounterspellResisted()
@@ -54,7 +58,18 @@ function me.TestCombatEventEnemyAvoidCounterspellResisted()
     "TestCombatEventEnemyAvoidCounterspellResisted",
     testCategory,
     "Counterspell",
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventEnemyAvoidCounterspellImmune()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidCounterspellImmune",
+    testCategory,
+    "Counterspell",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.MISS_TYPES.IMMUNE
   )
 end
 
@@ -63,7 +78,8 @@ function me.TestCombatEventEnemyAvoidCounterspellSilencedResisted()
     "TestCombatEventEnemyAvoidCounterspellSilencedResisted",
     testCategory,
     "Counterspell - Silenced",
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.MISS_TYPES.RESIST
   )
 end
 
@@ -72,7 +88,18 @@ function me.TestCombatEventEnemyAvoidPolymorphResisted()
     "TestCombatEventEnemyAvoidPolymorphResisted",
     testCategory,
     "Polymorph",
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventEnemyAvoidPolymorphImmune()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidPolymorphImmune",
+    testCategory,
+    "Polymorph",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.MISS_TYPES.IMMUNE
   )
 end
 
@@ -81,7 +108,18 @@ function me.TestCombatEventEnemyAvoidFrostNovaResisted()
     "TestCombatEventEnemyAvoidFrostNovaResisted",
     testCategory,
     "Frost Nova",
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventEnemyAvoidFrostNovaImmune()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidFrostNovaImmune",
+    testCategory,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.MISS_TYPES.IMMUNE
   )
 end
 
@@ -90,6 +128,17 @@ function me.TestCombatEventEnemyAvoidConeOfColdResisted()
     "TestCombatEventEnemyAvoidConeOfColdResisted",
     testCategory,
     "Cone of Cold",
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventEnemyAvoidConeOfColdImmune()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidConeOfColdImmune",
+    testCategory,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.MISS_TYPES.IMMUNE
   )
 end

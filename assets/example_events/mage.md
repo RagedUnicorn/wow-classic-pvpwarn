@@ -8,21 +8,12 @@ There is no need to differentiate in those examples between enemy and self avoid
 
 #### Counterspell Silenced (improved silence)
 
-```lua
-{
-  ["spellName"] = "Counterspell - Silenced",
-  ["missType"] = "RESIST",
-  ["target"] = "[targetUid]",
-  ["targetName"] = "[targetName]",
-  ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags],
-}
-```
+> Note: There is no immune event for this spell. Instead there is a simple Counterspell immune event (without silenced)
 
 ```lua
 {
   ["spellName"] = "Counterspell - Silenced",
-  ["missType"] = "IMMUNE",
+  ["missType"] = "RESIST",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
@@ -34,7 +25,7 @@ There is no need to differentiate in those examples between enemy and self avoid
 
 ```lua
 {
-  ["spellName"] = "Counterspell - Silenced",
+  ["spellName"] = "Counterspell",
   ["missType"] = "RESIST",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
@@ -45,7 +36,7 @@ There is no need to differentiate in those examples between enemy and self avoid
 
 ```lua
 {
-  ["spellName"] = "Counterspell - Silenced",
+  ["spellName"] = "Counterspell",
   ["missType"] = "IMMUNE",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
