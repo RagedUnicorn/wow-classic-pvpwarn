@@ -44,7 +44,6 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
 
   if RGPVPW_ENVIRONMENT.DEBUG then
     mod.debug.TrackLogEvent(event, sourceFlags, target, targetName, spellName, missType)
-
   end
   --[[
     Filter for hostile player events only

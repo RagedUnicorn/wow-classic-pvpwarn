@@ -235,6 +235,24 @@ function me.GetEnemyPlayerSourceFlags()
 end
 
 --[[
+  @param {number} missTypeId
+    RGPVPW_CONSTANTS.MISS_TYPES
+
+  @return {string | nil}
+    string - the textual representation of the missTypeId
+    nil - if no matching missType could be found
+]]--
+function me.GetMissTypeNameById(missTypeId)
+  for missTypeName, id in pairs(RGPVPW_CONSTANTS.MISS_TYPES) do
+    if missTypeId == id then
+      return missTypeName
+    end
+  end
+
+  return nil
+end
+
+--[[
   @return {number}
 ]]--
 function me.GetSelfPlayerSourceFlags()
@@ -581,8 +599,10 @@ end
   @param {string} spellName
   @param {string} expectedSpellType
     One of RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF or RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
+  @param {number} missType
+    RGPVPW_CONSTANTS.MISS_TYPES
 ]]--
-function me.TestCombatEventSpellMissed(testName, testCategory, spellName, expectedSpellType)
+function me.TestCombatEventSpellMissed(testName, testCategory, spellName, expectedSpellType, missType)
   mod.testReporter.StartTestRun(testName)
 
   local sourceFlags
@@ -599,7 +619,8 @@ function me.TestCombatEventSpellMissed(testName, testCategory, spellName, expect
   local category, spellType, spell = me.TestCombatEvent(
     spellName,
     RGPVPW_CONSTANTS.EVENT_SPELL_MISSED,
-    sourceFlags
+    sourceFlags,
+    missType
   )
 
   if not spell then
@@ -629,19 +650,22 @@ end
   @param {string} event
   @param {number} sourceFlags
     Sourceflags to determine the source of the combatlog event
+  @param {number} missTypeId
+    RGPVPW_CONSTANTS.MISS_TYPES
 
   @return {string}, {string}, {table}
 ]]--
-function me.TestCombatEvent(spellName, event, sourceFlags)
+function me.TestCombatEvent(spellName, event, sourceFlags, missType)
   local target = me.GetGenericEnemyId()
   local targetName = me.GetGenericEnemyName()
+  local missTypeName = me.GetMissTypeNameById(missType)
   local actualCategory
   local actualSpellType
   local actualSpell
 
   -- luacheck: ignore _
   local fakeSpellCastCombatEvent = function()
-    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName, _, missTypeName
   end
 
   me.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)

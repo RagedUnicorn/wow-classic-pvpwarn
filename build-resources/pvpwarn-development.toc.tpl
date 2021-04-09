@@ -77,7 +77,11 @@ test/PVPW_TestSoundWarriorEn.lua
 test/PVPW_TestCombatEventsWarriorEn.lua
 # priest
 test/PVPW_TestSoundPriestEn.lua
+test/PVPW_TestSoundSelfAvoidPriestEn.lua
+test/PVPW_TestSoundEnemyAvoidPriestEn.lua
 test/PVPW_TestCombatEventsPriestEn.lua
+test/PVPW_TestCombatEventsEnemyAvoidPriestEn.lua
+test/PVPW_TestCombatEventsSelfAvoidPriestEn.lua
 # mage
 test/PVPW_TestSoundMageEn.lua
 test/PVPW_TestSoundSelfAvoidMageEn.lua

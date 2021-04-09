@@ -74,6 +74,120 @@ if (GetLocale() == "deDE") then
   }
 else
   spellAvoidMap = {
+    ["priest"] = {
+      ["devouring_plague"] = {
+        ["name"] = "Devouring Plague",
+        ["spellId"] = 19280, -- rank 6
+        ["spellIcon"] = "spell_shadow_blackplague",
+        ["soundFileName"] = "devouring_plague",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["blackout"] = {
+        ["name"] = "Blackout",
+        ["spellId"] = 15326, -- rank 5 (skillpoints)
+        ["spellIcon"] = "spell_shadow_gathershadows",
+        ["soundFileName"] = "blackout",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["mana_burn"] = {
+        ["name"] = "Mana Burn",
+        ["spellId"] = 10876, -- rank 5
+        ["spellIcon"] = "spell_shadow_manaburn",
+        ["soundFileName"] = "mana_burn",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["mind_control"] = {
+        ["name"] = "Mind Control",
+        ["spellId"] = 10912, -- rank 3
+        ["spellIcon"] = "spell_shadow_shadowworddominate",
+        ["soundFileName"] = "mind_control",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["psychic_scream"] = {
+        ["name"] = "Psychic Scream",
+        ["spellId"] = 10890,
+        ["spellIcon"] = "spell_shadow_psychicscream",
+        ["soundFileName"] = "psychic_scream",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["shadow_word_pain"] = {
+        ["name"] = "Shadow Word: Pain",
+        ["spellId"] = 10894, -- rank 8
+        ["spellIcon"] = "spell_shadow_shadowwordpain",
+        ["soundFileName"] = "shadow_word_pain",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["silence"] = {
+        ["name"] = "Silence",
+        ["spellId"] = 15487,
+        ["spellIcon"] = "spell_shadow_impphaseshift",
+        ["soundFileName"] = "silence",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["vampiric_embrace"] = {
+        ["name"] = "Vampiric Embrace",
+        ["spellId"] = 15286,
+        ["spellIcon"] = "spell_shadow_unsummonbuilding",
+        ["soundFileName"] = "vampiric_embrace",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      }
+    },
     ["mage"] = {
       ["counterspell"] = {
         ["name"] = "Counterspell",
@@ -96,7 +210,7 @@ else
         ["soundFileName"] = "silence",
         ["dodge"] = false,
         ["parry"] = false,
-        ["immune"] = false,
+        ["immune"] = false, -- immune event is only happening for counterspell
         ["miss"] = false,
         ["block"] = false,
         ["resist"] = true,
