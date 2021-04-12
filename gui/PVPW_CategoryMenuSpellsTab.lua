@@ -40,10 +40,10 @@ local builtMenu = false
   Local references to ui elements
 ]]--
 local spellRows = {}
-local spellScrollFrame -- TODO still needed as global?
+local spellScrollFrame
 
 --[[
-  Cached spelllist for reusing while the player scrolls through the spelllist. Wiped
+  Cached spellList for reusing while the player scrolls through the spellList. Wiped
   when the category changes
 ]]--
 local cachedCategoryData = nil
@@ -53,7 +53,8 @@ local cachedCategoryData = nil
 local activeCategory = nil
 
 --[[
-  TODO
+  @param {table} frame
+  @param {string} category
 ]]--
 function me.Init(frame, category)
   frame.categoryName = category
@@ -61,7 +62,7 @@ function me.Init(frame, category)
   if builtMenu then
     -- cleaned cached data from previous category
     cachedCategoryData = nil
-    mod.logger.LogInfo(me.tag, "Wiped cached spellist after category switch")
+    mod.logger.LogInfo(me.tag, "Wiped cached spellList after category switch")
     -- changing the scrollframes parent to the respective active category panel
     spellScrollFrame:SetParent(frame)
     -- update the scrolllist with new category data
@@ -161,7 +162,7 @@ function me.CreateRowFrame(frame, position)
 
   row.position = position
   row.spellStateCheckBox = me.CreateSpellStateCheckbox(row)
-  row.cooldownIcon = me.CreateSpellIcon(row)
+  row.spellIcon = me.CreateSpellIcon(row)
   row.spellTitle = me.CreateSpellTitle(row)
 
   row.soundCheckBox = me.CreateSpellSoundCheckBox(row)
@@ -226,18 +227,18 @@ end
 function me.CreateSpellIcon(spellFrame)
   local iconHolder = CreateFrame("Frame", nil, spellFrame)
   iconHolder:SetSize(
-    RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 5,
-    RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 5
+    RGPVPW_CONSTANTS.CATEGORY_SPELL_ICON_SIZE + 5,
+    RGPVPW_CONSTANTS.CATEGORY_SPELL_ICON_SIZE + 5
   )
   iconHolder:SetPoint("LEFT", 40, 0)
 
-  local cooldownIcon = iconHolder:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON, "ARTWORK")
-  cooldownIcon.iconHolder = iconHolder
-  cooldownIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
-  cooldownIcon:SetPoint("CENTER", 0, 0)
-  cooldownIcon:SetSize(
-    RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE,
-    RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE
+  local spellIcon = iconHolder:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ICON, "ARTWORK")
+  spellIcon.iconHolder = iconHolder
+  spellIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+  spellIcon:SetPoint("CENTER", 0, 0)
+  spellIcon:SetSize(
+    RGPVPW_CONSTANTS.CATEGORY_SPELL_ICON_SIZE,
+    RGPVPW_CONSTANTS.CATEGORY_SPELL_ICON_SIZE
   )
 
   local backdrop = {
@@ -257,7 +258,7 @@ function me.CreateSpellIcon(spellFrame)
   iconHolder:SetBackdrop(backdrop)
   iconHolder:SetBackdropColor(0.15, 0.15, 0.15, 1)
 
-  return cooldownIcon
+  return spellIcon
 end
 
 --[[
@@ -274,8 +275,8 @@ function me.CreateSpellTitle(spellFrame)
   spellTitleFontString:SetWidth(RGPVPW_CONSTANTS.SPELL_TITLE_WIDTH)
   spellTitleFontString:SetPoint(
     "LEFT",
-    spellFrame.cooldownIcon,
-    RGPVPW_CONSTANTS.CATEGORY_COOLDOWN_SPELL_ICON_SIZE + 10,
+    spellFrame.spellIcon,
+    RGPVPW_CONSTANTS.CATEGORY_SPELL_ICON_SIZE + 10,
     0
   )
   spellTitleFontString:SetTextColor(.95, .95, .95)
@@ -560,7 +561,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
   activeCategory = category
 
   if cachedCategoryData == nil then
-    mod.logger.LogInfo(me.tag, string.format("Warmed up cached spelllist for category '%s'", category))
+    mod.logger.LogInfo(me.tag, string.format("Warmed up cached spellList for category '%s'", category))
     cachedCategoryData = mod.spellMap.GetAllForCategory(category)
   end
 
@@ -592,7 +593,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         row.playSound.soundFileName = cachedCategoryData[value].soundFileName
         row.playSoundFade.soundFileName = cachedCategoryData[value].soundFileName
 
-        me.UpdateIcon(row.cooldownIcon, category, cachedCategoryData[value].spellId)
+        me.UpdateIcon(row.spellIcon, category, cachedCategoryData[value].spellId)
         me.UpdateSpellStateCheckBox(row.spellStateCheckBox, category, cachedCategoryData[value].normalizedSpellName)
         me.UpdateSound(row.soundCheckBox, category, cachedCategoryData[value].normalizedSpellName)
         me.UpdateSoundFade(row.soundFadeCheckBox, row.playSoundFade, category, cachedCategoryData[value])
@@ -607,16 +608,16 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
 end
 
 --[[
-@param {table} cooldownIcon
+@param {table} spellIcon
 @param {string} category
 @param {number} spellId
 ]]--
-function me.UpdateIcon(cooldownIcon, category, spellId)
+function me.UpdateIcon(spellIcon, category, spellId)
   local _, _, iconId = GetSpellInfo(spellId)
   local color = RGPVPW_CONSTANTS.CATEGORY_COLOR[category]
 
-  cooldownIcon:SetTexture(iconId)
-  cooldownIcon.iconHolder:SetBackdropBorderColor(unpack(color))
+  spellIcon:SetTexture(iconId)
+  spellIcon.iconHolder:SetBackdropBorderColor(unpack(color))
 end
 
 --[[
