@@ -177,10 +177,6 @@ end
 function me.CreateCategoryMenuContentFrame(self, contentFrameName, position)
   local contentFrame = CreateFrame("Frame", contentFrameName, self)
   contentFrame:SetPoint(unpack(position))
-  contentFrame:SetBackdrop({ -- DEVELOPMENT ONLY
-    bgFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
-    insets = {left = 0, right = 0, top = 0, bottom = 0},
-  })
   contentFrame:SetBackdropColor(1, 0.37, 0.5, .7)
   contentFrame:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)
   contentFrame:SetHeight(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_HEIGHT)

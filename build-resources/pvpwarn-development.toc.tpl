@@ -53,13 +53,13 @@ gui/PVPW_Frame.xml
 gui/PVPW_AddonConfiguration.lua
 gui/PVPW_AboutContent.lua
 gui/PVPW_GeneralMenu.lua
-gui/PVPW_CategoryMenu.lua
 gui/PVPW_ProfileMenu.lua
-gui/PVPW_GuiHelper.lua
-gui/PVPW_TargetFrame.lua
-
+gui/PVPW_CategoryMenu.lua
 gui/PVPW_CategoryMenuSpellsTab.lua
 gui/PVPW_CategoryMenuAvoidTab.lua
+gui/PVPW_EnemyAvoidMenu.lua
+gui/PVPW_TargetFrame.lua
+gui/PVPW_GuiHelper.lua
 
 # test
 test/PVPW_TestReporter.lua

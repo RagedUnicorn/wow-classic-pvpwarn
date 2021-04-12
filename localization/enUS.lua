@@ -100,7 +100,7 @@ rgpvpw.L["category_misc"] = "Misc"
 
 -- category navigation
 rgpvpw.L["tab_button_spell"] = "Spells"
-rgpvpw.L["tab_button_resist"] = "Resist"
+rgpvpw.L["tab_button_resist"] = "Avoid"
 
 -- category configuration
 
@@ -116,6 +116,13 @@ rgpvpw.L["user_message_choose_color"] = "Unable to play visual alert - No color 
 rgpvpw.L["label_enable_avoid_sound"] = "Enable Sound"
 rgpvpw.L["label_play_avoid_sound"] = "Play"
 rgpvpw.L["label_avoid_visual_warning"] = "Visual Warning:"
+rgpvpw.L["label_play_avoid_visual"] = "Play"
+
+-- enemy avoid
+rgpvpw.L["configuration_menu_enemy_avoid"] = "Enemy Avoid"
+rgpvpw.L["label_enable_enemy_avoid_sound"] = "Enable Sound"
+rgpvpw.L["label_play_enemy_avoid_sound"] = "Play"
+rgpvpw.L["label_play_enemy_avoid_visual"] = "Play"
 
 -- dropdown colors
 rgpvpw.L["texture_none"] = "None"

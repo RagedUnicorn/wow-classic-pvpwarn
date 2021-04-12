@@ -56,6 +56,13 @@ function me.SetupAddonConfiguration()
 
   me.BuildSpellCategories(panel.main)
 
+  me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
+    panel.main,
+    rgpvpw.L["configuration_menu_enemy_avoid"],
+    mod.enemyAvoidMenu.Init
+  )
+
   --[[
     For development purpose the InterfaceOptionsFrame_OpenToCategory function can be used to directly
     open a specific category. Because of a blizzard bug this usually has to be called twice to actually work.
