@@ -458,3 +458,25 @@ function me.SearchByName(name)
 
   return nil
 end
+
+--[[
+  Get map for a certain category
+
+  @param {string} category
+
+  @return {table}
+    Map for the passed category
+]]--
+function me.GetAllForCategory(category)
+  if not category then return nil end
+
+  local spellAvoidList = {}
+
+  for normalizedSpellName, spell in pairs(spellAvoidMap[category]) do
+    local clonedSpell = mod.common.Clone(spell)
+    clonedSpell.normalizedSpellName = normalizedSpellName
+    table.insert(spellAvoidList, clonedSpell)
+  end
+
+  return spellAvoidList
+end

@@ -37,6 +37,14 @@ PVPWarnConfiguration = {
   ]]--
   ["spellList"] = nil,
   --[[
+    Spells the player avoided
+  ]]--
+  ["spellSelfAvoidList"] = nil,
+  --[[
+    Spells an enemy avoided
+  ]]--
+  ["spellEnemyAvoidList"] = nil,
+  --[[
     Whether combat state tracking is enabled or not
   ]]--
   ["enableCombatStateTracking"] = true,
@@ -63,11 +71,22 @@ PVPWarnConfiguration = {
     Set default values if property is nil. This might happen after an addon upgrade
   ]]--
 function me.SetupConfiguration()
-
-  -- initialize spelllist for the first time with default profile
+  -- initialize spellList for the first time with default profile
   if PVPWarnConfiguration.spellList == nil then
     PVPWarnConfiguration.spellList = {}
-    PVPWarnConfiguration.spellList = mod.profile.GetDefaultProfile() -- TODO
+    -- PVPWarnConfiguration.spellList = mod.profile.GetDefaultProfile() -- TODO
+  end
+
+  -- initialize spellSelfAvoidList for the first time with default profile
+  if PVPWarnConfiguration.spellSelfAvoidList == nil then
+    PVPWarnConfiguration.spellSelfAvoidList = {}
+    -- PVPWarnConfiguration.spellSelfAvoidList = mod.profile.GetDefaultProfile() -- TODO
+  end
+
+  -- initialize spellEnemyAvoidList for the first time with default profile
+  if PVPWarnConfiguration.spellEnemyAvoidList == nil then
+    PVPWarnConfiguration.spellEnemyAvoidList = {}
+    -- PVPWarnConfiguration.spellEnemyAvoidList = mod.profile.GetDefaultProfile() -- TODO
   end
 
   if PVPWarnConfiguration.enableCombatStateTracking == nil then

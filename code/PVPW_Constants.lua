@@ -130,8 +130,7 @@ RGPVPW_CONSTANTS = {
     Spelllist corresponding to the saved addon variable and its configured
     spelllists
   ]]--
-  SPELL_TYPE = { -- TODO how is this used? and when?
-  -- used for the configuration part when we search whether a spell is active or not
+  SPELL_TYPE = {
     ["SPELL"] = "spellList",
     ["SPELL_SELF_AVOID"] = "spellSelfAvoidList",
     ["SPELL_ENEMY_AVOID"] = "spellEnemyAvoidList"
@@ -277,6 +276,9 @@ RGPVPW_CONSTANTS = {
   ]]--
   ELEMENT_CATEGORY_SUB_OPTION_FRAME = "PVPW_CategoryMenuOptionsFrame",
 
+  --[[
+    Spellstab
+  ]]--
   -- scroll list
   ELEMENT_SPELL_LIST_SCROLL_FRAME = "PVPW_SpellListScrollFrame",
   ELEMENT_SPELL_LIST_SCROLL_FRAME_SLIDER = "PVPW_SpellListScrollFrameSlider",
@@ -286,8 +288,8 @@ RGPVPW_CONSTANTS = {
   SPELL_LIST_MAX_ROWS = 6,
   SPELL_LIST_ROW_HEIGHT = 92,
   -- spell configuration (single row)
-  ELEMENT_CATEGORY_COOLDOWN_SPELL_ICON = "$parentIcon",
-  CATEGORY_COOLDOWN_SPELL_ICON_SIZE = 32,
+  ELEMENT_CATEGORY_SPELL_ICON = "$parentIcon",
+  CATEGORY_SPELL_ICON_SIZE = 32,
   CATEGORY_CHECK_BOX_SIZE = 32,
   SPELL_TITLE_WIDTH = 150,
   ELEMENT_CATEGORY_SPELL_NAME = "PVPW_SpellName",
@@ -300,5 +302,25 @@ RGPVPW_CONSTANTS = {
   ELEMENT_CATEGORY_PLAY_SOUND_FADE_BUTTON = "$parentPlaySoundDown",
   ELEMENT_CATEGORY_PLAY_VISUAL_ALERT_BUTTON = "$parentPlayVisualAlert",
   BUTTON_DEFAULT_PADDING = 15,
-  BUTTON_DEFAULT_HEIGHT = 25
+  BUTTON_DEFAULT_HEIGHT = 25,
+  --[[
+    SpellAvoidTab
+  ]]--
+  -- scroll list
+  ELEMENT_SPELL_AVOID_LIST_SCROLL_FRAME = "PVPW_SpellAvoidListScrollFrame",
+  ELEMENT_SPELL_AVOID_LIST_CONTENT_FRAME = "PVPW_SpellAvoidListContentFrame",
+  SPELL_AVOID_LIST_CONTENT_FRAME_WIDTH = 580,
+  SPELL_AVOID_LIST_MAX_ROWS = 6,
+  SPELL_AVOID_LIST_ROW_HEIGHT = 92,
+  -- spell avoid configuration (single row)
+  ELEMENT_CATEGORY_ENABLE_SPELL_AVOID = "$parentEnableSpellAvoid",
+  ELEMENT_CATEGORY_SPELL_AVOID_ICON = "$parentIcon",
+  ELEMENT_CATEGORY_SPELL_AVOID_ICON_SIZE = 32,
+  ELEMENT_CATEGORY_SPELL_AVOID_NAME = "PVPW_SpellAvoidName",
+  SPELL_AVOID_TITLE_WIDTH = 150,
+  ELEMENT_CATEGORY_ENABLE_AVOID_SOUND = "$parentEnableAvoidSound",
+  ELEMENT_CATEGORY_PLAY_AVOID_SOUND_BUTTON = "$parentPlayAvoidSound",
+  ELEMENT_CATEGORY_AVOID_VISUAL_WARNING_LABEL = "$parentAvoidVisualLabel",
+  ELEMENT_CATEGORY_AVOID_VISUAL_WARNING_DROPDOWN = "ChooseAvoidVisual_",
+  ELEMENT_CATEGORY_PLAY_AVOID_VISUAL_ALERT_BUTTON = "$parentPlayAvoidVisualAlert",
 }

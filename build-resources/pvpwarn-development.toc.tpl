@@ -58,8 +58,8 @@ gui/PVPW_ProfileMenu.lua
 gui/PVPW_GuiHelper.lua
 gui/PVPW_TargetFrame.lua
 
-gui/PVPW_CategoryMenuResistTab.lua
 gui/PVPW_CategoryMenuSpellsTab.lua
+gui/PVPW_CategoryMenuAvoidTab.lua
 
 # test
 test/PVPW_TestReporter.lua
