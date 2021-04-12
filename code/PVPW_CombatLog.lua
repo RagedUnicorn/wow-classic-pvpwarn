@@ -58,7 +58,7 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
     elseif event == "SPELL_AURA_REFRESH" then
       me.ProcessEvent(spellName, event, callback)
     elseif event == "SPELL_MISSED" then
-      me.ProcessSelfResist(spellName, event, missType, callback)
+      me.ProcessResist(spellName, event, missType, RGPVPW_CONSTANTS.TARGET_SELF, callback)
     else
       mod.logger.LogDebug(me.tag, "Ignore unsupported event: " .. event)
 
@@ -68,114 +68,10 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
     end
   elseif CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_MINE) then
     if event == "SPELL_MISSED" then
-      me.ProcessEnemyResist(spellName, event, missType, callback)
+      me.ProcessResist(spellName, event, missType, RGPVPW_CONSTANTS.TARGET_ENEMY, callback)
     end
   end
 end
-
---[[
-  Process event "SPELL_MISSED" for the players resists. An enemy casted something on the user of the addon
-  and this user resisted that spell
-
-  @param {string} spellName
-  @param {string} event
-  @param {string} missType
-    RGPVPW_CONSTANTS.MISS_TYPES
-  @param {function} callback
-]]--
-function me.ProcessSelfResist(spellName, event, missType, callback)
-  if not mod.common.IsSupportedMissType(missType) then
-    mod.logger.LogDebug(me.tag, "ProcesseSelfResist ignore unsupported missType: " .. missType)
-    return
-  end
-
-  mod.logger.LogError(me.tag, "Self Resist event triggered")
-  mod.logger.LogError(me.tag, "spellname: " .. spellName)
-  mod.logger.LogError(me.tag, "event:" .. event)
-
-
-  local spellType = mod.common.GetSpellType(event, RGPVPW_CONSTANTS.TARGET_SELF)
-  local category, spell = mod.spellAvoidMap.SearchByName(spellName, event)
-  local playSound
-  local playVisual
-
-  if spellType == nil then
-    mod.logger.LogError(me.tag, "Unable to determine spellType - aborting...")
-    return
-  end
-
-  if category == nil or spell == nil then
-    mod.logger.LogInfo(me.tag, string.format(
-      "Ignore spell %s because search in spellAvoidMap resulted in not found", spellName
-      )
-    )
-    return
-  end
-
-  -- TODO check here if spell is configured to be active
-
-  playSound = true
-  playVisual = true
-
-
-  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
-end
-
---[[
-  Process event "SPELL_MISSED" for the enemy players resists. The user of the addon casted
-  something on an enemy player and that player resisted the spell.
-
-  @param {string} spellName
-  @param {string} event
-  @param {string} missType
-    RGPVPW_CONSTANTS.MISS_TYPES
-  @param {function} callback
-]]--
-function me.ProcessEnemyResist(spellName, event, missType, callback)
-  if not mod.common.IsSupportedMissType(missType) then
-    mod.logger.LogDebug(me.tag, "ProcessEnemyResist ignore unsupported missType: " .. missType)
-    return
-  end
-
-  mod.logger.LogError(me.tag, "Enemy Resist event triggered")
-  mod.logger.LogError(me.tag, "spellname: " .. spellName)
-  mod.logger.LogError(me.tag, "event:" .. event)
-
-
-  local spellType = mod.common.GetSpellType(event, RGPVPW_CONSTANTS.TARGET_ENEMY)
-  local category, spell = mod.spellAvoidMap.SearchByName(spellName, event)
-  local playSound
-  local playVisual
-
-  if spellType == nil then
-    mod.logger.LogError(me.tag, "Unable to determine spellType - aborting...")
-    return
-  end
-
-  if category == nil or spell == nil then
-    --[[
-      This doesn't necessarily means that the spell does not exist in the spellMap but
-      it might not match to the event that happened
-    ]]--
-    mod.logger.LogInfo(me.tag, string.format(
-      "Ignore spell %s because search in spellAvoidMap resulted in not found", spellName
-      )
-    )
-    return
-  end
-
-  -- TODO check here if spell is configured to be active
-
-  playSound = true
-  playVisual = true
-
-
-  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
-end
-
-
-
-
 
 --[[
   @param {string} spellName
@@ -235,7 +131,81 @@ function me.ProcessEvent(spellName, event, callback)
     spell.visualWarningColor = visualWarningColor
   else
     mod.logger.LogDebug(me.tag, string.format(
+      "Ignore playing visual warning for %s - %s because it is not active", category, normalizedSpellName
+      )
+    )
+    playVisual = false
+  end
+
+  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
+end
+
+--[[
+  Process event "SPELL_MISSED" for spell resists
+
+  @param {string} spellName
+  @param {string} event
+  @param {string} missType
+    RGPVPW_CONSTANTS.MISS_TYPES
+  @param {number} spellMissedTarget
+    TARGET_SELF or TARGET_ENEMY
+  @param {function} callback
+]]--
+function me.ProcessResist(spellName, event, missType, spellMissedTarget, callback)
+  if not mod.common.IsSupportedMissType(missType) then
+    mod.logger.LogDebug(me.tag, "ProcessEnemyResist ignore unsupported missType: " .. missType)
+    return
+  end
+
+  local normalizedSpellName = mod.common.NormalizeSpellname(spellName)
+  local spellType = mod.common.GetSpellType(event, spellMissedTarget)
+  local spellMap = mod.common.GetSpellMap(spellType)
+  local category, spell = mod.spellAvoidMap.SearchByName(spellName, event)
+  local playSound
+  local playVisual
+
+  if spellType == nil then
+    mod.logger.LogError(me.tag, "Unable to determine spellType - aborting...")
+    return
+  end
+
+  if category == nil or spell == nil then
+    mod.logger.LogInfo(me.tag, string.format(
+      "Ignore spell %s because search in spellAvoidMap resulted in not found", spellName
+      )
+    )
+    return
+  end
+
+  if not mod.spellConfiguration.IsSpellActive(spellMap, category, normalizedSpellName) then
+    mod.logger.LogDebug(me.tag, string.format(
+      "Ignore spell %s - %s because it is not active", category, normalizedSpellName
+      )
+    )
+    return -- spell not active no work todo
+  end
+
+  if mod.spellConfiguration.IsSoundWarningActive(spellMap, category, normalizedSpellName) then
+    playSound = true
+  else
+    mod.logger.LogDebug(me.tag, string.format(
       "Ignore playing sound for %s - %s because it is not active", category, normalizedSpellName
+      )
+    )
+    playSound = false
+  end
+
+  local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
+    spellMap, category, normalizedSpellName
+  )
+
+  if visualWarningColor ~= RGPVPW_CONSTANTS.DEFAULT_COLOR then
+    mod.visual.ShowVisualAlert(visualWarningColor)
+    playVisual = true
+    spell.visualWarningColor = visualWarningColor
+  else
+    mod.logger.LogDebug(me.tag, string.format(
+      "Ignore playing visual warning for %s - %s because it is not active", category, normalizedSpellName
       )
     )
     playVisual = false

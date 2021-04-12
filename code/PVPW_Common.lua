@@ -144,6 +144,23 @@ function me.GetSpellType(event, targetModifier)
 end
 
 --[[
+  @param {number} spellType
+    One of RGPVPW.SPELL_TYPES
+
+  @return {string}
+    One of RGPVPW.SPELL_TYPE
+]]--
+function me.GetSpellMap(spellType)
+  if spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF then
+    return RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID
+  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY then
+    return RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID
+  else
+    return RGPVPW_CONSTANTS.SPELL_TYPE.SPELL
+  end
+end
+
+--[[
   Check if the missType is support. See RGPVPW_CONSTANTS.MISS_TYPES for all supported
   types.
 
