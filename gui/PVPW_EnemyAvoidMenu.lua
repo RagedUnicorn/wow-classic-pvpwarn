@@ -107,49 +107,16 @@ end
   @return {table}
 ]]--
 function me.CreateSpellEnemyAvoidList(frame)
-  local scrollFrame = me.CreateFauxScrollFrame(
-    RGPVPW_CONSTANTS.ELEMENT_SPELL_AVOID_LIST_SCROLL_FRAME,
+  return mod.guiHelper.CreateFauxScrollFrame(
+    RGPVPW_CONSTANTS.ELEMENT_SPELL_ENEMY_AVOID_LIST_SCROLL_FRAME,
     frame,
     RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_LIST_CONTENT_FRAME_WIDTH,
+    RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_LIST_ROW_HEIGHT,
+    RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_LIST_MAX_ROWS,
     me.FauxScrollFrameOnUpdate,
+    me.CreateRowFrame,
     spellAvoidRows
   )
-
-  scrollFrame:ClearAllPoints()
-  scrollFrame:SetPoint("TOPLEFT", frame)
-
-  return scrollFrame
-end
-
---[[
-  @param {string} scrollFrameName
-  @param {table} frame
-  @param {number} width
-  @param {function} callback
-    OnVerticalScroll callback function
-  @param {table} storage
-    Storage for the created rows
-
-  @return {table}
-    The created scrollFrame
-]]--
-function me.CreateFauxScrollFrame(scrollFrameName, frame, width, callback, storage)
-  local scrollFrame = CreateFrame("ScrollFrame", scrollFrameName, frame, "FauxScrollFrameTemplate")
-  scrollFrame:SetWidth(width)
-  scrollFrame:SetHeight(
-    RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_LIST_ROW_HEIGHT * RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_LIST_MAX_ROWS)
-  scrollFrame:EnableMouseWheel(true)
-  scrollFrame:SetScript("OnVerticalScroll", function(self, offset)
-    self.ScrollBar:SetValue(offset)
-    self.offset = math.floor(offset / RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_LIST_ROW_HEIGHT + 0.5)
-    callback(self, self:GetParent().categoryName)
-  end)
-
-  for i = 1, RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_LIST_MAX_ROWS do
-    table.insert(storage, me.CreateRowFrame(scrollFrame, i))
-  end
-
-  return scrollFrame
 end
 
 --[[
@@ -160,32 +127,48 @@ end
     The created row
 ]]--
 function me.CreateRowFrame(frame, position)
-  local row = CreateFrame(
-    "Button", RGPVPW_CONSTANTS.ELEMENT_SPELL_ENEMY_AVOID_LIST_CONTENT_ROW_FRAME .. position, frame)
-  row:SetSize(frame:GetWidth(), RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_LIST_ROW_HEIGHT)
-  row:SetPoint("TOPLEFT", frame, 0, (position -1) * RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_LIST_ROW_HEIGHT * -1)
-
-  row:SetBackdrop({
-    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-    insets = {left = 0, right = 0, top = 0, bottom = 0},
-  })
-
-  if math.fmod(position, 2) == 0 then
-    row:SetBackdropColor(0.37, 0.37, 0.37, .4)
-  else
-    row:SetBackdropColor(.25, .25, .25, .8)
-  end
+  local row = mod.guiHelper.CreateSpellFrame(
+    frame,
+    position,
+    RGPVPW_CONSTANTS.ELEMENT_SPELL_ENEMY_AVOID_LIST_CONTENT_ROW_FRAME,
+    RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_LIST_ROW_HEIGHT
+  )
 
   row.position = position
   row.spellStateCheckBox = me.CreateSpellStateCheckbox(row)
-  row.spellIcon = me.CreateSpellIcon(row)
-  row.spellTitle = me.CreateSpellTitle(row)
+  row.spellIcon = mod.guiHelper.CreateSpellIcon(
+    row,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON_SIZE
+  )
+  row.spellTitle = mod.guiHelper.CreateSpellTitle(
+    row.spellIcon,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_NAME,
+    RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_TITLE_WIDTH,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON_SIZE
+  )
 
   row.enemyAvoidSoundCheckBox = me.CreateSpellEnemyAvoidSoundCheckBox(row)
-  row.playEnemyAvoidSound = me.CreateEnemyAvoidSoundButton(row)
+  row.playEnemyAvoidSound = mod.guiHelper.CreatePlayButton(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_ENEMY_AVOID_SOUND_BUTTON,
+    row,
+    {"LEFT", row.enemyAvoidSoundCheckBox, "RIGHT", 150, 0},
+    me.PlayAvoidSoundButtonOnClick,
+    rgpvpw.L["label_play_enemy_avoid_sound"]
+  )
   row.chooseEnemyAvoidVisual = me.CreateAvoidVisualAlertDropdown(row)
-  row.chooseEnemyAvoidVisualLabel = me.CreateAvoidVisualLabel(row)
-  row.playEnemyAvoidVisual = me.CreateAvoidVisualWarningButton(row)
+  row.chooseEnemyAvoidVisualLabel = mod.guiHelper.CreateVisualWarningLabel(
+    row.chooseEnemyAvoidVisual,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENEMY_AVOID_VISUAL_WARNING_LABEL,
+    rgpvpw.L["label_play_enemy_avoid_visual"]
+  )
+  row.playEnemyAvoidVisual = mod.guiHelper.CreatePlayButton(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_ENEMY_AVOID_VISUAL_ALERT_BUTTON,
+    row,
+    {"LEFT", row.chooseEnemyAvoidVisual, "RIGHT", 140, 0},
+    me.ToggleAvoidVisualWarningOnClick,
+    rgpvpw.L["label_play_enemy_avoid_visual"]
+  )
 
   return row
 end
@@ -232,73 +215,6 @@ function me.CreateSpellStateCheckbox(spellFrame)
 end
 
 --[[
-  @param {table} spellFrame
-
-  @return {table}
-    The created icon texture holder
-]]--
-function me.CreateSpellIcon(spellFrame)
-  local iconHolder = CreateFrame("Frame", nil, spellFrame)
-  iconHolder:SetSize(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON_SIZE + 5,
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON_SIZE + 5
-  )
-  iconHolder:SetPoint("LEFT", 40, 0)
-
-  local spellIcon = iconHolder:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON, "ARTWORK")
-  spellIcon.iconHolder = iconHolder
-  spellIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
-  spellIcon:SetPoint("CENTER", 0, 0)
-  spellIcon:SetSize(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON_SIZE,
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON_SIZE
-  )
-
-  local backdrop = {
-    bgFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
-    edgeFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
-    tile = false,
-    tileSize = 32,
-    edgeSize = 20,
-    insets = {
-      left = 12,
-      right = 12,
-      top = 12,
-      bottom = 12
-    }
-  }
-
-  iconHolder:SetBackdrop(backdrop)
-  iconHolder:SetBackdropColor(0.15, 0.15, 0.15, 1)
-
-  return spellIcon
-end
-
---[[
-  Create fontstring for title of the spell to configure
-
-  @param {table} spellFrame
-
-  @return {table}
-    The created fontstring
-]]--
-function me.CreateSpellTitle(spellFrame)
-  local spellTitleFontString =
-    spellFrame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_NAME, "OVERLAY")
-  spellTitleFontString:SetFont(STANDARD_TEXT_FONT, 15)
-  spellTitleFontString:SetWidth(RGPVPW_CONSTANTS.SPELL_ENEMY_AVOID_TITLE_WIDTH)
-  spellTitleFontString:SetPoint(
-    "LEFT",
-    spellFrame.spellIcon,
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON_SIZE + 10,
-    0
-  )
-  spellTitleFontString:SetTextColor(.95, .95, .95)
-
-  return spellTitleFontString
-end
-
---[[
   Create checkbox for configuring sound alert configuration
 
   @param {table} spellFrame
@@ -336,24 +252,6 @@ function me.CreateSpellEnemyAvoidSoundCheckBox(spellFrame)
 end
 
 --[[
-  Create a sound button for testing the sound
-
-  @param {table} spellFrame
-
-  @return {table}
-    The created button
-]]--
-function me.CreateEnemyAvoidSoundButton(spellFrame)
-  return mod.guiHelper.CreatePlayButton(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_ENEMY_AVOID_SOUND_BUTTON,
-    spellFrame,
-    {"LEFT", spellFrame.enemyAvoidSoundCheckBox, "RIGHT", 150, 0},
-    me.PlayAvoidSoundButtonOnClick,
-    rgpvpw.L["label_play_enemy_avoid_sound"]
-  )
-end
-
---[[
   Click callback for sound button
 
   @param {table} self
@@ -372,39 +270,24 @@ end
     The created dropdown
 ]]--
 function me.CreateAvoidVisualAlertDropdown(spellFrame)
-  local chooseAvoidVisualWarningDropdownMenu = CreateFrame(
-    "Button",
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENEMY_AVOID_VISUAL_WARNING_DROPDOWN .. spellFrame.position,
+  return mod.guiHelper.CreateVisualWarningDropdown(
     spellFrame,
-    "UIDropDownMenuTemplate"
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENEMY_AVOID_VISUAL_WARNING_DROPDOWN,
+    function(self)
+      for colorName, color in pairs(RGPVPW_CONSTANTS.TEXTURES) do
+        UIDropDownMenu_AddButton(
+          mod.guiHelper.CreateDropdownButton(colorName, color.colorValue, me.DropDownMenuCallback)
+        )
+      end
+
+      if (UIDropDownMenu_GetSelectedValue(_G[self:GetName()]) == nil) then
+        UIDropDownMenu_SetSelectedValue(
+          _G[self:GetName()],
+          RGPVPW_CONSTANTS.TEXTURES.none.colorValue
+        )
+      end
+    end
   )
-  chooseAvoidVisualWarningDropdownMenu:SetPoint("RIGHT", spellFrame.spellTitle, "RIGHT", 165, -30)
-  chooseAvoidVisualWarningDropdownMenu.position = spellFrame.position
-
-  UIDropDownMenu_Initialize(chooseAvoidVisualWarningDropdownMenu, me.InitializeAvoidVisualWarningDropdownMenu)
-
-  return chooseAvoidVisualWarningDropdownMenu
-end
-
---[[
-  Create dropdownmenu for color selection
-
-  @param {table} self
-    A reference to the dropdown
-]]--
-function me.InitializeAvoidVisualWarningDropdownMenu(self)
-  for colorName, color in pairs(RGPVPW_CONSTANTS.TEXTURES) do
-    UIDropDownMenu_AddButton(
-      mod.guiHelper.CreateDropdownButton(colorName, color.colorValue, me.DropDownMenuCallback)
-    )
-  end
-
-  if (UIDropDownMenu_GetSelectedValue(_G[self:GetName()]) == nil) then
-    UIDropDownMenu_SetSelectedValue(
-      _G[self:GetName()],
-      RGPVPW_CONSTANTS.TEXTURES.none.colorValue
-    )
-  end
 end
 
 --[[
@@ -423,54 +306,6 @@ function me.DropDownMenuCallback(self)
     activeCategory,
     self:GetParent().dropdown:GetParent().normalizedSpellName,
     self.value
-  )
-end
-
---[[
-  Create a label for the warn dropdown menu
-
-  @param {table} spellFrame
-
-  @return {table}
-    The created label
-]]--
-function me.CreateAvoidVisualLabel(spellFrame)
-  local avoidVisualWarningLabelFontString = spellFrame:CreateFontString(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENEMY_AVOID_VISUAL_WARNING_LABEL,
-    "OVERLAY"
-  )
-  avoidVisualWarningLabelFontString:SetFont(STANDARD_TEXT_FONT, 15)
-  avoidVisualWarningLabelFontString:SetPoint(
-    "RIGHT",
-    spellFrame.chooseEnemyAvoidVisual,
-    "LEFT",
-    0,
-    0
-  )
-  avoidVisualWarningLabelFontString:SetTextColor(.95, .95, .95)
-  avoidVisualWarningLabelFontString:SetText(rgpvpw.L["label_avoid_visual_warning"])
-  avoidVisualWarningLabelFontString:SetWidth(
-    avoidVisualWarningLabelFontString:GetStringWidth()
-  )
-
-  return avoidVisualWarningLabelFontString
-end
-
---[[
-  Create a visual warn button for testing the sound
-
-  @param {table} spellFrame
-
-  @return {table}
-    The created button
-]]--
-function me.CreateAvoidVisualWarningButton(spellFrame)
-  return mod.guiHelper.CreatePlayButton(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_ENEMY_AVOID_VISUAL_ALERT_BUTTON,
-    spellFrame,
-    {"LEFT", spellFrame.chooseEnemyAvoidVisual, "RIGHT", 140, 0},
-    me.ToggleAvoidVisualWarningOnClick,
-    rgpvpw.L["label_play_enemy_avoid_visual"]
   )
 end
 
@@ -504,7 +339,6 @@ end
   @param {string} category
 ]]--
 function me.FauxScrollFrameOnUpdate(scrollFrame)
-
   if cachedCategoryData == nil then
     mod.logger.LogInfo(me.tag, string.format("Warmed up cached spellEnemyAvoidList for category '%s'", activeCategory))
     cachedCategoryData = mod.spellAvoidMap.GetAllForCategory(activeCategory)

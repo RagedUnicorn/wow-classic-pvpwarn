@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT UIDropDownMenu_Initialize
 
 local mod = rgpvpw
 local me = {}
@@ -188,4 +188,193 @@ end
 function me.EnableCheckButton(checkButton)
   checkButton:Enable()
   checkButton.text:SetTextColor(1, 1, 1)
+end
+
+--[[
+  @param {table} parentFrame
+  @param {number} position
+  @param {string} spellFrameName
+  @param {number} spellFrameRowHeight
+
+  @return {table}
+    The created row
+]]--
+function me.CreateSpellFrame(parentFrame, position, spellFrameName, spellFrameRowHeight)
+  local spellFrame = CreateFrame("Button", spellFrameName .. position, parentFrame)
+  spellFrame:SetSize(parentFrame:GetWidth(), spellFrameRowHeight)
+  spellFrame:SetPoint("TOPLEFT", parentFrame, 0, (position -1) * spellFrameRowHeight * -1)
+
+  spellFrame:SetBackdrop({
+    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+    insets = {left = 0, right = 0, top = 0, bottom = 0},
+  })
+
+  if math.fmod(position, 2) == 0 then
+    spellFrame:SetBackdropColor(0.37, 0.37, 0.37, .4)
+  else
+    spellFrame:SetBackdropColor(.25, .25, .25, .8)
+  end
+
+  return  spellFrame
+end
+
+--[[
+    @param {string} scrollFrameName
+    @param {table} parentFrame
+    @param {number} scrollFrameWidth
+    @param {number} rowHeight
+    @param {number} maxRows
+    @param {function} callback
+    @param {function} createSpellFrameFunc
+    @param {table} storage
+]]--
+function me.CreateFauxScrollFrame(
+    scrollFrameName, parentFrame, scrollFrameWidth, rowHeight, maxRows, callback, createSpellFrameFunc, storage)
+  local scrollFrame = CreateFrame("ScrollFrame", scrollFrameName, parentFrame, "FauxScrollFrameTemplate")
+  scrollFrame:SetWidth(scrollFrameWidth)
+  scrollFrame:SetHeight(rowHeight * maxRows)
+  scrollFrame:EnableMouseWheel(true)
+
+  scrollFrame:SetScript("OnVerticalScroll", function(self, offset)
+    self.ScrollBar:SetValue(offset)
+    self.offset = math.floor(offset / rowHeight + 0.5)
+    callback(self, self:GetParent().categoryName)
+  end)
+
+  for i = 1, maxRows do
+    table.insert(storage, createSpellFrameFunc(scrollFrame, i))
+  end
+
+  scrollFrame:ClearAllPoints()
+  scrollFrame:SetPoint("TOPLEFT", parentFrame)
+
+  return scrollFrame, storage
+end
+
+--[[
+  @param {table} parentFrame
+  @param {string} iconName
+  @param {number} iconSize
+
+  @return {table}
+    The created icon texture holder
+]]--
+function me.CreateSpellIcon(parentFrame, iconName, iconSize)
+  local iconHolder = CreateFrame("Frame", nil, parentFrame)
+  iconHolder:SetSize(
+    iconSize + 5,
+    iconSize + 5
+  )
+  iconHolder:SetPoint("LEFT", 40, 0)
+
+  local spellIcon = iconHolder:CreateTexture(iconName, "ARTWORK")
+  spellIcon.iconHolder = iconHolder
+  spellIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+  spellIcon:SetPoint("CENTER", 0, 0)
+  spellIcon:SetSize(
+    iconSize,
+    iconSize
+  )
+
+  local backdrop = {
+    bgFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
+    edgeFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
+    tile = false,
+    tileSize = 32,
+    edgeSize = 20,
+    insets = {
+      left = 12,
+      right = 12,
+      top = 12,
+      bottom = 12
+    }
+  }
+
+  iconHolder:SetBackdrop(backdrop)
+  iconHolder:SetBackdropColor(0.15, 0.15, 0.15, 1)
+
+  return spellIcon
+end
+
+--[[
+  Create fontstring for title of the spell to configure
+
+  @param {table} parentFrame
+  @param {string} spellTitle
+  @param {number} spellTitleWidth
+  @param {number} iconSize
+
+  @return {table}
+    The created fontstring
+]]--
+function me.CreateSpellTitle(parentFrame, spellTitle, spellTitleWidth, iconSize)
+  local spellTitleFontString = parentFrame:GetParent():CreateFontString(spellTitle, "OVERLAY")
+  spellTitleFontString:SetFont(STANDARD_TEXT_FONT, 15)
+  spellTitleFontString:SetWidth(spellTitleWidth)
+  spellTitleFontString:SetPoint(
+    "LEFT",
+    parentFrame,
+    iconSize + 10,
+    0
+  )
+  spellTitleFontString:SetTextColor(.95, .95, .95)
+
+  return spellTitleFontString
+end
+
+--[[
+  Create a label for the warn dropdown menu
+
+  @param {table} parentFrame
+  @param {string} visualLabelName
+  @param {string} labelText
+
+  @return {table}
+    The created label
+]]--
+function me.CreateVisualWarningLabel(parentFrame, visualLabelName, labelText)
+  local visualWarningLabelFontString = parentFrame:CreateFontString(
+    visualLabelName,
+    "OVERLAY"
+  )
+  visualWarningLabelFontString:SetFont(STANDARD_TEXT_FONT, 15)
+  visualWarningLabelFontString:SetPoint(
+    "RIGHT",
+    parentFrame,
+    "LEFT",
+    0,
+    0
+  )
+  visualWarningLabelFontString:SetTextColor(.95, .95, .95)
+  visualWarningLabelFontString:SetText(labelText)
+  visualWarningLabelFontString:SetWidth(
+    visualWarningLabelFontString:GetStringWidth()
+  )
+
+  return visualWarningLabelFontString
+end
+
+--[[
+  Create a dropdown with alert color textures to choose
+
+  @param {table} parentFrame
+  @param {string} dropdownName
+  @param {function} initializeFunction
+
+  @return {table}
+    The created dropdown
+]]--
+function me.CreateVisualWarningDropdown(parentFrame, dropdownName, initializeFunction)
+  local chooseVisualWarningDropdownMenu = CreateFrame(
+    "Button",
+    dropdownName .. parentFrame.position,
+    parentFrame,
+    "UIDropDownMenuTemplate"
+  )
+  chooseVisualWarningDropdownMenu:SetPoint("RIGHT", parentFrame.spellTitle, "RIGHT", 165, -30)
+  chooseVisualWarningDropdownMenu.position = parentFrame.position
+
+  UIDropDownMenu_Initialize(chooseVisualWarningDropdownMenu, initializeFunction)
+
+  return chooseVisualWarningDropdownMenu
 end
