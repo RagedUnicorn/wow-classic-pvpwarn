@@ -146,7 +146,6 @@ function me.TestCombatEventShadowmeldSuccess()
   )
 end
 
--- TODO missing soundfile
 function me.TestCombatEventBloodFurySuccess()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventBloodFurySuccess",

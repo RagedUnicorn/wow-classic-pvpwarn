@@ -80,16 +80,14 @@ end
   Init function
 ]]--
 function me.Initialize()
-  me.filter.RegisterFilter("combatstate", "CombatState") -- filter combatstatelogs TODO
-
   me.logger.LogDebug(me.tag, "Initialize addon")
   -- setup slash commands
   me.cmd.SetupSlashCmdList()
   -- load addon variables
   me.configuration.SetupConfiguration()
   -- setup addon configuration ui
-  me.addonConfiguration.SetupAddonConfiguration() -- TODO remove this only for testing
-
+  me.addonConfiguration.SetupAddonConfiguration()
+  -- setup combat state ui
   me.targetFrame.BuildCombatStateUi()
   -- start ticker intervals
   me.ticker.StartTickerWarnQueue()

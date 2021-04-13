@@ -133,7 +133,6 @@ end
   Resize button width to the size if its text
 
   @param {table} button
-  TODO rename to resize to element isntead of only button
 ]]--
 function me.ResizeButtonToText(button)
   local buttonFontString = button:GetFontString()

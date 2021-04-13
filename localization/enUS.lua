@@ -29,9 +29,6 @@ rgpvpw.L = {}
 
 rgpvpw.L["addon_name"] = "PVPWarn"
 
--- file name pattern
-rgpvpw.L["removed"] = "_down"
-
 -- console
 rgpvpw.L["info_title"] = "|cFF00FFB0PVPWarn:|r"
 rgpvpw.L["help"] = "|cFFFFC300(%s)|r: Use |cFFFFC300/rgpvpw|r or |cFFFFC300/pvpwarn|r for a list of options"

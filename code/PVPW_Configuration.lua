@@ -169,7 +169,6 @@ end
 ]]--
 function me.LockCombatStateFrame()
   PVPWarnConfiguration.lockCombatStateFrame = true
-  -- no actual work needed TODO
 end
 
 --[[
@@ -177,7 +176,6 @@ end
 ]]--
 function me.UnlockCombatStateFrame()
   PVPWarnConfiguration.lockCombatStateFrame = false
-  -- no actual work needed TODO
 end
 
 --[[

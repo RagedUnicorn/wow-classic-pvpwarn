@@ -107,7 +107,7 @@ function me.ProcessEvent(spellName, event, callback)
       "Ignore spell %s - %s because it is not active", category, normalizedSpellName
       )
     )
-    return -- spell not active no work todo
+    return -- spell not active no work
   end
 
   if mod.spellConfiguration.IsSoundWarningActive(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL, category, normalizedSpellName)
@@ -182,7 +182,7 @@ function me.ProcessResist(spellName, event, missType, spellMissedTarget, callbac
       "Ignore spell %s - %s because it is not active", category, normalizedSpellName
       )
     )
-    return -- spell not active no work todo
+    return -- spell not active no work
   end
 
   if mod.spellConfiguration.IsSoundWarningActive(spellMap, category, normalizedSpellName) then

@@ -34,7 +34,7 @@ me.tag = "Sound"
   Private
 ]]--
 local BASE_PATH = "Interface\\AddOns\\PVPWarn\\assets\\sounds\\en\\"
-local FILE_NAME_DOWN = rgpvpw.L["removed"] -- TODO do we really need to localize this
+local FILE_NAME_DOWN = "_down"
 local PATH_SELF_AVOID = "self_avoid\\"
 local PATH_ENEMY_AVOID = "enemy_avoid\\"
 local FILE_NAME_SELF_AVOID = "you_avoided_"

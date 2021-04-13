@@ -75,7 +75,7 @@ function me.SetupAddonConfiguration()
     Note: The behavior with how events fire might change quite a bit when using the above debug method.
     Because of this it is important that the "normal" manuall way of opening the menu is tested as well.
   ]]--
-  me.OpenAddonPanel() -- TODO debug only remove this later
+  -- me.OpenAddonPanel()
 
   mod.aboutContent.BuildAboutContent(panel.main)
 end
