@@ -42,47 +42,47 @@ function me.Test()
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidKickDodged)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidKickParried)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidKickImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidKickMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidKickBlocked)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidCheapShotImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidCheapShotMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidCheapShotResisted)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidGougeDodged)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidGougeParried)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidGougeImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidGougeMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidGougeBlocked)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidKidneyShotDodged)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidKidneyShotParried)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidKidneyShotImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidKidneyShotMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidKidneyShotResisted)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidBlindImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidGhostlyStrikeDodged)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidGhostlyStrikeParried)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidGhostlyStrikeImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidGhostlyStrikeMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidSapImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidSapMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidDistractImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidDistractMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidExposeArmorDodged)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidExposeArmorParried)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidExposeArmorImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidExposeArmorMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidGarroteImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidRuptureDodged)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidRuptureParried)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidRuptureImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemeyAvoidRuptureMissed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKickDodged)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKickParried)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKickImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKickMissed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKickBlocked)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidCheapShotImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidCheapShotMissed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidCheapShotResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGougeDodged)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGougeParried)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGougeImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGougeMissed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGougeBlocked)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKidneyShotDodged)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKidneyShotParried)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKidneyShotImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKidneyShotMissed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKidneyShotResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidBlindImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGhostlyStrikeDodged)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGhostlyStrikeParried)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGhostlyStrikeImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGhostlyStrikeMissed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidSapImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidSapMissed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidDistractImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidDistractResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidExposeArmorDodged)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidExposeArmorParried)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidExposeArmorImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidExposeArmorMissed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGarroteImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidRuptureDodged)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidRuptureParried)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidRuptureImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidRuptureMissed)
 end
 
-function me.TestCombatEventEnemeyAvoidKickDodged()
+function me.TestCombatEventEnemyAvoidKickDodged()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidKickDodged",
+    "TestCombatEventEnemyAvoidKickDodged",
     testCategory,
     "Kick",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -90,9 +90,9 @@ function me.TestCombatEventEnemeyAvoidKickDodged()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidKickParried()
+function me.TestCombatEventEnemyAvoidKickParried()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidKickParried",
+    "TestCombatEventEnemyAvoidKickParried",
     testCategory,
     "Kick",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -100,9 +100,9 @@ function me.TestCombatEventEnemeyAvoidKickParried()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidKickImmune()
+function me.TestCombatEventEnemyAvoidKickImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidKickImmune",
+    "TestCombatEventEnemyAvoidKickImmune",
     testCategory,
     "Kick",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -110,9 +110,9 @@ function me.TestCombatEventEnemeyAvoidKickImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidKickMissed()
+function me.TestCombatEventEnemyAvoidKickMissed()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidKickMissed",
+    "TestCombatEventEnemyAvoidKickMissed",
     testCategory,
     "Kick",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -120,9 +120,9 @@ function me.TestCombatEventEnemeyAvoidKickMissed()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidKickBlocked()
+function me.TestCombatEventEnemyAvoidKickBlocked()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidKickBlocked",
+    "TestCombatEventEnemyAvoidKickBlocked",
     testCategory,
     "Kick",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -130,9 +130,9 @@ function me.TestCombatEventEnemeyAvoidKickBlocked()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidCheapShotImmune()
+function me.TestCombatEventEnemyAvoidCheapShotImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidCheapShotImmune",
+    "TestCombatEventEnemyAvoidCheapShotImmune",
     testCategory,
     "Cheap Shot",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -140,9 +140,9 @@ function me.TestCombatEventEnemeyAvoidCheapShotImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidCheapShotMissed()
+function me.TestCombatEventEnemyAvoidCheapShotMissed()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidCheapShotMissed",
+    "TestCombatEventEnemyAvoidCheapShotMissed",
     testCategory,
     "Cheap Shot",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -150,9 +150,9 @@ function me.TestCombatEventEnemeyAvoidCheapShotMissed()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidCheapShotResisted()
+function me.TestCombatEventEnemyAvoidCheapShotResisted()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidCheapShotResisted",
+    "TestCombatEventEnemyAvoidCheapShotResisted",
     testCategory,
     "Cheap Shot",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -160,9 +160,9 @@ function me.TestCombatEventEnemeyAvoidCheapShotResisted()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidGougeDodged()
+function me.TestCombatEventEnemyAvoidGougeDodged()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidGougeDodged",
+    "TestCombatEventEnemyAvoidGougeDodged",
     testCategory,
     "Gouge",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -170,9 +170,9 @@ function me.TestCombatEventEnemeyAvoidGougeDodged()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidGougeParried()
+function me.TestCombatEventEnemyAvoidGougeParried()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidGougeParried",
+    "TestCombatEventEnemyAvoidGougeParried",
     testCategory,
     "Gouge",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -180,9 +180,9 @@ function me.TestCombatEventEnemeyAvoidGougeParried()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidGougeImmune()
+function me.TestCombatEventEnemyAvoidGougeImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidGougeImmune",
+    "TestCombatEventEnemyAvoidGougeImmune",
     testCategory,
     "Gouge",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -190,9 +190,9 @@ function me.TestCombatEventEnemeyAvoidGougeImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidGougeMissed()
+function me.TestCombatEventEnemyAvoidGougeMissed()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidGougeMissed",
+    "TestCombatEventEnemyAvoidGougeMissed",
     testCategory,
     "Gouge",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -200,9 +200,9 @@ function me.TestCombatEventEnemeyAvoidGougeMissed()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidGougeBlocked()
+function me.TestCombatEventEnemyAvoidGougeBlocked()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidGougeBlocked",
+    "TestCombatEventEnemyAvoidGougeBlocked",
     testCategory,
     "Gouge",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -210,9 +210,9 @@ function me.TestCombatEventEnemeyAvoidGougeBlocked()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidKidneyShotDodged()
+function me.TestCombatEventEnemyAvoidKidneyShotDodged()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidKidneyShotDodged",
+    "TestCombatEventEnemyAvoidKidneyShotDodged",
     testCategory,
     "Kidney Shot",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -220,9 +220,9 @@ function me.TestCombatEventEnemeyAvoidKidneyShotDodged()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidKidneyShotParried()
+function me.TestCombatEventEnemyAvoidKidneyShotParried()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidKidneyShotParried",
+    "TestCombatEventEnemyAvoidKidneyShotParried",
     testCategory,
     "Kidney Shot",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -230,9 +230,9 @@ function me.TestCombatEventEnemeyAvoidKidneyShotParried()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidKidneyShotImmune()
+function me.TestCombatEventEnemyAvoidKidneyShotImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidKidneyShotImmune",
+    "TestCombatEventEnemyAvoidKidneyShotImmune",
     testCategory,
     "Kidney Shot",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -240,9 +240,9 @@ function me.TestCombatEventEnemeyAvoidKidneyShotImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidKidneyShotMissed()
+function me.TestCombatEventEnemyAvoidKidneyShotMissed()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidKidneyShotMissed",
+    "TestCombatEventEnemyAvoidKidneyShotMissed",
     testCategory,
     "Kidney Shot",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -250,9 +250,9 @@ function me.TestCombatEventEnemeyAvoidKidneyShotMissed()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidKidneyShotResisted()
+function me.TestCombatEventEnemyAvoidKidneyShotResisted()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidKidneyShotResisted",
+    "TestCombatEventEnemyAvoidKidneyShotResisted",
     testCategory,
     "Kidney Shot",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -260,9 +260,9 @@ function me.TestCombatEventEnemeyAvoidKidneyShotResisted()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidBlindImmune()
+function me.TestCombatEventEnemyAvoidBlindImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidBlindImmune",
+    "TestCombatEventEnemyAvoidBlindImmune",
     testCategory,
     "Blind",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -270,9 +270,9 @@ function me.TestCombatEventEnemeyAvoidBlindImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidGhostlyStrikeDodged()
+function me.TestCombatEventEnemyAvoidGhostlyStrikeDodged()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidGhostlyStrikeDodged",
+    "TestCombatEventEnemyAvoidGhostlyStrikeDodged",
     testCategory,
     "Ghostly Strike",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -280,9 +280,9 @@ function me.TestCombatEventEnemeyAvoidGhostlyStrikeDodged()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidGhostlyStrikeParried()
+function me.TestCombatEventEnemyAvoidGhostlyStrikeParried()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidGhostlyStrikeParried",
+    "TestCombatEventEnemyAvoidGhostlyStrikeParried",
     testCategory,
     "Ghostly Strike",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -290,9 +290,9 @@ function me.TestCombatEventEnemeyAvoidGhostlyStrikeParried()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidGhostlyStrikeImmune()
+function me.TestCombatEventEnemyAvoidGhostlyStrikeImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidGhostlyStrikeImmune",
+    "TestCombatEventEnemyAvoidGhostlyStrikeImmune",
     testCategory,
     "Ghostly Strike",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -300,9 +300,9 @@ function me.TestCombatEventEnemeyAvoidGhostlyStrikeImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidGhostlyStrikeMissed()
+function me.TestCombatEventEnemyAvoidGhostlyStrikeMissed()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidGhostlyStrikeMissed",
+    "TestCombatEventEnemyAvoidGhostlyStrikeMissed",
     testCategory,
     "Ghostly Strike",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -310,9 +310,9 @@ function me.TestCombatEventEnemeyAvoidGhostlyStrikeMissed()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidSapImmune()
+function me.TestCombatEventEnemyAvoidSapImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidSapImmune",
+    "TestCombatEventEnemyAvoidSapImmune",
     testCategory,
     "Sap",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -320,9 +320,9 @@ function me.TestCombatEventEnemeyAvoidSapImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidSapMissed()
+function me.TestCombatEventEnemyAvoidSapMissed()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidSapMissed",
+    "TestCombatEventEnemyAvoidSapMissed",
     testCategory,
     "Sap",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -330,9 +330,9 @@ function me.TestCombatEventEnemeyAvoidSapMissed()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidDistractImmune()
+function me.TestCombatEventEnemyAvoidDistractImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidDistractImmune",
+    "TestCombatEventEnemyAvoidDistractImmune",
     testCategory,
     "Distract",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -340,19 +340,19 @@ function me.TestCombatEventEnemeyAvoidDistractImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidDistractMissed()
+function me.TestCombatEventEnemyAvoidDistractResisted()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidDistractMissed",
+    "TestCombatEventEnemyAvoidDistractResisted",
     testCategory,
     "Distract",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
-    RGPVPW_CONSTANTS.MISS_TYPES.MISS
+    RGPVPW_CONSTANTS.MISS_TYPES.RESIST
   )
 end
 
-function me.TestCombatEventEnemeyAvoidExposeArmorDodged()
+function me.TestCombatEventEnemyAvoidExposeArmorDodged()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidExposeArmorDodged",
+    "TestCombatEventEnemyAvoidExposeArmorDodged",
     testCategory,
     "Expose Armor",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -360,9 +360,9 @@ function me.TestCombatEventEnemeyAvoidExposeArmorDodged()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidExposeArmorParried()
+function me.TestCombatEventEnemyAvoidExposeArmorParried()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidExposeArmorParried",
+    "TestCombatEventEnemyAvoidExposeArmorParried",
     testCategory,
     "Expose Armor",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -370,9 +370,9 @@ function me.TestCombatEventEnemeyAvoidExposeArmorParried()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidExposeArmorImmune()
+function me.TestCombatEventEnemyAvoidExposeArmorImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidExposeArmorImmune",
+    "TestCombatEventEnemyAvoidExposeArmorImmune",
     testCategory,
     "Expose Armor",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -380,9 +380,9 @@ function me.TestCombatEventEnemeyAvoidExposeArmorImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidExposeArmorMissed()
+function me.TestCombatEventEnemyAvoidExposeArmorMissed()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidExposeArmorMissed",
+    "TestCombatEventEnemyAvoidExposeArmorMissed",
     testCategory,
     "Expose Armor",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -390,9 +390,9 @@ function me.TestCombatEventEnemeyAvoidExposeArmorMissed()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidGarroteImmune()
+function me.TestCombatEventEnemyAvoidGarroteImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidGarroteImmune",
+    "TestCombatEventEnemyAvoidGarroteImmune",
     testCategory,
     "Garrote",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -400,9 +400,9 @@ function me.TestCombatEventEnemeyAvoidGarroteImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidRuptureDodged()
+function me.TestCombatEventEnemyAvoidRuptureDodged()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidRuptureDodged",
+    "TestCombatEventEnemyAvoidRuptureDodged",
     testCategory,
     "Rupture",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -410,9 +410,9 @@ function me.TestCombatEventEnemeyAvoidRuptureDodged()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidRuptureParried()
+function me.TestCombatEventEnemyAvoidRuptureParried()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidRuptureParried",
+    "TestCombatEventEnemyAvoidRuptureParried",
     testCategory,
     "Rupture",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -420,9 +420,9 @@ function me.TestCombatEventEnemeyAvoidRuptureParried()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidRuptureImmune()
+function me.TestCombatEventEnemyAvoidRuptureImmune()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidRuptureImmune",
+    "TestCombatEventEnemyAvoidRuptureImmune",
     testCategory,
     "Rupture",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
@@ -430,9 +430,9 @@ function me.TestCombatEventEnemeyAvoidRuptureImmune()
   )
 end
 
-function me.TestCombatEventEnemeyAvoidRuptureMissed()
+function me.TestCombatEventEnemyAvoidRuptureMissed()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemeyAvoidRuptureMissed",
+    "TestCombatEventEnemyAvoidRuptureMissed",
     testCategory,
     "Rupture",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
