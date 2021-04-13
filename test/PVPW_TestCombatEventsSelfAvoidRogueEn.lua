@@ -68,7 +68,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidSapImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidSapMissed)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidDistractImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidDistractMissed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidDistractResisted)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidExposeArmorDodged)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidExposeArmorParried)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidExposeArmorImmune)
@@ -340,13 +340,13 @@ function me.TestCombatEventSelfAvoidDistractImmune()
   )
 end
 
-function me.TestCombatEventSelfAvoidDistractMissed()
+function me.TestCombatEventSelfAvoidDistractResisted()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidDistractMissed",
+    "TestCombatEventSelfAvoidDistractResisted",
     testCategory,
     "Distract",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
-    RGPVPW_CONSTANTS.MISS_TYPES.MISS
+    RGPVPW_CONSTANTS.MISS_TYPES.RESIST
   )
 end
 
