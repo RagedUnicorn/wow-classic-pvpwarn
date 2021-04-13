@@ -200,6 +200,19 @@ function me.RestoreMaxWarnAge()
 end
 
 --[[
+  Enable Testing mode and thus ignoring the spellConfiguration
+]]--
+function me.EnableTestMode()
+  RGPVPW_ENVIRONMENT.TEST = true
+end
+
+--[[
+  Enable Testing mode and thus stop ignoring the spellConfiguration
+]]--
+function me.DisableTestMode()
+  RGPVPW_ENVIRONMENT.TEST = false
+end
+--[[
   @return {string}
 ]]--
 function me.GetGenericPlayerId()

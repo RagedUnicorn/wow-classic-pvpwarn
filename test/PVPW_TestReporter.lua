@@ -87,6 +87,8 @@ function me.StartTestGroup(groupName)
     return
   end
 
+  mod.testHelper.EnableTestMode()
+
   testManager.currentTestGroup = groupName
 
   local logMessage = string.format("Starting testgroup with name %s", groupName)
@@ -136,6 +138,8 @@ function me.StopTestGroup()
 
   table.insert(PVPWarnTestLog[testManager.currentTestGroup], logMessage)
   mod.testHelper.RestoreMaxWarnAge()
+
+  mod.testHelper.DisableTestMode()
   -- reset
   testManager.currentTestGroup = nil
   testManager.currentFailedTests = {}

@@ -29,5 +29,6 @@ RGPVPW_ENVIRONMENT = {
   ADDON_IDENTIFIER = "${addon.identifier}",
   LOG_LEVEL = ${addon.logLevel},
   LOG_EVENT = ${addon.logEvent},
-  DEBUG = ${addon.debug}
+  DEBUG = ${addon.debug},
+  TEST = false -- changed by testing framework
 }

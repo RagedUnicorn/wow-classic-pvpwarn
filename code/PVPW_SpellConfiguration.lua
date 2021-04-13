@@ -66,8 +66,7 @@ end
     false if the spell is inactive
 ]]--
 function me.IsSpellActive(spellList, categoryName, spellName)
-  if RGPVPW_ENVIRONMENT.DEBUG then return true end
-  -- TODO tests should be able to ignore whether a spell is active or not
+  if RGPVPW_ENVIRONMENT.TEST then return true end
 
   assert(type(spellList) == "string", string.format(
     "bad argument #1 to `IsSpellActive` (expected string got %s)", type(spellList)))
@@ -172,6 +171,8 @@ end
     false if the sound warning is inactive
 ]]--
 function me.IsSoundWarningActive(spellList, categoryName, spellName)
+  if RGPVPW_ENVIRONMENT.TEST then return true end
+
   assert(type(spellList) == "string", string.format(
     "bad argument #1 to `IsSoundWarningActive` (expected string got %s)", type(spellList)))
 
@@ -275,6 +276,8 @@ end
     false if the sound warning is inactive
 ]]--
 function me.IsSoundFadeWarningActive(spellList, categoryName, spellName)
+  if RGPVPW_ENVIRONMENT.TEST then return true end
+
   assert(type(spellList) == "string", string.format(
     "bad argument #1 to `IsSoundFadeWarningActive` (expected string got %s)", type(spellList)))
 

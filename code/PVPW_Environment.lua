@@ -31,5 +31,6 @@ RGPVPW_ENVIRONMENT = {
   ADDON_IDENTIFIER = "com.ragedunicorn.wow.classic.pvpwarn-addon",
   LOG_LEVEL = 4,
   LOG_EVENT = true,
-  DEBUG = true
+  DEBUG = true,
+  TEST = false -- changed by testing framework
 }
