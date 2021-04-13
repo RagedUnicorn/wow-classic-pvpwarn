@@ -1512,6 +1512,11 @@ else
           "SPELL_CAST_SUCCESS"
         }
       },
+      --[[
+        This spell is very special and does not work like a traditional buff.
+        Instead a serverside script is doing all the work. Because of this only
+        SPELL_CAST_SUCCESS can be tracked
+      ]]--
       ["blood_fury"] = {
         ["name"] = "Blood Fury",
         ["soundFileName"] = "blood_fury",
