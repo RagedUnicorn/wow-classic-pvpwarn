@@ -432,21 +432,35 @@ function me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
   if not PVPWarnConfiguration[spellList][categoryName][spellName] then
     mod.logger.LogInfo(me.tag, "SpellName - " .. spellName .. " for class "
       .. categoryName .. " does not exist. Creating new one...")
-    PVPWarnConfiguration[spellList][categoryName][spellName] = me.GetDefaultSpellConfiguration()
+    PVPWarnConfiguration[spellList][categoryName][spellName] = me.GetDefaultSpellConfiguration(spellList)
   end
 end
 
 --[[
   Returns a default config object for a spell
 
+  @param {string} spellList
+    Decides upon which stored list should be used. Possible values:
+    * spellList - enemy spell detected
+    * spellSelfAvoidList - player avoided spell
+    * spellEnemyAvoidList - enemy player avoided spell
+
   @return {table}
     Returns a default object for a spell
 ]]--
-function me.GetDefaultSpellConfiguration()
-  return {
-    ["spellActive"] = false,
-    ["soundWarningActive"] = false,
-    ["soundFadeWarningActive"] = false,
-    ["visualWarningColor"] = RGPVPW_CONSTANTS.DEFAULT_COLOR
-  }
+function me.GetDefaultSpellConfiguration(spellList)
+  if spellList == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL then
+    return {
+      ["spellActive"] = false,
+      ["soundWarningActive"] = false,
+      ["soundFadeWarningActive"] = false,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.DEFAULT_COLOR
+    }
+  else
+    return {
+      ["spellActive"] = false,
+      ["soundWarningActive"] = false,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.DEFAULT_COLOR
+    }
+  end
 end

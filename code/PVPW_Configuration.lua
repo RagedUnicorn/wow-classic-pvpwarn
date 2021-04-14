@@ -71,22 +71,10 @@ PVPWarnConfiguration = {
     Set default values if property is nil. This might happen after an addon upgrade
   ]]--
 function me.SetupConfiguration()
-  -- initialize spellList for the first time with default profile
-  if PVPWarnConfiguration.spellList == nil then
-    PVPWarnConfiguration.spellList = {}
-    -- PVPWarnConfiguration.spellList = mod.profile.GetDefaultProfile() -- TODO
-  end
-
-  -- initialize spellSelfAvoidList for the first time with default profile
-  if PVPWarnConfiguration.spellSelfAvoidList == nil then
-    PVPWarnConfiguration.spellSelfAvoidList = {}
-    -- PVPWarnConfiguration.spellSelfAvoidList = mod.profile.GetDefaultProfile() -- TODO
-  end
-
-  -- initialize spellEnemyAvoidList for the first time with default profile
-  if PVPWarnConfiguration.spellEnemyAvoidList == nil then
-    PVPWarnConfiguration.spellEnemyAvoidList = {}
-    -- PVPWarnConfiguration.spellEnemyAvoidList = mod.profile.GetDefaultProfile() -- TODO
+  -- initialize all spellLists for the first time with default profile
+  if PVPWarnConfiguration.spellList == nil or PVPWarnConfiguration.spellSelfAvoidList == nil
+      or PVPWarnConfiguration.spellEnemyAvoidList == nil then
+    mod.profile.LoadDefaultProfile()
   end
 
   if PVPWarnConfiguration.enableCombatStateTracking == nil then
@@ -233,19 +221,12 @@ end
   Returns a clone of the current spell configuration. Cloning is used to prevent
   any connection to the current spell configuration.
 
+  @param {string} spellType
+    See RGPVPW_CONSTANTS.SPELL_TYPE
+
   @return {table}
     A copy of the current spell configuration
 ]]--
-function me.GetSpellConfiguration()
-  return mod.common.Clone(PVPWarnConfiguration.spellList)
-end
-
---[[
-  Loads the passed spell configuration as the new spell configuration.
-  Note: This will override the current configuration
-
-  @param {table} spellConfiguration
-]]--
-function me.LoadSpellConfiguration(spellConfiguration)
-  PVPWarnConfiguration.spellList = mod.common.Clone(spellConfiguration)
+function me.GetSpellConfiguration(spellType)
+  return mod.common.Clone(PVPWarnConfiguration[spellType])
 end

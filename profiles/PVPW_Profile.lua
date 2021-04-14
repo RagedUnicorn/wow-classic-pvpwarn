@@ -77,7 +77,11 @@ function me.CreateProfile(profileName)
 
   local profile = {
     name = profileName,
-    ["spellConfiguration"] = mod.configuration.GetSpellConfiguration()
+    ["spellConfiguration"] = mod.configuration.GetSpellConfiguration(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL),
+    ["spellSelfAvoidConfiguration"] =
+      mod.configuration.GetSpellConfiguration(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID),
+    ["spellEnemyAvoidConfiguration"] =
+      mod.configuration.GetSpellConfiguration(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID)
   }
 
   table.insert(PVPWarnProfiles, profile)
@@ -123,8 +127,21 @@ function me.LoadProfile(profileName)
 
   for i = 1, #PVPWarnProfiles do
     if PVPWarnProfiles[i].name == profileName then
-      mod.configuration.LoadSpellConfiguration(PVPWarnProfiles[i].spellConfiguration)
-      mod.logger.LogInfo(me.tag, "Loaded profile with name - " .. profileName)
+      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL] = nil
+      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL] = {}
+      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL] = PVPWarnProfiles[i].spellConfiguration
+
+      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID] = nil
+      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID] = {}
+      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID] =
+        PVPWarnProfiles[i].spellSelfAvoidConfiguration
+
+      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID] = nil
+      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID] = {}
+      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID] =
+        PVPWarnProfiles[i].spellEnemyAvoidConfiguration
+      mod.logger.LogInfo(me.tag, "Loaded profile with name: " .. PVPWarnProfiles[i].name)
+
       return
     end
   end
@@ -132,11 +149,26 @@ end
 
 --[[
   Load the default profile for the current class
+
   Note: Overrides the current spell configuration
 ]]--
 function me.LoadDefaultProfile()
   local _, englishClass = UnitClass(RGPVPW_CONSTANTS.UNIT_ID_PLAYER)
 
-  mod.configuration.LoadSpellConfiguration(mod[strlower(englishClass) .. "Profile"].GetProfile())
+  PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL] = nil
+  PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL] = {}
+  PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL] =
+    mod[strlower(englishClass) .. "Profile"].GetSpellProfile(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL)
+
+  PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID] = nil
+  PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID] = {}
+  PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID] =
+    mod[strlower(englishClass) .. "Profile"].GetSpellProfile(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID)
+
+  PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID] = nil
+  PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID] = {}
+  PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID] =
+    mod[strlower(englishClass) .. "Profile"].GetSpellProfile(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID)
+
   mod.logger.LogInfo(me.tag, "Loaded default profile for: " .. englishClass)
 end
