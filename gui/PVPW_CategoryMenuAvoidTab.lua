@@ -22,9 +22,10 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: ignore _
 -- luacheck: globals CreateFrame STANDARD_TEXT_FONT UIDropDownMenu_Initialize UIDropDownMenu_AddButton
 -- luacheck: globals UIDropDownMenu_GetSelectedValue UIDropDownMenu_SetSelectedValue
--- luacheck: globals FauxScrollFrame_Update FauxScrollFrame_GetOffset GetSpellInfo
+-- luacheck: globals FauxScrollFrame_Update FauxScrollFrame_GetOffset GetSpellInfo GetItemIcon
 -- luacheck: globals UIDropDownMenu_EnableDropDown UIDropDownMenu_DisableDropDown
 
 local mod = rgpvpw
@@ -357,7 +358,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         row.playAvoidSound.soundFileName = cachedCategoryData[value].soundFileName
 
         me.UpdateIcon(
-          row.spellIcon, category, cachedCategoryData[value].spellId
+          row.spellIcon, category, cachedCategoryData[value]
         )
         me.UpdateSpellStateCheckBox(
           row.spellStateCheckBox, category, cachedCategoryData[value].normalizedSpellName
@@ -378,13 +379,23 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
 end
 
 --[[
-@param {table} spellIcon
-@param {string} category
-@param {number} spellId
+  @param {table} spellIcon
+  @param {string} category
+  @param {table} spell
 ]]--
-function me.UpdateIcon(spellIcon, category, spellId)
-  local _, _, iconId = GetSpellInfo(spellId)
+function me.UpdateIcon(spellIcon, category, spell)
+  local iconId
   local color = RGPVPW_CONSTANTS.CATEGORY_COLOR[category]
+
+  --[[
+    For most items we have to track the actual spelleffect in the combat log. However for
+    people to recognize the item it is much better to use items icon itself.
+  ]]--
+  if spell.itemId ~= nil then
+    iconId = GetItemIcon(spell.itemId)
+  else
+    _, _, iconId = GetSpellInfo(spell.spellId)
+  end
 
   spellIcon:SetTexture(iconId)
   spellIcon.iconHolder:SetBackdropBorderColor(unpack(color))
