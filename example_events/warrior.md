@@ -1,6 +1,4 @@
-# Rogue Example Events
-
-TODO check improved/skilled kick
+# Warrior Example Events
 
 ## Casted Events
 
