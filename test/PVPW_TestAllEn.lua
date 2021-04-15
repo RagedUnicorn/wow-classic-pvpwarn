@@ -77,7 +77,7 @@ function me.TestAllSoundEn()
 end
 
 function me.TestAllSoundSelfAvoidEn()
-  -- mod.testSoundSelfAvoidWarriorEn.CollectTestCases()
+  mod.testSoundSelfAvoidWarriorEn.CollectTestCases()
   mod.testSoundSelfAvoidPriestEn.CollectTestCases()
   mod.testSoundSelfAvoidRogueEn.CollectTestCases()
   mod.testSoundSelfAvoidMageEn.CollectTestCases()
@@ -92,7 +92,7 @@ function me.TestAllSoundSelfAvoidEn()
 end
 
 function me.TestAllSoundEnemyAvoidEn()
-  -- mod.testSoundEnemyAvoidWarriorEn.CollectTestCases()
+  mod.testSoundEnemyAvoidWarriorEn.CollectTestCases()
   mod.testSoundEnemyAvoidPriestEn.CollectTestCases()
   mod.testSoundEnemyAvoidRogueEn.CollectTestCases()
   mod.testSoundEnemyAvoidMageEn.CollectTestCases()
@@ -122,7 +122,7 @@ function me.TestAllCombatEventsEn()
 end
 
 function me.TestAllCombatSelfAvoidEventsEn()
-  -- mod.testCombatEventsSelfAvoidWarriorEn.CollectTestCases()
+  mod.testCombatEventsSelfAvoidWarriorEn.CollectTestCases()
   mod.testCombatEventsSelfAvoidPriestEn.CollectTestCases()
   mod.testCombatEventsSelfAvoidRogueEn.CollectTestCases()
   mod.testCombatEventsSelfAvoidMageEn.CollectTestCases()
@@ -137,7 +137,7 @@ function me.TestAllCombatSelfAvoidEventsEn()
 end
 
 function me.TestAllCombatEnemyAvoidEventsEn()
-  -- mod.testCombatEventsEnemyAvoidWarriorEn.CollectTestCases()
+  mod.testCombatEventsEnemyAvoidWarriorEn.CollectTestCases()
   mod.testCombatEventsEnemyAvoidPriestEn.CollectTestCases()
   mod.testCombatEventsEnemyAvoidRogueEn.CollectTestCases()
   mod.testCombatEventsEnemyAvoidMageEn.CollectTestCases()

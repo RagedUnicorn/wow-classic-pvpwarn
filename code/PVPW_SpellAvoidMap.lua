@@ -74,6 +74,106 @@ if (GetLocale() == "deDE") then
   }
 else
   spellAvoidMap = {
+    ["warrior"] = {
+      ["charge_stun"] = {
+        ["name"] = "Charge Stun",
+        ["spellId"] = 7922,
+        ["spellIcon"] = "ability_warrior_charge",
+        ["soundFileName"] = "charge",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["intercept_stun"] = {
+        ["name"] = "Intercept Stun",
+        ["spellId"] = 20615, -- rank 3
+        ["spellIcon"] = "ability_rogue_sprint",
+        ["soundFileName"] = "intercept",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["hamstring"] = {
+        ["name"] = "Hamstring",
+        ["spellId"] = 7373, -- rank 3
+        ["spellIcon"] = "ability_shockwave",
+        ["soundFileName"] = "hamstring",
+        ["dodge"] = true,
+        ["parry"] = true,
+        ["immune"] = true,
+        ["miss"] = true,
+        ["block"] = true,
+        ["resist"] = false,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["mortal_strike"] = {
+        ["name"] = "Mortal Strike",
+        ["spellId"] = 21553, -- rank 4
+        ["spellIcon"] = "ability_warrior_savageblow",
+        ["soundFileName"] = "mortal_strike",
+        ["dodge"] = true,
+        ["parry"] = true,
+        ["immune"] = true,
+        ["miss"] = true,
+        ["block"] = true,
+        ["resist"] = false,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["intimidating_shout"] = {
+        ["name"] = "Intimidating Shout",
+        ["spellId"] = 5246,
+        ["spellIcon"] = "ability_golemthunderclap",
+        ["soundFileName"] = "intimidating_shout",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["pummel"] = {
+        ["name"] = "Pummel",
+        ["spellId"] = 6554, -- rank 2
+        ["spellIcon"] = "inv_gauntlets_04",
+        ["soundFileName"] = "pummel",
+        ["dodge"] = true,
+        ["parry"] = true,
+        ["immune"] = true,
+        ["miss"] = true,
+        ["block"] = true,
+        ["resist"] = false,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["disarm"] = {
+        ["name"] = "Disarm",
+        ["spellId"] = 676,
+        ["spellIcon"] = "ability_warrior_disarm",
+        ["soundFileName"] = "disarm",
+        ["dodge"] = true,
+        ["parry"] = true,
+        ["immune"] = true,
+        ["miss"] = true,
+        ["block"] = false,
+        ["resist"] = false,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      }
+    },
     ["priest"] = {
       ["devouring_plague"] = {
         ["name"] = "Devouring Plague",
