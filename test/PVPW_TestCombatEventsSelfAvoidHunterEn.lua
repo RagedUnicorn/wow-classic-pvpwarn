@@ -44,6 +44,7 @@ end
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidConcussiveShotImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidConcussiveShotResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidConcussiveShotMissed)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidScatterShotImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidScatterShotMissed)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidSerpentStingImmune)
@@ -76,6 +77,16 @@ function me.TestCombatEventSelfAvoidConcussiveShotResisted()
     "Concussive Shot",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidConcussiveShotMissed()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidConcussiveShotMissed",
+    testCategory,
+    "Concussive Shot",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.MISS_TYPES.MISS
   )
 end
 

@@ -8,16 +8,14 @@ There is no need to differentiate in those examples between enemy and self avoid
 
 #### Concussive Shot
 
-```lua
 {
-  ["spellName"] = "Charge Stun",
-  ["missType"] = "RESIST",
-  ["target"] = "[targetUid]",
-  ["targetName"] = "[targetName]",
+  ["spellName"] = "Concussive Shot",
+  ["missType"] = "MISS",
+  ["target"] = "Player-4463-019F54C3",
+  ["targetName"] = "Lyzqt",
   ["event"] = "SPELL_MISSED",
-  ["sourceFlags"] = [sourceFlags]
-}
-```
+  ["sourceFlags"] = 66888,
+}, -- [26969]
 
 #### Scatter Shot
 
