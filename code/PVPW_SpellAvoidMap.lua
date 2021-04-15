@@ -515,7 +515,93 @@ else
        ["self_avoid"] = true,
        ["enemy_avoid"] = true
      }
-    }
+   },
+   ["hunter"] = {
+     ["concussive_shot"] = {
+        ["name"] = "Concussive Shot",
+        ["spellId"] = 5116,
+        ["spellIcon"] = "spell_frost_stun",
+        ["soundFileName"] = "concussive_shot",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = true,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["scatter_shot"] = {
+        ["name"] = "Scatter Shot",
+        ["spellId"] = 19503,
+        ["spellIcon"] = "ability_golemstormbolt",
+        ["soundFileName"] = "scatter_shot",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = true,
+        ["block"] = false,
+        ["resist"] = false,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["serpent_sting"] = {
+        ["name"] = "Serpent Sting",
+        ["spellId"] = 13555, -- rank 8
+        ["spellIcon"] = "ability_hunter_quickshot",
+        ["soundFileName"] = "serpent_sting",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = true,
+        ["block"] = false,
+        ["resist"] = false,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["viper_sting"] = {
+        ["name"] = "Viper Sting",
+        ["spellId"] = 14280, -- rank 3
+        ["spellIcon"] = "ability_hunter_aimedshot",
+        ["soundFileName"] = "viper_sting",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = true,
+        ["block"] = false,
+        ["resist"] = false,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["freezing_trap_effect"] = {
+        ["name"] = "Freezing Trap Effect",
+        ["spellId"] = 27753, -- rank 3
+        ["spellIcon"] = "spell_frost_chainsofice",
+        ["soundFileName"] = "freezing_trap",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["wing_clip"] = {
+        ["name"] = "Wing Clip",
+        ["spellId"] = 14268, -- rank 3
+        ["spellIcon"] = "ability_rogue_trip",
+        ["soundFileName"] = "wing_clip",
+        ["dodge"] = true,
+        ["parry"] = true,
+        ["immune"] = true,
+        ["miss"] = true,
+        ["block"] = true,
+        ["resist"] = false,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      }
+   }
   }
 end
 

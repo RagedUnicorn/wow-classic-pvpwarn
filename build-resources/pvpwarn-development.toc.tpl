@@ -99,7 +99,11 @@ test/PVPW_TestCombatEventsSelfAvoidMageEn.lua
 test/PVPW_TestCombatEventsEnemyAvoidMageEn.lua
 # hunter
 test/PVPW_TestSoundHunterEn.lua
+test/PVPW_TestSoundSelfAvoidHunterEn.lua
+test/PVPW_TestSoundEnemyAvoidHunterEn.lua
 test/PVPW_TestCombatEventsHunterEn.lua
+test/PVPW_TestCombatEventsSelfAvoidHunterEn.lua
+test/PVPW_TestCombatEventsEnemyAvoidHunterEn.lua
 # warlock
 test/PVPW_TestSoundWarlockEn.lua
 test/PVPW_TestCombatEventsWarlockEn.lua
