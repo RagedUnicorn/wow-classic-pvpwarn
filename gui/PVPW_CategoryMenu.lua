@@ -210,6 +210,14 @@ function me.UpdateCategoryMenu(self)
   contentFrame1:SetParent(self)
   contentFrame2:SetParent(self)
 
+  if not RGPVPW_CONSTANTS.CATEGORIES[self.value].enemyAvoidEnabled then
+    tabButton2:Hide()
+    contentFrame2:Hide()
+  else
+    tabButton2:Show()
+    contentFrame2:Show()
+  end
+
   -- update the current active category
   categoryName = self.categoryName
 end

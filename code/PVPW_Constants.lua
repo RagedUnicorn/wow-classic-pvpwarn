@@ -186,67 +186,86 @@ RGPVPW_CONSTANTS = {
   --[[
     A list of available categories consisting of all classes, racials, items and a
     misc category
+
+    {
+      ["categoryName"] = "", -- {string} name of the category such as "warrior"
+      ["localizationKey"] = "", -- {string} name for the localization key
+      ["name"] = "", -- {string} name of the content frame
+      ["enemyAvoidEnabled"] = -- {bool} boolean whether this category has enemy resists enabled or not
+    },
   ]]--
   CATEGORIES = {
     [1] = {
       ["categoryName"] = "druid",
       ["localizationKey"] = "category_druid",
-      ["name"] = "PVPW_DruidOptionsFrame"
+      ["name"] = "PVPW_DruidOptionsFrame",
+      ["enemyAvoidEnabled"] = true
     },
     [2] = {
       ["categoryName"] = "hunter",
       ["localizationKey"] = "category_hunter",
-      ["name"] = "PVPW_HunterOptionsFrame"
+      ["name"] = "PVPW_HunterOptionsFrame",
+      ["enemyAvoidEnabled"] = true
     },
     [3] = {
       ["categoryName"] = "mage",
       ["localizationKey"] = "category_mage",
-      ["name"] = "PVPW_MageOptionsFrame"
+      ["name"] = "PVPW_MageOptionsFrame",
+      ["enemyAvoidEnabled"] = true
     },
     [4] = {
       ["categoryName"] = "paladin",
       ["localizationKey"] = "category_paladin",
-      ["name"] = "PVPW_PaladinOptionsFrame"
+      ["name"] = "PVPW_PaladinOptionsFrame",
+      ["enemyAvoidEnabled"] = true
     },
     [5] = {
       ["categoryName"] = "priest",
       ["localizationKey"] = "category_priest",
-      ["name"] = "PVPW_PriestOptionsFrame"
+      ["name"] = "PVPW_PriestOptionsFrame",
+      ["enemyAvoidEnabled"] = true
     },
     [6] = {
       ["categoryName"] = "rogue",
       ["localizationKey"] = "category_rogue",
-      ["name"] = "PVPW_RogueOptionsFrame"
+      ["name"] = "PVPW_RogueOptionsFrame",
+      ["enemyAvoidEnabled"] = true
     },
     [7] = {
       ["categoryName"] = "shaman",
       ["localizationKey"] = "category_shaman",
-      ["name"] = "PVPW_ShamanOptionsFrame"
+      ["name"] = "PVPW_ShamanOptionsFrame",
+      ["enemyAvoidEnabled"] = true
     },
     [8] = {
       ["categoryName"] = "warlock",
       ["localizationKey"] = "category_warlock",
-      ["name"] = "PVPW_WarlockOptionsFrame"
+      ["name"] = "PVPW_WarlockOptionsFrame",
+      ["enemyAvoidEnabled"] = true
     },
     [9] = {
       ["categoryName"] = "warrior",
       ["localizationKey"] = "category_warrior",
-      ["name"] = "PVPW_WarriorOptionsFrame"
+      ["name"] = "PVPW_WarriorOptionsFrame",
+      ["enemyAvoidEnabled"] = true
     },
     [10] = {
       ["categoryName"] = "items",
       ["localizationKey"] = "category_items",
-      ["name"] = "PVPW_ItemsOptionsFrame"
+      ["name"] = "PVPW_ItemsOptionsFrame",
+      ["enemyAvoidEnabled"] = false
     },
     [11] = {
       ["categoryName"] = "racials",
       ["localizationKey"] = "category_racials",
-      ["name"] = "PVPW_RacialsOptionsFrame"
+      ["name"] = "PVPW_RacialsOptionsFrame",
+      ["enemyAvoidEnabled"] = false
     },
     [12] = {
       ["categoryName"] = "misc",
       ["localizationKey"] = "category_misc",
-      ["name"] = "PVPW_ItemsOptionsFrame"
+      ["name"] = "PVPW_ItemsOptionsFrame",
+      ["enemyAvoidEnabled"] = false
     }
   },
   --[[
