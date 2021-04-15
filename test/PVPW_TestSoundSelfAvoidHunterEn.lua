@@ -46,7 +46,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidScatterShot)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidSerpentSting)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidViperSting)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidFreezingTrap)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidFreezingTrapEffect)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidWingClip)
 end
 
@@ -82,11 +82,11 @@ function me.TestSoundSelfAvoidViperSting()
   )
 end
 
-function me.TestSoundSelfAvoidFreezingTrap()
+function me.TestSoundSelfAvoidFreezingTrapEffect()
   mod.testHelper.TestSoundSpellMissedSelf(
-    "TestSoundSelfAvoidFreezingTrap",
+    "TestSoundSelfAvoidFreezingTrapEffect",
     testCategory,
-    "Freezing Trap"
+    "Freezing Trap Effect"
   )
 end
 
