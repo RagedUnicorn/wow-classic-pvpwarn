@@ -806,7 +806,6 @@ else
           "SPELL_CAST_SUCCESS"
         }
       },
-
       ["shadowburn"] = {
         ["name"] = "Shadowburn",
         ["soundFileName"] = "shadowburn",
