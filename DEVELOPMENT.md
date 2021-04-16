@@ -1,10 +1,26 @@
 # Development
 
-## TODO descibe all steps necessary to add a new spell to the addon
+### Add a new Spell
 
+#### Spell
 
+TODO describe steps to add a normal spell
 
-#### Linked Spells
+#### Avoid Spell
+
+- [ ] Create an entry for the spell in /code/PVPW_SpellAvoidMap.lua and the matching category
+- [ ] Create an entry in /example-events/[category] and gather events such as dodge, miss etc.
+- [ ] Create enemy avoid sound file /assets/sounds/[language]/[category]/enemy_avoid/[spellName].mp3
+- [ ] Create self avoid sound file /assets/sounds/[language]/[category]/self_avoid/[spellName].mp3
+- [ ] Add enemy avoid sound test /test/PVPW_TestSoundEnemyAvoid[category][language].lua
+- [ ] Add self avoid sound test /test/PVPW_TestSoundSelfAvoid[category][language].lua
+- [ ] Add enemy avoid combat test /test/PVPW_TestCombatEventsEnemyAvoid[category][language].lua
+  - Depending on what possible avoids the spell supports different testcases need to be created
+- [ ] Add self avoid combat test /test/PVPW_TestCombatEventsSelfAvoid[category][language].lua
+  - Depending on what possible avoids the spell supports different testcases need to be created
+- [ ] Add tests to /test/PVPW_TestAll[language].lua
+
+### Linked Spells
 
 Linked spells are spells that have the same name as another spell even though they are different. There are not many spells that match this category. An example is `Nature's Swiftness` that can be cast by both a druid and a shaman. The spells are different and have a different spellid. It is however not possible to get the actual spellid from the combatlog of an enemy player. This is a limit by the wow api to better match the classic setting where this was not possible.
 
