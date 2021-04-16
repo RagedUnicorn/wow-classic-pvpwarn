@@ -601,6 +601,64 @@ else
         ["self_avoid"] = true,
         ["enemy_avoid"] = true
       }
+   },
+   ["warlock"] = {
+     ["curse_of_tongues"] = {
+       ["name"] = "Curse of Tongues",
+       ["spellId"] = 11719, -- rank 2
+       ["spellIcon"] = "spell_shadow_curseoftounges",
+       ["soundFileName"] = "curse_of_tongues",
+       ["dodge"] = false,
+       ["parry"] = false,
+       ["immune"] = true,
+       ["miss"] = false,
+       ["block"] = false,
+       ["resist"] = true,
+       ["self_avoid"] = true,
+       ["enemy_avoid"] = true
+     },
+     ["death_coil"] = {
+       ["name"] = "Death Coil",
+       ["spellId"] = 17926, -- rank 3
+       ["spellIcon"] = "spell_shadow_deathcoil",
+       ["soundFileName"] = "death_coil",
+       ["dodge"] = false,
+       ["parry"] = false,
+       ["immune"] = true,
+       ["miss"] = false,
+       ["block"] = false,
+       ["resist"] = true,
+       ["self_avoid"] = true,
+       ["enemy_avoid"] = true
+     },
+     ["fear"] = {
+       ["name"] = "Fear",
+       ["spellId"] = 6215, -- rank 3
+       ["spellIcon"] = "spell_shadow_possession",
+       ["soundFileName"] = "fear",
+       ["dodge"] = false,
+       ["parry"] = false,
+       ["immune"] = true,
+       ["miss"] = false,
+       ["block"] = false,
+       ["resist"] = true,
+       ["self_avoid"] = true,
+       ["enemy_avoid"] = true
+     },
+     ["howl_of_terror"] = {
+       ["name"] = "Howl of Terror",
+       ["spellId"] = 17928, -- rank 2
+       ["spellIcon"] = "spell_shadow_deathscream",
+       ["soundFileName"] = "howl_of_terror",
+       ["dodge"] = false,
+       ["parry"] = false,
+       ["immune"] = true,
+       ["miss"] = false,
+       ["block"] = false,
+       ["resist"] = true,
+       ["self_avoid"] = true,
+       ["enemy_avoid"] = true
+     }
    }
   }
 end
