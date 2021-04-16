@@ -659,6 +659,36 @@ else
        ["self_avoid"] = true,
        ["enemy_avoid"] = true
      }
+   },
+   ["paladin"] = {
+     ["hammer_of_wrath"] = {
+        ["name"] = "Hammer of Wrath",
+        ["spellId"] = 24239, -- rank 3
+        ["spellIcon"] = "ability_thunderclap",
+        ["soundFileName"] = "hammer_of_wrath",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["hammer_of_justice"] = {
+        ["name"] = "Hammer of Justice",
+        ["spellId"] = 10308, -- rank 4
+        ["spellIcon"] = "spell_holy_sealofmight",
+        ["soundFileName"] = "hammer_of_justice",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      }
    }
   }
 end

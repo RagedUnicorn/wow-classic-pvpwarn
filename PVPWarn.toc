@@ -113,7 +113,11 @@ test/PVPW_TestCombatEventsSelfAvoidWarlockEn.lua
 test/PVPW_TestCombatEventsEnemyAvoidWarlockEn.lua
 # paladin
 test/PVPW_TestSoundPaladinEn.lua
+test/PVPW_TestSoundSelfAvoidPaladinEn.lua
+test/PVPW_TestSoundEnemyAvoidPaladinEn.lua
 test/PVPW_TestCombatEventsPaladinEn.lua
+test/PVPW_TestCombatEventsSelfAvoidPaladinEn.lua
+test/PVPW_TestCombatEventsEnemyAvoidPaladinEn.lua
 # druid
 test/PVPW_TestSoundDruidEn.lua
 test/PVPW_TestCombatEventsDruidEn.lua
