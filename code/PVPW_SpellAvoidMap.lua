@@ -502,22 +502,22 @@ else
         ["enemy_avoid"] = true
       },
       ["cone_of_cold"] = {
-       ["name"] = "Cone of Cold",
-       ["spellId"] = 10161, -- rank 5
-       ["spellIcon"] = "spell_frost_glacier",
-       ["soundFileName"] = "cone_of_cold",
-       ["dodge"] = false,
-       ["parry"] = false,
-       ["immune"] = true,
-       ["miss"] = false,
-       ["block"] = false,
-       ["resist"] = true,
-       ["self_avoid"] = true,
-       ["enemy_avoid"] = true
-     }
-   },
-   ["hunter"] = {
-     ["concussive_shot"] = {
+        ["name"] = "Cone of Cold",
+        ["spellId"] = 10161, -- rank 5
+        ["spellIcon"] = "spell_frost_glacier",
+        ["soundFileName"] = "cone_of_cold",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      }
+    },
+    ["hunter"] = {
+      ["concussive_shot"] = {
         ["name"] = "Concussive Shot",
         ["spellId"] = 5116,
         ["spellIcon"] = "spell_frost_stun",
@@ -601,67 +601,67 @@ else
         ["self_avoid"] = true,
         ["enemy_avoid"] = true
       }
-   },
-   ["warlock"] = {
-     ["curse_of_tongues"] = {
-       ["name"] = "Curse of Tongues",
-       ["spellId"] = 11719, -- rank 2
-       ["spellIcon"] = "spell_shadow_curseoftounges",
-       ["soundFileName"] = "curse_of_tongues",
-       ["dodge"] = false,
-       ["parry"] = false,
-       ["immune"] = true,
-       ["miss"] = false,
-       ["block"] = false,
-       ["resist"] = true,
-       ["self_avoid"] = true,
-       ["enemy_avoid"] = true
-     },
-     ["death_coil"] = {
-       ["name"] = "Death Coil",
-       ["spellId"] = 17926, -- rank 3
-       ["spellIcon"] = "spell_shadow_deathcoil",
-       ["soundFileName"] = "death_coil",
-       ["dodge"] = false,
-       ["parry"] = false,
-       ["immune"] = true,
-       ["miss"] = false,
-       ["block"] = false,
-       ["resist"] = true,
-       ["self_avoid"] = true,
-       ["enemy_avoid"] = true
-     },
-     ["fear"] = {
-       ["name"] = "Fear",
-       ["spellId"] = 6215, -- rank 3
-       ["spellIcon"] = "spell_shadow_possession",
-       ["soundFileName"] = "fear",
-       ["dodge"] = false,
-       ["parry"] = false,
-       ["immune"] = true,
-       ["miss"] = false,
-       ["block"] = false,
-       ["resist"] = true,
-       ["self_avoid"] = true,
-       ["enemy_avoid"] = true
-     },
-     ["howl_of_terror"] = {
-       ["name"] = "Howl of Terror",
-       ["spellId"] = 17928, -- rank 2
-       ["spellIcon"] = "spell_shadow_deathscream",
-       ["soundFileName"] = "howl_of_terror",
-       ["dodge"] = false,
-       ["parry"] = false,
-       ["immune"] = true,
-       ["miss"] = false,
-       ["block"] = false,
-       ["resist"] = true,
-       ["self_avoid"] = true,
-       ["enemy_avoid"] = true
-     }
-   },
-   ["paladin"] = {
-     ["hammer_of_wrath"] = {
+    },
+    ["warlock"] = {
+      ["curse_of_tongues"] = {
+        ["name"] = "Curse of Tongues",
+        ["spellId"] = 11719, -- rank 2
+        ["spellIcon"] = "spell_shadow_curseoftounges",
+        ["soundFileName"] = "curse_of_tongues",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["death_coil"] = {
+        ["name"] = "Death Coil",
+        ["spellId"] = 17926, -- rank 3
+        ["spellIcon"] = "spell_shadow_deathcoil",
+        ["soundFileName"] = "death_coil",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["fear"] = {
+        ["name"] = "Fear",
+        ["spellId"] = 6215, -- rank 3
+        ["spellIcon"] = "spell_shadow_possession",
+        ["soundFileName"] = "fear",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["howl_of_terror"] = {
+        ["name"] = "Howl of Terror",
+        ["spellId"] = 17928, -- rank 2
+        ["spellIcon"] = "spell_shadow_deathscream",
+        ["soundFileName"] = "howl_of_terror",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      }
+    },
+    ["paladin"] = {
+      ["hammer_of_wrath"] = {
         ["name"] = "Hammer of Wrath",
         ["spellId"] = 24239, -- rank 3
         ["spellIcon"] = "ability_thunderclap",
@@ -689,7 +689,79 @@ else
         ["self_avoid"] = true,
         ["enemy_avoid"] = true
       }
-   }
+    },
+    ["druid"] = {
+      ["entangling_roots"] = {
+        ["name"] = "Entangling Roots",
+        ["spellId"] = 19970, -- rank 6
+        ["spellIcon"] = "spell_nature_stranglevines",
+        ["soundFileName"] = "entangling_roots",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["faerie_fire"] = {
+        ["name"] = "Faerie Fire",
+        ["spellId"] = 9907, -- rank 4
+        ["spellIcon"] = "spell_nature_faeriefire",
+        ["soundFileName"] = "faerie_fire",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["faerie_fire_feral"] = {
+        ["name"] = "Farie Fire (Feral)",
+        ["spellId"] = 17392, -- rank 4
+        ["spellIcon"] = "spell_nature_faeriefire",
+        ["soundFileName"] = "faerie_fire",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["bash"] = {
+        ["name"] = "Bash",
+        ["spellId"] = 8983, -- rank 3
+        ["spellIcon"] = "ability_druid_bash",
+        ["soundFileName"] = "bash",
+        ["dodge"] = true,
+        ["parry"] = true,
+        ["immune"] = true,
+        ["miss"] = true,
+        ["block"] = true,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["feral_charge_effect"] = {
+        ["name"] = "Feral Charge Effect",
+        ["spellId"] = 16979,
+        ["spellIcon"] = "ability_hunter_pet_bear",
+        ["soundFileName"] = "feral_charge",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      }
+    }
   }
 end
 

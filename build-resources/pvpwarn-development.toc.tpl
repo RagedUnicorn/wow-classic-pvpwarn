@@ -120,7 +120,11 @@ test/PVPW_TestCombatEventsSelfAvoidPaladinEn.lua
 test/PVPW_TestCombatEventsEnemyAvoidPaladinEn.lua
 # druid
 test/PVPW_TestSoundDruidEn.lua
+test/PVPW_TestSoundSelfAvoidDruidEn.lua
+test/PVPW_TestSoundEnemyAvoidDruidEn.lua
 test/PVPW_TestCombatEventsDruidEn.lua
+test/PVPW_TestCombatEventsSelfAvoidDruidEn.lua
+test/PVPW_TestCombatEventsEnemyAvoidDruidEn.lua
 # shaman
 test/PVPW_TestSoundShamanEn.lua
 test/PVPW_TestCombatEventsShamanEn.lua
