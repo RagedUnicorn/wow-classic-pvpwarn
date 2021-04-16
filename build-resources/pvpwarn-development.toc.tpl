@@ -127,7 +127,11 @@ test/PVPW_TestCombatEventsSelfAvoidDruidEn.lua
 test/PVPW_TestCombatEventsEnemyAvoidDruidEn.lua
 # shaman
 test/PVPW_TestSoundShamanEn.lua
+test/PVPW_TestSoundSelfAvoidShamanEn.lua
+test/PVPW_TestSoundEnemyAvoidShamanEn.lua
 test/PVPW_TestCombatEventsShamanEn.lua
+test/PVPW_TestCombatEventsSelfAvoidShamanEn.lua
+test/PVPW_TestCombatEventsEnemyAvoidShamanEn.lua
 # racials
 test/PVPW_TestSoundRacialsEn.lua
 test/PVPW_TestCombatEventsRacialsEn.lua

@@ -761,6 +761,50 @@ else
         ["self_avoid"] = true,
         ["enemy_avoid"] = true
       }
+    },
+    ["shaman"] = {
+      ["earth_shock"] = {
+        ["name"] = "Earth Shock",
+        ["spellId"] = 10414, -- rank 7
+        ["spellIcon"] = "spell_nature_earthshock",
+        ["soundFileName"] = "earth_shock",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["flame_shock"] = {
+        ["name"] = "Flame Shock",
+        ["spellId"] = 29228, -- rank 6
+        ["spellIcon"] = "spell_fire_flameshock",
+        ["soundFileName"] = "flame_shock",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      },
+      ["frost_shock"] = {
+        ["name"] = "Frost Shock",
+        ["spellId"] = 10473, -- rank 4
+        ["spellIcon"] = "spell_frost_frostshock",
+        ["soundFileName"] = "frost_shock",
+        ["dodge"] = false,
+        ["parry"] = false,
+        ["immune"] = true,
+        ["miss"] = false,
+        ["block"] = false,
+        ["resist"] = true,
+        ["self_avoid"] = true,
+        ["enemy_avoid"] = true
+      }
     }
   }
 end
