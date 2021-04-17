@@ -4,7 +4,11 @@
 
 #### Spell
 
-TODO describe steps to add a normal spell
+- [ ] Create an entry for the spell in /code/PVPW_SpellMap.lua and the matching category
+- [ ] Create an entry in /example-events/[category] and gather a mtaching event
+- [ ] Create a sound file /assets/sounds/[language]/[category]/[spellName].mp3
+- [ ] Add sound test /test/PVPW_TestSound[category][language].lua
+- [ ] Add combat test /test/PVPW_TestCombatEvents[category][language].lua
 
 #### Avoid Spell
 
@@ -27,7 +31,6 @@ Linked spells are spells that have the same name as another spell even though th
 PVPWarn solves this problem by linking such spells together as one. This means for the player that it is not possible to have different option settings for spells that are linked together. He cannot have the warning for the druids cast of `Nature's Swiftness` active and have the same on deactivated by the shaman. The settings interface is handling this automatically and always updating linked spells as one.
 
 During combat PVPWarn doesn't really care which spell is used. It will simply take the first one that is found and work from there. This requires that the spells are treated the same and thus essentially are the same. They need to have the same trackedEvents, the same icon, the same soundfile and so on. The only thing that differs between them is their links that point to each other. The only reason the spell has to have an entry in both categories is to show up in the configuration ui.
-
 
 ### Avoid and How it Works
 
@@ -105,7 +108,7 @@ PVPWarn uses the exact missType for two things.
 
 ###### Filter Unwanted missType
 
-PVPWarn filters unwanted missType. See above for supported missTypes. As an example completely absorbing a spell such as `Cone of Cold` with a `Power Word: Shield` is in the eyes of PVPWarn not an avoid. By filtering `ABSORB` those events will not be processed.
+PVPWarn filters unwanted missTypes. See above for supported missTypes. As an example completely absorbing a spell such as `Cone of Cold` with a `Power Word: Shield` is in the eyes of PVPWarn not an avoid. By filtering `ABSORB` those events will not be processed.
 
 ###### Filter Unsuported missType for Spell
 
