@@ -84,6 +84,34 @@ function me.TestSoundDown[spellname]() -- without whitespace e.g. BerserkerRage
 end
 ```
 
+##### Sound Self Avoid Test
+
+A soundselfavoid may be optional (if the spell only supports enemy avoid).
+
+```lua
+function me.TestSoundSelfAvoid[spellname]() -- without whitespace e.g. BerserkerRage
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoid[spellname]", -- without whitespace e.g. BerserkerRage
+    testCategory,
+    "[spellname]" -- as displayed e.g. Berserker Rage
+  )
+end
+```
+
+##### Sound Enemy Avoid Test
+
+A soundenemyavoid may be optional (if the spell only supports self avoid).
+
+```lua
+function me.TestSoundEnemyAvoid[spellname]() -- without whitespace e.g. BerserkerRage
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoid[spellname]", -- without whitespace e.g. BerserkerRage
+    testCategory,
+    "[spellname]" -- as displayed e.g. Berserker Rage
+  )
+end
+```
+
 ### Combat Event Test
 
 Combat event test are testing whether the addon is able to handle certain expected events for a specific spell found in the spellmap. Different events might be relevant to some spells or not depending on the type of the spell.
@@ -164,6 +192,31 @@ function me.TestCombatEvent[spellname]Success() -- without whitespace e.g. Berse
     "TestCombatEvent[spellname]Success", -- without whitespace e.g. BerserkerRage
     testCategory,
     "[spellname]" -- as displayed e.g. Berserker Rage
+  )
+end
+```
+
+##### Combat Event Self/Enemy Avoid
+
+Combat event `SPELL_MISSED`
+
+Misstype one of:
+
+* DODGE (dodged)
+* PARRY (parried)
+* IMMUNE (immune)
+* MISS (missed)
+* BLOCK (blocked)
+* RESIST (resisted)
+
+```lua
+function me.TestCombatEventSelfAvoid[spellname][misstype]() -- without whitespace e.g. BerserkerRage / misstype e.g immune
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoid[spellname][misstype]", -- without whitespace e.g. BerserkerRage / misstype e.g immune
+    testCategory,
+    "[spellname]", -- as displayed e.g. Berserker Rage
+    RGPVPW_CONSTANTS.SPELL_TYPES.[enemy or self avoid], -- MISSED_SELF / MISSED_ENEMY
+    RGPVPW_CONSTANTS.MISS_TYPES.[misstype] -- e.g. IMMUNE
   )
 end
 ```
