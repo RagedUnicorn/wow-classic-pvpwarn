@@ -153,7 +153,7 @@ end
 ]]--
 function me.ProcessResist(spellName, event, missType, spellMissedTarget, callback)
   if not mod.common.IsSupportedMissType(missType) then
-    mod.logger.LogDebug(me.tag, "ProcessEnemyResist ignore unsupported missType: " .. missType)
+    mod.logger.LogDebug(me.tag, "ProcessResist ignore unsupported missType: " .. missType)
     return
   end
 
