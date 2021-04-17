@@ -31,15 +31,6 @@ mod.targetFrame = me
 me.tag = "TargetFrame"
 
 --[[
-  TODO add all ui work related to the targetframe here
-
-  This includes the following features:
-  - combat status of the target
-  - stance of the target
-  - active buffs/spells detected and their duration
-]]--
-
---[[
   Build the combat state ui. Displaying an icon to the player indicating that his
   target is currently in combat
 ]]--
