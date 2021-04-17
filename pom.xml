@@ -6,18 +6,16 @@
   <artifactId>pvpwarn-addon</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <addon.author>Michael Wiesendanger &lt;michael.wiesendanger@gmail.com&gt;</addon.author>
-    <addon.description>PVPWarn aims to warns players visually and acoustically about pvp events</addon.description>
+    <addon.description>PVPWarn aims to warn players visually and acoustically about pvp events</addon.description>
     <addon.name>PVPWarn</addon.name>
     <addon.name.short>PVPW</addon.name.short>
     <addon.tag.version>v${project.version}</addon.tag.version>
     <addon.interface>11302</addon.interface>
     <addon.identifier>${project.groupId}.${project.artifactId}</addon.identifier>
   </properties>
-
   <profiles>
     <profile>
       <id>development</id>
@@ -91,7 +89,6 @@
       </build>
     </profile>
   </profiles>
-
   <build>
     <plugins>
       <plugin>
