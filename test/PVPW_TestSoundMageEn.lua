@@ -64,6 +64,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCombustion)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownCombustion)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBlastWave)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundColdSnap)
 end
 
 function me.TestSoundIceBlock()
@@ -239,5 +240,13 @@ function me.TestSoundBlastWave()
     "TestSoundBlastWave",
     testCategory,
     "Blast Wave"
+  )
+end
+
+function me.TestSoundColdSnap()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundColdSnap",
+    testCategory,
+    "Cold Snap"
   )
 end

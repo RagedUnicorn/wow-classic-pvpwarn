@@ -666,6 +666,17 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["cold_snap"] = {
+        ["name"] = "Cold Snap",
+        ["soundFileName"] = "cold_snap",
+        ["spellId"] = 12472,
+        ["spellIcon"] = "spell_frost_wizardmark",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["hunter"] = {

@@ -68,6 +68,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCombustionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCombustionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlastWaveSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventColdSnapSuccess)
 end
 
 function me.TestCombatEventIceBlockApplied()
@@ -259,5 +260,13 @@ function me.TestCombatEventBlastWaveSuccess()
     "TestCombatEventBlastWaveSuccess",
     testCategory,
     "Blast Wave"
+  )
+end
+
+function me.TestCombatEventColdSnapSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventColdSnapSuccess",
+    testCategory,
+    "Cold Snap"
   )
 end
