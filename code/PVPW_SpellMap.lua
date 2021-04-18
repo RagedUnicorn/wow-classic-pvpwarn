@@ -372,6 +372,17 @@ else
           "SPELL_AURA_REFRESH"
         }
       },
+      ["desperate_prayer"] = {
+        ["name"] = "Desperate Prayer",
+        ["soundFileName"] = "desperate_prayer",
+        ["spellId"] = 19243, -- rank 7
+        ["spellIcon"] = "spell_holy_restoration",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      }
     },
     ["rogue"] = {
       ["blind"] = {

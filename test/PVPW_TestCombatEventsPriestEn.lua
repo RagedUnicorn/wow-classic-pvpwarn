@@ -61,6 +61,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFearWardApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFearWardRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFearWardRefresh)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDesperatePrayerSuccess)
 end
 
 function me.TestCombatEventPsychicScreamSuccess()
@@ -196,5 +197,13 @@ function me.TestCombatEventFearWardRefresh()
     "TestCombatEventFearWardRefresh",
     testCategory,
     "Fear Ward"
+  )
+end
+
+function me.TestCombatEventDesperatePrayerSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDesperatePrayerSuccess",
+    testCategory,
+    "Desperate Prayer"
   )
 end

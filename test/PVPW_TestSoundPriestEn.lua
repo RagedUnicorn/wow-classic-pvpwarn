@@ -54,6 +54,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownTouchOfWeakness)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFearWard)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFearWard)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDesperatePrayer)
 end
 
 function me.TestSoundPsychicScream()
@@ -149,5 +150,13 @@ function me.TestSoundDownFearWard()
     "TestSoundDownFearWard",
     testCategory,
     "Fear Ward"
+  )
+end
+
+function me.TestSoundDesperatePrayer()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundDesperatePrayer",
+    testCategory,
+    "Desperate Prayer"
   )
 end
