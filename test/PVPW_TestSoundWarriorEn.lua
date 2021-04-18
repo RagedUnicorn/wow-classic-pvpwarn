@@ -64,6 +64,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShieldSlam)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShieldWall)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShieldWall)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLastStand)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLastStand)
 end
 
 function me.TestSoundBerserkerRage()
@@ -239,5 +241,21 @@ function me.TestSoundDownShieldWall()
     "TestSoundDownShieldWall",
     testCategory,
     "Shield Wall"
+  )
+end
+
+function me.TestSoundLastStand()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundLastStand",
+    testCategory,
+    "Last Stand"
+  )
+end
+
+function me.TestSoundDownLastStand()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownLastStand",
+    testCategory,
+    "Last Stand"
   )
 end

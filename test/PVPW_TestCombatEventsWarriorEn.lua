@@ -66,6 +66,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldSlamSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldWallApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldWallRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLastStandApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLastStandRemoved)
 end
 
 function me.TestCombatEventBerserkerRageApplied()
@@ -241,5 +243,21 @@ function me.TestCombatEventShieldWallRemoved()
     "TestCombatEventShieldWallRemoved",
     testCategory,
     "Shield Wall"
+  )
+end
+
+function me.TestCombatEventLastStandApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventLastStandApplied",
+    testCategory,
+    "Last Stand"
+  )
+end
+
+function me.TestCombatEventLastStandRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventLastStandRemoved",
+    testCategory,
+    "Last Stand"
   )
 end

@@ -284,6 +284,18 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["last_stand"] = {
+        ["name"] = "Last Stand",
+        ["soundFileName"] = "last_stand",
+        ["spellId"] = 12975,
+        ["spellIcon"] = "spell_holy_ashestoashes",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     },
     ["priest"] = {
