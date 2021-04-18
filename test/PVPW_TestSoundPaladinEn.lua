@@ -60,6 +60,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDivineShield)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundForbearance)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownForbearance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLayOnHands)
 end
 
 function me.TestSoundDevotionAura()
@@ -203,5 +204,13 @@ function me.TestSoundDownForbearance()
     "TestSoundDownForbearance",
     testCategory,
     "Forbearance"
+  )
+end
+
+function me.TestSoundLayOnHands()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundLayOnHands",
+    testCategory,
+    "Lay on Hands"
   )
 end

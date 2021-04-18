@@ -1058,6 +1058,17 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["lay_on_hands"] = {
+        ["name"] = "Lay on Hands",
+        ["soundFileName"] = "lay_on_hands",
+        ["spellId"] = 633,
+        ["spellIcon"] = "spell_holy_layonhands",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["druid"] = {

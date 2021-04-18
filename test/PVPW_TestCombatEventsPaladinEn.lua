@@ -60,6 +60,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineShieldRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventForbearanceApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventForbearanceRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLayOnHandsSuccess)
 end
 
 function me.TestCombatEventDevotionAuraApplied()
@@ -203,5 +204,13 @@ function me.TestCombatEventForbearanceRemoved()
     "TestCombatEventForbearanceRemoved",
     testCategory,
     "Forbearance"
+  )
+end
+
+function me.TestCombatEventLayOnHandsSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventLayOnHandsSuccess",
+    testCategory,
+    "Lay on Hands"
   )
 end
