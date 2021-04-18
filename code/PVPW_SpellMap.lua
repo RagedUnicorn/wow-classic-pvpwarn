@@ -272,6 +272,18 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["shield_wall"] = {
+        ["name"] = "Shield Wall",
+        ["soundFileName"] = "shield_wall",
+        ["spellId"] = 871,
+        ["spellIcon"] = "ability_warrior_shieldwall",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     },
     ["priest"] = {
