@@ -46,7 +46,7 @@ me.tag = "PaladinProfile"
     }
   }
 ]]--
-local defaultProfilePaladin = {
+local defaultSpellProfilePaladin = {
   ["warrior"] = {
     ["recklessness"] = {
       ["spellActive"] = true,
@@ -208,9 +208,24 @@ local defaultProfilePaladin = {
   ["misc"] = {}
 }
 
+local defaultSpellSelfAvoidProfilePaladin = {}
+
+local defaultSpellEnemyAvoidProfilePaladin = {}
+
 --[[
-  @return {table}
+  @param {string} spellType
+
+  @return {table | nil}
 ]]--
-function me.GetProfile()
-  return defaultProfilePaladin
+function me.GetSpellProfile(spellType)
+  if spellType == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL then
+    return mod.common.Clone(defaultSpellProfilePaladin)
+  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID then
+    return mod.common.Clone(defaultSpellSelfAvoidProfilePaladin)
+  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID then
+    return mod.common.Clone(defaultSpellEnemyAvoidProfilePaladin)
+  else
+    mod.logger.LogError(me.tag, "Invalid spellType")
+    return nil
+  end
 end
