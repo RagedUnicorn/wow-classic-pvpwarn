@@ -205,6 +205,18 @@ local defaultSpellProfileMage = {
   },
   ["racials"] = {},
   ["items"] = {
+    ["frost_reflector"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
+    },
+    ["fire_reflector"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
+    },
     ["flee"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
