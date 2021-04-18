@@ -205,6 +205,12 @@ local defaultSpellProfileWarlock = {
   },
   ["racials"] = {},
   ["items"] = {},
+    ["shadow_reflector"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
+    },
   ["misc"] = {}
 }
 
