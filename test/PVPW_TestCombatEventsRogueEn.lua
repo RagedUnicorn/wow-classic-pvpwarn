@@ -59,6 +59,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBladeFlurryRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventColdBloodApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventColdBloodRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPreparationSuccess)
 end
 
 function me.TestCombatEventBlindApplied()
@@ -178,5 +179,13 @@ function me.TestCombatEventColdBloodRemoved()
     "TestCombatEventColdBloodRemoved",
     testCategory,
     "Cold Blood"
+  )
+end
+
+function me.TestCombatEventPreparationSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventPreparationSuccess",
+    testCategory,
+    "Preparation"
   )
 end

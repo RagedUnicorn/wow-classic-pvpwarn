@@ -489,6 +489,17 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["preparation"] = {
+        ["name"] = "Preparation",
+        ["soundFileName"] = "preparation",
+        ["spellId"] = 14185,
+        ["spellIcon"] = "spell_shadow_antishadow",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["mage"] = {
