@@ -58,6 +58,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIntimidationRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBestialWrathApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBestialWrathRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeterrenceApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeterrenceRemoved)
 end
 
 function me.TestCombatEventConcussiveShotSuccess()
@@ -185,5 +187,21 @@ function me.TestCombatEventBestialWrathRemoved()
     "TestCombatEventBestialWrathRemoved",
     testCategory,
     "Bestial Wrath"
+  )
+end
+
+function me.TestCombatEventDeterrenceApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDeterrenceApplied",
+    testCategory,
+    "Deterrence"
+  )
+end
+
+function me.TestCombatEventDeterrenceRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventDeterrenceRemoved",
+    testCategory,
+    "Deterrence"
   )
 end

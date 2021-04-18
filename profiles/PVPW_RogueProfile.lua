@@ -139,6 +139,12 @@ local defaultSpellProfileRogue = {
       ["soundWarningActive"] = true,
       ["soundFadeWarningActive"] = true,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.green.colorValue
+    },
+    ["deterrence"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.green.colorValue
     }
   },
   ["warlock"] = {

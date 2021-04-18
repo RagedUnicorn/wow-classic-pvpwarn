@@ -58,6 +58,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownIntimidation)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBestialWrath)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBestialWrath)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDeterrence)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDeterrence)
 end
 
 function me.TestSoundConcussiveShot()
@@ -185,5 +187,21 @@ function me.TestSoundDownBestialWrath()
     "TestSoundDownBestialWrath",
     testCategory,
     "Bestial Wrath"
+  )
+end
+
+function me.TestSoundDownDeterrence()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownDeterrence",
+    testCategory,
+    "Deterrence"
+  )
+end
+
+function me.TestSoundDeterrence()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundDeterrence",
+    testCategory,
+    "Deterrence"
   )
 end

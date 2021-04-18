@@ -102,7 +102,14 @@ local defaultSpellProfileWarrior = {
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
     }
   },
-  ["hunter"] = {},
+  ["hunter"] = {
+    ["deterrence"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.green.colorValue
+    }
+  },
   ["warlock"] = {
     ["amplify_curse"] = {
       ["spellActive"] = true,

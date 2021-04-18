@@ -792,6 +792,18 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["deterrence"] = {
+        ["name"] = "Deterrence",
+        ["soundFileName"] = "deterrence",
+        ["spellId"] = 19263,
+        ["spellIcon"] = "ability_whirlwind",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     },
     ["warlock"] = {
