@@ -46,42 +46,154 @@ me.tag = "WarriorProfile"
     }
   }
 ]]--
-local defaultProfileWarrior = {
+local defaultSpellProfileWarrior = {
   ["warrior"] = {
-
+    ["recklessness"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.brown.colorValue
+    }
   },
-  ["priest"] = {
-
-  },
+  ["priest"] = {},
   ["rogue"] = {
-
+    ["evasion"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
+    },
+    ["adrenaline_rush"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
+    },
+    ["blade_flurry"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
+    },
+    ["cold_blood"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = false,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
+    }
   },
   ["mage"] = {
-
+    ["ice_block"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
+    },
+    ["arcane_power"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
+    },
+    ["presence_of_mind"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
+    }
   },
-  ["hunter"] = {
-
+  ["hunter"] = {},
+  ["warlock"] = {
+    ["amplify_curse"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = false,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.violet.colorValue
+    }
   },
   ["paladin"] = {
-
+    ["blessing_of_protection"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.pink.colorValue
+    },
+    ["blessing_of_freedom"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.pink.colorValue
+    },
+    ["divine_shield"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.pink.colorValue
+    }
   },
   ["druid"] = {
-
+    ["barkskin"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.orange.colorValue
+    },
+    ["natures_grasp"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.orange.colorValue
+    },
+    ["natures_swiftness"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.orange.colorValue
+    }
   },
-  ["racials"] = {
-
+  ["shaman"] = {
+    ["elemental_mastery"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.blue.colorValue
+    },
+    ["natures_swiftness"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = true,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.blue.colorValue
+    },
+    ["tremor_totem"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = false,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.blue.colorValue
+    }
   },
-  ["items"] = {
-
-  },
-  ["misc"] = {
-
-  }
+  ["racials"] = {},
+  ["items"] = {},
+  ["misc"] = {}
 }
 
+local defaultSpellSelfAvoidProfileWarrior = {}
+
+local defaultSpellEnemyAvoidProfileWarrior = {}
+
 --[[
-  @return {table}
+  @param {string} spellType
+
+  @return {table | nil}
 ]]--
-function me.GetProfile()
-  return defaultProfileWarrior
+function me.GetSpellProfile(spellType)
+  if spellType == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL then
+    return mod.common.Clone(defaultSpellProfileWarrior)
+  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID then
+    return mod.common.Clone(defaultSpellSelfAvoidProfileWarrior)
+  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID then
+    return mod.common.Clone(defaultSpellEnemyAvoidProfileWarrior)
+  else
+    mod.logger.LogError(me.tag, "Invalid spellType")
+    return nil
+  end
 end
