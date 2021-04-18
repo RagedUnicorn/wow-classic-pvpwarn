@@ -66,6 +66,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShieldWall)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLastStand)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLastStand)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShieldBash)
 end
 
 function me.TestSoundBerserkerRage()
@@ -257,5 +258,13 @@ function me.TestSoundDownLastStand()
     "TestSoundDownLastStand",
     testCategory,
     "Last Stand"
+  )
+end
+
+function me.TestSoundShieldBash()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShieldBash",
+    testCategory,
+    "Shield Bash"
   )
 end

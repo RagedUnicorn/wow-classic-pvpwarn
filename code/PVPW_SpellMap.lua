@@ -296,6 +296,17 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["shield_bash"] = {
+        ["name"] = "Shield Bash",
+        ["soundFileName"] = "shield_bash",
+        ["spellId"] = 1672, -- rank 3
+        ["spellIcon"] = "ability_warrior_shieldbash",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["priest"] = {
