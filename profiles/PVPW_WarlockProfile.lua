@@ -204,13 +204,44 @@ local defaultSpellProfileWarlock = {
     }
   },
   ["racials"] = {},
-  ["items"] = {},
+  ["items"] = {
     ["shadow_reflector"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
       ["soundFadeWarningActive"] = true,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
+    ["immune_root_snare_stun"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = false,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
+    },
+    ["immune_charm_fear_polymorph"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = false,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
+    },
+    ["immune_fear_polymorph_snare"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = false,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
+    },
+    ["immune_fear_polymorph_stun"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = false,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
+    },
+    ["immune_charm_fear_stun"] = {
+      ["spellActive"] = true,
+      ["soundWarningActive"] = true,
+      ["soundFadeWarningActive"] = false,
+      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
+    }
+  },
   ["misc"] = {}
 }
 

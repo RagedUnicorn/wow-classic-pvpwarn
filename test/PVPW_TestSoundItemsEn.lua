@@ -66,6 +66,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSpeed)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMithrilMechanicalDragonling)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMithrilMechanicalDragonling)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneRootSnareStun)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneCharmFearPolymorph)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneFearPolymorphSnare)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneFearPolymorphStun)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneCharmFearStun)
 end
 
 function me.TestSoundEphemeralPower()
@@ -249,5 +254,50 @@ function me.TestSoundMithrilMechanicalDragonling()
     "TestSoundMithrilMechanicalDragonling",
     testCategory,
     "Mithril Mechanical Dragonling"
+  )
+end
+
+-- insignia warrior/hunter/shaman
+function me.TestSoundImmuneRootSnareStun()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundImmuneRootSnareStun",
+    testCategory,
+    "Immune Root/Snare/Stun"
+  )
+end
+
+-- insignia warlock/rogue
+function me.TestSoundImmuneCharmFearPolymorph()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundImmuneCharmFearPolymorph",
+    testCategory,
+    "Immune Charm/Fear/Polymorph"
+  )
+end
+
+-- insignia mage
+function me.TestSoundImmuneFearPolymorphSnare()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundImmuneFearPolymorphSnare",
+    testCategory,
+    "Immune Fear/Polymorph/Snare"
+  )
+end
+
+-- insignia priest/paladin
+function me.TestSoundImmuneFearPolymorphStun()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundImmuneFearPolymorphStun",
+    testCategory,
+    "Immune Fear/Polymorph/Stun"
+  )
+end
+
+-- insignia druid
+function me.TestSoundImmuneCharmFearStun()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundImmuneCharmFearStun",
+    testCategory,
+    "Immune Charm/Fear/Stun"
   )
 end

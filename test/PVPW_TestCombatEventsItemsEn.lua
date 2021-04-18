@@ -67,6 +67,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpeedApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpeedRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMithrilMechanicalDragonlingSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneRootSnareStunSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneCharmFearPolymorphSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneFearPolymorphSnareSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneFearPolymorphStunSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneCharmFearStunSuccess)
 end
 
 function me.TestCombatEventEphemeralPowerApplied()
@@ -250,5 +255,50 @@ function me.TestCombatEventMithrilMechanicalDragonlingSuccess()
     "TestCombatEventMithrilMechanicalDragonlingSuccess",
     testCategory,
     "Mithril Mechanical Dragonling"
+  )
+end
+
+-- insignia warrior/hunter/shaman
+function me.TestCombatEventImmuneRootSnareStunSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventImmuneRootSnareStunSuccess",
+    testCategory,
+    "Immune Root/Snare/Stun"
+  )
+end
+
+-- insignia warlock/rogue
+function me.TestCombatEventImmuneCharmFearPolymorphSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventImmuneCharmFearPolymorphSuccess",
+    testCategory,
+    "Immune Charm/Fear/Polymorph"
+  )
+end
+
+-- insignia mage
+function me.TestCombatEventImmuneFearPolymorphSnareSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventImmuneFearPolymorphSnareSuccess",
+    testCategory,
+    "Immune Fear/Polymorph/Snare"
+  )
+end
+
+-- insignia priest/paladin
+function me.TestCombatEventImmuneFearPolymorphStunSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventImmuneFearPolymorphStunSuccess",
+    testCategory,
+    "Immune Fear/Polymorph/Stun"
+  )
+end
+
+-- insignia druid
+function me.TestCombatEventImmuneCharmFearStunSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventImmuneCharmFearStunSuccess",
+    testCategory,
+    "Immune Charm/Fear/Stun"
   )
 end

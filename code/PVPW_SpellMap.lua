@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetLocale
+-- luacheck: globals GetLocale UnitFactionGroup
 
 local mod = rgpvpw
 local me = {}
@@ -1700,6 +1700,96 @@ else
         ["itemId"] = 10576,
         ["spellId"] = 23075,
         ["spellIcon"] = "inv_misc_head_dragon_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["immune_root_snare_stun"] = {
+        ["name"] = "Insignia Warrior/Hunter/Shaman",
+        ["soundFileName"] = "insignia",
+        ["itemId"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return 18834 -- horde warrior
+          else
+            return 18854 -- alliance warrior
+          end
+        end)(),
+        ["spellId"] = 5579,
+        ["spellIcon"] = "inv_jewelry_trinketpvp_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["immune_charm_fear_polymorph"] = {
+        ["name"] = "Insignia Warlock/Rogue",
+        ["soundFileName"] = "insignia",
+        ["itemId"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return 18852 -- horde warlock
+          else
+            return 18858 -- alliance warlock
+          end
+        end)(),
+        ["spellId"] = 23273,
+        ["spellIcon"] = "inv_jewelry_trinketpvp_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["immune_fear_polymorph_snare"] = {
+        ["name"] = "Insignia Mage",
+        ["soundFileName"] = "insignia",
+        ["itemId"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return 18850 -- horde mage
+          else
+            return 18859 -- alliance mage
+          end
+        end)(),
+        ["spellId"] = 23274,
+        ["spellIcon"] = "inv_jewelry_trinketpvp_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["immune_fear_polymorph_stun"] = {
+        ["name"] = "Insignia Priest/Paladin",
+        ["soundFileName"] = "insignia",
+        ["itemId"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return 18851 -- horde priest
+          else
+            return 18862 -- alliance priest
+          end
+        end)(),
+        ["spellId"] = 23276,
+        ["spellIcon"] = "inv_jewelry_trinketpvp_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["immune_charm_fear_stun"] = {
+        ["name"] = "Insignia Druid",
+        ["soundFileName"] = "insignia",
+        ["itemId"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return 18853 -- horde druid
+          else
+            return 18863 -- alliance druid
+          end
+        end)(),
+        ["spellId"] = 23277,
+        ["spellIcon"] = "inv_jewelry_trinketpvp_01",
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
