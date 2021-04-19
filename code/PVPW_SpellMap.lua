@@ -546,6 +546,17 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["stealth"] = {
+        ["name"] = "Stealth",
+        ["soundFileName"] = "stealth",
+        ["spellId"] = 1787, -- rank 4
+        ["spellIcon"] = "ability_stealth",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["mage"] = {
