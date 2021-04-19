@@ -535,6 +535,17 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["vanish"] = {
+        ["name"] = "Vanish",
+        ["soundFileName"] = "vanish",
+        ["spellId"] = 1857, -- rank 2
+        ["spellIcon"] = "ability_vanish",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["mage"] = {

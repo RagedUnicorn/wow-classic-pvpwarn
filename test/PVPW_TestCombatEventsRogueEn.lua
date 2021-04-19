@@ -60,6 +60,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventColdBloodApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventColdBloodRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPreparationSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVanishSuccess)
 end
 
 function me.TestCombatEventBlindApplied()
@@ -187,5 +188,13 @@ function me.TestCombatEventPreparationSuccess()
     "TestCombatEventPreparationSuccess",
     testCategory,
     "Preparation"
+  )
+end
+
+function me.TestCombatEventVanishSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventVanishSuccess",
+    testCategory,
+    "Vanish"
   )
 end

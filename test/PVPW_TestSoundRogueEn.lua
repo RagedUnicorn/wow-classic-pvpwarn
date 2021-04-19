@@ -57,6 +57,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundColdBlood)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownColdBlood)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPreparation)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVanish)
 end
 
 function me.TestSoundBlind()
@@ -176,5 +177,13 @@ function me.TestSoundPreparation()
     "TestSoundPreparation",
     testCategory,
     "Preparation"
+  )
+end
+
+function me.TestSoundVanish()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundVanish",
+    testCategory,
+    "Vanish"
   )
 end
