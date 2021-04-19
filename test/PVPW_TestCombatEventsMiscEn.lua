@@ -57,6 +57,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNatureProtectionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArcaneProtectionSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArcaneProtectionRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRestorationApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRestorationRemoved)
 end
 
 function me.TestCombatEventRestoreEnergySuccess()
@@ -160,5 +162,21 @@ function me.TestCombatEventArcaneProtectionRemoved()
     "TestCombatEventArcaneProtectionRemoved",
     testCategory,
     "Arcane Protection"
+  )
+end
+
+function me.TestCombatEventRestorationApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventRestorationApplied",
+    testCategory,
+    "Restoration"
+  )
+end
+
+function me.TestCombatEventRestorationRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventRestorationRemoved",
+    testCategory,
+    "Restoration"
   )
 end

@@ -2011,6 +2011,19 @@ else
           "SPELL_CAST_SUCCESS",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["restoration"] = {
+        ["name"] = "Restorative Potion",
+        ["soundFileName"] = "restorative_potion",
+        ["itemId"] = 9030,
+        ["spellId"] = 11359,
+        ["spellIcon"] = "inv_potion_01",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     }
   }
