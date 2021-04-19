@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals UnitClass strlower
+-- luacheck: globals UnitClass strlower GetAddOnMetadata
 
 local mod = rgpvpw
 local me = {}
@@ -77,6 +77,7 @@ function me.CreateProfile(profileName)
 
   local profile = {
     name = profileName,
+    version = GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"),
     ["spellConfiguration"] = mod.configuration.GetSpellConfiguration(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL),
     ["spellSelfAvoidConfiguration"] =
       mod.configuration.GetSpellConfiguration(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID),
