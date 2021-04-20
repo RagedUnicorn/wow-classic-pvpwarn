@@ -2075,6 +2075,18 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["lesser_invisibility"] = {
+        ["name"] = "Lesser Invisibility Potion",
+        ["soundFileName"] = "lesser_invisibility_potion",
+        ["itemId"] = 3823,
+        ["spellId"] = 3680,
+        ["spellIcon"] = "inv_potion_18",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     }
   }
