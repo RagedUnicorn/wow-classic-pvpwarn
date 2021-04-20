@@ -65,6 +65,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFreeActionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInvulnerabilityApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInvulnerabilityRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInvisibilitySuccess)
 end
 
 function me.TestCombatEventRestoreEnergySuccess()
@@ -232,5 +233,13 @@ function me.TestCombatEventInvulnerabilityRemoved()
     "TestCombatEventInvulnerabilityRemoved",
     testCategory,
     "Invulnerability"
+  )
+end
+
+function me.TestCombatEventInvisibilitySuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventInvisibilitySuccess",
+    testCategory,
+    "Invisibility"
   )
 end

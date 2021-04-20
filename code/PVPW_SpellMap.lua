@@ -2063,6 +2063,18 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["invisibility"] = {
+        ["name"] = "Invisibility Potion",
+        ["soundFileName"] = "invisibility_potion",
+        ["itemId"] = 9172,
+        ["spellId"] = 11392,
+        ["spellIcon"] = "inv_potion_25",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     }
   }
