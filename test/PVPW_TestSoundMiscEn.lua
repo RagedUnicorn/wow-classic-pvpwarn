@@ -59,6 +59,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRestoration)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLivingFreeAction)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLivingFreeAction)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreeAction)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFreeAction)
 end
 
 function me.TestSoundRestoreEnergy()
@@ -194,5 +196,21 @@ function me.TestSoundDownLivingFreeAction()
     "TestSoundDownLivingFreeAction",
     testCategory,
     "Living Free Action"
+  )
+end
+
+function me.TestSoundFreeAction()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundFreeAction",
+    testCategory,
+    "Free Action"
+  )
+end
+
+function me.TestSoundDownFreeAction()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFreeAction",
+    testCategory,
+    "Free Action"
   )
 end

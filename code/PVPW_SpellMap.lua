@@ -2037,6 +2037,19 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["free_action"] = {
+        ["name"] = "Free Action Potion",
+        ["soundFileName"] = "free_action_potion",
+        ["itemId"] = 5634,
+        ["spellId"] = 6615,
+        ["spellIcon"] = "inv_potion_04",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     }
   }

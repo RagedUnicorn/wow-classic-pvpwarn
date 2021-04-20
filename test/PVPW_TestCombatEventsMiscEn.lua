@@ -61,6 +61,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRestorationRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLivingFreeActionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLivingFreeActionRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFreeActionApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFreeActionRemoved)
 end
 
 function me.TestCombatEventRestoreEnergySuccess()
@@ -196,5 +198,21 @@ function me.TestCombatEventLivingFreeActionRemoved()
     "TestCombatEventLivingFreeActionRemoved",
     testCategory,
     "Living Free Action"
+  )
+end
+
+function me.TestCombatEventFreeActionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFreeActionApplied",
+    testCategory,
+    "Free Action"
+  )
+end
+
+function me.TestCombatEventFreeActionRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventFreeActionRemoved",
+    testCategory,
+    "Free Action"
   )
 end
