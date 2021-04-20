@@ -235,7 +235,7 @@ function me.TestSoundDownInvulnerability()
 end
 
 function me.TestSoundInvisibility()
-  mod.testHelper.TestSoundApplied(
+  mod.testHelper.TestSoundSuccess(
     "TestSoundInvisibility",
     testCategory,
     "Invisibility"
