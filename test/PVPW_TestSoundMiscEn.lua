@@ -61,6 +61,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLivingFreeAction)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreeAction)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFreeAction)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundInvulnerability)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownInvulnerability)
 end
 
 function me.TestSoundRestoreEnergy()
@@ -212,5 +214,21 @@ function me.TestSoundDownFreeAction()
     "TestSoundDownFreeAction",
     testCategory,
     "Free Action"
+  )
+end
+
+function me.TestSoundInvulnerability()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundInvulnerability",
+    testCategory,
+    "Invulnerability"
+  )
+end
+
+function me.TestSoundDownInvulnerability()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownInvulnerability",
+    testCategory,
+    "Invulnerability"
   )
 end

@@ -2050,6 +2050,19 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["invulnerability"] = {
+        ["name"] = "Limited Invulnerability Potion",
+        ["soundFileName"] = "invulnerability_potion",
+        ["itemId"] = 3387,
+        ["spellId"] = 3169,
+        ["spellIcon"] = "inv_potion_62",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     }
   }
