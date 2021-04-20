@@ -57,6 +57,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownArcaneProtection)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRestoration)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRestoration)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLivingFreeAction)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLivingFreeAction)
 end
 
 function me.TestSoundRestoreEnergy()
@@ -176,5 +178,21 @@ function me.TestSoundDownRestoration()
     "TestSoundDownRestoration",
     testCategory,
     "Restoration"
+  )
+end
+
+function me.TestSoundLivingFreeAction()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundLivingFreeAction",
+    testCategory,
+    "Living Free Action"
+  )
+end
+
+function me.TestSoundDownLivingFreeAction()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownLivingFreeAction",
+    testCategory,
+    "Living Free Action"
   )
 end
