@@ -1908,7 +1908,20 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-      }
+      },
+      ["aura_of_protection"] = {
+        ["name"] = "Arena Grand Master",
+        ["soundFileName"] = "arena_grand_master",
+        ["itemId"] = 19024,
+        ["spellId"] = 23506,
+        ["spellIcon"] = "inv_misc_armorkit_04",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
     },
     ["misc"] = {
       ["restore_energy"] = {

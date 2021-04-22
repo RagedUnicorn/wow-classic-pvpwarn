@@ -71,6 +71,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneFearPolymorphSnare)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneFearPolymorphStun)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneCharmFearStun)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAuraOfProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAuraOfProtection)
 end
 
 function me.TestSoundEphemeralPower()
@@ -299,5 +301,21 @@ function me.TestSoundImmuneCharmFearStun()
     "TestSoundImmuneCharmFearStun",
     testCategory,
     "Immune Charm/Fear/Stun"
+  )
+end
+
+function me.TestSoundAuraOfProtection()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAuraOfProtection",
+    testCategory,
+    "Aura of Protection"
+  )
+end
+
+function me.TestSoundDownAuraOfProtection()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAuraOfProtection",
+    testCategory,
+    "Aura of Protection"
   )
 end

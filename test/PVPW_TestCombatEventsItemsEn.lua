@@ -72,6 +72,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneFearPolymorphSnareSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneFearPolymorphStunSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneCharmFearStunSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAuraOfProtectionApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAuraOfProtectionRemoved)
 end
 
 function me.TestCombatEventEphemeralPowerApplied()
@@ -300,5 +302,21 @@ function me.TestCombatEventImmuneCharmFearStunSuccess()
     "TestCombatEventImmuneCharmFearStunSuccess",
     testCategory,
     "Immune Charm/Fear/Stun"
+  )
+end
+
+function me.TestCombatEventAuraOfProtectionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAuraOfProtectionApplied",
+    testCategory,
+    "Aura of Protection"
+  )
+end
+
+function me.TestCombatEventAuraOfProtectionRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAuraOfProtectionRemoved",
+    testCategory,
+    "Aura of Protection"
   )
 end
