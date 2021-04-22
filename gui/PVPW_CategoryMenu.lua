@@ -243,6 +243,7 @@ end
   @param {number} position
 ]]--
 function me.ActivateTab(position)
+  me.HideAllTabs()
   mod.logger.LogDebug(me.tag, "Activating tab position " .. position)
 
   local nav = navigation[position]
@@ -251,4 +252,14 @@ function me.ActivateTab(position)
   nav.active = true
   nav.contentFrame:Show()
   nav.func(nav.contentFrame, categoryName)
+end
+
+--[[
+  Hide all other tabs before activating a new one
+]]--
+function me.HideAllTabs()
+  for i = 1, #navigation do
+    navigation[i].active = false
+    navigation[i].contentFrame:Hide()
+  end
 end
