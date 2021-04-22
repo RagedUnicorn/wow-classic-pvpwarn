@@ -99,9 +99,11 @@ function me.MenuOnShow(self)
     me.CreateCategoryMenu(self)
   end
 
-  me.ResetNavigation()
-  me.UpdateCategoryMenu(self)
-  me.ActivateTab(spellTab) -- activate the spell tab (first tab)
+  -- if categoryName ~= self.categoryName then
+    me.ResetNavigation()
+    me.UpdateCategoryMenu(self)
+    me.ActivateTab(spellTab) -- activate the spell tab (first tab)
+  -- end
 end
 
 --[[

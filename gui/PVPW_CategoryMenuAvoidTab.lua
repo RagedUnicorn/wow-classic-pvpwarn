@@ -23,7 +23,7 @@
 ]]--
 
 -- luacheck: ignore _
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT UIDropDownMenu_Initialize UIDropDownMenu_AddButton
+-- luacheck: globals CreateFrame UIDropDownMenu_SetText UIDropDownMenu_AddButton
 -- luacheck: globals UIDropDownMenu_GetSelectedValue UIDropDownMenu_SetSelectedValue
 -- luacheck: globals FauxScrollFrame_Update FauxScrollFrame_GetOffset GetSpellInfo GetItemIcon
 -- luacheck: globals UIDropDownMenu_EnableDropDown UIDropDownMenu_DisableDropDown
@@ -466,6 +466,8 @@ function me.UpdateChooseVisualDropdownMenu(dropdownMenu, category, spellName)
     dropdownMenu,
     colorValue
   )
+  -- fix for updating text properly
+  UIDropDownMenu_SetText(dropdownMenu, rgpvpw.L[mod.common.GetTextureNameByValue(colorValue)])
 end
 
 --[[

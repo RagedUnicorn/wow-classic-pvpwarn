@@ -183,3 +183,20 @@ function me.IsSupportedMissType(missType)
 
   return false
 end
+
+--[[
+  Get a textures name by its numerical value
+
+  @parma {number} colorValue
+
+  @return {string}
+]]--
+function me.GetTextureNameByValue(colorValue)
+  for _, texture in pairs(RGPVPW_CONSTANTS.TEXTURES) do
+    if colorValue == texture.colorValue then
+      return texture.textureName
+    end
+  end
+
+  return RGPVPW_CONSTANTS.TEXTURES.none.texturName -- default if none was found
+end
