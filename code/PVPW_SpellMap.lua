@@ -2100,7 +2100,20 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-      }
+      },
+      ["stealth_detection"] = {
+        ["name"] = "Catseye Elixir",
+        ["soundFileName"] = "catseye_elixir",
+        ["itemId"] = 10592,
+        ["spellId"] = 12608,
+        ["spellIcon"] = "inv_potion_36",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
     }
   }
 end

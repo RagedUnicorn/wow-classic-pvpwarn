@@ -67,6 +67,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInvulnerabilityRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInvisibilitySuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLesserInvisibilitySuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventStealthDetectionApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventStealthDetectionRemoved)
 end
 
 function me.TestCombatEventRestoreEnergySuccess()
@@ -250,5 +252,21 @@ function me.TestCombatEventLesserInvisibilitySuccess()
     "TestCombatEventLesserInvisibilitySuccess",
     testCategory,
     "Lesser Invisibility"
+  )
+end
+
+function me.TestCombatEventStealthDetectionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventStealthDetectionApplied",
+    testCategory,
+    "Stealth Detection"
+  )
+end
+
+function me.TestCombatEventStealthDetectionRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventStealthDetectionRemoved",
+    testCategory,
+    "Stealth Detection"
   )
 end
