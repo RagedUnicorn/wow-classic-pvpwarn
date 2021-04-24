@@ -5,8 +5,8 @@
 > PVPWarn aims to help the player to hear and see enemy spells casted on himself and also spells that an enemy player resisted or spells that the player himself resisted
 
 ![](/docs/wow_badge.svg)
-[![](/docs/twitch_badge.svg)](https://www.curseforge.com/wow/addons/pvpwarn)
 ![](/docs/license_mit.svg)
+[![](/docs/curseforge.svg)](https://curseforge.overwolf.com/?addonId=475326)
 
 PVPWarn uses both visual and acoustic effects to make the player aware of certain events. The addon aims to be configurable to the players preferences and allows customization on exactly what spells should be brought to the attention of the player and in what form.
 
@@ -116,7 +116,7 @@ mvn package -Dgenerate.sources.overwrite=true -P release
 
 **Note:** This packaging and switching resources can also be done one after another.
 
-**Note:** The packaging is not fit to be used for twitch because twitch expects a specific packaging
+**Note:** The packaging is not fit to be used for curseforge because curseforge expects a specific packaging
 
 ```
 # switch environment to release
@@ -138,15 +138,15 @@ mvn package -P deploy-github
 
 For this to work an oauth token for GitHub is required and has to be configured in your `.m2` settings file.
 
-### Deploy Twitch Release
+### Deploy CurseForge Release
 
-**Note:** Its best to create the release for GitHub first and only afterwards the twitch release. That way the tag was already created.
+**Note:** Its best to create the release for GitHub first and only afterwards the curseforge release. That way the tag was already created.
 
 ```
 # switch environment to release
 mvn generate-resources -Dgenerate.sources.overwrite=true -P release
 # deploy release
-mvn package -P deploy-twitch
+mvn package -P deploy-curseforge
 ```
 
 ## License
