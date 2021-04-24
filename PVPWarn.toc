@@ -1,7 +1,7 @@
-## Interface: 11302
+## Interface: 11307
 ## Title: PVPWarn
 ## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
-## Notes: PVPWarn aims to warns players visually and acoustically about pvp events
+## Notes: PVPWarn aims to warn players visually and acoustically about pvp events
 ## Version: v1.0.0
 ## SavedVariablesPerCharacter: PVPWarnConfiguration PVPWarnLogTracker PVPWarnTestLog PVPWarnProfiles
 
