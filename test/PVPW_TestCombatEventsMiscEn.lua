@@ -47,15 +47,15 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRestoreEnergySuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMightyRagePotionSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowProtectionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowProtectionRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostProtectionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostProtectionRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireProtectionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireProtectionRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNatureProtectionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNatureProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNatureProtectionRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArcaneProtectionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArcaneProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArcaneProtectionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRestorationApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRestorationRemoved)
@@ -95,9 +95,9 @@ function me.TestCombatEventFirstAidSuccess()
   )
 end
 
-function me.TestCombatEventShadowProtectionSuccess()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventShadowProtectionSuccess",
+function me.TestCombatEventShadowProtectionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventShadowProtectionApplied",
     testCategory,
     "Shadow Protection"
   )
@@ -111,9 +111,9 @@ function me.TestCombatEventShadowProtectionRemoved()
   )
 end
 
-function me.TestCombatEventFrostProtectionSuccess()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventFrostProtectionSuccess",
+function me.TestCombatEventFrostProtectionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFrostProtectionApplied",
     testCategory,
     "Frost Protection"
   )
@@ -127,9 +127,9 @@ function me.TestCombatEventFrostProtectionRemoved()
   )
 end
 
-function me.TestCombatEventFireProtectionSuccess()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventFireProtectionSuccess",
+function me.TestCombatEventFireProtectionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFireProtectionApplied",
     testCategory,
     "Fire Protection"
   )
@@ -143,9 +143,9 @@ function me.TestCombatEventFireProtectionRemoved()
   )
 end
 
-function me.TestCombatEventNatureProtectionSuccess()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventNatureProtectionSuccess",
+function me.TestCombatEventNatureProtectionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventNatureProtectionApplied",
     testCategory,
     "Nature Protection"
   )
@@ -159,9 +159,9 @@ function me.TestCombatEventNatureProtectionRemoved()
   )
 end
 
-function me.TestCombatEventArcaneProtectionSuccess()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventArcaneProtectionSuccess",
+function me.TestCombatEventArcaneProtectionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventArcaneProtectionApplied",
     testCategory,
     "Arcane Protection"
   )

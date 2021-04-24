@@ -1969,7 +1969,7 @@ else
         ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS",
+          "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
       },
@@ -1982,7 +1982,7 @@ else
         ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS",
+          "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
       },
@@ -1995,7 +1995,7 @@ else
         ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS",
+          "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
       },
@@ -2008,7 +2008,7 @@ else
         ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS",
+          "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
       },
@@ -2021,7 +2021,7 @@ else
         ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS",
+          "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
       },
