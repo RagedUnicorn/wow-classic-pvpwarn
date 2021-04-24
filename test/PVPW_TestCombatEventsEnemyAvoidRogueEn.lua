@@ -61,6 +61,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKidneyShotMissed)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidKidneyShotResisted)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidBlindImmune)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidBlindMissed)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGhostlyStrikeDodged)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGhostlyStrikeParried)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidGhostlyStrikeImmune)
@@ -267,6 +268,16 @@ function me.TestCombatEventEnemyAvoidBlindImmune()
     "Blind",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidBlindMissed()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidBlindMissed",
+    testCategory,
+    "Blind",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.MISS_TYPES.MISS
   )
 end
 

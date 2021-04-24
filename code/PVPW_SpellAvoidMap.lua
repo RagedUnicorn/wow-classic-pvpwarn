@@ -353,7 +353,7 @@ else
         ["dodge"] = false,
         ["parry"] = false,
         ["immune"] = true,
-        ["miss"] = false,
+        ["miss"] = true,
         ["block"] = false,
         ["resist"] = false,
         ["self_avoid"] = true,
