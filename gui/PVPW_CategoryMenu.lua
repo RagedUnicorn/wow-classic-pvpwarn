@@ -22,10 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT FauxScrollFrame_Update FauxScrollFrame_GetOffset
--- luacheck: globals UIDropDownMenu_Initialize UIDropDownMenu_AddButton UIDropDownMenu_GetSelectedValue
--- luacheck: globals UIDropDownMenu_SetSelectedValue GetSpellInfo UIDropDownMenu_EnableDropDown
--- luacheck: globals UIDropDownMenu_DisableDropDown PanelTemplates_TabResize
+-- luacheck: globals CreateFrame PanelTemplates_TabResize
 
 local mod = rgpvpw
 local me = {}
