@@ -319,7 +319,7 @@ function me.CreateVisualAlertDropdown(spellFrame)
         )
       end
 
-      if mod.uiDropdownMenu.uiDropdownMenu_GetSelectedValue == nil then
+      if mod.uiDropdownMenu.uiDropdownMenu_GetSelectedValue(self) == nil then
         mod.uiDropdownMenu.uiDropdownMenu_SetSelectedValue(self, RGPVPW_CONSTANTS.TEXTURES.none.colorValue)
       end
     end
