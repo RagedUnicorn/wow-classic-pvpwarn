@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT CloseMenus
 
 local mod = rgpvpw
 local me = {}
@@ -235,6 +235,7 @@ function me.CreateFauxScrollFrame(
   scrollFrame:EnableMouseWheel(true)
 
   scrollFrame:SetScript("OnVerticalScroll", function(self, offset)
+    CloseMenus()
     self.ScrollBar:SetValue(offset)
     self.offset = math.floor(offset / rowHeight + 0.5)
     callback(self, self:GetParent().categoryName)
