@@ -191,7 +191,7 @@ RGPVPW_CONSTANTS = {
       ["categoryName"] = "", -- {string} name of the category such as "warrior"
       ["localizationKey"] = "", -- {string} name for the localization key
       ["name"] = "", -- {string} name of the content frame
-      ["enemyAvoidEnabled"] = -- {bool} boolean whether this category has enemy resists enabled or not
+      ["enemyAvoidEnabled"] = -- {boolean} boolean whether this category has enemy resists enabled or not
     },
   ]]--
   CATEGORIES = {
