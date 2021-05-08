@@ -22,7 +22,6 @@
   SOFTWARE.
 ]]--
 
--- luacheck: ignore _
 -- luacheck: globals CreateFrame FauxScrollFrame_Update FauxScrollFrame_GetOffset GetSpellInfo GetItemIcon
 
 local mod = rgpvpw
@@ -442,7 +441,7 @@ function me.UpdateIcon(spellIcon, category, spell)
   if spell.itemId ~= nil then
     iconId = GetItemIcon(spell.itemId)
   else
-    _, _, iconId = GetSpellInfo(spell.spellId)
+    iconId = select(3, GetSpellInfo(spell.spellId))
   end
 
   spellIcon:SetTexture(iconId)
