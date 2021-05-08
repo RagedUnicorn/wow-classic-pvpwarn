@@ -23,10 +23,8 @@
 ]]--
 
 -- luacheck: ignore _
--- luacheck: globals CreateFrame UIDropDownMenu_AddButton UIDropDownMenu_SetText
--- luacheck: globals UIDropDownMenu_GetSelectedValue UIDropDownMenu_SetSelectedValue UnitClass
 -- luacheck: globals FauxScrollFrame_Update FauxScrollFrame_GetOffset GetSpellInfo GetItemIcon
--- luacheck: globals UIDropDownMenu_EnableDropDown UIDropDownMenu_DisableDropDown
+-- luacheck: globals CreateFrame UnitClass
 
 local mod = rgpvpw
 local me = {}
@@ -276,16 +274,13 @@ function me.CreateAvoidVisualAlertDropdown(spellFrame)
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENEMY_AVOID_VISUAL_WARNING_DROPDOWN,
     function(self)
       for colorName, color in pairs(RGPVPW_CONSTANTS.TEXTURES) do
-        UIDropDownMenu_AddButton(
+        mod.uiDropdownMenu.uiDropdownMenu_AddButton(
           mod.guiHelper.CreateDropdownButton(colorName, color.colorValue, me.DropDownMenuCallback)
         )
       end
 
-      if (UIDropDownMenu_GetSelectedValue(_G[self:GetName()]) == nil) then
-        UIDropDownMenu_SetSelectedValue(
-          _G[self:GetName()],
-          RGPVPW_CONSTANTS.TEXTURES.none.colorValue
-        )
+      if mod.uiDropdownMenu.uiDropdownMenu_GetSelectedValue == nil then
+        mod.uiDropdownMenu.uiDropdownMenu_SetSelectedValue(self, RGPVPW_CONSTANTS.TEXTURES.none.colorValue)
       end
     end
   )
@@ -298,14 +293,15 @@ end
     A reference to the dropdownbutton
 ]]--
 function me.DropDownMenuCallback(self)
-  UIDropDownMenu_SetSelectedValue(
-    _G[self:GetParent().dropdown:GetName()],
-    self.value
-  )
   mod.spellConfiguration.UpdateVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID,
     activeCategory,
     self:GetParent().dropdown:GetParent().normalizedSpellName,
+    self.value
+  )
+
+  mod.uiDropdownMenu.uiDropdownMenu_SetSelectedValue(
+    self:GetParent().dropdown,
     self.value
   )
 end
@@ -477,12 +473,12 @@ function me.UpdateChooseVisualDropdownMenu(dropdownMenu, category, spellName)
     spellName
   )
 
-  UIDropDownMenu_SetSelectedValue(
+  mod.uiDropdownMenu.uiDropdownMenu_SetSelectedValue(
     dropdownMenu,
     colorValue
   )
   -- fix for updating text properly
-  UIDropDownMenu_SetText(dropdownMenu, rgpvpw.L[mod.common.GetTextureNameByValue(colorValue)])
+  mod.uiDropdownMenu.uiDropdownMenu_SetText(dropdownMenu, rgpvpw.L[mod.common.GetTextureNameByValue(colorValue)])
 end
 
 --[[
@@ -516,10 +512,10 @@ end
 ]]--
 function me.UpdateChooseVisualDropdownMenuState(frame, enable)
   if enable then
-    UIDropDownMenu_EnableDropDown(frame.chooseEnemyAvoidVisual)
+    mod.uiDropdownMenu.uiDropdownMenu_EnableDropDown(frame.chooseEnemyAvoidVisual)
     frame.chooseEnemyAvoidVisualLabel:SetTextColor(1, 1, 1)
   else
-    UIDropDownMenu_DisableDropDown(frame.chooseEnemyAvoidVisual)
+    mod.uiDropdownMenu.uiDropdownMenu_DisableDropDown(frame.chooseEnemyAvoidVisual)
     frame.chooseEnemyAvoidVisualLabel:SetTextColor(0.66, 0.66, 0.66)
   end
 end

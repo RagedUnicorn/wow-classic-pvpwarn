@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT UIDropDownMenu_Initialize
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT
 
 local mod = rgpvpw
 local me = {}
@@ -120,7 +120,7 @@ end
     The created button
 ]]--
 function me.CreateDropdownButton(text, value, callback)
-  local button = {}
+  local button = mod.uiDropdownMenu.uiDropdownMenu_CreateInfo()
 
   button.text = rgpvpw.L["texture_" .. text]
   button.value = value
@@ -364,16 +364,14 @@ end
     The created dropdown
 ]]--
 function me.CreateVisualWarningDropdown(parentFrame, dropdownName, initializeFunction)
-  local chooseVisualWarningDropdownMenu = CreateFrame(
-    "Button",
+  local chooseVisualWarningDropdownMenu = mod.uiDropdownMenu.CreateDropdown(
     dropdownName .. parentFrame.position,
-    parentFrame,
-    "UIDropDownMenuTemplate"
+    parentFrame
   )
   chooseVisualWarningDropdownMenu:SetPoint("RIGHT", parentFrame.spellTitle, "RIGHT", 165, -30)
   chooseVisualWarningDropdownMenu.position = parentFrame.position
 
-  UIDropDownMenu_Initialize(chooseVisualWarningDropdownMenu, initializeFunction)
+  mod.uiDropdownMenu.uiDropdownMenu_Initialize(chooseVisualWarningDropdownMenu, initializeFunction)
 
   return chooseVisualWarningDropdownMenu
 end
