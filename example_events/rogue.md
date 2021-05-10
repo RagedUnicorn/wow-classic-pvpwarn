@@ -6,20 +6,20 @@
 
 ```lua
 {
+  ["spellName"] = "Blind",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_AURA_APPLIED",
-  ["spellName"] = "Blind",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
 
 ```lua
 {
+  ["spellName"] = "Blind",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_AURA_REMOVED",
-  ["spellName"] = "Blind",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -28,10 +28,10 @@
 
 ```lua
 {
+  ["spellName"] = "Kick",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_CAST_SUCCESS",
-  ["spellName"] = "Kick",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -40,20 +40,20 @@
 
 ```lua
 {
+  ["spellName"] = "Sprint",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_AURA_APPLIED",
-  ["spellName"] = "Sprint",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
 
 ```lua
 {
+  ["spellName"] = "Sprint",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_AURA_REMOVED",
-  ["spellName"] = "Sprint",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -62,20 +62,20 @@
 
 ```lua
 {
+  ["spellName"] = "Evasion",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_AURA_APPLIED",
-  ["spellName"] = "Evasion",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
 
 ```lua
 {
+  ["spellName"] = "Evasion",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_AURA_REMOVED",
-  ["spellName"] = "Evasion",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -84,10 +84,10 @@
 
 ```lua
 {
+  ["spellName"] = "Kidney Shot",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_CAST_SUCCESS",
-  ["spellName"] = "Kidney Shot",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -152,20 +152,20 @@
 
 ```lua
 {
+  ["spellName"] = "Cold Blood",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_AURA_APPLIED",
-  ["spellName"] = "Cold Blood",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
 
 ```lua
 {
+  ["spellName"] = "Cold Blood",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_AURA_REMOVED",
-  ["spellName"] = "Cold Blood",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -174,8 +174,8 @@
 
 ```lua
 {
-  ["target"] = "[targetUid]",
   ["spellName"] = "Preparation",
+  ["target"] = "[targetUid]",
   ["event"] = "SPELL_CAST_SUCCESS",
   ["sourceFlags"] = [sourceFlags]
 }
@@ -185,8 +185,8 @@
 
 ```lua
 {
-  ["target"] = "[targetUid]",
   ["spellName"] = "Vanish",
+  ["target"] = "[targetUid]",
   ["event"] = "SPELL_CAST_SUCCESS",
   ["sourceFlags"] = [sourceFlags]
 }
@@ -233,12 +233,12 @@ There is no need to differentiate in those examples between enemy and self avoid
 
 ```lua
 {
-  ["sourceFlags"] = [sourceFlags]
+  ["spellName"] = "Kick",
   ["missType"] = "IMMUNE",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["spellName"] = "Kick",
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -327,12 +327,12 @@ Cannot be dodged, parried or blocked
 
 ```lua
 {
-  ["sourceFlags"] = [sourceFlags]
+  ["spellName"] = "Gouge",
   ["missType"] = "IMMUNE",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["spellName"] = "Gouge",
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
@@ -572,12 +572,12 @@ Cannot be dodged, parried or blocked
 
 ```lua
 {
-  ["sourceFlags"] = [sourceFlags]
+  ["spellName"] = "Garrote",
   ["missType"] = "IMMUNE",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
   ["event"] = "SPELL_MISSED",
-  ["spellName"] = "Garrote",
+  ["sourceFlags"] = [sourceFlags]
 }
 ```
 
