@@ -1,8 +1,207 @@
 # Rogue Example Events
 
-TODO check improved/skilled kick
-
 ## Casted Events
+
+#### Blind
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["spellName"] = "Blind",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REMOVED",
+  ["spellName"] = "Blind",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Kick
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["spellName"] = "Kick",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Sprint
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["spellName"] = "Sprint",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REMOVED",
+  ["spellName"] = "Sprint",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Evasion
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["spellName"] = "Evasion",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REMOVED",
+  ["spellName"] = "Evasion",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Kidney Shot
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["spellName"] = "Kidney Shot",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Cheap Shot
+
+```lua
+{
+  ["spellName"] = "Cheap Shot",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Adrenaline Rush
+
+```lua
+{
+  ["spellName"] = "Adrenaline Rush",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["spellName"] = "Adrenaline Rush",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REMOVED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Blade Flurry
+
+```lua
+{
+  ["spellName"] = "Blade Flurry",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["spellName"] = "Blade Flurry",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REMOVED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Cold Blood
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["spellName"] = "Cold Blood",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REMOVED",
+  ["spellName"] = "Cold Blood",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Preparation
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["spellName"] = "Preparation",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Vanish
+
+```lua
+{
+  ["target"] = "[targetUid]",
+  ["spellName"] = "Vanish",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Stealth
+
+```lua
+{
+  ["spellName"] = "Stealth",
+  ["target"] = "[targetUid]",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
 
 ## Avoid Events
 
