@@ -14,7 +14,6 @@
 }
 ```
 
-
 #### Aspect of the Monkey
 
 ```lua
@@ -137,7 +136,6 @@
   ["sourceFlags"] = [sourceFlags]
 }
 ```
-
 
 #### Intimidation
 

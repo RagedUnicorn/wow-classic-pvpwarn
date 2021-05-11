@@ -3,6 +3,7 @@
 ## Casted Events
 
 #### Berserker Rage
+
 ```lua
 {
   ["spellName"] = "Berserker Rage",
