@@ -2,6 +2,182 @@
 
 ## Casted Events
 
+#### Psychic Scream
+
+```lua
+{
+  ["spellName"] = "Psychic Scream",
+  ["target"] = "[targetUid]",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Silence
+
+```lua
+{
+  ["spellName"] = "Silence",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Power Infusion
+
+```lua
+{
+  ["spellName"] = "Power Infusion",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["spellName"] = "Power Infusion",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REMOVED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Inner Fire
+
+```lua
+{
+  ["spellName"] = "Inner Fire",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["spellName"] = "Inner Fire",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REFRESH",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["spellName"] = "Inner Fire",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REMOVED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Vampiric Embrace
+
+```lua
+{
+  ["spellName"] = "Vampiric Embrace",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["spellName"] = "Vampiric Embrace",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REFRESH",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Devouring Plague
+
+```lua
+{
+  ["spellName"] = "Devouring Plague",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Touch of Weakness
+
+```lua
+{
+  ["spellName"] = "Touch of Weakness",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["spellName"] = "Touch of Weakness",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REMOVED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["spellName"] = "Touch of Weakness",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REFRESH",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Fear Ward
+
+```lua
+{
+  ["spellName"] = "Fear Ward",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["spellName"] = "Fear Ward",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REFRESH",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+#### Desperate Prayer
+
+```lua
+{
+  ["spellName"] = "Desperate Prayer",
+  ["target"] = "[targetUid]",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
 ## Avoid Events
 
 There is no need to differentiate in those examples between enemy and self avoid. The only thing that changes are the sourceflags.
@@ -154,7 +330,7 @@ There is no need to differentiate in those examples between enemy and self avoid
 
 ```lua
 {
-  ["spellName"] = "Counterspell - Silenced",
+  ["spellName"] = "Silence",
   ["missType"] = "RESIST",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
