@@ -42,12 +42,12 @@ function me.Test()
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDevotionAuraApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetributionAuraApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConcentrationAuraApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowResistanceAuraApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostResistanceAuraApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireResistanceAuraApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDevotionAuraSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetributionAuraSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConcentrationAuraSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowResistanceAuraSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostResistanceAuraSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireResistanceAuraSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfProtectionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlessingOfFreedomApplied)
@@ -63,49 +63,49 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLayOnHandsSuccess)
 end
 
-function me.TestCombatEventDevotionAuraApplied()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventDevotionAuraApplied",
+function me.TestCombatEventDevotionAuraSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDevotionAuraSuccess",
     testCategory,
     "Devotion Aura"
   )
 end
 
-function me.TestCombatEventRetributionAuraApplied()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventRetributionAuraApplied",
+function me.TestCombatEventRetributionAuraSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventRetributionAuraSuccess",
     testCategory,
     "Retribution Aura"
   )
 end
 
-function me.TestCombatEventConcentrationAuraApplied()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventConcentrationAuraApplied",
+function me.TestCombatEventConcentrationAuraSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventConcentrationAuraSuccess",
     testCategory,
     "Concentration Aura"
   )
 end
 
-function me.TestCombatEventShadowResistanceAuraApplied()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventShadowResistanceAuraApplied",
+function me.TestCombatEventShadowResistanceAuraSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShadowResistanceAuraSuccess",
     testCategory,
     "Shadow Resistance Aura"
   )
 end
 
-function me.TestCombatEventFrostResistanceAuraApplied()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventFrostResistanceAuraApplied",
+function me.TestCombatEventFrostResistanceAuraSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFrostResistanceAuraSuccess",
     testCategory,
     "Frost Resistance Aura"
   )
 end
 
-function me.TestCombatEventFireResistanceAuraApplied()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventFireResistanceAuraApplied",
+function me.TestCombatEventFireResistanceAuraSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFireResistanceAuraSuccess",
     testCategory,
     "Fire Resistance Aura"
   )

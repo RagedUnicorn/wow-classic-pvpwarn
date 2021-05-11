@@ -998,7 +998,7 @@ else
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED"
+          "SPELL_CAST_SUCCESS"
         }
       },
       ["retribution_aura"] = {
@@ -1009,7 +1009,7 @@ else
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED"
+          "SPELL_CAST_SUCCESS"
         }
       },
       ["concentration_aura"] = {
@@ -1020,7 +1020,7 @@ else
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED"
+          "SPELL_CAST_SUCCESS"
         }
       },
       ["shadow_resistance_aura"] = {
@@ -1031,7 +1031,7 @@ else
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED"
+          "SPELL_CAST_SUCCESS"
         }
       },
       ["frost_resistance_aura"] = {
@@ -1042,7 +1042,7 @@ else
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED"
+          "SPELL_CAST_SUCCESS"
         }
       },
       ["fire_resistance_aura"] = {
@@ -1053,7 +1053,7 @@ else
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED"
+          "SPELL_CAST_SUCCESS"
         }
       },
       ["blessing_of_protection"] = {

@@ -8,8 +8,7 @@
 {
   ["spellName"] = "Devotion Aura",
   ["target"] = "[targetUid]",
-  ["targetName"] = "[targetName]",
-  ["event"] = "SPELL_AURA_APPLIED",
+  ["event"] = "SPELL_CAST_SUCCESS",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -20,8 +19,7 @@
 {
   ["spellName"] = "Retribution Aura",
   ["target"] = "[targetUid]",
-  ["targetName"] = "[targetName]",
-  ["event"] = "SPELL_AURA_APPLIED",
+  ["event"] = "SPELL_CAST_SUCCESS",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -32,8 +30,7 @@
 {
   ["spellName"] = "Concentration Aura",
   ["target"] = "[targetUid]",
-  ["targetName"] = "[targetName]",
-  ["event"] = "SPELL_AURA_APPLIED",
+  ["event"] = "SPELL_CAST_SUCCESS",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -44,8 +41,7 @@
 {
   ["spellName"] = "Shadow Resistance Aura",
   ["target"] = "[targetUid]",
-  ["targetName"] = "[targetName]",
-  ["event"] = "SPELL_AURA_APPLIED",
+  ["event"] = "SPELL_CAST_SUCCESS",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -56,8 +52,7 @@
 {
   ["spellName"] = "Frost Resistance Aura",
   ["target"] = "[targetUid]",
-  ["targetName"] = "[targetName]",
-  ["event"] = "SPELL_AURA_APPLIED",
+  ["event"] = "SPELL_CAST_SUCCESS",
   ["sourceFlags"] = [sourceFlags]
 }
 ```
@@ -68,8 +63,7 @@
 {
   ["spellName"] = "Fire Resistance Aura",
   ["target"] = "[targetUid]",
-  ["targetName"] = "[targetName]",
-  ["event"] = "SPELL_AURA_APPLIED",
+  ["event"] = "SPELL_CAST_SUCCESS",
   ["sourceFlags"] = [sourceFlags]
 }
 ```

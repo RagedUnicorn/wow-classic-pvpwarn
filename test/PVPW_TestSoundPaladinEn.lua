@@ -64,7 +64,7 @@ function me.CollectTestCases()
 end
 
 function me.TestSoundDevotionAura()
-  mod.testHelper.TestSoundApplied(
+  mod.testHelper.TestSoundSuccess(
     "TestSoundDevotionAura",
     testCategory,
     "Devotion Aura"
@@ -72,7 +72,7 @@ function me.TestSoundDevotionAura()
 end
 
 function me.TestSoundRetributionAura()
-  mod.testHelper.TestSoundApplied(
+  mod.testHelper.TestSoundSuccess(
     "TestSoundRetributionAura",
     testCategory,
     "Retribution Aura"
@@ -80,7 +80,7 @@ function me.TestSoundRetributionAura()
 end
 
 function me.TestSoundConcentrationAura()
-  mod.testHelper.TestSoundApplied(
+  mod.testHelper.TestSoundSuccess(
     "TestSoundConcentrationAura",
     testCategory,
     "Concentration Aura"
@@ -88,7 +88,7 @@ function me.TestSoundConcentrationAura()
 end
 
 function me.TestSoundShadowResistanceAura()
-  mod.testHelper.TestSoundApplied(
+  mod.testHelper.TestSoundSuccess(
     "TestSoundShadowResistanceAura",
     testCategory,
     "Shadow Resistance Aura"
@@ -96,7 +96,7 @@ function me.TestSoundShadowResistanceAura()
 end
 
 function me.TestSoundFrostResistanceAura()
-  mod.testHelper.TestSoundApplied(
+  mod.testHelper.TestSoundSuccess(
     "TestSoundFrostResistanceAura",
     testCategory,
     "Frost Resistance Aura"
@@ -104,7 +104,7 @@ function me.TestSoundFrostResistanceAura()
 end
 
 function me.TestSoundFireResistanceAura()
-  mod.testHelper.TestSoundApplied(
+  mod.testHelper.TestSoundSuccess(
     "TestSoundFireResistanceAura",
     testCategory,
     "Fire Resistance Aura"
