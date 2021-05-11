@@ -43,7 +43,7 @@ end
 
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidHammerOfWrathImmune)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidHammerOfWrathResisted)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidHammerOfWrathMissed)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidHammerOfJusticeImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidHammerOfJusticeResisted)
 end
@@ -58,13 +58,13 @@ function me.TestCombatEventEnemyAvoidHammerOfWrathImmune()
   )
 end
 
-function me.TestCombatEventEnemyAvoidHammerOfWrathResisted()
+function me.TestCombatEventEnemyAvoidHammerOfWrathMissed()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidHammerOfWrathResisted",
+    "TestCombatEventEnemyAvoidHammerOfWrathMissed",
     testCategory,
     "Hammer of Wrath",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
-    RGPVPW_CONSTANTS.MISS_TYPES.RESIST
+    RGPVPW_CONSTANTS.MISS_TYPES.MISS
   )
 end
 
