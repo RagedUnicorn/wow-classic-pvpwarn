@@ -22,6 +22,8 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals GetLocale
+
 local mod = rgpvpw
 local me = {}
 mod.spellAvoidMap = me
