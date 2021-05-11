@@ -128,7 +128,7 @@ else
         ["parry"] = true,
         ["immune"] = true,
         ["miss"] = true,
-        ["block"] = true,
+        ["block"] = false,
         ["resist"] = false,
         ["self_avoid"] = true,
         ["enemy_avoid"] = true

@@ -55,7 +55,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidMortalStrikeParried)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidMortalStrikeImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidMortalStrikeMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidMortalStrikeBlocked)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidIntimidatingShoutImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidIntimidatingShoutResisted)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidPummelDodged)
@@ -197,16 +196,6 @@ function me.TestCombatEventSelfAvoidMortalStrikeMissed()
     "Mortal Strike",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.MISS_TYPES.MISS
-  )
-end
-
-function me.TestCombatEventSelfAvoidMortalStrikeBlocked()
-  mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidMortalStrikeBlocked",
-    testCategory,
-    "Mortal Strike",
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
-    RGPVPW_CONSTANTS.MISS_TYPES.BLOCK
   )
 end
 
