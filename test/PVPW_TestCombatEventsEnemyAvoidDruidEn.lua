@@ -52,7 +52,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidBashParried)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidBashImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidBashMissed)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidBashBlocked)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidBashResisted)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidFeralChargeEffectImmune)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnemyAvoidFeralChargeEffectResisted)
@@ -155,16 +154,6 @@ function me.TestCombatEventEnemyAvoidBashMissed()
     "Bash",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.MISS_TYPES.MISS
-  )
-end
-
-function me.TestCombatEventEnemyAvoidBashBlocked()
-  mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidBashBlocked",
-    testCategory,
-    "Bash",
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
-    RGPVPW_CONSTANTS.MISS_TYPES.BLOCK
   )
 end
 
