@@ -671,9 +671,9 @@ else
         ["dodge"] = false,
         ["parry"] = false,
         ["immune"] = true,
-        ["miss"] = false,
+        ["miss"] = true,
         ["block"] = false,
-        ["resist"] = true,
+        ["resist"] = false,
         ["self_avoid"] = true,
         ["enemy_avoid"] = true
       },
@@ -685,9 +685,9 @@ else
         ["dodge"] = false,
         ["parry"] = false,
         ["immune"] = true,
-        ["miss"] = true,
+        ["miss"] = false,
         ["block"] = false,
-        ["resist"] = false,
+        ["resist"] = true,
         ["self_avoid"] = true,
         ["enemy_avoid"] = true
       }
