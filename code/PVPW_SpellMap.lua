@@ -987,6 +987,18 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["fel_domination"] = {
+        ["name"] = "Fel Domination",
+        ["soundFileName"] = "fel_domination",
+        ["spellId"] = 18708,
+        ["spellIcon"] = "spell_nature_removecurse",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     },
     ["paladin"] = {

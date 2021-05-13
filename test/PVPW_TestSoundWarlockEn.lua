@@ -53,6 +53,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpellLock)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSoulLink)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSoulLink)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFelDomination)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFelDomination)
 end
 
 function me.TestSoundFear()
@@ -140,5 +142,21 @@ function me.TestSoundDownSoulLink()
     "TestSoundDownSoulLink",
     testCategory,
     "Soul Link"
+  )
+end
+
+function me.TestSoundFelDomination()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundFelDomination",
+    testCategory,
+    "Fel Domination"
+  )
+end
+
+function me.TestSoundDownFelDomination()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFelDomination",
+    testCategory,
+    "Fel Domination"
   )
 end

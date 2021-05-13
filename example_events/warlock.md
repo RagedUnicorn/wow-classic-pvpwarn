@@ -127,6 +127,28 @@
 }
 ```
 
+#### Fel Domination
+
+```lua
+{
+  ["spellName"] = "Fel Domination",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_APPLIED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
+```lua
+{
+  ["spellName"] = "Fel Domination",
+  ["target"] = "[targetUid]",
+  ["targetName"] = "[targetName]",
+  ["event"] = "SPELL_AURA_REMOVED",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
 ## Avoid Events
 
 There is no need to differentiate in those examples between enemy and self avoid. The only thing that changes are the sourceflags.

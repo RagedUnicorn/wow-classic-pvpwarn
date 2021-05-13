@@ -53,6 +53,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpellLockSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSoulLinkApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSoulLinkRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFelDominationApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFelDominationRemoved)
 end
 
 function me.TestCombatEventFearSuccess()
@@ -140,5 +142,21 @@ function me.TestCombatEventSoulLinkRemoved()
     "TestCombatEventSoulLinkRemoved",
     testCategory,
     "Soul Link"
+  )
+end
+
+function me.TestCombatEventFelDominationApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFelDominationApplied",
+    testCategory,
+    "Fel Domination"
+  )
+end
+
+function me.TestCombatEventFelDominationRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventFelDominationRemoved",
+    testCategory,
+    "Fel Domination"
   )
 end
