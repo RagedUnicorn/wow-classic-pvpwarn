@@ -51,11 +51,15 @@ me.tag = "SpellMap"
         {table} optional field, link to other spells by their spellId. Spells that are linked together
         share their configuration. The can't have a different configuration from eachother
       ["active"] = false,
-        -- {boolean} Whether the spell is active or inactive
+        {boolean} Whether the spell is active or inactive
       ["trackedEvents"] = {
-        -- {string} An event such as SPELL_AURA_APPLIED that should be tracked. If a spell is found
+        {string} An event such as SPELL_AURA_APPLIED that should be tracked. If a spell is found
         but no matching trackedEvent the spell is ignored and no warning is generated
-      }
+      },
+      ["ignorePet"] = true
+        {boolean} Whether the event should be ignore if it was detected on a pet
+        E.g if the target of the spell is Pet-0-4908-1-223-417-00001A2950. This is used for spells
+        such as soul link
     }
   }
 ]]--
@@ -986,19 +990,8 @@ else
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
-        }
-      },
-      ["fel_domination"] = {
-        ["name"] = "Fel Domination",
-        ["soundFileName"] = "fel_domination",
-        ["spellId"] = 18708,
-        ["spellIcon"] = "spell_nature_removecurse",
-        ["hasFade"] = true,
-        ["active"] = true,
-        ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED",
-          "SPELL_AURA_REMOVED"
-        }
+        },
+        ["ignorePet"] = true
       }
     },
     ["paladin"] = {

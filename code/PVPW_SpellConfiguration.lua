@@ -87,6 +87,29 @@ function me.IsSpellActive(spellList, categoryName, spellName)
 end
 
 --[[
+  Whether the spell was detected on a pet e.g. Soul Link and should be ignored
+
+  @param {table} spell
+  @param {string} target
+
+  @return {boolean}
+    true - if the spell should be ignored
+    false - if the spell should not be ignored
+]]--
+function me.IsSpellIgnorePet(spell, target)
+  if not spell.ignorePet then
+      return false
+  end
+
+  if target ~= nil and target:find("^Pet") ~= nil then
+    mod.logger.LogDebug(me.tag, "Ignoring event because it was detected on a pet {" .. target .. "}")
+    return true
+  end
+
+  return false
+end
+
+--[[
   @param {string} spellList
     Decides upon which stored list should be used. Possible values:
     * spellList - enemy spell detected

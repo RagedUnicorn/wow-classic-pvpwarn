@@ -50,13 +50,13 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
   ]]--
   if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_HOSTILE_PLAYERS) then
     if event == "SPELL_CAST_SUCCESS" then
-      me.ProcessEvent(spellName, event, callback)
+      me.ProcessEvent(spellName, target, event, callback)
     elseif event == "SPELL_AURA_APPLIED" then
-      me.ProcessEvent(spellName, event, callback)
+      me.ProcessEvent(spellName, target, event, callback)
     elseif event == "SPELL_AURA_REMOVED" then
-      me.ProcessEvent(spellName, event, callback)
+      me.ProcessEvent(spellName, target, event, callback)
     elseif event == "SPELL_AURA_REFRESH" then
-      me.ProcessEvent(spellName, event, callback)
+      me.ProcessEvent(spellName, target, event, callback)
     elseif event == "SPELL_MISSED" then
       me.ProcessResist(spellName, event, missType, RGPVPW_CONSTANTS.TARGET_SELF, callback)
     else
@@ -75,10 +75,11 @@ end
 
 --[[
   @param {string} spellName
+  @param {string} target
   @param {string} event
   @param {function} callback
 ]]--
-function me.ProcessEvent(spellName, event, callback)
+function me.ProcessEvent(spellName, target, event, callback)
   local normalizedSpellName = mod.common.NormalizeSpellname(spellName)
   local category, spell = mod.spellMap.SearchByName(normalizedSpellName, event)
   local spellType = mod.common.GetSpellType(event)
@@ -99,6 +100,13 @@ function me.ProcessEvent(spellName, event, callback)
       "Ignore spell %s because search in spellMap resulted in not found", normalizedSpellName
       )
     )
+    return
+  end
+
+  --[[
+    If the spell is marked as should be ignored when detected on a pet
+  ]]--
+  if mod.spellConfiguration.IsSpellIgnorePet(spell, target) then
     return
   end
 
