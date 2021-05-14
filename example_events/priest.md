@@ -178,6 +178,17 @@
 }
 ```
 
+#### Hex of Weakness
+
+```lua
+{
+  ["spellName"] = "Hex of Weakness",
+  ["target"] = "[targetUid]",
+  ["event"] = "SPELL_CAST_SUCCESS",
+  ["sourceFlags"] = [sourceFlags]
+}
+```
+
 ## Avoid Events
 
 There is no need to differentiate in those examples between enemy and self avoid. The only thing that changes are the sourceflags.

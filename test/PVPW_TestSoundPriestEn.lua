@@ -55,6 +55,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFearWard)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFearWard)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDesperatePrayer)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHexOfWeakness)
 end
 
 function me.TestSoundPsychicScream()
@@ -158,5 +159,13 @@ function me.TestSoundDesperatePrayer()
     "TestSoundDesperatePrayer",
     testCategory,
     "Desperate Prayer"
+  )
+end
+
+function me.TestSoundHexOfWeakness()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundHexOfWeakness",
+    testCategory,
+    "Hex of Weakness"
   )
 end

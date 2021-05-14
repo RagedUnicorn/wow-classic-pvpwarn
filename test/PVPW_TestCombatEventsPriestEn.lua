@@ -62,6 +62,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFearWardRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFearWardRefresh)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDesperatePrayerSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHexOfWeaknessSuccess)
 end
 
 function me.TestCombatEventPsychicScreamSuccess()
@@ -205,5 +206,13 @@ function me.TestCombatEventDesperatePrayerSuccess()
     "TestCombatEventDesperatePrayerSuccess",
     testCategory,
     "Desperate Prayer"
+  )
+end
+
+function me.TestCombatEventHexOfWeaknessSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventHexOfWeaknessSuccess",
+    testCategory,
+    "Hex of Weakness"
   )
 end

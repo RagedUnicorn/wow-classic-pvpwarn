@@ -433,6 +433,17 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["hex_of_weakness"] = {
+        ["name"] = "Hex of Weakness",
+        ["soundFileName"] = "hex_of_weakness",
+        ["spellId"] = 9035, -- rank 1
+        ["spellIcon"] = "spell_shadow_fingerofdeath",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["rogue"] = {
