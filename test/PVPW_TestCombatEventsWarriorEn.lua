@@ -69,6 +69,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLastStandApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLastStandRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBashSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetaliationApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetaliationRemoved)
 end
 
 function me.TestCombatEventBerserkerRageApplied()
@@ -268,5 +270,21 @@ function me.TestCombatEventShieldBashSuccess()
     "TestCombatEventShieldBashSuccess",
     testCategory,
     "Shield Bash"
+  )
+end
+
+function me.TestCombatEventRetaliationApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventRetaliationApplied",
+    testCategory,
+    "Retaliation"
+  )
+end
+
+function me.TestCombatEventRetaliationRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventRetaliationRemoved",
+    testCategory,
+    "Retaliation"
   )
 end

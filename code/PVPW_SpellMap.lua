@@ -311,6 +311,18 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["retaliation"] = {
+        ["name"] = "Retaliation",
+        ["soundFileName"] = "retaliation",
+        ["spellId"] = 20230,
+        ["spellIcon"] = "ability_warrior_challange",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     },
     ["priest"] = {

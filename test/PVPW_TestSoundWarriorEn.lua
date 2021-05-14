@@ -67,6 +67,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLastStand)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLastStand)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShieldBash)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRetaliation)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRetaliation)
 end
 
 function me.TestSoundBerserkerRage()
@@ -266,5 +268,21 @@ function me.TestSoundShieldBash()
     "TestSoundShieldBash",
     testCategory,
     "Shield Bash"
+  )
+end
+
+function me.TestSoundRetaliation()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundRetaliation",
+    testCategory,
+    "Retaliation"
+  )
+end
+
+function me.TestSoundDownRetaliation()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownRetaliation",
+    testCategory,
+    "Retaliation"
   )
 end
