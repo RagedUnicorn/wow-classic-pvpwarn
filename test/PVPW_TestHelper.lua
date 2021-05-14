@@ -629,7 +629,7 @@ function me.TestCombatEventSpellMissed(testName, testCategory, spellName, expect
   end
 
   local failureReason
-  local category, spellType, spell = me.TestCombatEvent(
+  local category, spellType, spell = me.TestCombatEventAvoid(
     spellName,
     RGPVPW_CONSTANTS.EVENT_SPELL_MISSED,
     sourceFlags,
@@ -663,12 +663,45 @@ end
   @param {string} event
   @param {number} sourceFlags
     Sourceflags to determine the source of the combatlog event
+
+  @return {string}, {string}, {table}
+]]--
+function me.TestCombatEvent(spellName, event, sourceFlags)
+  local target = me.GetGenericEnemyId()
+  local targetName = me.GetGenericEnemyName()
+  local actualCategory
+  local actualSpellType
+  local actualSpell
+
+  -- luacheck: ignore _
+  local fakeSpellCastCombatEvent = function()
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName
+  end
+
+  me.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)
+
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(function(category, spellType, spell)
+    actualCategory = category
+    actualSpellType = spellType
+    actualSpell = spell
+  end, fakeSpellCastCombatEvent())
+
+  me.RestoreCombatLogGetCurrentEventInfo()
+
+  return actualCategory, actualSpellType, actualSpell
+end
+
+--[[
+  @param {string} spellName
+  @param {string} event
+  @param {number} sourceFlags
+    Sourceflags to determine the source of the combatlog event
   @param {number} missTypeId
     RGPVPW_CONSTANTS.MISS_TYPES
 
   @return {string}, {string}, {table}
 ]]--
-function me.TestCombatEvent(spellName, event, sourceFlags, missType)
+function me.TestCombatEventAvoid(spellName, event, sourceFlags, missType)
   local target = me.GetGenericEnemyId()
   local targetName = me.GetGenericEnemyName()
   local missTypeName = me.GetMissTypeNameById(missType)
