@@ -444,6 +444,19 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["shadowguard"] = {
+        ["name"] = "Shadowguard",
+        ["soundFileName"] = "shadowguard",
+        ["spellId"] = 19312, -- rank 6
+        ["spellIcon"] = "spell_nature_lightningshield",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REFRESH"
+        }
       }
     },
     ["rogue"] = {

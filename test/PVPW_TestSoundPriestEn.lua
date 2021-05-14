@@ -56,6 +56,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFearWard)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDesperatePrayer)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHexOfWeakness)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowguard)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowguard)
 end
 
 function me.TestSoundPsychicScream()
@@ -167,5 +169,21 @@ function me.TestSoundHexOfWeakness()
     "TestSoundHexOfWeakness",
     testCategory,
     "Hex of Weakness"
+  )
+end
+
+function me.TestSoundShadowguard()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundShadowguard",
+    testCategory,
+    "Shadowguard"
+  )
+end
+
+function me.TestSoundDownShadowguard()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownShadowguard",
+    testCategory,
+    "Shadowguard"
   )
 end

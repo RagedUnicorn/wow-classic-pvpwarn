@@ -63,6 +63,9 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFearWardRefresh)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDesperatePrayerSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHexOfWeaknessSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowGuardApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowGuardRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowGuardRefresh)
 end
 
 function me.TestCombatEventPsychicScreamSuccess()
@@ -214,5 +217,29 @@ function me.TestCombatEventHexOfWeaknessSuccess()
     "TestCombatEventHexOfWeaknessSuccess",
     testCategory,
     "Hex of Weakness"
+  )
+end
+
+function me.TestCombatEventShadowguardApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventShadowguardApplied",
+    testCategory,
+    "Shadowguard"
+  )
+end
+
+function me.TestCombatEventShadowguardRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventShadowguardRemoved",
+    testCategory,
+    "Shadowguard"
+  )
+end
+
+function me.TestCombatEventShadowguardRefresh()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventShadowguardRefresh",
+    testCategory,
+    "Shadowguard"
   )
 end
