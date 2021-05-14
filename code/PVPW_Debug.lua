@@ -50,30 +50,11 @@ end
   @param {string} spellName
   @param {string} missType (optional)
 ]]--
-function me.TrackLogEvent(event, sourceFlags, target, targetName, spellName, missType)
+function me.TrackLogEvent(...)
+  local logEvent = {...}
+
   if PVPWarnLogTracker == nil then
     PVPWarnLogTracker = {}
-  end
-
-  local logEvent
-
-  if event == RGPVPW_CONSTANTS.EVENT_SPELL_MISSED then
-    logEvent = {
-      ["event"] = event,
-      ["sourceFlags"] = sourceFlags,
-      ["target"] = target,
-      ["targetName"] = targetName,
-      ["spellName"] = spellName,
-      ["missType"] = missType
-    }
-  else
-    logEvent = {
-      ["event"] = event,
-      ["sourceFlags"] = sourceFlags,
-      ["target"] = target,
-      ["targetName"] = targetName,
-      ["spellName"] = spellName
-    }
   end
 
   table.insert(PVPWarnLogTracker, logEvent)

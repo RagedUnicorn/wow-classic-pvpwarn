@@ -31,6 +31,11 @@ RGPVPW_CONSTANTS = {
   UNIT_ID_PLAYER = "player",
   UNIT_ID_TARGET = "target",
   --[[
+    Buff types
+  ]]--
+  BUFF_TYPE_BUFF = "BUFF",
+  BUFF_TYPE_DEBUFF = "DEBUFF",
+  --[[
     Intervals
   ]]--
   WARN_QUEUE_UPDATE_INTERVAL = 0.1,

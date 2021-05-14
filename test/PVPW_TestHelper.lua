@@ -687,7 +687,7 @@ function me.TestCombatEvent(spellName, event, sourceFlags, missType)
     actualCategory = category
     actualSpellType = spellType
     actualSpell = spell
-  end)
+  end, fakeSpellCastCombatEvent())
 
   me.RestoreCombatLogGetCurrentEventInfo()
 

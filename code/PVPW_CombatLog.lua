@@ -23,8 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals CombatLogGetCurrentEventInfo CombatLog_Object_IsA COMBATLOG_FILTER_HOSTILE_PLAYERS
--- luacheck: globals COMBATLOG_FILTER_MINE
+-- luacheck: globals CombatLog_Object_IsA COMBATLOG_FILTER_HOSTILE_PLAYERS COMBATLOG_FILTER_MINE
 
 local mod = rgpvpw
 local me = {}
@@ -37,27 +36,33 @@ me.tag = "CombatLog"
 
   @param {function} callback
     Optional function that is invoked with status infos. Currently only used for testing
+  @param {vararg} ...
 ]]--
-function me.ProcessUnfilteredCombatLogEvent(callback)
-  local _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName, _, missType =
-    CombatLogGetCurrentEventInfo()
+function me.ProcessUnfilteredCombatLogEvent(callback, ...)
+  local _, event, _, _, _, sourceFlags = select(1, ...)
 
   if RGPVPW_ENVIRONMENT.DEBUG then
-    mod.debug.TrackLogEvent(event, sourceFlags, target, targetName, spellName, missType)
+    mod.debug.TrackLogEvent(...)
   end
+
   --[[
     Filter for hostile player events only
   ]]--
   if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_HOSTILE_PLAYERS) then
     if event == "SPELL_CAST_SUCCESS" then
-      me.ProcessEvent(spellName, target, event, callback)
+      local _, _, _, _, _, _, _, target, _, _, _, _, spellName = ...
+      me.ProcessEvent(spellName, target, nil, event, callback)
     elseif event == "SPELL_AURA_APPLIED" then
-      me.ProcessEvent(spellName, target, event, callback)
+      local target, _, _, _, _, spellName, _, buffType = select(8, ...)
+      me.ProcessEvent(spellName, target, buffType, event, callback)
     elseif event == "SPELL_AURA_REMOVED" then
-      me.ProcessEvent(spellName, target, event, callback)
+      local target, _, _, _, _, spellName, _, buffType = select(8, ...)
+      me.ProcessEvent(spellName, target, buffType, event, callback)
     elseif event == "SPELL_AURA_REFRESH" then
-      me.ProcessEvent(spellName, target, event, callback)
+      local target, _, _, _, _, spellName, _, buffType = select(8, ...)
+      me.ProcessEvent(spellName, target, buffType, event, callback)
     elseif event == "SPELL_MISSED" then
+      local spellName, _, missType = select(13, ...)
       me.ProcessResist(spellName, event, missType, RGPVPW_CONSTANTS.TARGET_SELF, callback)
     else
       mod.logger.LogDebug(me.tag, "Ignore unsupported event: " .. event)
@@ -68,6 +73,7 @@ function me.ProcessUnfilteredCombatLogEvent(callback)
     end
   elseif CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_MINE) then
     if event == "SPELL_MISSED" then
+      local spellName, _, missType = select(13, ...)
       me.ProcessResist(spellName, event, missType, RGPVPW_CONSTANTS.TARGET_ENEMY, callback)
     end
   end
@@ -79,12 +85,20 @@ end
   @param {string} event
   @param {function} callback
 ]]--
-function me.ProcessEvent(spellName, target, event, callback)
+function me.ProcessEvent(spellName, target, buffType, event, callback)
   local normalizedSpellName = mod.common.NormalizeSpellname(spellName)
   local category, spell = mod.spellMap.SearchByName(normalizedSpellName, event)
   local spellType = mod.common.GetSpellType(event)
   local playSound
   local playVisual
+
+  --[[
+    Filter events with buff type "DEBUFF" they cause duplicates
+  ]]--
+  if buffType ~= nil and buffType == RGPVPW_CONSTANTS.BUFF_TYPE_DEBUFF then
+    mod.logger.LogDebug(me.tag, "Ignoring event because buffType is " .. RGPVPW_CONSTANTS.BUFF_TYPE_DEBUFF)
+    return
+  end
 
   if spellType == nil then
     mod.logger.LogError(me.tag, "Unable to determine spellType - aborting...")

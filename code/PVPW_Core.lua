@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetAddOnMetadata
+-- luacheck: globals GetAddOnMetadata CombatLogGetCurrentEventInfo
 
 rgpvpw = rgpvpw or {}
 local me = rgpvpw
@@ -69,7 +69,7 @@ function me.OnEvent(event)
     me.Initialize()
   elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
     me.logger.LogEvent(me.tag, "COMBAT_LOG_EVENT_UNFILTERED")
-    me.combatLog.ProcessUnfilteredCombatLogEvent()
+    me.combatLog.ProcessUnfilteredCombatLogEvent(nil, CombatLogGetCurrentEventInfo())
   elseif event == "PLAYER_TARGET_CHANGED" then
     me.logger.LogEvent(me.tag, "PLAYER_TARGET_CHANGED")
     me.target.UpdateCurrentTarget()
