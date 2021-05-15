@@ -44,8 +44,8 @@ end
   @param {table} self
 ]]--
 function me.RegisterEvents(self)
-  -- Register to player login event also fires on /reload
-  self:RegisterEvent("PLAYER_LOGIN")
+  -- Fired when the player logs in, /reloads the UI, or zones between map instances
+  self:RegisterEvent("PLAYER_ENTERING_WORLD")
   --[[
     Register to combat event unfiltered
 
@@ -63,10 +63,15 @@ end
 
   @param {string} event
 ]]--
-function me.OnEvent(event)
-  if event == "PLAYER_LOGIN" then
-    me.logger.LogEvent(me.tag, "PLAYER_LOGIN")
-    me.Initialize()
+function me.OnEvent(event, ...)
+  if event == "PLAYER_ENTERING_WORLD" then
+    me.logger.LogEvent(me.tag, "PLAYER_ENTERING_WORLD")
+
+    local isInitialLogin, isReloadingUi = ...
+
+    if isInitialLogin or isReloadingUi then
+      me.Initialize()
+    end
   elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
     me.logger.LogEvent(me.tag, "COMBAT_LOG_EVENT_UNFILTERED")
     me.combatLog.ProcessUnfilteredCombatLogEvent(nil, CombatLogGetCurrentEventInfo())
