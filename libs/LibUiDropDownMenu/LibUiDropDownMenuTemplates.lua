@@ -1,6 +1,6 @@
 -- luacheck: globals CreateFrame ExecuteFrameScript CreateFromMixins PlaySound SOUNDKIT
 
-local mod = rggm
+local mod = rgpvpw
 local me = {}
 mod.libUIDropDownMenuTemplates = me
 
