@@ -50,8 +50,10 @@ code/PVPW_Debug.lua
 
 # gui
 # custom blizzard dropdown impl
-gui/UIDropDownMenu.lua
-gui/UIDropDownMenuTemplates.xml
+libs/LibUiDropDownMenu/LibUiDropDownMenu.lua
+libs/LibUiDropDownMenu/LibUiDropDownMenu.xml
+libs/LibUiDropDownMenu/LibUiDropDownMenuTemplates.lua
+libs/LibUiDropDownMenu/LibUiDropDownMenuTemplates.xml
 
 gui/PVPW_Frame.xml
 gui/PVPW_AddonConfiguration.lua

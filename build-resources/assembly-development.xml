@@ -16,6 +16,8 @@
         <include>profiles/*.lua</include>
         <include>gui/*.lua</include>
         <include>gui/*.xml</include>
+        <include>libs/**/*.lua</include>
+        <include>libs/**/*.xml</include>
         <include>test/*.lua</include>
         <include>assets/images/*.blp</include>
         <include>assets/images/*.tga</include>

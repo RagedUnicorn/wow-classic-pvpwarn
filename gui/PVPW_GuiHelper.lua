@@ -120,7 +120,7 @@ end
     The created button
 ]]--
 function me.CreateDropdownButton(text, value, callback)
-  local button = mod.uiDropdownMenu.uiDropdownMenu_CreateInfo()
+  local button = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
 
   button.text = rgpvpw.L["texture_" .. text]
   button.value = value
@@ -365,14 +365,14 @@ end
     The created dropdown
 ]]--
 function me.CreateVisualWarningDropdown(parentFrame, dropdownName, initializeFunction)
-  local chooseVisualWarningDropdownMenu = mod.uiDropdownMenu.CreateDropdown(
+  local chooseVisualWarningDropdownMenu = mod.libUiDropDownMenu.CreateUiDropDownMenu(
     dropdownName .. parentFrame.position,
     parentFrame
   )
   chooseVisualWarningDropdownMenu:SetPoint("RIGHT", parentFrame.spellTitle, "RIGHT", 165, -30)
   chooseVisualWarningDropdownMenu.position = parentFrame.position
 
-  mod.uiDropdownMenu.uiDropdownMenu_Initialize(chooseVisualWarningDropdownMenu, initializeFunction)
+  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(chooseVisualWarningDropdownMenu, initializeFunction)
 
   return chooseVisualWarningDropdownMenu
 end

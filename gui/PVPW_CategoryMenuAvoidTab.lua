@@ -255,13 +255,13 @@ function me.CreateAvoidVisualAlertDropdown(spellFrame)
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_SELF_AVOID_VISUAL_WARNING_DROPDOWN,
     function(self)
       for colorName, color in pairs(RGPVPW_CONSTANTS.TEXTURES) do
-        mod.uiDropdownMenu.uiDropdownMenu_AddButton(
+        mod.libUiDropDownMenu.UiDropDownMenu_AddButton(
           mod.guiHelper.CreateDropdownButton(colorName, color.colorValue, me.DropDownMenuCallback)
         )
       end
 
-      if mod.uiDropdownMenu.uiDropdownMenu_GetSelectedValue(self) == nil then
-        mod.uiDropdownMenu.uiDropdownMenu_SetSelectedValue(self, RGPVPW_CONSTANTS.TEXTURES.none.colorValue)
+      if mod.libUiDropDownMenu.UiDropDownMenu_GetSelectedValue(self) == nil then
+        mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(self, RGPVPW_CONSTANTS.TEXTURES.none.colorValue)
       end
     end
   )
@@ -281,7 +281,7 @@ function me.DropDownMenuCallback(self)
     self.value
   )
 
-  mod.uiDropdownMenu.uiDropdownMenu_SetSelectedValue(
+  mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(
     self:GetParent().dropdown,
     self.value
   )
@@ -456,12 +456,9 @@ function me.UpdateChooseVisualDropdownMenu(dropdownMenu, category, spellName)
     spellName
   )
 
-  mod.uiDropdownMenu.uiDropdownMenu_SetSelectedValue(
-    dropdownMenu,
-    colorValue
-  )
+  mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(dropdownMenu, colorValue)
   -- fix for updating text properly
-  mod.uiDropdownMenu.uiDropdownMenu_SetText(dropdownMenu, rgpvpw.L[mod.common.GetTextureNameByValue(colorValue)])
+  mod.libUiDropDownMenu.UiDropDownMenu_SetText(dropdownMenu, rgpvpw.L[mod.common.GetTextureNameByValue(colorValue)])
 end
 
 --[[
@@ -495,10 +492,10 @@ end
 ]]--
 function me.UpdateChooseVisualDropdownMenuState(frame, enable)
   if enable then
-    mod.uiDropdownMenu.uiDropdownMenu_EnableDropDown(frame.chooseAvoidVisual)
+    mod.libUiDropDownMenu.UiDropDownMenu_EnableDropDown(frame.chooseAvoidVisual)
     frame.chooseAvoidVisualLabel:SetTextColor(1, 1, 1)
   else
-    mod.uiDropdownMenu.uiDropdownMenu_DisableDropDown(frame.chooseAvoidVisual)
+    mod.libUiDropDownMenu.UiDropDownMenu_DisableDropDown(frame.chooseAvoidVisual)
     frame.chooseAvoidVisualLabel:SetTextColor(0.66, 0.66, 0.66)
   end
 end
