@@ -116,7 +116,7 @@ else
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED",
-          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REMOVED"
         }
       },
       ["recklessness"] = {
@@ -128,7 +128,7 @@ else
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED",
-          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REMOVED"
         }
       },
       ["death_wish"] = {
@@ -140,7 +140,7 @@ else
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED",
-          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REMOVED"
         }
       },
       ["battle_stance"] = {
@@ -151,7 +151,7 @@ else
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_APPLIED"
         }
       },
       ["berserker_stance"] = {
@@ -162,7 +162,7 @@ else
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_APPLIED"
         }
       },
       ["defensive_stance"] = {
@@ -173,7 +173,7 @@ else
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_APPLIED"
         }
       },
       ["intercept"] = {
@@ -492,7 +492,7 @@ else
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED",
-          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REMOVED"
         }
       },
       ["evasion"] = {
@@ -2154,7 +2154,7 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
-      },
+      }
     }
   }
 end
