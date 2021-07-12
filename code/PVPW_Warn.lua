@@ -94,18 +94,21 @@ function me.ProcessQueue()
     else
       local playedSound = false
       local playedVisual = false
+      local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
 
-      if warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL or
-        warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED or
-        warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH then
-        playedSound = me.PlaySound(warning, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL)
+      if warning.spellType == spellTypes.NORMAL or
+        warning.spellType == spellTypes.APPLIED or
+        warning.spellType == spellTypes.REFRESH then
+        playedSound = me.PlaySound(warning, spellTypes.NORMAL)
         playedVisual = me.PlayVisual(warning)
-      elseif warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
-        playedSound = me.PlaySound(warning, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED)
-      elseif warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF then
-        playedSound = me.PlaySound(warning, RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF)
-      elseif warning.spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY then
-        playedSound = me.PlaySound(warning, RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY)
+      elseif warning.spellType == spellTypes.REMOVED then
+        playedSound = me.PlaySound(warning, spellTypes.REMOVED)
+      elseif warning.spellType == spellTypes.MISSED_SELF then
+        playedSound = me.PlaySound(warning, spellTypes.MISSED_SELF)
+      elseif warning.spellType == spellTypes.MISSED_ENEMY then
+        playedSound = me.PlaySound(warning, spellTypes.MISSED_ENEMY)
+      elseif warning.spellType == spellTypes.START then
+        playedSound = me.PlaySound(warning, spellTypes.START)
       else
         mod.logger.LogError(me.tag, "Found invalid spelltype: " .. warning.spellType)
       end

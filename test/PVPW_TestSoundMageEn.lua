@@ -45,6 +45,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundIceBlock)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownIceBlock)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPolymorph)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundStartPolymorph)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBlink)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFireWard)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFireWard)
@@ -86,6 +87,14 @@ end
 function me.TestSoundPolymorph()
   mod.testHelper.TestSoundSuccess(
     "TestSoundPolymorph",
+    testCategory,
+    "Polymorph"
+  )
+end
+
+function me.TestSoundStartPolymorph()
+  mod.testHelper.TestSoundStart(
+    "TestSoundStartPolymorph",
     testCategory,
     "Polymorph"
   )

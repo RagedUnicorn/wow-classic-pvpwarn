@@ -47,6 +47,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIceBlockApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIceBlockRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPolymorphSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPolymorphStart)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlinkSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireWardApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireWardRemoved)
@@ -90,6 +91,14 @@ end
 function me.TestCombatEventPolymorphSuccess()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventPolymorphSuccess",
+    testCategory,
+    "Polymorph"
+  )
+end
+
+function me.TestCombatEventPolymorphStart()
+  mod.testHelper.TestCombatEventStart(
+    "TestCombatEventPolymorphStart",
     testCategory,
     "Polymorph"
   )

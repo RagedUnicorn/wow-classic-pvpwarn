@@ -618,9 +618,11 @@ else
         ["spellId"] = 12826,
         ["spellIcon"] = "spell_nature_polymorph",
         ["hasFade"] = false,
+        ["hasCast"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS"
+          "SPELL_CAST_SUCCESS",
+          "SPELL_CAST_START"
         }
       },
       ["blink"] = {

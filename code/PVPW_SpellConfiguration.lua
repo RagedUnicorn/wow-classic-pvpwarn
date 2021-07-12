@@ -86,28 +86,7 @@ function me.IsSpellActive(spellList, categoryName, spellName)
   return false
 end
 
---[[
-  Whether the spell was detected on a pet e.g. Soul Link and should be ignored
 
-  @param {table} spell
-  @param {string} target
-
-  @return {boolean}
-    true - if the spell should be ignored
-    false - if the spell should not be ignored
-]]--
-function me.IsSpellIgnorePet(spell, target)
-  if not spell.ignorePet then
-      return false
-  end
-
-  if target ~= nil and target:find("^Pet") ~= nil then
-    mod.logger.LogDebug(me.tag, "Ignoring event because it was detected on a pet {" .. target .. "}")
-    return true
-  end
-
-  return false
-end
 
 --[[
   @param {string} spellList
@@ -361,6 +340,111 @@ function me.ToggleSoundFade(spellList, categoryName, spellName, state)
   end
   -- update actual clicked spell by player
   PVPWarnConfiguration[spellList][categoryName][spellName].soundFadeWarningActive = state
+end
+
+--[[
+  @param {string} spellList
+    Decides upon which stored list should be used. Possible values:
+    * spellList - enemy spell detected
+    * spellSelfAvoidList - player avoided spell
+    * spellEnemyAvoidList - enemy player avoided spell
+  @param {string} categoryName
+  @param {string} spellName
+]]--
+function me.ToggleSoundStartWarning(spellList, categoryName, spellName)
+  assert(type(spellList) == "string", string.format(
+    "bad argument #1 to `ToggleSoundStartWarning` (expected string got %s)", type(spellList)))
+
+  assert(type(categoryName) == "string", string.format(
+    "bad argument #2 to `ToggleSoundStartWarning` (expected string got %s)", type(categoryName)))
+
+  assert(type(spellName) == "string", string.format(
+    "bad argument #3 to `ToggleSoundStartWarning` (expected string got %s)", type(spellName)))
+
+  me.ToggleSoundStart(
+    spellList,
+    categoryName,
+    spellName,
+    not me.IsSoundStartWarningActive(spellList, categoryName, spellName)
+  )
+end
+
+--[[
+  @param {string} spellList
+    Decides upon which stored list should be used. Possible values:
+    * spellList - enemy spell detected
+    * spellSelfAvoidList - player avoided spell
+    * spellEnemyAvoidList - enemy player avoided spell
+  @param {string} categoryName
+  @param {string} spellName
+
+  @return {boolean}
+    true if the sound start warning is active
+    false if the sound start warning is inactive
+]]--
+function me.IsSoundStartWarningActive(spellList, categoryName, spellName)
+  if RGPVPW_ENVIRONMENT.TEST then return true end
+
+  assert(type(spellList) == "string", string.format(
+    "bad argument #1 to `IsSoundStartWarningActive` (expected string got %s)", type(spellList)))
+
+  assert(type(categoryName) == "string", string.format(
+    "bad argument #2 to `IsSoundStartWarningActive` (expected string got %s)", type(categoryName)))
+
+  assert(type(spellName) == "string", string.format(
+    "bad argument #3 to `IsSoundStartWarningActive` (expected string got %s)", type(spellName)))
+
+  if PVPWarnConfiguration[spellList][categoryName] then
+    if PVPWarnConfiguration[spellList][categoryName][spellName] then
+      return PVPWarnConfiguration[spellList][categoryName][spellName].soundStartWarningActive
+    end
+  end
+
+  return false
+end
+
+--[[
+  @param {string} spellList
+    decides upon which stored list should be used. Possible values:
+    * spellList - enemy spell detected
+    * spellSelfAvoidList - player avoided spell
+    * spellEnemyAvoidList - enemy player avoided spell
+  @param {string} categoryName
+  @param {string} spellName
+  @param {boolean} state
+    true if the option should be active
+    false if the option should be inactive
+]]--
+function me.ToggleSoundStart(spellList, categoryName, spellName, state)
+  me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
+
+  mod.logger.LogDebug(me.tag,
+    string.format(
+      "Updating spell %s soundstate for category %s - current value: %s / new value: %s",
+      spellName,
+      categoryName,
+      tostring(PVPWarnConfiguration[spellList][categoryName][spellName].soundStartWarningActive),
+      tostring(state)
+    )
+  )
+
+  -- check if spell has spellLinks to other spells
+  local hasLinks, spellData = mod.spellMap.GetSpellLinks(categoryName, spellName)
+
+  if hasLinks and spellData ~= nil then
+    local linkedSpells = mod.spellMap.GetLinkedSpells(spellData)
+    -- update all linked spell
+    for i = 1, #linkedSpells do
+      mod.logger.LogInfo(
+        me.tag,
+        "Updating linked spellSoundStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
+      )
+      me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
+      PVPWarnConfiguration[spellList][linkedSpells[i].category][linkedSpells[i].name].soundStartWarningActive = state
+    end
+  end
+  -- update actual clicked spell by player
+  PVPWarnConfiguration[spellList][categoryName][spellName].soundStartWarningActive = state
 end
 
 --[[

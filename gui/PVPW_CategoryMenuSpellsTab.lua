@@ -138,13 +138,13 @@ function me.CreateRowFrame(frame, position)
     me.PlaySoundButtonOnClick,
     rgpvpw.L["label_play_sound"]
   )
-  row.soundFadeCheckBox = me.CreateSpellSoundFadeCheckBox(row)
-  row.playSoundFade = mod.guiHelper.CreatePlayButton(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_FADE_BUTTON,
+  row.soundSpecialCheckBox = me.CreateSpellSoundSpecialCheckBox(row)
+  row.playSoundSpecial = mod.guiHelper.CreatePlayButton(
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_SOUND_SPECIAL_BUTTON,
     row,
-    {"LEFT", row.soundFadeCheckBox, "RIGHT", 150, 0},
-    me.PlaySoundFadeButtonOnClick,
-    rgpvpw.L["label_play_sound_fade"]
+    {"LEFT", row.soundSpecialCheckBox, "RIGHT", 150, 0},
+    me.PlaySoundSpecialButtonOnClick,
+    rgpvpw.L["label_play_sound_special"]
   )
   row.chooseVisual = me.CreateVisualAlertDropdown(row)
   row.chooseVisualLabel = mod.guiHelper.CreateVisualWarningLabel(
@@ -186,7 +186,7 @@ function me.CreateSpellStateCheckbox(spellFrame)
       local parentFrame = self:GetParent()
 
       me.UpdateCheckButtonState(self, parentFrame.soundCheckBox)
-      me.UpdateCheckButtonState(self, parentFrame.soundFadeCheckBox)
+      me.UpdateCheckButtonState(self, parentFrame.soundSpecialCheckBox)
       me.UpdateChooseVisualDropdownMenuState(parentFrame, self:GetChecked())
     end,
     function(self)
@@ -262,42 +262,79 @@ end
   @return {table}
     The created checkbox
 ]]--
-function me.CreateSpellSoundFadeCheckBox(spellFrame)
+function me.CreateSpellSoundSpecialCheckBox(spellFrame)
   return mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENABLE_SOUND_FADE,
     spellFrame,
     {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 0},
-    function()
-      mod.spellConfiguration.ToggleSoundFadeWarning(
-        RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
-        activeCategory,
-        spellFrame.normalizedSpellName
-      )
-    end,
-    function(self)
-      local isActive = mod.spellConfiguration.IsSoundFadeWarningActive(
-        RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
-        activeCategory,
-        spellFrame.normalizedSpellName
-      )
-
-      if isActive then
-        self:SetChecked(true)
-      else
-        self:SetChecked(false)
-      end
-    end,
-    rgpvpw.L["label_enable_sound_fade"]
+    me.SpellSoundSpecialCheckBoxOnClick,
+    me.SpellSoundSpecialCheckBoxOnShow
   )
 end
 
 --[[
-  Click callback for sound fade button
+  Sound special checkbox onClick callback
 
   @param {table} self
 ]]--
-function me.PlaySoundFadeButtonOnClick(self)
-  mod.sound.PlaySound(self:GetParent().category, RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED, self.soundFileName)
+function me.SpellSoundSpecialCheckBoxOnClick(self)
+    if self.type == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
+      mod.spellConfiguration.ToggleSoundFadeWarning(
+        RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+        activeCategory,
+        self:GetParent().normalizedSpellName
+      )
+    elseif self.type == RGPVPW_CONSTANTS.SPELL_TYPES.START then
+      mod.spellConfiguration.ToggleSoundStart(
+        RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+        activeCategory,
+        self:GetParent().normalizedSpellName
+      )
+    else
+      mod.logger.LogError(me.tag, "Invalid type on special checkbox")
+    end
+end
+
+--[[
+  Sound special checkbox onShow callback
+
+  @param {table} self
+]]--
+function me.SpellSoundSpecialCheckBoxOnShow(self)
+  local isActive
+
+  if self.type == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
+    isActive = mod.spellConfiguration.IsSoundFadeWarningActive(
+      RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+      activeCategory,
+      self:GetParent().normalizedSpellName
+    )
+  elseif self.type == RGPVPW_CONSTANTS.SPELL_TYPES.START then
+    isActive = mod.spellConfiguration.IsSoundStartWarningActive(
+      RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+      activeCategory,
+      self:GetParent().normalizedSpellName
+    )
+  else
+    mod.logger.LogError(me.tag, "Invalid type on special checkbox")
+
+    return
+  end
+
+  if isActive then
+    self:SetChecked(true)
+  else
+    self:SetChecked(false)
+  end
+end
+
+--[[
+  Click callback for sound special button. Used for fade and spellcast sound
+
+  @param {table} self
+]]--
+function me.PlaySoundSpecialButtonOnClick(self)
+  mod.sound.PlaySound(self:GetParent().category, self:GetParent().soundSpecialCheckBox.type, self.soundFileName)
 end
 
 --[[
@@ -405,17 +442,21 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
       local row = spellRows[i]
 
       if cachedCategoryData[value] ~= nil then
-        row.normalizedSpellName = cachedCategoryData[value].normalizedSpellName
-        row.category = category
-        row.spellTitle:SetText(cachedCategoryData[value].name)
-        row.playSound.soundFileName = cachedCategoryData[value].soundFileName
-        row.playSoundFade.soundFileName = cachedCategoryData[value].soundFileName
+        local spell = cachedCategoryData[value]
 
-        me.UpdateIcon(row.spellIcon, category, cachedCategoryData[value])
-        me.UpdateSpellStateCheckBox(row.spellStateCheckBox, category, cachedCategoryData[value].normalizedSpellName)
-        me.UpdateSound(row.soundCheckBox, category, cachedCategoryData[value].normalizedSpellName)
-        me.UpdateSoundFade(row.soundFadeCheckBox, row.playSoundFade, category, cachedCategoryData[value])
-        me.UpdateChooseVisualDropdownMenu(row.chooseVisual, category, cachedCategoryData[value].normalizedSpellName)
+        row.normalizedSpellName = spell.normalizedSpellName
+        row.category = category
+        row.spellTitle:SetText(spell.name)
+
+        row.playSound.soundFileName = spell.soundFileName
+        row.playSoundSpecial.soundFileName = spell.soundFileName
+
+        me.UpdateIcon(row.spellIcon, category, spell)
+        me.UpdateSpellStateCheckBox(row.spellStateCheckBox, category, spell.normalizedSpellName)
+        me.UpdateSound(row.soundCheckBox, category, spell.normalizedSpellName)
+        me.UpdateSoundSpecial(row.soundSpecialCheckBox, row.playSoundSpecial, category, spell)
+
+        me.UpdateChooseVisualDropdownMenu(row.chooseVisual, category, spell.normalizedSpellName)
 
         row:Show()
       else
@@ -490,7 +531,7 @@ function me.UpdateSpellStateCheckBox(spellStateCheckBox, category, spellName)
     spellStateCheckBox:SetChecked(true)
 
     me.UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundCheckBox)
-    me.UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundFadeCheckBox)
+    me.UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundSpecialCheckBox)
     me.UpdateChooseVisualDropdownMenuState(parentFrame, true)
   else
     mod.logger.LogDebug(me.tag, string.format(
@@ -499,7 +540,7 @@ function me.UpdateSpellStateCheckBox(spellStateCheckBox, category, spellName)
     spellStateCheckBox:SetChecked(false)
 
     me.UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundCheckBox)
-    me.UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundFadeCheckBox)
+    me.UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundSpecialCheckBox)
     me.UpdateChooseVisualDropdownMenuState(parentFrame, false)
   end
 end
@@ -521,24 +562,37 @@ function me.UpdateSound(soundCheckBox, category, spellName)
 end
 
 --[[
-  @param {table} soundFadeCheckBox
-  @param {table} soundFadeButton
+  @param {table} soundSpecialCheckBox
+  @param {table} soundSpecialButton
   @param {string} category
   @param {table} spell
 ]]--
-function me.UpdateSoundFade(soundFadeCheckBox, soundFadeButton, category, spell)
+function me.UpdateSoundSpecial(soundSpecialCheckBox, soundSpecialButton, category, spell)
   if spell.hasFade then
-    soundFadeCheckBox:SetChecked(mod.spellConfiguration.IsSoundFadeWarningActive(
+    soundSpecialCheckBox:SetChecked(mod.spellConfiguration.IsSoundFadeWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
       category,
       spell.normalizedSpellName
     ))
-    soundFadeCheckBox:Show()
-    soundFadeButton:Show()
+    soundSpecialCheckBox.text:SetText(rgpvpw.L["label_enable_sound_fade"])
+    soundSpecialCheckBox.type = RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED
+  elseif spell.hasCast then
+    soundSpecialCheckBox:SetChecked(mod.spellConfiguration.IsSoundStartWarningActive(
+      RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+      category,
+      spell.normalizedSpellName
+    ))
+    soundSpecialCheckBox.text:SetText(rgpvpw.L["label_enable_sound_cast"])
+    soundSpecialCheckBox.type = RGPVPW_CONSTANTS.SPELL_TYPES.START
   else
-    soundFadeCheckBox:Hide()
-    soundFadeButton:Hide()
+    soundSpecialCheckBox:Hide()
+    soundSpecialButton:Hide()
+
+    return
   end
+
+  soundSpecialCheckBox:Show()
+  soundSpecialButton:Show()
 end
 
 --[[

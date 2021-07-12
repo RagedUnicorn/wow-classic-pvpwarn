@@ -126,6 +126,8 @@ end
 function me.GetSpellType(event, targetModifier)
   if event == "SPELL_CAST_SUCCESS" then
     return RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL
+  elseif event == "SPELL_CAST_START" then
+    return RGPVPW_CONSTANTS.SPELL_TYPES.START
   elseif event == "SPELL_AURA_APPLIED" then
     return RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED
   elseif event == "SPELL_AURA_REMOVED" then
@@ -155,6 +157,8 @@ function me.GetSpellMap(spellType)
     return RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID
   elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY then
     return RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID
+  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.START then
+    return RGPVPW_CONSTANTS.SPELL_TYPE.SPELL
   else
     return RGPVPW_CONSTANTS.SPELL_TYPE.SPELL
   end

@@ -39,6 +39,7 @@ local PATH_SELF_AVOID = "self_avoid\\"
 local PATH_ENEMY_AVOID = "enemy_avoid\\"
 local FILE_NAME_SELF_AVOID = "you_avoided_"
 local FILE_NAME_ENEMY_AVOID = "enemy_avoided_"
+local FILE_NAME_START = "_cast"
 local FILE_TYPE = ".mp3"
 
 --[[
@@ -64,15 +65,17 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
     string.format("bad argument #3 to `PlaySound` (expected string got %s)", type(soundFileName)))
 
   local soundPath = BASE_PATH .. soundCategory .. "\\"
+  local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
 
-  if spellType == RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL or spellType == RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED
-    or spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH then
+  if spellType == spellTypes.NORMAL or spellType == spellTypes.APPLIED or spellType == spellTypes.REFRESH then
     soundPath =  soundPath .. soundFileName .. FILE_TYPE
-  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
+  elseif spellType == spellTypes.REMOVED then
     soundPath = soundPath .. soundFileName .. FILE_NAME_DOWN .. FILE_TYPE
-  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF then
+  elseif spellType == spellTypes.START then
+    soundPath = soundPath .. soundFileName .. FILE_NAME_START .. FILE_TYPE
+  elseif spellType == spellTypes.MISSED_SELF then
     soundPath = soundPath .. PATH_SELF_AVOID .. FILE_NAME_SELF_AVOID .. soundFileName.. FILE_TYPE
-  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY then
+  elseif spellType == spellTypes.MISSED_ENEMY then
     soundPath = soundPath .. PATH_ENEMY_AVOID .. FILE_NAME_ENEMY_AVOID .. soundFileName.. FILE_TYPE
   else
     mod.logger.LogWarn(me.tag, "Invalid spellType: " .. spellType)
