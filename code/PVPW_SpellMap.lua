@@ -134,7 +134,7 @@ else
       ["death_wish"] = {
         ["name"] = "Death Wish",
         ["soundFileName"] = "death_wish",
-        ["spellId"] = 12328,
+        ["spellId"] = 12292,
         ["spellIcon"] = "spell_shadow_deathpact",
         ["hasFade"] = true,
         ["active"] = true,
