@@ -108,6 +108,7 @@ function me.ProcessQueue()
         playedVisual = me.PlayVisual(warning)
       elseif warning.spellType == spellTypes.MISSED_ENEMY then
         playedSound = me.PlaySound(warning, spellTypes.MISSED_ENEMY)
+        playedVisual = me.PlayVisual(warning)
       elseif warning.spellType == spellTypes.START then
         playedSound = me.PlaySound(warning, spellTypes.START)
       else
