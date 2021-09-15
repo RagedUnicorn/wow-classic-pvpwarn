@@ -121,6 +121,7 @@ rgpvpw.L["label_play_avoid_visual"] = "Play"
 rgpvpw.L["configuration_menu_enemy_avoid"] = "Enemy Avoid"
 rgpvpw.L["label_enable_enemy_avoid_sound"] = "Enable Sound"
 rgpvpw.L["label_play_enemy_avoid_sound"] = "Play"
+rgpvpw.L["label_enemy_avoid_sound"] = "Visual Warning:"
 rgpvpw.L["label_play_enemy_avoid_visual"] = "Play"
 
 -- dropdown colors

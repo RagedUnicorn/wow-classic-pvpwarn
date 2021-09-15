@@ -158,7 +158,7 @@ function me.CreateRowFrame(frame, position)
   row.chooseEnemyAvoidVisualLabel = mod.guiHelper.CreateVisualWarningLabel(
     row.chooseEnemyAvoidVisual,
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_ENEMY_AVOID_VISUAL_WARNING_LABEL,
-    rgpvpw.L["label_play_enemy_avoid_visual"]
+    rgpvpw.L["label_enemy_avoid_sound"]
   )
   row.playEnemyAvoidVisual = mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_ENEMY_AVOID_VISUAL_ALERT_BUTTON,
