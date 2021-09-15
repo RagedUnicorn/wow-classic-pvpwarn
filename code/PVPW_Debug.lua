@@ -40,6 +40,61 @@ _G["__PVPW__DEBUG__SHOWEXAMPLEALERT"] = function()
 end
 
 --[[
+  Triggering the simulation of an event where the player himself avoided some spell of
+  an enemy player
+
+  /run _G["__PVPW__DEBUG__COMBATEVENT_MISS_SELF_AVOIDED"]()
+]]--
+_G["__PVPW__DEBUG__COMBATEVENT_MISS_SELF_AVOIDED"] = function()
+  local event = {
+    1626123629.151,
+    "SPELL_MISSED",
+    false,
+    "EnemyPlayerId",
+    "EnemyPlayerName",
+    66888, -- fullfills COMBATLOG_FILTER_HOSTILE_PLAYERS
+    0,
+    "PlayerId",
+    "Playername",
+    1297,
+    0,
+    nil,
+    "Faerie Fire",
+    1,
+    "IMMUNE"
+  }
+
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(nil, unpack(event))
+end
+
+--[[
+  Triggering the simulation of an event where an enenmy avoided a spell of the player
+
+  /run _G["__PVPW__DEBUG__COMBATEVENT_MISS_ENEMY_AVOIDED"]()
+]]--
+_G["__PVPW__DEBUG__COMBATEVENT_MISS_ENEMY_AVOIDED"] = function()
+  local event = {
+    1626123629.151,
+    "SPELL_MISSED",
+    false,
+    "PlayerId",
+    "Playername",
+    1297, -- fullfills COMBATLOG_FILTER_MINE
+    0,
+    "EnemyPlayerId",
+    "EnemyPlayerName",
+    1297,
+    0,
+    nil,
+    "Hamstring",
+    1,
+    "IMMUNE"
+  }
+
+  mod.combatLog.ProcessUnfilteredCombatLogEvent(nil, unpack(event))
+end
+
+--[[
   Take an event from CombatLogGetCurrentEventInfo and store it in a savedVariable. This allows to read a textfile with
   all the logs after a reload.
 
