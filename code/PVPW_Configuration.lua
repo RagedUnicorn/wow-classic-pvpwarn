@@ -186,13 +186,15 @@ end
   @param {number} posY
 ]]--
 function me.SaveUserPlacedFramePosition(frameName, point, relativeTo, relativePoint, posX, posY)
-  local frame = PVPWarnConfiguration.frames[frameName] or {}
+  if PVPWarnConfiguration.frames[frameName] == nil then
+    PVPWarnConfiguration.frames[frameName] = {}
+  end
 
-  frame.posX = posX
-  frame.posY = posY
-  frame.point = point
-  frame.relativeTo = relativeTo
-  frame.relativePoint = relativePoint
+  PVPWarnConfiguration.frames[frameName].posX = posX
+  PVPWarnConfiguration.frames[frameName].posY = posY
+  PVPWarnConfiguration.frames[frameName].point = point
+  PVPWarnConfiguration.frames[frameName].relativeTo = relativeTo
+  PVPWarnConfiguration.frames[frameName].relativePoint = relativePoint
 
   mod.logger.LogDebug(me.tag, "Saved frame position for - " .. frameName
     .. " - new pos: posX " .. posX .. " posY " .. posY .. " point " .. point)
