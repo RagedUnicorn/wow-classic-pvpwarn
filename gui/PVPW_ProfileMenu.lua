@@ -196,7 +196,7 @@ function me.CreateProfileListScrollFrame(frame)
     "ScrollFrame",
     RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_SCROLL_FRAME,
     frame,
-    "FauxScrollFrameTemplate"
+    "FauxScrollFrameTemplate, BackdropTemplate"
   )
   scrollFrame:SetWidth(RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH)
   scrollFrame:SetHeight(RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT * RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS)
@@ -229,7 +229,8 @@ end
     The created row
 ]]--
 function me.CreateRowFrame(frame, position)
-  local row = CreateFrame("Button", RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_CONTENT_FRAME .. position, frame)
+  local row = CreateFrame(
+    "Button", RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_CONTENT_FRAME .. position, frame, "BackdropTemplate")
   row:SetSize(frame:GetWidth(), RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT)
   row:SetPoint("TOPLEFT", frame, 0, (position -1) * RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT * -1)
 

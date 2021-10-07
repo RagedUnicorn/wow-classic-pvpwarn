@@ -199,7 +199,7 @@ end
     The created row
 ]]--
 function me.CreateSpellFrame(parentFrame, position, spellFrameName, spellFrameRowHeight)
-  local spellFrame = CreateFrame("Button", spellFrameName .. position, parentFrame)
+  local spellFrame = CreateFrame("Button", spellFrameName .. position, parentFrame, "BackdropTemplate")
   spellFrame:SetSize(parentFrame:GetWidth(), spellFrameRowHeight)
   spellFrame:SetPoint("TOPLEFT", parentFrame, 0, (position -1) * spellFrameRowHeight * -1)
 
@@ -260,7 +260,7 @@ end
     The created icon texture holder
 ]]--
 function me.CreateSpellIcon(parentFrame, iconName, iconSize)
-  local iconHolder = CreateFrame("Frame", nil, parentFrame)
+  local iconHolder = CreateFrame("Frame", nil, parentFrame, "BackdropTemplate")
   iconHolder:SetSize(
     iconSize + 5,
     iconSize + 5

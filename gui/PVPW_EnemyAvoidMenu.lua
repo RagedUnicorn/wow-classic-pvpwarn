@@ -88,7 +88,8 @@ end
   @return {table}
 ]]--
 function me.CreateCategoryMenuContentFrame(frame)
-  local contentFrame = CreateFrame("Frame", RGPVPW_CONSTANTS.ELEMENT_SPELL_ENEMY_AVOID_LIST_CONTENT_FRAME, frame)
+  local contentFrame = CreateFrame(
+    "Frame", RGPVPW_CONSTANTS.ELEMENT_SPELL_ENEMY_AVOID_LIST_CONTENT_FRAME, frame, "BackdropTemplate")
   contentFrame:SetPoint("TOPLEFT", frame, 5, -7)
   contentFrame:SetBackdropColor(1, 0.37, 0.5, .7)
   contentFrame:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)

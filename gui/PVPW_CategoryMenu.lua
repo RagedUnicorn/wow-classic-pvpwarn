@@ -174,7 +174,7 @@ end
   @return {table}
 ]]--
 function me.CreateCategoryMenuContentFrame(self, contentFrameName, position)
-  local contentFrame = CreateFrame("Frame", contentFrameName, self)
+  local contentFrame = CreateFrame("Frame", contentFrameName, self, "BackdropTemplate")
   contentFrame:SetPoint(unpack(position))
   contentFrame:SetBackdropColor(1, 0.37, 0.5, .7)
   contentFrame:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)

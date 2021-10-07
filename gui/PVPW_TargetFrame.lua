@@ -37,7 +37,7 @@ me.tag = "TargetFrame"
 function me.BuildCombatStateUi()
   mod.logger.LogDebug(me.tag, "Building combat state ui")
 
-  local iconHolder = CreateFrame("Frame", RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME, TargetFrame)
+  local iconHolder = CreateFrame("Frame", RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME, TargetFrame, "BackdropTemplate")
   iconHolder:SetSize(
     RGPVPW_CONSTANTS.COMBAT_STATE_ICON_SIZE + 5,
     RGPVPW_CONSTANTS.COMBAT_STATE_ICON_SIZE + 5
