@@ -1,11 +1,8 @@
 # Updates
 
-* Implement feature announce spell cast start
+* Update Interface Version to 11400(1.14.0)
 
 # Fixes
 
-* Fix death wish spell id
-* Fix a bug where missed events would be looked up in the wrong spellList
-* Fix enemy avoid label
-* Enable self avoid visual warning
-* Enable enemy avoid visual warning
+* Fix user placed frames
+  * Frames such as the combatstate frame were unable to load their custom position
