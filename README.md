@@ -1,12 +1,12 @@
 # PVPWarn
 
-![](/docs/pvpw_ragedunicorn_love_classic.png)
+![](docs/pvpw_ragedunicorn_love_classic.png)
 
 > PVPWarn aims to help the player to hear and see enemy spells casted on himself and also spells that an enemy player resisted or spells that the player himself resisted
 
-![](/docs/wow_badge.svg)
-![](/docs/license_mit.svg)
-[![](/docs/curseforge.svg)](https://curseforge.overwolf.com/?addonId=475326&fileId=3484242)
+![](docs/wow_badge.svg)
+![](docs/license_mit.svg)
+[![](docs/curseforge.svg)](https://curseforge.overwolf.com/?addonId=475326&fileId=3484242)
 ![Lint](https://github.com/RagedUnicorn/wow-classic-pvpwarn/actions/workflows/lint.yaml/badge.svg?branch=master)
 
 PVPWarn uses both visual and acoustic effects to make the player aware of certain events. The addon aims to be configurable to the players preferences and allows customization on exactly what spells should be brought to the attention of the player and in what form.
@@ -39,7 +39,7 @@ PVPWarns goal is to help the player recognizing combat log events in a more visu
 
 The basic feature of warning the player can be configured for each class and some additional categories such as items, racials and misc.
 
-![](/docs/pvpwarn_configure_spell.gif)
+![](docs/pvpwarn_configure_spell.gif)
 
 ### Avoiding Spells
 
@@ -49,13 +49,13 @@ PVPWarn can also detect when certain spells where either resisted by the player 
 
 The avoid tab allows the configuration of warnings for all spells of a certain category. If you're interested in knowing when you resist a certain spells such as the silence of a shadow priest you will configurate this in the priest category.
 
-![](/docs/pvpwarn_configure_self_avoid.gif)
+![](docs/pvpwarn_configure_self_avoid.gif)
 
 #### Enemy Avoid
 
 To configure the resist warning for your own class use the `Enemy Avoid` navigation point. This menu contains all spells for your class that can be resisted and are supported by PVPWarn. If you use a different class the content of that menu is different.
 
-![](/docs/pvpwarn_configure_enemy_avoid.gif)
+![](docs/pvpwarn_configure_enemy_avoid.gif)
 
 ### Profiles
 
