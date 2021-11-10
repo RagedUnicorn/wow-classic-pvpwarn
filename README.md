@@ -61,6 +61,16 @@ To configure the resist warning for your own class use the `Enemy Avoid` navigat
 
 PVPWarn loads a default profile based on your class when the addon loads for the first time. The default profile can be loaded again at any point. If you however start modifying what spells are tracked you can create a new profile or you can even have multiple different profiles that you can then load based on your situation.
 
+#### Loading Profiles with Macros
+
+Once a profile is created in can be loaded manually or with a macro.
+
+```lua
+/run _G["RGPVPW_MACRO_LOADPROFILE"]("[profileName")
+-- e.g.
+/run _G["RGPVPW_MACRO_LOADPROFILE"]("Warriorprofile")
+```
+
 ## FAQ
 
 #### The Addon is not showing up in WoW. What can I do?

@@ -32,6 +32,7 @@ code/PVPW_Configuration.lua
 code/PVPW_SpellConfiguration.lua
 code/PVPW_Cmd.lua
 code/PVPW_Tooltip.lua
+code/PVPW_Macro.lua
 
 # profiles
 profiles/PVPW_Profile.lua
