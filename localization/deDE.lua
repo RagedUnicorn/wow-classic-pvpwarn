@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetLocale
+-- luacheck: globals GetLocale GetAddOnMetadata
 
 if (GetLocale() == "deDE") then
   rgpvpw = rgpvpw or {}
