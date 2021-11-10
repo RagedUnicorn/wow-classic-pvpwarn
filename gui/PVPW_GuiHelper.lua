@@ -60,7 +60,7 @@ function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowC
   )
   checkBoxFrame:SetPoint(unpack(position))
 
-  checkBoxFrame.text = _G[checkBoxFrame:GetName() .. 'Text']
+  checkBoxFrame.text = _G[checkBoxFrame:GetName() .. "Text"]
   checkBoxFrame.text:SetFont(STANDARD_TEXT_FONT, 15)
   checkBoxFrame.text:SetTextColor(.95, .95, .95)
 
@@ -100,7 +100,7 @@ function me.CreatePlayButton(frameName, parent, position, callback, text)
   playButton:SetHeight(RGPVPW_CONSTANTS.BUTTON_DEFAULT_HEIGHT)
   playButton:SetText(text)
   playButton:SetPoint(unpack(position))
-  playButton:SetScript('OnClick', callback)
+  playButton:SetScript("OnClick", callback)
 
   local buttonFontString = playButton:GetFontString()
 

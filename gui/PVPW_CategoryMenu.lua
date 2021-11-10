@@ -57,7 +57,7 @@ local navigation = {
 --[[
   Currently active category
 ]]--
-local categoryName = nil
+local categoryName
 
 local spellTab = 1
 local resistTab = 2
@@ -159,7 +159,7 @@ function me.CreateTabButton(parentFrame, tabButtonName, position, text, id)
   tabButton:SetPoint(unpack(position))
   tabButton:SetText(text)
   PanelTemplates_TabResize(tabButton, 0)
-  tabButton:SetScript('OnClick', function(self)
+  tabButton:SetScript("OnClick", function(self)
     me.TabNavigationButtonOnClick(self)
   end)
 

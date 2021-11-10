@@ -83,7 +83,7 @@ end
     a clone of the object passed
 ]]--
 function me.Clone(obj)
-  if type(obj) ~= 'table' then return obj end
+  if type(obj) ~= "table" then return obj end
 
   local res = {}
 

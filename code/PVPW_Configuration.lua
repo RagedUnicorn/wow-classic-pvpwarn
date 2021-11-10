@@ -22,6 +22,8 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals GetAddOnMetadata UnitClass strlower
+
 local mod = rgpvpw
 local me = {}
 mod.configuration = me
@@ -74,7 +76,7 @@ function me.SetupConfiguration()
   -- initialize all spellLists for the first time with default profile
   if PVPWarnConfiguration.spellList == nil or PVPWarnConfiguration.spellSelfAvoidList == nil
       or PVPWarnConfiguration.spellEnemyAvoidList == nil then
-    mod.profile.LoadDefaultProfile()
+    mod.profile.InitializeDefaultProfile()
   end
 
   if PVPWarnConfiguration.enableCombatStateTracking == nil then
@@ -104,14 +106,17 @@ end
   to run through migration paths. As of right now there is no migration path.
 ]]--
 function me.SetAddonVersion()
+  if PVPWarnConfiguration.addonVersion == GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version") then
+    return
+  end
   -- if no version set so far make sure to set the current one
   if PVPWarnConfiguration.addonVersion == nil then
-    PVPWarnConfiguration.addonVersion = RGPVPW_ENVIRONMENT.ADDON_VERSION
+    PVPWarnConfiguration.addonVersion = GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
   end
 
   me.MigrationPath()
   -- migration done update addon version to current
-  PVPWarnConfiguration.addonVersion = RGPVPW_ENVIRONMENT.ADDON_VERSION
+  PVPWarnConfiguration.addonVersion = GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
 end
 
 --[[
@@ -120,11 +125,46 @@ end
   version before running a migration path
 ]]--
 function me.MigrationPath()
-  --[[
-  if PVPWarnConfiguration.addonVersion == "x.x.x" then
-    me.PrexxxMigration()
+  me.UpgradeToV1_1_2()
+end
+
+--[[
+  Should be run by versions: All < v1.1.2
+  Description: Version before did not have a default profile entry in PVPWarnProfiles
+
+]]--
+function me.UpgradeToV1_1_2()
+  local versions = {"v1.1.1", "v1.1.0", "v1.0.0"}
+  local shouldRunUpgradePath = false
+
+  for _, version in pairs(versions) do
+    if PVPWarnConfiguration.addonVersion == version then
+      shouldRunUpgradePath = true
+      break
+    end
   end
-  ]]--
+
+  if not shouldRunUpgradePath then return end
+
+  mod.logger.LogDebug(me.tag, "Running upgrade path from " .. PVPWarnConfiguration.addonVersion .. " to v1.1.2")
+
+  if PVPWarnProfiles ~= nil then
+    local _, englishClass = UnitClass(RGPVPW_CONSTANTS.UNIT_ID_PLAYER)
+    local defaultProfile = {
+      -- load default profile data into PVPWarnProfiles
+      ["name"] = RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME,
+      ["version"] = GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"),
+      ["spellConfiguration"] =
+      mod[strlower(englishClass) .. "Profile"].GetSpellProfile(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL),
+      ["spellSelfAvoidConfiguration"] =
+      mod[strlower(englishClass) .. "Profile"].GetSpellProfile(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID),
+      ["spellEnemyAvoidConfiguration"] =
+      mod[strlower(englishClass) .. "Profile"].GetSpellProfile(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID)
+    }
+    table.insert(PVPWarnProfiles, defaultProfile)
+  end
+
+  mod.logger.LogDebug(me.tag, "Finished upgrade path from " .. PVPWarnConfiguration.addonVersion .. " to v1.1.2")
 end
 
 --[[

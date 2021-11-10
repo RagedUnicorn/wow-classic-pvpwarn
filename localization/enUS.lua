@@ -56,7 +56,7 @@ rgpvpw.L["configuration_menu_profiles"] = "Profiles"
 rgpvpw.L["save_current_profile_button"] = "Create new Profile"
 rgpvpw.L["delete_selected_profile_button"] = "Delete Profile"
 rgpvpw.L["load_selected_profile_button"] = "Load Profile"
-rgpvpw.L["load_default_profile_button"] = "Load Default Profile"
+rgpvpw.L["update_profile_button"] = "Update Profile"
 
 -- create new profile
 rgpvpw.L["choose_profile_name_dialog_text"] = "Choose a name for the new profile"
@@ -67,19 +67,22 @@ rgpvpw.L["confirm_delete_profile_dialog_text"] = "This will delete your selected
 rgpvpw.L["confirm_delete_profile_yes_button"] = "Yes"
 rgpvpw.L["confirm_delete_profile_no_button"] = "No"
 -- load profile
-rgpvpw.L["confirm_override_profile_dialog_text"] = "This will override your current profile. Do you want to continue?"
+rgpvpw.L["confirm_load_profile_dialog_text"] = "This will override your current profile. Do you want to continue?"
+rgpvpw.L["confirm_load_profile_yes_button"] = "Yes"
+rgpvpw.L["confirm_load_profile_no_button"] = "No"
+-- update profile
+rgpvpw.L["confirm_override_profile_dialog_text"] = "This will update the selected profile with "
+  .. "your current configuration. Do you want to continue?"
 rgpvpw.L["confirm_override_profile_yes_button"] = "Yes"
 rgpvpw.L["confirm_override_profile_no_button"] = "No"
--- load default profile
-rgpvpw.L["confirm_override_default_profile_dialog_text"] = "This will load the default profile and override your"
-  .. " current configuration. Do you want to continue?"
-rgpvpw.L["confirm_override_default_profile_yes_button"] = "Yes"
-rgpvpw.L["confirm_override_default_profile_no_button"] = "No"
 -- user messages
 rgpvpw.L["user_message_select_profile_before_delete"] = "Select a profile to delete"
 rgpvpw.L["user_message_select_profile_before_load"] = "Select a profile to load"
+rgpvpw.L["user_message_select_profile_before_update"] = "Select a profile to update"
 rgpvpw.L["user_message_select_profile_already_exists"] = "Profile already exist - choose another name"
 rgpvpw.L["user_message_add_new_profile_max_reached"] = "A maximum of %s profiles is allowed you reached the maximum"
+rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "The default profile cannot be deleted"
+rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "The default profile cannot be modified"
 
 -- categories
 rgpvpw.L["category_druid"] = "Druid"

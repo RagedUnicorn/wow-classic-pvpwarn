@@ -130,6 +130,7 @@ function me.ToggleSpell(spellList, categoryName, spellName, state)
   end
   -- update actual clicked spell by player
   PVPWarnConfiguration[spellList][categoryName][spellName].spellActive = state
+  mod.profile.SetModified()
 end
 
 --[[
@@ -235,6 +236,7 @@ function me.ToggleSound(spellList, categoryName, spellName, state)
   end
   -- update actual clicked spell by player
   PVPWarnConfiguration[spellList][categoryName][spellName].soundWarningActive = state
+  mod.profile.SetModified()
 end
 
 --[[
@@ -340,6 +342,7 @@ function me.ToggleSoundFade(spellList, categoryName, spellName, state)
   end
   -- update actual clicked spell by player
   PVPWarnConfiguration[spellList][categoryName][spellName].soundFadeWarningActive = state
+  mod.profile.SetModified()
 end
 
 --[[
@@ -445,6 +448,7 @@ function me.ToggleSoundStart(spellList, categoryName, spellName, state)
   end
   -- update actual clicked spell by player
   PVPWarnConfiguration[spellList][categoryName][spellName].soundStartWarningActive = state
+  mod.profile.SetModified()
 end
 
 --[[
@@ -519,6 +523,7 @@ function me.UpdateVisualWarningColor(spellList, categoryName, spellName, color)
   end
   -- update actual clicked spell by player
   PVPWarnConfiguration[spellList][categoryName][spellName].visualWarningColor = color
+  mod.profile.SetModified()
 end
 
 --[[
