@@ -37,8 +37,6 @@ me.tag = "PriestProfile"
         -- default false
       ["soundWarningActive"] = false,
         -- default false
-      ["soundFadeWarningActive"] = false,
-        -- default false
       ["visualWarningActive"] = false,
         -- default false
       ["visualWarningColor"] = [number] -- e.g. blue, orange see RGPVPW_CONSTANTS.TEXTURES
@@ -63,13 +61,11 @@ local defaultSpellProfilePriest = {
     ["intimidating_shout"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.brown.colorValue
     },
     ["pummel"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.brown.colorValue
     }
   },
@@ -77,13 +73,11 @@ local defaultSpellProfilePriest = {
     ["psychic_scream"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.white.colorValue
     },
     ["silence"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.white.colorValue
     }
   },
@@ -91,13 +85,11 @@ local defaultSpellProfilePriest = {
     ["blind"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
     },
     ["kick"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
     },
     ["sprint"] = {
@@ -121,7 +113,6 @@ local defaultSpellProfilePriest = {
     ["cold_blood"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
     }
   },
@@ -147,7 +138,6 @@ local defaultSpellProfilePriest = {
     ["counterspell"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
     }
   },
@@ -155,7 +145,6 @@ local defaultSpellProfilePriest = {
     ["viper_sting"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.green.colorValue
     }
   },
@@ -169,7 +158,6 @@ local defaultSpellProfilePriest = {
     ["amplify_curse"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.violet.colorValue
     }
   },
@@ -210,7 +198,6 @@ local defaultSpellProfilePriest = {
     ["tremor_totem"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.blue.colorValue
     }
   },
@@ -225,31 +212,26 @@ local defaultSpellProfilePriest = {
     ["immune_root_snare_stun"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_charm_fear_polymorph"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_fear_polymorph_snare"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_fear_polymorph_stun"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_charm_fear_stun"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     }
   },

@@ -37,8 +37,6 @@ me.tag = "WarlockProfile"
         -- default false
       ["soundWarningActive"] = false,
         -- default false
-      ["soundFadeWarningActive"] = false,
-        -- default false
       ["visualWarningActive"] = false,
         -- default false
       ["visualWarningColor"] = [number] -- e.g. blue, orange see RGPVPW_CONSTANTS.TEXTURES
@@ -65,13 +63,11 @@ local defaultSpellProfileWarlock = {
     ["psychic_scream"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.white.colorValue
     },
     ["silence"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.white.colorValue
     }
   },
@@ -97,7 +93,6 @@ local defaultSpellProfileWarlock = {
     ["cold_blood"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
     }
   },
@@ -123,7 +118,6 @@ local defaultSpellProfileWarlock = {
     ["silence"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
     }
   },
@@ -131,7 +125,6 @@ local defaultSpellProfileWarlock = {
     ["viper_sting"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.green.colorValue
     },
     ["rapid_fire"] = {
@@ -151,7 +144,6 @@ local defaultSpellProfileWarlock = {
     ["amplify_curse"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.violet.colorValue
     }
   },
@@ -214,31 +206,26 @@ local defaultSpellProfileWarlock = {
     ["immune_root_snare_stun"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_charm_fear_polymorph"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_fear_polymorph_snare"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_fear_polymorph_stun"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_charm_fear_stun"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     }
   },

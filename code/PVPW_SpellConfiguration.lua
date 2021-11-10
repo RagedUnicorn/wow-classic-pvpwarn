@@ -30,7 +30,7 @@ me.tag = "SpellConfiguration"
 
 --[[
   @param {string} spellList
-    See constants RGPVPW_CONSTANTS.PELL_TYPE
+    See constants RGPVPW_CONSTANTS.SPELL_TYPE
   @param {string} categoryName
   @param {string} spellName
 ]]--
@@ -565,7 +565,11 @@ function me.GetDefaultSpellConfiguration(spellList)
     return {
       ["spellActive"] = false,
       ["soundWarningActive"] = false,
-      ["soundFadeWarningActive"] = false,
+      --[[
+        Depending on what is applicable. Has to be set during the configuration.
+      ]]--
+      -- ["soundFadeWarningActive"] = false,
+      -- ["soundStartWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.DEFAULT_COLOR
     }
   else

@@ -43,11 +43,11 @@ local spellScrollFrame
   Cached spellList for reusing while the player scrolls through the spellList. Wiped
   when the category changes
 ]]--
-local cachedCategoryData = nil
+local cachedCategoryData
 --[[
   Currently active category
 ]]--
-local activeCategory = nil
+local activeCategory
 
 --[[
   @param {table} frame
@@ -285,7 +285,7 @@ function me.SpellSoundSpecialCheckBoxOnClick(self)
         self:GetParent().normalizedSpellName
       )
     elseif self.type == RGPVPW_CONSTANTS.SPELL_TYPES.START then
-      mod.spellConfiguration.ToggleSoundStart(
+      mod.spellConfiguration.ToggleSoundStartWarning(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
         self:GetParent().normalizedSpellName

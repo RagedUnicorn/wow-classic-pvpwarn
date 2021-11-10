@@ -37,8 +37,6 @@ me.tag = "PaladinProfile"
         -- default false
       ["soundWarningActive"] = false,
         -- default false
-      ["soundFadeWarningActive"] = false,
-        -- default false
       ["visualWarningActive"] = false,
         -- default false
       ["visualWarningColor"] = [number] -- e.g. blue, orange see RGPVPW_CONSTANTS.TEXTURES
@@ -59,13 +57,11 @@ local defaultSpellProfilePaladin = {
     ["psychic_scream"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.white.colorValue
     },
     ["silence"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.white.colorValue
     }
   },
@@ -97,7 +93,6 @@ local defaultSpellProfilePaladin = {
     ["cold_blood"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
     }
   },
@@ -123,7 +118,6 @@ local defaultSpellProfilePaladin = {
     ["silence"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
     }
   },
@@ -137,7 +131,6 @@ local defaultSpellProfilePaladin = {
     ["viper_sting"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.green.colorValue
     }
   },
@@ -145,7 +138,6 @@ local defaultSpellProfilePaladin = {
     ["amplify_curse"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.violet.colorValue
     }
   },
@@ -208,31 +200,26 @@ local defaultSpellProfilePaladin = {
     ["immune_root_snare_stun"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_charm_fear_polymorph"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_fear_polymorph_snare"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_fear_polymorph_stun"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     },
     ["immune_charm_fear_stun"] = {
       ["spellActive"] = true,
       ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = false,
       ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
     }
   },
