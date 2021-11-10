@@ -79,6 +79,7 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
     soundPath = soundPath .. PATH_ENEMY_AVOID .. FILE_NAME_ENEMY_AVOID .. soundFileName.. FILE_TYPE
   else
     mod.logger.LogWarn(me.tag, "Invalid spellType: " .. spellType)
+    return status
   end
 
   mod.logger.LogDebug(me.tag, string.format("Playing: %s", soundPath))
