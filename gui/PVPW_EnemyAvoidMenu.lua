@@ -41,11 +41,11 @@ local spellEnemyAvoidScrollFrame
 --[[
   Cached spellEnemyAvoidList for reusing while the player scrolls through the spellEnemyAvoidList.
 ]]--
-local cachedCategoryData = nil
+local cachedCategoryData
 --[[
   Currently active category
 ]]--
-local activeCategory = nil
+local activeCategory
 
 --[[
   @param {table} frame

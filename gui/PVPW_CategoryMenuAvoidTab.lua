@@ -42,11 +42,11 @@ local spellSelfAvoidScrollFrame
   Cached spellAvoidList for reusing while the player scrolls through the spellAvoidList. Wiped
   when the category changes
 ]]--
-local cachedCategoryData = nil
+local cachedCategoryData
 --[[
   Currently active category
 ]]--
-local activeCategory = nil
+local activeCategory
 
 --[[
   @param {table} frame
