@@ -31,6 +31,9 @@ mod.profileMenu = me
 
 me.tag = "ProfileMenu"
 
+-- track whether the menu was already built
+local builtMenu = false
+
 local profileRows = {}
 -- holds a reference to the profile scrollFrame
 local profileListScrollFrame
@@ -127,6 +130,17 @@ StaticPopupDialogs["RGPVPW_UPDATE_PROFILE_WARNING"] = {
 --[[
   @param {table} frame
 ]]--
+function me.Init(frame)
+  if builtMenu then
+    me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+  else
+    me.BuildUi(frame)
+  end
+end
+
+--[[
+  @param {table} frame
+]]--
 function me.BuildUi(frame)
   me.CreateProfileTitle(frame)
   profileListScrollFrame = me.CreateProfileListScrollFrame(frame)
@@ -166,6 +180,7 @@ function me.BuildUi(frame)
 
   -- init scrollFrame
   me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+  builtMenu = true
 end
 
 --[[

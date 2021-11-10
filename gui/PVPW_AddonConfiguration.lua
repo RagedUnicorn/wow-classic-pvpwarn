@@ -51,7 +51,7 @@ function me.SetupAddonConfiguration()
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
     panel.main,
     rgpvpw.L["configuration_menu_profiles"],
-    mod.profileMenu.BuildUi
+    mod.profileMenu.Init
   )
 
   me.BuildSpellCategories(panel.main)
