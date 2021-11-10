@@ -57,7 +57,9 @@ end
 function me.InitializeDefaultProfile()
   local _, englishClass = UnitClass(RGPVPW_CONSTANTS.UNIT_ID_PLAYER)
 
-  table.wipe(PVPWarnProfiles)
+  if PVPWarnProfiles ~= nil then
+    table.wipe(PVPWarnProfiles)
+  end
   --[[
     Saved addon variable
   ]]--
@@ -161,15 +163,21 @@ function me.LoadProfile(profileName)
 
   for i = 1, #PVPWarnProfiles do
     if PVPWarnProfiles[i].name == profileName then
-      table.wipe(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL])
+      if PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL] ~= nil then
+        table.wipe(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL])
+      end
       PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL] =
         mod.common.Clone(PVPWarnProfiles[i].spellConfiguration)
 
-      table.wipe(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID])
+      if PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID] ~= nil then
+        table.wipe(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID])
+      end
       PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID] =
         mod.common.Clone(PVPWarnProfiles[i].spellSelfAvoidConfiguration)
 
-      table.wipe(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID])
+      if PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID] ~= nil then
+        table.wipe(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID])
+      end
       PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID] =
         mod.common.Clone(PVPWarnProfiles[i].spellEnemyAvoidConfiguration)
 
@@ -202,15 +210,21 @@ function me.UpdateProfile(profileName)
 
   for i = 1, #PVPWarnProfiles do
     if PVPWarnProfiles[i].name == profileName then
-      table.wipe(PVPWarnProfiles[i].spellConfiguration)
+      if PVPWarnProfiles[i].spellConfiguration ~= nil  then
+        table.wipe(PVPWarnProfiles[i].spellConfiguration)
+      end
       PVPWarnProfiles[i].spellConfiguration =
         mod.common.Clone(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL])
 
-      table.wipe(PVPWarnProfiles[i].spellSelfAvoidConfiguration)
+      if PVPWarnProfiles[i].spellSelfAvoidConfiguration ~= nil  then
+        table.wipe(PVPWarnProfiles[i].spellSelfAvoidConfiguration)
+      end
       PVPWarnProfiles[i].spellSelfAvoidConfiguration =
         mod.common.Clone(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID])
 
-      table.wipe(PVPWarnProfiles[i].spellEnemyAvoidConfiguration)
+      if PVPWarnProfiles[i].spellEnemyAvoidConfiguration ~= nil  then
+        table.wipe(PVPWarnProfiles[i].spellEnemyAvoidConfiguration)
+      end
       PVPWarnProfiles[i].spellEnemyAvoidConfiguration =
         mod.common.Clone(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID])
 
