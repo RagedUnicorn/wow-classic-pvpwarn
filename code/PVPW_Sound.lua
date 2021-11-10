@@ -64,6 +64,7 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
   assert(type(soundFileName) == "string",
     string.format("bad argument #3 to `PlaySound` (expected string got %s)", type(soundFileName)))
 
+  local status = 0
   local soundPath = BASE_PATH .. soundCategory .. "\\"
   local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
 
@@ -83,7 +84,7 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
   end
 
   mod.logger.LogDebug(me.tag, string.format("Playing: %s", soundPath))
-  local status = PlaySoundFile(soundPath, "Master")
+  status = PlaySoundFile(soundPath, "Master")
 
   if not status then
     -- this also happens when sound is deactivated
