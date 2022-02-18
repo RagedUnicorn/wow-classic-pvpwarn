@@ -6,7 +6,7 @@
 
 ![](docs/wow_badge.svg)
 ![](docs/license_mit.svg)
-[![](docs/curseforge.svg)](https://curseforge.overwolf.com/?addonId=475326&fileId=3521636)
+[![](docs/curseforge.svg)](https://curseforge.overwolf.com/?addonId=475326&fileId=3651954)
 ![Lint](https://github.com/RagedUnicorn/wow-classic-pvpwarn/actions/workflows/lint.yaml/badge.svg?branch=master)
 
 PVPWarn uses both visual and acoustic effects to make the player aware of certain events. The addon aims to be configurable to the players preferences and allows customization on exactly what spells should be brought to the attention of the player and in what form.
