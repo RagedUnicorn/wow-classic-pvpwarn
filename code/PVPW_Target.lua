@@ -32,8 +32,8 @@ mod.target = me
 
 me.tag = "Target"
 
-local currentTargetGuid = nil
-local currentTargetName = nil
+local currentTargetGuid
+local currentTargetName
 
 --[[
   Returns the players current target uid or an empty string if the player has no target.
