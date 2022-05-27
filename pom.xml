@@ -167,7 +167,7 @@
                   <projectId>${addon.wago.projectId}</projectId>
                   <label>${addon.displayName}-${addon.tag.version}-classic.zip</label>
                   <changelogFile>${basedir}/build-resources/release-notes.md</changelogFile>
-                  <supportedBccPatch>${addon.supported.patch}</supportedBccPatch>
+                  <supportedClassicPatch>${addon.supported.patch}</supportedClassicPatch>
                   <stability>stable</stability>
                   <file>${basedir}/target/${addon.name}.zip</file>
                   <!--suppress UnresolvedMavenProperty -->
