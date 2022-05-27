@@ -18,8 +18,8 @@
         <include>gui/*.xml</include>
         <include>libs/**/*.lua</include>
         <include>libs/**/*.xml</include>
-        <include>assets/images/*.blp</include>
-        <include>assets/images/*.tga</include>
+        <include>assets/**/*.blp</include>
+        <include>assets/**/*.tga</include>
         <include>assets/sounds/**/*.mp3</include>
         <include>localization/*.lua</include>
       </includes>
