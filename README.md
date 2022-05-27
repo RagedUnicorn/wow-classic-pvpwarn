@@ -2,18 +2,22 @@
 
 ![](docs/pvpw_ragedunicorn_love_classic.png)
 
-> PVPWarn aims to help the player to hear and see enemy spells casted on himself and also spells that an enemy player resisted or spells that the player himself resisted
+> PVPWarn aims to help the player to hear and see enemy spells cast on himself and also spells that an enemy player resisted or spells that the player himself resisted
 
 ![](docs/wow_badge.svg)
 ![](docs/license_mit.svg)
-[![](docs/curseforge.svg)](https://curseforge.overwolf.com/?addonId=475326&fileId=3767364)
 ![Lint](https://github.com/RagedUnicorn/wow-classic-pvpwarn/actions/workflows/lint.yaml/badge.svg?branch=master)
 
 PVPWarn uses both visual and acoustic effects to make the player aware of certain events. The addon aims to be configurable to the players preferences and allows customization on exactly what spells should be brought to the attention of the player and in what form.
 
+## Providers
+
+[![](docs/curseforge.svg)](https://www.curseforge.com/wow/addons/pvpwarn)
+[![](docs/wago.svg)](https://addons.wago.io/addons/pvpwarn)
+
 **WoW Classic Support**
 
-> This Addon supports WoW Burning Cursade Classic see - [bcc-PVPWarn](https://github.com/RagedUnicorn/wow-bcc-pvpwarn/)
+> This Addon supports WoW Burning Crusade Classic see - [bcc-PVPWarn](https://github.com/RagedUnicorn/wow-bcc-pvpwarn/)
 
 <a href="https://github.com/RagedUnicorn/wow-bcc-pvpwarn/"><img src="/docs/the_burning_crusade_logo.png" width="40%"></img></a>
 
