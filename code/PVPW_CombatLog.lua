@@ -127,6 +127,7 @@ end
 --[[
   @param {string} event
   @param {function} callback
+  @param {vararg} ...
 ]]--
 function me.ProcessNormal(event, callback, ...)
   local target, _, _, _, _, spellName, _, buffType = select(8, ...)
@@ -137,10 +138,10 @@ function me.ProcessNormal(event, callback, ...)
   local playSound
   local playVisual
 
+  if not me.HasFoundSpell(category, spell, spellName) then return end
   if me.ShouldFilterDebuff(buffType) then return end
   if me.ShouldIgnorePet(spell, target) then return end
   if not me.IsValidSpellType(spellType) then return end
-  if not me.HasFoundSpell(category, spell, spellName) then return end
   if not me.IsSpellActive(spellMap, category, normalizedSpellName) then return end
 
   local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
@@ -199,7 +200,6 @@ function me.ProcessMissed(event, spellMissedTarget, callback, ...)
 
   mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
 end
-
 
 --[[
   @param {number} spellType
