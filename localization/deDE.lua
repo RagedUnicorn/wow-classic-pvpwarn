@@ -115,16 +115,33 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["label_enable_sound_fade"] = "Aktiviere Ton verblassen"
   rgpvpw.L["label_enable_sound_cast"] = "Aktiviere Ton wirken"
   rgpvpw.L["label_play_sound_special"] = "Abspielen"
-
   rgpvpw.L["label_visual_warning"] = "Visuelle Warnung:"
   rgpvpw.L["label_play_visual"] = "Abspielen"
   rgpvpw.L["user_message_choose_color"] = "Kann keine visuelle Warnung anzeigen - Keine Farbe ausgewählt"
+
   -- spell avoid tab
   rgpvpw.L["label_enable_avoid_sound"] = "Aktiviere Ton"
   rgpvpw.L["label_play_avoid_sound"] = "Abspielen"
   rgpvpw.L["label_avoid_visual_warning"] = "Visuelle Warnung:"
   rgpvpw.L["label_play_avoid_visual"] = "Abspielen"
 
+  -- enemy avoid
+  rgpvpw.L["configuration_menu_enemy_avoid"] = "Feind Meiden"
+  rgpvpw.L["label_enable_enemy_avoid_sound"] = "Aktiviere Ton"
+  rgpvpw.L["label_play_enemy_avoid_sound"] = "Abspielen"
+  rgpvpw.L["label_play_enemy_avoid_visual"] = "Abspielen"
+  rgpvpw.L["label_enemy_avoid_sound"] = "Optische Warnung:"
 
-
+  -- dropdown colors
+  rgpvpw.L["texture_none"] = "Keine"
+  rgpvpw.L["texture_light_blue"] = "Hellblau"
+  rgpvpw.L["texture_pink"] = "Rosa"
+  rgpvpw.L["texture_white"] = "Weiss"
+  rgpvpw.L["texture_brown"] = "Braun"
+  rgpvpw.L["texture_blue"] = "Blau"
+  rgpvpw.L["texture_green"] = "Grün"
+  rgpvpw.L["texture_orange"] = "Orange"
+  rgpvpw.L["texture_red"] = "Rot"
+  rgpvpw.L["texture_violet"] = "Violett"
+  rgpvpw.L["texture_yellow"] = "Gelb"
 end

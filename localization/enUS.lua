@@ -110,10 +110,10 @@ rgpvpw.L["label_play_sound"] = "Play"
 rgpvpw.L["label_enable_sound_fade"] = "Enable Sound Fade"
 rgpvpw.L["label_enable_sound_cast"] = "Enable Sound Cast"
 rgpvpw.L["label_play_sound_special"] = "Play"
-
 rgpvpw.L["label_visual_warning"] = "Visual Warning:"
 rgpvpw.L["label_play_visual"] = "Play"
 rgpvpw.L["user_message_choose_color"] = "Unable to play visual alert - No color chosen"
+
 -- spell avoid tab
 rgpvpw.L["label_enable_avoid_sound"] = "Enable Sound"
 rgpvpw.L["label_play_avoid_sound"] = "Play"
@@ -129,17 +129,14 @@ rgpvpw.L["label_enemy_avoid_sound"] = "Visual Warning:"
 
 
 -- dropdown colors
-rgpvpw.L["texture_none"] = "Keine"
-rgpvpw.L["texture_light_blue"] = "Hellblau"
-rgpvpw.L["texture_pink"] = "Rosa"
-rgpvpw.L["texture_white"] = "Weiss"
-rgpvpw.L["texture_brown"] = "Braun"
-rgpvpw.L["texture_blue"] = "Blau"
-rgpvpw.L["texture_green"] = "Grün"
+rgpvpw.L["texture_none"] = "None"
+rgpvpw.L["texture_light_blue"] = "Light Blue"
+rgpvpw.L["texture_pink"] = "Pink"
+rgpvpw.L["texture_white"] = "White"
+rgpvpw.L["texture_brown"] = "Brown"
+rgpvpw.L["texture_blue"] = "Blue"
+rgpvpw.L["texture_green"] = "Green"
 rgpvpw.L["texture_orange"] = "Orange"
-rgpvpw.L["texture_red"] = "Rot"
-rgpvpw.L["texture_violet"] = "Violett"
-rgpvpw.L["texture_yellow"] = "Gelb"
-
--- combat state configuration
-rgpvpw.L["combat_state_missing_target_error"] = "Stelle sicher das du jemanden auswählst um das Fenster zu sehen"
+rgpvpw.L["texture_red"] = "Red"
+rgpvpw.L["texture_violet"] = "Violet"
+rgpvpw.L["texture_yellow"] = "Yellow"
