@@ -37,7 +37,7 @@ me.tag = "CombatState"
 local configurationMode = false
 
 --[[
-  Invoked when a new target is aquired
+  Invoked when a new target is acquired
 ]]--
 function me.AcquiredTarget()
   if not mod.configuration.IsCombatStateTrackingEnabled() then return end
