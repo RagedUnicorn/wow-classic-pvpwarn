@@ -1,3 +1,4 @@
-# Updates
+# Fix
 
-* Add Wago.io as new provider
+* Localization for colors
+* Fix spell issue with player pets
