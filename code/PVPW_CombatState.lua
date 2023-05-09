@@ -44,7 +44,7 @@ function me.AcquiredTarget()
 
   if UnitIsPlayer(RGPVPW_CONSTANTS.UNIT_ID_TARGET) and UnitIsEnemy(RGPVPW_CONSTANTS.UNIT_ID_PLAYER,
     RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode then
-    mod.logger.LogDebug(me.tag, "Aquired new enemy target - starting combatstate tracking")
+    mod.logger.LogDebug(me.tag, "Acquired new enemy target - starting combatstate tracking")
     -- after switching targets instantly update
     me.CombatStateUpdate()
     --[[
@@ -74,7 +74,7 @@ function me.CombatStateUpdate()
   local affectingCombat = UnitAffectingCombat(RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode
 
   mod.logger.LogDebug(me.tag, "Targeted unit is affected by combat: " .. tostring(affectingCombat))
-  mod.targetFrame.UpdateCombateStateUi(affectingCombat)
+  mod.targetFrame.UpdateCombatStateUi(affectingCombat)
 end
 
 --[[

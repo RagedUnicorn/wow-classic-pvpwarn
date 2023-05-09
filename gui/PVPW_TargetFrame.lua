@@ -129,7 +129,7 @@ end
 
   @param {boolean} affectingCombat
 ]]--
-function me.UpdateCombateStateUi(combatState)
+function me.UpdateCombatStateUi(combatState)
   if combatState then
     me.ShowCombatState()
   else
