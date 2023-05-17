@@ -201,7 +201,7 @@ There is no need to differentiate in those examples between enemy and self avoid
 
 ```lua
 {
-  ["spellName"] = "TODO",
+  ["spellName"] = "Entangling Roots",
   ["missType"] = "RESIST",
   ["target"] = "[targetUid]",
   ["targetName"] = "[targetName]",
