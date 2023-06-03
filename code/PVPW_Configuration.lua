@@ -51,9 +51,17 @@ PVPWarnConfiguration = {
   ]]--
   ["enableCombatStateTracking"] = true,
   --[[
-    Whether the frame to track an enemies combatstate is locked or not
+    Whether the frame to track an enemies combat state is locked or not
   ]]--
   ["lockCombatStateFrame"] = true,
+  --[[
+    Whether stance state tracking is enabled or not
+  ]]--
+  ["enableStanceStateTracking"] = true,
+  --[[
+    Whether the frame to track an enemies stance state is locked or not
+  ]]--
+  ["lockStanceStateFrame"] = true,
   --[[
     Framepositions for user draggable Frames
     frames = {
@@ -70,8 +78,8 @@ PVPWarnConfiguration = {
 }
 
 --[[
-    Set default values if property is nil. This might happen after an addon upgrade
-  ]]--
+  Set default values if property is nil. This might happen after an addon upgrade
+]]--
 function me.SetupConfiguration()
   -- initialize all spellLists for the first time with default profile
   if PVPWarnConfiguration.spellList == nil or PVPWarnConfiguration.spellSelfAvoidList == nil
@@ -87,6 +95,16 @@ function me.SetupConfiguration()
   if PVPWarnConfiguration.lockCombatStateFrame == nil then
     mod.logger.LogInfo(me.tag, "lockCombatStateFrame has unexpected nil value")
     PVPWarnConfiguration.lockCombatStateFrame = true
+  end
+
+  if PVPWarnConfiguration.enableStanceStateTracking == nil then
+    mod.logger.LogInfo(me.tag, "enableStanceStateTracking has unexpected nil value")
+    PVPWarnConfiguration.enableStanceStateTracking = true
+  end
+
+  if PVPWarnConfiguration.lockStanceStateFrame == nil then
+    mod.logger.LogInfo(me.tag, "lockStanceStateFrame has unexpected nil value")
+    PVPWarnConfiguration.lockStanceStateFrame = true
   end
 
   if PVPWarnConfiguration.frames == nil then
@@ -131,7 +149,6 @@ end
 --[[
   Should be run by versions: All < v1.1.2
   Description: Version before did not have a default profile entry in PVPWarnProfiles
-
 ]]--
 function me.UpgradeToV1_1_2()
   local versions = {"v1.1.1", "v1.1.0", "v1.0.0"}
@@ -172,7 +189,7 @@ end
 ]]--
 function me.EnableCombatStateTracking()
   PVPWarnConfiguration.enableCombatStateTracking = true
-  -- no actual work needed. Combatstate tracking will start once the player acquires a target
+  -- no actual work needed. Combat state tracking will start once the player acquires a target
 end
 
 --[[
@@ -213,6 +230,54 @@ end
 ]]--
 function me.IsCombatStateFrameLocked()
   return PVPWarnConfiguration.lockCombatStateFrame
+end
+
+--[[
+  Enable stance state tracking
+]]--
+function me.EnableStanceStateTracking()
+  PVPWarnConfiguration.enableStanceStateTracking = true
+  mod.stanceState.EnableStanceStateTracking()
+end
+
+--[[
+  Disable stance state tracking
+]]--
+function me.DisableStanceStateTracking()
+  PVPWarnConfiguration.enableStanceStateTracking = false
+  mod.stanceState.DisableStanceStateTracking()
+end
+
+--[[
+  @return {boolean}
+    true - if stance state tracking is enabled
+    false - if stance state tracking is disabled
+]]--
+function me.IsStanceStateTrackingEnabled()
+  return PVPWarnConfiguration.enableStanceStateTracking
+end
+
+--[[
+  Lock stance state frame
+]]--
+function me.LockStanceStateFrame()
+  PVPWarnConfiguration.lockStanceStateFrame = true
+end
+
+--[[
+  Unlock stance state frame
+]]--
+function me.UnlockStanceStateFrame()
+  PVPWarnConfiguration.lockStanceStateFrame = false
+end
+
+--[[
+  @return {boolean}
+    true - if stance state frame is locked
+    false - if stance state frame is unlocked
+]]--
+function me.IsStanceStateFrameLocked()
+  return PVPWarnConfiguration.lockStanceStateFrame
 end
 
 --[[

@@ -37,6 +37,7 @@ local function ShowInfoMessage()
   print(rgpvpw.L["info_title"])
   print(rgpvpw.L["opt"])
   print(rgpvpw.L["combatstate"])
+  print(rgpvpw.L["stancestate"])
   print(rgpvpw.L["reload"])
 end
 
@@ -68,6 +69,14 @@ function me.SetupSlashCmdList()
         mod.combatState.EnableConfigurationMode()
       elseif args[2] == "disable" then
         mod.combatState.DisableConfigurationMode()
+      else
+        mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
+      end
+    elseif args[1] == "stancestate" then
+      if args[2] == "enable" then
+        mod.stanceState.EnableConfigurationMode()
+      elseif args[2] == "disable" then
+        mod.stanceState.DisableConfigurationMode()
       else
         mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
       end

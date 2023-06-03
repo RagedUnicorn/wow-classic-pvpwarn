@@ -23,7 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals UnitIsPlayer UnitIsEnemy UnitIsPVP UnitAffectingCombat
+-- luacheck: globals UnitIsPlayer UnitIsEnemy UnitAffectingCombat
 
 local mod = rgpvpw
 local me = {}

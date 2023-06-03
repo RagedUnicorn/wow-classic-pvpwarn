@@ -30,32 +30,47 @@ mod.targetFrame = me
 
 me.tag = "TargetFrame"
 
---[[
-  Build the combat state ui. Displaying an icon to the player indicating that his
-  target is currently in combat
-]]--
-function me.BuildCombatStateUi()
-  mod.logger.LogDebug(me.tag, "Building combat state ui")
+-- Reference to the combat state frame
+local combatStateFrame
+-- Reference to the stance state frame
+local stanceStateFrame
 
-  local iconHolder = CreateFrame("Frame", RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME, TargetFrame, "BackdropTemplate")
+--[[
+  @param {string} frameName
+    A reference name for the frame that holds the texture
+  @param {string} textureName
+    A reference name for the texture
+  @param {table} position
+    The initial position of the frame
+  @param {table} borderColor
+    The color to use for the border of the iconHolder
+  @param {function} dragFrameCallback
+    The function that registers the dragFrame listeners
+  @param {string}
+
+  @return {table}
+    The created iconHolder frame
+]]--
+function me.BuildIconHolderUi(frameName, textureName, position, borderColor, dragFrameCallback, defaultTexture)
+  local iconHolder = CreateFrame("Frame", frameName, TargetFrame, "BackdropTemplate")
   iconHolder:SetSize(
-    RGPVPW_CONSTANTS.COMBAT_STATE_ICON_SIZE + 5,
-    RGPVPW_CONSTANTS.COMBAT_STATE_ICON_SIZE + 5
+    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE + 5,
+    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE + 5
   )
-  iconHolder:SetPoint("RIGHT", 0, 0)
+  iconHolder:SetPoint(unpack(position))
   iconHolder:SetMovable(true)
   iconHolder:SetClampedToScreen(true)
 
-  mod.guiHelper.LoadFramePosition(iconHolder, RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME)
-  me.SetupDragFrame(iconHolder)
+  mod.guiHelper.LoadFramePosition(iconHolder, frameName)
+  dragFrameCallback(iconHolder)
 
-  local combatStateIcon = iconHolder:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_TEXTURE, "ARTWORK")
-  combatStateIcon.iconHolder = iconHolder
-  combatStateIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
-  combatStateIcon:SetPoint("CENTER", 0, 0)
-  combatStateIcon:SetSize(
-    RGPVPW_CONSTANTS.COMBAT_STATE_ICON_SIZE,
-    RGPVPW_CONSTANTS.COMBAT_STATE_ICON_SIZE
+  local texture = iconHolder:CreateTexture(textureName, "ARTWORK")
+  texture.iconHolder = iconHolder
+  texture:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+  texture:SetPoint("CENTER", 0, 0)
+  texture:SetSize(
+    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE,
+    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE
   )
 
   local backdrop = {
@@ -73,19 +88,35 @@ function me.BuildCombatStateUi()
   }
 
   iconHolder:SetBackdrop(backdrop)
-  combatStateIcon.iconHolder:SetBackdropBorderColor(1, .1, 0, .8)
-  -- set combat state active icon
-  combatStateIcon:SetTexture(RGPVPW_CONSTANTS.COMBAT_STATE_ACTIVE_ICON_ID)
+  texture.iconHolder:SetBackdropBorderColor(unpack(borderColor))
+
+  if defaultTexture ~= nil then
+    texture:SetTexture(defaultTexture)
+  end
+
   iconHolder:Hide()
+
+  return texture
 end
 
 --[[
-  @param {table} frame
-    The frame to attach the drag handlers to
+  Build the combat state ui. Displaying an icon to the player indicating that his
+  target is currently in combat
 ]]--
-function me.SetupDragFrame(frame)
-  frame:SetScript("OnMouseDown", me.StartDragFrame)
-  frame:SetScript("OnMouseUp", me.StopDragFrame)
+function me.BuildCombatStateUi()
+  mod.logger.LogDebug(me.tag, "Building combat state ui")
+
+  combatStateFrame = me.BuildIconHolderUi(
+    RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME,
+    RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_TEXTURE,
+    {"RIGHT", 0, 0},
+    {1, .1, 0, .8},
+    function(frame)
+      frame:SetScript("OnMouseDown", me.StartCombatStateDragFrame)
+      frame:SetScript("OnMouseUp", me.StopCombatStateDragFrame)
+    end,
+    RGPVPW_CONSTANTS.COMBAT_STATE_ACTIVE_ICON_ID
+  )
 end
 
 --[[
@@ -93,7 +124,7 @@ end
 
   @param {table} self
 ]]--
-function me.StartDragFrame(self)
+function me.StartCombatStateDragFrame(self)
   if mod.configuration.IsCombatStateFrameLocked() then return end
 
   self:StartMoving()
@@ -104,7 +135,7 @@ end
 
   @param {table} self
 ]]--
-function me.StopDragFrame(self)
+function me.StopCombatStateDragFrame(self)
   if mod.configuration.IsCombatStateFrameLocked() then return end
 
   self:StopMovingOrSizing()
@@ -141,12 +172,93 @@ end
   Hide the displayed combatStateFrame
 ]]--
 function me.HideCombatState()
-  _G[RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME]:Hide()
+  combatStateFrame.iconHolder:Hide()
 end
 
 --[[
   Show the displayed combatStateFrame
 ]]--
 function me.ShowCombatState()
-  _G[RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME]:Show()
+  combatStateFrame.iconHolder:Show()
+end
+
+--[[
+  Build the stance state ui. Displaying an icon to the player indicating what stance the current target is
+]]--
+function me.BuildStanceStateUi()
+  mod.logger.LogDebug(me.tag, "Building stance state ui")
+
+  stanceStateFrame = me.BuildIconHolderUi(
+    RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_FRAME,
+    RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_TEXTURE,
+    {"RIGHT", 25, 0},
+    {0.65, 0.48, 0.31, 1.0},
+    function(frame)
+      frame:SetScript("OnMouseDown", me.StartStanceStateDragFrame)
+      frame:SetScript("OnMouseUp", me.StopStanceStateDragFrame)
+    end
+  )
+end
+
+--[[
+  Frame callback to start moving the passed (self) frame
+
+  @param {table} self
+]]--
+function me.StartStanceStateDragFrame(self)
+  if mod.configuration.IsStanceStateFrameLocked() then return end
+
+  self:StartMoving()
+end
+
+--[[
+  Frame callback to stop moving the passed (self) frame
+
+  @param {table} self
+]]--
+function me.StopStanceStateDragFrame(self)
+  if mod.configuration.IsStanceStateFrameLocked() then return end
+
+  self:StopMovingOrSizing()
+
+  local point, relativeTo, relativePoint, posX, posY = self:GetPoint()
+
+  mod.configuration.SaveUserPlacedFramePosition(
+    RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_FRAME,
+    point,
+    relativeTo,
+    relativePoint,
+    posX,
+    posY
+  )
+end
+
+--[[
+  Update stance icon holder with new texture
+
+  @param {number} iconId
+]]--
+function me.UpdateStanceStateUi(iconId)
+  mod.logger.LogDebug(me.tag, "Updating stance state ui with id: " .. iconId)
+
+  if iconId ~= nil then
+    stanceStateFrame:SetTexture(iconId)
+    me.ShowStanceState()
+  else
+    me.HideStanceState()
+  end
+end
+
+--[[
+  Hide the displayed stanceStateFrame
+]]--
+function me.HideStanceState()
+  stanceStateFrame.iconHolder:Hide()
+end
+
+--[[
+  Show the displayed stanceStateFrame
+]]--
+function me.ShowStanceState()
+  stanceStateFrame.iconHolder:Show()
 end

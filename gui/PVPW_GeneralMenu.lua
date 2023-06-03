@@ -42,6 +42,15 @@ local options = {
     "LockFrameCombatState",
     rgpvpw.L["lock_frame_combat_state"],
     rgpvpw.L["lock_frame_combat_state_tooltip"]
+  },
+  {
+    "EnableStanceStateTracking",
+    rgpvpw.L["enable_stance_state_tracking"],
+    rgpvpw.L["enable_stance_state_tracking_tooltip"]
+  }, {
+    "LockFrameStanceState",
+    rgpvpw.L["lock_frame_stance_state"],
+    rgpvpw.L["lock_frame_stance_state_tooltip"]
   }
 }
 
@@ -59,6 +68,7 @@ function me.BuildUi(frame)
 
   me.BuildTitle(frame)
   me.BuildCombatStateOptions(frame)
+  me.BuildStanceStateOptions(frame)
 
   builtMenu = true
 end
@@ -102,6 +112,153 @@ function me.BuildCombatStateOptions(frame)
     me.EnableCombatStateTrackingOnClick,
     { RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_COMBAT_STATE }
   )
+end
+
+--[[
+  OnShow callback for checkbuttons - lock combat state frame
+
+  @param {table} self
+]]--
+function me.LockFrameCombatStateOnShow(self)
+  if mod.configuration.IsCombatStateFrameLocked() then
+    self:SetChecked(true)
+  else
+    self:SetChecked(false)
+  end
+end
+
+--[[
+  OnClick callback for checkbuttons - lock combat state frame
+
+  @param {table} self
+]]--
+function me.LockFrameCombatStateOnClick(self)
+  local enabled = self:GetChecked()
+
+  if enabled then
+    mod.configuration.LockCombatStateFrame()
+  else
+    mod.configuration.UnlockCombatStateFrame()
+  end
+end
+
+--[[
+  OnShow callback for checkbuttons - enable combat state tracking
+
+  @param {table} self
+]]--
+function me.EnableCombatStateTrackingOnShow(self)
+  if mod.configuration.IsCombatStateTrackingEnabled() then
+    self:SetChecked(true)
+    me.EnableCheckButtons(self.linkedCheckButtonNames)
+  else
+    self:SetChecked(false)
+    me.DisableCheckButtons(self.linkedCheckButtonNames)
+  end
+end
+
+--[[
+  OnClick callback for checkbuttons - enable combat state tracking
+
+  @param {table} self
+]]--
+function me.EnableCombatStateTrackingOnClick(self)
+  local enabled = self:GetChecked()
+
+  if enabled then
+    mod.configuration.EnableCombatStateTracking()
+    me.EnableCheckButtons(self.linkedCheckButtonNames)
+  else
+    mod.configuration.DisableCombatStateTracking()
+    me.DisableCheckButtons(self.linkedCheckButtonNames)
+  end
+end
+
+--[[
+  Creates all checkButtons for the stanceState configuration. Make sure to create checkbuttons
+  that are dependant on others first
+
+  @param {table} frame
+]]--
+function me.BuildStanceStateOptions(frame)
+  me.BuildCheckButtonOption(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE,
+    40,
+    -190,
+    me.LockFrameStanceStateOnShow,
+    me.LockFrameStanceStateOnClick
+  )
+
+  me.BuildCheckButtonOption(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_ENABLE_STANCE_STATE,
+    20,
+    -160,
+    me.EnableStanceStateTrackingOnShow,
+    me.EnableStanceStateTrackingOnClick,
+    { RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE }
+  )
+end
+
+--[[
+  OnShow callback for checkbuttons - lock stance state frame
+
+  @param {table} self
+]]--
+function me.LockFrameStanceStateOnShow(self)
+  if mod.configuration.IsCombatStateFrameLocked() then
+    self:SetChecked(true)
+  else
+    self:SetChecked(false)
+  end
+end
+
+--[[
+  OnClick callback for checkbuttons - lock stance state frame
+
+  @param {table} self
+]]--
+function me.LockFrameStanceStateOnClick(self)
+  local enabled = self:GetChecked()
+
+  if enabled then
+    mod.configuration.LockStanceStateFrame()
+  else
+    mod.configuration.UnlockStanceStateFrame()
+  end
+end
+
+--[[
+  OnShow callback for checkbuttons - enable stance state tracking
+
+  @param {table} self
+]]--
+function me.EnableStanceStateTrackingOnShow(self)
+  if mod.configuration.IsStanceStateTrackingEnabled() then
+    self:SetChecked(true)
+    me.EnableCheckButtons(self.linkedCheckButtonNames)
+  else
+    self:SetChecked(false)
+    me.DisableCheckButtons(self.linkedCheckButtonNames)
+  end
+end
+
+--[[
+  OnClick callback for checkbuttons - enable stance state tracking
+
+  @param {table} self
+]]--
+function me.EnableStanceStateTrackingOnClick(self)
+  local enabled = self:GetChecked()
+
+  if enabled then
+    mod.configuration.EnableStanceStateTracking()
+    me.EnableCheckButtons(self.linkedCheckButtonNames)
+  else
+    mod.configuration.DisableStanceStateTracking()
+    me.DisableCheckButtons(self.linkedCheckButtonNames)
+  end
 end
 
 --[[
@@ -196,38 +353,6 @@ function me.OptTooltipOnLeave()
 end
 
 --[[
-  OnShow callback for checkbuttons - enable combat state tracking
-
-  @param {table} self
-]]--
-function me.EnableCombatStateTrackingOnShow(self)
-  if mod.configuration.IsCombatStateTrackingEnabled() then
-    self:SetChecked(true)
-    me.EnableCheckButtons(self.linkedCheckButtonNames)
-  else
-    self:SetChecked(false)
-    me.DisableCheckButtons(self.linkedCheckButtonNames)
-  end
-end
-
---[[
-  OnClick callback for checkbuttons - enable combat state tracking
-
-  @param {table} self
-]]--
-function me.EnableCombatStateTrackingOnClick(self)
-  local enabled = self:GetChecked()
-
-  if enabled then
-    mod.configuration.EnableCombatStateTracking()
-    me.EnableCheckButtons(self.linkedCheckButtonNames)
-  else
-    mod.configuration.DisableCombatStateTracking()
-    me.DisableCheckButtons(self.linkedCheckButtonNames)
-  end
-end
-
---[[
   Enables a list of checkButtons
 
   @param {table} checkButtonNames
@@ -258,33 +383,5 @@ function me.DisableCheckButtons(checkButtonNames)
     else
       mod.logger.LogError(me.tag, "Tried to disable non-existent checkbutton")
     end
-  end
-end
-
---[[
-  OnShow callback for checkbuttons - lock combat state frame
-
-  @param {table} self
-]]--
-function me.LockFrameCombatStateOnShow(self)
-  if mod.configuration.IsCombatStateFrameLocked() then
-    self:SetChecked(true)
-  else
-    self:SetChecked(false)
-  end
-end
-
---[[
-  OnClick callback for checkbuttons - lock combat state frame
-
-  @param {table} self
-]]--
-function me.LockFrameCombatStateOnClick(self)
-  local enabled = self:GetChecked()
-
-  if enabled then
-    mod.configuration.LockCombatStateFrame()
-  else
-    mod.configuration.UnlockCombatStateFrame()
   end
 end

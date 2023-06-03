@@ -75,6 +75,22 @@ Once a profile is created in can be loaded manually or with a macro.
 /run _G["RGPVPW_MACRO_LOADPROFILE"]("Warriorprofile")
 ```
 
+### Combat State
+
+PVPWarn can track a targets combat state and will display this next to the targetframe. The combat icon can be moved to another place if required.
+
+![](docs/pvpwarn_combat.gif)
+
+### Stance State
+
+PVPWarn can track a targets stance state and will display this next to the targetframe.The stance icon can be
+moved to another place if required. Tracking the stance is limited to certain classes and can only be tracked if
+PVPWarn was able to observe the stance in the combatlog.
+
+![](docs/pvpwarn_switching_stance.gif)
+
+If PVPWarn is unable to determine the stance it will display a question mark for an icon.
+
 ## FAQ
 
 #### The Addon is not showing up in WoW. What can I do?
@@ -96,6 +112,12 @@ This can have multiple errors. It might be an actual bug where the addon did not
 #### PVPWarn does not support my Spell. What can I do?
 
 PVPWarn is not complete and certain spells might have simply forgotten. If you have a certain spell that you would like to see supported in a future version of the addon make sure to create a ticket for it, and I will have a  look at it.
+
+#### PVPWarn shows me a question mark instead of the stance of the player
+
+This is a limitation of the WoW Api. Stances can only be observed when a warrior is switching from one stance to
+another. It is not possible to get infos about the current stance. PVPWarn will however display the stance as soon
+as it is able to observe it.
 
 ## Development
 

@@ -40,6 +40,7 @@ RGPVPW_CONSTANTS = {
   ]]--
   WARN_QUEUE_UPDATE_INTERVAL = 0.1,
   CHECK_COMBAT_STATE_INTERVAL = 0.4,
+  CHECK_STANCE_STACE_EXPIRED_INTERVAL = 60,
   --[[
     Warn textures
   ]]--
@@ -161,12 +162,24 @@ RGPVPW_CONSTANTS = {
   ELEMENT_ALERT_FRAME = "PVPW_AlertFrame",
   ELEMENT_ALERT_TEXTURE = "PVPW_AlertTexture",
   --[[
+
+  ]]--
+  STATE_ICON_HOLDER_ICON_SIZE = 20,
+  --[[
     TargetFrame combatState
   ]]--
   ELEMENT_COMBAT_STATE_FRAME = "PVPW_CombatStateFrame",
   ELEMENT_COMBAT_STATE_TEXTURE = "PVPW_CombatStateTexture",
   COMBAT_STATE_ICON_SIZE = 20,
-  COMBAT_STATE_ACTIVE_ICON_ID = 132349,
+  COMBAT_STATE_ACTIVE_ICON_ID = 132336, -- warrior challenge
+  --[[
+    TargetFrame stanceState
+  ]]--
+  ELEMENT_STANCE_STATE_FRAME = "PVPW_StanceStateFrame",
+  ELEMENT_STANCE_STATE_TEXTURE = "PVPW_StanceStateTexture",
+  STANCE_STATE_ICON_SIZE = 20,
+  STANCE_STATE_UNKNOWN_STANCE_ICON_ID = 134400,
+
   --[[
     Addon configuration
   ]]--
@@ -190,6 +203,8 @@ RGPVPW_CONSTANTS = {
   ELEMENT_GENERAL_TITLE = "PVPW_GeneralTitle",
   ELEMENT_GENERAL_OPT_ENABLE_COMBAT_STATE = "PVPW_OptEnableCombatStateTracking",
   ELEMENT_GENERAL_OPT_LOCK_FRAME_COMBAT_STATE = "PVPW_OptLockFrameCombatState",
+  ELEMENT_GENERAL_OPT_ENABLE_STANCE_STATE = "PVPW_OptEnableStanceStateTracking",
+  ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE = "PVPW_OptLockFrameStanceState",
   --[[
     A list of available categories consisting of all classes, racials, items and a
     misc category

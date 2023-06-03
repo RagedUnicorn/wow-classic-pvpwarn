@@ -49,7 +49,9 @@ me.tag = "SpellMap"
         {boolean} optional field, default false if field is missing
       ["links"] = { 0000 },
         {table} optional field, link to other spells by their spellId. Spells that are linked together
-        share their configuration. The can't have a different configuration from eachother
+        share their configuration. The can't have a different configuration from each other
+      ["isStanceSpell"] = true,
+        {boolean} Whether the spell is considered a stance spell and might be tracked by stance state feature
       ["active"] = false,
         {boolean} Whether the spell is active or inactive
       ["trackedEvents"] = {
@@ -149,6 +151,7 @@ else
         ["spellId"] = 2457,
         ["spellIcon"] = "ability_warrior_offensivestance",
         ["hasFade"] = false,
+        ["isStanceSpell"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED"
@@ -160,6 +163,7 @@ else
         ["spellId"] = 2458,
         ["spellIcon"] = "ability_racial_avatar",
         ["hasFade"] = false,
+        ["isStanceSpell"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED"
@@ -171,6 +175,7 @@ else
         ["spellId"] = 71,
         ["spellIcon"] = "ability_warrior_defensivestance",
         ["hasFade"] = false,
+        ["isStanceSpell"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED"

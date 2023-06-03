@@ -34,6 +34,7 @@ rgpvpw.L["info_title"] = "|cFF00FFB0PVPWarn:|r"
 rgpvpw.L["help"] = "|cFFFFC300(%s)|r: Use |cFFFFC300/rgpvpw|r or |cFFFFC300/pvpwarn|r for a list of options"
 rgpvpw.L["opt"] = "|cFFFFC300opt|r - display Opionsmenu"
 rgpvpw.L["combatstate"] = "|cFFFFC300combatstate|r - configure the position of the combatstate icon"
+rgpvpw.L["stancestate"] = "|cFFFFC300stancestate|r - configure the position of the stancestate icon"
 rgpvpw.L["reload"] = "|cFFFFC300reload|r - reload UI"
 rgpvpw.L["invalid_argument"] = "Invalid argument passed"
 
@@ -50,6 +51,10 @@ rgpvpw.L["enable_combat_state_tracking"] = "Enable combatstate tracking"
 rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Tracks the combatstate of an enemy target"
 rgpvpw.L["lock_frame_combat_state"] = "Lock combatstate frame"
 rgpvpw.L["lock_frame_combat_state_tooltip"] = "Locks or unlocks the combatstate frame"
+rgpvpw.L["enable_stance_state_tracking"] = "Enable stancestate tracking"
+rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Tracks the stancestate of an enemy target"
+rgpvpw.L["lock_frame_stance_state"] = "Lock stancestate frame"
+rgpvpw.L["lock_frame_stance_state_tooltip"] = "Locks or unlocks the stancestate frame"
 
 -- profiles
 rgpvpw.L["configuration_menu_profiles"] = "Profiles"

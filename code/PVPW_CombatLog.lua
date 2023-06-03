@@ -144,6 +144,10 @@ function me.ProcessNormal(event, callback, ...)
   if not me.IsValidSpellType(spellType) then return end
   if not me.IsSpellActive(spellMap, category, normalizedSpellName) then return end
 
+  if me.IsStanceSpell(spell) then
+    mod.stanceState.TrackStanceApplied(spell, target)
+  end
+
   local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
     spellMap, category, normalizedSpellName
   )
@@ -156,6 +160,17 @@ function me.ProcessNormal(event, callback, ...)
   end
 
   mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
+end
+
+--[[
+  @param {table} spell
+
+  @return {boolean}
+    true - if the spell is a stance spell
+    false - if the spell is not a stance spell
+]]--
+function me.IsStanceSpell(spell)
+  return spell.isStanceSpell
 end
 
 --[[

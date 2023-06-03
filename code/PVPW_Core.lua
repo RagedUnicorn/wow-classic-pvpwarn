@@ -94,8 +94,14 @@ function me.Initialize()
   me.addonConfiguration.SetupAddonConfiguration()
   -- setup combat state ui
   me.targetFrame.BuildCombatStateUi()
+  -- setup stance state ui
+  me.targetFrame.BuildStanceStateUi()
   -- start ticker intervals
   me.ticker.StartTickerWarnQueue()
+
+  if me.configuration.IsStanceStateTrackingEnabled() then
+    me.ticker.StartTickerCheckStanceStateExpired()
+  end
 
   me.ShowWelcomeMessage()
 end

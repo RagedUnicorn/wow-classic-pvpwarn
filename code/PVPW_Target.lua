@@ -23,7 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals UnitGUID UnitName
+-- luacheck: globals UnitGUID UnitName UnitClass
 
 local mod = rgpvpw
 local me = {}
@@ -34,6 +34,7 @@ me.tag = "Target"
 
 local currentTargetGuid
 local currentTargetName
+local currentTargetClassName
 
 --[[
   Returns the players current target uid or an empty string if the player has no target.
@@ -54,11 +55,21 @@ function me.GetCurrentTargetName()
 end
 
 --[[
+  Returns the players current class name or an empty string if the player has no target.
+
+  @return {string | nil}
+]]--
+function me.GetCurrentTargetClass()
+  return currentTargetClassName
+end
+
+--[[
   Get players current target in the form of the targets unique id and update the currentTarget.
 ]]--
 function me.UpdateCurrentTarget()
   local targetId = UnitGUID(RGPVPW_CONSTANTS.UNIT_ID_TARGET)
   local targetName = UnitName(RGPVPW_CONSTANTS.UNIT_ID_TARGET)
+  local _, unitClassName = UnitClass(RGPVPW_CONSTANTS.UNIT_ID_TARGET)
 
   if targetId == nil then
     currentTargetGuid = nil
@@ -76,11 +87,20 @@ function me.UpdateCurrentTarget()
     mod.logger.LogDebug(me.tag, "Update players targetName: " .. currentTargetName)
   end
 
-  -- updating combatState with changed target
+  if unitClassName == nil then
+    currentTargetClassName = nil
+    mod.logger.LogDebug(me.tag, "Update players targetClassName: [Empty-target]")
+  else
+    currentTargetClassName = unitClassName
+    mod.logger.LogDebug(me.tag, "Update players targetClassName: " .. currentTargetClassName)
+  end
+
+  -- updating combatState and stanceState with changed target
   if targetId ~= nil and targetName ~= nil then
     mod.combatState.AcquiredTarget()
-    -- mod.unitBuff.AcquiredTarget()
+    mod.stanceState.AcquiredTarget()
   else
     mod.combatState.LostTarget()
+    mod.stanceState.LostTarget()
   end
 end

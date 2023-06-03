@@ -33,6 +33,7 @@ me.tag = "Ticker"
 
 local warnQueueTicker
 local checkCombatState
+local checkStanceStateExpired
 
 --[[
   Start the repeating update ticker for warnQueue
@@ -73,5 +74,26 @@ function me.StopTickerCheckCombatState()
   if checkCombatState then
     checkCombatState:Cancel()
     mod.logger.LogInfo(me.tag, "Stopped 'CheckCombatState'")
+  end
+end
+
+--[[
+  Start the repeating update ticker for stanceStateExpired
+]]--
+function me.StartTickerCheckStanceStateExpired()
+  if checkStanceStateExpired == nil or checkStanceStateExpired._cancelled then
+    checkStanceStateExpired = C_Timer.NewTicker(
+      RGPVPW_CONSTANTS.CHECK_STANCE_STACE_EXPIRED_INTERVAL, mod.stanceState.CleanExpiredTrackedStances)
+    mod.logger.LogInfo(me.tag, "Started 'CheckStanceStateExpired'")
+  end
+end
+
+--[[
+  Stop the repeating update ticker for stanceStateExpired
+]]--
+function me.StopTickerCheckStanceStateExpired()
+  if checkStanceStateExpired then
+    checkStanceStateExpired:Cancel()
+    mod.logger.LogInfo(me.tag, "Stopped 'CheckStanceStateExpired'")
   end
 end

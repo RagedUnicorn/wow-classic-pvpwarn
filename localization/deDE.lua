@@ -36,6 +36,7 @@ if (GetLocale() == "deDE") then
     .. "für eine Liste der verfügbaren Optionen"
   rgpvpw.L["opt"] = "|cFFFFC300opt|r - zeige Optionsmenu an"
   rgpvpw.L["combatstate"] = "|cFFFFC300combatstate|r - Konfiguriere die Position des Kampfstatus Symbol"
+  rgpvpw.L["stancestate"] = "|cFFFFC300stancestate|r - Konfiguriere die Position des Haltungszustand Symbol"
   rgpvpw.L["reload"] = "|cFFFFC300reload|r - UI neu laden"
   rgpvpw.L["invalid_argument"] = "Ungültiges Argument übergeben"
 
@@ -50,8 +51,12 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["general_title"] = "Allgemeine Konfiguration"
   rgpvpw.L["enable_combat_state_tracking"] = "Aktiviere Kampfstatus Überwachung"
   rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Überwacht den Kampfstatus eines gegnerischen Zieles"
-  rgpvpw.L["lock_frame_combat_state"] = "Blockiere das Kampfstatus Fenster"
-  rgpvpw.L["lock_frame_combat_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Kampfstatus Fenster"
+  rgpvpw.L["lock_frame_combat_state"] = "Blockiere das Kampfzustand Fenster"
+  rgpvpw.L["lock_frame_combat_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Kampfzustand Fenster"
+  rgpvpw.L["enable_stance_state_tracking"] = "Aktiviere Haltungszustand Überwachung"
+  rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Überwacht den Haltungszustand eines gegnerischen Zieles"
+  rgpvpw.L["lock_frame_stance_state"] = "Blockiere das Haltungszustand Fenster"
+  rgpvpw.L["lock_frame_stance_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Haltungszustand Fenster"
 
   -- profiles
   rgpvpw.L["configuration_menu_profiles"] = "Profile"
