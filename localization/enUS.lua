@@ -56,6 +56,15 @@ rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Tracks the stancestate of an
 rgpvpw.L["lock_frame_stance_state"] = "Lock stancestate frame"
 rgpvpw.L["lock_frame_stance_state_tooltip"] = "Locks or unlocks the stancestate frame"
 
+-- zones
+rgpvpw.L["configuration_menu_zone"] = "Zones"
+rgpvpw.L["zone_title"] = "Configure Zones"
+rgpvpw.L["battleground_alterac_valley"] = "Alterac Valley"
+rgpvpw.L["battleground_arathi_basin"] = "Arathi Basin"
+rgpvpw.L["battleground_warsong_gulch"] = "Warsong Gulch"
+-- labels
+rgpvpw.L["label_battlegrounds"] = "Battlegrounds:"
+
 -- profiles
 rgpvpw.L["configuration_menu_profiles"] = "Profiles"
 rgpvpw.L["save_current_profile_button"] = "Create new Profile"

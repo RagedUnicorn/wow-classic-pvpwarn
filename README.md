@@ -75,6 +75,12 @@ Once a profile is created in can be loaded manually or with a macro.
 /run _G["RGPVPW_MACRO_LOADPROFILE"]("Warriorprofile")
 ```
 
+### Enable/Disable Addon in Zones
+
+The addon can be configured to automatically enable or disable in certain zones. This might be useful in Zones such as Alterac Valley where a lot of events are getting generated.
+
+![](docs/pvpwarn_configure_zones.png)
+
 ### Combat State
 
 PVPWarn can track a targets combat state and will display this next to the targetframe. The combat icon can be moved to another place if required.

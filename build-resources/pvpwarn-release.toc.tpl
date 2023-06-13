@@ -37,6 +37,7 @@ code/PVPW_SpellConfiguration.lua
 code/PVPW_Cmd.lua
 code/PVPW_Tooltip.lua
 code/PVPW_Macro.lua
+code/PVPW_Zone.lua
 
 # profiles
 profiles/PVPW_Profile.lua
@@ -61,6 +62,7 @@ gui/PVPW_Frame.xml
 gui/PVPW_AddonConfiguration.lua
 gui/PVPW_AboutContent.lua
 gui/PVPW_GeneralMenu.lua
+gui/PVPW_ZoneMenu.lua
 gui/PVPW_ProfileMenu.lua
 gui/PVPW_CategoryMenu.lua
 gui/PVPW_CategoryMenuSpellsTab.lua

@@ -206,6 +206,14 @@ RGPVPW_CONSTANTS = {
   ELEMENT_GENERAL_OPT_ENABLE_STANCE_STATE = "PVPW_OptEnableStanceStateTracking",
   ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE = "PVPW_OptLockFrameStanceState",
   --[[
+    ZoneMenu
+  ]]--
+  ELEMENT_ZONE_MENU_SUB_OPTION_FRAME = "PVPW_ZoneMenuOptionsFrame",
+  ELEMENT_ZONE_TITLE = "PVPW_ZoneTitle",
+  ELEMENT_ZONE_ALTERAC_VALLEY = "PVPW_AlteracValleyCheckBox",
+  ELEMENT_ZONE_ARATHI_BASIN = "PVPW_ArathiBasinCheckBox",
+  ELEMENT_ZONE_WARSONG_GULCH = "PVPW_WarsongGulchCheckBox",
+  --[[
     A list of available categories consisting of all classes, racials, items and a
     misc category
 

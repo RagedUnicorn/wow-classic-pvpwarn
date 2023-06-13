@@ -58,6 +58,15 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["lock_frame_stance_state"] = "Blockiere das Haltungszustand Fenster"
   rgpvpw.L["lock_frame_stance_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Haltungszustand Fenster"
 
+  -- zones
+  rgpvpw.L["configuration_menu_zone"] = "Zonen"
+  rgpvpw.L["zone_title"] = "Konfiguriere Zonen"
+  rgpvpw.L["battleground_alterac_valley"] = "Alteractal"
+  rgpvpw.L["battleground_arathi_basin"] = "Arathibecken"
+  rgpvpw.L["battleground_warsong_gulch"] = "Kriegshymnenschlucht"
+  -- labels
+  rgpvpw.L["label_battlegrounds"] = "Schlachtfelder:"
+
   -- profiles
   rgpvpw.L["configuration_menu_profiles"] = "Profile"
   rgpvpw.L["save_current_profile_button"] = "Erstelle Profil"

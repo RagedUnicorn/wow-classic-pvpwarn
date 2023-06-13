@@ -55,13 +55,10 @@ PVPWarnConfiguration = {
   ]]--
   ["lockCombatStateFrame"] = true,
   --[[
-    Whether stance state tracking is enabled or not
+    A configuration object that tracks in what places the addon should be enabled or disabled. This mostly helps prevent
+    spamming events in places where the player doesn't want to receive warnings.
   ]]--
-  ["enableStanceStateTracking"] = true,
-  --[[
-    Whether the frame to track an enemies stance state is locked or not
-  ]]--
-  ["lockStanceStateFrame"] = true,
+  ["addonZoneConfiguration"] = nil,
   --[[
     Framepositions for user draggable Frames
     frames = {
@@ -97,14 +94,9 @@ function me.SetupConfiguration()
     PVPWarnConfiguration.lockCombatStateFrame = true
   end
 
-  if PVPWarnConfiguration.enableStanceStateTracking == nil then
-    mod.logger.LogInfo(me.tag, "enableStanceStateTracking has unexpected nil value")
-    PVPWarnConfiguration.enableStanceStateTracking = true
-  end
-
-  if PVPWarnConfiguration.lockStanceStateFrame == nil then
-    mod.logger.LogInfo(me.tag, "lockStanceStateFrame has unexpected nil value")
-    PVPWarnConfiguration.lockStanceStateFrame = true
+  if PVPWarnConfiguration.addonZoneConfiguration == nil then
+    mod.logger.LogInfo(me.tag, "addonZoneConfiguration has unexpected nil value")
+    PVPWarnConfiguration.addonZoneConfiguration  = mod.zone.InitializeDefaultZoneConfiguration()
   end
 
   if PVPWarnConfiguration.frames == nil then
@@ -336,4 +328,55 @@ end
 ]]--
 function me.GetSpellConfiguration(spellType)
   return mod.common.Clone(PVPWarnConfiguration[spellType])
+end
+
+--[[
+  Enable addon in a specific zone
+  Note: ZoneId can be an instanceId or mapId
+
+  @param {number} zoneId
+    A zone from RGPVPW_ZONE
+]]--
+function me.EnableZone(zoneId)
+  if PVPWarnConfiguration.addonZoneConfiguration[zoneId] ~= nil then
+    PVPWarnConfiguration.addonZoneConfiguration[zoneId].enabled = true
+    mod.zone.UpdateZone()
+  else
+    mod.logger.LogWarn(me.tag, "Invalid zoneId ignoring...")
+  end
+end
+
+--[[
+  Disable addon in a specific zone.
+  Note: ZoneId can be an instanceId or mapId
+
+  @param {number} zoneId
+    A zone from RGPVPW_ZONE
+]]--
+function me.DisableZone(zoneId)
+  if PVPWarnConfiguration.addonZoneConfiguration[zoneId] ~= nil then
+    PVPWarnConfiguration.addonZoneConfiguration[zoneId].enabled = false
+    mod.zone.UpdateZone()
+  else
+    mod.logger.LogWarn(me.tag, "Invalid zoneId {" .. zoneId .. "} ignoring...")
+  end
+end
+
+--[[
+  @param {number} zoneId
+    A zone from RGPVPW_ZONE
+
+  @return {boolean | nil}
+    true - if the zone is enabled or not known to the addon (only certain zones can be configured)
+    false - if the zone is not enabled
+]]--
+function me.IsZoneEnabled(zoneId)
+  if PVPWarnConfiguration.addonZoneConfiguration[zoneId] ~= nil then
+    return PVPWarnConfiguration.addonZoneConfiguration[zoneId].enabled
+  else
+    --[[
+      Always return true for zones that are not in the configuration
+    ]]--
+    return true
+  end
 end
