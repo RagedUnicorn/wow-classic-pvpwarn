@@ -73,7 +73,7 @@ function me.SetupAddonConfiguration()
     InterfaceOptionsFrame_OpenToCategory(generalMenu)
 
     Note: The behavior with how events fire might change quite a bit when using the above debug method.
-    Because of this it is important that the "normal" manuall way of opening the menu is tested as well.
+    Because of this it is important that the "normal" manual way of opening the menu is tested as well.
   ]]--
   -- me.OpenAddonPanel()
 
