@@ -46,6 +46,11 @@ function me.ProcessUnfilteredCombatLogEvent(callback, ...)
   end
 
   --[[
+    Ignore events while the player is in a zone that is not enabled
+  ]]--
+  if not mod.zone.IsZoneEnabled() then return end
+
+  --[[
     Filter for hostile player events only
   ]]--
   if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_HOSTILE_PLAYERS) then
