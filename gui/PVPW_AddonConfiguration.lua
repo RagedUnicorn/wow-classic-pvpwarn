@@ -33,118 +33,136 @@ mod.addonConfiguration = me
 me.tag = "AddonConfiguration"
 
 --[[
+  Holds the id reference to the main category of the addon. Can be used with Settings.OpenToCategory({number})
+  {number}
+]]--
+local mainCategoryId
+
+--[[
+  Retrieve a reference to the main category of the addon
+  @return {table | nil}
+    The main category of the addon or nil if not found
+]]--
+function me.GetMainCategory()
+  if mainCategoryId ~= nil then
+    return Settings.GetCategory(mainCategoryId)
+  end
+
+  return nil
+end
+
+--[[
   Create addon configuration menu(s)
 ]]--
 function me.SetupAddonConfiguration()
-  local panel = {}
-
-  panel.main = me.BuildCategory(RGPVPW_CONSTANTS.ELEMENT_ADDON_PANEL, nil, rgpvpw.L["addon_name"])
+  -- initialize the main addon category
+  local category, menu = me.BuildCategory(RGPVPW_CONSTANTS.ELEMENT_ADDON_PANEL, nil, rgpvpw.L["addon_name"])
+  -- add about content into main category
+  mod.aboutContent.BuildAboutContent(menu)
 
   me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
-    panel.main,
+    category,
     rgpvpw.L["configuration_menu_general"],
     mod.generalMenu.BuildUi
   )
 
   me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_ZONE_SUB_OPTION_FRAME,
-    panel.main,
+    category,
     rgpvpw.L["configuration_menu_zone"],
     mod.zoneMenu.BuildUi
   )
 
   me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
-    panel.main,
+    category,
     rgpvpw.L["configuration_menu_profiles"],
     mod.profileMenu.Init
   )
 
-  me.BuildSpellCategories(panel.main)
+  me.BuildSpellCategories(category)
 
   me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
-    panel.main,
+    category,
     rgpvpw.L["configuration_menu_enemy_avoid"],
     mod.enemyAvoidMenu.Init
   )
-
-  --[[
-    For development purpose the InterfaceOptionsFrame_OpenToCategory function can be used to directly
-    open a specific category. Because of a blizzard bug this usually has to be called twice to actually work.
-
-    Example:
-
-    InterfaceOptionsFrame_OpenToCategory(generalMenu)
-    InterfaceOptionsFrame_OpenToCategory(generalMenu)
-
-    Note: The behavior with how events fire might change quite a bit when using the above debug method.
-    Because of this it is important that the "normal" manual way of opening the menu is tested as well.
-  ]]--
-  -- me.OpenAddonPanel()
-
-  mod.aboutContent.BuildAboutContent(panel.main)
 end
 
 --[[
+  Builds main and subcategories
+
   @param {string} frameName
   @param {table} parent
   @param {string} panelText
   @param {function} onShowCallback
 
-  @return {table}
+  @return {table}, {table}
+    category, menu
 ]]--
 function me.BuildCategory(frameName, parent, panelText, onShowCallback)
+  local category
   local menu
 
   if parent == nil then
-    menu = CreateFrame("Frame", frameName, UIParent)
+    menu = CreateFrame("Frame", frameName)
+    category = Settings.RegisterCanvasLayoutCategory(menu, panelText)
+    mainCategoryId = category.ID
+    Settings.RegisterAddOnCategory(category)
   else
-    menu = CreateFrame("Frame", frameName, parent)
+    menu = CreateFrame("Frame", frameName, nil)
     menu.parent = parent.name
+    local subcategory = Settings.RegisterCanvasLayoutSubcategory(parent, menu, frameName)
+    subcategory.name = panelText
+    category = subcategory
+    Settings.RegisterAddOnCategory(subcategory)
   end
-
-  menu.name = panelText
 
   if onShowCallback ~= nil then
     menu:SetScript("OnShow", onShowCallback)
   end
 
-  -- Important to hide panel initially. Interface addon options will take care of showing the menu
+  --[[
+   Important to hide panel initially. Interface addon options will take care of showing the menu.
+   If this is not done OnShow callbacks will not be invoked correctly.
+  ]]--
   menu:Hide()
 
-  -- Add the child to the Interface Options
-  InterfaceOptions_AddCategory(menu)
-
-  return menu
+  return category, menu
 end
 
 --[[
   Build configuration panels for all categories
-  @param {table} configurationPanel
+
+  @param {table} parent
 ]]--
 function me.BuildSpellCategories(parent)
   for index, category in ipairs(RGPVPW_CONSTANTS.CATEGORIES) do
-    local menu = CreateFrame("Frame", category.name, parent)
-    menu.name = rgpvpw.L[category.localizationKey]
+    local menu = CreateFrame("Frame", category.name, nil)
     menu.parent = parent.name
     menu.value = index
     menu.categoryName = category.categoryName
-
+    local subcategory = Settings.RegisterCanvasLayoutSubcategory(parent, menu, category.name)
+    subcategory.name = rgpvpw.L[category.localizationKey]
+    Settings.RegisterAddOnCategory(subcategory)
+    l = subcategory
     menu:SetScript("OnShow", mod.categoryMenu.MenuOnShow)
-    -- Important to hide panel initially. Interface addon options will take care of showing the menu
+
+    --[[
+     Important to hide panel initially. Interface addon options will take care of showing the menu.
+     If this is not done OnShow callbacks will not be invoked correctly.
+    ]]--
     menu:Hide()
-    -- Add the child to the Interface Options
-    InterfaceOptions_AddCategory(menu)
   end
 end
 
 --[[
   Open the Blizzard addon configurations panel for the addon
 ]]--
-function me.OpenAddonPanel()
-  -- Because of a blizzard bug this usually has to be called twice to actually work
-  InterfaceOptionsFrame_OpenToCategory(_G[RGPVPW_CONSTANTS.ELEMENT_ADDON_PANEL])
-  InterfaceOptionsFrame_OpenToCategory(_G[RGPVPW_CONSTANTS.ELEMENT_ADDON_PANEL])
+function me.OpenMainCategory()
+  if mainCategoryId ~= nil then
+    Settings.OpenToCategory(mainCategoryId)
+  end
 end

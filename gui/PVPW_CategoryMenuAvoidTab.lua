@@ -55,6 +55,8 @@ local activeCategory
 function me.Init(frame, category)
   frame.categoryName = category
 
+  ll = frame
+
   if builtMenu then
     -- cleaned cached data from previous category
     cachedCategoryData = nil

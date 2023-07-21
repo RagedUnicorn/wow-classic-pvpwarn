@@ -85,6 +85,18 @@ local contentFrame1
 ]]--
 local contentFrame2
 
+local categoriesBuilt = {}
+
+function me.IsCategoryAlreadyBuilt(category)
+  for i, value in ipairs(categoriesBuilt) do
+    if value.name == category then
+      return true
+    end
+  end
+
+  return false
+end
+
 --[[
   Build or update (if already built) the category menus for configuring spells
 
@@ -92,11 +104,14 @@ local contentFrame2
     Reference to the addon configuration frame to attach to
 ]]--
 function me.MenuOnShow(self)
-  if not builtMenu then
+  oo = self
+  DevTools_Dump(oo)
+  if not me.IsCategoryAlreadyBuilt(self.categoryName) then
+    mod.logger.LogError(me.tag, "Category not built yet - building " .. self.categoryName)
     me.CreateCategoryMenu(self)
   end
 
-  -- if categoryName ~= self.categoryName then
+  -- if categoryName ~= self.categoryName then -- TODO: check if this is necessary
     me.ResetNavigation()
     me.UpdateCategoryMenu(self)
     me.ActivateTab(spellTab) -- activate the spell tab (first tab)
@@ -142,6 +157,13 @@ function me.CreateCategoryMenu(self)
   navigation[resistTab].func = mod.categoryMenuResistTab.Init
 
   builtMenu = true -- mark menu as built preventing from doing this step again
+
+  local category = {}
+  category.name = self.categoryName
+  category.contentFrame1 = contentFrame1
+  category.contentFrame2 = contentFrame2
+  table.insert(categoriesBuilt, category)
+  -- builtMenu = true
 end
 
 --[[
@@ -237,7 +259,7 @@ end
 
 --[[
   Activate a specific tab. Function is either called by an onclick event on one
-  of the tab buttons or initialy when the first tab is activated automatically
+  of the tab buttons or initially when the first tab is activated automatically
 
   @param {number} position
 ]]--

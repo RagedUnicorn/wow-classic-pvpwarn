@@ -40,6 +40,8 @@ local builtMenu = false
     The addon configuration frame to attach to
 ]]--
 function me.BuildUi(frame)
+  pp = frame
+
   if builtMenu then return end
 
   me.BuildTitle(frame)
