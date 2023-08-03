@@ -1,4 +1,3 @@
-# Features
+# Update
 
-* Add configuration option for automatically enabling or disabling the addon in specific zones (backport from bcc)
-* Add stance state tracking for warriors
+* Implement Settings Panel changes required for 11404(1.14.4) release
