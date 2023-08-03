@@ -94,6 +94,7 @@ end
 function me.StopTickerCheckStanceStateExpired()
   if checkStanceStateExpired then
     checkStanceStateExpired:Cancel()
+    checkStanceStateExpired = nil -- explicit reset
     mod.logger.LogInfo(me.tag, "Stopped 'CheckStanceStateExpired'")
   end
 end

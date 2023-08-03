@@ -44,7 +44,7 @@ me.tag = "GuiHelper"
   @param {string} text
     Optional text that is used as label for the checkbox
 
-  @retun {table}
+  @return {table}
     The created checkbox
 ]]--
 function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowCallback, text)
