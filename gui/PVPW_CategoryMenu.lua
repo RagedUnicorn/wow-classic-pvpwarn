@@ -73,6 +73,7 @@ function me.MenuOnShow(self)
   end
 
   me.ResetNavigation()
+  me.UpdateCategoryMenu(self)
   me.ActivateTab(spellTab) -- activate the spell tab (first tab)
 end
 
@@ -107,6 +108,22 @@ function me.GetCategoryContainerReference(category)
   end
 
   return nil
+end
+
+--[[
+  Update the category tab buttons, this is invoked everytime the category changes
+  Some of the spell categories do not have an avoid tab
+
+  @param {table} self
+]]--
+function me.UpdateCategoryTabButtons(self)
+  local category = me.GetCategoryContainerReference(categoryName)
+
+  if not RGPVPW_CONSTANTS.CATEGORIES[self.value].enemyAvoidEnabled then
+    category.avoidTabButton:Hide()
+  else
+    category.avoidTabButton:Show()
+  end
 end
 
 --[[
