@@ -30,65 +30,61 @@ mod.categoryMenu = me
 
 me.tag = "CategoryMenu"
 
-
--- track whether the menu was already built
-local builtMenu = false
-
-
 --[[
-  The class configuration menu consists of multiple tabs. This module is responsible
-  for handling those tabs
-]]--
-local navigation = {
-  -- tab 1
-  [1] = {
-    ["active"] = false,
-    ["func"] = nil,
-    ["contentFrame"] = nil
-  },
-  -- tab 2
-  [2] = {
-    ["active"] = false,
-    ["func"] = nil,
-    ["contentFrame"] = nil
-  }
-}
+  The category menu builds a container for each category. Each category container has two subcontainers
+  for spells and avoid. The user can switch between those two containers with the help of tabs.
+
+  The goals of this module is to keep track of the already built containers and reuse them if the user navigates back.
+--]]
 
 --[[
   Currently active category
 ]]--
 local categoryName
-
+--[[
+  Identifiers for the different tabs
+]]--
 local spellTab = 1
 local resistTab = 2
+--[[
+  Reference to the currently active tab
 
---[[
-  Reference to the first tab switching button. The button changes its attached parent
-  when switching through the different categories
+  One of spellTab(0) or resistTab(1)
 ]]--
-local tabButton1
+local activeTab
 --[[
-  Reference to the second tab switching button. The button changes its attached parent
-  when switching through the different categories
+  Track whether the tab containers for a certain category were already built and store all relevant ui
+  elements for the category
 ]]--
-local tabButton2
---[[
-  Reference to the first content frame. The contentFrame changes its attached parent
-  when switching through the different categories. It then clears out its content and
-  displays the content of the current category.
-]]--
-local contentFrame1
---[[
-  Reference to the second content frame. The contentFrame changes its attached parent
-  when switching through the different categories. It then clears out its content and
-  displays the content of the current category.
-]]--
-local contentFrame2
-
 local categoriesBuilt = {}
 
-function me.IsCategoryAlreadyBuilt(category)
-  for i, value in ipairs(categoriesBuilt) do
+--[[
+  Build or update (if already built) the category menus for configuring spells
+
+  @param {table} self
+    Reference to the addon configuration frame to attach to
+]]--
+function me.MenuOnShow(self)
+  categoryName = self.categoryName -- update active category name
+
+  if not me.IsCategoryContainerAlreadyBuilt(self.categoryName) then
+    mod.logger.LogError(me.tag, "Category not built yet - building " .. self.categoryName)
+    me.CreateCategoryMenu(self)
+  end
+
+  me.ResetNavigation()
+  me.ActivateTab(spellTab) -- activate the spell tab (first tab)
+end
+
+--[[
+  @param {string} category
+
+  @return {boolean}
+    true - if the category container was already built
+    false - if the category container was not yet built
+ --]]
+function me.IsCategoryContainerAlreadyBuilt(category)
+  for _, value in ipairs(categoriesBuilt) do
     if value.name == category then
       return true
     end
@@ -98,33 +94,29 @@ function me.IsCategoryAlreadyBuilt(category)
 end
 
 --[[
-  Build or update (if already built) the category menus for configuring spells
+  @param {string} category
 
-  @param {table} self
-    Reference to the addon configuration frame to attach to
+  @return {table | nil}
+    The category container reference or nil if not found
 ]]--
-function me.MenuOnShow(self)
-  oo = self
-  DevTools_Dump(oo)
-  if not me.IsCategoryAlreadyBuilt(self.categoryName) then
-    mod.logger.LogError(me.tag, "Category not built yet - building " .. self.categoryName)
-    me.CreateCategoryMenu(self)
+function me.GetCategoryContainerReference(category)
+  for _, categoryReference in ipairs(categoriesBuilt) do
+    if categoryReference.name == category then
+      return categoryReference
+    end
   end
 
-  -- if categoryName ~= self.categoryName then -- TODO: check if this is necessary
-    me.ResetNavigation()
-    me.UpdateCategoryMenu(self)
-    me.ActivateTab(spellTab) -- activate the spell tab (first tab)
-  -- end
+  return nil
 end
 
 --[[
   Create the initial elements for the category menu. This includes containers to switch between
-  the spelltab and the resisttab and the buttons to allow this switching process. This function should
-  only run once avoiding creating unnecessary ui elements.
+  the spelltab and the avoidtab and the buttons to allow this switching process. This function should
+  only run once for each category. If the user navigates back to a category that was already built
+  the function will not run again.
 ]]--
 function me.CreateCategoryMenu(self)
-  tabButton1 = me.CreateTabButton(
+  local spellTabButton = me.CreateTabButton(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. spellTab,
     {"TOPLEFT", 5, 30},
@@ -132,7 +124,7 @@ function me.CreateCategoryMenu(self)
     spellTab
   )
 
-  tabButton2 = me.CreateTabButton(
+  local avoidTabButton = me.CreateTabButton(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. resistTab,
     {"TOPLEFT", 70, 30},
@@ -140,30 +132,29 @@ function me.CreateCategoryMenu(self)
     resistTab
   )
 
-  contentFrame1 = me.CreateCategoryMenuContentFrame(
+  local spellContentFrame = me.CreateCategoryMenuContentFrame(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. spellTab,
     {"TOPLEFT", self, 5, -7}
   )
-  navigation[spellTab].contentFrame = contentFrame1
-  navigation[spellTab].func = mod.categoryMenuSpellsTab.Init
 
-  contentFrame2 = me.CreateCategoryMenuContentFrame(
+  local avoidContentFrame = me.CreateCategoryMenuContentFrame(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. resistTab,
     {"TOPLEFT", self, 5, -7}
   )
-  navigation[resistTab].contentFrame = contentFrame2
-  navigation[resistTab].func = mod.categoryMenuResistTab.Init
 
-  builtMenu = true -- mark menu as built preventing from doing this step again
+  local category = {
+    name = self.categoryName,
+    spellContentFrame = spellContentFrame,
+    spellInitFunc = mod.categoryMenuSpellsTab.Init,
+    avoidContentFrame = avoidContentFrame,
+    resistInitFunc = mod.categoryMenuResistTab.Init,
+    spellTabButton = spellTabButton,
+    avoidTabButton = avoidTabButton
+  }
 
-  local category = {}
-  category.name = self.categoryName
-  category.contentFrame1 = contentFrame1
-  category.contentFrame2 = contentFrame2
   table.insert(categoriesBuilt, category)
-  -- builtMenu = true
 end
 
 --[[
@@ -177,6 +168,7 @@ end
 ]]--
 function me.CreateTabButton(parentFrame, tabButtonName, position, text, id)
   local tabButton = CreateFrame("Button", tabButtonName, parentFrame, "TabButtonTemplate")
+
   tabButton.id = id
   tabButton:SetPoint(unpack(position))
   tabButton:SetText(text)
@@ -197,6 +189,7 @@ end
 ]]--
 function me.CreateCategoryMenuContentFrame(self, contentFrameName, position)
   local contentFrame = CreateFrame("Frame", contentFrameName, self, "BackdropTemplate")
+
   contentFrame:SetPoint(unpack(position))
   contentFrame:SetBackdropColor(1, 0.37, 0.5, .7)
   contentFrame:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)
@@ -209,8 +202,9 @@ end
   @param {table} self
 ]]--
 function me.TabNavigationButtonOnClick(self)
-  if navigation[self.id].active then
+  if activeTab == self.id then
     mod.logger.LogDebug(me.tag, "Tab is already active - skipping...")
+
     return
   end
 
@@ -219,68 +213,49 @@ function me.TabNavigationButtonOnClick(self)
 end
 
 --[[
-  Update the cateogry menu. This is invoked everytime the category changes. Buttons parents
-  need to be updated.
-
-  @param {table} self
-]]--
-function me.UpdateCategoryMenu(self)
-  -- update ui elements parentframe
-  tabButton1:SetParent(self)
-  tabButton2:SetParent(self)
-  contentFrame1:SetParent(self)
-  contentFrame2:SetParent(self)
-
-  if not RGPVPW_CONSTANTS.CATEGORIES[self.value].enemyAvoidEnabled then
-    tabButton2:Hide()
-    contentFrame2:Hide()
-  else
-    tabButton2:Show()
-    contentFrame2:Show()
-  end
-
-  -- update the current active category
-  categoryName = self.categoryName
-end
-
---[[
   Reset navigation
 ]]--
 function me.ResetNavigation()
   mod.logger.LogDebug(me.tag, "Resetting navigation")
 
-  for position, _ in pairs(navigation) do
-    _G[RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. position]:UnlockHighlight()
+  local category = me.GetCategoryContainerReference(categoryName)
 
-    navigation[position].active = false
-    navigation[position].contentFrame:Hide()
-  end
+  category.spellContentFrame:Hide()
+  category.avoidContentFrame:Hide()
+  category.spellTabButton:UnlockHighlight()
+  category.avoidTabButton:UnlockHighlight()
+
+  activeTab = nil
 end
 
 --[[
   Activate a specific tab. Function is either called by an onclick event on one
   of the tab buttons or initially when the first tab is activated automatically
 
-  @param {number} position
+  @param {number} position spellTag or resistTab
 ]]--
 function me.ActivateTab(position)
-  me.HideAllTabs()
   mod.logger.LogDebug(me.tag, "Activating tab position " .. position)
 
-  local nav = navigation[position]
-  _G[RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. position]:LockHighlight()
+  local category = me.GetCategoryContainerReference(categoryName)
 
-  nav.active = true
-  nav.contentFrame:Show()
-  nav.func(nav.contentFrame, categoryName)
-end
+  if position == spellTab then
+    category.spellContentFrame:Show()
+    category.spellTabButton:LockHighlight()
+    category.avoidContentFrame:Hide()
+    category.avoidTabButton:UnlockHighlight()
 
---[[
-  Hide all other tabs before activating a new one
-]]--
-function me.HideAllTabs()
-  for i = 1, #navigation do
-    navigation[i].active = false
-    navigation[i].contentFrame:Hide()
+    activeTab = spellTab
+
+    category.spellInitFunc(category.spellContentFrame, categoryName)
+  elseif position == resistTab then
+    category.avoidContentFrame:Show()
+    category.avoidTabButton:LockHighlight()
+    category.spellContentFrame:Hide()
+    category.spellTabButton:UnlockHighlight()
+
+    activeTab = resistTab
+
+    category.resistInitFunc(category.avoidContentFrame, categoryName)
   end
 end
