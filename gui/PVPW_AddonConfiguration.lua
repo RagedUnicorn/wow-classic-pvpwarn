@@ -23,7 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame UIParent InterfaceOptions_AddCategory InterfaceOptionsFrame_OpenToCategory
+-- luacheck: globals CreateFrame UIParent InterfaceOptions_AddCategory InterfaceOptionsFrame_OpenToCategory Settings
 
 local mod = rgpvpw
 local me = {}
@@ -144,10 +144,11 @@ function me.BuildSpellCategories(parent)
     menu.parent = parent.name
     menu.value = index
     menu.categoryName = category.categoryName
+
     local subcategory = Settings.RegisterCanvasLayoutSubcategory(parent, menu, category.name)
     subcategory.name = rgpvpw.L[category.localizationKey]
+
     Settings.RegisterAddOnCategory(subcategory)
-    l = subcategory
     menu:SetScript("OnShow", mod.categoryMenu.MenuOnShow)
 
     --[[

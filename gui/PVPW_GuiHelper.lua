@@ -225,10 +225,10 @@ end
     @param {number} maxRows
     @param {function} callback
     @param {function} createSpellFrameFunc
-    @param {table} storage -- TODO update
+    @param {table} storage
 ]]--
 function me.CreateFauxScrollFrame(
-    scrollFrameName, parentFrame, scrollFrameWidth, rowHeight, maxRows, callback, createSpellFrameFunc, storedCategory)
+    scrollFrameName, parentFrame, scrollFrameWidth, rowHeight, maxRows, callback, createSpellFrameFunc, storage)
   local scrollFrame = CreateFrame("ScrollFrame", scrollFrameName, parentFrame, "FauxScrollFrameTemplate")
   scrollFrame:SetWidth(scrollFrameWidth)
   scrollFrame:SetHeight(rowHeight * maxRows)
@@ -238,11 +238,11 @@ function me.CreateFauxScrollFrame(
     CloseMenus()
     self.ScrollBar:SetValue(offset)
     self.offset = math.floor(offset / rowHeight + 0.5)
-    callback(self, self:GetParent().categoryName, storedCategory)
+    callback(self, self:GetParent().categoryName)
   end)
 
   for i = 1, maxRows do
-    table.insert(storedCategory.spellRows, createSpellFrameFunc(scrollFrame, i))
+    table.insert(storage, createSpellFrameFunc(scrollFrame, i))
   end
 
   scrollFrame:ClearAllPoints()

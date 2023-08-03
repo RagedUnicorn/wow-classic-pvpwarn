@@ -49,67 +49,35 @@ local cachedCategoryData
 ]]--
 local activeCategory
 
-local categoriesBuilt = {}
-
 --[[
   @param {table} frame
   @param {string} category
 ]]--
 function me.Init(frame, category)
-  mod.logger.LogError(me.tag, "Init with category: " .. category)
   frame.categoryName = category
-  k = frame
 
-  if me.IsCategoryAlreadyBuilt(category) then
-    mod.logger.LogError(me.tag, "Menu already built - aborting")
-    -- cleaned cached data from previous category
+  if builtMenu then
     cachedCategoryData = nil
     mod.logger.LogInfo(me.tag, "Wiped cached spellList after category switch")
-    -- changing the scrollframes parent to the respective active category panel
-    -- spellScrollFrame:SetParent(me.GetCategoryReference(category))
-    spellScrollFrame = me.GetCategoryReference(category)
+
+    me.UpdateCategoryMenu(frame)
     -- update the scrolllist with new category data
-    me.FauxScrollFrameOnUpdate(spellScrollFrame, category, me.GetStoredCategory(category))
+    me.FauxScrollFrameOnUpdate(spellScrollFrame, category)
   else
-    mod.logger.LogError(me.tag, "Building menu for category: " .. category)
     me.BuildUi(frame, category)
+    builtMenu = true
   end
 end
 
--- TODO
-function me.IsCategoryAlreadyBuilt(category)
-  for i, value in ipairs(categoriesBuilt) do
-    if value.name == category then
-      return true
-    end
-  end
-
-  return false
+--[[
+  Update the category menu spells tab to its new parent category
+]]--
+function me.UpdateCategoryMenu(parentFrame)
+  spellScrollFrame:ClearAllPoints()
+  spellScrollFrame:SetPoint("TOPLEFT", parentFrame)
+  spellScrollFrame:SetParent(parentFrame)
+  spellScrollFrame:SetVerticalScroll(0) -- reset scroll position to top
 end
-
--- TODO
-function me.GetCategoryReference(category)
-  for i, value in ipairs(categoriesBuilt) do
-    if value.name == category then
-      return value.reference
-    end
-  end
-
-  return nil
-end
-
--- TODO
-function me.GetStoredCategory(category)
-  for i, value in ipairs(categoriesBuilt) do
-    if value.name == category then
-      return value
-    end
-  end
-
-  return nil
-end
-
-
 
 --[[
   Create the spelllist configuration menu
@@ -118,17 +86,8 @@ end
   @param {string} category
 ]]--
 function me.BuildUi(frame, category)
-  local storedCategory = {}
-  storedCategory.name = storedCategory
-  storedCategory.spellRows = {}
-
-  spellScrollFrame = me.CreateSpellList(frame, category, storedCategory)
-  storedCategory.reference = spellScrollFrame
-  table.insert(categoriesBuilt, storedCategory)
-  me.FauxScrollFrameOnUpdate(spellScrollFrame, category, storedCategory)
-
-
-  -- builtMenu = true
+  spellScrollFrame = me.CreateSpellList(frame, category)
+  me.FauxScrollFrameOnUpdate(spellScrollFrame, category)
 end
 
 --[[
@@ -136,11 +95,10 @@ end
 
   @param {table} frame
   @param {string} category
-  -- TODO
 
   @return {table}
 ]]--
-function me.CreateSpellList(frame, category, storedCategory)
+function me.CreateSpellList(frame, category)
   return mod.guiHelper.CreateFauxScrollFrame(
     RGPVPW_CONSTANTS.ELEMENT_SPELL_LIST_SCROLL_FRAME .. " " .. category,
     frame,
@@ -149,7 +107,7 @@ function me.CreateSpellList(frame, category, storedCategory)
     RGPVPW_CONSTANTS.SPELL_SELF_AVOID_LIST_MAX_ROWS,
     me.FauxScrollFrameOnUpdate,
     me.CreateRowFrame,
-    storedCategory
+    spellRows
   )
 end
 
@@ -457,19 +415,16 @@ function me.ToggleVisualWarningOnClick(self)
 end
 
 --[[
-  Update the scrollframe on vertical scroll events and initialy. Gathers all items that
+  Update the scrollframe on vertical scroll events and initially. Gathers all items that
   are intended to be displayed. To prevent a heavy load while retrieving the data this step
   is only done once and the data is being cached for further update events.
 
   @param {table} scrollFrame
   @param {string} category
-  -- TODO
 ]]--
-function me.FauxScrollFrameOnUpdate(scrollFrame, category, storedCategory)
-  mod.logger.LogError(me.tag, "FauxScrollFrameOnUpdate " .. category .. "scrollFrame: " .. scrollFrame:GetName())
+function me.FauxScrollFrameOnUpdate(scrollFrame, category)
   activeCategory = category
-  cachedCategoryData = nil
-  uu = scrollFrame
+
   if cachedCategoryData == nil then
     mod.logger.LogInfo(me.tag, string.format("Warmed up cached spellList for category '%s'", category))
     cachedCategoryData = mod.spellMap.GetAllForCategory(category)
@@ -494,7 +449,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category, storedCategory)
     local value = i + offset
 
     if value <= maxValue then
-      local row = storedCategory.spellRows[i]
+      local row = spellRows[i]
 
       if cachedCategoryData[value] ~= nil then
         local spell = cachedCategoryData[value]
@@ -506,10 +461,6 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category, storedCategory)
         row.playSound.soundFileName = spell.soundFileName
         row.playSoundSpecial.soundFileName = spell.soundFileName
 
-        -- mod.logger.LogError(me.tag, "Okay lets start updating this spell")
-        ee = row
-        tt = category
-
         me.UpdateIcon(row.spellIcon, category, spell)
         me.UpdateSpellStateCheckBox(row.spellStateCheckBox, category, spell.normalizedSpellName)
         me.UpdateSound(row.soundCheckBox, category, spell.normalizedSpellName)
@@ -519,7 +470,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category, storedCategory)
 
         row:Show()
       else
-        storedCategory.spellRows[i]:Hide()
+        spellRows[i]:Hide()
       end
     end
   end
