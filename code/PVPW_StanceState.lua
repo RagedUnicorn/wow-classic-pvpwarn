@@ -110,7 +110,7 @@ end
 --[[
   Enable the tracking of stance state
 ]]--
-function me.DisableStanceStateTracking()
+function me.EnableStanceStateTracking()
   mod.ticker.StartTickerCheckStanceStateExpired()
 end
 
