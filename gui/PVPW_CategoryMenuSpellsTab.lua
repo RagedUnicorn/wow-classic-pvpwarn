@@ -57,16 +57,26 @@ function me.Init(frame, category)
   frame.categoryName = category
 
   if builtMenu then
-    -- cleaned cached data from previous category
     cachedCategoryData = nil
     mod.logger.LogInfo(me.tag, "Wiped cached spellList after category switch")
-    -- changing the scrollframes parent to the respective active category panel
-    spellScrollFrame:SetParent(frame)
+
+    me.UpdateCategoryMenu(frame)
     -- update the scrolllist with new category data
     me.FauxScrollFrameOnUpdate(spellScrollFrame, category)
   else
     me.BuildUi(frame, category)
+    builtMenu = true
   end
+end
+
+--[[
+  Update the category menu spells tab to its new parent category
+]]--
+function me.UpdateCategoryMenu(parentFrame)
+  spellScrollFrame:ClearAllPoints()
+  spellScrollFrame:SetPoint("TOPLEFT", parentFrame)
+  spellScrollFrame:SetParent(parentFrame)
+  spellScrollFrame:SetVerticalScroll(0) -- reset scroll position to top
 end
 
 --[[
@@ -76,21 +86,21 @@ end
   @param {string} category
 ]]--
 function me.BuildUi(frame, category)
-  spellScrollFrame = me.CreateSpellList(frame)
+  spellScrollFrame = me.CreateSpellList(frame, category)
   me.FauxScrollFrameOnUpdate(spellScrollFrame, category)
-  builtMenu = true
 end
 
 --[[
   Create the scrollist for the spelllist
 
   @param {table} frame
+  @param {string} category
 
   @return {table}
 ]]--
-function me.CreateSpellList(frame)
+function me.CreateSpellList(frame, category)
   return mod.guiHelper.CreateFauxScrollFrame(
-    RGPVPW_CONSTANTS.ELEMENT_SPELL_LIST_SCROLL_FRAME,
+    RGPVPW_CONSTANTS.ELEMENT_SPELL_LIST_SCROLL_FRAME .. " " .. category,
     frame,
     RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH,
     RGPVPW_CONSTANTS.SPELL_SELF_AVOID_LIST_ROW_HEIGHT,
@@ -405,7 +415,7 @@ function me.ToggleVisualWarningOnClick(self)
 end
 
 --[[
-  Update the scrollframe on vertical scroll events and initialy. Gathers all items that
+  Update the scrollframe on vertical scroll events and initially. Gathers all items that
   are intended to be displayed. To prevent a heavy load while retrieving the data this step
   is only done once and the data is being cached for further update events.
 

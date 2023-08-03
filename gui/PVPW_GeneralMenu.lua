@@ -275,22 +275,14 @@ end
 ]]--
 function me.BuildCheckButtonOption(parentFrame, optionFrameName, posX, posY, onShowCallback, onClickCallback,
   linkedCheckButtonNames)
-
-  local checkButtonOptionFrame = CreateFrame("CheckButton", optionFrameName, parentFrame, "UICheckButtonTemplate")
-  checkButtonOptionFrame:SetSize(
-    RGPVPW_CONSTANTS.GENERAL_CHECK_OPTION_SIZE,
-    RGPVPW_CONSTANTS.GENERAL_CHECK_OPTION_SIZE
+  local checkButtonOptionFrame = mod.guiHelper.CreateCheckBox(
+    optionFrameName,
+    parentFrame,
+    {"TOPLEFT", posX, posY},
+    onShowCallback,
+    onClickCallback,
+    me.GetLabelText(optionFrameName)
   )
-  checkButtonOptionFrame:SetPoint("TOPLEFT", posX, posY)
-
-  for _, region in ipairs({checkButtonOptionFrame:GetRegions()}) do
-    if string.find(region:GetName() or "", "Text$") and region:IsObjectType("FontString") then
-      region:SetFont(STANDARD_TEXT_FONT, 15)
-      region:SetTextColor(.95, .95, .95)
-      region:SetText(me.GetLabelText(checkButtonOptionFrame))
-      break
-    end
-  end
 
   --[[
     Set a linked button that automatically gets enabled/disabled based on the checkButton state
@@ -310,18 +302,16 @@ end
 --[[
   Get the label text for the checkbutton
 
-  @param {table} frame
+  @param {string} frameName
 
   @return {string}
     The text for the label
 ]]--
-function me.GetLabelText(frame)
-  local name = frame:GetName()
-
-  if not name then return end
+function me.GetLabelText(frameName)
+  if not frameName then return end
 
   for i = 1, table.getn(options) do
-    if name == RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT .. options[i][1] then
+    if frameName == RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT .. options[i][1] then
       return options[i][2]
     end
   end

@@ -59,13 +59,24 @@ function me.Init(frame, category)
     -- cleaned cached data from previous category
     cachedCategoryData = nil
     mod.logger.LogInfo(me.tag, "Wiped cached spellAvoidList after category switch")
-    -- changing the scrollframes parent to the respective active category panel
-    spellSelfAvoidScrollFrame:SetParent(frame)
+
+    me.UpdateCategoryMenu(frame)
     -- update the scrolllist with new category data
     me.FauxScrollFrameOnUpdate(spellSelfAvoidScrollFrame, category)
   else
     me.BuildUi(frame, category)
+    builtMenu = true
   end
+end
+
+--[[
+  Update the category menu avoid tab to its new parent category
+]]--
+function me.UpdateCategoryMenu(parentFrame)
+  spellSelfAvoidScrollFrame:ClearAllPoints()
+  spellSelfAvoidScrollFrame:SetPoint("TOPLEFT", parentFrame)
+  spellSelfAvoidScrollFrame:SetParent(parentFrame)
+  spellSelfAvoidScrollFrame:SetVerticalScroll(0) -- reset scroll position to top
 end
 
 --[[
@@ -77,7 +88,6 @@ end
 function me.BuildUi(frame, category)
   spellSelfAvoidScrollFrame = me.CreateSpellSelfAvoidList(frame)
   me.FauxScrollFrameOnUpdate(spellSelfAvoidScrollFrame, category)
-  builtMenu = true
 end
 
 --[[
