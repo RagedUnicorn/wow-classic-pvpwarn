@@ -2,7 +2,7 @@
 ## Title: PVPWarn
 ## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
 ## Notes: PVPWarn aims to warn players visually and acoustically about pvp events
-## Version: v1.1.7
+## Version: v1.1.8
 ## SavedVariablesPerCharacter: PVPWarnConfiguration PVPWarnLogTracker PVPWarnTestLog PVPWarnProfiles
 
 # constant values
