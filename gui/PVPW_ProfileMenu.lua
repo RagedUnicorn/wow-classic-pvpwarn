@@ -191,13 +191,11 @@ end
   @return {table}
     The created fontString
 ]]--
-function me.CreateProfileTitle(frame)
-  local profileTitleFontString = frame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_PROFILE_TITLE, "OVERLAY")
-  profileTitleFontString:SetFont(STANDARD_TEXT_FONT, 15)
-  profileTitleFontString:SetPoint(
-    "TOPLEFT", 15, -15
-  )
-  profileTitleFontString:SetTextColor(.95, .95, .95)
+function me.CreateProfileTitle(parentFrame)
+  local profileTitleFontString = parentFrame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_PROFILE_TITLE, "OVERLAY")
+  profileTitleFontString:SetFont(STANDARD_TEXT_FONT, 20)
+  profileTitleFontString:SetPoint("TOP", 0, -20)
+  profileTitleFontString:SetSize(parentFrame:GetWidth(), 20)
   profileTitleFontString:SetText(rgpvpw.L["configuration_menu_profiles"])
 
   return profileTitleFontString
