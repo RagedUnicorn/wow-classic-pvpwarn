@@ -63,7 +63,7 @@ function me.SetupSlashCmdList()
     elseif args[1] == "rl" or args[1] == "reload" then
       ReloadUI()
     elseif args[1] == "opt" then
-      mod.addonConfiguration.OpenAddonPanel()
+      mod.addonConfiguration.OpenMainCategory()
     elseif args[1] == "combatstate" then
       if args[2] == "enable" then
         mod.combatState.EnableConfigurationMode()
