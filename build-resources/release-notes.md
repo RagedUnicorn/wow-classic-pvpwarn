@@ -1,3 +1,4 @@
-# Update
+# Fix
 
-* Implement Settings Panel changes required for 11404(1.14.4) release
+* Fig rggm.opt command
+* Fix supported version 11404(1.14.4)
