@@ -68,7 +68,7 @@ function me.MenuOnShow(self)
   categoryName = self.categoryName -- update active category name
 
   if not me.IsCategoryContainerAlreadyBuilt(self.categoryName) then
-    mod.logger.LogError(me.tag, "Category not built yet - building " .. self.categoryName)
+    mod.logger.LogInfo(me.tag, "Category not built yet - building " .. self.categoryName)
     me.CreateCategoryMenu(self)
   end
 
