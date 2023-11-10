@@ -99,7 +99,7 @@ function me.CreateCategoryMenuContentFrame(frame)
 end
 
 --[[
-  Create the scrollist for the spelllist
+  Create the scroll list for the spell list
 
   @param {table} frame
 
@@ -287,10 +287,10 @@ function me.CreateAvoidVisualAlertDropdown(spellFrame)
 end
 
 --[[
-  Callback for color dropdownmenu
+  Callback for color dropdown menu
 
   @param {table} self
-    A reference to the dropdownbutton
+    A reference to the dropdown button
 ]]--
 function me.DropDownMenuCallback(self)
   mod.spellConfiguration.UpdateVisualWarningColor(
@@ -328,7 +328,7 @@ function me.ToggleAvoidVisualWarningOnClick(self)
 end
 
 --[[
-  Update the scrollframe on vertical scroll events and initialy. Gathers all items that
+  Update the scroll frame on vertical scroll events and initially. Gathers all items that
   are intended to be displayed. To prevent a heavy load while retrieving the data this step
   is only done once and the data is being cached for further update events.
 
