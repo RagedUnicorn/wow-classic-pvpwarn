@@ -51,10 +51,10 @@ local activeCategory
 
 --[[
   @param {table} frame
-  @param {string} category
+  @param {string} categoryName
 ]]--
-function me.Init(frame, category)
-  frame.categoryName = category
+function me.Init(frame, categoryName)
+  frame.categoryName = categoryName
 
   if builtMenu then
     cachedCategoryData = nil
@@ -62,9 +62,9 @@ function me.Init(frame, category)
 
     me.UpdateCategoryMenu(frame)
     -- update the scrolllist with new category data
-    me.FauxScrollFrameOnUpdate(spellScrollFrame, category)
+    me.FauxScrollFrameOnUpdate(spellScrollFrame, categoryName)
   else
-    me.BuildUi(frame, category)
+    me.BuildUi(frame, categoryName)
     builtMenu = true
   end
 end
@@ -83,24 +83,24 @@ end
   Create the spelllist configuration menu
 
   @param {table} frame
-  @param {string} category
+  @param {string} categoryName
 ]]--
-function me.BuildUi(frame, category)
-  spellScrollFrame = me.CreateSpellList(frame, category)
-  me.FauxScrollFrameOnUpdate(spellScrollFrame, category)
+function me.BuildUi(frame, categoryName)
+  spellScrollFrame = me.CreateSpellList(frame, categoryName)
+  me.FauxScrollFrameOnUpdate(spellScrollFrame, categoryName)
 end
 
 --[[
   Create the scrollist for the spelllist
 
   @param {table} frame
-  @param {string} category
+  @param {string} categoryName
 
   @return {table}
 ]]--
-function me.CreateSpellList(frame, category)
+function me.CreateSpellList(frame, categoryName)
   return mod.guiHelper.CreateFauxScrollFrame(
-    RGPVPW_CONSTANTS.ELEMENT_SPELL_LIST_SCROLL_FRAME .. " " .. category,
+    RGPVPW_CONSTANTS.ELEMENT_SPELL_LIST_SCROLL_FRAME .. " " .. categoryName,
     frame,
     RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH,
     RGPVPW_CONSTANTS.SPELL_SELF_AVOID_LIST_ROW_HEIGHT,
@@ -420,14 +420,14 @@ end
   is only done once and the data is being cached for further update events.
 
   @param {table} scrollFrame
-  @param {string} category
+  @param {string} categoryName
 ]]--
-function me.FauxScrollFrameOnUpdate(scrollFrame, category)
-  activeCategory = category
+function me.FauxScrollFrameOnUpdate(scrollFrame, categoryName)
+  activeCategory = categoryName
 
   if cachedCategoryData == nil then
-    mod.logger.LogInfo(me.tag, string.format("Warmed up cached spellList for category '%s'", category))
-    cachedCategoryData = mod.spellMap.GetAllForCategory(category)
+    mod.logger.LogInfo(me.tag, string.format("Warmed up cached spellList for categoryName '%s'", categoryName))
+    cachedCategoryData = mod.spellMap.GetAllForCategory(categoryName)
   end
 
   local maxValue = mod.common.TableLength(cachedCategoryData) or 0
@@ -455,18 +455,18 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
         local spell = cachedCategoryData[value]
 
         row.normalizedSpellName = spell.normalizedSpellName
-        row.category = category
+        row.category = categoryName
         row.spellTitle:SetText(spell.name)
 
         row.playSound.soundFileName = spell.soundFileName
         row.playSoundSpecial.soundFileName = spell.soundFileName
 
-        me.UpdateIcon(row.spellIcon, category, spell)
-        me.UpdateSpellStateCheckBox(row.spellStateCheckBox, category, spell.normalizedSpellName)
-        me.UpdateSound(row.soundCheckBox, category, spell.normalizedSpellName)
-        me.UpdateSoundSpecial(row.soundSpecialCheckBox, row.playSoundSpecial, category, spell)
+        me.UpdateIcon(row.spellIcon, categoryName, spell)
+        me.UpdateSpellStateCheckBox(row.spellStateCheckBox, categoryName, spell.normalizedSpellName)
+        me.UpdateSound(row.soundCheckBox, categoryName, spell.normalizedSpellName)
+        me.UpdateSoundSpecial(row.soundSpecialCheckBox, row.playSoundSpecial, categoryName, spell)
 
-        me.UpdateChooseVisualDropdownMenu(row.chooseVisual, category, spell.normalizedSpellName)
+        me.UpdateChooseVisualDropdownMenu(row.chooseVisual, categoryName, spell.normalizedSpellName)
 
         row:Show()
       else
@@ -478,12 +478,12 @@ end
 
 --[[
   @param {table} spellIcon
-  @param {string} category
+  @param {string} categoryName
   @param {table} spell
 ]]--
-function me.UpdateIcon(spellIcon, category, spell)
+function me.UpdateIcon(spellIcon, categoryName, spell)
   local iconId
-  local color = RGPVPW_CONSTANTS.CATEGORY_COLOR[category]
+  local color = RGPVPW_CONSTANTS.CATEGORY_COLOR[categoryName]
 
   --[[
     For most items we have to track the actual spelleffect in the combat log. However for
@@ -501,13 +501,13 @@ end
 
 --[[
   @param {table} dropdownMenu
-  @param {string} category
+  @param {string} categoryName
   @param {string} spellName
 ]]--
-function me.UpdateChooseVisualDropdownMenu(dropdownMenu, category, spellName)
+function me.UpdateChooseVisualDropdownMenu(dropdownMenu, categoryName, spellName)
   local colorValue = mod.spellConfiguration.GetVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
-    category,
+    categoryName,
     spellName
   )
 
@@ -522,13 +522,13 @@ end
 
 --[[
   @param {table} spellStateCheckBox
-  @param {string} category
+  @param {string} categoryName
   @param {string} spellName
 ]]--
-function me.UpdateSpellStateCheckBox(spellStateCheckBox, category, spellName)
+function me.UpdateSpellStateCheckBox(spellStateCheckBox, categoryName, spellName)
   local isSpellActive = mod.spellConfiguration.IsSpellActive(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
-    category,
+    categoryName,
     spellName
   )
 
@@ -536,7 +536,7 @@ function me.UpdateSpellStateCheckBox(spellStateCheckBox, category, spellName)
 
   if isSpellActive then
     mod.logger.LogDebug(me.tag, string.format(
-      "Spell %s for category %s is active", spellName, category)
+      "Spell %s for category %s is active", spellName, categoryName)
     )
     spellStateCheckBox:SetChecked(true)
 
@@ -545,7 +545,7 @@ function me.UpdateSpellStateCheckBox(spellStateCheckBox, category, spellName)
     me.UpdateChooseVisualDropdownMenuState(parentFrame, true)
   else
     mod.logger.LogDebug(me.tag, string.format(
-      "Spell %s for category %s is inactive", spellName, category)
+      "Spell %s for category %s is inactive", spellName, categoryName)
     )
     spellStateCheckBox:SetChecked(false)
 
@@ -557,15 +557,15 @@ end
 
 --[[
   @param {table} soundCheckBox
-  @param {string} category
+  @param {string} categoryName
   @param {string} spellName
 ]]--
-function me.UpdateSound(soundCheckBox, category, spellName)
+function me.UpdateSound(soundCheckBox, categoryName, spellName)
   -- update sound checkbox state
   soundCheckBox:SetChecked(
     mod.spellConfiguration.IsSoundWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
-      category,
+      categoryName,
       spellName
     )
   )
@@ -574,14 +574,14 @@ end
 --[[
   @param {table} soundSpecialCheckBox
   @param {table} soundSpecialButton
-  @param {string} category
+  @param {string} categoryName
   @param {table} spell
 ]]--
-function me.UpdateSoundSpecial(soundSpecialCheckBox, soundSpecialButton, category, spell)
+function me.UpdateSoundSpecial(soundSpecialCheckBox, soundSpecialButton, categoryName, spell)
   if spell.hasFade then
     soundSpecialCheckBox:SetChecked(mod.spellConfiguration.IsSoundFadeWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
-      category,
+      categoryName,
       spell.normalizedSpellName
     ))
     soundSpecialCheckBox.text:SetText(rgpvpw.L["label_enable_sound_fade"])
@@ -589,7 +589,7 @@ function me.UpdateSoundSpecial(soundSpecialCheckBox, soundSpecialButton, categor
   elseif spell.hasCast then
     soundSpecialCheckBox:SetChecked(mod.spellConfiguration.IsSoundStartWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
-      category,
+      categoryName,
       spell.normalizedSpellName
     ))
     soundSpecialCheckBox.text:SetText(rgpvpw.L["label_enable_sound_cast"])
