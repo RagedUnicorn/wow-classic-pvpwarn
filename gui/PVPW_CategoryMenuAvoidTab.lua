@@ -50,10 +50,10 @@ local activeCategory
 
 --[[
   @param {table} frame
-  @param {string} category
+  @param {string} categoryName
 ]]--
-function me.Init(frame, category)
-  frame.categoryName = category
+function me.Init(frame, categoryName)
+  frame.categoryName = categoryName
 
   if builtMenu then
     -- cleaned cached data from previous category
@@ -62,9 +62,9 @@ function me.Init(frame, category)
 
     me.UpdateCategoryMenu(frame)
     -- update the scrolllist with new category data
-    me.FauxScrollFrameOnUpdate(spellSelfAvoidScrollFrame, category)
+    me.FauxScrollFrameOnUpdate(spellSelfAvoidScrollFrame, categoryName)
   else
-    me.BuildUi(frame, category)
+    me.BuildUi(frame, categoryName)
     builtMenu = true
   end
 end
@@ -83,11 +83,11 @@ end
   Create the spelllist configuration menu
 
   @param {table} frame
-  @param {string} category
+  @param {string} categoryName
 ]]--
-function me.BuildUi(frame, category)
+function me.BuildUi(frame, categoryName)
   spellSelfAvoidScrollFrame = me.CreateSpellSelfAvoidList(frame)
-  me.FauxScrollFrameOnUpdate(spellSelfAvoidScrollFrame, category)
+  me.FauxScrollFrameOnUpdate(spellSelfAvoidScrollFrame, categoryName)
 end
 
 --[[
@@ -324,14 +324,14 @@ end
   is only done once and the data is being cached for further update events.
 
   @param {table} scrollFrame
-  @param {string} category
+  @param {string} categoryName
 ]]--
-function me.FauxScrollFrameOnUpdate(scrollFrame, category)
-  activeCategory = category
+function me.FauxScrollFrameOnUpdate(scrollFrame, categoryName)
+  activeCategory = categoryName
 
   if cachedCategoryData == nil then
-    mod.logger.LogInfo(me.tag, string.format("Warmed up cached spellAvoidList for category '%s'", category))
-    cachedCategoryData = mod.spellAvoidMap.GetAllForCategory(category)
+    mod.logger.LogInfo(me.tag, string.format("Warmed up cached spellAvoidList for category '%s'", categoryName))
+    cachedCategoryData = mod.spellAvoidMap.GetAllForCategory(categoryName)
   end
 
   local maxValue = mod.common.TableLength(cachedCategoryData) or 0
@@ -357,21 +357,21 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, category)
 
       if cachedCategoryData[value] ~= nil then
         row.normalizedSpellName = cachedCategoryData[value].normalizedSpellName
-        row.category = category
+        row.category = categoryName
         row.spellTitle:SetText(cachedCategoryData[value].name)
         row.playAvoidSound.soundFileName = cachedCategoryData[value].soundFileName
 
         me.UpdateIcon(
-          row.spellIcon, category, cachedCategoryData[value]
+          row.spellIcon, categoryName, cachedCategoryData[value]
         )
         me.UpdateSpellStateCheckBox(
-          row.spellStateCheckBox, category, cachedCategoryData[value].normalizedSpellName
+          row.spellStateCheckBox, categoryName, cachedCategoryData[value].normalizedSpellName
         )
         me.UpdateSound(
-          row.avoidSoundCheckBox, category, cachedCategoryData[value].normalizedSpellName
+          row.avoidSoundCheckBox, categoryName, cachedCategoryData[value].normalizedSpellName
         )
         me.UpdateChooseVisualDropdownMenu(
-          row.chooseAvoidVisual, category, cachedCategoryData[value].normalizedSpellName
+          row.chooseAvoidVisual, categoryName, cachedCategoryData[value].normalizedSpellName
         )
 
         row:Show()
@@ -384,12 +384,12 @@ end
 
 --[[
   @param {table} spellIcon
-  @param {string} category
+  @param {string} categoryName
   @param {table} spell
 ]]--
-function me.UpdateIcon(spellIcon, category, spell)
+function me.UpdateIcon(spellIcon, categoryName, spell)
   local iconId
-  local color = RGPVPW_CONSTANTS.CATEGORY_COLOR[category]
+  local color = RGPVPW_CONSTANTS.CATEGORY_COLOR[categoryName]
 
   --[[
     For most items we have to track the actual spelleffect in the combat log. However for
@@ -407,13 +407,13 @@ end
 
 --[[
   @param {table} spellStateCheckBox
-  @param {string} category
+  @param {string} categoryName
   @param {string} spellName
 ]]--
-function me.UpdateSpellStateCheckBox(spellStateCheckBox, category, spellName)
+function me.UpdateSpellStateCheckBox(spellStateCheckBox, categoryName, spellName)
   local isSpellActive = mod.spellConfiguration.IsSpellActive(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
-    category,
+    categoryName,
     spellName
   )
 
@@ -421,7 +421,7 @@ function me.UpdateSpellStateCheckBox(spellStateCheckBox, category, spellName)
 
   if isSpellActive then
     mod.logger.LogDebug(me.tag, string.format(
-      "Spell %s for category %s is active", spellName, category)
+      "Spell %s for category %s is active", spellName, categoryName)
     )
     spellStateCheckBox:SetChecked(true)
 
@@ -429,7 +429,7 @@ function me.UpdateSpellStateCheckBox(spellStateCheckBox, category, spellName)
     me.UpdateChooseVisualDropdownMenuState(parentFrame, true)
   else
     mod.logger.LogDebug(me.tag, string.format(
-      "Spell %s for category %s is inactive", spellName, category)
+      "Spell %s for category %s is inactive", spellName, categoryName)
     )
     spellStateCheckBox:SetChecked(false)
 
@@ -440,15 +440,15 @@ end
 
 --[[
   @param {table} soundCheckBox
-  @param {string} category
+  @param {string} categoryName
   @param {string} spellName
 ]]--
-function me.UpdateSound(soundCheckBox, category, spellName)
+function me.UpdateSound(soundCheckBox, categoryName, spellName)
   -- update sound checkbox state
   soundCheckBox:SetChecked(
     mod.spellConfiguration.IsSoundWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
-      category,
+      categoryName,
       spellName
     )
   )
@@ -456,13 +456,13 @@ end
 
 --[[
   @param {table} dropdownMenu
-  @param {string} category
+  @param {string} categoryName
   @param {string} spellName
 ]]--
-function me.UpdateChooseVisualDropdownMenu(dropdownMenu, category, spellName)
+function me.UpdateChooseVisualDropdownMenu(dropdownMenu, categoryName, spellName)
   local colorValue = mod.spellConfiguration.GetVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
-    category,
+    categoryName,
     spellName
   )
 
