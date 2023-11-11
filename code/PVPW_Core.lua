@@ -72,6 +72,7 @@ function me.OnEvent(event, ...)
 
     if isInitialLogin or isReloadingUi then
       me.Initialize()
+      me.zone.UpdateZone()
     end
   elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
     me.logger.LogEvent(me.tag, "COMBAT_LOG_EVENT_UNFILTERED")
