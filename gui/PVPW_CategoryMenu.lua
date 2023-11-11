@@ -73,7 +73,6 @@ function me.MenuOnShow(self)
   end
 
   me.ResetNavigation()
-  me.UpdateCategoryMenu(self)
   me.ActivateTab(spellTab) -- activate the spell tab (first tab)
 end
 
