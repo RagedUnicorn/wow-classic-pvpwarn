@@ -67,7 +67,7 @@ function me.GetLanguage(language)
 end
 
 --[[
-  A testhelper function to get the spellMap for a specific categoryName
+  A test helper function to get the spellMap for a specific categoryName
 
   @param {String} spellMap
     RGPVPW_CONSTANTS.SPELL_MAP or RGPVPW_CONSTANTS.SPELL_AVOID_MAP
@@ -130,7 +130,7 @@ end
 
 
 --[[
-  Normalize a spellName so it can be matched against a functionname
+  Normalize a spellName so it can be matched against a function name
 
   @param {string} spellName
 
@@ -420,7 +420,7 @@ end
 
 --[[
   Play a sound and return whether this was possible or not. This function also
-  considers that for certain spellTypes a different spellMap needs to be usedw
+  considers that for certain spellTypes a different spellMap needs to be used
 
   @param {string} spellName
   @param {string} testCategory
@@ -451,7 +451,7 @@ function me.TestSound(spellName, testCategory, event, spellType)
 end
 
 --[[
-  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_AURA_APPLIED event
+  Tests whether a combat event can be processed for a certain category, spellName and the SPELL_AURA_APPLIED event
 
   @param {string} testName
   @param {string} testCategory
@@ -496,7 +496,7 @@ function me.TestCombatEventApplied(testName, testCategory, spellName)
 end
 
 --[[
-  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_AURA_REMOVED event
+  Tests whether a combat event can be processed for a certain category, spellName and the SPELL_AURA_REMOVED event
 
   @param {string} testName
   @param {string} testCategory
@@ -541,7 +541,7 @@ function me.TestCombatEventRemoved(testName, testCategory, spellName)
 end
 
 --[[
-  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_AURA_REFRESH event
+  Tests whether a combat event can be processed for a certain category, spellName and the SPELL_AURA_REFRESH event
 
   @param {string} testName
   @param {string} testCategory
@@ -586,7 +586,7 @@ function me.TestCombatEventRefresh(testName, testCategory, spellName)
 end
 
 --[[
-  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_CAST_SUCCESS event
+  Tests whether a combat event can be processed for a certain category, spellName and the SPELL_CAST_SUCCESS event
 
   @param {string} testName
   @param {string} testCategory
@@ -631,7 +631,7 @@ function me.TestCombatEventSuccess(testName, testCategory, spellName)
 end
 
 --[[
-  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_CAST_START event
+  Tests whether a combat event can be processed for a certain category, spellName and the SPELL_CAST_START event
 
   @param {string} testName
   @param {string} testCategory
@@ -676,7 +676,7 @@ function me.TestCombatEventStart(testName, testCategory, spellName)
 end
 
 --[[
-  Tests whether a combatevent can be processed for a certain category, spellName and the SPELL_MISSED event
+  Tests whether a combat event can be processed for a certain category, spellName and the SPELL_MISSED event
 
   @param {string} testName
   @param {string} testCategory
@@ -696,7 +696,7 @@ function me.TestCombatEventSpellMissed(testName, testCategory, spellName, expect
   elseif expectedSpellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY then
     sourceFlags = me.GetSelfPlayerSourceFlags()
   else
-    mod.logger.LogError(me.tag, "Unknown spelltype: " .. expectedSpellType)
+    mod.logger.LogError(me.tag, "Unknown spell type: " .. expectedSpellType)
   end
 
   local failureReason
@@ -733,7 +733,7 @@ end
   @param {string} spellName
   @param {string} event
   @param {number} sourceFlags
-    Sourceflags to determine the source of the combatlog event
+    Source flags to determine the source of the combat log event
 
   @return {string}, {string}, {table}
 ]]--
@@ -766,7 +766,7 @@ end
   @param {string} spellName
   @param {string} event
   @param {number} sourceFlags
-    Sourceflags to determine the source of the combatlog event
+    Source flags to determine the source of the combat log event
   @param {number} missTypeId
     RGPVPW_CONSTANTS.MISS_TYPES
 
@@ -805,7 +805,7 @@ end
   @param {string} testCategory
     The category that the test is currently using
   @param {string} spellCategory
-    The actual catgory of the spell
+    The actual category of the spell
   @param {table} spell
     The spell to search for
 

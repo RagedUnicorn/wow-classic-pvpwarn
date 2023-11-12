@@ -72,7 +72,7 @@ function me.Test(language, categoryName)
 end
 
 --[[
-  Tests whether there is an appropriate sound testcase for every spell found in the spellmap
+  Tests whether there is an appropriate sound testcase for every spell found in the spell map
 
   @param {string} language
     A supported language such as en, de etc.
@@ -152,7 +152,7 @@ function me.SoundTest(categoryName, categoryData, language)
 end
 
 --[[
-  Tests whether there is an appropriate sound down testcase for every spell found in the spellmap
+  Tests whether there is an appropriate sound down testcase for every spell found in the spell map
 
   @param {string} language
     A supported language such as en, de etc.

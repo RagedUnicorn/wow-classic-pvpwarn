@@ -57,7 +57,7 @@ function me.TestAllEn()
   me.TestAllSoundEnemyAvoidEn()
 
   mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+    mod.testReporter.StopTestGroup() -- async finish of test group
   end)
 end
 

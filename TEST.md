@@ -12,17 +12,17 @@ Every testmodule should have a `Test` function that starts a new TestGroup, coll
 
 ```lua
 function me.Test()
-  mod.testReporter.StartTestGroup(testGroupName) -- start a new testgroup
+  mod.testReporter.StartTestGroup(testGroupName) -- start a new test group
 
   me.CollectTestCases() -- function to collect all testcases
 
   --[[
     Play through all testcases. There is a delay between the testcases because playing a soundfile
     takes some time and we need to make sure to play one after another. Once where done the callback is invoked
-    and finishes the testgroup.
+    and finishes the test group.
   ]]--
   mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+    mod.testReporter.StopTestGroup() -- async finish of test group
   end)
 end
 ```
@@ -45,7 +45,8 @@ PVPW_TestSound[category][language].lua
 
 #### Sound Test Base
 
-The `testSound(PVPW_TestSound.lua)` module is testing whether there is a required testcase for every spell that is found in the spellmap.
+The `testSound(PVPW_TestSound.lua)` module is testing whether there is a required testcase for every spell that is
+found in the spell map.
 
 #### Run Tests
 
@@ -131,7 +132,8 @@ PVPW_TestCombatEvents[category][language].lua
 
 #### Combat Events Test Base
 
-The `testCombatEvent(PVPW_TestCombatEvent.lua)` module is testing whether there is a required testcase for every spell found in the spellmap and its tracked events.
+The `testCombatEvent(PVPW_TestCombatEvent.lua)` module is testing whether there is a required testcase for every
+spell found in the spell map and its tracked events.
 
 #### Run Tests
 
@@ -210,9 +212,10 @@ Misstype one of:
 * RESIST (resisted)
 
 ```lua
-function me.TestCombatEventSelfAvoid[spellname][misstype]() -- without whitespace e.g. BerserkerRage / misstype e.g immune
+function me.TestCombatEventSelfAvoid[spellname][misstype]() -- without whitespace e.g. BerserkerRage / miss type e.g
+immune
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoid[spellname][misstype]", -- without whitespace e.g. BerserkerRage / misstype e.g immune
+    "TestCombatEventSelfAvoid[spellname][misstype]", -- without whitespace e.g. BerserkerRage / miss type e.g immune
     testCategory,
     "[spellname]", -- as displayed e.g. Berserker Rage
     RGPVPW_CONSTANTS.SPELL_TYPES.[enemy or self avoid], -- MISSED_SELF / MISSED_ENEMY

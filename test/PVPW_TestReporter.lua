@@ -83,7 +83,7 @@ function me.StartTestGroup(groupName)
     string.format("bad argument #1 to `StartTestGroup` (expected string got %s)", type(groupName)))
 
   if testManager.currentTestGroup ~= nil then
-    mod.logger.LogError(me.tag, "A testgroup was already started. Stop the testgroup first before starting a new one")
+    mod.logger.LogError(me.tag, "A test group was already started. Stop the test group first before starting a new one")
     return
   end
 
@@ -91,7 +91,7 @@ function me.StartTestGroup(groupName)
 
   testManager.currentTestGroup = groupName
 
-  local logMessage = string.format("Starting testgroup with name %s", groupName)
+  local logMessage = string.format("Starting test group with name %s", groupName)
   me.LogTestMessage(logMessage)
   me.AddLine()
 
@@ -105,7 +105,7 @@ function me.StartTestGroup(groupName)
 end
 
 --[[
-  Stopping a testgroup
+  Stopping a test group
 ]]--
 function me.StopTestGroup()
   if testManager.currentTestGroup == nil then
@@ -113,7 +113,7 @@ function me.StopTestGroup()
     return
   end
 
-  local logMessage = string.format("Finished testgroup with name: %s\n"
+  local logMessage = string.format("Finished test group with name: %s\n"
     .. "Tests succeeded: %i\n"
     .. "Tests failed: %i\n"
     .. "Tests total: %i",
@@ -126,7 +126,7 @@ function me.StopTestGroup()
 
   me.AddLine()
 
-  -- display failed testnames if there where any
+  -- display failed test names if there where any
   if #testManager.currentFailedTests > 0 then
     me.LogTestMessage("Failed tests:")
     for i = 1, #testManager.currentFailedTests do
@@ -155,7 +155,7 @@ function me.StartTestRun(testName)
     string.format("bad argument #1 to `StartTestRun` (expected string got %s)", type(testName)))
 
   if testManager.currentTestGroup == nil then
-    mod.logger.LogError(me.tag, "No current testgroup found. Every test has to be part of a testgroup.")
+    mod.logger.LogError(me.tag, "No current test group found. Every test has to be part of a test group.")
     return
   end
 
@@ -224,7 +224,7 @@ function me.ReportFailureTestRun(category, testName, reason)
 end
 
 --[[
-  add a function to the testqueue
+  add a function to the test queue
   @param {function} testFunction
     testfunction to execute
 ]]--
@@ -234,7 +234,7 @@ end
 
 --[[
   @param {function} callback
-    Callback function that is invoked once the testqueue is empty/done
+    Callback function that is invoked once the test queue is empty/done
 ]]--
 function me.PlayTestQueueWithDelay(callback)
   if testQueueWithDelay[1] ~= nil then
