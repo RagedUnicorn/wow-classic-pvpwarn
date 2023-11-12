@@ -37,7 +37,7 @@ function me.Test()
   me.CollectTestCases()
 
   mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- asyncron finish of testgroup
+    mod.testReporter.StopTestGroup() -- async finish of test group
   end)
 end
 
