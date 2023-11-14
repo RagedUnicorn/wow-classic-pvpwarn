@@ -58,6 +58,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownNaturesSwiftness)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFaerieFire)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFaerieFireFeral)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSkullBash)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSavageRoar)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSavageRoar)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLacerate)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWildGrowth)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMangle)
 end
 
 function me.TestSoundBarkskin()
@@ -185,5 +192,53 @@ function me.TestSoundFaerieFireFeral()
     "TestSoundFaerieFireFeral",
     testCategory,
     "Faerie Fire (Feral)"
+  )
+end
+
+function me.TestSoundSkullBash()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundSkullBash",
+    testCategory,
+    "Skull Bash"
+  )
+end
+
+function me.TestSoundSavageRoar()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundSavageRoar",
+    testCategory,
+    "Savage Roar"
+  )
+end
+
+function me.TestSoundDownSavageRoar()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownSavageRoar",
+    testCategory,
+    "Savage Roar"
+  )
+end
+
+function me.TestSoundLacerate()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundLacerate",
+    testCategory,
+    "Lacerate"
+  )
+end
+
+function me.TestSoundWildGrowth()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundWildGrowth",
+    testCategory,
+    "Wild Growth"
+  )
+end
+
+function me.TestSoundMangle()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMangle",
+    testCategory,
+    "Mangle"
   )
 end

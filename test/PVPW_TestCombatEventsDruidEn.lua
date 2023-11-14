@@ -60,6 +60,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesSwiftnessRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFaerieFireSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFaerieFireFeralSuccess)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSkullBashSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSavageRoarApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSavageRoarRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLacerateSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWildGrowthSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMangleSuccess)
 end
 
 function me.TestCombatEventBarkskinApplied()
@@ -187,5 +194,53 @@ function me.TestCombatEventFaerieFireFeralSuccess()
     "TestCombatEventFaerieFireFeralSuccess",
     testCategory,
     "Faerie Fire (Feral)"
+  )
+end
+
+function me.TestCombatEventSkullBashSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventSkullBashSuccess",
+    testCategory,
+    "Skull Bash"
+  )
+end
+
+function me.TestCombatEventSavageRoarApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventSavageRoarApplied",
+    testCategory,
+    "Savage Roar"
+  )
+end
+
+function me.TestCombatEventSavageRoarRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventSavageRoarRemoved",
+    testCategory,
+    "Savage Roar"
+  )
+end
+
+function me.TestCombatEventLacerateSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventLacerateSuccess",
+    testCategory,
+    "Lacerate"
+  )
+end
+
+function me.TestCombatEventWildGrowthSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventWildGrowthSuccess",
+    testCategory,
+    "Wild Growth"
+  )
+end
+
+function me.TestCombatEventMangleSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMangleSuccess",
+    testCategory,
+    "Mangle"
   )
 end

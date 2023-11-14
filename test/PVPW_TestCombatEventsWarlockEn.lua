@@ -55,6 +55,9 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSoulLinkRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFelDominationApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFelDominationRemoved)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDemonicGraceApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDemonicGraceRemoved)
 end
 
 function me.TestCombatEventFearSuccess()
@@ -158,5 +161,21 @@ function me.TestCombatEventFelDominationRemoved()
     "TestCombatEventFelDominationRemoved",
     testCategory,
     "Fel Domination"
+  )
+end
+
+function me.TestCombatEventDemonicGraceApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDemonicGraceApplied",
+    testCategory,
+    "Demonic Grace"
+  )
+end
+
+function me.TestCombatEventDemonicGraceRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventDemonicGraceRemoved",
+    testCategory,
+    "Demonic Grace"
   )
 end

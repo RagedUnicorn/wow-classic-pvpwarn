@@ -70,6 +70,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCombustionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlastWaveSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventColdSnapSuccess)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFingersOfFrostApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFingersOfFrostRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIcyVeinsApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIcyVeinsRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArcaneSurgeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLivingBombSuccess)
 end
 
 function me.TestCombatEventIceBlockApplied()
@@ -277,5 +284,53 @@ function me.TestCombatEventColdSnapSuccess()
     "TestCombatEventColdSnapSuccess",
     testCategory,
     "Cold Snap"
+  )
+end
+
+function me.TestCombatEventFingersOfFrostApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFingersOfFrostApplied",
+    testCategory,
+    "Fingers of Frost"
+  )
+end
+
+function me.TestCombatEventFingersOfFrostRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventFingersOfFrostRemoved",
+    testCategory,
+    "Fingers of Frost"
+  )
+end
+
+function me.TestCombatEventIcyVeinsApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventIcyVeinsApplied",
+    testCategory,
+    "Icy Veins"
+  )
+end
+
+function me.TestCombatEventIcyVeinsRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventIcyVeinsRemoved",
+    testCategory,
+    "Icy Veins"
+  )
+end
+
+function me.TestCombatEventArcaneSurgeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventArcaneSurgeSuccess",
+    testCategory,
+    "Arcane Surge"
+  )
+end
+
+function me.TestCombatEventLivingBombSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventLivingBombSuccess",
+    testCategory,
+    "Living Bomb"
   )
 end

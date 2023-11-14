@@ -70,6 +70,16 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventManaSpringTotemSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventManaTideTotemSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTranquilAirTotemSuccess)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHealingRainTotemSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAncestralGuidanceApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAncestralGuidanceRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEarthShieldApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEarthShieldRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShamanisticRageApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShamanisticRageRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWaterShieldApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWaterShieldRemoved)
 end
 
 function me.TestCombatEventElementalMasteryApplied()
@@ -277,5 +287,77 @@ function me.TestCombatEventTranquilAirTotemSuccess()
     "TestCombatEventTranquilAirTotemSuccess",
     testCategory,
     "Tranquil Air Totem"
+  )
+end
+
+function me.TestCombatEventHealingRainTotemSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventHealingRainTotemSuccess",
+    testCategory,
+    "Healing Rain"
+  )
+end
+
+function me.TestCombatEventAncestralGuidanceApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAncestralGuidanceApplied",
+    testCategory,
+    "Ancestral Guidance"
+  )
+end
+
+function me.TestCombatEventAncestralGuidanceRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAncestralGuidanceRemoved",
+    testCategory,
+    "Ancestral Guidance"
+  )
+end
+
+function me.TestCombatEventEarthShieldApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventEarthShieldApplied",
+    testCategory,
+    "Earth Shield"
+  )
+end
+
+function me.TestCombatEventEarthShieldRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventEarthShieldRemoved",
+    testCategory,
+    "Earth Shield"
+  )
+end
+
+function me.TestCombatEventShamanisticRageApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventShamanisticRageApplied",
+    testCategory,
+    "Shamanistic Rage"
+  )
+end
+
+function me.TestCombatEventShamanisticRageRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventShamanisticRageRemoved",
+    testCategory,
+    "Shamanistic Rage"
+  )
+end
+
+function me.TestCombatEventWaterShieldApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventWaterShieldApplied",
+    testCategory,
+    "Water Shield"
+  )
+end
+
+function me.TestCombatEventWaterShieldRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventWaterShieldRemoved",
+    testCategory,
+    "Water Shield"
   )
 end

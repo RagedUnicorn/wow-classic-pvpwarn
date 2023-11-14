@@ -61,6 +61,16 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventForbearanceApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventForbearanceRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLayOnHandsSuccess)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAegisApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAegisRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineSacrificeApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineSacrificeRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInspirationExemplarSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAvengersShieldSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExorcistSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRebukeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCrusaderStrikeSuccess)
 end
 
 function me.TestCombatEventDevotionAuraSuccess()
@@ -212,5 +222,77 @@ function me.TestCombatEventLayOnHandsSuccess()
     "TestCombatEventLayOnHandsSuccess",
     testCategory,
     "Lay on Hands"
+  )
+end
+
+function me.TestCombatEventAegisApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAegisApplied",
+    testCategory,
+    "Aegis"
+  )
+end
+
+function me.TestCombatEventAegisRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAegisRemoved",
+    testCategory,
+    "Aegis"
+  )
+end
+
+function me.TestCombatEventDivineSacrificeApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDivineSacrificeApplied",
+    testCategory,
+    "Divine Sacrifice"
+  )
+end
+
+function me.TestCombatEventDivineSacrificeRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventDivineSacrificeRemoved",
+    testCategory,
+    "Divine Sacrifice"
+  )
+end
+
+function me.TestCombatEventInspirationExemplarSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventInspirationExemplarSuccess",
+    testCategory,
+    "Inspirational Exemplar"
+  )
+end
+
+function me.TestCombatEventAvengersShieldSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventAvengersShieldSuccess",
+    testCategory,
+    "Avenger's Shield"
+  )
+end
+
+function me.TestCombatEventExorcistSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventExorcistSuccess",
+    testCategory,
+    "Exorcist"
+  )
+end
+
+function me.TestCombatEventRebukeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventRebukeSuccess",
+    testCategory,
+    "Rebuke"
+  )
+end
+
+function me.TestCombatEventCrusaderStrikeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventCrusaderStrikeSuccess",
+    testCategory,
+    "Crusader Strike"
   )
 end

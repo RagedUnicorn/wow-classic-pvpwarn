@@ -60,6 +60,14 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBestialWrathRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeterrenceApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeterrenceRemoved)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExposeWeaknessApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExposeWeaknessRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventKillCommandApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventKillCommandRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFlankingStrikeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChimeraShotSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExplosiveShotSuccess)
 end
 
 function me.TestCombatEventConcussiveShotSuccess()
@@ -203,5 +211,61 @@ function me.TestCombatEventDeterrenceRemoved()
     "TestCombatEventDeterrenceRemoved",
     testCategory,
     "Deterrence"
+  )
+end
+
+function me.TestCombatEventExposeWeaknessApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventExposeWeaknessApplied",
+    testCategory,
+    "Expose Weakness"
+  )
+end
+
+function me.TestCombatEventExposeWeaknessRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventExposeWeaknessRemoved",
+    testCategory,
+    "Expose Weakness"
+  )
+end
+
+function me.TestCombatEventKillCommandApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventKillCommandApplied",
+    testCategory,
+    "Kill Command"
+  )
+end
+
+function me.TestCombatEventKillCommandRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventKillCommandRemoved",
+    testCategory,
+    "Kill Command"
+  )
+end
+
+function me.TestCombatEventFlankingStrikeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFlankingStrikeSuccess",
+    testCategory,
+    "Flanking Strike"
+  )
+end
+
+function me.TestCombatEventChimeraShotSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventChimeraShotSuccess",
+    testCategory,
+    "Chimera Shot"
+  )
+end
+
+function me.TestCombatEventExplosiveShotSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventExplosiveShotSuccess",
+    testCategory,
+    "Explosive Shot"
   )
 end
