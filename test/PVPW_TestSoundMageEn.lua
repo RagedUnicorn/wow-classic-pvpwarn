@@ -66,6 +66,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownCombustion)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBlastWave)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundColdSnap)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFingersOfFrost)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFingersOfFrost)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundIcyVeins)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownIcyVeins)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundArcaneSurge)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLivingBomb)
 end
 
 function me.TestSoundIceBlock()
@@ -257,5 +264,53 @@ function me.TestSoundColdSnap()
     "TestSoundColdSnap",
     testCategory,
     "Cold Snap"
+  )
+end
+
+function me.TestSoundFingersOfFrost()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundFingersOfFrost",
+    testCategory,
+    "Fingers of Frost"
+  )
+end
+
+function me.TestSoundDownFingersOfFrost()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFingersOfFrost",
+    testCategory,
+    "Fingers of Frost"
+  )
+end
+
+function me.TestSoundIcyVeins()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundIcyVeins",
+    testCategory,
+    "Icy Veins"
+  )
+end
+
+function me.TestSoundDownIcyVeins()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownIcyVeins",
+    testCategory,
+    "Icy Veins"
+  )
+end
+
+function me.TestSoundArcaneSurge()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundArcaneSurge",
+    testCategory,
+    "Arcane Surge"
+  )
+end
+
+function me.TestSoundLivingBomb()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundLivingBomb",
+    testCategory,
+    "Living Bomb"
   )
 end

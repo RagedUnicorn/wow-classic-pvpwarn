@@ -58,6 +58,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHexOfWeakness)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowguard)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowguard)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPenance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCircleOfHealing)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowWordDeath)
 end
 
 function me.TestSoundPsychicScream()
@@ -185,5 +189,29 @@ function me.TestSoundDownShadowguard()
     "TestSoundDownShadowguard",
     testCategory,
     "Shadowguard"
+  )
+end
+
+function me.TestSoundPenance()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundPenance",
+    testCategory,
+    "Penance"
+  )
+end
+
+function me.TestSoundCircleOfHealing()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundCircleOfHealing",
+    testCategory,
+    "Circle of Healing"
+  )
+end
+
+function me.TestSoundShadowWordDeath()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShadowWordDeath",
+    testCategory,
+    "Shadow Word: Death"
   )
 end

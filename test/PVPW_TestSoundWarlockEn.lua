@@ -55,6 +55,9 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSoulLink)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFelDomination)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFelDomination)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDemonicGrace)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDemonicGrace)
 end
 
 function me.TestSoundFear()
@@ -158,5 +161,21 @@ function me.TestSoundDownFelDomination()
     "TestSoundDownFelDomination",
     testCategory,
     "Fel Domination"
+  )
+end
+
+function me.TestSoundDemonicGrace()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundDemonicGrace",
+    testCategory,
+    "Demonic Grace"
+  )
+end
+
+function me.TestSoundDownDemonicGrace()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownDemonicGrace",
+    testCategory,
+    "Demonic Grace"
   )
 end

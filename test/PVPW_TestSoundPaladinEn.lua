@@ -61,6 +61,16 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundForbearance)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownForbearance)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLayOnHands)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAegis)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAegis)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDivineSacrifice)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDivineSacrifice)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundInspirationExemplar)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAvengersShield)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExorcist)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRebuke)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCrusaderStrike)
 end
 
 function me.TestSoundDevotionAura()
@@ -212,5 +222,77 @@ function me.TestSoundLayOnHands()
     "TestSoundLayOnHands",
     testCategory,
     "Lay on Hands"
+  )
+end
+
+function me.TestSoundAegis()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAegis",
+    testCategory,
+    "Aegis"
+  )
+end
+
+function me.TestSoundDownAegis()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAegis",
+    testCategory,
+    "Aegis"
+  )
+end
+
+function me.TestSoundDivineSacrifice()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundDivineSacrifice",
+    testCategory,
+    "Divine Sacrifice"
+  )
+end
+
+function me.TestSoundDownDivineSacrifice()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownDivineSacrifice",
+    testCategory,
+    "Divine Sacrifice"
+  )
+end
+
+function me.TestSoundInspirationExemplar()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundInspirationExemplar",
+    testCategory,
+    "Inspiration Exemplar"
+  )
+end
+
+function me.TestSoundAvengersShield()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundAvengersShield",
+    testCategory,
+    "Avenger's Shield"
+  )
+end
+
+function me.TestSoundExorcist()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundExorcist",
+    testCategory,
+    "Exorcist"
+  )
+end
+
+function me.TestSoundRebuke()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundRebuke",
+    testCategory,
+    "Rebuke"
+  )
+end
+
+function me.TestSoundCrusaderStrike()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundCrusaderStrike",
+    testCategory,
+    "Crusader Strike"
   )
 end

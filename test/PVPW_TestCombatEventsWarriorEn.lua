@@ -71,6 +71,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBashSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetaliationApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetaliationRemoved)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFlagellationApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFlagellationRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRagingBlowSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConsumedByRageApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConsumedByRageRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventQuickStrikeSuccess)
 end
 
 function me.TestCombatEventBerserkerRageApplied()
@@ -286,5 +293,53 @@ function me.TestCombatEventRetaliationRemoved()
     "TestCombatEventRetaliationRemoved",
     testCategory,
     "Retaliation"
+  )
+end
+
+function me.TestCombatEventFlagellationApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFlagellationApplied",
+    testCategory,
+    "Flagellation"
+  )
+end
+
+function me.TestCombatEventFlagellationRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventFlagellationRemoved",
+    testCategory,
+    "Flagellation"
+  )
+end
+
+function me.TestCombatEventRagingBlowSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventRagingBlowSuccess",
+    testCategory,
+    "Raging Blow"
+  )
+end
+
+function me.TestCombatEventConsumedByRageApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventConsumedByRageApplied",
+    testCategory,
+    "Consumed by Rage"
+  )
+end
+
+function me.TestCombatEventConsumedByRageRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventConsumedByRageRemoved",
+    testCategory,
+    "Consumed by Rage"
+  )
+end
+
+function me.TestCombatEventQuickStrikeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventQuickStrikeSuccess",
+    testCategory,
+    "Quick Strike"
   )
 end

@@ -68,6 +68,16 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundManaSpringTotem)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundManaTideTotem)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTranquilAirTotem)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHealingRain)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAncestralGuidance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAncestralGuidance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEarthShield)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEarthShield)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShamanisticRage)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShamanisticRage)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWaterShield)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownWaterShield)
 end
 
 function me.TestSoundElementalMastery()
@@ -275,5 +285,77 @@ function me.TestSoundTranquilAirTotem()
     "TestSoundTranquilAirTotem",
     testCategory,
     "Tranquil Air Totem"
+  )
+end
+
+function me.TestSoundHealingRain()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundHealingRain",
+    testCategory,
+    "Healing Rain"
+  )
+end
+
+function me.TestSoundAncestralGuidance()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAncestralGuidance",
+    testCategory,
+    "Ancestral Guidance"
+  )
+end
+
+function me.TestSoundDownAncestralGuidance()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAncestralGuidance",
+    testCategory,
+    "Ancestral Guidance"
+  )
+end
+
+function me.TestSoundEarthShield()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundEarthShield",
+    testCategory,
+    "Earth Shield"
+  )
+end
+
+function me.TestSoundDownEarthShield()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownEarthShield",
+    testCategory,
+    "Earth Shield"
+  )
+end
+
+function me.TestSoundShamanisticRage()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundShamanisticRage",
+    testCategory,
+    "Shamanistic Rage"
+  )
+end
+
+function me.TestSoundDownShamanisticRage()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownShamanisticRage",
+    testCategory,
+    "Shamanistic Rage"
+  )
+end
+
+function me.TestSoundWaterShield()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundWaterShield",
+    testCategory,
+    "Water Shield"
+  )
+end
+
+function me.TestSoundDownWaterShield()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownWaterShield",
+    testCategory,
+    "Water Shield"
   )
 end

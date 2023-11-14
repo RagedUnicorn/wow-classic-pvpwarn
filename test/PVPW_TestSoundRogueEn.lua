@@ -59,6 +59,15 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPreparation)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVanish)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundStealth)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundQuickDraw)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBetweenTheEyes)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBladeDance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBladeDance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMutilate)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowstrike)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSaberSlash)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShiv)
 end
 
 function me.TestSoundBlind()
@@ -194,5 +203,69 @@ function me.TestSoundStealth()
     "TestSoundStealth",
     testCategory,
     "Stealth"
+  )
+end
+
+function me.TestSoundQuickDraw()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundQuickDraw",
+    testCategory,
+    "Quick Draw"
+  )
+end
+
+function me.TestSoundBetweenTheEyes()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundBetweenTheEyes",
+    testCategory,
+    "Between the Eyes"
+  )
+end
+
+function me.TestSoundBladeDance()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundBladeDance",
+    testCategory,
+    "Blade Dance"
+  )
+end
+
+function me.TestSoundDownBladeDance()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownBladeDance",
+    testCategory,
+    "Blade Dance"
+  )
+end
+
+function me.TestSoundMutilate()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMutilate",
+    testCategory,
+    "Mutilate"
+  )
+end
+
+function me.TestSoundShadowstrike()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShadowstrike",
+    testCategory,
+    "Shadowstrike"
+  )
+end
+
+function me.TestSoundSaberSlash()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundSaberSlash",
+    testCategory,
+    "Saber Slash"
+  )
+end
+
+function me.TestSoundShiv()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShiv",
+    testCategory,
+    "Shiv"
   )
 end

@@ -66,6 +66,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowGuardApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowGuardRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowGuardRefresh)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPenanceSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCircleOfHealingSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowWordDeathSuccess)
 end
 
 function me.TestCombatEventPsychicScreamSuccess()
@@ -241,5 +245,29 @@ function me.TestCombatEventShadowguardRefresh()
     "TestCombatEventShadowguardRefresh",
     testCategory,
     "Shadowguard"
+  )
+end
+
+function me.TestCombatEventPenanceSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventPenanceSuccess",
+    testCategory,
+    "Penance"
+  )
+end
+
+function me.TestCombatEventCircleOfHealingSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventCircleOfHealingSuccess",
+    testCategory,
+    "Circle of Healing"
+  )
+end
+
+function me.TestCombatEventShadowWordDeathSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShadowWordDeathSuccess",
+    testCategory,
+    "Shadow Word: Death"
   )
 end

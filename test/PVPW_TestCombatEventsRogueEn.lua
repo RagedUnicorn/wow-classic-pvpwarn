@@ -62,6 +62,15 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPreparationSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVanishSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventStealthSuccess)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventQuickDrawSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBetweenTheEyesSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBladeDanceApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBladeDanceRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMutilateSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowstrikeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSaberSlashSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShivSuccess)
 end
 
 function me.TestCombatEventBlindApplied()
@@ -205,5 +214,69 @@ function me.TestCombatEventStealthSuccess()
     "TestCombatEventStealthSuccess",
     testCategory,
     "Stealth"
+  )
+end
+
+function me.TestCombatEventQuickDrawSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventQuickDrawSuccess",
+    testCategory,
+    "Quick Draw"
+  )
+end
+
+function me.TestCombatEventBetweenTheEyesSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventBetweenTheEyesSuccess",
+    testCategory,
+    "Between the Eyes"
+  )
+end
+
+function me.TestCombatEventBladeDanceApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventBladeDanceApplied",
+    testCategory,
+    "Blade Dance"
+  )
+end
+
+function me.TestCombatEventBladeDanceRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventBladeDanceRemoved",
+    testCategory,
+    "Blade Dance"
+  )
+end
+
+function me.TestCombatEventMutilateSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMutilateSuccess",
+    testCategory,
+    "Mutilate"
+  )
+end
+
+function me.TestCombatEventShadowstrikeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShadowstrikeSuccess",
+    testCategory,
+    "Shadowstrike"
+  )
+end
+
+function me.TestCombatEventSaberSlashSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventSaberSlashSuccess",
+    testCategory,
+    "Saber Slash"
+  )
+end
+
+function me.TestCombatEventShivSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShivSuccess",
+    testCategory,
+    "Shiv"
   )
 end

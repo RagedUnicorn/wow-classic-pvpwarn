@@ -69,6 +69,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShieldBash)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRetaliation)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRetaliation)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFlagellation)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFlagellation)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRagingBlow)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundConsumedByRage)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownConsumedByRage)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundQuickStrike)
 end
 
 function me.TestSoundBerserkerRage()
@@ -284,5 +291,53 @@ function me.TestSoundDownRetaliation()
     "TestSoundDownRetaliation",
     testCategory,
     "Retaliation"
+  )
+end
+
+function me.TestSoundFlagellation()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundFlagellation",
+    testCategory,
+    "Flagellation"
+  )
+end
+
+function me.TestSoundDownFlagellation()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFlagellation",
+    testCategory,
+    "Flagellation"
+  )
+end
+
+function me.TestSoundRagingBlow()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundRagingBlow",
+    testCategory,
+    "Raging Blow"
+  )
+end
+
+function me.TestSoundConsumedByRage()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundConsumedByRage",
+    testCategory,
+    "Consumed by Rage"
+  )
+end
+
+function me.TestSoundDownConsumedByRage()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownConsumedByRage",
+    testCategory,
+    "Consumed by Rage"
+  )
+end
+
+function me.TestSoundQuickStrike()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundQuickStrike",
+    testCategory,
+    "Quick Strike"
   )
 end

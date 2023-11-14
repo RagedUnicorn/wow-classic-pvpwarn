@@ -60,6 +60,14 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBestialWrath)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDeterrence)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDeterrence)
+  -- runes
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExposeWeakness)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownExposeWeakness)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundKillCommand)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownKillCommand)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFlankingStrike)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundChimeraShot)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveShot)
 end
 
 function me.TestSoundConcussiveShot()
@@ -190,6 +198,14 @@ function me.TestSoundDownBestialWrath()
   )
 end
 
+function me.TestSoundDeterrence()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundDeterrence",
+    testCategory,
+    "Deterrence"
+  )
+end
+
 function me.TestSoundDownDeterrence()
   mod.testHelper.TestSoundRemoved(
     "TestSoundDownDeterrence",
@@ -198,10 +214,58 @@ function me.TestSoundDownDeterrence()
   )
 end
 
-function me.TestSoundDeterrence()
+function me.TestSoundExposeWeakness()
   mod.testHelper.TestSoundApplied(
-    "TestSoundDeterrence",
+    "TestSoundExposeWeakness",
     testCategory,
-    "Deterrence"
+    "Expose Weakness"
+  )
+end
+
+function me.TestSoundDownExposeWeakness()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownExposeWeakness",
+    testCategory,
+    "Expose Weakness"
+  )
+end
+
+function me.TestSoundKillCommand()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundKillCommand",
+    testCategory,
+    "Kill Command"
+  )
+end
+
+function me.TestSoundDownKillCommand()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownKillCommand",
+    testCategory,
+    "Kill Command"
+  )
+end
+
+function me.TestSoundFlankingStrike()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFlankingStrike",
+    testCategory,
+    "Flanking Strike"
+  )
+end
+
+function me.TestSoundChimeraShot()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundChimeraShot",
+    testCategory,
+    "Chimera Shot"
+  )
+end
+
+function me.TestSoundExplosiveShot()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundExplosiveShot",
+    testCategory,
+    "Explosive Shot"
   )
 end
