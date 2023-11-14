@@ -1,4 +1,8 @@
+# Update
+
+* Update Interface Version 11500(1.15.0)
+
 # Fix
 
-* Fig rggm.opt command
-* Fix supported version 11404(1.14.4)
+* Fix zone updating when entering a new zone and on initial login
+* Fix buggy call for updating category interface
