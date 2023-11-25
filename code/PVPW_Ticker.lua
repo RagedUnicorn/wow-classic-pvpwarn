@@ -39,7 +39,7 @@ local checkStanceStateExpired
   Start the repeating update ticker for warnQueue
 ]]--
 function me.StartTickerWarnQueue()
-  if warnQueueTicker == nil or warnQueueTicker.IsCancelled() then
+  if warnQueueTicker == nil or warnQueueTicker:IsCancelled() then
     warnQueueTicker = C_Timer.NewTicker(
       RGPVPW_CONSTANTS.WARN_QUEUE_UPDATE_INTERVAL, mod.warn.ProcessQueue)
       mod.logger.LogInfo(me.tag, "Started 'WarnQueueTicker'")
@@ -60,7 +60,7 @@ end
   Start the repeating update ticker for combatState
 ]]--
 function me.StartTickerCheckCombatState()
-  if checkCombatState == nil or checkCombatState.IsCancelled() then
+  if checkCombatState == nil or checkCombatState:IsCancelled() then
     checkCombatState = C_Timer.NewTicker(
       RGPVPW_CONSTANTS.CHECK_COMBAT_STATE_INTERVAL, mod.combatState.CombatStateUpdate)
       mod.logger.LogInfo(me.tag, "Started 'CheckCombatState'")
@@ -81,7 +81,7 @@ end
   Start the repeating update ticker for stanceStateExpired
 ]]--
 function me.StartTickerCheckStanceStateExpired()
-  if checkStanceStateExpired == nil or checkStanceStateExpired.IsCancelled() then
+  if checkStanceStateExpired == nil or checkStanceStateExpired:IsCancelled() then
     checkStanceStateExpired = C_Timer.NewTicker(
       RGPVPW_CONSTANTS.CHECK_STANCE_STACE_EXPIRED_INTERVAL, mod.stanceState.CleanExpiredTrackedStances)
     mod.logger.LogInfo(me.tag, "Started 'CheckStanceStateExpired'")
