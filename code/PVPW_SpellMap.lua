@@ -35,7 +35,7 @@ me.tag = "SpellMap"
     e.g warrior, misc etc.
     ["spell_name"] = {
       ["name"] = "Spell Name",
-        {string} spellname in ingame format
+        {string} spell name in in game format
       ["soundFileName"] = "",
         {string} name of the soundfile
       ["itemId"] = 0000,
@@ -328,6 +328,56 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["flagellation"] = {
+        ["name"] = "Flagellation",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "flagellation",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "inv-mace-1h-stratholme-d-01",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["raging_blow"] = {
+        ["name"] = "Raging Blow",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "raging_blow",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability-hunter-swiftstrike",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["consumed_by_rage"] = {
+        ["name"] = "Consumed by Rage",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "raging_blow",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell-nature-shamanrage",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["quick_strike"] = {
+        ["name"] = "Quick Strike",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "quick_strike",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "inv-axe-03",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["priest"] = {
@@ -461,6 +511,42 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED",
           "SPELL_AURA_REFRESH"
+        }
+      },
+      ["penance"] = {
+        ["name"] = "Penance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "penance",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_holy_penance",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["circle_of_healing"] = {
+        ["name"] = "Circle of Healing",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "circle_of_healing",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_holy_circleofrenewal",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["shadow_word_death"] = {
+        ["name"] = "Shadow Word: Death",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "shadow_word_death",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_holy_circleofrenewal",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
         }
       }
     },
@@ -597,6 +683,91 @@ else
         ["soundFileName"] = "stealth",
         ["spellId"] = 1787, -- rank 4
         ["spellIcon"] = "ability_stealth",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["quick_draw"] = {
+        ["name"] = "Quick Draw",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "quick_draw",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "inv_musket_02",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["between_the_eyes"] = {
+        ["name"] = "Between the Eyes",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "between_the_eyes",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "inv_weapon_rifle_07",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["blade_dance"] = {
+        ["name"] = "Blade Dance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "blade_dance",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_warrior_punishingblow",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["mutilate"] = {
+        ["name"] = "Mutilate",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "mutilate",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_rogue_shadowstrikes",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["shadowstrike"] = {
+        ["name"] = "Shadowstrike",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "shadowstrike",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_rogue_envelopingshadows",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["saber_slash"] = {
+        ["name"] = "Saber Slash",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "saber_slash",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "inv_1h_haremmatron_d_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["shiv"] = {
+        ["name"] = "Shiv",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "shiv",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "inv_throwingknife_04",
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
@@ -781,6 +952,56 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["fingers_of_frost"] = {
+        ["name"] = "Fingers of Frost",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "fingers_of_frost",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_mage_wintersgrasp",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["icy_veins"] = {
+        ["name"] = "Icy Veins",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "icy_veins",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_frost_coldhearted",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["arcane_surge"] = {
+        ["name"] = "Arcane Surge",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "arcane_surge",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_arcane_arcanetorrent",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["living_bomb"] = {
+        ["name"] = "Living Bomb",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "living_bomb",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_mage_livingbomb",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["hunter"] = {
@@ -941,6 +1162,68 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["expose_weakness"] = {
+        ["name"] = "Expose Weakness",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "expose_weakness",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_warrior_revenge",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["kill_command"] = {
+        ["name"] = "Kill Command",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "kill_command",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_hunter_killcommand",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["flanking_strike"] = {
+        ["name"] = "Flanking Strike",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "flanking_strike",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_hunter_harass",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["chimera_shot"] = {
+        ["name"] = "Chimera Shot",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "chimera_shot",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_hunter_chimerashot2",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["explosive_shot"] = {
+        ["name"] = "Explosive Shot",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "explosive_shot",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_hunter_explosiveshot",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["warlock"] = {
@@ -1035,6 +1318,19 @@ else
           "SPELL_AURA_REMOVED"
         },
         ["ignorePet"] = true
+      },
+      ["demonic_grace"] = {
+        ["name"] = "Demonic Grace",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "demonic_grace",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_warlock_demonicpower",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     },
     ["paladin"] = {
@@ -1196,6 +1492,92 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["aegis"] = {
+        ["name"] = "Aegis",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "aegis",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "inv_shield_48",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["divine_sacrifice"] = {
+        ["name"] = "Divine Sacrifice",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "divine_sacrifice",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_holy_powerwordbarrier",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["inspiration_exemplar"] = {
+        ["name"] = "Inspiration Exemplar",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "inspiration_exemplar",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_holy_power",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["avengers_shield"] = {
+        ["name"] = "Avenger's Shield",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "avengers_shield",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_holy_avengersshield",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["exorcist"] = {
+        ["name"] = "Exorcist",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "exorcist",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_holy_retribution",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["rebuke"] = {
+        ["name"] = "Rebuke",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "rebuke",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "inv_relics_totemofrage",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["crusader_strike"] = {
+        ["name"] = "Crusader Strike",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "crusader_strike",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_holy_crusaderstrike",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["druid"] = {
@@ -1312,6 +1694,67 @@ else
         ["soundFileName"] = "faerie_fire",
         ["spellId"] = 17392, -- rank 4
         ["spellIcon"] = "spell_nature_faeriefire",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["skull_bash"] = {
+        ["name"] = "Skull Bash",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "skull_bash",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "inv_misc_bone_taurenskull_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["savage_roar"] = {
+        ["name"] = "Savage Roar",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "savage_roar",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_druid_skinteeth",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["lacerate"] = {
+        ["name"] = "Lacerate",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "lacerate",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_druid_lacerate",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["wild_growth"] = {
+        ["name"] = "Wild Growth",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "wild_growth",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_druid_flourish",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["mangle"] = {
+        ["name"] = "Mangle",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "mangle",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_druid_mangle2",
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
@@ -1587,6 +2030,70 @@ else
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["healing_rain"] = {
+        ["name"] = "Healing Rain",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "healing_rain",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_nature_tranquility",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["ancestral_guidance"] = {
+        ["name"] = "Ancestral Guidance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "ancestral_guidance",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_druid_lunarguidance",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["earth_shield"] = {
+        ["name"] = "Earth Shield",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "earth_shield",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_nature_skinofearth",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["shamanistic_rage"] = {
+        ["name"] = "Shamanistic Rage",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "shamanistic_rage",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "spell_nature_shamanrage",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["water_shield"] = {
+        ["name"] = "Water Shield",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
+        ["soundFileName"] = "water_shield",
+        ["spellId"] = 999999, -- TODO
+        ["spellIcon"] = "ability_shaman_watershield",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
         }
       }
     },
