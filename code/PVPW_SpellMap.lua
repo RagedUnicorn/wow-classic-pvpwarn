@@ -357,7 +357,7 @@ else
       ["consumed_by_rage"] = {
         ["name"] = "Consumed by Rage",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
-        ["soundFileName"] = "raging_blow",
+        ["soundFileName"] = "consumed_by_rage",
         ["spellId"] = 999999, -- TODO
         ["spellIcon"] = "spell-nature-shamanrage",
         ["hasFade"] = true,
