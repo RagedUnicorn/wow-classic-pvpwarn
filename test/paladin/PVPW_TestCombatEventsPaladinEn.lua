@@ -261,7 +261,7 @@ function me.TestCombatEventInspirationExemplarSuccess()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventInspirationExemplarSuccess",
     testCategory,
-    "Inspirational Exemplar"
+    "Inspiration Exemplar"
   )
 end
 
