@@ -274,7 +274,7 @@ function me.TestSoundAvengersShield()
 end
 
 function me.TestSoundExorcist()
-  mod.testHelper.TestSoundApplied(
+  mod.testHelper.TestSoundSuccess(
     "TestSoundExorcist",
     testCategory,
     "Exorcist"
@@ -282,7 +282,7 @@ function me.TestSoundExorcist()
 end
 
 function me.TestSoundRebuke()
-  mod.testHelper.TestSoundApplied(
+  mod.testHelper.TestSoundSuccess(
     "TestSoundRebuke",
     testCategory,
     "Rebuke"
@@ -290,7 +290,7 @@ function me.TestSoundRebuke()
 end
 
 function me.TestSoundCrusaderStrike()
-  mod.testHelper.TestSoundApplied(
+  mod.testHelper.TestSoundSuccess(
     "TestSoundCrusaderStrike",
     testCategory,
     "Crusader Strike"
