@@ -94,7 +94,7 @@ function me.TestSoundFirstAid()
 end
 
 function me.TestSoundShadowProtection()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundShadowProtection",
     testCategory,
     "Shadow Protection"
@@ -110,7 +110,7 @@ function me.TestSoundDownShadowProtection()
 end
 
 function me.TestSoundFrostProtection()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundFrostProtection",
     testCategory,
     "Frost Protection"
@@ -126,7 +126,7 @@ function me.TestSoundDownFrostProtection()
 end
 
 function me.TestSoundFireProtection()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundFireProtection",
     testCategory,
     "Fire Protection"
@@ -142,7 +142,7 @@ function me.TestSoundDownFireProtection()
 end
 
 function me.TestSoundNatureProtection()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundNatureProtection",
     testCategory,
     "Nature Protection"
@@ -158,7 +158,7 @@ function me.TestSoundDownNatureProtection()
 end
 
 function me.TestSoundArcaneProtection()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundArcaneProtection",
     testCategory,
     "Arcane Protection"
