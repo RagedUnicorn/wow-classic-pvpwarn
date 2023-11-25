@@ -36,6 +36,11 @@ RGPVPW_CONSTANTS = {
   BUFF_TYPE_BUFF = "BUFF",
   BUFF_TYPE_DEBUFF = "DEBUFF",
   --[[
+    Spell types
+  ]]--
+  SPELL_TYPE_NORMAL = "NORMAL",
+  SPELL_TYPE_RUNE = "RUNE",
+  --[[
     Intervals
   ]]--
   WARN_QUEUE_UPDATE_INTERVAL = 0.1,
