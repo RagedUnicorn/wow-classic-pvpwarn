@@ -71,7 +71,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventManaTideTotemSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTranquilAirTotemSuccess)
   -- runes
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHealingRainTotemSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHealingRainSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAncestralGuidanceApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAncestralGuidanceRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEarthShieldApplied)
@@ -290,9 +290,9 @@ function me.TestCombatEventTranquilAirTotemSuccess()
   )
 end
 
-function me.TestCombatEventHealingRainTotemSuccess()
+function me.TestCombatEventHealingRainSuccess()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventHealingRainTotemSuccess",
+    "TestCombatEventHealingRainSuccess",
     testCategory,
     "Healing Rain"
   )
