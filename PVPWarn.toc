@@ -80,77 +80,77 @@ test/PVPW_TestSound.lua
 test/PVPW_TestCombatEvent.lua
 
 # warrior
-test/PVPW_TestSoundWarriorEn.lua
-test/PVPW_TestSoundSelfAvoidWarriorEn.lua
-test/PVPW_TestSoundEnemyAvoidWarriorEn.lua
-test/PVPW_TestCombatEventsWarriorEn.lua
-test/PVPW_TestCombatEventsSelfAvoidWarriorEn.lua
-test/PVPW_TestCombatEventsEnemyAvoidWarriorEn.lua
+test/warrior/PVPW_TestSoundWarriorEn.lua
+test/warrior/PVPW_TestSoundSelfAvoidWarriorEn.lua
+test/warrior/PVPW_TestSoundEnemyAvoidWarriorEn.lua
+test/warrior/PVPW_TestCombatEventsWarriorEn.lua
+test/warrior/PVPW_TestCombatEventsSelfAvoidWarriorEn.lua
+test/warrior/PVPW_TestCombatEventsEnemyAvoidWarriorEn.lua
 # priest
-test/PVPW_TestSoundPriestEn.lua
-test/PVPW_TestSoundSelfAvoidPriestEn.lua
-test/PVPW_TestSoundEnemyAvoidPriestEn.lua
-test/PVPW_TestCombatEventsPriestEn.lua
-test/PVPW_TestCombatEventsSelfAvoidPriestEn.lua
-test/PVPW_TestCombatEventsEnemyAvoidPriestEn.lua
+test/priest/PVPW_TestSoundPriestEn.lua
+test/priest/PVPW_TestSoundSelfAvoidPriestEn.lua
+test/priest/PVPW_TestSoundEnemyAvoidPriestEn.lua
+test/priest/PVPW_TestCombatEventsPriestEn.lua
+test/priest/PVPW_TestCombatEventsSelfAvoidPriestEn.lua
+test/priest/PVPW_TestCombatEventsEnemyAvoidPriestEn.lua
 # rogue
-test/PVPW_TestSoundRogueEn.lua
-test/PVPW_TestSoundSelfAvoidRogueEn.lua
-test/PVPW_TestSoundEnemyAvoidRogueEn.lua
-test/PVPW_TestCombatEventsRogueEn.lua
-test/PVPW_TestCombatEventsSelfAvoidRogueEn.lua
-test/PVPW_TestCombatEventsEnemyAvoidRogueEn.lua
+test/rogue/PVPW_TestSoundRogueEn.lua
+test/rogue/PVPW_TestSoundSelfAvoidRogueEn.lua
+test/rogue/PVPW_TestSoundEnemyAvoidRogueEn.lua
+test/rogue/PVPW_TestCombatEventsRogueEn.lua
+test/rogue/PVPW_TestCombatEventsSelfAvoidRogueEn.lua
+test/rogue/PVPW_TestCombatEventsEnemyAvoidRogueEn.lua
 # mage
-test/PVPW_TestSoundMageEn.lua
-test/PVPW_TestSoundSelfAvoidMageEn.lua
-test/PVPW_TestSoundEnemyAvoidMageEn.lua
-test/PVPW_TestCombatEventsMageEn.lua
-test/PVPW_TestCombatEventsSelfAvoidMageEn.lua
-test/PVPW_TestCombatEventsEnemyAvoidMageEn.lua
+test/mage/PVPW_TestSoundMageEn.lua
+test/mage/PVPW_TestSoundSelfAvoidMageEn.lua
+test/mage/PVPW_TestSoundEnemyAvoidMageEn.lua
+test/mage/PVPW_TestCombatEventsMageEn.lua
+test/mage/PVPW_TestCombatEventsSelfAvoidMageEn.lua
+test/mage/PVPW_TestCombatEventsEnemyAvoidMageEn.lua
 # hunter
-test/PVPW_TestSoundHunterEn.lua
-test/PVPW_TestSoundSelfAvoidHunterEn.lua
-test/PVPW_TestSoundEnemyAvoidHunterEn.lua
-test/PVPW_TestCombatEventsHunterEn.lua
-test/PVPW_TestCombatEventsSelfAvoidHunterEn.lua
-test/PVPW_TestCombatEventsEnemyAvoidHunterEn.lua
+test/hunter/PVPW_TestSoundHunterEn.lua
+test/hunter/PVPW_TestSoundSelfAvoidHunterEn.lua
+test/hunter/PVPW_TestSoundEnemyAvoidHunterEn.lua
+test/hunter/PVPW_TestCombatEventsHunterEn.lua
+test/hunter/PVPW_TestCombatEventsSelfAvoidHunterEn.lua
+test/hunter/PVPW_TestCombatEventsEnemyAvoidHunterEn.lua
 # warlock
-test/PVPW_TestSoundWarlockEn.lua
-test/PVPW_TestSoundSelfAvoidWarlockEn.lua
-test/PVPW_TestSoundEnemyAvoidWarlockEn.lua
-test/PVPW_TestCombatEventsWarlockEn.lua
-test/PVPW_TestCombatEventsSelfAvoidWarlockEn.lua
-test/PVPW_TestCombatEventsEnemyAvoidWarlockEn.lua
+test/warlock/PVPW_TestSoundWarlockEn.lua
+test/warlock/PVPW_TestSoundSelfAvoidWarlockEn.lua
+test/warlock/PVPW_TestSoundEnemyAvoidWarlockEn.lua
+test/warlock/PVPW_TestCombatEventsWarlockEn.lua
+test/warlock/PVPW_TestCombatEventsSelfAvoidWarlockEn.lua
+test/warlock/PVPW_TestCombatEventsEnemyAvoidWarlockEn.lua
 # paladin
-test/PVPW_TestSoundPaladinEn.lua
-test/PVPW_TestSoundSelfAvoidPaladinEn.lua
-test/PVPW_TestSoundEnemyAvoidPaladinEn.lua
-test/PVPW_TestCombatEventsPaladinEn.lua
-test/PVPW_TestCombatEventsSelfAvoidPaladinEn.lua
-test/PVPW_TestCombatEventsEnemyAvoidPaladinEn.lua
+test/paladin/PVPW_TestSoundPaladinEn.lua
+test/paladin/PVPW_TestSoundSelfAvoidPaladinEn.lua
+test/paladin/PVPW_TestSoundEnemyAvoidPaladinEn.lua
+test/paladin/PVPW_TestCombatEventsPaladinEn.lua
+test/paladin/PVPW_TestCombatEventsSelfAvoidPaladinEn.lua
+test/paladin/PVPW_TestCombatEventsEnemyAvoidPaladinEn.lua
 # druid
-test/PVPW_TestSoundDruidEn.lua
-test/PVPW_TestSoundSelfAvoidDruidEn.lua
-test/PVPW_TestSoundEnemyAvoidDruidEn.lua
-test/PVPW_TestCombatEventsDruidEn.lua
-test/PVPW_TestCombatEventsSelfAvoidDruidEn.lua
-test/PVPW_TestCombatEventsEnemyAvoidDruidEn.lua
+test/druid/PVPW_TestSoundDruidEn.lua
+test/druid/PVPW_TestSoundSelfAvoidDruidEn.lua
+test/druid/PVPW_TestSoundEnemyAvoidDruidEn.lua
+test/druid/PVPW_TestCombatEventsDruidEn.lua
+test/druid/PVPW_TestCombatEventsSelfAvoidDruidEn.lua
+test/druid/PVPW_TestCombatEventsEnemyAvoidDruidEn.lua
 # shaman
-test/PVPW_TestSoundShamanEn.lua
-test/PVPW_TestSoundSelfAvoidShamanEn.lua
-test/PVPW_TestSoundEnemyAvoidShamanEn.lua
-test/PVPW_TestCombatEventsShamanEn.lua
-test/PVPW_TestCombatEventsSelfAvoidShamanEn.lua
-test/PVPW_TestCombatEventsEnemyAvoidShamanEn.lua
+test/shaman/PVPW_TestSoundShamanEn.lua
+test/shaman/PVPW_TestSoundSelfAvoidShamanEn.lua
+test/shaman/PVPW_TestSoundEnemyAvoidShamanEn.lua
+test/shaman/PVPW_TestCombatEventsShamanEn.lua
+test/shaman/PVPW_TestCombatEventsSelfAvoidShamanEn.lua
+test/shaman/PVPW_TestCombatEventsEnemyAvoidShamanEn.lua
 # racials
-test/PVPW_TestSoundRacialsEn.lua
-test/PVPW_TestCombatEventsRacialsEn.lua
+test/racials/PVPW_TestSoundRacialsEn.lua
+test/racials/PVPW_TestCombatEventsRacialsEn.lua
 # items
-test/PVPW_TestSoundItemsEn.lua
-test/PVPW_TestCombatEventsItemsEn.lua
+test/items/PVPW_TestSoundItemsEn.lua
+test/items/PVPW_TestCombatEventsItemsEn.lua
 # misc
-test/PVPW_TestSoundMiscEn.lua
-test/PVPW_TestCombatEventsMiscEn.lua
+test/misc/PVPW_TestSoundMiscEn.lua
+test/misc/PVPW_TestCombatEventsMiscEn.lua
 
 # test all
 test/PVPW_TestAllEn.lua
