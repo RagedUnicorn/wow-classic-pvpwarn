@@ -38,6 +38,7 @@ code/PVPW_Cmd.lua
 code/PVPW_Tooltip.lua
 code/PVPW_Macro.lua
 code/PVPW_Zone.lua
+code/PVPW_Season.lua
 
 # profiles
 profiles/PVPW_Profile.lua
