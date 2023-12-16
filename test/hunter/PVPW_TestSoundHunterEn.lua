@@ -61,8 +61,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDeterrence)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDeterrence)
   -- runes
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExposeWeakness)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownExposeWeakness)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSniperTraining)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSniperTraining)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundKillCommand)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownKillCommand)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFlankingStrike)
@@ -214,19 +214,19 @@ function me.TestSoundDownDeterrence()
   )
 end
 
-function me.TestSoundExposeWeakness()
+function me.TestSoundSniperTraining()
   mod.testHelper.TestSoundApplied(
-    "TestSoundExposeWeakness",
+    "TestSoundSniperTraining",
     testCategory,
-    "Expose Weakness"
+    "Sniper Training"
   )
 end
 
-function me.TestSoundDownExposeWeakness()
+function me.TestSoundDownSniperTraining()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownExposeWeakness",
+    "TestSoundDownSniperTraining",
     testCategory,
-    "Expose Weakness"
+    "Sniper Training"
   )
 end
 

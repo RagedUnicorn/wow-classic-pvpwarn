@@ -1163,12 +1163,12 @@ else
           "SPELL_AURA_REMOVED"
         }
       },
-      ["expose_weakness"] = {
-        ["name"] = "Expose Weakness",
+      ["sniper_training"] = {
+        ["name"] = "Sniper Training",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_RUNE,
-        ["soundFileName"] = "expose_weakness",
-        ["spellId"] = 999999, -- TODO
-        ["spellIcon"] = "ability_warrior_revenge",
+        ["soundFileName"] = "sniper_training",
+        ["spellId"] = 415399,
+        ["spellIcon"] = "ability_hunter_snipershot",
         ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
