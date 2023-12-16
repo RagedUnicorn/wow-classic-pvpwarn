@@ -61,8 +61,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeterrenceApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeterrenceRemoved)
   -- runes
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExposeWeaknessApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExposeWeaknessRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSniperTrainingApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSniperTrainingRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventKillCommandApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventKillCommandRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFlankingStrikeSuccess)
@@ -214,19 +214,19 @@ function me.TestCombatEventDeterrenceRemoved()
   )
 end
 
-function me.TestCombatEventExposeWeaknessApplied()
+function me.TestCombatEventSniperTrainingApplied()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventExposeWeaknessApplied",
+    "TestCombatEventSniperTrainingApplied",
     testCategory,
-    "Expose Weakness"
+    "Sniper Training"
   )
 end
 
-function me.TestCombatEventExposeWeaknessRemoved()
+function me.TestCombatEventSniperTrainingRemoved()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventExposeWeaknessRemoved",
+    "TestCombatEventSniperTrainingRemoved",
     testCategory,
-    "Expose Weakness"
+    "Sniper Training"
   )
 end
 
