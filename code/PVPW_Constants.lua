@@ -38,8 +38,10 @@ RGPVPW_CONSTANTS = {
   --[[
     Spell types
   ]]--
-  SPELL_TYPE_NORMAL = "NORMAL",
-  SPELL_TYPE_RUNE = "RUNE",
+  -- base game spell types
+  SPELL_TYPE_BASE = "SPELL_TYPE_BASE",
+  -- season of discovery spell types
+  SPELL_TYPE_SOD = "SPELL_TYPE_SOD",
   --[[
     Intervals
   ]]--
