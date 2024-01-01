@@ -96,7 +96,7 @@ function me.UpdateZone()
     mod.logger.LogInfo(me.tag, "Updated map id to: " .. zoneIdentifier)
     me.UpdateZoneStatus(zoneIdentifier)
   else
-    mod.logger.LogError(me.tag, "Invalid type for IsInInstance")
+    mod.logger.LogInfo(me.tag, "Ignore non-tracked zone type: " .. type)
   end
 end
 
