@@ -111,6 +111,7 @@ else
     ["warrior"] = {
       ["berserker_rage"] = {
         ["name"] = "Berserker Rage",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "berserker_rage",
         ["spellId"] = 18499,
         ["spellIcon"] = "spell_nature_ancestralguardian",
@@ -123,6 +124,7 @@ else
       },
       ["recklessness"] = {
         ["name"] = "Recklessness",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "recklessness",
         ["spellId"] = 1719,
         ["spellIcon"] = "ability_criticalstrike",
@@ -135,6 +137,7 @@ else
       },
       ["death_wish"] = {
         ["name"] = "Death Wish",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "death_wish",
         ["spellId"] = 12292,
         ["spellIcon"] = "spell_shadow_deathpact",
@@ -147,6 +150,7 @@ else
       },
       ["battle_stance"] = {
         ["name"] = "Battle Stance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "battle_stance",
         ["spellId"] = 2457,
         ["spellIcon"] = "ability_warrior_offensivestance",
@@ -159,6 +163,7 @@ else
       },
       ["berserker_stance"] = {
         ["name"] = "Berserker Stance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "berserker_stance",
         ["spellId"] = 2458,
         ["spellIcon"] = "ability_racial_avatar",
@@ -171,6 +176,7 @@ else
       },
       ["defensive_stance"] = {
         ["name"] = "Defensive Stance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "defensive_stance",
         ["spellId"] = 71,
         ["spellIcon"] = "ability_warrior_defensivestance",
@@ -183,6 +189,7 @@ else
       },
       ["intercept"] = {
         ["name"] = "Intercept",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "intercept",
         ["spellId"] = 20252,
         ["spellIcon"] = "ability_rogue_sprint",
@@ -194,6 +201,7 @@ else
       },
       ["disarm"] = {
         ["name"] = "Disarm",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "disarm",
         ["spellId"] = 676,
         ["spellIcon"] = "ability_warrior_disarm",
@@ -205,6 +213,7 @@ else
       },
       ["concussion_blow"] = {
         ["name"] = "Concussion Blow",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "concussion_blow",
         ["spellId"] = 12809,
         ["spellIcon"] = "ability_thunderbolt",
@@ -216,6 +225,7 @@ else
       },
       ["bloodrage"] = {
         ["name"] = "Bloodrage",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "bloodrage",
         ["spellId"] = 2687,
         ["spellIcon"] = "ability_racial_bloodrage",
@@ -228,6 +238,7 @@ else
       },
       ["pummel"] = {
         ["name"] = "Pummel",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "pummel",
         ["spellId"] = 6552,
         ["spellIcon"] = "inv_gauntlets_04",
@@ -239,6 +250,7 @@ else
       },
       ["charge"] = {
         ["name"] = "Charge",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "charge",
         ["spellId"] = 11578,
         ["spellIcon"] = "ability_warrior_charge",
@@ -250,6 +262,7 @@ else
       },
       ["intimidating_shout"] = {
         ["name"] = "Intimidating Shout",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "intimidating_shout",
         ["spellId"] = 29544,
         ["spellIcon"] = "ability_golemthunderclap",
@@ -261,6 +274,7 @@ else
       },
       ["shield_block"] = {
         ["name"] = "Shield Block",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shield_block",
         ["spellId"] = 2565,
         ["spellIcon"] = "ability_defend",
@@ -273,6 +287,7 @@ else
       },
       ["shield_slam"] = {
         ["name"] = "Shield Slam",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shield_slam",
         ["spellId"] = 23925, -- rank 4
         ["spellIcon"] = "inv_shield_05",
@@ -284,6 +299,7 @@ else
       },
       ["shield_wall"] = {
         ["name"] = "Shield Wall",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shield_wall",
         ["spellId"] = 871,
         ["spellIcon"] = "ability_warrior_shieldwall",
@@ -296,6 +312,7 @@ else
       },
       ["last_stand"] = {
         ["name"] = "Last Stand",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "last_stand",
         ["spellId"] = 12975,
         ["spellIcon"] = "spell_holy_ashestoashes",
@@ -308,6 +325,7 @@ else
       },
       ["shield_bash"] = {
         ["name"] = "Shield Bash",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shield_bash",
         ["spellId"] = 1672, -- rank 3
         ["spellIcon"] = "ability_warrior_shieldbash",
@@ -319,6 +337,7 @@ else
       },
       ["retaliation"] = {
         ["name"] = "Retaliation",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "retaliation",
         ["spellId"] = 20230,
         ["spellIcon"] = "ability_warrior_challange",
@@ -383,6 +402,7 @@ else
     ["priest"] = {
       ["psychic_scream"] = {
         ["name"] = "Psychic Scream",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "psychic_scream",
         ["spellId"] = 10890,
         ["spellIcon"] = "spell_shadow_psychicscream",
@@ -394,6 +414,7 @@ else
       },
       ["silence"] = {
         ["name"] = "Silence",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "silence",
         ["spellId"] = 15487,
         ["spellIcon"] = "spell_shadow_impphaseshift",
@@ -405,6 +426,7 @@ else
       },
       ["power_infusion"] = {
         ["name"] = "Power Infusion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "power_infusion",
         ["spellId"] = 10060,
         ["spellIcon"] = "spell_holy_powerinfusion",
@@ -418,6 +440,7 @@ else
       },
       ["inner_fire"] = {
         ["name"] = "Inner Fire",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "inner_fire",
         ["spellId"] = 10952, -- rank 6
         ["spellIcon"] = "spell_holy_innerfire",
@@ -431,6 +454,7 @@ else
       },
       ["vampiric_embrace"] = {
         ["name"] = "Vampiric Embrace",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "vampiric_embrace",
         ["spellId"] = 15286,
         ["spellIcon"] = "spell_shadow_unsummonbuilding",
@@ -443,6 +467,7 @@ else
       },
       ["devouring_plague"] = {
         ["name"] = "Devouring Plague",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "devouring_plague",
         ["spellId"] = 19280, -- rank 6
         ["spellIcon"] = "spell_shadow_blackplague",
@@ -454,6 +479,7 @@ else
       },
       ["touch_of_weakness"] = {
         ["name"] = "Touch of Weakness",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "touch_of_weakness",
         ["spellId"] = 19266, -- rank 6
         ["spellIcon"] = "spell_shadow_deadofnight",
@@ -467,6 +493,7 @@ else
       },
       ["fear_ward"] = {
         ["name"] = "Fear Ward",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "fear_ward",
         ["spellId"] = 6346,
         ["spellIcon"] = "spell_holy_excorcism",
@@ -480,6 +507,7 @@ else
       },
       ["desperate_prayer"] = {
         ["name"] = "Desperate Prayer",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "desperate_prayer",
         ["spellId"] = 19243, -- rank 7
         ["spellIcon"] = "spell_holy_restoration",
@@ -491,6 +519,7 @@ else
       },
       ["hex_of_weakness"] = {
         ["name"] = "Hex of Weakness",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "hex_of_weakness",
         ["spellId"] = 9035, -- rank 1
         ["spellIcon"] = "spell_shadow_fingerofdeath",
@@ -502,6 +531,7 @@ else
       },
       ["shadowguard"] = {
         ["name"] = "Shadowguard",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shadowguard",
         ["spellId"] = 19312, -- rank 6
         ["spellIcon"] = "spell_nature_lightningshield",
@@ -553,6 +583,7 @@ else
     ["rogue"] = {
       ["blind"] = {
         ["name"] = "Blind",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "blind",
         ["spellId"] = 2094,
         ["spellIcon"] = "spell_shadow_mindsteal",
@@ -565,6 +596,7 @@ else
       },
       ["kick"] = {
         ["name"] = "Kick",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "kick",
         ["spellId"] = 1769,
         ["spellIcon"] = "ability_kick",
@@ -576,6 +608,7 @@ else
       },
       ["sprint"] = {
         ["name"] = "Sprint",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "sprint",
         ["spellId"] = 11305, -- rank 3
         ["spellIcon"] = "ability_rogue_sprint",
@@ -588,6 +621,7 @@ else
       },
       ["evasion"] = {
         ["name"] = "Evasion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "evasion",
         ["spellId"] = 5277,
         ["spellIcon"] = "spell_shadow_shadowward",
@@ -600,6 +634,7 @@ else
       },
       ["kidney_shot"] = {
         ["name"] = "Kidney Shot",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "kidney_shot",
         ["spellId"] = 8643,
         ["spellIcon"] = "ability_rogue_kidneyshot",
@@ -611,6 +646,7 @@ else
       },
       ["cheap_shot"] = {
         ["name"] = "Cheap Shot",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "cheap_shot",
         ["spellId"] = 1833,
         ["spellIcon"] = "ability_cheapshot",
@@ -622,6 +658,7 @@ else
       },
       ["adrenaline_rush"] = {
         ["name"] = "Adrenaline Rush",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "adrenaline_rush",
         ["spellId"] = 13750,
         ["spellIcon"] = "spell_shadow_shadowworddominate",
@@ -634,6 +671,7 @@ else
       },
       ["blade_flurry"] = {
         ["name"] = "Blade Flurry",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "blade_flurry",
         ["spellId"] = 13877,
         ["spellIcon"] = "ability_warrior_punishingblow",
@@ -646,6 +684,7 @@ else
       },
       ["cold_blood"] = {
         ["name"] = "Cold Blood",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "cold_blood",
         ["spellId"] = 14177,
         ["spellIcon"] = "spell_ice_lament",
@@ -658,6 +697,7 @@ else
       },
       ["preparation"] = {
         ["name"] = "Preparation",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "preparation",
         ["spellId"] = 14185,
         ["spellIcon"] = "spell_shadow_antishadow",
@@ -669,6 +709,7 @@ else
       },
       ["vanish"] = {
         ["name"] = "Vanish",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "vanish",
         ["spellId"] = 1857, -- rank 2
         ["spellIcon"] = "ability_vanish",
@@ -680,6 +721,7 @@ else
       },
       ["stealth"] = {
         ["name"] = "Stealth",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "stealth",
         ["spellId"] = 1787, -- rank 4
         ["spellIcon"] = "ability_stealth",
@@ -778,6 +820,7 @@ else
     ["mage"] = {
       ["ice_block"] = {
         ["name"] = "Ice Block",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "ice_block",
         ["spellId"] = 11958,
         ["spellIcon"] = "spell_frost_frost",
@@ -790,6 +833,7 @@ else
       },
       ["polymorph"] = {
         ["name"] = "Polymorph",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "polymorph",
         ["spellId"] = 12826,
         ["spellIcon"] = "spell_nature_polymorph",
@@ -803,6 +847,7 @@ else
       },
       ["blink"] = {
         ["name"] = "Blink",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "blink",
         ["spellId"] = 1953,
         ["spellIcon"] = "spell_arcane_blink",
@@ -814,6 +859,7 @@ else
       },
       ["fire_ward"] = {
         ["name"] = "Fire Ward",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "fire_ward",
         ["spellId"] = 10226, -- rank 5
         ["spellIcon"] = "spell_fire_firearmor",
@@ -826,6 +872,7 @@ else
       },
       ["frost_ward"] = {
         ["name"] = "Frost Ward",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "frost_ward",
         ["spellId"] = 28609, -- rank 5
         ["spellIcon"] = "spell_frost_frostward",
@@ -838,6 +885,7 @@ else
       },
       ["counterspell"] = {
         ["name"] = "Counterspell",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "counterspell",
         ["spellId"] = 2139,
         ["spellIcon"] = "spell_frost_iceshock",
@@ -849,6 +897,7 @@ else
       },
       ["mana_shield"] = {
         ["name"] = "Mana Shield",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "mana_shield",
         ["spellId"] = 10193, -- rank 6
         ["spellIcon"] = "spell_shadow_detectlesserinvisibility",
@@ -862,6 +911,7 @@ else
       },
       ["ice_barrier"] = {
         ["name"] = "Ice Barrier",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "ice_barrier",
         ["spellId"] = 13033, -- rank 4
         ["spellIcon"] = "spell_ice_lament",
@@ -875,6 +925,7 @@ else
       },
       ["frost_nova"] = {
         ["name"] = "Frost Nova",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "frost_nova",
         ["spellId"] = 10230, -- rank 4
         ["spellIcon"] = "spell_frost_frostnova",
@@ -886,6 +937,7 @@ else
       },
       ["arcane_power"] = {
         ["name"] = "Arcane Power",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "arcane_power",
         ["spellId"] = 12042,
         ["spellIcon"] = "spell_nature_lightning",
@@ -898,6 +950,7 @@ else
       },
       ["evocation"] = {
         ["name"] = "Evocation",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "evocation",
         ["spellId"] = 12051,
         ["spellIcon"] = "spell_nature_purge",
@@ -909,6 +962,7 @@ else
       },
       ["presence_of_mind"] = {
         ["name"] = "Presence of Mind",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "presence_of_mind",
         ["spellId"] = 12043,
         ["spellIcon"] = "spell_nature_enchantarmor",
@@ -921,6 +975,7 @@ else
       },
       ["combustion"] = {
         ["name"] = "Combustion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "combustion",
         ["spellId"] = 11129,
         ["spellIcon"] = "spell_fire_sealoffire",
@@ -933,6 +988,7 @@ else
       },
       ["blast_wave"] = {
         ["name"] = "Blast Wave",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "blast_wave",
         ["spellId"] = 13021, -- rank 5
         ["spellIcon"] = "spell_holy_excorcism_02",
@@ -944,6 +1000,7 @@ else
       },
       ["cold_snap"] = {
         ["name"] = "Cold Snap",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "cold_snap",
         ["spellId"] = 12472,
         ["spellIcon"] = "spell_frost_wizardmark",
@@ -1007,6 +1064,7 @@ else
     ["hunter"] = {
       ["concussive_shot"] = {
         ["name"] = "Concussive Shot",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "concussive_shot",
         ["spellId"] = 5116,
         ["spellIcon"] = "spell_frost_stun",
@@ -1018,6 +1076,7 @@ else
       },
       ["aspect_of_the_monkey"] = {
         ["name"] = "Aspect of the Monkey",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "aspect_of_the_monkey",
         ["spellId"] = 13163,
         ["spellIcon"] = "ability_hunter_aspectofthemonkey",
@@ -1029,6 +1088,7 @@ else
       },
       ["aspect_of_the_hawk"] = {
         ["name"] = "Aspect of the Hawk",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "aspect_of_the_hawk",
         ["spellId"] = 25296, -- rank 7
         ["spellIcon"] = "spell_nature_ravenform",
@@ -1040,6 +1100,7 @@ else
       },
       ["rapid_fire"] = {
         ["name"] = "Rapid Fire",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "rapid_fire",
         ["spellId"] = 3045,
         ["spellIcon"] = "ability_hunter_runningshot",
@@ -1052,6 +1113,7 @@ else
       },
       ["explosive_trap"] = {
         ["name"] = "Explosive Trap",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "explosive_trap",
         ["spellId"] = 14317, -- rank 3
         ["spellIcon"] = "spell_fire_selfdestruct",
@@ -1063,6 +1125,7 @@ else
       },
       ["freezing_trap"] = {
         ["name"] = "Freezing Trap",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "freezing_trap",
         ["spellId"] = 27753, -- rank 3
         ["spellIcon"] = "spell_frost_chainsofice",
@@ -1074,6 +1137,7 @@ else
       },
       ["immolation_trap"] = {
         ["name"] = "Immolation Trap",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "immolation_trap",
         ["spellId"] = 14305, -- rank 5
         ["spellIcon"] = "spell_fire_flameshock",
@@ -1085,6 +1149,7 @@ else
       },
       ["frost_trap"] = {
         ["name"] = "Frost Trap",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "frost_trap",
         ["spellId"] = 13809,
         ["spellIcon"] = "spell_frost_freezingbreath",
@@ -1096,6 +1161,7 @@ else
       },
       ["viper_sting"] = {
         ["name"] = "Viper Sting",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "viper_sting",
         ["spellId"] = 14280, -- rank 3
         ["spellIcon"] = "ability_hunter_aimedshot",
@@ -1107,6 +1173,7 @@ else
       },
       ["scatter_shot"] = {
         ["name"] = "Scatter Shot",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "scatter_shot",
         ["spellId"] = 19503,
         ["spellIcon"] = "ability_golemstormbolt",
@@ -1118,6 +1185,7 @@ else
       },
       ["flare"] = {
         ["name"] = "Flare",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "flare",
         ["spellId"] = 1543,
         ["spellIcon"] = "spell_fire_flare",
@@ -1129,6 +1197,7 @@ else
       },
       ["intimidation"] = {
         ["name"] = "Intimidation",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "intimidation",
         ["spellId"] = 24394,
         ["spellIcon"] = "ability_devour",
@@ -1141,6 +1210,7 @@ else
       },
       ["bestial_wrath"] = {
         ["name"] = "Bestial Wrath",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "bestial_wrath",
         ["spellId"] = 19574,
         ["spellIcon"] = "ability_druid_ferociousbite",
@@ -1153,6 +1223,7 @@ else
       },
       ["deterrence"] = {
         ["name"] = "Deterrence",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "deterrence",
         ["spellId"] = 19263,
         ["spellIcon"] = "ability_whirlwind",
@@ -1229,6 +1300,7 @@ else
     ["warlock"] = {
       ["fear"] = {
         ["name"] = "Fear",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "fear",
         ["spellId"] = 6215, -- rank 3
         ["spellIcon"] = "spell_shadow_possession",
@@ -1240,6 +1312,7 @@ else
       },
       ["shadowburn"] = {
         ["name"] = "Shadowburn",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shadowburn",
         ["spellId"] = 18871, -- rank 6
         ["spellIcon"] = "spell_shadow_scourgebuild",
@@ -1251,6 +1324,7 @@ else
       },
       ["shadow_ward"] = {
         ["name"] = "Shadow Ward",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shadow_ward",
         ["spellId"] = 28610, -- rank 4
         ["spellIcon"] = "spell_shadow_antishadow",
@@ -1263,6 +1337,7 @@ else
       },
       ["howl_of_terror"] = {
         ["name"] = "Howl of Terror",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "howl_of_terror",
         ["spellId"] = 17928, -- rank 2
         ["spellIcon"] = "spell_shadow_deathscream",
@@ -1274,6 +1349,7 @@ else
       },
       ["death_coil"] = {
         ["name"] = "Death Coil",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "death_coil",
         ["spellId"] = 17926,
         ["spellIcon"] = "spell_shadow_deathcoil",
@@ -1285,6 +1361,7 @@ else
       },
       ["amplify_curse"] = {
         ["name"] = "Amplify Curse",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "amplify_curse",
         ["spellId"] = 18288,
         ["spellIcon"] = "spell_shadow_contagion",
@@ -1297,6 +1374,7 @@ else
       },
       ["spell_lock"] = {
         ["name"] = "Spell Lock",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "spell_lock",
         ["spellId"] = 19647,
         ["spellIcon"] = "spell_shadow_mindrot",
@@ -1308,6 +1386,7 @@ else
       },
       ["soul_link"] = {
         ["name"] = "Soul Link",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "soul_link",
         ["spellId"] = 19028,
         ["spellIcon"] = "spell_shadow_gathershadows",
@@ -1321,6 +1400,7 @@ else
       },
       ["fel_domination"] = {
         ["name"] = "Fel Domination",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "fel_domination",
         ["spellId"] = 18708,
         ["spellIcon"] = "spell_nature_removecurse",
@@ -1348,6 +1428,7 @@ else
     ["paladin"] = {
       ["devotion_aura"] = {
         ["name"] = "Devotion Aura",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "devotion_aura",
         ["spellId"] = 10293, -- rank 7
         ["spellIcon"] = "spell_holy_devotionaura",
@@ -1359,6 +1440,7 @@ else
       },
       ["retribution_aura"] = {
         ["name"] = "Retribution Aura",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "retribution_aura",
         ["spellId"] = 10301, -- rank 5
         ["spellIcon"] = "spell_holy_auraoflight",
@@ -1370,6 +1452,7 @@ else
       },
       ["concentration_aura"] = {
         ["name"] = "Concentration Aura",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "concentration_aura",
         ["spellId"] = 19746,
         ["spellIcon"] = "spell_holy_mindsooth",
@@ -1381,6 +1464,7 @@ else
       },
       ["shadow_resistance_aura"] = {
         ["name"] = "Shadow Resistance Aura",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shadow_resistance_aura",
         ["spellId"] = 19896,
         ["spellIcon"] = "spell_shadow_sealofkings",
@@ -1392,6 +1476,7 @@ else
       },
       ["frost_resistance_aura"] = {
         ["name"] = "Frost Resistance Aura",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "frost_resistance_aura",
         ["spellId"] = 19898, -- rank 3
         ["spellIcon"] = "spell_frost_wizardmark",
@@ -1403,6 +1488,7 @@ else
       },
       ["fire_resistance_aura"] = {
         ["name"] = "Fire Resistance Aura",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "fire_resistance_aura",
         ["spellId"] = 19900, -- rank 3
         ["spellIcon"] = "spell_fire_sealoffire",
@@ -1414,6 +1500,7 @@ else
       },
       ["blessing_of_protection"] = {
         ["name"] = "Blessing of Protection",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "blessing_of_protection",
         ["spellId"] = 10278, -- rank 3
         ["spellIcon"] = "spell_holy_sealofprotection",
@@ -1426,6 +1513,7 @@ else
       },
       ["blessing_of_freedom"] = {
         ["name"] = "Blessing of Freedom",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "blessing_of_freedom",
         ["spellId"] = 1044,
         ["spellIcon"] = "spell_holy_sealofvalor",
@@ -1438,6 +1526,7 @@ else
       },
       ["blessing_of_sacrifice"] = {
         ["name"] = "Blessing of Sacrifice",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "blessing_of_sacrifice",
         ["spellId"] = 20729,
         ["spellIcon"] = "spell_holy_sealofsacrifice",
@@ -1450,6 +1539,7 @@ else
       },
       ["hammer_of_justice"] = {
         ["name"] = "Hammer of Justice",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "hammer_of_justice",
         ["spellId"] = 10308,
         ["spellIcon"] = "spell_holy_sealofmight",
@@ -1461,6 +1551,7 @@ else
       },
       ["repentance"] = {
         ["name"] = "Repentance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "repentance",
         ["spellId"] = 20066,
         ["spellIcon"] = "spell_holy_prayerofhealing",
@@ -1472,6 +1563,7 @@ else
       },
       ["divine_shield"] = {
         ["name"] = "Divine Shield",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "divine_shield",
         ["spellId"] = 642, -- rank 2
         ["spellIcon"] = "spell_holy_divineintervention",
@@ -1484,6 +1576,7 @@ else
       },
       ["forbearance"] = {
         ["name"] = "Forbearance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "forbearance",
         ["spellId"] = 25771,
         ["spellIcon"] = "spell_holy_removecurse",
@@ -1496,6 +1589,7 @@ else
       },
       ["lay_on_hands"] = {
         ["name"] = "Lay on Hands",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "lay_on_hands",
         ["spellId"] = 633,
         ["spellIcon"] = "spell_holy_layonhands",
@@ -1595,6 +1689,7 @@ else
     ["druid"] = {
       ["barkskin"] = {
         ["name"] = "Barkskin",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "barkskin",
         ["spellId"] = 22812,
         ["spellIcon"] = "spell_nature_stoneclawtotem",
@@ -1607,6 +1702,7 @@ else
       },
       ["natures_grasp"] = {
         ["name"] = "Nature's Grasp",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "natures_grasp",
         ["spellId"] = 17329, -- rank 6
         ["spellIcon"] = "spell_nature_natureswrath",
@@ -1619,6 +1715,7 @@ else
       },
       ["bash"] = {
         ["name"] = "Bash",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "bash",
         ["spellId"] = 8983, -- rank 3
         ["spellIcon"] = "ability_druid_bash",
@@ -1630,6 +1727,7 @@ else
       },
       ["feral_charge"] = {
         ["name"] = "Feral Charge",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "feral_charge",
         ["spellId"] = 16979,
         ["spellIcon"] = "ability_hunter_pet_bear",
@@ -1641,6 +1739,7 @@ else
       },
       ["frenzied_regeneration"] = {
         ["name"] = "Frenzied Regeneration",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "frenzied_regeneration",
         ["spellId"] = 22896, -- rank 3
         ["spellIcon"] = "ability_bullrush",
@@ -1653,6 +1752,7 @@ else
       },
       ["abolish_poison"] = {
         ["name"] = "Abolish Poison",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "abolish_poison",
         ["spellId"] = 2893,
         ["spellIcon"] = "spell_nature_nullifypoison_02",
@@ -1665,6 +1765,7 @@ else
       },
       ["innervate"] = {
         ["name"] = "Innervate",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "innervate",
         ["spellId"] = 29166,
         ["spellIcon"] = "spell_nature_lightning",
@@ -1677,6 +1778,7 @@ else
       },
       ["natures_swiftness"] = {
         ["name"] = "Nature's Swiftness",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "natures_swiftness",
         ["spellId"] = 17116,
         ["spellIcon"] = "spell_nature_ravenform",
@@ -1692,6 +1794,7 @@ else
       },
       ["faerie_fire"] = {
         ["name"] = "Faerie Fire",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "faerie_fire",
         ["spellId"] = 9907, -- rank 4
         ["spellIcon"] = "spell_nature_faeriefire",
@@ -1703,6 +1806,7 @@ else
       },
       ["faerie_fire_feral"] = {
         ["name"] = "Faerie Fire (Feral)",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "faerie_fire",
         ["spellId"] = 17392, -- rank 4
         ["spellIcon"] = "spell_nature_faeriefire",
@@ -1777,6 +1881,7 @@ else
     ["shaman"] = {
       ["elemental_mastery"] = {
         ["name"] = "Elemental Mastery",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "elemental_mastery",
         ["spellId"] = 16166,
         ["spellIcon"] = "spell_nature_wispheal",
@@ -1789,6 +1894,7 @@ else
       },
       ["natures_swiftness"] = {
         ["name"] = "Nature's Swiftness",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "natures_swiftness",
         ["spellId"] = 16188,
         ["spellIcon"] = "spell_nature_ravenform",
@@ -1804,6 +1910,7 @@ else
       },
       ["tremor_totem"] = {
         ["name"] = "Tremor Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "tremor_totem",
         ["spellId"] = 8143,
         ["spellIcon"] = "spell_nature_tremortotem",
@@ -1815,6 +1922,7 @@ else
       },
       ["poison_cleansing_totem"] = {
         ["name"] = "Poison Cleansing Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "poison_cleansing_totem",
         ["spellId"] = 8166,
         ["spellIcon"] = "spell_nature_poisoncleansingtotem",
@@ -1826,6 +1934,7 @@ else
       },
       ["grounding_totem"] = {
         ["name"] = "Grounding Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "grounding_totem",
         ["spellId"] = 8177,
         ["spellIcon"] = "spell_nature_groundingtotem",
@@ -1837,6 +1946,7 @@ else
       },
       ["fire_resistance_totem"] = {
         ["name"] = "Fire Resistance Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "fire_resistance_totem",
         ["spellId"] = 10538, -- rank 3
         ["spellIcon"] = "spell_fireresistancetotem_01",
@@ -1848,6 +1958,7 @@ else
       },
       ["frost_resistance_totem"] = {
         ["name"] = "Frost Resistance Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "frost_resistance_totem",
         ["spellId"] = 10479, -- rank 3
         ["spellIcon"] = "spell_frostresistancetotem_01",
@@ -1859,6 +1970,7 @@ else
       },
       ["nature_resistance_totem"] = {
         ["name"] = "Nature Resistance Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "nature_resistance_totem",
         ["spellId"] = 10601, -- rank 3
         ["spellIcon"] = "spell_nature_natureresistancetotem",
@@ -1870,6 +1982,7 @@ else
       },
       ["flametongue_totem"] = {
         ["name"] = "Flametongue Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "flametongue_totem",
         ["spellId"] = 16387, -- rank 4
         ["spellIcon"] = "spell_nature_guardianward",
@@ -1881,6 +1994,7 @@ else
       },
       ["grace_of_air_totem"] = {
         ["name"] = "Grace of Air Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "grace_of_air_totem",
         ["spellId"] = 25359, -- rank 3
         ["spellIcon"] = "spell_nature_invisibilitytotem",
@@ -1892,6 +2006,7 @@ else
       },
       ["stoneskin_totem"] = {
         ["name"] = "Stoneskin Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "stoneskin_totem",
         ["spellId"] = 10408, -- rank 6
         ["spellIcon"] = "spell_nature_stoneskintotem",
@@ -1903,6 +2018,7 @@ else
       },
       ["strength_of_earth_totem"] = {
         ["name"] = "Strength of Earth Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "strength_of_earth_totem",
         ["spellId"] = 25361, -- rank 5
         ["spellIcon"] = "spell_nature_earthbindtotem",
@@ -1914,6 +2030,7 @@ else
       },
       ["windfury_totem"] = {
         ["name"] = "Windfury Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "windfury_totem",
         ["spellId"] = 10610, -- rank 3
         ["spellIcon"] = "spell_nature_windfury",
@@ -1925,6 +2042,7 @@ else
       },
       ["windwall_totem"] = {
         ["name"] = "Windwall Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "windwall_totem",
         ["spellId"] = 15112, -- rank 3
         ["spellIcon"] = "spell_nature_earthbind",
@@ -1936,6 +2054,7 @@ else
       },
       ["earthbind_totem"] = {
         ["name"] = "Earthbind Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "earthbind_totem",
         ["spellId"] = 2484,
         ["spellIcon"] = "spell_nature_strengthofearthtotem02",
@@ -1947,6 +2066,7 @@ else
       },
       ["fire_nova_totem"] = {
         ["name"] = "Fire Nova Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "fire_nova_totem",
         ["spellId"] = 11315, -- rank 5
         ["spellIcon"] = "spell_fire_sealoffire",
@@ -1958,6 +2078,7 @@ else
       },
       ["magma_totem"] = {
         ["name"] = "Magma Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "magma_totem",
         ["spellId"] = 10587, -- rank 4
         ["spellIcon"] = "spell_fire_selfdestruct",
@@ -1969,6 +2090,7 @@ else
       },
       ["searing_totem"] = {
         ["name"] = "Searing Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "searing_totem",
         ["spellId"] = 10438, -- rank 6
         ["spellIcon"] = "spell_fire_searingtotem",
@@ -1980,6 +2102,7 @@ else
       },
       ["stoneclaw_totem"] = {
         ["name"] = "Stoneclaw Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "stoneclaw_totem",
         ["spellId"] = 10428, -- rank 6
         ["spellIcon"] = "spell_nature_stoneclawtotem",
@@ -1991,6 +2114,7 @@ else
       },
       ["healing_stream_totem"] = {
         ["name"] = "Healing Stream Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "healing_stream_totem",
         ["spellId"] = 10463, -- rank 5
         ["spellIcon"] = "inv_spear_04",
@@ -2002,6 +2126,7 @@ else
       },
       ["disease_cleansing_totem"] = {
         ["name"] = "Disease Cleansing Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "disease_cleansing_totem",
         ["spellId"] = 8170,
         ["spellIcon"] = "spell_nature_diseasecleansingtotem",
@@ -2013,6 +2138,7 @@ else
       },
       ["mana_spring_totem"] = {
         ["name"] = "Mana Spring Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "mana_spring_totem",
         ["spellId"] = 10497, -- rank 4
         ["spellIcon"] = "spell_nature_manaregentotem",
@@ -2024,6 +2150,7 @@ else
       },
       ["mana_tide_totem"] = {
         ["name"] = "Mana Tide Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "mana_tide_totem",
         ["spellId"] = 17359, -- rank 3
         ["spellIcon"] = "spell_frost_summonwaterelemental",
@@ -2035,6 +2162,7 @@ else
       },
       ["tranquil_air_totem"] = {
         ["name"] = "Tranquil Air Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "tranquil_air_totem",
         ["spellId"] = 25908,
         ["spellIcon"] = "spell_nature_brilliance",
@@ -2112,6 +2240,7 @@ else
     ["racials"] = {
       ["perception"] = {
         ["name"] = "Perception",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "perception",
         ["spellId"] = 20600,
         ["spellIcon"] = "spell_nature_sleep",
@@ -2124,6 +2253,7 @@ else
       },
       ["will_of_the_forsaken"] = {
         ["name"] = "Will of the Forsaken",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "will_of_the_forsaken",
         ["spellId"] = 7744,
         ["spellIcon"] = "spell_shadow_raisedead",
@@ -2136,6 +2266,7 @@ else
       },
       ["stoneform"] = {
         ["name"] = "Stoneform",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "stoneform",
         ["spellId"] = 20594,
         ["spellIcon"] = "spell_shadow_unholystrength",
@@ -2148,6 +2279,7 @@ else
       },
       ["escape_artist"] = {
         ["name"] = "Escape Artist",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "escape_artist",
         ["spellId"] = 20589,
         ["spellIcon"] = "ability_rogue_trip",
@@ -2159,6 +2291,7 @@ else
       },
       ["war_stomp"] = {
         ["name"] = "War Stomp",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "war_stomp",
         ["spellId"] = 20549,
         ["spellIcon"] = "ability_warstomp",
@@ -2170,6 +2303,7 @@ else
       },
       ["berserking"] = {
         ["name"] = "Berserking",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "berserking",
         ["spellId"] = 26296, -- depending on mana, rage, energy
         ["spellIcon"] = "racial_troll_berserk",
@@ -2182,6 +2316,7 @@ else
       },
       ["shadowmeld"] = {
         ["name"] = "Shadowmeld",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shadowmeld",
         ["spellId"] = 20580,
         ["spellIcon"] = "ability_ambush",
@@ -2198,6 +2333,7 @@ else
       ]]--
       ["blood_fury"] = {
         ["name"] = "Blood Fury",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "blood_fury",
         ["spellId"] = 20572,
         ["spellIcon"] = "racial_orc_berserkerstrength",
@@ -2211,6 +2347,7 @@ else
     ["items"] = {
       ["ephemeral_power"] = {
         ["name"] = "Ephemeral Power",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "ephemeral_power",
         ["itemId"] = 18820,
         ["spellId"] = 23271,
@@ -2224,6 +2361,7 @@ else
       },
       ["fire_reflector"] = {
         ["name"] = "Fire Reflector",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "fire_reflector",
         ["itemId"] = 18638,
         ["spellId"] = 23097,
@@ -2237,6 +2375,7 @@ else
       },
       ["frost_reflector"] = {
         ["name"] = "Frost Reflector",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "frost_reflector",
         ["itemId"] = 18634,
         ["spellId"] = 23131,
@@ -2250,6 +2389,7 @@ else
       },
       ["shadow_reflector"] = {
         ["name"] = "Shadow Reflector",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shadow_reflector",
         ["itemId"] = 18639,
         ["spellId"] = 23132,
@@ -2263,6 +2403,7 @@ else
       },
       ["flee"] = {
         ["name"] = "Skull of Impending Doom",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "flee",
         ["itemId"] = 4984,
         ["spellId"] = 5024,
@@ -2276,6 +2417,7 @@ else
       },
       ["immune_root"] = {
         ["name"] = "Spider Belt",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "immune_root",
         ["itemId"] = 4328,
         ["spellId"] = 9774,
@@ -2289,6 +2431,7 @@ else
       },
       ["reckless_charge"] = {
         ["name"] = "Goblin Rocket Helmet",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "rocket_helmet",
         ["itemId"] = 10588,
         ["spellId"] = 22641,
@@ -2301,6 +2444,7 @@ else
       },
       ["net_o_matic"] = {
         ["name"] = "Net-o-Matic",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "net_o_matic",
         ["itemId"] = 10720,
         ["spellId"] = 13120,
@@ -2313,6 +2457,7 @@ else
       },
       ["tidal_charm"] = {
         ["name"] = "Tidal Charm",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "tidal_charm",
         ["itemId"] = 1404,
         ["spellId"] = 835,
@@ -2325,6 +2470,7 @@ else
       },
       ["gnomish_mind_control_cap"] = {
         ["name"] = "Gnomish Mind Control Cap",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "mind_control_cap",
         ["itemId"] = 10726,
         ["spellId"] = 13180,
@@ -2337,6 +2483,7 @@ else
       },
       ["gnomish_rocket_boots"] = {
         ["name"] = "Gnomish Rocket Boots",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "gnomish_rocket_boots",
         ["itemId"] = 10724,
         ["spellId"] = 13141,
@@ -2350,6 +2497,7 @@ else
       },
       ["goblin_rocket_boots"] = {
         ["name"] = "Goblin Rocket Boots",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "goblin_rocket_boots",
         ["itemId"] = 7189,
         ["spellId"] = 8892,
@@ -2363,6 +2511,7 @@ else
       },
       ["speed"] = {
         ["name"] = "Speed",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "nifty_stopwatch",
         ["itemId"] = 2820,
         ["spellId"] = 14530,
@@ -2376,6 +2525,7 @@ else
       },
       ["mithril_mechanical_dragonling"] = {
         ["name"] = "Mithril Mechanical Dragonling",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "mithril_dragonling",
         ["itemId"] = 10576,
         ["spellId"] = 23075,
@@ -2388,6 +2538,7 @@ else
       },
       ["immune_root_snare_stun"] = {
         ["name"] = "Insignia Warrior/Hunter/Shaman",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "insignia",
         ["itemId"] = (function()
           if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
@@ -2406,6 +2557,7 @@ else
       },
       ["immune_charm_fear_polymorph"] = {
         ["name"] = "Insignia Warlock/Rogue",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "insignia",
         ["itemId"] = (function()
           if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
@@ -2424,6 +2576,7 @@ else
       },
       ["immune_fear_polymorph_snare"] = {
         ["name"] = "Insignia Mage",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "insignia",
         ["itemId"] = (function()
           if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
@@ -2442,6 +2595,7 @@ else
       },
       ["immune_fear_polymorph_stun"] = {
         ["name"] = "Insignia Priest/Paladin",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "insignia",
         ["itemId"] = (function()
           if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
@@ -2460,6 +2614,7 @@ else
       },
       ["immune_charm_fear_stun"] = {
         ["name"] = "Insignia Druid",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "insignia",
         ["itemId"] = (function()
           if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
@@ -2478,6 +2633,7 @@ else
       },
       ["aura_of_protection"] = {
         ["name"] = "Arena Grand Master",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "arena_grand_master",
         ["itemId"] = 19024,
         ["spellId"] = 23506,
@@ -2493,6 +2649,7 @@ else
     ["misc"] = {
       ["restore_energy"] = {
         ["name"] = "Thistle Tea",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "thistle_tea",
         ["itemId"] = 7676,
         ["spellId"] = 9512,
@@ -2505,6 +2662,7 @@ else
       },
       ["mighty_rage_potion"] = {
         ["name"] = "Mighty Rage Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "mighty_rage_potion",
         ["itemId"] = 13442,
         ["spellId"] = 17528,
@@ -2517,6 +2675,7 @@ else
       },
       ["first_aid"] = {
         ["name"] = "First Aid",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "first_aid",
         ["itemId"] = 14530, -- depending on what bandage was used
         ["spellId"] = 18610, -- rank 10
@@ -2529,6 +2688,7 @@ else
       },
       ["shadow_protection"] = {
         ["name"] = "Greater Shadow Protection Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "shadow_protection",
         ["itemId"] = 13459,
         ["spellId"] = 17548,
@@ -2542,6 +2702,7 @@ else
       },
       ["frost_protection"] = {
         ["name"] = "Greater Frost Protection Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "frost_protection",
         ["itemId"] = 13456,
         ["spellId"] = 17544,
@@ -2555,6 +2716,7 @@ else
       },
       ["fire_protection"] = {
         ["name"] = "Greater Fire Protection Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "fire_protection",
         ["itemId"] = 13457,
         ["spellId"] = 17543,
@@ -2568,6 +2730,7 @@ else
       },
       ["nature_protection"] = {
         ["name"] = "Greater Nature Protection Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "nature_protection",
         ["itemId"] = 13458,
         ["spellId"] = 17546,
@@ -2581,6 +2744,7 @@ else
       },
       ["arcane_protection"] = {
         ["name"] = "Greater Arcane Protection Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "arcane_protection",
         ["itemId"] = 13461,
         ["spellId"] = 17549,
@@ -2594,6 +2758,7 @@ else
       },
       ["restoration"] = {
         ["name"] = "Restorative Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "restorative_potion",
         ["itemId"] = 9030,
         ["spellId"] = 11359,
@@ -2607,6 +2772,7 @@ else
       },
       ["living_free_action"] = {
         ["name"] = "Living Free Action",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "living_free_action_potion",
         ["itemId"] = 20008,
         ["spellId"] = 24364,
@@ -2620,6 +2786,7 @@ else
       },
       ["free_action"] = {
         ["name"] = "Free Action Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "free_action_potion",
         ["itemId"] = 5634,
         ["spellId"] = 6615,
@@ -2633,6 +2800,7 @@ else
       },
       ["invulnerability"] = {
         ["name"] = "Limited Invulnerability Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "invulnerability_potion",
         ["itemId"] = 3387,
         ["spellId"] = 3169,
@@ -2646,6 +2814,7 @@ else
       },
       ["invisibility"] = {
         ["name"] = "Invisibility Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "invisibility_potion",
         ["itemId"] = 9172,
         ["spellId"] = 11392,
@@ -2658,6 +2827,7 @@ else
       },
       ["lesser_invisibility"] = {
         ["name"] = "Lesser Invisibility Potion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "lesser_invisibility_potion",
         ["itemId"] = 3823,
         ["spellId"] = 3680,
@@ -2670,6 +2840,7 @@ else
       },
       ["stealth_detection"] = {
         ["name"] = "Catseye Elixir",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
         ["soundFileName"] = "catseye_elixir",
         ["itemId"] = 10592,
         ["spellId"] = 12608,
@@ -2685,10 +2856,40 @@ else
   }
 end
 
+
+--[[
+  Retrieve the spellMap filtered to the version of WoW running. There are base spells present
+  in all versions marked with RGPVPW_CONSTANTS.SPELL_TYPE_BASE. Spells that are only available
+  in Season of Discovery are marked with RGPVPW_CONSTANTS.SPELL_TYPE_SOD
+
+  @return {table}
+    The filtered spellMap
+]]--
+function me.GetFilteredSpellMap()
+  local filteredSpellMap = {}
+
+  for category, _ in pairs(spellMap) do
+    filteredSpellMap[category] = {}
+
+    for spellName, spellData in pairs(spellMap[category]) do
+      if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and mod.season.IsSodActive() then
+        filteredSpellMap[category][spellName] = spellData
+      end
+
+      if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_BASE then
+        filteredSpellMap[category][spellName] = spellData
+      end
+    end
+  end
+
+  return filteredSpellMap
+end
+
 --[[
   Retrieve a spell from the spellMap by name and tracked event. Certain spellnames might show up in different events
   that we don't want to track. Each spell in the spellmap defines when it should be considered a valid target
 
+  TODO mark
   @param {string} name
   @param {string} event
 
@@ -2701,8 +2902,10 @@ function me.SearchByName(name, event)
 
   mod.logger.LogDebug(me.tag, string.format("Searching for %s in spellMap", name))
 
-  for category, _ in pairs(spellMap) do
-    for spellEntry, spellData in pairs(spellMap[category]) do
+  local filteredSpellMap = me.GetFilteredSpellMap()
+
+  for category, _ in pairs(filteredSpellMap) do
+    for spellEntry, spellData in pairs(filteredSpellMap[category]) do
       if spellEntry == spellName then
         mod.logger.LogDebug(me.tag, string.format("Found spell - %s - in spellMap", spellName))
         -- check if the passed event is a valid tracked one for the found spell
@@ -2710,7 +2913,7 @@ function me.SearchByName(name, event)
           if trackedEvent == event then
             mod.logger.LogDebug(me.tag, string.format("Found matching tracked event %s for spell %s", event, spellName))
 
-            local clonedSpell = mod.common.Clone(spellMap[category][spellEntry])
+            local clonedSpell = mod.common.Clone(filteredSpellMap[category][spellEntry])
             clonedSpell.normalizedSpellName = spellEntry -- add normalizedSpellName that would get lost otherwise
 
             return category, clonedSpell
@@ -2729,7 +2932,7 @@ end
   Get map for a certain category
 
   @param {string} category
-
+  TODO mark
   @return {table}
     Map for the passed category
 ]]--
@@ -2737,8 +2940,9 @@ function me.GetAllForCategory(category)
   if not category then return nil end
 
   local spellList = {}
+  local filteredSpellMap = me.GetFilteredSpellMap()
 
-  for normalizedSpellName, spell in pairs(spellMap[category]) do
+  for normalizedSpellName, spell in pairs(filteredSpellMap[category]) do
     local clonedSpell = mod.common.Clone(spell)
     clonedSpell.normalizedSpellName = normalizedSpellName
     table.insert(spellList, clonedSpell)
@@ -2754,7 +2958,7 @@ end
    A clone of the spellMap
 ]]--
 function me.GetSpellConfiguration()
-  return mod.common.Clone(spellMap)
+  return mod.common.Clone(me.GetFilteredSpellMap())
 end
 
 --[[
@@ -2772,8 +2976,10 @@ end
       nil - If no spell was found
 ]]--
 function me.GetSpellLinks(category, spellName)
-  for categoryName, _ in pairs(spellMap) do
-    for _, spellData in pairs(spellMap[category]) do
+  local filteredSpellMap = me.GetFilteredSpellMap()
+
+  for categoryName, _ in pairs(filteredSpellMap) do
+    for _, spellData in pairs(filteredSpellMap[category]) do
       if category == categoryName and spellName == spellData.name and spellData.links ~= nil then
         return true, spellData
       end
@@ -2793,8 +2999,10 @@ end
     nil - if no spell was found
 ]]--
 function me.GetSpellById(spellId)
-  for category, _ in pairs(spellMap) do
-    for _, spellData in pairs(spellMap[category]) do
+  local filteredSpellMap = me.GetFilteredSpellMap()
+
+  for category, _ in pairs(filteredSpellMap) do
+    for _, spellData in pairs(filteredSpellMap[category]) do
       if spellData.spellId == spellId then
         spellData.category = category
         return spellData
