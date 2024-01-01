@@ -342,7 +342,7 @@ function me.EnableZone(zoneId)
     PVPWarnConfiguration.addonZoneConfiguration[zoneId].enabled = true
     mod.zone.UpdateZone()
   else
-    mod.logger.LogWarn(me.tag, "Invalid zoneId ignoring...")
+    mod.logger.LogWarn(me.tag, "Invalid zoneId {" .. zoneId .. "} ignoring...")
   end
 end
 
