@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals PlaySoundFile C_Seasons Enum
+-- luacheck: globals C_Seasons Enum
 
 local mod = rgpvpw
 local me = {}
