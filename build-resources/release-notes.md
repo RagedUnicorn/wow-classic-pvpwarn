@@ -1,4 +1,7 @@
+# Features
+
+* Add SOD rune support for all classes
+
 # Fix
 
-* Fix IsCancelled Method calls for tickers
-* Fix Priest enemy avoid tests
+* Fix Zone Handling - ignore zones that are not in the list
