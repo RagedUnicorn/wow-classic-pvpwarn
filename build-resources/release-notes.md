@@ -1,7 +1,3 @@
-# Features
+# Update
 
-* Add SOD rune support for all classes
-
-# Fix
-
-* Fix Zone Handling - ignore zones that are not in the list
+* Update Interface Version 11501(1.15.1)
