@@ -72,6 +72,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneFearPolymorphSnareSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneFearPolymorphStunSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneCharmFearStunSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPVPTrinketSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAuraOfProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAuraOfProtectionRemoved)
 end
@@ -302,6 +303,15 @@ function me.TestCombatEventImmuneCharmFearStunSuccess()
     "TestCombatEventImmuneCharmFearStunSuccess",
     testCategory,
     "Immune Charm/Fear/Stun"
+  )
+end
+
+-- greater insignia of the alliance/horde
+function me.TestCombatEventPVPTrinketSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventPVPTrinketSuccess",
+    testCategory,
+    "PvP Trinket"
   )
 end
 

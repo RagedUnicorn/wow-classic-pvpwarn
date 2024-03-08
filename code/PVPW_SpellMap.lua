@@ -2548,7 +2548,13 @@ else
           end
         end)(),
         ["spellId"] = 5579,
-        ["spellIcon"] = "inv_jewelry_trinketpvp_01",
+        ["spellIcon"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return "inv_jewelry_trinketpvp_02" -- horde
+          else
+            return "inv_jewelry_trinketpvp_01" -- alliance
+          end
+        end)(),
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
@@ -2567,7 +2573,13 @@ else
           end
         end)(),
         ["spellId"] = 23273,
-        ["spellIcon"] = "inv_jewelry_trinketpvp_01",
+        ["spellIcon"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return "inv_jewelry_trinketpvp_02" -- horde
+          else
+            return "inv_jewelry_trinketpvp_01" -- alliance
+          end
+        end)(),
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
@@ -2586,7 +2598,13 @@ else
           end
         end)(),
         ["spellId"] = 23274,
-        ["spellIcon"] = "inv_jewelry_trinketpvp_01",
+        ["spellIcon"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return "inv_jewelry_trinketpvp_02" -- horde
+          else
+            return "inv_jewelry_trinketpvp_01" -- alliance
+          end
+        end)(),
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
@@ -2605,7 +2623,13 @@ else
           end
         end)(),
         ["spellId"] = 23276,
-        ["spellIcon"] = "inv_jewelry_trinketpvp_01",
+        ["spellIcon"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return "inv_jewelry_trinketpvp_02" -- horde
+          else
+            return "inv_jewelry_trinketpvp_01" -- alliance
+          end
+        end)(),
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
@@ -2624,7 +2648,44 @@ else
           end
         end)(),
         ["spellId"] = 23277,
-        ["spellIcon"] = "inv_jewelry_trinketpvp_01",
+        ["spellIcon"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return "inv_jewelry_trinketpvp_02" -- horde
+          else
+            return "inv_jewelry_trinketpvp_01" -- alliance
+          end
+        end)(),
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["pvp_trinket"] = {
+        ["name"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return "Greater Insignia of the Horde"
+          else
+            return "Greater Insignia of the Alliance"
+          end
+        end)(),
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "insignia",
+        ["itemId"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return 216939 -- horde
+          else
+            return 216938 -- alliance
+          end
+        end)(),
+        ["spellId"] = 438273,
+        ["spellIcon"] = (function()
+          if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+            return "inv_jewelry_trinketpvp_02" -- horde
+          else
+            return "inv_jewelry_trinketpvp_01" -- alliance
+          end
+        end)(),
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
