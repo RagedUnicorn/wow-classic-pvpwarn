@@ -71,6 +71,9 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowstrikeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSaberSlashSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShivSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowstepSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPoisonedKnifeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShurikenTossSuccess)
 end
 
 function me.TestCombatEventBlindApplied()
@@ -278,5 +281,29 @@ function me.TestCombatEventShivSuccess()
     "TestCombatEventShivSuccess",
     testCategory,
     "Shiv"
+  )
+end
+
+function me.TestCombatEventShadowstepSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShadowstepSuccess",
+    testCategory,
+    "Shadowstep"
+  )
+end
+
+function me.TestCombatEventPoisonedKnifeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventPoisonedKnifeSuccess",
+    testCategory,
+    "Poisoned Knife"
+  )
+end
+
+function me.TestCombatEventShurikenTossSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShurikenTossSuccess",
+    testCategory,
+    "Shuriken Toss"
   )
 end
