@@ -578,6 +578,44 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["homunculi"] = {
+        ["name"] = "Homunculi",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "homunculi",
+        ["spellId"] = 402799,
+        ["spellIcon"] = "spell_shadow_twistedfaith",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["dispersion"] = {
+        ["name"] = "Dispersion",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "dispersion",
+        ["spellId"] = 425294,
+        ["spellIcon"] = "spell_shadow_dispersion",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["pain_suppression"] = {
+        ["name"] = "Pain Suppression",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "pain_suppression",
+        ["spellId"] = 402004,
+        ["spellIcon"] = "spell_holy_painsupression",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     },
     ["rogue"] = {

@@ -62,6 +62,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPenance)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCircleOfHealing)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowWordDeath)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHomunculi)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDispersion)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDispersion)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPainSuppression)
 end
 
 function me.TestSoundPsychicScream()
@@ -213,5 +217,45 @@ function me.TestSoundShadowWordDeath()
     "TestSoundShadowWordDeath",
     testCategory,
     "Shadow Word: Death"
+  )
+end
+
+function me.TestSoundHomunculi()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundHomunculi",
+    testCategory,
+    "Homunculi"
+  )
+end
+
+function me.TestSoundDispersion()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundDispersion",
+    testCategory,
+    "Dispersion"
+  )
+end
+
+function me.TestSoundDownDispersion()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownDispersion",
+    testCategory,
+    "Dispersion"
+  )
+end
+
+function me.TestSoundPainSuppression()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundPainSuppression",
+    testCategory,
+    "Pain Suppression"
+  )
+end
+
+function me.TestSoundDownPainSuppression()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownPainSuppression",
+    testCategory,
+    "Pain Suppression"
   )
 end
