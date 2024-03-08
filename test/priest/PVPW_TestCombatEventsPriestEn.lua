@@ -70,6 +70,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPenanceSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCircleOfHealingSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowWordDeathSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHomunculiSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDispersionApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDispersionRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPainSuppressionApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPainSuppressionRemoved)
 end
 
 function me.TestCombatEventPsychicScreamSuccess()
@@ -269,5 +274,45 @@ function me.TestCombatEventShadowWordDeathSuccess()
     "TestCombatEventShadowWordDeathSuccess",
     testCategory,
     "Shadow Word: Death"
+  )
+end
+
+function me.TestCombatEventHomunculiSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventHomunculiSuccess",
+    testCategory,
+    "Homunculi"
+  )
+end
+
+function me.TestCombatEventDispersionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDispersionApplied",
+    testCategory,
+    "Dispersion"
+  )
+end
+
+function me.TestCombatEventDispersionRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventDispersionRemoved",
+    testCategory,
+    "Dispersion"
+  )
+end
+
+function me.TestCombatEventPainSuppressionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventPainSuppressionApplied",
+    testCategory,
+    "Pain Suppression"
+  )
+end
+
+function me.TestCombatEventPainSuppressionRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventPainSuppressionRemoved",
+    testCategory,
+    "Pain Suppression"
   )
 end
