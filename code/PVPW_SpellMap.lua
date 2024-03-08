@@ -815,6 +815,42 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["shadowstep"] = {
+        ["name"] = "Shadowstep",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "shadowstep",
+        ["spellId"] = 400029,
+        ["spellIcon"] = "ability_rogue_shadowstep",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["poisoned_knife"] = {
+        ["name"] = "Poisoned Knife",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "poisoned_knife",
+        ["spellId"] = 425012,
+        ["spellIcon"] = "ability_rogue_deadlybrew",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["shuriken_toss"] = {
+        ["name"] = "Shuriken Toss",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "shuriken_toss",
+        ["spellId"] = 399986,
+        ["spellIcon"] = "ability_upgrademoonglaive",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["mage"] = {
