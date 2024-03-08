@@ -71,6 +71,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneFearPolymorphSnare)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneFearPolymorphStun)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneCharmFearStun)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPvPTrinket)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAuraOfProtection)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAuraOfProtection)
 end
@@ -301,6 +302,15 @@ function me.TestSoundImmuneCharmFearStun()
     "TestSoundImmuneCharmFearStun",
     testCategory,
     "Immune Charm/Fear/Stun"
+  )
+end
+
+-- greater insignia of the alliance/horde
+function me.TestSoundPvPTrinket()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundPvPTrinket",
+    testCategory,
+    "PvP Trinket"
   )
 end
 
