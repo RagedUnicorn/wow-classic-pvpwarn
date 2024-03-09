@@ -66,6 +66,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDispersion)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDispersion)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPainSuppression)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowfiend)
 end
 
 function me.TestSoundPsychicScream()
@@ -257,5 +258,13 @@ function me.TestSoundDownPainSuppression()
     "TestSoundDownPainSuppression",
     testCategory,
     "Pain Suppression"
+  )
+end
+
+function me.TestSoundShadowfiend()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShadowfiend",
+    testCategory,
+    "Shadowfiend"
   )
 end
