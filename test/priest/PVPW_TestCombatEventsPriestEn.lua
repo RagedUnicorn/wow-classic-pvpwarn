@@ -75,6 +75,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDispersionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPainSuppressionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPainSuppressionRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowfiendSuccess)
 end
 
 function me.TestCombatEventPsychicScreamSuccess()
@@ -314,5 +315,13 @@ function me.TestCombatEventPainSuppressionRemoved()
     "TestCombatEventPainSuppressionRemoved",
     testCategory,
     "Pain Suppression"
+  )
+end
+
+function me.TestCombatEventShadowfiendSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShadowfiendSuccess",
+    testCategory,
+    "Shadowfiend"
   )
 end

@@ -616,7 +616,19 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
-      }
+      },
+      ["shadowfiend"] = {
+        ["name"] = "Shadowfiend",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "shadowfiend",
+        ["spellId"] = 401977,
+        ["spellIcon"] = "spell_shadow_shadowfiend",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
     },
     ["rogue"] = {
       ["blind"] = {
