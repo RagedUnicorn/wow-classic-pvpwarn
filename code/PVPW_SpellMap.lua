@@ -3058,7 +3058,7 @@ function me.GetFilteredSpellMap()
     filteredSpellMap[category] = {}
 
     for spellName, spellData in pairs(spellMap[category]) do
-      if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and mod.season.IsSodActive() then
+      if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and mod.season.IsSodActive() or RGPVPW_ENVIRONMENT.TEST then
         filteredSpellMap[category][spellName] = spellData
       end
 
@@ -3075,7 +3075,6 @@ end
   Retrieve a spell from the spellMap by name and tracked event. Certain spellnames might show up in different events
   that we don't want to track. Each spell in the spellmap defines when it should be considered a valid target
 
-  TODO mark
   @param {string} name
   @param {string} event
 
@@ -3118,7 +3117,7 @@ end
   Get map for a certain category
 
   @param {string} category
-  TODO mark
+
   @return {table}
     Map for the passed category
 ]]--
