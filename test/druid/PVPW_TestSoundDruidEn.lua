@@ -65,6 +65,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLacerate)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWildGrowth)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMangle)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBerserk)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBerserk)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSurvivalInstincts)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSurvivalInstincts)
 end
 
 function me.TestSoundBarkskin()
@@ -240,5 +244,37 @@ function me.TestSoundMangle()
     "TestSoundMangle",
     testCategory,
     "Mangle"
+  )
+end
+
+function me.TestSoundBerserk()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundBerserk",
+    testCategory,
+    "Berserk"
+  )
+end
+
+function me.TestSoundDownBerserk()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownBerserk",
+    testCategory,
+    "Berserk"
+  )
+end
+
+function me.TestSoundSurvivalInstincts()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundSurvivalInstincts",
+    testCategory,
+    "Survival Instincts"
+  )
+end
+
+function me.TestSoundDownSurvivalInstincts()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownSurvivalInstincts",
+    testCategory,
+    "Survival Instincts"
   )
 end
