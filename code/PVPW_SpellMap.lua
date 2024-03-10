@@ -397,7 +397,20 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-      }
+      },
+      ["enraged_regeneration"] = {
+        ["name"] = "Enraged Regeneration",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "enraged_regeneration",
+        ["spellId"] = 402913,
+        ["spellIcon"] = "ability_warrior_focusedrage",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
     },
     ["priest"] = {
       ["psychic_scream"] = {
