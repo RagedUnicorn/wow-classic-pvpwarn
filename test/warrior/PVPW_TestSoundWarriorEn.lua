@@ -76,6 +76,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundConsumedByRage)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownConsumedByRage)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundQuickStrike)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnragedRegeneration)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEnragedRegeneration)
 end
 
 function me.TestSoundBerserkerRage()
@@ -339,5 +341,21 @@ function me.TestSoundQuickStrike()
     "TestSoundQuickStrike",
     testCategory,
     "Quick Strike"
+  )
+end
+
+function me.TestSoundEnragedRegeneration()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundEnragedRegeneration",
+    testCategory,
+    "Enraged Regeneration"
+  )
+end
+
+function me.TestSoundDownEnragedRegeneration()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownEnragedRegeneration",
+    testCategory,
+    "Enraged Regeneration"
   )
 end

@@ -78,6 +78,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConsumedByRageApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConsumedByRageRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventQuickStrikeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnragedRegenerationApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnragedRegenerationRemoved)
 end
 
 function me.TestCombatEventBerserkerRageApplied()
@@ -341,5 +343,21 @@ function me.TestCombatEventQuickStrikeSuccess()
     "TestCombatEventQuickStrikeSuccess",
     testCategory,
     "Quick Strike"
+  )
+end
+
+function me.TestCombatEventEnragedRegenerationApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventEnragedRegenerationApplied",
+    testCategory,
+    "Enraged Regeneratio"
+  )
+end
+
+function me.TestCombatEventEnragedRegenerationRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventEnragedRegenerationRemoved",
+    testCategory,
+    "Enraged Regeneration"
   )
 end
