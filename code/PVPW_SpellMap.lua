@@ -410,7 +410,7 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
-      },
+      }
     },
     ["priest"] = {
       ["psychic_scream"] = {
@@ -641,7 +641,7 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
-      },
+      }
     },
     ["rogue"] = {
       ["blind"] = {
@@ -1974,6 +1974,32 @@ else
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["berserk"] = {
+        ["name"] = "Berserk",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "berserk",
+        ["spellId"] = 417141,
+        ["spellIcon"] = "ability_druid_berserk",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["survival_instincts"] = {
+        ["name"] = "Survival Instincts",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "survival_instincts",
+        ["spellId"] = 408024,
+        ["spellIcon"] = "ability_mount_whitedirewolf",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
         }
       }
     },

@@ -67,6 +67,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLacerateSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWildGrowthSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMangleSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSurvivalInstinctsApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSurvivalInstinctsRemoved)
 end
 
 function me.TestCombatEventBarkskinApplied()
@@ -242,5 +246,37 @@ function me.TestCombatEventMangleSuccess()
     "TestCombatEventMangleSuccess",
     testCategory,
     "Mangle"
+  )
+end
+
+function me.TestCombatEventBerserkApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventBerserkApplied",
+    testCategory,
+    "Berserk"
+  )
+end
+
+function me.TestCombatEventBerserkRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventBerserkRemoved",
+    testCategory,
+    "Berserk"
+  )
+end
+
+function me.TestCombatEventSurvivalInstinctsApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventSurvivalInstinctsApplied",
+    testCategory,
+    "Survival Instincts"
+  )
+end
+
+function me.TestCombatEventSurvivalInstinctsRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventSurvivalInstinctsRemoved",
+    testCategory,
+    "Survival Instincts"
   )
 end
