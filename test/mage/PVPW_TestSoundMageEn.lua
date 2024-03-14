@@ -73,6 +73,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownIcyVeins)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundArcaneSurge)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLivingBomb)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundChronostaticPreservation)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownChronostaticPreservation)
 end
 
 function me.TestSoundIceBlock()
@@ -312,5 +314,21 @@ function me.TestSoundLivingBomb()
     "TestSoundLivingBomb",
     testCategory,
     "Living Bomb"
+  )
+end
+
+function me.TestSoundChronostaticPreservation()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundChronostaticPreservation",
+    testCategory,
+    "Chronostatic Preservation"
+  )
+end
+
+function me.TestSoundDownChronostaticPreservation()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownChronostaticPreservation",
+    testCategory,
+    "Chronostatic Preservation"
   )
 end

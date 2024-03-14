@@ -1158,6 +1158,19 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["chronostatic_preservation"] = {
+        ["name"] = "Chronostatic Preservation",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "chronostatic_preservation",
+        ["spellId"] = 436516,
+        ["spellIcon"] = "spell_arcane_arcane02",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     },
     ["hunter"] = {
