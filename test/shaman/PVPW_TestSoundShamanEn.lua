@@ -78,6 +78,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShamanisticRage)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWaterShield)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownWaterShield)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDecoyTotem)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTotemicProjection)
 end
 
 function me.TestSoundElementalMastery()
@@ -357,5 +359,21 @@ function me.TestSoundDownWaterShield()
     "TestSoundDownWaterShield",
     testCategory,
     "Water Shield"
+  )
+end
+
+function me.TestSoundDecoyTotem()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundDecoyTotem",
+    testCategory,
+    "Decoy Totem"
+  )
+end
+
+function me.TestSoundTotemicProjection()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundTotemicProjection",
+    testCategory,
+    "Totemic Projection"
   )
 end

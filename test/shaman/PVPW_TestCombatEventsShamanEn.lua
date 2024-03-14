@@ -80,6 +80,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShamanisticRageRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWaterShieldApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWaterShieldRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDecoyTotemSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTotemicProjectionSuccess)
 end
 
 function me.TestCombatEventElementalMasteryApplied()
@@ -359,5 +361,20 @@ function me.TestCombatEventWaterShieldRemoved()
     "TestCombatEventWaterShieldRemoved",
     testCategory,
     "Water Shield"
+  )
+end
+
+function me.TestCombatEventDecoyTotemSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDecoyTotemSuccess",
+    testCategory,
+    "Decoy Totem"
+  )
+end
+function me.TestCombatEventTotemicProjectionSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventTotemicProjectionSuccess",
+    testCategory,
+    "Totemic Projection"
   )
 end

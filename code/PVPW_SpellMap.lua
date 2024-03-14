@@ -2373,6 +2373,30 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["decoy_totem"] = {
+        ["name"] = "Decoy Totem",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "decoy_totem",
+        ["spellId"] = 425874,
+        ["spellIcon"] = "inv_misc_toy_04",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["totemic_projection"] = {
+        ["name"] = "Totemic Projection",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "totemic_projection",
+        ["spellId"] = 437009,
+        ["spellIcon"] = "spell_shaman_totemrecall",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["racials"] = {
