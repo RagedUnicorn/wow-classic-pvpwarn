@@ -77,6 +77,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIcyVeinsRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArcaneSurgeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLivingBombSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChronostaticPreservationApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChronostaticPreservationRemoved)
 end
 
 function me.TestCombatEventIceBlockApplied()
@@ -332,5 +334,21 @@ function me.TestCombatEventLivingBombSuccess()
     "TestCombatEventLivingBombSuccess",
     testCategory,
     "Living Bomb"
+  )
+end
+
+function me.TestCombatEventChronostaticPreservationApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventChronostaticPreservationApplied",
+    testCategory,
+    "Chronostatic Preservation"
+  )
+end
+
+function me.TestCombatEventChronostaticPreservationRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventChronostaticPreservationRemoved",
+    testCategory,
+    "Chronostatic Preservation"
   )
 end
