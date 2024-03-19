@@ -74,6 +74,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPvPTrinket)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAuraOfProtection)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAuraOfProtection)
+  -- sod items
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVoidMadness)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownVoidMadness)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPlanarShift)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownPlanarShift)
 end
 
 function me.TestSoundEphemeralPower()
@@ -327,5 +332,37 @@ function me.TestSoundDownAuraOfProtection()
     "TestSoundDownAuraOfProtection",
     testCategory,
     "Aura of Protection"
+  )
+end
+
+function me.TestSoundVoidMadness()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundVoidMadness",
+    testCategory,
+    "Void Madness"
+  )
+end
+
+function me.TestSoundDownVoidMadness()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownVoidMadness",
+    testCategory,
+    "Void Madness"
+  )
+end
+
+function me.TestSoundPlanarShift()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundPlanarShift",
+    testCategory,
+    "Planar Shift"
+  )
+end
+
+function me.TestSoundDownPlanarShift()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownPlanarShift",
+    testCategory,
+    "Planar Shift"
   )
 end

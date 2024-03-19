@@ -75,6 +75,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPVPTrinketSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAuraOfProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAuraOfProtectionRemoved)
+  -- sod items
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVoidMadnessApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVoidMadnessRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPlanarShiftApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPlanarShiftRemoved)
 end
 
 function me.TestCombatEventEphemeralPowerApplied()
@@ -328,5 +333,37 @@ function me.TestCombatEventAuraOfProtectionRemoved()
     "TestCombatEventAuraOfProtectionRemoved",
     testCategory,
     "Aura of Protection"
+  )
+end
+
+function me.TestCombatEventVoidMadnessApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventVoidMadnessApplied",
+    testCategory,
+    "Void Madness"
+  )
+end
+
+function me.TestCombatEventVoidMadnessRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventVoidMadnessRemoved",
+    testCategory,
+    "Void Madness"
+  )
+end
+
+function me.TestCombatEventPlanarShiftApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventPlanarShiftApplied",
+    testCategory,
+    "Planar Shift"
+  )
+end
+
+function me.TestCombatEventPlanarShiftRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventPlanarShiftRemoved",
+    testCategory,
+    "Planar Shift"
   )
 end
