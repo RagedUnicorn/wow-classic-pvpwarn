@@ -2868,6 +2868,34 @@ else
           "SPELL_AURA_REMOVED"
         }
       },
+      ["void_madness"] = {
+        ["name"] = "Void-Touched Leather Gauntlets/Gloves",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "void_madness",
+        ["itemId"] = 211502, -- or 211423 can't differentiate between the two
+        ["spellId"] = 429868, -- or 429867 can't differentiate between the two
+        ["spellIcon"] = "inv_gauntlets_24",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["planar_shift"] = {
+        ["name"] = "Extraplanar Spidersilk Boots",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "planar_shift",
+        ["itemId"] = 210795,
+        ["spellId"] = 428489,
+        ["spellIcon"] = "inv_boots_05",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      }
     },
     ["misc"] = {
       ["restore_energy"] = {
