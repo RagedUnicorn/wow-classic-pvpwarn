@@ -72,7 +72,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneFearPolymorphSnareSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneFearPolymorphStunSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmuneCharmFearStunSuccess)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPVPTrinketSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPvpTrinketSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAuraOfProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAuraOfProtectionRemoved)
   -- sod items
@@ -80,6 +80,29 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVoidMadnessRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPlanarShiftApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPlanarShiftRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChargedInspirationApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChargedInspirationRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGneuroLogicalShockApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGneuroLogicalShockRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIntenseConcentrationApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIntenseConcentrationRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGneuromanticMeditationApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGneuromanticMeditationRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventReinforcedWillpowerApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventReinforcedWillpowerRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRadicalRadResistanceApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRadicalRadResistanceRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHyperconductiveShockApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHyperconductiveShockRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHasteApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHasteRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDomesticatedAttackChickenSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCoinFlipApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCoinFlipRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGniodineDispelApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGniodineDispelRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHardenedToTheCoreApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHardenedToTheCoreRemoved)
 end
 
 function me.TestCombatEventEphemeralPowerApplied()
@@ -312,9 +335,9 @@ function me.TestCombatEventImmuneCharmFearStunSuccess()
 end
 
 -- greater insignia of the alliance/horde
-function me.TestCombatEventPVPTrinketSuccess()
+function me.TestCombatEventPvpTrinketSuccess()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventPVPTrinketSuccess",
+    "TestCombatEventPvpTrinketSuccess",
     testCategory,
     "PvP Trinket"
   )
@@ -365,5 +388,190 @@ function me.TestCombatEventPlanarShiftRemoved()
     "TestCombatEventPlanarShiftRemoved",
     testCategory,
     "Planar Shift"
+  )
+end
+
+function me.TestCombatEventChargedInspirationApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventChargedInspirationApplied",
+    testCategory,
+    "Charged Inspiration"
+  )
+end
+
+function me.TestCombatEventChargedInspirationRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventChargedInspirationRemoved",
+    testCategory,
+    "Charged Inspiration"
+  )
+end
+
+function me.TestCombatEventGneuroLogicalShockApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventGneuroLogicalShockApplied",
+    testCategory,
+    "Gneuro-Logical Shock"
+  )
+end
+
+function me.TestCombatEventGneuroLogicalShockRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventGneuroLogicalShockRemoved",
+    testCategory,
+    "Gneuro-Logical Shock"
+  )
+end
+
+function me.TestCombatEventIntenseConcentrationApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventIntenseConcentrationApplied",
+    testCategory,
+    "Intense Concentration"
+  )
+end
+
+function me.TestCombatEventIntenseConcentrationRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventIntenseConcentrationRemoved",
+    testCategory,
+    "Intense Concentration"
+  )
+end
+
+function me.TestCombatEventGneuromanticMeditationApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventGneuromanticMeditationApplied",
+    testCategory,
+    "Gneuromantic Meditation"
+  )
+end
+
+function me.TestCombatEventGneuromanticMeditationRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventGneuromanticMeditationRemoved",
+    testCategory,
+    "Gneuromantic Meditation"
+  )
+end
+
+function me.TestCombatEventReinforcedWillpowerApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventReinforcedWillpowerApplied",
+    testCategory,
+    "Reinforced Willpower"
+  )
+end
+
+function me.TestCombatEventReinforcedWillpowerRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventReinforcedWillpowerRemoved",
+    testCategory,
+    "Reinforced Willpower"
+  )
+end
+
+
+function me.TestCombatEventRadicalRadResistanceApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventRadicalRadResistanceApplied",
+    testCategory,
+    "Radical Rad Resistance"
+  )
+end
+
+function me.TestCombatEventRadicalRadResistanceRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventRadicalRadResistanceRemoved",
+    testCategory,
+    "Radical Rad Resistance"
+  )
+end
+
+function me.TestCombatEventHyperconductiveShockApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventHyperconductiveShockApplied",
+    testCategory,
+    "Hyperconductive Shock"
+  )
+end
+
+function me.TestCombatEventHyperconductiveShockRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventHyperconductiveShockRemoved",
+    testCategory,
+    "Hyperconductive Shock"
+  )
+end
+
+function me.TestCombatEventHasteApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventHasteApplied",
+    testCategory,
+    "Haste"
+  )
+end
+
+function me.TestCombatEventHasteRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventHasteRemoved",
+    testCategory,
+    "Haste"
+  )
+end
+
+function me.TestCombatEventDomesticatedAttackChickenSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDomesticatedAttackChickenSuccess",
+    testCategory,
+    "Domesticated Attack Chicken"
+  )
+end
+
+function me.TestCombatEventCoinFlipApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventCoinFlipApplied",
+    testCategory,
+    "Coin Flip"
+  )
+end
+
+function me.TestCombatEventCoinFlipRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventCoinFlipRemoved",
+    testCategory,
+    "Coin Flip"
+  )
+end
+
+function me.TestCombatEventGniodineDispelApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventGniodineDispelApplied",
+    testCategory,
+    "Gniodine Dispel"
+  )
+end
+
+function me.TestCombatEventGniodineDispelRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventGniodineDispelRemoved",
+    testCategory,
+    "Gniodine Dispel"
+  )
+end
+
+function me.TestCombatEventHardenedToTheCoreApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventHardenedToTheCoreApplied",
+    testCategory,
+    "Hardened to the Core"
+  )
+end
+
+function me.TestCombatEventHardenedToTheCoreRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventHardenedToTheCoreRemoved",
+    testCategory,
+    "Hardened to the Core"
   )
 end

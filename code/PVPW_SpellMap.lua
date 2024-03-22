@@ -2895,6 +2895,173 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["charged_inspiration"] = {
+        ["name"] = "Gneuro-Linked Arcano-Filament Monocle",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "charged_inspiration",
+        ["itemId"] = 215111,
+        ["spellId"] = 437327,
+        ["spellIcon"] = "inv_misc_enggizmos_27",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["gneuro_logical_shock"] = {
+        ["name"] = "Glowing Gneuro-Linked Cowl",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "gneuro_logical_shock",
+        ["itemId"] = 215166,
+        ["spellId"] = 437349,
+        ["spellIcon"] = "inv_helmet_15",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["intense_concentration"] = {
+        ["name"] = "Tempered Interference-Negating Helmet",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "intense_concentration",
+        ["itemId"] = 215161,
+        ["spellId"] = 437377,
+        ["spellIcon"] = "inv_helmet_49",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["gneuromantic_meditation"] = {
+        ["name"] = "Gneuro-Conductive Channeler's Hood",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "gneuromantic_meditation",
+        ["itemId"] = 215381,
+        ["spellId"] = 437357,
+        ["spellIcon"] = "inv_helmet_42",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["reinforced_willpower"] = {
+        ["name"] = "Reflective Truesilver Braincage",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "reinforced_willpower",
+        ["itemId"] = 215167,
+        ["spellId"] = 437382,
+        ["spellIcon"] = "inv_helmet_49",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["radical_rad_resistance"] = {
+        ["name"] = "Reflective Truesilver Braincage",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "radical_rad_resistance",
+        ["itemId"] = 215382,
+        ["spellId"] = 437340,
+        ["spellIcon"] = "inv_helmet_41",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["hyperconductive_shock"] = {
+        ["name"] = "Glowing Hyperconductive Scale Coif",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "hyperconductive_shock",
+        ["itemId"] = 215114,
+        ["spellId"] = 437362,
+        ["spellIcon"] = "inv_helmet_43",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["coin_flip"] = {
+        ["name"] = "Hyperconductive Goldwrap",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "coin_flip",
+        ["itemId"] = 215115,
+        ["spellId"] = 437368, -- trigger spell 437699 or 437698
+        ["spellIcon"] = "inv_belt_32",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["haste"] = {
+        ["name"] = "Manual Crowd Pummeler",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "haste",
+        ["itemId"] = 9449,
+        ["spellId"] = 13494,
+        ["spellIcon"] = "inv_mace_14",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["domesticated_attack_chicken"] = {
+        ["name"] = "Domesticated Attack Chicken",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "domesticated_attack_chicken",
+        ["itemId"] = 215461,
+        ["spellId"] = 436069,
+        ["spellIcon"] = "spell_magic_polymorphchicken",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["gniodine_dispel"] = {
+        ["name"] = "Gniodine Pill Bottle",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "gniodine_dispel",
+        ["itemId"] = 213349,
+        ["spellId"] = 435895,
+        ["spellIcon"] = "inv_valentinecolognebottle",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["hardened_to_the_core"] = {
+        ["name"] = "Wirdal's Hardened Core",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "hardened_to_the_core",
+        ["itemId"] = 213350,
+        ["spellId"] = 435359,
+        ["spellIcon"] = "inv_gizmo_khoriumpowercore",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
       }
     },
     ["misc"] = {

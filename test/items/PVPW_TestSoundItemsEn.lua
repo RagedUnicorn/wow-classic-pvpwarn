@@ -71,7 +71,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneFearPolymorphSnare)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneFearPolymorphStun)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneCharmFearStun)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPvPTrinket)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPvpTrinket)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAuraOfProtection)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAuraOfProtection)
   -- sod items
@@ -79,6 +79,29 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownVoidMadness)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPlanarShift)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownPlanarShift)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundChargedInspiration)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownChargedInspiration)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGneuroLogicalShock)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGneuroLogicalShock)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundIntenseConcentration)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownIntenseConcentration)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGneuromanticMeditation)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGneuromanticMeditation)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundReinforcedWillpower)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownReinforcedWillpower)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRadicalRadResistance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRadicalRadResistance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHyperconductiveShock)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHyperconductiveShock)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHaste)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHaste)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDomesticatedAttackChicken)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCoinFlip)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownCoinFlip)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGniodineDispel)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGniodineDispel)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHardenedToTheCore)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHardenedToTheCore)
 end
 
 function me.TestSoundEphemeralPower()
@@ -311,9 +334,9 @@ function me.TestSoundImmuneCharmFearStun()
 end
 
 -- greater insignia of the alliance/horde
-function me.TestSoundPvPTrinket()
+function me.TestSoundPvpTrinket()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundPvPTrinket",
+    "TestSoundPvpTrinket",
     testCategory,
     "PvP Trinket"
   )
@@ -364,5 +387,190 @@ function me.TestSoundDownPlanarShift()
     "TestSoundDownPlanarShift",
     testCategory,
     "Planar Shift"
+  )
+end
+
+function me.TestSoundChargedInspiration()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundChargedInspiration",
+    testCategory,
+    "Charged Inspiration"
+  )
+end
+
+function me.TestSoundDownChargedInspiration()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownChargedInspiration",
+    testCategory,
+    "Charged Inspiration"
+  )
+end
+
+function me.TestSoundGneuroLogicalShock()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundGneuroLogicalShock",
+    testCategory,
+    "Gneuro-Logical Shock"
+  )
+end
+
+function me.TestSoundDownGneuroLogicalShock()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownGneuroLogicalShock",
+    testCategory,
+    "Gneuro-Logical Shock"
+  )
+end
+
+function me.TestSoundIntenseConcentration()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundIntenseConcentration",
+    testCategory,
+    "Intense Concentration"
+  )
+end
+
+function me.TestSoundDownIntenseConcentration()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownIntenseConcentration",
+    testCategory,
+    "Intense Concentration"
+  )
+end
+
+
+function me.TestSoundGneuromanticMeditation()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundGneuromanticMeditation",
+    testCategory,
+    "Gneuromantic Meditation"
+  )
+end
+
+function me.TestSoundDownGneuromanticMeditation()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownGneuromanticMeditation",
+    testCategory,
+    "Gneuromantic Meditation"
+  )
+end
+
+function me.TestSoundReinforcedWillpower()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundReinforcedWillpower",
+    testCategory,
+    "Reinforced Willpower"
+  )
+end
+
+function me.TestSoundDownReinforcedWillpower()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownReinforcedWillpower",
+    testCategory,
+    "Reinforced Willpower"
+  )
+end
+
+function me.TestSoundRadicalRadResistance()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundRadicalRadResistance",
+    testCategory,
+    "Radical Rad Resistance"
+  )
+end
+
+function me.TestSoundDownRadicalRadResistance()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownRadicalRadResistance",
+    testCategory,
+    "Radical Rad Resistance"
+  )
+end
+
+function me.TestSoundHyperconductiveShock()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundHyperconductiveShock",
+    testCategory,
+    "Hyperconductive Shock"
+  )
+end
+
+function me.TestSoundDownHyperconductiveShock()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownHyperconductiveShock",
+    testCategory,
+    "Hyperconductive Shock"
+  )
+end
+
+function me.TestSoundHaste()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundHaste",
+    testCategory,
+    "Haste"
+  )
+end
+
+function me.TestSoundDownHaste()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownHaste",
+    testCategory,
+    "Haste"
+  )
+end
+
+function me.TestSoundDomesticatedAttackChicken()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundDomesticatedAttackChicken",
+    testCategory,
+    "Domesticated Attack Chicken"
+  )
+end
+
+function me.TestSoundCoinFlip()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundCoinFlip",
+    testCategory,
+    "Coin Flip"
+  )
+end
+
+function me.TestSoundDownCoinFlip()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownCoinFlip",
+    testCategory,
+    "Coin Flip"
+  )
+end
+
+function me.TestSoundGniodineDispel()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundGniodineDispel",
+    testCategory,
+    "Gniodine Dispel"
+  )
+end
+
+function me.TestSoundDownGniodineDispel()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownGniodineDispel",
+    testCategory,
+    "Gniodine Dispel"
+  )
+end
+
+function me.TestSoundHardenedToTheCore()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundHardenedToTheCore",
+    testCategory,
+    "Hardened to the Core"
+  )
+end
+
+function me.TestSoundDownHardenedToTheCore()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownHardenedToTheCore",
+    testCategory,
+    "Hardened to the Core"
   )
 end
