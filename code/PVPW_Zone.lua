@@ -92,7 +92,7 @@ function me.UpdateZone()
     mod.logger.LogInfo(me.tag, "Updated instance id to: " .. zoneIdentifier)
     me.UpdateZoneStatus(zoneIdentifier)
   elseif type == zoneType.none then
-    zoneIdentifier = C_Map.GetBestMapForUnit(RGPVPW_CONSTANTS.UNIT_ID_PLAYER)
+    zoneIdentifier = C_Map.GetBestMapForUnit(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) or "unknown"
     mod.logger.LogInfo(me.tag, "Updated map id to: " .. zoneIdentifier)
     me.UpdateZoneStatus(zoneIdentifier)
   else
