@@ -2376,7 +2376,7 @@ else
       },
       ["decoy_totem"] = {
         ["name"] = "Decoy Totem",
-        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
         ["soundFileName"] = "decoy_totem",
         ["spellId"] = 425874,
         ["spellIcon"] = "inv_misc_toy_04",
@@ -2388,7 +2388,7 @@ else
       },
       ["totemic_projection"] = {
         ["name"] = "Totemic Projection",
-        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
         ["soundFileName"] = "totemic_projection",
         ["spellId"] = 437009,
         ["spellIcon"] = "spell_shaman_totemrecall",
