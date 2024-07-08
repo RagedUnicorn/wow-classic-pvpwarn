@@ -67,6 +67,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDispersion)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPainSuppression)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowfiend)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPrayerOfMending)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVoidPlague)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMindSpike)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEyeOfTheVoid)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVoidZone)
 end
 
 function me.TestSoundPsychicScream()
@@ -266,5 +271,45 @@ function me.TestSoundShadowfiend()
     "TestSoundShadowfiend",
     testCategory,
     "Shadowfiend"
+  )
+end
+
+function me.TestSoundPrayerOfMending()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundPrayerOfMending",
+    testCategory,
+    "Prayer of Mending"
+  )
+end
+
+function me.TestSoundVoidPlague()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundVoidPlague",
+    testCategory,
+    "Void Plague"
+  )
+end
+
+function me.TestSoundMindSpike()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMindSpike",
+    testCategory,
+    "Mind Spike"
+  )
+end
+
+function me.TestSoundEyeOfTheVoid()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundEyeOfTheVoid",
+    testCategory,
+    "Eye of the Void"
+  )
+end
+
+function me.TestSoundVoidZone()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundVoidZone",
+    testCategory,
+    "Void Zone"
   )
 end

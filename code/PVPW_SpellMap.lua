@@ -641,6 +641,66 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["prayer_of_mending"] = {
+        ["name"] = "Prayer of Mending",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "prayer_of_mending",
+        ["spellId"] = 401859,
+        ["spellIcon"] = "spell_holy_prayerofmendingtga",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["void_plague"] = {
+        ["name"] = "Void Plague",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "void_plague",
+        ["spellId"] = 425204,
+        ["spellIcon"] = "spell_deathknight_bloodplague",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["mind_spike"] = {
+        ["name"] = "Mind Spike",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "mind_spike",
+        ["spellId"] = 431655,
+        ["spellIcon"] = "spell_shadow_painspike",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["eye_of_the_void"] = {
+        ["name"] = "Eye of the Void",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "eye_of_the_void",
+        ["spellId"] = 402789,
+        ["spellIcon"] = "inv_misc_eye_03",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["void_zone"] = {
+        ["name"] = "Void Zone",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "void_zone",
+        ["spellId"] = 431681,
+        ["spellIcon"] = "inv_enchant_voidsphere",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["rogue"] = {

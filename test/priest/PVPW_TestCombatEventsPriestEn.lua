@@ -76,6 +76,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPainSuppressionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPainSuppressionRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowfiendSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPrayerOfMendingSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVoidPlagueSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMindSpikeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEyeOfTheVoidSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVoidZoneSuccess)
 end
 
 function me.TestCombatEventPsychicScreamSuccess()
@@ -323,5 +328,45 @@ function me.TestCombatEventShadowfiendSuccess()
     "TestCombatEventShadowfiendSuccess",
     testCategory,
     "Shadowfiend"
+  )
+end
+
+function me.TestCombatEventPrayerOfMendingSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventPrayerOfMendingSuccess",
+    testCategory,
+    "Prayer of Mending"
+  )
+end
+
+function me.TestCombatEventVoidPlagueSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventVoidPlagueSuccess",
+    testCategory,
+    "Void Plague"
+  )
+end
+
+function me.TestCombatEventMindSpikeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMindSpikeSuccess",
+    testCategory,
+    "Mind Spike"
+  )
+end
+
+function me.TestCombatEventEyeOfTheVoidSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventEyeOfTheVoidSuccess",
+    testCategory,
+    "Eye of the Void"
+  )
+end
+
+function me.TestCombatEventVoidZoneSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventVoidZoneSuccess",
+    testCategory,
+    "Void Zone"
   )
 end
