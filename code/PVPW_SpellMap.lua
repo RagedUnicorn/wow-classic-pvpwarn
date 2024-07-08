@@ -1868,6 +1868,18 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["divine_storm"] = {
+        ["name"] = "Divine Storm",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "divine_storm",
+        ["spellId"] = 407778,
+        ["spellIcon"] = "ability_paladin_divinestorm",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["druid"] = {

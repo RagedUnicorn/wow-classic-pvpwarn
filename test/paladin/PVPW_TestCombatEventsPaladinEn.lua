@@ -71,6 +71,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExorcistSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRebukeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCrusaderStrikeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineStormSuccess)
 end
 
 function me.TestCombatEventDevotionAuraSuccess()
@@ -294,5 +295,13 @@ function me.TestCombatEventCrusaderStrikeSuccess()
     "TestCombatEventCrusaderStrikeSuccess",
     testCategory,
     "Crusader Strike"
+  )
+end
+
+function me.TestCombatEventDivineStormSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDivineStormSuccess",
+    testCategory,
+    "Divine Storm"
   )
 end

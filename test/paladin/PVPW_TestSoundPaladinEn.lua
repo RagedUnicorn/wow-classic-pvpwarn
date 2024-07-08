@@ -71,6 +71,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExorcist)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRebuke)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCrusaderStrike)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDivineStorm)
 end
 
 function me.TestSoundDevotionAura()
@@ -294,5 +295,13 @@ function me.TestSoundCrusaderStrike()
     "TestSoundCrusaderStrike",
     testCategory,
     "Crusader Strike"
+  )
+end
+
+function me.TestSoundDivineStorm()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundDivineStorm",
+    testCategory,
+    "Divine Storm"
   )
 end
