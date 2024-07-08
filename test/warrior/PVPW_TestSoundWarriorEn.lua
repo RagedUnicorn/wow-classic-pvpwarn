@@ -78,6 +78,12 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundQuickStrike)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnragedRegeneration)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEnragedRegeneration)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRallyingCry)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRallyingCry)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundIntervene)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCommandingShout)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRampage)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRampage)
 end
 
 function me.TestSoundBerserkerRage()
@@ -357,5 +363,53 @@ function me.TestSoundDownEnragedRegeneration()
     "TestSoundDownEnragedRegeneration",
     testCategory,
     "Enraged Regeneration"
+  )
+end
+
+function me.TestSoundRallyingCry()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundRallyingCry",
+    testCategory,
+    "Rallying Cry"
+  )
+end
+
+function me.TestSoundDownRallyingCry()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownRallyingCry",
+    testCategory,
+    "Rallying Cry"
+  )
+end
+
+function me.TestSoundIntervene()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundIntervene",
+    testCategory,
+    "Intervene"
+  )
+end
+
+function me.TestSoundCommandingShout()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundCommandingShout",
+    testCategory,
+    "Commanding Shout"
+  )
+end
+
+function me.TestSoundRampage()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundRampage",
+    testCategory,
+    "Rampage"
+  )
+end
+
+function me.TestSoundDownRampage()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownRampage",
+    testCategory,
+    "Rampage"
   )
 end

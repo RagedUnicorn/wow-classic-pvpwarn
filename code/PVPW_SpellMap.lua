@@ -410,7 +410,57 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
-      }
+      },
+      ["rallying_cry"] = {
+        ["name"] = "Rallying Cry",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "rallying_cry",
+        ["spellId"] = 426490,
+        ["spellIcon"] = "ability_warrior_commandingshout",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["intervene"] = {
+        ["name"] = "Intervene",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "intervene",
+        ["spellId"] = 403338,
+        ["spellIcon"] = "ability_warrior_victoryrush",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["commanding_shout"] = {
+        ["name"] = "Commanding Shout",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "commanding_shout",
+        ["spellId"] = 403215,
+        ["spellIcon"] = "ability_warrior_rallyingcry",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["rampage"] = {
+        ["name"] = "Rampage",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "rampage",
+        ["spellId"] = 426940,
+        ["spellIcon"] = "ability_warrior_rampage",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
     },
     ["priest"] = {
       ["psychic_scream"] = {

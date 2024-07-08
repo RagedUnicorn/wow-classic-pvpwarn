@@ -80,6 +80,12 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventQuickStrikeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnragedRegenerationApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnragedRegenerationRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRallyingCryApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRallyingCryRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInterveneSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCommandingShoutSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRampageApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRampageRemoved)
 end
 
 function me.TestCombatEventBerserkerRageApplied()
@@ -350,7 +356,7 @@ function me.TestCombatEventEnragedRegenerationApplied()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventEnragedRegenerationApplied",
     testCategory,
-    "Enraged Regeneratio"
+    "Enraged Regeneration"
   )
 end
 
@@ -359,5 +365,53 @@ function me.TestCombatEventEnragedRegenerationRemoved()
     "TestCombatEventEnragedRegenerationRemoved",
     testCategory,
     "Enraged Regeneration"
+  )
+end
+
+function me.TestCombatEventRallyingCryApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventRallyingCryApplied",
+    testCategory,
+    "Rallying Cry"
+  )
+end
+
+function me.TestCombatEventRallyingCryRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventRallyingCryRemoved",
+    testCategory,
+    "Rallying Cry"
+  )
+end
+
+function me.TestCombatEventInterveneSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventInterveneSuccess",
+    testCategory,
+    "Intervene"
+  )
+end
+
+function me.TestCombatEventCommandingShoutSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventCommandingShoutSuccess",
+    testCategory,
+    "Commanding Shout"
+  )
+end
+
+function me.TestCombatEventRampageApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventRampageApplied",
+    testCategory,
+    "Rampage"
+  )
+end
+
+function me.TestCombatEventRampageRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventRampageRemoved",
+    testCategory,
+    "Rampage"
   )
 end
