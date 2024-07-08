@@ -79,6 +79,12 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLivingBombSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChronostaticPreservationApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChronostaticPreservationRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLivingFlameSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIceLanceSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeepFreezeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostfireBoltSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpellfrostBoltSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBalefireBoltSuccess)
 end
 
 function me.TestCombatEventIceBlockApplied()
@@ -350,5 +356,53 @@ function me.TestCombatEventChronostaticPreservationRemoved()
     "TestCombatEventChronostaticPreservationRemoved",
     testCategory,
     "Chronostatic Preservation"
+  )
+end
+
+function me.TestCombatEventLivingFlameSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventLivingFlameSuccess",
+    testCategory,
+    "Living Flame"
+  )
+end
+
+function me.TestCombatEventIceLanceSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventIceLanceSuccess",
+    testCategory,
+    "Ice Lance"
+  )
+end
+
+function me.TestCombatEventDeepFreezeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDeepFreezeSuccess",
+    testCategory,
+    "Deep Freeze"
+  )
+end
+
+function me.TestCombatEventFrostfireBoltSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFrostfireBoltSuccess",
+    testCategory,
+    "Frostfire Bolt"
+  )
+end
+
+function me.TestCombatEventSpellfrostBoltSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventSpellfrostBoltSuccess",
+    testCategory,
+    "Spellfrost Bolt"
+  )
+end
+
+function me.TestCombatEventBalefireBoltSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventBalefireBoltSuccess",
+    testCategory,
+    "Balefire Bolt"
   )
 end

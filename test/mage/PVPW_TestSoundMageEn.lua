@@ -75,6 +75,12 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLivingBomb)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundChronostaticPreservation)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownChronostaticPreservation)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLivingFlame)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundIceLance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDeepFreeze)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrostfireBolt)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpellfrostBolt)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBalefireBolt)
 end
 
 function me.TestSoundIceBlock()
@@ -330,5 +336,53 @@ function me.TestSoundDownChronostaticPreservation()
     "TestSoundDownChronostaticPreservation",
     testCategory,
     "Chronostatic Preservation"
+  )
+end
+
+function me.TestSoundLivingFlame()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundLivingFlame",
+    testCategory,
+    "Living Flame"
+  )
+end
+
+function me.TestSoundIceLance()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundIceLance",
+    testCategory,
+    "Ice Lance"
+  )
+end
+
+function me.TestSoundDeepFreeze()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundDeepFreeze",
+    testCategory,
+    "Deep Freeze"
+  )
+end
+
+function me.TestSoundFrostfireBolt()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFrostfireBolt",
+    testCategory,
+    "Frostfire Bolt"
+  )
+end
+
+function me.TestSoundSpellfrostBolt()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundSpellfrostBolt",
+    testCategory,
+    "Spellfrost Bolt"
+  )
+end
+
+function me.TestSoundBalefireBolt()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundBalefireBolt",
+    testCategory,
+    "Balefire Bolt"
   )
 end

@@ -1171,6 +1171,78 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["living_flame"] = {
+        ["name"] = "Living Flame",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "living_flame",
+        ["spellId"] = 401556,
+        ["spellIcon"] = "spell_fire_masterofelements",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["ice_lance"] = {
+        ["name"] = "Ice Lance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "ice_lance",
+        ["spellId"] = 400640,
+        ["spellIcon"] = "spell_frost_frostblast",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["deep_freeze"] = {
+        ["name"] = "Deep Freeze",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "deep_freeze",
+        ["spellId"] = 428739,
+        ["spellIcon"] = "ability_mage_deepfreeze",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["frostfire_bolt"] = {
+        ["name"] = "Frostfire Bolt",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "frostfire_bolt",
+        ["spellId"] = 401502,
+        ["spellIcon"] = "ability_mage_frostfirebolt",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["spellfrost_bolt"] = {
+        ["name"] = "Spellfrost Bolt",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "spellfrost_bolt",
+        ["spellId"] = 412532,
+        ["spellIcon"] = "spell_fire_blueflamebolt",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["balefire_bolt"] = {
+        ["name"] = "Balefire Bolt",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "balefire_bolt",
+        ["spellId"] = 428878,
+        ["spellIcon"] = "spell_fire_firebolt",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["hunter"] = {
