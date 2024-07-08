@@ -71,6 +71,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowstep)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPoisonedKnife)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShurikenToss)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnvenom)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMainGauche)
 end
 
 function me.TestSoundBlind()
@@ -294,5 +296,21 @@ function me.TestSoundShurikenToss()
     "TestSoundShurikenToss",
     testCategory,
     "Shuriken Toss"
+  )
+end
+
+function me.TestSoundEnvenom()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundEnvenom",
+    testCategory,
+    "Envenom"
+  )
+end
+
+function me.TestSoundMainGauche()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMainGauche",
+    testCategory,
+    "Main Gauche"
   )
 end

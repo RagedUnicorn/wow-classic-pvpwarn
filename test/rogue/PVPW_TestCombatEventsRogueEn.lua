@@ -74,6 +74,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowstepSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPoisonedKnifeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShurikenTossSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnvenomSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMainGaucheSuccess)
 end
 
 function me.TestCombatEventBlindApplied()
@@ -305,5 +307,21 @@ function me.TestCombatEventShurikenTossSuccess()
     "TestCombatEventShurikenTossSuccess",
     testCategory,
     "Shuriken Toss"
+  )
+end
+
+function me.TestCombatEventEnvenomSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventEnvenomSuccess",
+    testCategory,
+    "Envenom"
+  )
+end
+
+function me.TestCombatEventMainGaucheSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMainGaucheSuccess",
+    testCategory,
+    "Main Gauche"
   )
 end

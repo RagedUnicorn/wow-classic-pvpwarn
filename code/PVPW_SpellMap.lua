@@ -974,6 +974,30 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["envenom"] = {
+        ["name"] = "Envenom",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "envenom",
+        ["spellId"] = 399963,
+        ["spellIcon"] = "ability_rogue_disembowel",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["main_gauche"] = {
+        ["name"] = "Main Gauche",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "main_gauche",
+        ["spellId"] = 424919,
+        ["spellIcon"] = "spell_deathknight_spelldeflection",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["mage"] = {
