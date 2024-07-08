@@ -1691,6 +1691,56 @@ else
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
         }
+      },
+      ["haunt"] = {
+        ["name"] = "Haunt",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "haunt",
+        ["spellId"] = 403501,
+        ["spellIcon"] = "ability_warlock_haunt",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["vengeance"] = {
+        ["name"] = "Vengeance Grace",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "vengeance",
+        ["spellId"] = 426195,
+        ["spellIcon"] = "ability_warlock_improveddemonictactics",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["immolation_aura"] = {
+        ["name"] = "Immolation Aura",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "immolation_aura",
+        ["spellId"] = 427726,
+        ["spellIcon"] = "spell_fire_felimmolation",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["unstable_affliction"] = {
+        ["name"] = "Unstable Affliction",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "unstable_affliction",
+        ["spellId"] = 427717,
+        ["spellIcon"] = "spell_shadow_unstableaffliction_3",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["paladin"] = {

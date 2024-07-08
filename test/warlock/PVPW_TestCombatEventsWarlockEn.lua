@@ -58,6 +58,12 @@ function me.CollectTestCases()
   -- runes
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDemonicGraceApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDemonicGraceRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHauntSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVengeanceApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVengeanceRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmolationAuraApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmolationAuraRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventUnstableAfflictionSuccess)
 end
 
 function me.TestCombatEventFearSuccess()
@@ -177,5 +183,53 @@ function me.TestCombatEventDemonicGraceRemoved()
     "TestCombatEventDemonicGraceRemoved",
     testCategory,
     "Demonic Grace"
+  )
+end
+
+function me.TestCombatEventHauntSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventHauntSuccess",
+    testCategory,
+    "Haunt"
+  )
+end
+
+function me.TestCombatEventVengeanceApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventVengeanceApplied",
+    testCategory,
+    "Vengeance"
+  )
+end
+
+function me.TestCombatEventVengeanceRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventVengeanceRemoved",
+    testCategory,
+    "Vengeance"
+  )
+end
+
+function me.TestCombatEventImmolationAuraApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventImmolationAuraApplied",
+    testCategory,
+    "Immolation Aura"
+  )
+end
+
+function me.TestCombatEventImmolationAuraRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventImmolationAuraRemoved",
+    testCategory,
+    "Immolation Aura"
+  )
+end
+
+function me.TestCombatEventUnstableAfflictionSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventUnstableAfflictionSuccess",
+    testCategory,
+    "Unstable Affliction"
   )
 end

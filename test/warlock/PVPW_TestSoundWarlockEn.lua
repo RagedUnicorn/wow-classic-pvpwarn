@@ -58,6 +58,12 @@ function me.CollectTestCases()
   -- runes
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDemonicGrace)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDemonicGrace)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHaunt)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVengeance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownVengeance)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationAura)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownImmolationAura)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundUnstableAffliction)
 end
 
 function me.TestSoundFear()
@@ -177,5 +183,53 @@ function me.TestSoundDownDemonicGrace()
     "TestSoundDownDemonicGrace",
     testCategory,
     "Demonic Grace"
+  )
+end
+
+function me.TestSoundHaunt()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundHaunt",
+    testCategory,
+    "Haunt"
+  )
+end
+
+function me.TestSoundVengeance()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundVengeance",
+    testCategory,
+    "Vengeance"
+  )
+end
+
+function me.TestSoundDownVengeance()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownVengeance",
+    testCategory,
+    "Vengeance"
+  )
+end
+
+function me.TestSoundImmolationAura()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundImmolationAura",
+    testCategory,
+    "Immolation Aura"
+  )
+end
+
+function me.TestSoundDownImmolationAura()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownImmolationAura",
+    testCategory,
+    "Immolation Aura"
+  )
+end
+
+function me.TestSoundUnstableAffliction()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundUnstableAffliction",
+    testCategory,
+    "Unstable Affliction"
   )
 end
