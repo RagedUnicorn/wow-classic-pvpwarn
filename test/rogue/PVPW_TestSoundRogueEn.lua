@@ -67,12 +67,18 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMutilate)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowstrike)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSaberSlash)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShiv)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowstep)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPoisonedKnife)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShurikenToss)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnvenom)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMainGauche)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMasterOfSubtlety)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMasterOfSubtlety)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCutthroat)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownCutthroat)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBlunderbuss)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCrimsonTempest)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFanOfKnives)
 end
 
 function me.TestSoundBlind()
@@ -267,14 +273,6 @@ function me.TestSoundSaberSlash()
   )
 end
 
-function me.TestSoundShiv()
-  mod.testHelper.TestSoundSuccess(
-    "TestSoundShiv",
-    testCategory,
-    "Shiv"
-  )
-end
-
 function me.TestSoundShadowstep()
   mod.testHelper.TestSoundSuccess(
     "TestSoundShadowstep",
@@ -312,5 +310,61 @@ function me.TestSoundMainGauche()
     "TestSoundMainGauche",
     testCategory,
     "Main Gauche"
+  )
+end
+
+function me.TestSoundMasterOfSubtlety()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundMasterOfSubtlety",
+    testCategory,
+    "Master of Subtlety"
+  )
+end
+
+function me.TestSoundDownMasterOfSubtlety()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownMasterOfSubtlety",
+    testCategory,
+    "Master of Subtlety"
+  )
+end
+
+function me.TestSoundCutthroat()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundCutthroat",
+    testCategory,
+    "Cutthroat"
+  )
+end
+
+function me.TestSoundDownCutthroat()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownCutthroat",
+    testCategory,
+    "Cutthroat"
+  )
+end
+
+function me.TestSoundBlunderbuss()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundBlunderbuss",
+    testCategory,
+    "Blunderbuss"
+  )
+end
+
+function me.TestSoundCrimsonTempest()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundCrimsonTempest",
+    testCategory,
+    "Crimson Tempest"
+  )
+end
+
+function me.TestSoundFanOfKnives()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFanOfKnives",
+    testCategory,
+    "Fan of Knives"
   )
 end

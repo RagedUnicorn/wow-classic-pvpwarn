@@ -977,18 +977,6 @@ else
           "SPELL_CAST_SUCCESS"
         }
       },
-      ["shiv"] = {
-        ["name"] = "Shiv",
-        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
-        ["soundFileName"] = "shiv",
-        ["spellId"] = 424799,
-        ["spellIcon"] = "inv_throwingknife_04",
-        ["hasFade"] = false,
-        ["active"] = true,
-        ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS"
-        }
-      },
       ["shadowstep"] = {
         ["name"] = "Shadowstep",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
@@ -1043,6 +1031,68 @@ else
         ["soundFileName"] = "main_gauche",
         ["spellId"] = 424919,
         ["spellIcon"] = "spell_deathknight_spelldeflection",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["master_of_subtlety"] = {
+        ["name"] = "Master of Subtlety",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "master_of_subtlety",
+        ["spellId"] = 425096,
+        ["spellIcon"] = "ability_rogue_masterofsubtlety",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["cutthroat"] = {
+        ["name"] = "Cutthroat",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "cutthroat",
+        ["spellId"] = 462708,
+        ["spellIcon"] = "ability_rogue_slaughterfromtheshadows",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["blunderbuss"] = {
+        ["name"] = "Blunderbuss",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "blunderbuss",
+        ["spellId"] = 436610,
+        ["spellIcon"] = "inv_musket_04",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["crimson_tempest"] = {
+        ["name"] = "Crimson Tempest",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "crimson_tempest",
+        ["spellId"] = 412096,
+        ["spellIcon"] = "inv_sword_17",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["fan_of_knives"] = {
+        ["name"] = "Fan of Knives",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "fan_of_knives",
+        ["spellId"] = 409240,
+        ["spellIcon"] = "ability_rogue_fanofknives",
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {

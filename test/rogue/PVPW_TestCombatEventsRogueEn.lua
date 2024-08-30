@@ -70,12 +70,18 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMutilateSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowstrikeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSaberSlashSuccess)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShivSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowstepSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPoisonedKnifeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShurikenTossSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnvenomSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMainGaucheSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMasterOfSubtletyApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMasterOfSubtletyRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCutthroatApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCutthroatRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBlunderbussSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCrimsonTempestSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFanOfKnivesSuccess)
 end
 
 function me.TestCombatEventBlindApplied()
@@ -278,14 +284,6 @@ function me.TestCombatEventSaberSlashSuccess()
   )
 end
 
-function me.TestCombatEventShivSuccess()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventShivSuccess",
-    testCategory,
-    "Shiv"
-  )
-end
-
 function me.TestCombatEventShadowstepSuccess()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventShadowstepSuccess",
@@ -323,5 +321,61 @@ function me.TestCombatEventMainGaucheSuccess()
     "TestCombatEventMainGaucheSuccess",
     testCategory,
     "Main Gauche"
+  )
+end
+
+function me.TestCombatEventMasterOfSubtletyApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventMasterOfSubtletyApplied",
+    testCategory,
+    "Master of Subtlety"
+  )
+end
+
+function me.TestCombatEventMasterOfSubtletyRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventMasterOfSubtletyRemoved",
+    testCategory,
+    "Master of Subtlety"
+  )
+end
+
+function me.TestCombatEventCutthroatApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventCutthroatApplied",
+    testCategory,
+    "Cutthroat"
+  )
+end
+
+function me.TestCombatEventCutthroatRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventCutthroatRemoved",
+    testCategory,
+    "Cutthroat"
+  )
+end
+
+function me.TestCombatEventBlunderbussSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventBlunderbussSuccess",
+    testCategory,
+    "Blunderbuss"
+  )
+end
+
+function me.TestCombatEventCrimsonTempestSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventCrimsonTempestSuccess",
+    testCategory,
+    "Crimson Tempest"
+  )
+end
+
+function me.TestCombatEventFanOfKnivesSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFanOfKnivesSuccess",
+    testCategory,
+    "Fan of Knives"
   )
 end
