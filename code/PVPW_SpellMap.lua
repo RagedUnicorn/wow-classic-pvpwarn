@@ -1427,6 +1427,44 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["hot_streak"] = {
+        ["name"] = "Hot Streak",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "hot_streak",
+        ["spellId"] = 400624,
+        ["spellIcon"] = "ability_mage_hotstreak",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["fireball"] = {
+        ["name"] = "Brain Freeze",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "brain_freeze",
+        ["spellId"] = 400731,
+        ["spellIcon"] = "ability_mage_brainfreeze",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["frozen_orb"] = {
+        ["name"] = "Frozen Orb",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "frozen_orb",
+        ["spellId"] = 440802,
+        ["spellIcon"] = "spell_frost_frozencore",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
       }
     },
     ["hunter"] = {

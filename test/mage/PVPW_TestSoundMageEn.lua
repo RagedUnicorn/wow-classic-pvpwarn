@@ -81,6 +81,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrostfireBolt)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpellfrostBolt)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBalefireBolt)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHotStreak)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHotStreak)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFireball)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFireball)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrozenOrb)
 end
 
 function me.TestSoundIceBlock()
@@ -384,5 +389,45 @@ function me.TestSoundBalefireBolt()
     "TestSoundBalefireBolt",
     testCategory,
     "Balefire Bolt"
+  )
+end
+
+function me.TestSoundHotStreak()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundHotStreak",
+    testCategory,
+    "Hot Streak"
+  )
+end
+
+function me.TestSoundDownHotStreak()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownHotStreak",
+    testCategory,
+    "Hot Streak"
+  )
+end
+
+function me.TestSoundFireball()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundFireball",
+    testCategory,
+    "Fireball"
+  )
+end
+
+function me.TestSoundDownFireball()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFireball",
+    testCategory,
+    "Fireball"
+  )
+end
+
+function me.TestSoundFrozenOrb()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFrozenOrb",
+    testCategory,
+    "Frozen Orb"
   )
 end

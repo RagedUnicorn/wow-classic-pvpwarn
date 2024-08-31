@@ -85,6 +85,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostfireBoltSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpellfrostBoltSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBalefireBoltSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHotStreakApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHotStreakRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireballApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireballRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrozenOrbSuccess)
 end
 
 function me.TestCombatEventIceBlockApplied()
@@ -404,5 +409,45 @@ function me.TestCombatEventBalefireBoltSuccess()
     "TestCombatEventBalefireBoltSuccess",
     testCategory,
     "Balefire Bolt"
+  )
+end
+
+function me.TestCombatEventHotStreakApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventHotStreakApplied",
+    testCategory,
+    "Hot Streak"
+  )
+end
+
+function me.TestCombatEventHotStreakRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventHotStreakRemoved",
+    testCategory,
+    "Hot Streak"
+  )
+end
+
+function me.TestCombatEventFireballApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFireballApplied",
+    testCategory,
+    "Fireball"
+  )
+end
+
+function me.TestCombatEventFireballRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventFireballRemoved",
+    testCategory,
+    "Fireball"
+  )
+end
+
+function me.TestCombatEventFrozenOrbSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFrozenOrbSuccess",
+    testCategory,
+    "Frozen Orb"
   )
 end
