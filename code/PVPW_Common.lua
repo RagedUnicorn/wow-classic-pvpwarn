@@ -49,7 +49,7 @@ if (GetLocale() == "deDE") then
 
     name = string.gsub(name, "_%-_", "_")
     name = string.gsub(name, "[-/]", "_")
-    name = string.gsub(name, "[':%(%)]+", "")
+    name = string.gsub(name, "[':%(%)!]+", "")
     name = string.gsub(name, "ö", "oe")
     name = string.gsub(name, "ü", "ue")
     name = string.gsub(name, "ä", "ae")
@@ -70,7 +70,7 @@ else
 
     name = string.gsub(name, "_%-_", "_")
     name = string.gsub(name, "[-/]", "_")
-    name = string.gsub(name, "[':%(%)]+", "")
+    name = string.gsub(name, "[':%(%)!]+", "")
 
     return name
   end
