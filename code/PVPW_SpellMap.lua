@@ -461,6 +461,68 @@ else
           "SPELL_AURA_REMOVED"
         }
       },
+      ["meathook"] = {
+        ["name"] = "Meathook",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "meathook",
+        ["spellId"] = 403228,
+        ["spellIcon"] = "inv_belt_18",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["shockwave"] = {
+        ["name"] = "Shockwave",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "shockwave",
+        ["spellId"] = 440488,
+        ["spellIcon"] = "ability_warrior_shockwave",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["sudden_death"] = {
+        ["name"] = "Sudden Death",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "sudden_death",
+        ["spellId"] = 440113,
+        ["spellIcon"] = "ability_warrior_improveddisciplines",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["valor_of_azeroth"] = {
+        ["name"] = "Valor of Azeroth",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "valor_of_azeroth",
+        ["spellId"] = 461475,
+        ["spellIcon"] = "ability_warrior_innerrage",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["victory_rush"] = {
+        ["name"] = "Victory Rush",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "victory_rush",
+        ["spellId"] = 402927,
+        ["spellIcon"] = "ability_warrior_devastate",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      }
     },
     ["priest"] = {
       ["psychic_scream"] = {

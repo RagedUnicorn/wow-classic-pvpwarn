@@ -84,6 +84,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCommandingShout)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRampage)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRampage)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMeathook)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShockwave)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSuddenDeath)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSuddenDeath)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundValorOfAzeroth)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownValorOfAzeroth)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVictoryRush)
 end
 
 function me.TestSoundBerserkerRage()
@@ -411,5 +418,61 @@ function me.TestSoundDownRampage()
     "TestSoundDownRampage",
     testCategory,
     "Rampage"
+  )
+end
+
+function me.TestSoundMeathook()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMeathook",
+    testCategory,
+    "Meathook"
+  )
+end
+
+function me.TestSoundShockwave()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShockwave",
+    testCategory,
+    "Shockwave"
+  )
+end
+
+function me.TestSoundSuddenDeath()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundSuddenDeath",
+    testCategory,
+    "Sudden Death"
+  )
+end
+
+function me.TestSoundDownSuddenDeath()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownSuddenDeath",
+    testCategory,
+    "Sudden Death"
+  )
+end
+
+function me.TestSoundValorOfAzeroth()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundValorOfAzeroth",
+    testCategory,
+    "Valor of Azeroth"
+  )
+end
+
+function me.TestSoundDownValorOfAzeroth()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownValorOfAzeroth",
+    testCategory,
+    "Valor of Azeroth"
+  )
+end
+
+function me.TestSoundVictoryRush()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundVictoryRush",
+    testCategory,
+    "Victory Rush"
   )
 end

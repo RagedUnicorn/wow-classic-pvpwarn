@@ -86,6 +86,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCommandingShoutSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRampageApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRampageRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMeathookSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShockwaveSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSuddenDeathApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSuddenDeathRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventValorOfAzerothApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventValorOfAzerothRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVictoryRushSuccess)
 end
 
 function me.TestCombatEventBerserkerRageApplied()
@@ -413,5 +420,61 @@ function me.TestCombatEventRampageRemoved()
     "TestCombatEventRampageRemoved",
     testCategory,
     "Rampage"
+  )
+end
+
+function me.TestCombatEventMeathookSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMeathookSuccess",
+    testCategory,
+    "Meathook"
+  )
+end
+
+function me.TestCombatEventShockwaveSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShockwaveSuccess",
+    testCategory,
+    "Shockwave"
+  )
+end
+
+function me.TestCombatEventSuddenDeathApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventSuddenDeathApplied",
+    testCategory,
+    "Sudden Death"
+  )
+end
+
+function me.TestCombatEventSuddenDeathRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventSuddenDeathRemoved",
+    testCategory,
+    "Sudden Death"
+  )
+end
+
+function me.TestCombatEventValorOfAzerothApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventValorOfAzerothApplied",
+    testCategory,
+    "Valor of Azeroth"
+  )
+end
+
+function me.TestCombatEventValorOfAzerothRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventValorOfAzerothRemoved",
+    testCategory,
+    "Valor of Azeroth"
+  )
+end
+
+function me.TestCombatEventVictoryRushSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventVictoryRushSuccess",
+    testCategory,
+    "Victory Rush"
   )
 end
