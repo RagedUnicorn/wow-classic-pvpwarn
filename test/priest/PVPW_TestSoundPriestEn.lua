@@ -72,6 +72,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMindSpike)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEyeOfTheVoid)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVoidZone)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVampiricTouch)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpiritOfTheRedeemer)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSpiritOfTheRedeemer)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSurgeOfLight)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSurgeOfLight)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSerendipity)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSerendipity)
 end
 
 function me.TestSoundPsychicScream()
@@ -311,5 +318,61 @@ function me.TestSoundVoidZone()
     "TestSoundVoidZone",
     testCategory,
     "Void Zone"
+  )
+end
+
+function me.TestSoundVampiricTouch()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundVampiricTouch",
+    testCategory,
+    "Vampiric Touch"
+  )
+end
+
+function me.TestSoundSpiritOfTheRedeemer()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundSpiritOfTheRedeemer",
+    testCategory,
+    "Spirit of the Redeemer"
+  )
+end
+
+function me.TestSoundDownSpiritOfTheRedeemer()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownSpiritOfTheRedeemer",
+    testCategory,
+    "Spirit of the Redeemer"
+  )
+end
+
+function me.TestSoundSurgeOfLight()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundSurgeOfLight",
+    testCategory,
+    "Surge of Light"
+  )
+end
+
+function me.TestSoundDownSurgeOfLight()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownSurgeOfLight",
+    testCategory,
+    "Surge of Light"
+  )
+end
+
+function me.TestSoundSerendipity()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundSerendipity",
+    testCategory,
+    "Serendipity"
+  )
+end
+
+function me.TestSoundDownSerendipity()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownSerendipity",
+    testCategory,
+    "Serendipity"
   )
 end

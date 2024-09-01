@@ -751,6 +751,58 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["vampiric_touch"] = {
+        ["name"] = "Vampiric Touch",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "vampiric_touch",
+        ["spellId"] = 402668,
+        ["spellIcon"] = "spell_holy_stoicism",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["spirit_of_the_redeemer"] = {
+        ["name"] = "Spirit of the Redeemer",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "spirit_of_the_redeemer",
+        ["spellId"] = 425284,
+        ["spellIcon"] = "inv_enchant_essenceeternallarge",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["surge_of_light"] = {
+        ["name"] = "Surge of Light",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "surge_of_light",
+        ["spellId"] = 431664,
+        ["spellIcon"] = "spell_holy_surgeoflight",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["serendipity"] = {
+        ["name"] = "Serendipity",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "serendipity",
+        ["spellId"] = 413248,
+        ["spellIcon"] = "spell_holy_serendipity",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED",
+          "SPELL_AURA_REFRESH"
+        }
       }
     },
     ["rogue"] = {

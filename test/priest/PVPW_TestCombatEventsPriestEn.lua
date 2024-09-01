@@ -81,6 +81,14 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMindSpikeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEyeOfTheVoidSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVoidZoneSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVampiricTouchSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpiritOfTheRedeemerApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpiritOfTheRedeemerRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSurgeOfLightApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSurgeOfLightRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSerendipityApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSerendipityRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSerendipityRefresh)
 end
 
 function me.TestCombatEventPsychicScreamSuccess()
@@ -368,5 +376,69 @@ function me.TestCombatEventVoidZoneSuccess()
     "TestCombatEventVoidZoneSuccess",
     testCategory,
     "Void Zone"
+  )
+end
+
+function me.TestCombatEventVampiricTouchSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventVampiricTouchSuccess",
+    testCategory,
+    "Vampiric Touch"
+  )
+end
+
+function me.TestCombatEventSpiritOfTheRedeemerApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventSpiritOfTheRedeemerApplied",
+    testCategory,
+    "Spirit of the Redeemer"
+  )
+end
+
+function me.TestCombatEventSpiritOfTheRedeemerRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventSpiritOfTheRedeemerRemoved",
+    testCategory,
+    "Spirit of the Redeemer"
+  )
+end
+
+function me.TestCombatEventSurgeOfLightApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventSurgeOfLightApplied",
+    testCategory,
+    "Surge of Light"
+  )
+end
+
+function me.TestCombatEventSurgeOfLightRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventSurgeOfLightRemoved",
+    testCategory,
+    "Surge of Light"
+  )
+end
+
+function me.TestCombatEventSerendipityApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventSerendipityApplied",
+    testCategory,
+    "Serendipity"
+  )
+end
+
+function me.TestCombatEventSerendipityRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventSerendipityRemoved",
+    testCategory,
+    "Serendipity"
+  )
+end
+
+function me.TestCombatEventSerendipityRefresh()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventSerendipityRefresh",
+    testCategory,
+    "Serendipity"
   )
 end
