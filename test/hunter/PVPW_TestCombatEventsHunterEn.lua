@@ -63,11 +63,14 @@ function me.CollectTestCases()
   -- runes
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSniperTrainingApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSniperTrainingRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventKillCommandApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventKillCommandRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFlankingStrikeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChimeraShotSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExplosiveShotSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventKillShotSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLockAndLoadApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLockAndLoadRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHitAndRunApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHitAndRunRemoved)
 end
 
 function me.TestCombatEventConcussiveShotSuccess()
@@ -230,22 +233,6 @@ function me.TestCombatEventSniperTrainingRemoved()
   )
 end
 
-function me.TestCombatEventKillCommandApplied()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventKillCommandApplied",
-    testCategory,
-    "Kill Command"
-  )
-end
-
-function me.TestCombatEventKillCommandRemoved()
-  mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventKillCommandRemoved",
-    testCategory,
-    "Kill Command"
-  )
-end
-
 function me.TestCombatEventFlankingStrikeSuccess()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventFlankingStrikeSuccess",
@@ -267,5 +254,45 @@ function me.TestCombatEventExplosiveShotSuccess()
     "TestCombatEventExplosiveShotSuccess",
     testCategory,
     "Explosive Shot"
+  )
+end
+
+function me.TestCombatEventKillShotSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventKillShotSuccess",
+    testCategory,
+    "Kill Shot"
+  )
+end
+
+function me.TestCombatEventLockAndLoadApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventLockAndLoadApplied",
+    testCategory,
+    "Lock and Load"
+  )
+end
+
+function me.TestCombatEventLockAndLoadRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventLockAndLoadRemoved",
+    testCategory,
+    "Lock and Load"
+  )
+end
+
+function me.TestCombatEventHitAndRunApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventHitAndRunApplied",
+    testCategory,
+    "Hit and Run"
+  )
+end
+
+function me.TestCombatEventHitAndRunRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventHitAndRunRemoved",
+    testCategory,
+    "Hit and Run"
   )
 end

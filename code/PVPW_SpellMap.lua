@@ -1705,17 +1705,16 @@ else
           "SPELL_AURA_REMOVED"
         }
       },
-      ["kill_command"] = {
-        ["name"] = "Kill Command",
+      ["kill_shot"] = {
+        ["name"] = "Kill Shot",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
-        ["soundFileName"] = "kill_command",
-        ["spellId"] = 409379,
-        ["spellIcon"] = "ability_hunter_killcommand",
-        ["hasFade"] = true,
+        ["soundFileName"] = "kill_shot",
+        ["spellId"] = 409974,
+        ["spellIcon"] = "ability_hunter_assassinate2",
+        ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED",
-          "SPELL_AURA_REMOVED"
+          "SPELL_CAST_SUCCESS"
         }
       },
       ["flanking_strike"] = {
@@ -1752,6 +1751,32 @@ else
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["lock_and_load"] = {
+        ["name"] = "Lock and Load",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "lock_and_load",
+        ["spellId"] = 415413,
+        ["spellIcon"] = "ability_hunter_lockandload",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["hit_and_run"] = {
+        ["name"] = "Hit and Run",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "hit_and_run",
+        ["spellId"] = 440533,
+        ["spellIcon"] = "ability_hunter_displacement",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
         }
       }
     },

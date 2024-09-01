@@ -63,11 +63,14 @@ function me.CollectTestCases()
   -- runes
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSniperTraining)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSniperTraining)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundKillCommand)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownKillCommand)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFlankingStrike)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundChimeraShot)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveShot)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundKillShot)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLockAndLoad)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLockAndLoad)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHitAndRun)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHitAndRun)
 end
 
 function me.TestSoundConcussiveShot()
@@ -230,22 +233,6 @@ function me.TestSoundDownSniperTraining()
   )
 end
 
-function me.TestSoundKillCommand()
-  mod.testHelper.TestSoundApplied(
-    "TestSoundKillCommand",
-    testCategory,
-    "Kill Command"
-  )
-end
-
-function me.TestSoundDownKillCommand()
-  mod.testHelper.TestSoundRemoved(
-    "TestSoundDownKillCommand",
-    testCategory,
-    "Kill Command"
-  )
-end
-
 function me.TestSoundFlankingStrike()
   mod.testHelper.TestSoundSuccess(
     "TestSoundFlankingStrike",
@@ -267,5 +254,45 @@ function me.TestSoundExplosiveShot()
     "TestSoundExplosiveShot",
     testCategory,
     "Explosive Shot"
+  )
+end
+
+function me.TestSoundKillShot()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundKillShot",
+    testCategory,
+    "Kill Shot"
+  )
+end
+
+function me.TestSoundLockAndLoad()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundLockAndLoad",
+    testCategory,
+    "Lock and Load"
+  )
+end
+
+function me.TestSoundDownLockAndLoad()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownLockAndLoad",
+    testCategory,
+    "Lock and Load"
+  )
+end
+
+function me.TestSoundHitAndRun()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundHitAndRun",
+    testCategory,
+    "Hit and Run"
+  )
+end
+
+function me.TestSoundDownHitAndRun()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownHitAndRun",
+    testCategory,
+    "Hit and Run"
   )
 end
