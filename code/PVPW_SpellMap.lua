@@ -586,8 +586,7 @@ else
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED",
-          "SPELL_AURA_REFRESH"
+          "SPELL_AURA_APPLIED"
         }
       },
       ["devouring_plague"] = {
