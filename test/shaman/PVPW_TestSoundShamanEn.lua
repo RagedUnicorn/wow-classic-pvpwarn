@@ -74,12 +74,18 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAncestralGuidance)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEarthShield)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEarthShield)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShamanisticRage)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShamanisticRage)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWaterShield)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownWaterShield)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDecoyTotem)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTotemicProjection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMaelStromWeapon)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMaelStromWeapon)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTidalWaves)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownTidalWaves)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRiptide)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPowerSurge)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownPowerSurge)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFeralSpirit)
 end
 
 function me.TestSoundElementalMastery()
@@ -330,22 +336,6 @@ function me.TestSoundDownEarthShield()
   )
 end
 
-function me.TestSoundShamanisticRage()
-  mod.testHelper.TestSoundApplied(
-    "TestSoundShamanisticRage",
-    testCategory,
-    "Shamanistic Rage"
-  )
-end
-
-function me.TestSoundDownShamanisticRage()
-  mod.testHelper.TestSoundRemoved(
-    "TestSoundDownShamanisticRage",
-    testCategory,
-    "Shamanistic Rage"
-  )
-end
-
 function me.TestSoundWaterShield()
   mod.testHelper.TestSoundApplied(
     "TestSoundWaterShield",
@@ -375,5 +365,69 @@ function me.TestSoundTotemicProjection()
     "TestSoundTotemicProjection",
     testCategory,
     "Totemic Projection"
+  )
+end
+
+function me.TestSoundMaelStromWeapon()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundMaelStromWeapon",
+    testCategory,
+    "Maelstrom Weapon"
+  )
+end
+
+function me.TestSoundDownMaelStromWeapon()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownMaelStromWeapon",
+    testCategory,
+    "Maelstrom Weapon"
+  )
+end
+
+function me.TestSoundTidalWaves()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundTidalWaves",
+    testCategory,
+    "Tidal Waves"
+  )
+end
+
+function me.TestSoundDownTidalWaves()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownTidalWaves",
+    testCategory,
+    "Tidal Waves"
+  )
+end
+
+function me.TestSoundRiptide()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundRiptide",
+    testCategory,
+    "Riptide"
+  )
+end
+
+function me.TestSoundPowerSurge()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundPowerSurge",
+    testCategory,
+    "Power Surge"
+  )
+end
+
+function me.TestSoundDownPowerSurge()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownPowerSurge",
+    testCategory,
+    "Power Surge"
+  )
+end
+
+function me.TestSoundFeralSpirit()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFeralSpirit",
+    testCategory,
+    "Feral Spirit"
   )
 end

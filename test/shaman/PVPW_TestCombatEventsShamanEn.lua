@@ -76,12 +76,18 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAncestralGuidanceRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEarthShieldApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEarthShieldRemoved)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShamanisticRageApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShamanisticRageRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWaterShieldApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWaterShieldRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDecoyTotemSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTotemicProjectionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMaelStromWeaponApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMaelStromWeaponRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTidalWavesApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTidalWavesRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRiptideSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPowerSurgeApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPowerSurgeRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFeralSpiritSuccess)
 end
 
 function me.TestCombatEventElementalMasteryApplied()
@@ -332,22 +338,6 @@ function me.TestCombatEventEarthShieldRemoved()
   )
 end
 
-function me.TestCombatEventShamanisticRageApplied()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventShamanisticRageApplied",
-    testCategory,
-    "Shamanistic Rage"
-  )
-end
-
-function me.TestCombatEventShamanisticRageRemoved()
-  mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventShamanisticRageRemoved",
-    testCategory,
-    "Shamanistic Rage"
-  )
-end
-
 function me.TestCombatEventWaterShieldApplied()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventWaterShieldApplied",
@@ -371,10 +361,75 @@ function me.TestCombatEventDecoyTotemSuccess()
     "Decoy Totem"
   )
 end
+
 function me.TestCombatEventTotemicProjectionSuccess()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventTotemicProjectionSuccess",
     testCategory,
     "Totemic Projection"
+  )
+end
+
+function me.TestCombatEventMaelStromWeaponApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventMaelStromWeaponApplied",
+    testCategory,
+    "Maelstrom Weapon"
+  )
+end
+
+function me.TestCombatEventMaelStromWeaponRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventMaelStromWeaponRemoved",
+    testCategory,
+    "Maelstrom Weapon"
+  )
+end
+
+function me.TestCombatEventTidalWavesApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventTidalWavesApplied",
+    testCategory,
+    "Tidal Waves"
+  )
+end
+
+function me.TestCombatEventTidalWavesRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventTidalWavesRemoved",
+    testCategory,
+    "Tidal Waves"
+  )
+end
+
+function me.TestCombatEventRiptideSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventRiptideSuccess",
+    testCategory,
+    "Riptide"
+  )
+end
+
+function me.TestCombatEventPowerSurgeApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventPowerSurgeApplied",
+    testCategory,
+    "Power Surge"
+  )
+end
+
+function me.TestCombatEventPowerSurgeRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventPowerSurgeRemoved",
+    testCategory,
+    "Power Surge"
+  )
+end
+
+function me.TestCombatEventFeralSpiritSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFeralSpiritSuccess",
+    testCategory,
+    "Feral Spirit"
   )
 end

@@ -2979,19 +2979,6 @@ else
           "SPELL_AURA_REMOVED"
         }
       },
-      ["shamanistic_rage"] = {
-        ["name"] = "Shamanistic Rage",
-        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
-        ["soundFileName"] = "shamanistic_rage",
-        ["spellId"] = 425336,
-        ["spellIcon"] = "spell_nature_shamanrage",
-        ["hasFade"] = true,
-        ["active"] = true,
-        ["trackedEvents"] = {
-          "SPELL_AURA_APPLIED",
-          "SPELL_AURA_REMOVED"
-        }
-      },
       ["water_shield"] = {
         ["name"] = "Water Shield",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
@@ -3023,6 +3010,69 @@ else
         ["soundFileName"] = "totemic_projection",
         ["spellId"] = 437009,
         ["spellIcon"] = "spell_shaman_totemrecall",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["maelstrom_weapon"] = {
+        ["name"] = "Maelstrom Weapon",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "maelstrom_weapon",
+        ["spellId"] = 408498,
+        ["spellIcon"] = "spell_shaman_maelstromweapon",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["tidal_waves"] = {
+        ["name"] = "Tidal Waves",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "tidal_waves",
+        ["spellId"] = 432042,
+        ["spellIcon"] = "spell_shaman_tidalwaves",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["riptide"] = {
+        ["name"] = "Riptide",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "riptide",
+        ["spellId"] = 409954,
+        ["spellIcon"] = "spell_nature_riptide",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["power_surge"] = {
+        ["name"] = "Power Surge",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "power_surge",
+        ["spellId"] = 415100,
+        ["spellIcon"] = "inv_misc_orb_05",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["feral_spirit"] = {
+        ["name"] = "Feral Spirit",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "feral_spirit",
+        ["spellId"] = 440580,
+        ["spellIcon"] = "spell_shaman_feralspirit",
         ["hasFade"] = false,
         ["active"] = true,
         ["trackedEvents"] = {
