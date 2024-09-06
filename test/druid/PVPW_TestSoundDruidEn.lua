@@ -42,6 +42,11 @@ function me.Test()
 end
 
 function me.CollectTestCases()
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDireBearForm)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCatForm)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTravelForm)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAquaticForm)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMoonkinForm)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBarkskin)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBarkskin)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundNaturesGrasp)
@@ -69,6 +74,53 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBerserk)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSurvivalInstincts)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSurvivalInstincts)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTreeOfLife)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFuryOfStormrage)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFuryOfStormrage)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEclipseSolar)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEclipseSolar)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEclipseLunar)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEclipseLunar)
+end
+
+function me.TestSoundDireBearForm()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundDireBearForm",
+    testCategory,
+    "Dire Bear Form"
+  )
+end
+
+function me.TestSoundCatForm()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundCatForm",
+    testCategory,
+    "Cat Form"
+  )
+end
+
+function me.TestSoundTravelForm()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundTravelForm",
+    testCategory,
+    "Travel Form"
+  )
+end
+
+function me.TestSoundAquaticForm()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundAquaticForm",
+    testCategory,
+    "Aquatic Form"
+  )
+end
+
+function me.TestSoundMoonkinForm()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMoonkinForm",
+    testCategory,
+    "Moonkin Form"
+  )
 end
 
 function me.TestSoundBarkskin()
@@ -276,5 +328,61 @@ function me.TestSoundDownSurvivalInstincts()
     "TestSoundDownSurvivalInstincts",
     testCategory,
     "Survival Instincts"
+  )
+end
+
+function me.TestSoundTreeOfLife()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundTreeOfLife",
+    testCategory,
+    "Tree of Life"
+  )
+end
+
+function me.TestSoundFuryOfStormrage()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundFuryOfStormrage",
+    testCategory,
+    "Fury of Stormrage"
+  )
+end
+
+function me.TestSoundDownFuryOfStormrage()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFuryOfStormrage",
+    testCategory,
+    "Fury of Stormrage"
+  )
+end
+
+function me.TestSoundEclipseSolar()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundEclipseSolar",
+    testCategory,
+    "Eclipse (Solar)"
+  )
+end
+
+function me.TestSoundDownEclipseSolar()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownEclipseSolar",
+    testCategory,
+    "Eclipse (Solar)"
+  )
+end
+
+function me.TestSoundEclipseLunar()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundEclipseLunar",
+    testCategory,
+    "Eclipse (Lunar)"
+  )
+end
+
+function me.TestSoundDownEclipseLunar()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownEclipseLunar",
+    testCategory,
+    "Eclipse (Lunar)"
   )
 end

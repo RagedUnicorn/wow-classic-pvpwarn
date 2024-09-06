@@ -2319,6 +2319,66 @@ else
       }
     },
     ["druid"] = {
+      ["dire_bear_form"] = {
+        ["name"] = "Dire Bear Form",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "dire_bear_form",
+        ["spellId"] = 9634,
+        ["spellIcon"] = "ability_racial_bearform",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["cat_form"] = {
+        ["name"] = "Cat Form",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "cat_form",
+        ["spellId"] = 768,
+        ["spellIcon"] = "ability_druid_catform",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["travel_form"] = {
+        ["name"] = "Travel Form",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "travel_form",
+        ["spellId"] = 783,
+        ["spellIcon"] = "ability_druid_travelform",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["aquatic_form"] = {
+        ["name"] = "Aquatic Form",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "aquatic_form",
+        ["spellId"] = 1066,
+        ["spellIcon"] = "ability_druid_aquaticform",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["moonkin_form"] = {
+        ["name"] = "Moonkin Form",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "moonkin_form",
+        ["spellId"] = 24858,
+        ["spellIcon"] = "spell_nature_forceofnature",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
       ["barkskin"] = {
         ["name"] = "Barkskin",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2528,6 +2588,57 @@ else
         ["soundFileName"] = "survival_instincts",
         ["spellId"] = 408024,
         ["spellIcon"] = "ability_mount_whitedirewolf",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["tree_of_life"] = {
+        ["name"] = "Tree of Life",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "tree_of_life",
+        ["spellId"] = 439733,
+        ["spellIcon"] = "ability_druid_treeoflife",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["fury_of_stormrage"] = {
+        ["name"] = "Fury of Stormrage",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "fury_of_stormrage",
+        ["spellId"] = 414799,
+        ["spellIcon"] = "inv_staff_90",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["eclipse_solar"] = {
+        ["name"] = "Eclipse: Solar",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "eclipse_solar",
+        ["spellId"] = 408250,
+        ["spellIcon"] = "ability_druid_eclipseorange",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["eclipse_lunar"] = {
+        ["name"] = "Eclipse: Lunar",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "eclipse_lunar",
+        ["spellId"] = 441260,
+        ["spellIcon"] = "ability_druid_eclipse",
         ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {

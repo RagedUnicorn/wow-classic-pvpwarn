@@ -44,6 +44,11 @@ function me.Test()
 end
 
 function me.CollectTestCases()
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDireBearFormSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCatFormSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTravelFormSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAquaticFormSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMoonkinFormSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBarkskinApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBarkskinRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNaturesGraspApplied)
@@ -71,6 +76,53 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSurvivalInstinctsApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSurvivalInstinctsRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTreeOfLifeSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFuryOfStormrageApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFuryOfStormrageRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEclipseSolarApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEclipseSolarRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEclipseLunarApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEclipseLunarRemoved)
+end
+
+function me.TestCombatEventDireBearFormSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDireBearFormSuccess",
+    testCategory,
+    "Dire Bear Form"
+  )
+end
+
+function me.TestCombatEventCatFormSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventCatFormSuccess",
+    testCategory,
+    "Cat Form"
+  )
+end
+
+function me.TestCombatEventTravelFormSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventTravelFormSuccess",
+    testCategory,
+    "Travel Form"
+  )
+end
+
+function me.TestCombatEventAquaticFormSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventAquaticFormSuccess",
+    testCategory,
+    "Aquatic Form"
+  )
+end
+
+function me.TestCombatEventMoonkinFormSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMoonkinFormSuccess",
+    testCategory,
+    "Moonkin Form"
+  )
 end
 
 function me.TestCombatEventBarkskinApplied()
@@ -278,5 +330,61 @@ function me.TestCombatEventSurvivalInstinctsRemoved()
     "TestCombatEventSurvivalInstinctsRemoved",
     testCategory,
     "Survival Instincts"
+  )
+end
+
+function me.TestCombatEventTreeOfLifeSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventTreeOfLifeSuccess",
+    testCategory,
+    "Tree of Life"
+  )
+end
+
+function me.TestCombatEventFuryOfStormrageApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventFuryOfStormrageApplied",
+    testCategory,
+    "Fury of Stormrage"
+  )
+end
+
+function me.TestCombatEventFuryOfStormrageRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventFuryOfStormrageRemoved",
+    testCategory,
+    "Fury of Stormrage"
+  )
+end
+
+function me.TestCombatEventEclipseSolarApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventEclipseSolarApplied",
+    testCategory,
+    "Eclipse (Solar)"
+  )
+end
+
+function me.TestCombatEventEclipseSolarRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventEclipseSolarRemoved",
+    testCategory,
+    "Eclipse (Solar)"
+  )
+end
+
+function me.TestCombatEventEclipseLunarApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventEclipseLunarApplied",
+    testCategory,
+    "Eclipse (Lunar)"
+  )
+end
+
+function me.TestCombatEventEclipseLunarRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventEclipseLunarRemoved",
+    testCategory,
+    "Eclipse (Lunar)"
   )
 end
