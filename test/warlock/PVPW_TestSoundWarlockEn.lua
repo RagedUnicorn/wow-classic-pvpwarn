@@ -64,6 +64,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationAura)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownImmolationAura)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundUnstableAffliction)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBackdraft)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBackdraft)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundInfernalArmor)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownInfernalArmor)
 end
 
 function me.TestSoundFear()
@@ -231,5 +235,37 @@ function me.TestSoundUnstableAffliction()
     "TestSoundUnstableAffliction",
     testCategory,
     "Unstable Affliction"
+  )
+end
+
+function me.TestSoundBackdraft()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundBackdraft",
+    testCategory,
+    "Backdraft"
+  )
+end
+
+function me.TestSoundDownBackdraft()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownBackdraft",
+    testCategory,
+    "Backdraft"
+  )
+end
+
+function me.TestSoundInfernalArmor()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundInfernalArmor",
+    testCategory,
+    "Infernal Armor"
+  )
+end
+
+function me.TestSoundDownInfernalArmor()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownInfernalArmor",
+    testCategory,
+    "Infernal Armor"
   )
 end

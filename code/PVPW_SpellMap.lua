@@ -1982,7 +1982,7 @@ else
         }
       },
       ["vengeance"] = {
-        ["name"] = "Vengeance Grace",
+        ["name"] = "Vengeance",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
         ["soundFileName"] = "vengeance",
         ["spellId"] = 426195,
@@ -2017,6 +2017,32 @@ else
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["backdraft"] = {
+        ["name"] = "Backdraft",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "backdraft",
+        ["spellId"] = 427713,
+        ["spellIcon"] = "ability_warlock_backdraft",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["infernal_armor"] = {
+        ["name"] = "Infernal Armor",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "infernal_armor",
+        ["spellId"] = 440882,
+        ["spellIcon"] = "achievement_boss_kiljaedan",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
         }
       }
     },

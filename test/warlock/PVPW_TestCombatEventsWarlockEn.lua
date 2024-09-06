@@ -64,6 +64,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmolationAuraApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventImmolationAuraRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventUnstableAfflictionSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBackdraftApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBackdraftRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInfernalArmorApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInfernalArmorRemoved)
 end
 
 function me.TestCombatEventFearSuccess()
@@ -231,5 +235,37 @@ function me.TestCombatEventUnstableAfflictionSuccess()
     "TestCombatEventUnstableAfflictionSuccess",
     testCategory,
     "Unstable Affliction"
+  )
+end
+
+function me.TestCombatEventBackdraftApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventBackdraftApplied",
+    testCategory,
+    "Backdraft"
+  )
+end
+
+function me.TestCombatEventBackdraftRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventBackdraftRemoved",
+    testCategory,
+    "Backdraft"
+  )
+end
+
+function me.TestCombatEventInfernalArmorApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventInfernalArmorApplied",
+    testCategory,
+    "Infernal Armor"
+  )
+end
+
+function me.TestCombatEventInfernalArmorRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventInfernalArmorRemoved",
+    testCategory,
+    "Infernal Armor"
   )
 end
