@@ -2219,6 +2219,19 @@ else
           "SPELL_CAST_SUCCESS"
         }
       },
+      ["divine_protection"] = {
+        ["name"] = "Divine Protection",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "divine_protection",
+        ["spellId"] = 5573,
+        ["spellIcon"] = "spell_holy_restoration",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
       ["aegis"] = {
         ["name"] = "Aegis",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
@@ -2315,6 +2328,57 @@ else
         ["active"] = true,
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["divine_steed"] = {
+        ["name"] = "Divine Steed",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "divine_steed",
+        ["spellId"] = 461607,
+        ["spellIcon"] = "spell_holy_crusaderaura",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["hand_of_sacrifice"] = {
+        ["name"] = "Hand of Sacrifice",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "hand_of_sacrifice",
+        ["spellId"] = 462853,
+        ["spellIcon"] = "spell_holy_sealofsacrifice",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["divine_light"] = {
+        ["name"] = "Divine Light",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "divine_light",
+        ["spellId"] = 409925,
+        ["spellIcon"] = "spell_holy_surgeoflight",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["avenging_wrath"] = {
+        ["name"] = "Avenging Wrath",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "avenging_wrath",
+        ["spellId"] = 407788,
+        ["spellIcon"] = "spell_holy_avenginewrath",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
         }
       }
     },

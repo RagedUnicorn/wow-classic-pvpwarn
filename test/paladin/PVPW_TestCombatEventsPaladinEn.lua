@@ -61,6 +61,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventForbearanceApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventForbearanceRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLayOnHandsSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineProtectionApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineProtectionRemoved)
   -- runes
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAegisApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAegisRemoved)
@@ -72,6 +74,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRebukeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCrusaderStrikeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineStormSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineSteedApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineSteedRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHandOfSacrificeApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHandOfSacrificeRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineLightSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAvengingWrathApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAvengingWrathRemoved)
 end
 
 function me.TestCombatEventDevotionAuraSuccess()
@@ -226,6 +235,22 @@ function me.TestCombatEventLayOnHandsSuccess()
   )
 end
 
+function me.TestCombatEventDivineProtectionApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDivineProtectionApplied",
+    testCategory,
+    "Divine Protection"
+  )
+end
+
+function me.TestCombatEventDivineProtectionRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventDivineProtectionRemoved",
+    testCategory,
+    "Divine Protection"
+  )
+end
+
 function me.TestCombatEventAegisApplied()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventAegisApplied",
@@ -303,5 +328,61 @@ function me.TestCombatEventDivineStormSuccess()
     "TestCombatEventDivineStormSuccess",
     testCategory,
     "Divine Storm"
+  )
+end
+
+function me.TestCombatEventDivineSteedApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDivineSteedApplied",
+    testCategory,
+    "Divine Steed"
+  )
+end
+
+function me.TestCombatEventDivineSteedRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventDivineSteedRemoved",
+    testCategory,
+    "Divine Steed"
+  )
+end
+
+function me.TestCombatEventHandOfSacrificeApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventHandOfSacrificeApplied",
+    testCategory,
+    "Hand of Sacrifice"
+  )
+end
+
+function me.TestCombatEventHandOfSacrificeRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventHandOfSacrificeRemoved",
+    testCategory,
+    "Hand of Sacrifice"
+  )
+end
+
+function me.TestCombatEventDivineLightSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDivineLightSuccess",
+    testCategory,
+    "Divine Light"
+  )
+end
+
+function me.TestCombatEventAvengingWrathApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAvengingWrathApplied",
+    testCategory,
+    "Avenging Wrath"
+  )
+end
+
+function me.TestCombatEventAvengingWrathRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAvengingWrathRemoved",
+    testCategory,
+    "Avenging Wrath"
   )
 end

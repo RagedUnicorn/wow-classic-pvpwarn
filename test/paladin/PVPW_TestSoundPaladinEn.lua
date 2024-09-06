@@ -61,6 +61,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundForbearance)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownForbearance)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLayOnHands)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDivineProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDivineProtection)
   -- runes
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAegis)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAegis)
@@ -72,6 +74,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRebuke)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCrusaderStrike)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDivineStorm)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDivineSteed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDivineSteed)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHandOfSacrifice)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHandOfSacrifice)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDivineLight)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAvengingWrath)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAvengingWrath)
 end
 
 function me.TestSoundDevotionAura()
@@ -226,6 +235,22 @@ function me.TestSoundLayOnHands()
   )
 end
 
+function me.TestSoundDivineProtection()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundDivineProtection",
+    testCategory,
+    "Divine Protection"
+  )
+end
+
+function me.TestSoundDownDivineProtection()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownDivineProtection",
+    testCategory,
+    "Divine Protection"
+  )
+end
+
 function me.TestSoundAegis()
   mod.testHelper.TestSoundApplied(
     "TestSoundAegis",
@@ -303,5 +328,61 @@ function me.TestSoundDivineStorm()
     "TestSoundDivineStorm",
     testCategory,
     "Divine Storm"
+  )
+end
+
+function me.TestSoundDivineSteed()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundDivineSteed",
+    testCategory,
+    "Divine Steed"
+  )
+end
+
+function me.TestSoundDownDivineSteed()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownDivineSteed",
+    testCategory,
+    "Divine Steed"
+  )
+end
+
+function me.TestSoundHandOfSacrifice()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundHandOfSacrifice",
+    testCategory,
+    "Hand of Sacrifice"
+  )
+end
+
+function me.TestSoundDownHandOfSacrifice()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownHandOfSacrifice",
+    testCategory,
+    "Hand of Sacrifice"
+  )
+end
+
+function me.TestSoundDivineLight()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundDivineLight",
+    testCategory,
+    "Divine Light"
+  )
+end
+
+function me.TestSoundAvengingWrath()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAvengingWrath",
+    testCategory,
+    "Avenging Wrath"
+  )
+end
+
+function me.TestSoundDownAvengingWrath()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAvengingWrath",
+    testCategory,
+    "Avenging Wrath"
   )
 end
