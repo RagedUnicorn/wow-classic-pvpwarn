@@ -62,7 +62,7 @@ end
 function me.StartTickerCheckCombatState()
   if checkCombatState == nil or checkCombatState:IsCancelled() then
     checkCombatState = C_Timer.NewTicker(
-      RGPVPW_CONSTANTS.CHECK_COMBAT_STATE_INTERVAL, mod.combatState.CombatStateUpdate)
+      RGPVPW_CONSTANTS.CHECK_COMBAT_STATE_INTERVAL, mod.combatState.UpdateCombatState)
       mod.logger.LogInfo(me.tag, "Started 'CheckCombatState'")
   end
 end

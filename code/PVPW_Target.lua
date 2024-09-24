@@ -96,11 +96,6 @@ function me.UpdateCurrentTarget()
   end
 
   -- updating combatState and stanceState with changed target
-  if targetId ~= nil and targetName ~= nil then
-    mod.combatState.AcquiredTarget()
-    mod.stanceState.AcquiredTarget()
-  else
-    mod.combatState.LostTarget()
-    mod.stanceState.LostTarget()
-  end
+  mod.combatState.UpdateCombatState()
+  mod.stanceState.UpdateStanceState()
 end

@@ -43,24 +43,12 @@ local supportedClasses = {"WARRIOR"}
 -- clear stances that are older than 5 minutes
 local stanceExpiredTimeout = 200 -- 300000
 
-function me.AcquiredTarget()
-  if not mod.configuration.IsStanceStateTrackingEnabled() then return end
-
-  mod.logger.LogDebug(me.tag, "Acquired target - checking stance")
-  me.StanceStateUpdate()
-end
-
---[[
-  Update stanceState ui to hidden
-]]--
-function me.LostTarget()
-  mod.targetFrame.HideStanceState()
-end
-
 --[[
   Update the stance state of the current target
 ]]--
-function me.StanceStateUpdate()
+function me.UpdateStanceState()
+  if not mod.configuration.IsStanceStateTrackingEnabled() then return end
+
   if UnitIsPlayer(RGPVPW_CONSTANTS.UNIT_ID_TARGET) and UnitIsEnemy(RGPVPW_CONSTANTS.UNIT_ID_PLAYER,
     RGPVPW_CONSTANTS.UNIT_ID_TARGET) and me.IsCurrentTargetSupportedClass() or configurationMode then
 
@@ -77,7 +65,15 @@ function me.StanceStateUpdate()
     end
   else
     mod.logger.LogDebug(me.tag, "Stance checking was ignored")
+    mod.targetFrame.HideStanceState()
   end
+end
+
+--[[
+
+]]--
+function me.StanceStateUpdate()
+
 end
 
 --[[

@@ -37,44 +37,29 @@ me.tag = "CombatState"
 local configurationMode = false
 
 --[[
-  Invoked when a new target is acquired
+  Update the combat state of the current target (if there is a valid one)
 ]]--
-function me.AcquiredTarget()
+function me.UpdateCombatState()
   if not mod.configuration.IsCombatStateTrackingEnabled() then return end
 
   if UnitIsPlayer(RGPVPW_CONSTANTS.UNIT_ID_TARGET) and UnitIsEnemy(RGPVPW_CONSTANTS.UNIT_ID_PLAYER,
     RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode then
     mod.logger.LogDebug(me.tag, "Acquired new enemy target - starting combatstate tracking")
     -- after switching targets instantly update
-    me.CombatStateUpdate()
+    local affectingCombat = UnitAffectingCombat(RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode
+
+    mod.logger.LogDebug(me.tag, "Targeted unit is affected by combat: " .. tostring(affectingCombat))
+    mod.targetFrame.UpdateCombatStateUi(affectingCombat)
     --[[
       Start combatState timer - if not already started
     ]]--
     mod.ticker.StartTickerCheckCombatState()
   else
+    -- Update combatState ui to hidden
     mod.targetFrame.HideCombatState()
-    -- stop combatState time - no valid target (e.g. friendly)
+    -- stop combatState time - no valid target (e.g. friendly or none at all)
     mod.ticker.StopTickerCheckCombatState()
   end
-end
-
---[[
-  - Stop updating combatState when target gets lost stops ticker
-  - Update combatState ui to hidden
-]]--
-function me.LostTarget()
-  mod.ticker.StopTickerCheckCombatState()
-  mod.targetFrame.HideCombatState()
-end
-
---[[
-  Update the combat state of the current target
-]]--
-function me.CombatStateUpdate()
-  local affectingCombat = UnitAffectingCombat(RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode
-
-  mod.logger.LogDebug(me.tag, "Targeted unit is affected by combat: " .. tostring(affectingCombat))
-  mod.targetFrame.UpdateCombatStateUi(affectingCombat)
 end
 
 --[[
