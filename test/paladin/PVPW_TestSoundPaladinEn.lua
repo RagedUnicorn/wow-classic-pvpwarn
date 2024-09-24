@@ -70,7 +70,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDivineSacrifice)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundInspirationExemplar)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAvengersShield)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExorcist)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRebuke)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCrusaderStrike)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDivineStorm)
@@ -296,14 +295,6 @@ function me.TestSoundAvengersShield()
     "TestSoundAvengersShield",
     testCategory,
     "Avenger's Shield"
-  )
-end
-
-function me.TestSoundExorcist()
-  mod.testHelper.TestSoundSuccess(
-    "TestSoundExorcist",
-    testCategory,
-    "Exorcist"
   )
 end
 

@@ -2295,18 +2295,6 @@ else
           "SPELL_CAST_SUCCESS"
         }
       },
-      ["exorcist"] = {
-        ["name"] = "Exorcist",
-        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
-        ["soundFileName"] = "exorcist",
-        ["spellId"] = 415076,
-        ["spellIcon"] = "spell_holy_retribution",
-        ["hasFade"] = false,
-        ["active"] = true,
-        ["trackedEvents"] = {
-          "SPELL_CAST_SUCCESS"
-        }
-      },
       ["rebuke"] = {
         ["name"] = "Rebuke",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,

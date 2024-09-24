@@ -70,7 +70,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineSacrificeRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInspirationExemplarSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAvengersShieldSuccess)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExorcistSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRebukeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCrusaderStrikeSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineStormSuccess)
@@ -296,14 +295,6 @@ function me.TestCombatEventAvengersShieldSuccess()
     "TestCombatEventAvengersShieldSuccess",
     testCategory,
     "Avenger's Shield"
-  )
-end
-
-function me.TestCombatEventExorcistSuccess()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventExorcistSuccess",
-    testCategory,
-    "Exorcist"
   )
 end
 
