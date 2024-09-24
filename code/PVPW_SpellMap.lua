@@ -3755,12 +3755,12 @@ else
         }
       },
       ["haste"] = {
-        ["name"] = "Manual Crowd Pummeler",
+        ["name"] = "Catnip",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
         ["soundFileName"] = "haste",
-        ["itemId"] = 9449,
+        ["itemId"] = 213407,
         ["spellId"] = 13494,
-        ["spellIcon"] = "inv_mace_14",
+        ["spellIcon"] = "inv_misc_plant_01",
         ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
