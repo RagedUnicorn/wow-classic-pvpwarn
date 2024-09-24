@@ -93,7 +93,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventValorOfAzerothApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventValorOfAzerothRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVictoryRushSuccess)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAppliedGladiatorStanceApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGladiatorStanceApplied)
 end
 
 function me.TestCombatEventBerserkerRageApplied()
@@ -480,9 +480,9 @@ function me.TestCombatEventVictoryRushSuccess()
   )
 end
 
-function me.TestCombatEventAppliedGladiatorStanceApplied()
+function me.TestCombatEventGladiatorStanceApplied()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventAppliedGladiatorStanceApplied",
+    "TestCombatEventGladiatorStanceApplied",
     testCategory,
     "Gladiator Stance"
   )

@@ -80,8 +80,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWaterShieldRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDecoyTotemSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTotemicProjectionSuccess)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMaelStromWeaponApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMaelStromWeaponRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMaelstromWeaponApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMaelstromWeaponRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTidalWavesApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTidalWavesRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRiptideSuccess)
@@ -370,17 +370,17 @@ function me.TestCombatEventTotemicProjectionSuccess()
   )
 end
 
-function me.TestCombatEventMaelStromWeaponApplied()
+function me.TestCombatEventMaelstromWeaponApplied()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventMaelStromWeaponApplied",
+    "TestCombatEventMaelstromWeaponApplied",
     testCategory,
     "Maelstrom Weapon"
   )
 end
 
-function me.TestCombatEventMaelStromWeaponRemoved()
+function me.TestCombatEventMaelstromWeaponRemoved()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventMaelStromWeaponRemoved",
+    "TestCombatEventMaelstromWeaponRemoved",
     testCategory,
     "Maelstrom Weapon"
   )

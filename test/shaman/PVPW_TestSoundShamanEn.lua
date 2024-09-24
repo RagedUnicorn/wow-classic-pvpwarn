@@ -78,8 +78,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownWaterShield)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDecoyTotem)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTotemicProjection)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMaelStromWeapon)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMaelStromWeapon)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMaelstromWeapon)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMaelstromWeapon)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTidalWaves)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownTidalWaves)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRiptide)
@@ -368,17 +368,17 @@ function me.TestSoundTotemicProjection()
   )
 end
 
-function me.TestSoundMaelStromWeapon()
+function me.TestSoundMaelstromWeapon()
   mod.testHelper.TestSoundApplied(
-    "TestSoundMaelStromWeapon",
+    "TestSoundMaelstromWeapon",
     testCategory,
     "Maelstrom Weapon"
   )
 end
 
-function me.TestSoundDownMaelStromWeapon()
+function me.TestSoundDownMaelstromWeapon()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownMaelStromWeapon",
+    "TestSoundDownMaelstromWeapon",
     testCategory,
     "Maelstrom Weapon"
   )
