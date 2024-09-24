@@ -149,6 +149,8 @@ function me.TrackStanceApplied(spell, target)
     ["detectedTime"] = GetTime()
   }
 
+  mod.logger.LogDebug(me.tag, "Tracked stance: " .. spell.name .. " for target: " .. target)
+
   -- update stance of current target if the update was for the current target
   if target == mod.target.GetCurrentTargetGuid() then
     me.StanceStateUpdate()

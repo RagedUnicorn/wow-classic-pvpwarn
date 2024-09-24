@@ -91,6 +91,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundValorOfAzeroth)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownValorOfAzeroth)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVictoryRush)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGladiatorStance)
 end
 
 function me.TestSoundBerserkerRage()
@@ -474,5 +475,13 @@ function me.TestSoundVictoryRush()
     "TestSoundVictoryRush",
     testCategory,
     "Victory Rush"
+  )
+end
+
+function me.TestSoundGladiatorStance()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundGladiatorStance",
+    testCategory,
+    "Gladiator Stance"
   )
 end

@@ -522,6 +522,19 @@ else
         ["trackedEvents"] = {
           "SPELL_CAST_SUCCESS"
         }
+      },
+      ["gladiator_stance"] = {
+        ["name"] = "Gladiator Stance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "gladiator_stance",
+        ["spellId"] = 412513,
+        ["spellIcon"] = "achievement_featsofstrength_gladiator_08",
+        ["hasFade"] = false,
+        ["isStanceSpell"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED"
+        }
       }
     },
     ["priest"] = {
