@@ -67,6 +67,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLesserInvisibility)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundStealthDetection)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownStealthDetection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCurePoison)
 end
 
 function me.TestSoundRestoreEnergy()
@@ -266,5 +267,13 @@ function me.TestSoundDownStealthDetection()
     "TestSoundDownStealthDetection",
     testCategory,
     "Stealth Detection"
+  )
+end
+
+function me.TestSoundCurePoison()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundCurePoison",
+    testCategory,
+    "Cure Poison"
   )
 end

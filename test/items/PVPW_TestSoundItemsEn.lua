@@ -74,6 +74,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPvpTrinket)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAuraOfProtection)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAuraOfProtection)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPoison)
   -- sod items
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVoidMadness)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownVoidMadness)
@@ -102,6 +103,16 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGniodineDispel)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHardenedToTheCore)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHardenedToTheCore)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExtinguishFire)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMoonstalkerFury)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMoonstalkerFury)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGuardianOfNature)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGuardianOfNature)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDemonTaintedBlood)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDemonTaintedBlood)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMarlisBrainInfestors)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowflameFury)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowflameFury)
 end
 
 function me.TestSoundEphemeralPower()
@@ -358,6 +369,14 @@ function me.TestSoundDownAuraOfProtection()
   )
 end
 
+function me.TestSoundPoison()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundPoison",
+    testCategory,
+    "Poison"
+  )
+end
+
 function me.TestSoundVoidMadness()
   mod.testHelper.TestSoundApplied(
     "TestSoundVoidMadness",
@@ -572,5 +591,85 @@ function me.TestSoundDownHardenedToTheCore()
     "TestSoundDownHardenedToTheCore",
     testCategory,
     "Hardened to the Core"
+  )
+end
+
+function me.TestSoundExtinguishFire()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundExtinguishFire",
+    testCategory,
+    "Extinguish Fire"
+  )
+end
+
+function me.TestSoundMoonstalkerFury()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundMoonstalkerFury",
+    testCategory,
+    "Moonstalker Fury"
+  )
+end
+
+function me.TestSoundDownMoonstalkerFury()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownMoonstalkerFury",
+    testCategory,
+    "Moonstalker Fury"
+  )
+end
+
+function me.TestSoundGuardianOfNature()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundGuardianOfNature",
+    testCategory,
+    "Guardian of Nature"
+  )
+end
+
+function me.TestSoundDownGuardianOfNature()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownGuardianOfNature",
+    testCategory,
+    "Guardian of Nature"
+  )
+end
+
+function me.TestSoundDemonTaintedBlood()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundDemonTaintedBlood",
+    testCategory,
+    "Demon Tainted Blood"
+  )
+end
+
+function me.TestSoundDownDemonTaintedBlood()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownDemonTaintedBlood",
+    testCategory,
+    "Demon Tainted Blood"
+  )
+end
+
+function me.TestSoundMarlisBrainInfestors()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMarlisBrainInfestors",
+    testCategory,
+    "Marlis' Brain Infestors"
+  )
+end
+
+function me.TestSoundShadowflameFury()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundShadowflameFury",
+    testCategory,
+    "Shadowflame Fury"
+  )
+end
+
+function me.TestSoundDownShadowflameFury()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownShadowflameFury",
+    testCategory,
+    "Shadowflame Fury"
   )
 end

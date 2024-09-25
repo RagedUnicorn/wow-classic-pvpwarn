@@ -69,6 +69,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLesserInvisibilitySuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventStealthDetectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventStealthDetectionRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCurePoisonSuccess)
 end
 
 function me.TestCombatEventRestoreEnergySuccess()
@@ -268,5 +269,13 @@ function me.TestCombatEventStealthDetectionRemoved()
     "TestCombatEventStealthDetectionRemoved",
     testCategory,
     "Stealth Detection"
+  )
+end
+
+function me.TestCombatEventCurePoisonSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventCurePoisonSuccess",
+    testCategory,
+    "Cure Poison"
   )
 end

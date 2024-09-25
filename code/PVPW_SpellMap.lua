@@ -3614,6 +3614,19 @@ else
           "SPELL_AURA_REMOVED"
         }
       },
+      ["poison"] = {
+        ["name"] = "Smolderweb's Eye",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "smolderwebs_poison",
+        ["itemId"] = 228576,
+        ["spellId"] = 17330,
+        ["spellIcon"] = "inv_misc_gem_pearl_01",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
       ["void_madness"] = {
         ["name"] = "Void-Touched Leather Gauntlets/Gloves",
         ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
@@ -3802,6 +3815,88 @@ else
         ["itemId"] = 213350,
         ["spellId"] = 435359,
         ["spellIcon"] = "inv_gizmo_khoriumpowercore",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["extinguish_fire"] = {
+        ["name"] = "Miniaturized Fire Extinguisher",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "extinguish_fire",
+        ["itemId"] = 228084,
+        ["spellId"] = 461231,
+        ["spellIcon"] = "inv_misc_enggizmos_essencedistiller",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["moonstalker_fury"] = {
+        ["name"] = "Woodcarved Moonstalker",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "moonstalker_fury",
+        ["itemId"] = 228089,
+        ["spellId"] = 461235,
+        ["spellIcon"] = "inv_jewelcrafting_blackpearlpanther",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["guardian_of_nature"] = {
+        ["name"] = "Germinating Poisonseed",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "guardian_of_nature",
+        ["itemId"] = 228081,
+        ["spellId"] = 461227,
+        ["spellIcon"] = "inv_misc_herb_nightmareseed",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["demon_tainted_blood"] = {
+        ["name"] = "Accursed Chalice",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "demon_tainted_blood",
+        ["itemId"] = 228078,
+        ["spellId"] = 461224,
+        ["spellIcon"] = "inv_offhand_pvealliance_d_01",
+        ["hasFade"] = true,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_AURA_APPLIED",
+          "SPELL_AURA_REMOVED"
+        }
+      },
+      ["marlis_brain_infestors"] = {
+        ["name"] = "Mar'li's Eye",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "marlis_eye",
+        ["itemId"] = 230920,
+        ["spellId"] = 467720,
+        ["spellIcon"] = "inv_zulgurubtrinket",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
+        }
+      },
+      ["shadowflame_fury"] = {
+        ["name"] = "Shadowflame Sword",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+        ["soundFileName"] = "shadowflame_fury",
+        ["itemId"] = 228143,
+        ["spellId"] = 461253,
+        ["spellIcon"] = "inv_sword_35",
         ["hasFade"] = true,
         ["active"] = true,
         ["trackedEvents"] = {
@@ -4014,6 +4109,19 @@ else
         ["trackedEvents"] = {
           "SPELL_AURA_APPLIED",
           "SPELL_AURA_REMOVED"
+        }
+      },
+      ["cure_poison"] = {
+        ["name"] = "Elixir of Poison Resistance",
+        ["type"] = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+        ["soundFileName"] = "cure_poison",
+        ["itemId"] = 3386,
+        ["spellId"] = 26677,
+        ["spellIcon"] = "inv_potion_12",
+        ["hasFade"] = false,
+        ["active"] = true,
+        ["trackedEvents"] = {
+          "SPELL_CAST_SUCCESS"
         }
       }
     }

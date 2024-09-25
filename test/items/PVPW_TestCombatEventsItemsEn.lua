@@ -75,6 +75,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPvpTrinketSuccess)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAuraOfProtectionApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAuraOfProtectionRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPoisonSuccess)
   -- sod items
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVoidMadnessApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVoidMadnessRemoved)
@@ -103,6 +104,16 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGniodineDispelRemoved)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHardenedToTheCoreApplied)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHardenedToTheCoreRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExtinguishFireSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMoonstalkerFuryApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMoonstalkerFuryRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGuardianOfNatureApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGuardianOfNatureRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDemonTaintedBloodApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDemonTaintedBloodRemoved)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMarlisBrainInfestorsSuccess)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowflameFuryApplied)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowflameFuryRemoved)
 end
 
 function me.TestCombatEventEphemeralPowerApplied()
@@ -359,6 +370,14 @@ function me.TestCombatEventAuraOfProtectionRemoved()
   )
 end
 
+function me.TestCombatEventPoisonSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventPoisonSuccess",
+    testCategory,
+    "Poison"
+  )
+end
+
 function me.TestCombatEventVoidMadnessApplied()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventVoidMadnessApplied",
@@ -573,5 +592,85 @@ function me.TestCombatEventHardenedToTheCoreRemoved()
     "TestCombatEventHardenedToTheCoreRemoved",
     testCategory,
     "Hardened to the Core"
+  )
+end
+
+function me.TestCombatEventExtinguishFireSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventExtinguishFireSuccess",
+    testCategory,
+    "Extinguish Fire"
+  )
+end
+
+function me.TestCombatEventMoonstalkerFuryApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventMoonstalkerFuryApplied",
+    testCategory,
+    "Moonstalker Fury"
+  )
+end
+
+function me.TestCombatEventMoonstalkerFuryRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventMoonstalkerFuryRemoved",
+    testCategory,
+    "Moonstalker Fury"
+  )
+end
+
+function me.TestCombatEventGuardianOfNatureApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventGuardianOfNatureApplied",
+    testCategory,
+    "Guardian of Nature"
+  )
+end
+
+function me.TestCombatEventGuardianOfNatureRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventGuardianOfNatureRemoved",
+    testCategory,
+    "Guardian of Nature"
+  )
+end
+
+function me.TestCombatEventDemonTaintedBloodApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDemonTaintedBloodApplied",
+    testCategory,
+    "Demon Tainted Blood"
+  )
+end
+
+function me.TestCombatEventDemonTaintedBloodRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventDemonTaintedBloodRemoved",
+    testCategory,
+    "Demon Tainted Blood"
+  )
+end
+
+function me.TestCombatEventMarlisBrainInfestorsSuccess()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMarlisBrainInfestorsSuccess",
+    testCategory,
+    "Marlis' Brain Infestors"
+  )
+end
+
+function me.TestCombatEventShadowflameFuryApplied()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventShadowflameFuryApplied",
+    testCategory,
+    "Shadowflame Fury"
+  )
+end
+
+function me.TestCombatEventShadowflameFuryRemoved()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventShadowflameFuryRemoved",
+    testCategory,
+    "Shadowflame Fury"
   )
 end
