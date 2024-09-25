@@ -1,8 +1,8 @@
 # Update
 
-* Update Interface Version 11503(1.15.3)
-* Add more p3 runes
+* Update Interface Version 11504(1.15.4)
+* Add P4/p5 runes and items
 
 # Fixes
 
-* Ignore zones without a zone id
+* Fix stancetracker (track stance even if stance spells are not active)
