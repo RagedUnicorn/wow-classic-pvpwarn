@@ -44,7 +44,7 @@ local supportedClasses = {"WARRIOR"}
 local stanceExpiredTimeout = 200 -- 300000
 
 --[[
-  Update the stance state of the current target
+  Update the stance state of the current target (if there is a valid one)
 ]]--
 function me.UpdateStanceState()
   if not mod.configuration.IsStanceStateTrackingEnabled() then return end
@@ -67,13 +67,6 @@ function me.UpdateStanceState()
     mod.logger.LogDebug(me.tag, "Stance checking was ignored")
     mod.targetFrame.HideStanceState()
   end
-end
-
---[[
-
-]]--
-function me.StanceStateUpdate()
-
 end
 
 --[[
@@ -149,7 +142,7 @@ function me.TrackStanceApplied(spell, target)
 
   -- update stance of current target if the update was for the current target
   if target == mod.target.GetCurrentTargetGuid() then
-    me.StanceStateUpdate()
+    me.UpdateStanceState()
   end
 end
 

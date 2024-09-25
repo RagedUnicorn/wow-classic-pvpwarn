@@ -147,11 +147,15 @@ function me.ProcessNormal(event, callback, ...)
   if me.ShouldFilterDebuff(buffType) then return end
   if me.ShouldIgnorePet(spell, target) then return end
   if not me.IsValidSpellType(spellType) then return end
-  if not me.IsSpellActive(spellMap, category, normalizedSpellName) then return end
 
+  --[[
+    Track stance spells, even if the spell is not active
+  ]]--
   if me.IsStanceSpell(spell) then
     mod.stanceState.TrackStanceApplied(spell, target)
   end
+
+  if not me.IsSpellActive(spellMap, category, normalizedSpellName) then return end
 
   local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
     spellMap, category, normalizedSpellName
