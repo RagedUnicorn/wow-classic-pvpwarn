@@ -349,6 +349,15 @@ end
   @param {number} spellId
 ]]--
 function me.TestSoundSuccess(testName, testCategory, spellId)
+  assert(type(testName) == "string", string.format(
+    "bad argument #1 to `TestSoundSuccess` (expected string, got %s)", type(testName)))
+
+  assert(type(testCategory) == "string", string.format(
+    "bad argument #2 to `TestSoundSuccess` (expected string, got %s)", type(testCategory)))
+
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `TestSoundSuccess` (expected number, got %s)", type(spellId)))
+
   mod.testReporter.StartTestRun(testName)
 
   local status = me.TestSound(
@@ -373,6 +382,15 @@ end
   @param {string} spellName
 ]]--
 function me.TestSoundStart(testName, testCategory, spellName)
+  assert(type(testName) == "string", string.format(
+    "bad argument #1 to `TestSoundStart` (expected string, got %s)", type(testName)))
+
+  assert(type(testCategory) == "string", string.format(
+    "bad argument #2 to `TestSoundStart` (expected string, got %s)", type(testCategory)))
+
+  assert(type(spellName) == "string", string.format(
+    "bad argument #3 to `TestSoundStart` (expected string, got %s)", type(spellName)))
+
   mod.testReporter.StartTestRun(testName)
 
   local status = me.TestSound(
@@ -397,6 +415,15 @@ end
   @param {string} spellName
 ]]--
 function me.TestSoundSpellMissedSelf(testName, testCategory, spellName)
+  assert(type(testName) == "string", string.format(
+    "bad argument #1 to `TestSoundSpellMissedSelf` (expected string, got %s)", type(testName)))
+
+  assert(type(testCategory) == "string", string.format(
+    "bad argument #2 to `TestSoundSpellMissedSelf` (expected string, got %s)", type(testCategory)))
+
+  assert(type(spellName) == "string", string.format(
+    "bad argument #3 to `TestSoundSpellMissedSelf` (expected string, got %s)", type(spellName)))
+
   mod.testReporter.StartTestRun(testName)
 
   local status = me.TestSound(
@@ -421,6 +448,15 @@ end
   @param {string} spellName
 ]]--
 function me.TestSoundSpellMissedEnemy(testName, testCategory, spellName)
+  assert(type(testName) == "string", string.format(
+    "bad argument #1 to `TestSoundSpellMissedEnemy` (expected string, got %s)", type(testName)))
+
+  assert(type(testCategory) == "string", string.format(
+    "bad argument #2 to `TestSoundSpellMissedEnemy` (expected string, got %s)", type(testCategory)))
+
+  assert(type(spellName) == "string", string.format(
+    "bad argument #3 to `TestSoundSpellMissedEnemy` (expected string, got %s)", type(spellName)))
+
   mod.testReporter.StartTestRun(testName)
 
   local status = me.TestSound(
