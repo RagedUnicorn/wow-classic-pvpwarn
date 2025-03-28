@@ -107,9 +107,11 @@ end
   @param {vararg} ...
 ]]--
 function me.ProcessStart(event, callback, ...)
+  -- TODO this is unfinished
   local spellName = select(13, ...)
   local normalizedSpellName = mod.common.NormalizeSpellname(spellName)
-  local category, spell = mod.spellMap.SearchByName(normalizedSpellName, event)
+  local category, spell = mod.spellMapHelper.SearchBySpellId(spellId, event)
+
   local spellType = mod.common.GetSpellType(event)
   local spellMap = mod.common.GetSpellMap(spellType)
   local playSound
@@ -135,9 +137,9 @@ end
   @param {vararg} ...
 ]]--
 function me.ProcessNormal(event, callback, ...)
-  local target, _, _, _, _, spellName, _, buffType = select(8, ...)
+  local target, _, _, _, spellId, spellName, _, buffType = select(8, ...)
   local normalizedSpellName = mod.common.NormalizeSpellname(spellName)
-  local category, spell = mod.spellMap.SearchByName(normalizedSpellName, event)
+  local category, realSpellId, spell = mod.spellMapHelper.SearchBySpellId(spellId, event)
   local spellType = mod.common.GetSpellType(event)
   local spellMap = mod.common.GetSpellMap(spellType)
   local playSound
@@ -155,16 +157,16 @@ function me.ProcessNormal(event, callback, ...)
     mod.stanceState.TrackStanceApplied(spell, target)
   end
 
-  if not me.IsSpellActive(spellMap, category, normalizedSpellName) then return end
+  if not me.IsSpellActive(spellMap, category, realSpellId, normalizedSpellName) then return end
 
-  local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
-    spellMap, category, normalizedSpellName
-  )
-
-  playSound = me.IsSoundWarningActive(spellMap, category, spellName, normalizedSpellName)
-  playVisual = me.IsVisualWarningActive(category, normalizedSpellName, visualWarningColor)
+  playSound = me.IsSoundWarningActive(spellMap, category, spellId, normalizedSpellName)
+  playVisual = me.IsVisualWarningActive(spellMap, category, spellId, normalizedSpellName)
 
   if playVisual then
+    local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
+      spellMap, category, realSpellId
+    )
+
     spell.visualWarningColor = visualWarningColor
   end
 
@@ -259,8 +261,7 @@ function me.HasFoundSpell(category, spell, spellName)
     ]]--
     mod.logger.LogInfo(me.tag, string.format(
       "Ignore spell %s because search in spellAvoidMap resulted in not found", spellName
-      )
-    )
+    ))
     return false
   end
 
@@ -312,22 +313,26 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} category
+  @param {number} spellId
   @param {string} normalizedSpellName
 
   @return {boolean}
     true - if the spell is active
     false if the spell is not active
 ]]--
-function me.IsSpellActive(spellList, category, normalizedSpellName)
-  if not mod.spellConfiguration.IsSpellActive(spellList, category, normalizedSpellName) then
-    mod.logger.LogDebug(me.tag, string.format(
-      "Ignore spell %s - %s because it is not active", category, normalizedSpellName
-      )
-    )
-    return false
+function me.IsSpellActive(spellList, category, spellId, normalizedSpellName)
+  if mod.spellConfiguration.IsSpellActive(spellList, category, spellId) then
+    return true
   end
 
-  return true
+  mod.logger.LogDebug(me.tag, string.format(
+    "Ignore spell %s - %s (%s) because it is not active",
+    category,
+    spellId,
+    normalizedSpellName
+  ))
+
+  return false
 end
 
 --[[
@@ -337,43 +342,49 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} category
-  @param {string} spellName
+  @param {number} spellId
   @param {string} normalizedSpellName
 
   @return {boolean}
     true - if sound is active for the spell
     false if sound is not active for the spell
 ]]--
-function me.IsSoundWarningActive(spellList, category, spellName, normalizedSpellName)
-  if mod.spellConfiguration.IsSoundWarningActive(spellList, category, normalizedSpellName)
-    or mod.spellConfiguration.IsSoundFadeWarningActive(spellList, category, spellName) then
+function me.IsSoundWarningActive(spellList, category, spellId, normalizedSpellName)
+  if mod.spellConfiguration.IsSoundWarningActive(spellList, category, spellId)
+    or mod.spellConfiguration.IsSoundFadeWarningActive(spellList, category, spellId) then
     return true
   end
 
   mod.logger.LogDebug(me.tag, string.format(
-    "Ignore playing sound/soundFade for %s - %s because it is not active", category, normalizedSpellName))
+    "Ignore playing sound/soundFade for %s - %s - %s because it is not active",
+    category,
+    spellId,
+    normalizedSpellName
+  ))
 
   return false
 end
 
 --[[
+  @param {string} spellList
+    Decides upon which stored list should be used. Possible values:
+    * spellList - enemy spell detected
+    * spellSelfAvoidList - player avoided spell
+    * spellEnemyAvoidList - enemy player avoided spell
   @param {string} category
+  @param {number} spellId
   @param {string} normalizedSpellName
-  @param {number} visualWarningColor
 
   @return {boolean}
     true - if visual warning is active
     false- if visual warning is not active
 ]]--
-function me.IsVisualWarningActive(category, normalizedSpellName, visualWarningColor)
-  if visualWarningColor ~= RGPVPW_CONSTANTS.DEFAULT_COLOR then
-    return true
-  end
+function me.IsVisualWarningActive(spellList, category, spellId, normalizedSpellName)
+  if mod.spellConfiguration.IsVisualWarningActive(spellList, category, spellId) then return true end
 
   mod.logger.LogDebug(me.tag, string.format(
     "Ignore playing visual warning for %s - %s because it is not active", category, normalizedSpellName
-    )
-  )
+  ))
 
   return false
 end

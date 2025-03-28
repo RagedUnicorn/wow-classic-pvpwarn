@@ -56,13 +56,13 @@ local FILE_TYPE = ".mp3"
 ]]--
 function me.PlaySound(soundCategory, spellType, soundFileName)
   assert(type(soundCategory) == "string",
-    string.format("bad argument #1 to `PlaySound` (expected string got %s)", type(soundCategory)))
+    string.format("bad argument #1 to `PlaySound` (expected string, got %s)", type(soundCategory)))
 
   assert(type(spellType) == "number",
-    string.format("bad argument #2 to `PlaySound` (expected number got %s)", type(spellType)))
+    string.format("bad argument #2 to `PlaySound` (expected number, got %s)", type(spellType)))
 
   assert(type(soundFileName) == "string",
-    string.format("bad argument #3 to `PlaySound` (expected string got %s)", type(soundFileName)))
+    string.format("bad argument #3 to `PlaySound` (expected string, got %s)", type(soundFileName)))
 
   local status = 0
   local soundPath = BASE_PATH .. soundCategory .. "\\"
