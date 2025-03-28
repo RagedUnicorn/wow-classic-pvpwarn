@@ -190,7 +190,9 @@ function me.CreateSpellStateCheckbox(spellFrame)
       mod.spellConfiguration.ToggleSpellState(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
+        spellFrame.spellId,
         spellFrame.normalizedSpellName
+
       )
 
       local parentFrame = self:GetParent()
@@ -203,7 +205,7 @@ function me.CreateSpellStateCheckbox(spellFrame)
       local isActive = mod.spellConfiguration.IsSpellActive(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
-        spellFrame.normalizedSpellName
+        spellFrame.spellId
       )
 
       if isActive then
@@ -232,6 +234,7 @@ function me.CreateSpellSoundCheckBox(spellFrame)
       mod.spellConfiguration.ToggleSoundWarning(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
+        spellFrame.spellId,
         spellFrame.normalizedSpellName
       )
     end,
@@ -239,7 +242,7 @@ function me.CreateSpellSoundCheckBox(spellFrame)
       local isActive = mod.spellConfiguration.IsSoundWarningActive(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
-        spellFrame.normalizedSpellName
+        spellFrame.spellId
       )
 
       if isActive then
@@ -292,12 +295,14 @@ function me.SpellSoundSpecialCheckBoxOnClick(self)
       mod.spellConfiguration.ToggleSoundFadeWarning(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
+        self:GetParent().spellId,
         self:GetParent().normalizedSpellName
       )
     elseif self.type == RGPVPW_CONSTANTS.SPELL_TYPES.START then
       mod.spellConfiguration.ToggleSoundStartWarning(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
         activeCategory,
+        self:GetParent().spellId,
         self:GetParent().normalizedSpellName
       )
     else
@@ -317,13 +322,13 @@ function me.SpellSoundSpecialCheckBoxOnShow(self)
     isActive = mod.spellConfiguration.IsSoundFadeWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
       activeCategory,
-      self:GetParent().normalizedSpellName
+      self:GetParent().spellId
     )
   elseif self.type == RGPVPW_CONSTANTS.SPELL_TYPES.START then
     isActive = mod.spellConfiguration.IsSoundStartWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
       activeCategory,
-      self:GetParent().normalizedSpellName
+      self:GetParent().spellId
     )
   else
     mod.logger.LogError(me.tag, "Invalid type on special checkbox")
@@ -383,6 +388,7 @@ function me.DropDownMenuCallback(self)
   mod.spellConfiguration.UpdateVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
     activeCategory,
+    self:GetParent().dropdown:GetParent().spellId,
     self:GetParent().dropdown:GetParent().normalizedSpellName,
     self.value
   )
@@ -403,7 +409,7 @@ function me.ToggleVisualWarningOnClick(self)
   local color = mod.spellConfiguration.GetVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
     self:GetParent().category,
-    self:GetParent().normalizedSpellName
+    self:GetParent().spellId
   )
 
   if color == RGPVPW_CONSTANTS.DEFAULT_COLOR then
@@ -427,7 +433,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, categoryName)
 
   if cachedCategoryData == nil then
     mod.logger.LogInfo(me.tag, string.format("Warmed up cached spellList for categoryName '%s'", categoryName))
-    cachedCategoryData = mod.spellMap.GetAllForCategory(categoryName)
+    cachedCategoryData = mod.spellMapHelper.GetAllForCategory(categoryName)
   end
 
   local maxValue = mod.common.TableLength(cachedCategoryData) or 0
@@ -453,7 +459,9 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, categoryName)
 
       if cachedCategoryData[value] ~= nil then
         local spell = cachedCategoryData[value]
+        -- TODO DevTools_Dump({spell})
 
+        row.spellId = spell.spellId
         row.normalizedSpellName = spell.normalizedSpellName
         row.category = categoryName
         row.spellTitle:SetText(spell.name)
@@ -462,11 +470,11 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, categoryName)
         row.playSoundSpecial.soundFileName = spell.soundFileName
 
         me.UpdateIcon(row.spellIcon, categoryName, spell)
-        me.UpdateSpellStateCheckBox(row.spellStateCheckBox, categoryName, spell.normalizedSpellName)
-        me.UpdateSound(row.soundCheckBox, categoryName, spell.normalizedSpellName)
+        me.UpdateSpellStateCheckBox(row.spellStateCheckBox, categoryName, spell.spellId)
+        me.UpdateSound(row.soundCheckBox, categoryName, spell.spellId)
         me.UpdateSoundSpecial(row.soundSpecialCheckBox, row.playSoundSpecial, categoryName, spell)
 
-        me.UpdateChooseVisualDropdownMenu(row.chooseVisual, categoryName, spell.normalizedSpellName)
+        me.UpdateChooseVisualDropdownMenu(row.chooseVisual, categoryName, spell.spellId)
 
         row:Show()
       else
@@ -502,13 +510,13 @@ end
 --[[
   @param {table} dropdownMenu
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.UpdateChooseVisualDropdownMenu(dropdownMenu, categoryName, spellName)
+function me.UpdateChooseVisualDropdownMenu(dropdownMenu, categoryName, spellId)
   local colorValue = mod.spellConfiguration.GetVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
     categoryName,
-    spellName
+    spellId
   )
 
   mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(
@@ -523,20 +531,21 @@ end
 --[[
   @param {table} spellStateCheckBox
   @param {string} categoryName
+  @param {number} spellId
   @param {string} spellName
 ]]--
-function me.UpdateSpellStateCheckBox(spellStateCheckBox, categoryName, spellName)
+function me.UpdateSpellStateCheckBox(spellStateCheckBox, categoryName, spellId)
   local isSpellActive = mod.spellConfiguration.IsSpellActive(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
     categoryName,
-    spellName
+    spellId
   )
 
   local parentFrame = spellStateCheckBox:GetParent()
 
   if isSpellActive then
     mod.logger.LogDebug(me.tag, string.format(
-      "Spell %s for category %s is active", spellName, categoryName)
+      "Spell %s for category %s is active", spellId, categoryName)
     )
     spellStateCheckBox:SetChecked(true)
 
@@ -545,7 +554,7 @@ function me.UpdateSpellStateCheckBox(spellStateCheckBox, categoryName, spellName
     me.UpdateChooseVisualDropdownMenuState(parentFrame, true)
   else
     mod.logger.LogDebug(me.tag, string.format(
-      "Spell %s for category %s is inactive", spellName, categoryName)
+      "Spell %s for category %s is inactive", spellId, categoryName)
     )
     spellStateCheckBox:SetChecked(false)
 
@@ -558,15 +567,15 @@ end
 --[[
   @param {table} soundCheckBox
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.UpdateSound(soundCheckBox, categoryName, spellName)
+function me.UpdateSound(soundCheckBox, categoryName, spellId)
   -- update sound checkbox state
   soundCheckBox:SetChecked(
     mod.spellConfiguration.IsSoundWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
       categoryName,
-      spellName
+      spellId
     )
   )
 end
@@ -582,7 +591,7 @@ function me.UpdateSoundSpecial(soundSpecialCheckBox, soundSpecialButton, categor
     soundSpecialCheckBox:SetChecked(mod.spellConfiguration.IsSoundFadeWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
       categoryName,
-      spell.normalizedSpellName
+      spell.spellId
     ))
     soundSpecialCheckBox.text:SetText(rgpvpw.L["label_enable_sound_fade"])
     soundSpecialCheckBox.type = RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED
@@ -590,7 +599,7 @@ function me.UpdateSoundSpecial(soundSpecialCheckBox, soundSpecialButton, categor
     soundSpecialCheckBox:SetChecked(mod.spellConfiguration.IsSoundStartWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
       categoryName,
-      spell.normalizedSpellName
+      spell.spellId
     ))
     soundSpecialCheckBox.text:SetText(rgpvpw.L["label_enable_sound_cast"])
     soundSpecialCheckBox.type = RGPVPW_CONSTANTS.SPELL_TYPES.START

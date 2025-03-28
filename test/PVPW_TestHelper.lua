@@ -77,6 +77,7 @@ end
   @return {table}
     The spellMap for the passed categoryName
 ]]--
+-- TODO this function should probably be eliminated
 function me.GetAllForCategory(spellMap, categoryName)
   local map = mod[spellMap].GetSpellConfiguration()
 
@@ -279,13 +280,22 @@ end
 
   @param {string} testName
   @param {string} testCategory
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.TestSoundApplied(testName, testCategory, spellName)
+function me.TestSoundApplied(testName, testCategory, spellId)
+  assert(type(testName) == "string", string.format(
+    "bad argument #1 to `TestSoundApplied` (expected string, got %s)", type(testName)))
+
+  assert(type(testCategory) == "string", string.format(
+    "bad argument #2 to `TestSoundApplied` (expected string, got %s)", type(testCategory)))
+
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `TestSoundApplied` (expected number, got %s)", type(spellId)))
+
   mod.testReporter.StartTestRun(testName)
 
   local status = me.TestSound(
-    spellName,
+    spellId,
     testCategory,
     RGPVPW_CONSTANTS.EVENT_SPELL_AURA_APPLIED,
     RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL
@@ -303,13 +313,22 @@ end
 
   @param {string} testName
   @param {string} testCategory
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.TestSoundRemoved(testName, testCategory, spellName)
+function me.TestSoundRemoved(testName, testCategory, spellId)
+  assert(type(testName) == "string", string.format(
+    "bad argument #1 to `TestSoundRemoved` (expected string, got %s)", type(testName)))
+
+  assert(type(testCategory) == "string", string.format(
+    "bad argument #2 to `TestSoundRemoved` (expected string, got %s)", type(testCategory)))
+
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `TestSoundRemoved` (expected number, got %s)", type(spellId)))
+
   mod.testReporter.StartTestRun(testName)
 
   local status = me.TestSound(
-    spellName,
+    spellId,
     testCategory,
     RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REMOVED,
     RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED
@@ -327,13 +346,13 @@ end
 
   @param {string} testName
   @param {string} testCategory
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.TestSoundSuccess(testName, testCategory, spellName)
+function me.TestSoundSuccess(testName, testCategory, spellId)
   mod.testReporter.StartTestRun(testName)
 
   local status = me.TestSound(
-    spellName,
+    spellId,
     testCategory,
     RGPVPW_CONSTANTS.EVENT_SPELL_CAST_SUCCESS,
     RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL
@@ -422,7 +441,7 @@ end
   Play a sound and return whether this was possible or not. This function also
   considers that for certain spellTypes a different spellMap needs to be used
 
-  @param {string} spellName
+  @param {number} spellId
   @param {string} testCategory
   @param {string} event
   @param {string} spellType
@@ -431,7 +450,7 @@ end
     true - If the sound could be played
     false - If the sound could not be played
 ]]--
-function me.TestSound(spellName, testCategory, event, spellType)
+function me.TestSound(spellId, testCategory, event, spellType)
   local spellMap = me.GetSpellMap(spellType)
 
   if spellMap == nil then
@@ -439,7 +458,7 @@ function me.TestSound(spellName, testCategory, event, spellType)
     return false
   end
 
-  local _, spellData = mod[spellMap].SearchByName(spellName, event)
+  local _, _, spellData = mod.spellMapHelper.SearchBySpellId(spellId, event)
 
   local status = mod.sound.PlaySound(
     testCategory,

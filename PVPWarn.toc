@@ -23,6 +23,7 @@ code/PVPW_Warn.lua
 code/PVPW_Sound.lua
 code/PVPW_Visual.lua
 code/PVPW_CombatLog.lua
+code/PVPW_SpellMapHelper.lua
 code/PVPW_SpellMap.lua
 code/PVPW_SpellAvoidMap.lua
 code/PVPW_Common.lua
@@ -81,7 +82,7 @@ test/PVPW_TestSound.lua
 test/PVPW_TestCombatEvent.lua
 
 # warrior
-test/warrior/PVPW_TestSoundWarriorEn.lua
+test/warrior/PVPW_TestSoundWarrior.lua
 test/warrior/PVPW_TestSoundSelfAvoidWarriorEn.lua
 test/warrior/PVPW_TestSoundEnemyAvoidWarriorEn.lua
 test/warrior/PVPW_TestCombatEventsWarriorEn.lua
