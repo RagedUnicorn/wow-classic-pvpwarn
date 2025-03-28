@@ -32,24 +32,11 @@ me.tag = "SpellConfiguration"
   @param {string} spellList
     See constants RGPVPW_CONSTANTS.SPELL_TYPE
   @param {string} categoryName
+  @param {number} spellId
   @param {string} spellName
 ]]--
-function me.ToggleSpellState(spellList, categoryName, spellName)
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `ToggleSpellState` (expected string got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `ToggleSpellState` (expected string got %s)", type(categoryName)))
-
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `ToggleSpellState` (expected string got %s)", type(spellName)))
-
-    me.ToggleSpell(
-      spellList,
-      categoryName,
-      spellName,
-      not me.IsSpellActive(spellList, categoryName, spellName)
-    )
+function me.ToggleSpellState(spellList, categoryName, spellId, spellName)
+  me.ToggleOption(spellList, categoryName, spellId, spellName, "spellActive")
 end
 
 --[[
@@ -59,31 +46,14 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 
   @return {boolean}
     true if the spell is active
     false if the spell is inactive
 ]]--
-function me.IsSpellActive(spellList, categoryName, spellName)
-  if RGPVPW_ENVIRONMENT.TEST then return true end
-
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `IsSpellActive` (expected string got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `IsSpellActive` (expected string got %s)", type(categoryName)))
-
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `IsSpellActive` (expected string got %s)", type(spellName)))
-
-  if PVPWarnConfiguration[spellList][categoryName] then
-    if PVPWarnConfiguration[spellList][categoryName][spellName] then
-      return PVPWarnConfiguration[spellList][categoryName][spellName].spellActive
-    end
-  end
-
-  return false
+function me.IsSpellActive(spellList, categoryName, spellId)
+  return me.IsOptionActive(spellList, categoryName, spellId, "spellActive")
 end
 
 --[[
@@ -93,69 +63,11 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
-  @param {string} spellName
-  @param {boolean} state
-    true if the option should be active
-    false if the option should be inactive
-]]--
-function me.ToggleSpell(spellList, categoryName, spellName, state)
-  me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
-
-  mod.logger.LogDebug(me.tag,
-    string.format(
-      "Updating spell %s spellstate for category %s - current value: %s / new value: %s",
-      spellName,
-      categoryName,
-      tostring(PVPWarnConfiguration[spellList][categoryName][spellName].spellActive),
-      tostring(state)
-    )
-  )
-
-  -- check if spell has spellLinks to other spells
-  local hasLinks, spellData = mod.spellMap.GetSpellLinks(categoryName, spellName)
-
-  if hasLinks and spellData ~= nil then
-    local linkedSpells = mod.spellMap.GetLinkedSpells(spellData)
-    -- update all linked spell
-    for i = 1, #linkedSpells do
-      mod.logger.LogInfo(
-        me.tag,
-        "Updating linked spellStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
-      )
-      me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
-      PVPWarnConfiguration[spellList][linkedSpells[i].category][linkedSpells[i].name].spellActive = state
-    end
-  end
-  -- update actual clicked spell by player
-  PVPWarnConfiguration[spellList][categoryName][spellName].spellActive = state
-  mod.profile.SetModified()
-end
-
---[[
-  @param {string} spellList
-    Decides upon which stored list should be used. Possible values:
-    * spellList - enemy spell detected
-    * spellSelfAvoidList - player avoided spell
-    * spellEnemyAvoidList - enemy player avoided spell
-  @param {string} categoryName
+  @param {number} spellId
   @param {string} spellName
 ]]--
-function me.ToggleSoundWarning(spellList, categoryName, spellName)
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `ToggleSoundWarning` (expected string got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `ToggleSoundWarning` (expected string got %s)", type(categoryName)))
-
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `ToggleSoundWarning` (expected string got %s)", type(spellName)))
-
-  me.ToggleSound(
-    spellList,
-    categoryName,
-    spellName,
-    not me.IsSoundWarningActive(spellList, categoryName, spellName)
-  )
+function me.ToggleSoundWarning(spellList, categoryName, spellId, spellName)
+  me.ToggleOption(spellList, categoryName, spellId, spellName, "soundWarningActive")
 end
 
 --[[
@@ -165,76 +77,14 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 
   @return {boolean}
     true if the sound warning is active
     false if the sound warning is inactive
 ]]--
-function me.IsSoundWarningActive(spellList, categoryName, spellName)
-  if RGPVPW_ENVIRONMENT.TEST then return true end
-
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `IsSoundWarningActive` (expected string got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `IsSoundWarningActive` (expected string got %s)", type(categoryName)))
-
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `IsSoundWarningActive` (expected string got %s)", type(spellName)))
-
-  if PVPWarnConfiguration[spellList][categoryName] then
-    if PVPWarnConfiguration[spellList][categoryName][spellName] then
-      return PVPWarnConfiguration[spellList][categoryName][spellName].soundWarningActive
-    end
-  end
-
-  return false
-end
-
---[[
-  @param {string} spellList
-    decides upon which stored list should be used. Possible values:
-    * spellList - enemy spell detected
-    * spellSelfAvoidList - player avoided spell
-    * spellEnemyAvoidList - enemy player avoided spell
-  @param {string} categoryName
-  @param {string} spellName
-  @param {boolean} state
-    true if the option should be active
-    false if the option should be inactive
-]]--
-function me.ToggleSound(spellList, categoryName, spellName, state)
-  me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
-
-  mod.logger.LogDebug(me.tag,
-    string.format(
-      "Updating spell %s soundstate for category %s - current value: %s / new value: %s",
-      spellName,
-      categoryName,
-      tostring(PVPWarnConfiguration[spellList][categoryName][spellName].soundWarningActive),
-      tostring(state)
-    )
-  )
-
-  -- check if spell has spellLinks to other spells
-  local hasLinks, spellData = mod.spellMap.GetSpellLinks(categoryName, spellName)
-
-  if hasLinks and spellData ~= nil then
-    local linkedSpells = mod.spellMap.GetLinkedSpells(spellData)
-    -- update all linked spell
-    for i = 1, #linkedSpells do
-      mod.logger.LogInfo(
-        me.tag,
-        "Updating linked spellSoundStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
-      )
-      me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
-      PVPWarnConfiguration[spellList][linkedSpells[i].category][linkedSpells[i].name].soundWarningActive = state
-    end
-  end
-  -- update actual clicked spell by player
-  PVPWarnConfiguration[spellList][categoryName][spellName].soundWarningActive = state
-  mod.profile.SetModified()
+function me.IsSoundWarningActive(spellList, categoryName, spellId)
+  return me.IsOptionActive(spellList, categoryName, spellId, "soundWarningActive")
 end
 
 --[[
@@ -244,24 +94,11 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
+  @param {number} spellId
   @param {string} spellName
 ]]--
-function me.ToggleSoundFadeWarning(spellList, categoryName, spellName)
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `ToggleSoundFadeWarning` (expected string got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #1 to `ToggleSoundFadeWarning` (expected string got %s)", type(categoryName)))
-
-  assert(type(spellName) == "string", string.format(
-    "bad argument #2 to `ToggleSoundFadeWarning` (expected string got %s)", type(spellName)))
-
-  me.ToggleSoundFade(
-    spellList,
-    categoryName,
-    spellName,
-    not me.IsSoundFadeWarningActive(spellList, categoryName, spellName)
-  )
+function me.ToggleSoundFadeWarning(spellList, categoryName, spellId, spellName)
+  me.ToggleOption(spellList, categoryName, spellId, spellName, "soundFadeWarningActive")
 end
 
 --[[
@@ -271,76 +108,14 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 
   @return {boolean}
     true if the sound warning is active
     false if the sound warning is inactive
 ]]--
-function me.IsSoundFadeWarningActive(spellList, categoryName, spellName)
-  if RGPVPW_ENVIRONMENT.TEST then return true end
-
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `IsSoundFadeWarningActive` (expected string got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `IsSoundFadeWarningActive` (expected string got %s)", type(categoryName)))
-
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `IsSoundFadeWarningActive` (expected string got %s)", type(spellName)))
-
-  if PVPWarnConfiguration[spellList][categoryName] then
-    if PVPWarnConfiguration[spellList][categoryName][spellName] then
-      return PVPWarnConfiguration[spellList][categoryName][spellName].soundFadeWarningActive
-    end
-  end
-
-  return false
-end
-
---[[
-  @param {string} spellList
-    decides upon which stored list should be used. Possible values:
-    * spellList - enemy spell detected
-    * spellSelfAvoidList - player avoided spell
-    * spellEnemyAvoidList - enemy player avoided spell
-  @param {string} categoryName
-  @param {string} spellName
-  @param {boolean} state
-    true if the option should be active
-    false if the option should be inactive
-]]--
-function me.ToggleSoundFade(spellList, categoryName, spellName, state)
-  me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
-
-  mod.logger.LogDebug(me.tag,
-    string.format(
-      "Updating spell %s sounddownstate for category %s - current value: %s / new value: %s",
-      spellName,
-      categoryName,
-      tostring(PVPWarnConfiguration[spellList][categoryName][spellName].soundFadeWarningActive),
-      tostring(state)
-    )
-  )
-
-  -- check if spell has spellLinks to other spells
-  local hasLinks, spellData = mod.spellMap.GetSpellLinks(categoryName, spellName)
-
-  if hasLinks and spellData ~= nil then
-    local linkedSpells = mod.spellMap.GetLinkedSpells(spellData)
-    -- update all linked spell
-    for i = 1, #linkedSpells do
-      mod.logger.LogInfo(
-        me.tag,
-        "Updating linked spellSoundFadeStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
-      )
-      me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
-      PVPWarnConfiguration[spellList][linkedSpells[i].category][linkedSpells[i].name].soundFadeWarningActive = state
-    end
-  end
-  -- update actual clicked spell by player
-  PVPWarnConfiguration[spellList][categoryName][spellName].soundFadeWarningActive = state
-  mod.profile.SetModified()
+function me.IsSoundFadeWarningActive(spellList, categoryName, spellId)
+  return me.IsOptionActive(spellList, categoryName, spellId, "soundFadeWarningActive")
 end
 
 --[[
@@ -350,24 +125,11 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
+  @param {number} spellId
   @param {string} spellName
 ]]--
-function me.ToggleSoundStartWarning(spellList, categoryName, spellName)
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `ToggleSoundStartWarning` (expected string got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `ToggleSoundStartWarning` (expected string got %s)", type(categoryName)))
-
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `ToggleSoundStartWarning` (expected string got %s)", type(spellName)))
-
-  me.ToggleSoundStart(
-    spellList,
-    categoryName,
-    spellName,
-    not me.IsSoundStartWarningActive(spellList, categoryName, spellName)
-  )
+function me.ToggleSoundStartWarning(spellList, categoryName, spellId, spellName)
+  me.ToggleOption(spellList, categoryName, spellId, spellName, "soundStartWarningActive")
 end
 
 --[[
@@ -377,76 +139,14 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 
   @return {boolean}
     true if the sound start warning is active
     false if the sound start warning is inactive
 ]]--
-function me.IsSoundStartWarningActive(spellList, categoryName, spellName)
-  if RGPVPW_ENVIRONMENT.TEST then return true end
-
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `IsSoundStartWarningActive` (expected string got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `IsSoundStartWarningActive` (expected string got %s)", type(categoryName)))
-
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `IsSoundStartWarningActive` (expected string got %s)", type(spellName)))
-
-  if PVPWarnConfiguration[spellList][categoryName] then
-    if PVPWarnConfiguration[spellList][categoryName][spellName] then
-      return PVPWarnConfiguration[spellList][categoryName][spellName].soundStartWarningActive
-    end
-  end
-
-  return false
-end
-
---[[
-  @param {string} spellList
-    decides upon which stored list should be used. Possible values:
-    * spellList - enemy spell detected
-    * spellSelfAvoidList - player avoided spell
-    * spellEnemyAvoidList - enemy player avoided spell
-  @param {string} categoryName
-  @param {string} spellName
-  @param {boolean} state
-    true if the option should be active
-    false if the option should be inactive
-]]--
-function me.ToggleSoundStart(spellList, categoryName, spellName, state)
-  me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
-
-  mod.logger.LogDebug(me.tag,
-    string.format(
-      "Updating spell %s soundstate for category %s - current value: %s / new value: %s",
-      spellName,
-      categoryName,
-      tostring(PVPWarnConfiguration[spellList][categoryName][spellName].soundStartWarningActive),
-      tostring(state)
-    )
-  )
-
-  -- check if spell has spellLinks to other spells
-  local hasLinks, spellData = mod.spellMap.GetSpellLinks(categoryName, spellName)
-
-  if hasLinks and spellData ~= nil then
-    local linkedSpells = mod.spellMap.GetLinkedSpells(spellData)
-    -- update all linked spell
-    for i = 1, #linkedSpells do
-      mod.logger.LogInfo(
-        me.tag,
-        "Updating linked spellSoundStatus: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
-      )
-      me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
-      PVPWarnConfiguration[spellList][linkedSpells[i].category][linkedSpells[i].name].soundStartWarningActive = state
-    end
-  end
-  -- update actual clicked spell by player
-  PVPWarnConfiguration[spellList][categoryName][spellName].soundStartWarningActive = state
-  mod.profile.SetModified()
+function me.IsSoundStartWarningActive(spellList, categoryName, spellId)
+  return me.IsOptionActive(spellList, categoryName, spellId, "soundStartWarningActive")
 end
 
 --[[
@@ -456,28 +156,26 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 
   @return {number}
     A number representing the current color. If none can be found the default color is returned
 ]]--
-function me.GetVisualWarningColor(spellList, categoryName, spellName)
+function me.GetVisualWarningColor(spellList, categoryName, spellId)
   assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `GetVisualWarningColor` (expected string got %s)", type(spellList)))
+    "bad argument #1 to `GetVisualWarningColor` (expected string, got %s)", type(spellList)))
 
   assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `GetVisualWarningColor` (expected string got %s)", type(categoryName)))
+    "bad argument #2 to `GetVisualWarningColor` (expected string, got %s)", type(categoryName)))
 
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `GetVisualWarningColor` (expected string got %s)", type(spellName)))
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `GetVisualWarningColor` (expected number, got %s)", type(spellId)))
 
-  if PVPWarnConfiguration[spellList][categoryName] then
-    if PVPWarnConfiguration[spellList][categoryName][spellName] then
-      return PVPWarnConfiguration[spellList][categoryName][spellName].visualWarningColor
-    end
-  end
 
-  return RGPVPW_CONSTANTS.DEFAULT_COLOR
+  local category = PVPWarnConfiguration[spellList] and PVPWarnConfiguration[spellList][categoryName]
+  local spell = category and category[spellId]
+
+  return spell and spell.visualWarningColor or RGPVPW_CONSTANTS.DEFAULT_COLOR
 end
 
 --[[
@@ -487,41 +185,64 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
+  @param {number} spellId
   @param {string} spellName
   @param {number} color
     A number representing the color - see RGPVPW_CONSTANTS.TEXTURES
 ]]--
-function me.UpdateVisualWarningColor(spellList, categoryName, spellName, color)
-  me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
+function me.UpdateVisualWarningColor(spellList, categoryName, spellId, spellName, color)
+  me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellId)
+
+  local category = PVPWarnConfiguration[spellList][categoryName]
+  local spell = category and category[spellId]
+
+  if not spell then
+    mod.logger.LogError(me.tag,
+      string.format("Spell entry missing for %s - %s in category %s", spellId, spellName, categoryName)
+    )
+    return
+  end
 
   mod.logger.LogDebug(me.tag,
     string.format(
-      "Updating spell %s visualwarningcolor for category %s - current value: %s / new value: %s",
-      spellName,
-      categoryName,
-      tostring(PVPWarnConfiguration[spellList][categoryName][spellName].visualWarningColor),
+      "Updating spell %s - %s visual warning color for category %s (current: %s / new: %s)",
+      spellId, spellName, categoryName,
+      tostring(spell.visualWarningColor),
       tostring(color)
     )
   )
 
-  -- check if spell has spellLinks to other spells
-  local hasLinks, spellData = mod.spellMap.GetSpellLinks(categoryName, spellName)
-
-  if hasLinks and spellData ~= nil then
-    local linkedSpells = mod.spellMap.GetLinkedSpells(spellData)
-    -- update all linked spell
-    for i = 1, #linkedSpells do
-      mod.logger.LogInfo(
-        me.tag,
-        "Updating linked spellVisualColor: " .. linkedSpells[i].name .. " for category " .. linkedSpells[i].category
-      )
-      me.SetupPrerequisiteForOptionEntry(spellList, linkedSpells[i].category, linkedSpells[i].name)
-      PVPWarnConfiguration[spellList][linkedSpells[i].category][linkedSpells[i].name].visualWarningColor = color
-    end
-  end
-  -- update actual clicked spell by player
-  PVPWarnConfiguration[spellList][categoryName][spellName].visualWarningColor = color
+  spell.visualWarningColor = color
   mod.profile.SetModified()
+end
+
+--[[
+  Check if a visual warning is active for a specific spell
+
+  @param {string} spellList
+  @param {string} categoryName
+  @param {number} spellId
+
+  @return {boolean}
+]]--
+function me.IsVisualWarningActive(spellList, categoryName, spellId)
+  assert(type(spellList) == "string", string.format(
+    "bad argument #1 to `IsVisualWarningActive` (expected string, got %s)", type(spellList)))
+
+  assert(type(categoryName) == "string", string.format(
+    "bad argument #2 to `IsVisualWarningActive` (expected string, got %s)", type(categoryName)))
+
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `IsVisualWarningActive` (expected number, got %s)", type(spellId)))
+
+  local category = PVPWarnConfiguration[spellList] and PVPWarnConfiguration[spellList][categoryName]
+  local spell = category and category[spellId]
+
+  if not spell or spell.visualWarningColor == nil then
+    return false
+  end
+
+  return spell.visualWarningColor ~= RGPVPW_CONSTANTS.DEFAULT_COLOR
 end
 
 --[[
@@ -531,50 +252,134 @@ end
     * spellSelfAvoidList - player avoided spell
     * spellEnemyAvoidList - enemy player avoided spell
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellName)
-  if not PVPWarnConfiguration[spellList][categoryName] then
+function me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellId)
+  if type(PVPWarnConfiguration[spellList]) ~= "table" then
+    mod.logger.LogInfo(me.tag, "Spell list '" .. spellList .. "' does not exist. Creating new one...")
+    PVPWarnConfiguration[spellList] = {}
+  end
+
+  if type(PVPWarnConfiguration[spellList][categoryName]) ~= "table" then
     mod.logger.LogInfo(me.tag, "Class - " .. categoryName .. " does not exist. Creating new one...")
     PVPWarnConfiguration[spellList][categoryName] = {}
   end
 
-  if not PVPWarnConfiguration[spellList][categoryName][spellName] then
-    mod.logger.LogInfo(me.tag, "SpellName - " .. spellName .. " for class "
-      .. categoryName .. " does not exist. Creating new one...")
-    PVPWarnConfiguration[spellList][categoryName][spellName] = me.GetDefaultSpellConfiguration(spellList)
+  if type(PVPWarnConfiguration[spellList][categoryName][spellId]) ~= "table" then
+    mod.logger.LogInfo(me.tag,
+      "SpellId - " .. spellId .. " for class " .. categoryName .. " does not exist. Creating new one...")
+    PVPWarnConfiguration[spellList][categoryName][spellId] = me.GetDefaultSpellConfiguration()
   end
 end
 
 --[[
   Returns a default config object for a spell
 
-  @param {string} spellList
-    Decides upon which stored list should be used. Possible values:
-    * spellList - enemy spell detected
-    * spellSelfAvoidList - player avoided spell
-    * spellEnemyAvoidList - enemy player avoided spell
-
   @return {table}
     Returns a default object for a spell
 ]]--
-function me.GetDefaultSpellConfiguration(spellList)
-  if spellList == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL then
-    return {
-      ["spellActive"] = false,
-      ["soundWarningActive"] = false,
-      --[[
-        Depending on what is applicable. Has to be set during the configuration.
-      ]]--
-      -- ["soundFadeWarningActive"] = false,
-      -- ["soundStartWarningActive"] = false,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.DEFAULT_COLOR
-    }
-  else
-    return {
-      ["spellActive"] = false,
-      ["soundWarningActive"] = false,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.DEFAULT_COLOR
-    }
+function me.GetDefaultSpellConfiguration()
+  return {
+    ["spellActive"] = false,
+    ["soundWarningActive"] = false,
+    ["visualWarningColor"] = RGPVPW_CONSTANTS.DEFAULT_COLOR
+  }
+end
+
+--[[
+  Returns the spell entry from the configuration or nil if not found
+
+  @param {string} spellList
+  @param {string} categoryName
+  @param {number} spellId
+
+  @return {table|nil}
+]]--
+function me.GetSpellEntry(spellList, categoryName, spellId)
+  assert(type(spellList) == "string", string.format(
+    "bad argument #1 to `GetSpellEntry` (expected string, got %s)", type(spellList)))
+
+  assert(type(categoryName) == "string", string.format(
+    "bad argument #2 to `GetSpellEntry` (expected string, got %s)", type(categoryName)))
+
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `GetSpellEntry` (expected number, got %s)", type(spellId)))
+
+  local category = PVPWarnConfiguration[spellList] and PVPWarnConfiguration[spellList][categoryName]
+  local spell = category and category[spellId]
+
+  return spell
+end
+
+--[[
+  Toggles a boolean option inside a spell entry
+
+  @param {string} spellList
+  @param {string} categoryName
+  @param {number} spellId
+  @param {string} spellName
+  @param {string} optionName
+]]--
+function me.ToggleOption(spellList, categoryName, spellId, spellName, optionName)
+  me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellId)
+
+  local spell = me.GetSpellEntry(spellList, categoryName, spellId)
+
+  if not spell then
+    mod.logger.LogError(me.tag,
+      string.format("Spell entry missing for %s - %s in category %s", spellId, spellName, categoryName)
+    )
+    return
   end
+
+  local currentState = spell[optionName]
+  if type(currentState) ~= "boolean" then
+    mod.logger.LogError(me.tag,
+      string.format("Option '%s' is not a boolean in spell entry %s - %s", optionName, spellId, spellName)
+    )
+    return
+  end
+
+  mod.logger.LogDebug(me.tag,
+    string.format(
+      "Toggling option '%s' for spell %s - %s in category %s (current: %s / new: %s)",
+      optionName, spellId, spellName, categoryName,
+      tostring(currentState), tostring(not currentState)
+    )
+  )
+
+  spell[optionName] = not currentState
+  mod.profile.SetModified()
+end
+
+--[[
+  Checks if a boolean option is active inside a spell entry
+
+  @param {string} spellList
+  @param {string} categoryName
+  @param {number} spellId
+  @param {string} optionName
+
+  @return {boolean}
+    true if the option is active
+    false if the option is inactive
+]]--
+function me.IsOptionActive(spellList, categoryName, spellId, optionName)
+  if RGPVPW_ENVIRONMENT.TEST then return true end
+
+  assert(type(spellList) == "string", string.format(
+    "bad argument #1 to `IsOptionActive` (expected string, got %s)", type(spellList)))
+
+  assert(type(categoryName) == "string", string.format(
+    "bad argument #2 to `IsOptionActive` (expected string, got %s)", type(categoryName)))
+
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `IsOptionActive` (expected number, got %s)", type(spellId)))
+
+  assert(type(optionName) == "string", string.format(
+    "bad argument #4 to `IsOptionActive` (expected string, got %s)", type(optionName)))
+
+  local spell = me.GetSpellEntry(spellList, categoryName, spellId)
+
+  return spell and spell[optionName] or false
 end
