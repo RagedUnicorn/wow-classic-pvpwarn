@@ -30,10 +30,12 @@
   Run sound down tests:
     /run rgpvpw.testSound.ShouldHaveSoundDownTestForAllSpells([, categoryName])
   Run sound self avoid test:
-    /run rgpvpw.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID [, categoryName]
+    /run rgpvpw.testSound.ShouldHaveSoundAvoidTestForAllSpells(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID [, categoryName]
     )
   Run sound enemy avoid test:
-    /run rgpvpw.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID [, categoryName]
+    /run rgpvpw.testSound.ShouldHaveSoundAvoidTestForAllSpells(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID [, categoryName]
     )
 ]]--
 
@@ -117,6 +119,7 @@ function me.SoundTest(categoryName, categoryData)
 
     local spellName = mod.testHelper.NormalizeSpellName(spell.name)
     local testName = "SoundTestPresent" .. mod.testHelper.FirstToUpper(categoryName) .. spellName
+      .. "_" .. spellId
 
     mod.testReporter.StartTestRun(testName)
 
@@ -193,7 +196,8 @@ function me.SoundDownTest(categoryName, categoryData)
       end
 
       local spellName = mod.testHelper.NormalizeSpellName(spell.name)
-      local testName = "SoundTestPresent" .. mod.testHelper.FirstToUpper(categoryName) .. spellName
+      local testName = "SoundDownTestPresent" .. mod.testHelper.FirstToUpper(categoryName) .. spellName
+        .. "_" .. spellId
 
       mod.testReporter.StartTestRun(testName)
 
