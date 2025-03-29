@@ -85,7 +85,7 @@ test/PVPW_TestCombatEvent.lua
 test/warrior/PVPW_TestSoundWarrior.lua
 test/warrior/PVPW_TestSoundSelfAvoidWarriorEn.lua
 test/warrior/PVPW_TestSoundEnemyAvoidWarriorEn.lua
-test/warrior/PVPW_TestCombatEventsWarriorEn.lua
+test/warrior/PVPW_TestCombatEventsWarrior.lua
 test/warrior/PVPW_TestCombatEventsSelfAvoidWarriorEn.lua
 test/warrior/PVPW_TestCombatEventsEnemyAvoidWarriorEn.lua
 # priest
