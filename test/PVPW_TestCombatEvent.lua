@@ -24,16 +24,16 @@
 
 --[[
   Run all tests:
-    /run rgpvpw.testCombatEvent.Test(language [, categoryName])
+    /run rgpvpw.testCombatEvent.Test([, categoryName])
   Run combat event tests:
-    /run rgpvpw.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents(language [, categoryName])
+    /run rgpvpw.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents([, categoryName])
   Run combat event self avoid tests:
     /run rgpvpw.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-      language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID [, categoryName]
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID [, categoryName]
     )
   Run combat event enemy avoid tests:
     /run rgpvpw.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-      language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID [, categoryName]
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID [, categoryName]
     )
 ]]--
 
@@ -46,77 +46,61 @@ me.tag = "TestCombatEvent"
 local testGroupName = "ShouldHaveCombatEventTestForAllTrackedEvents"
 
 --[[
-  @param {string} language
-    A supported language such as en, de etc.
   @param {string} categoryName
     Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
-function me.Test(language, categoryName)
+function me.Test(categoryName)
   mod.testReporter.StartTestGroup(testGroupName)
 
-  if language == nil then
-    mod.logger.LogError(me.tag, "Missing language - aborting...")
-    mod.testReporter.StopTestGroup()
-
-    return
-  end
-
-  me.ShouldHaveCombatEventTestForAllTrackedEvents(language, categoryName)
+  me.ShouldHaveCombatEventTestForAllTrackedEvents(categoryName)
+  --[[
   me.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
     language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName)
   me.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
     language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName)
-
+  ]]--
   mod.testReporter.StopTestGroup()
 end
 
 --[[
   Tests whether there is an appropriate testcase for every spell found in the spellMap
 
-  @param {string} language
-    A supported language such as en, de etc.
   @param {string} categoryName
     Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
-function me.ShouldHaveCombatEventTestForAllTrackedEvents(language, categoryName)
-  if language == nil then
-    mod.logger.LogError(me.tag, "Missing language - aborting...")
-    return
-  end
-
+function me.ShouldHaveCombatEventTestForAllTrackedEvents(categoryName)
   if categoryName ~= nil then
-    me.ShouldHaveCombatEventTestByCategory(categoryName, language)
+    me.ShouldHaveCombatEventTestByCategory(categoryName)
   else
-    me.ShouldHaveCombatEventTest(language)
+    me.ShouldHaveCombatEventTest()
   end
 end
 
 --[[
+  Go through all spells for a specific category and check if there is a combat log test present
+
   @param {string} categoryName
     A valid categoryName such as "priest", "warrior" etc.
-  @param {string} language
-    A supported language such as en, de etc.
 ]]--
-function me.ShouldHaveCombatEventTestByCategory(categoryName, language)
-  local spellMap = mod.testHelper.GetAllForCategory(RGPVPW_CONSTANTS.SPELL_MAP, categoryName)
+function me.ShouldHaveCombatEventTestByCategory(categoryName)
+  local spellMap = mod.spellMapHelper.GetSpellConfigurationByCategory(categoryName)
 
   if spellMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
     return
   end
 
-  me.CombatEventTest(categoryName, spellMap, language)
+  me.CombatEventTest(categoryName, spellMap)
 end
 
 --[[
-  @param {string} language
-    A supported language such as en, de etc.
+  Go through all spells and check if there is a combat log test present
 ]]--
-function me.ShouldHaveCombatEventTest(language)
-  local spellMap = mod.spellMap.GetSpellConfiguration()
+function me.ShouldHaveCombatEventTest()
+  local spellMap = mod.spellMapHelper.GetSpellConfiguration()
 
   for category, categoryData in pairs(spellMap) do
-    me.CombatEventTest(category, categoryData, language)
+    me.CombatEventTest(category, categoryData)
   end
 end
 
@@ -126,19 +110,20 @@ end
   @param {string} categoryName
     A valid categoryName such as "priest", "warrior" etc.
   @param {table} categoryData
-  @param {string} language
-    A supported language such as en, de etc.
 ]]--
-function me.CombatEventTest(categoryName, categoryData, language)
-  for name, spellData in pairs (categoryData) do
-    local spellName = mod.testHelper.NormalizeSpellName(name)
-    local trackedEvents = spellData.trackedEvents
-    local module = mod["testCombatEvents" .. mod.testHelper.FirstToUpper(categoryName)
-      .. mod.testHelper.FirstToUpper(language)]
+function me.CombatEventTest(categoryName, categoryData)
+  for spellId, spell in pairs (categoryData) do
+    if spell.refId then
+      spell = categoryData[spell.refId]
+    end
+
+    local spellName = mod.testHelper.NormalizeSpellName(spell.name)
+    local trackedEvents = spell.trackedEvents
+    local module = mod["testCombatEvents" .. mod.testHelper.FirstToUpper(categoryName)]
 
     for _, trackedEvent in pairs(trackedEvents) do
       local testName = "CombatEventTestPresent" .. mod.testHelper.FirstToUpper(categoryName) ..
-        spellName .. "_" .. trackedEvent
+        spellName .. "_" .. trackedEvent .. "_" .. spellId
 
       mod.testReporter.StartTestRun(testName)
 
@@ -154,7 +139,7 @@ function me.CombatEventTest(categoryName, categoryData, language)
         return
       end
 
-      local func = module["TestCombatEvent" .. spellName .. eventName]
+      local func = module["TestCombatEvent" .. spellName .. eventName .. "_" .. spellId]
 
       if type(func) ~= "function" then
         mod.testReporter.ReportFailureTestRun(
