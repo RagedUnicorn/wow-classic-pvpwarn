@@ -24,64 +24,64 @@
 
 local mod = rgpvpw
 local me = {}
-mod.spellMapHelper = me
+mod.spellAvoidMapHelper = me
 
-me.tag = "SpellMapHelper"
+me.tag = "SpellAvoidMapHelper"
 
 --[[
-  Get an unfiltered complete copy of the spellMap. Used for testing purposes. Does not filter out
+  Get an unfiltered complete copy of the spellAvoidMap. Used for testing purposes. Does not filter out
   spells that might not be available in the current version of WoW.
 
   @return {table}
-    The complete spellMap
+    The complete spellAvoidMap
 ]]--
 function me.GetSpellConfiguration()
-  return mod.spellMap.GetSpellMap()
+  return mod.spellAvoidMap.GetSpellAvoidMap()
 end
 
 --[[
-  Get an unfiltered copy of the spellMap for a certain category. Used for testing purposes. Does not filter out
+  Get an unfiltered copy of the spellAvoidMap for a certain category. Used for testing purposes. Does not filter out
   spells that might not be available in the current version of WoW.
 
   @param {string} category
 
   @return {table} | nil
-    The spellMap for the passed category or nil if no category was found
+    The spellAvoidMap for the passed category or nil if no category was found
 ]]--
 function me.GetSpellConfigurationByCategory(category)
-  return mod.spellMap.GetSpellMapByCategory(category)
+  return mod.spellAvoidMap.GetSpellAvoidMapByCategory(category)
 end
 
 --[[
-  Retrieve the spellMap filtered to the version of WoW running. There are base spells present
+  Retrieve the spellAvoidMap filtered to the version of WoW running. There are base spells present
   in all versions marked with RGPVPW_CONSTANTS.SPELL_TYPE_BASE. Spells that are only available
   in Season of Discovery are marked with RGPVPW_CONSTANTS.SPELL_TYPE_SOD
 
   @return {table}
-    The filtered spellMap
+    The filtered spellAvoidMap
 ]]--
-function me.GetFilteredSpellMap()
-  local filteredSpellMap = {}
-  local baseSpellMap = mod.spellMap.GetSpellMap()
+function me.GetFilteredSpellAvoidMap()
+  local filteredSpellAvoidMap = {}
+  local baseSpellAvoidMap = mod.spellAvoidMap.GetSpellAvoidMap()
 
-  for category, _ in pairs(baseSpellMap) do
-    filteredSpellMap[category] = {}
+  for category, _ in pairs(baseSpellAvoidMap) do
+    filteredSpellAvoidMap[category] = {}
 
-    for spellId, spellData in pairs(baseSpellMap[category]) do
-      -- spells that only contain a refId are not added to the filtered SpellMap
+    for spellId, spellData in pairs(baseSpellAvoidMap[category]) do
+      -- spells that only contain a refId are not added to the filtered spellAvoidMap
       if spellData.refId == nil then
         if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and mod.season.IsSodActive() or RGPVPW_ENVIRONMENT.TEST then
-          filteredSpellMap[category][spellId] = spellData
+          filteredSpellAvoidMap[category][spellId] = spellData
         end
 
         if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_BASE then
-          filteredSpellMap[category][spellId] = spellData
+          filteredSpellAvoidMap[category][spellId] = spellData
         end
       end
     end
   end
 
-  return filteredSpellMap
+  return filteredSpellAvoidMap
 end
 
 --[[
@@ -95,24 +95,21 @@ end
 function me.GetAllForCategory(category)
   if not category then return nil end
 
-  local spellList = {}
-  local filteredSpellMap = me.GetFilteredSpellMap()
+  local spellAvoidList = {}
+  local filteredSpellAvoidMap = me.GetFilteredSpellAvoidMap()
 
-  for spellId, spellData in pairs(filteredSpellMap[category]) do
+  for spellId, spellData in pairs(filteredSpellAvoidMap[category]) do
     local clonedSpell = mod.common.Clone(spellData)
     clonedSpell.spellId = spellId
     clonedSpell.normalizedSpellName = mod.common.NormalizeSpellName(spellData.name)
-    table.insert(spellList, clonedSpell)
+    table.insert(spellAvoidList, clonedSpell)
   end
 
-  return spellList
+  return spellAvoidList
 end
 
 --[[
-  Retrieve a spell from the spellMap by spellId. Follows refIds if present to retrieve the correct spell.
-
-  @param {number} spellId
-  @param {string} event
+  Retrieve a spell from the spellAvoidMap by spellId. Follows refIds if present to retrieve the correct spell.
 
   @return ({string} {number} {table}) | {nil}
     category, spellId, spell
@@ -120,12 +117,12 @@ end
     spellId is the real spellId of the spell, in cases where refIds are used this is the spellId of the base spell
     spell is the spell data
 ]]--
-function me.SearchBySpellId(spellId, event)
+function me.SearchBySpellId(spellId)
   if not spellId then return nil end
 
-  local baseSpellMap = mod.spellMap.GetSpellMap()
+  local baseSpellMap = mod.spellAvoidMap.GetSpellAvoidMap()
 
-  mod.logger.LogDebug(me.tag, string.format("Searching for spellId %s in spellMap", spellId))
+  mod.logger.LogDebug(me.tag, string.format("Searching for spellId %s in spellAvoidMap", spellId))
 
   for category, spells in pairs(baseSpellMap) do
     local spellData = spells[spellId]
@@ -143,22 +140,13 @@ function me.SearchBySpellId(spellId, event)
     end
 
     if baseSpell then
-      for _, trackedEvent in pairs(baseSpell.trackedEvents) do
-        if trackedEvent == event then
-          mod.logger.LogDebug(me.tag, string.format(
-            "Found matching tracked event %s for spellId %s", event, spellId))
+      local clonedSpell = mod.common.Clone(baseSpell)
+      clonedSpell.spellId = spellId
+      clonedSpell.normalizedSpellName = mod.common.NormalizeSpellName(baseSpell.name)
 
-          local clonedSpell = mod.common.Clone(baseSpell)
-          clonedSpell.spellId = spellId
-          clonedSpell.normalizedSpellName = mod.common.NormalizeSpellName(baseSpell.name)
-
-          return category, realSpellId, clonedSpell
-        end
-      end
-
-      return nil
+      return category, realSpellId, clonedSpell
     end
-  end
 
-  return nil
+    return nil
+  end
 end

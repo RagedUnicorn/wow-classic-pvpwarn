@@ -44,7 +44,7 @@ if (GetLocale() == "deDE") then
     @return {string}
       normalized spellName
   ]]--
-  function me.NormalizeSpellname(spellName)
+  function me.NormalizeSpellName(spellName)
     local name = string.gsub(string.lower(spellName), "%s+", "_")
 
     name = string.gsub(name, "_%-_", "_")
@@ -65,7 +65,7 @@ else
     @return {string}
       normalized spellName
   ]]--
-  function me.NormalizeSpellname(spellName)
+  function me.NormalizeSpellName(spellName)
     local name = string.gsub(string.lower(spellName), "%s+", "_")
 
     name = string.gsub(name, "_%-_", "_")
@@ -162,30 +162,6 @@ function me.GetSpellMap(spellType)
   else
     return RGPVPW_CONSTANTS.SPELL_TYPE.SPELL
   end
-end
-
---[[
-  Check if the missType is support. See RGPVPW_CONSTANTS.MISS_TYPES for all supported
-  types.
-
-  An example for an unsupported missType is "ABSORB". If we don't filter that one out
-  the player would get a warning that he resisted a damaging spell such as "Cone of Cold"
-  when he used some form of shield. E.g. a priest used "Power Word: Shield" and completely absorbed
-  the enemies spell.
-
-  @param {string} missType
-    RGPVPW_CONSTANTS.MISS_TYPES
-
-  @return {boolean}
-    true - if the missType is supported
-    false - if the missType is not supported
-]]--
-function me.IsSupportedMissType(missType)
-  if RGPVPW_CONSTANTS.MISS_TYPES[missType] ~= nil then
-    return true
-  end
-
-  return false
 end
 
 --[[

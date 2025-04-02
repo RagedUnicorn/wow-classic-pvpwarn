@@ -490,7 +490,9 @@ end
 ]]--
 function me.GetSpellMapByCategory(category)
   if not category or not spellMap[category] then
-    mod.logger.LogError(me.tag, "Unable to retrieve spellMap for category: " .. tostring(category))
+    mod.logger.LogError(me.tag, "Unable to retrieve spellMap for category: "
+      .. category)
+
     return nil
   end
 

@@ -41,10 +41,6 @@ me.tag = "CombatLog"
 function me.ProcessUnfilteredCombatLogEvent(callback, ...)
   local _, event, _, _, _, sourceFlags = select(1, ...)
 
-  if RGPVPW_ENVIRONMENT.DEBUG then
-    mod.debug.TrackLogEvent(...)
-  end
-
   --[[
     Ignore events while the player is in a zone that is not enabled
   ]]--
@@ -107,9 +103,13 @@ end
   @param {vararg} ...
 ]]--
 function me.ProcessStart(event, callback, ...)
+  if RGPVPW_ENVIRONMENT.DEBUG then
+    mod.debug.TrackLogNormalEvent(...)
+  end
+
   -- TODO this is unfinished
   local spellName = select(13, ...)
-  local normalizedSpellName = mod.common.NormalizeSpellname(spellName)
+  local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
   local category, spell = mod.spellMapHelper.SearchBySpellId(spellId, event)
 
   local spellType = mod.common.GetSpellType(event)
@@ -137,8 +137,12 @@ end
   @param {vararg} ...
 ]]--
 function me.ProcessNormal(event, callback, ...)
+  if RGPVPW_ENVIRONMENT.DEBUG then
+    mod.debug.TrackLogNormalEvent(...)
+  end
+
   local target, _, _, _, spellId, spellName, _, buffType = select(8, ...)
-  local normalizedSpellName = mod.common.NormalizeSpellname(spellName)
+  local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
   local category, realSpellId, spell = mod.spellMapHelper.SearchBySpellId(spellId, event)
   local spellType = mod.common.GetSpellType(event)
   local spellMap = mod.common.GetSpellMap(spellType)
@@ -195,30 +199,35 @@ end
   @param {vararg} ...
 ]]--
 function me.ProcessMissed(event, spellMissedTarget, callback, ...)
-  local spellName, _, missType = select(13, ...)
+  if RGPVPW_ENVIRONMENT.DEBUG then
+    mod.debug.TrackLogAvoidEvent(...)
+  end
 
-  if not mod.common.IsSupportedMissType(missType) then
-    mod.logger.LogDebug(me.tag, "ProcessMissed ignore unsupported missType: " .. missType)
+  local spellId, spellName, _, missType = select(12, ...)
+
+  -- Filter out irrelevant miss types
+  if not me.IsRelevantMissType(missType) then
+    mod.logger.LogDebug(me.tag, "Ignoring missType: " .. tostring(missType))
     return
   end
 
-  local normalizedSpellName = mod.common.NormalizeSpellname(spellName)
+  local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
+  local category, realSpellId, spell = mod.spellAvoidMapHelper.SearchBySpellId(spellId)
   local spellType = mod.common.GetSpellType(event, spellMissedTarget)
-  local spellList = mod.common.GetSpellMap(spellType)
-  local category, spell = mod.spellAvoidMap.SearchByName(spellName, event)
+  local spellMap = mod.common.GetSpellMap(spellType)
   local playSound
   local playVisual
 
   if not me.IsValidSpellType(spellType) then return end
   if not me.HasFoundSpell(category, spell, spellName) then return end
-  if not me.IsSpellActive(spellList, category, normalizedSpellName) then return end
+  if not me.IsSpellActive(spellMap, category, realSpellId, normalizedSpellName) then return end
 
   local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
-    spellList, category, normalizedSpellName
+    spellMap, category, spellId
   )
 
-  playSound = me.IsSoundWarningActive(spellList, category, spellName, normalizedSpellName)
-  playVisual = me.IsVisualWarningActive(category, normalizedSpellName, visualWarningColor)
+  playSound = me.IsSoundWarningActive(spellMap, category, spellId, normalizedSpellName)
+  playVisual = me.IsVisualWarningActive(spellMap, category, spellId, normalizedSpellName)
 
   if playVisual then
     spell.visualWarningColor = visualWarningColor
@@ -242,6 +251,23 @@ function me.IsValidSpellType(spellType)
   end
 
   return true
+end
+
+--[[
+  @param {string} missType
+
+  @return {boolean}
+    true - if the missType is relevant
+    false - if the missType is not relevant
+]]--
+function me.IsRelevantMissType(missType)
+  local isRelevant = RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES[missType] ~= nil
+
+  if not isRelevant then
+    mod.logger.LogDebug(me.tag, "Ignoring missType: " .. tostring(missType))
+  end
+
+  return isRelevant
 end
 
 --[[
