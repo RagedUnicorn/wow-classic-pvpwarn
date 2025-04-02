@@ -70,7 +70,8 @@ function me.GetFilteredSpellAvoidMap()
     for spellId, spellData in pairs(baseSpellAvoidMap[category]) do
       -- spells that only contain a refId are not added to the filtered spellAvoidMap
       if spellData.refId == nil then
-        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and mod.season.IsSodActive() or RGPVPW_ENVIRONMENT.TEST then
+        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and mod.season.IsSodActive()
+          or RGPVPW_ENVIRONMENT.TEST then
           filteredSpellAvoidMap[category][spellId] = spellData
         end
 
@@ -146,7 +147,7 @@ function me.SearchBySpellId(spellId)
 
       return category, realSpellId, clonedSpell
     end
-
-    return nil
   end
+
+  return nil
 end
