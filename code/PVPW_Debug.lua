@@ -45,6 +45,7 @@ end
 
   /run _G["__PVPW__DEBUG__COMBATEVENT_MISS_SELF_AVOIDED"]()
 ]]--
+-- TODO outdated
 _G["__PVPW__DEBUG__COMBATEVENT_MISS_SELF_AVOIDED"] = function()
   local event = {
     1626123629.151,
@@ -68,10 +69,11 @@ _G["__PVPW__DEBUG__COMBATEVENT_MISS_SELF_AVOIDED"] = function()
 end
 
 --[[
-  Triggering the simulation of an event where an enenmy avoided a spell of the player
+  Triggering the simulation of an event where an enemy avoided a spell of the player
 
   /run _G["__PVPW__DEBUG__COMBATEVENT_MISS_ENEMY_AVOIDED"]()
 ]]--
+-- TODO outdated
 _G["__PVPW__DEBUG__COMBATEVENT_MISS_ENEMY_AVOIDED"] = function()
   local event = {
     1626123629.151,
@@ -98,14 +100,18 @@ end
   Take an event from CombatLogGetCurrentEventInfo and store it in a savedVariable. This allows to read a textfile with
   all the logs after a reload.
 
-  @param {string} event
-  @param {number} sourceFlags
-  @param {string} target
-  @param {string} targetName
-  @param {string} spellName
-  @param {string} missType (optional)
+  Filtering for oneOf (and COMBATLOG_FILTER_HOSTILE_PLAYERS):
+
+  - SPELL_CAST_SUCCESS
+  - SPELL_CAST_START
+  - SPELL_AURA_REMOVED
+  - SSPELL_AURA_APPLIED
+  - SPELL_AURA_REFRESH,
+
+  @param {table} vararg
+    The event to track
 ]]--
-function me.TrackLogEvent(...)
+function me.TrackLogNormalEvent(...)
   local logEvent = {...}
 
   if PVPWarnLogTracker == nil then
@@ -113,4 +119,38 @@ function me.TrackLogEvent(...)
   end
 
   table.insert(PVPWarnLogTracker, logEvent)
+end
+
+--[[
+  Take an event from CombatLogGetCurrentEventInfo and store it in a savedVariable. This allows to read a textfile with
+    all the logs after a reload.
+
+  Filtering for oneOf (and COMBATLOG_FILTER_HOSTILE_PLAYERS or COMBATLOG_FILTER_MINE):
+
+  - SPELL_MISSED
+
+  @param {table} vararg
+    The event to track
+]]--
+function me.TrackLogAvoidEvent(...)
+  local logEvent = {...}
+  local _, _, _, _, _, sourceFlags = select(1, ...)
+
+  if PVPWarnLogTrackerAvoid == nil then
+    PVPWarnLogTrackerAvoid = {}
+  end
+
+  if PVPWarnLogTrackerAvoid.enemyAvoid == nil then
+    PVPWarnLogTrackerAvoid.enemyAvoid = {}
+  end
+
+  if PVPWarnLogTrackerAvoid.selfAvoid == nil then
+    PVPWarnLogTrackerAvoid.selfAvoid = {}
+  end
+
+  if CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_HOSTILE_PLAYERS) then
+    table.insert(PVPWarnLogTrackerAvoid.enemyAvoid, logEvent)
+  elseif CombatLog_Object_IsA(sourceFlags, COMBATLOG_FILTER_MINE) then
+    table.insert(PVPWarnLogTrackerAvoid.selfAvoid, logEvent)
+  end
 end

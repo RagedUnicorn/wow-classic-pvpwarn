@@ -33,10 +33,18 @@ me.tag = "TestHelper"
 
 local origCombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 local origMaxWarnAge
-local languageMapping = {
-  ["enUS"] = "En",
-  ["enGB"] = "En",
-  ["deDE"] = "De"
+
+--[[
+ SpellMap mapping for spellAvoidMap or spellMap depending on the spell type
+]]--
+local spellHelperByType = {
+  [RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL] = mod.spellMapHelper,
+  [RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED] = mod.spellMapHelper,
+  [RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED] = mod.spellMapHelper,
+  [RGPVPW_CONSTANTS.SPELL_TYPES.START] = mod.spellMapHelper,
+  [RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH] = mod.spellMapHelper,
+  [RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF] = mod.spellAvoidMapHelper,
+  [RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY] = mod.spellAvoidMapHelper
 }
 
 --[[
@@ -50,39 +58,6 @@ mod.testHelper.missingSoundDownTest = "Did not find a sound down test for %s - %
 mod.testHelper.invalidEvent = "Invalid event for %s - %s"
 mod.testHelper.missingCombatEventTest = "Did not find a combat event test for %s - %s"
 mod.testHelper.missingCombatEventAvoidTest = "Did not find a combat avoid event test for %s - %s"
-
---[[
-  Returns a matched language to a locale string
-
-  @return {string | nil}
-    string - if a language was found in the mapping
-    nil - if no language was found in the mapping
-]]--
-function me.GetLanguage(language)
-  if language then
-    return languageMapping[language]
-  else
-    return languageMapping[GetLocale()]
-  end
-end
-
---[[
-  A test helper function to get the spellMap for a specific categoryName
-
-  @param {String} spellMap
-    RGPVPW_CONSTANTS.SPELL_MAP or RGPVPW_CONSTANTS.SPELL_AVOID_MAP
-  @param {string} categoryName
-    A valid categoryName such as "priest", "warrior" etc.
-
-  @return {table}
-    The spellMap for the passed categoryName
-]]--
--- TODO this function should probably be eliminated
-function me.GetAllForCategory(spellMap, categoryName)
-  local map = mod[spellMap].GetSpellConfiguration()
-
-  return mod.common.Clone(map[categoryName])
-end
 
 --[[
   Mapp a wow event name to a test function name
@@ -203,18 +178,19 @@ function me.RestoreMaxWarnAge()
 end
 
 --[[
-  Enable Testing mode and thus ignoring the spellConfiguration
+  Enable Testing mode to bypass spellConfiguration
 ]]--
 function me.EnableTestMode()
   RGPVPW_ENVIRONMENT.TEST = true
 end
 
 --[[
-  Enable Testing mode and thus stop ignoring the spellConfiguration
+  Disable Testing mode to enforce spellConfiguration
 ]]--
 function me.DisableTestMode()
   RGPVPW_ENVIRONMENT.TEST = false
 end
+
 --[[
   @return {string}
 ]]--
@@ -233,7 +209,7 @@ end
   @return {string}
 ]]--
 function me.GetGenericEnemyId()
-  return "Player-531-0764I8DA"
+  return "Player-531-0764I8DE"
 end
 
 --[[
@@ -248,24 +224,6 @@ end
 ]]--
 function me.GetEnemyPlayerSourceFlags()
   return COMBATLOG_FILTER_HOSTILE_PLAYERS -- 32078
-end
-
---[[
-  @param {number} missTypeId
-    RGPVPW_CONSTANTS.MISS_TYPES
-
-  @return {string | nil}
-    string - the textual representation of the missTypeId
-    nil - if no matching missType could be found
-]]--
-function me.GetMissTypeNameById(missTypeId)
-  for missTypeName, id in pairs(RGPVPW_CONSTANTS.MISS_TYPES) do
-    if missTypeId == id then
-      return missTypeName
-    end
-  end
-
-  return nil
 end
 
 --[[
@@ -381,7 +339,7 @@ end
   @param {string} testCategory
   @param {string} spellName
 ]]--
-function me.TestSoundStart(testName, testCategory, spellName)
+function me.TestSoundStart(testName, testCategory, spellName) -- TODO has to be rewritten for spellId
   assert(type(testName) == "string", string.format(
     "bad argument #1 to `TestSoundStart` (expected string, got %s)", type(testName)))
 
@@ -412,22 +370,22 @@ end
 
   @param {string} testName
   @param {string} testCategory
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.TestSoundSpellMissedSelf(testName, testCategory, spellName)
+function me.TestSoundSpellMissedSelf(testName, testCategory, spellId)
   assert(type(testName) == "string", string.format(
     "bad argument #1 to `TestSoundSpellMissedSelf` (expected string, got %s)", type(testName)))
 
   assert(type(testCategory) == "string", string.format(
     "bad argument #2 to `TestSoundSpellMissedSelf` (expected string, got %s)", type(testCategory)))
 
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `TestSoundSpellMissedSelf` (expected string, got %s)", type(spellName)))
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `TestSoundSpellMissedSelf` (expected number, got %s)", type(spellId)))
 
   mod.testReporter.StartTestRun(testName)
 
   local status = me.TestSound(
-    spellName,
+    spellId,
     testCategory,
     RGPVPW_CONSTANTS.EVENT_SPELL_MISSED,
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF
@@ -445,22 +403,22 @@ end
 
   @param {string} testName
   @param {string} testCategory
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.TestSoundSpellMissedEnemy(testName, testCategory, spellName)
+function me.TestSoundSpellMissedEnemy(testName, testCategory, spellId)
   assert(type(testName) == "string", string.format(
     "bad argument #1 to `TestSoundSpellMissedEnemy` (expected string, got %s)", type(testName)))
 
   assert(type(testCategory) == "string", string.format(
     "bad argument #2 to `TestSoundSpellMissedEnemy` (expected string, got %s)", type(testCategory)))
 
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `TestSoundSpellMissedEnemy` (expected string, got %s)", type(spellName)))
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `TestSoundSpellMissedEnemy` (expected number, got %s)", type(spellId)))
 
   mod.testReporter.StartTestRun(testName)
 
   local status = me.TestSound(
-    spellName,
+    spellId,
     testCategory,
     RGPVPW_CONSTANTS.EVENT_SPELL_MISSED,
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
@@ -487,14 +445,20 @@ end
     false - If the sound could not be played
 ]]--
 function me.TestSound(spellId, testCategory, event, spellType)
-  local spellMap = me.GetSpellMap(spellType)
+  local spellHelper = spellHelperByType[spellType]
 
-  if spellMap == nil then
-    mod.logger.LogError(me.tag, "Failed to retrieve spellMap")
+  if spellHelper == nil then
+    mod.logger.LogError(me.tag, "Failed to retrieve spellHelper")
     return false
   end
 
-  local _, _, spellData = mod.spellMapHelper.SearchBySpellId(spellId, event)
+  local _, _, spellData = spellHelper.SearchBySpellId(spellId, event)
+
+  if not spellData then
+    mod.logger.LogError(me.tag, "Failed to retrieve spellData for spellId: " .. spellId)
+
+    return false
+  end
 
   local status = mod.sound.PlaySound(
     testCategory,
@@ -653,14 +617,14 @@ end
 
   @param {string} testName
   @param {string} testCategory
+  @param {number} spellId
   @param {string} spellName
   @param {string} expectedSpellType
     One of RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF or RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
   @param {number} missType
-    RGPVPW_CONSTANTS.MISS_TYPES
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES
 ]]--
--- TODO rewrite this function to use the spellId instead of the spellName
-function me.TestCombatEventSpellMissed(testName, testCategory, spellName, expectedSpellType, missType)
+function me.TestCombatEventSpellMissed(testName, testCategory, spellId, spellName, expectedSpellType, missType)
   mod.testReporter.StartTestRun(testName)
 
   local sourceFlags
@@ -675,6 +639,7 @@ function me.TestCombatEventSpellMissed(testName, testCategory, spellName, expect
 
   local failureReason
   local category, spellType, spell = me.TestCombatEventAvoid(
+    spellId,
     spellName,
     RGPVPW_CONSTANTS.EVENT_SPELL_MISSED,
     sourceFlags,
@@ -704,26 +669,69 @@ function me.TestCombatEventSpellMissed(testName, testCategory, spellName, expect
 end
 
 --[[
+  Tests whether a combat event is ignored for a certain category, spellName and the SPELL_MISSED event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {number} spellId
+  @param {string} spellName
+  @param {string} expectedSpellType
+    One of RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF or RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY
+  @param {number} IRRELEVANT_MISS_TYPES
+    One of RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES
+]]--
+function me.TestCombatEventSpellMissedIrrelevant(testName, testCategory, spellId, spellName, expectedSpellType,
+  irrelevantMissType)
+  mod.testReporter.StartTestRun(testName)
+
+  local sourceFlags
+
+  if expectedSpellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF then
+    sourceFlags = me.GetEnemyPlayerSourceFlags()
+  elseif expectedSpellType == RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY then
+    sourceFlags = me.GetSelfPlayerSourceFlags()
+  else
+    mod.logger.LogError(me.tag, "Unknown spell type: " .. expectedSpellType)
+  end
+
+  local category, spellType, spell = me.TestCombatEventAvoid(
+    spellId,
+    spellName,
+    RGPVPW_CONSTANTS.EVENT_SPELL_MISSED,
+    sourceFlags,
+    irrelevantMissType
+  )
+
+  if category ~= nil or spellType ~= nil or spell ~= nil then
+    local reason = "Expected spell to be ignored but got category: "
+      .. tostring(category) .. ", spellType: " .. tostring(spellType)
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, reason)
+  else
+    mod.testReporter.ReportSuccessTestRun()
+  end
+end
+
+
+--[[
+  @param {number} spellId
   @param {string} spellName
   @param {string} event
   @param {number} sourceFlags
     Source flags to determine the source of the combat log event
-  @param {number} missTypeId
-    RGPVPW_CONSTANTS.MISS_TYPES
+  @param {string} missTypeName
 
   @return {string}, {string}, {table}
 ]]--
-function me.TestCombatEventAvoid(spellName, event, sourceFlags, missType)
+function me.TestCombatEventAvoid(spellId, spellName, event, sourceFlags, missTypeName)
   local target = me.GetGenericEnemyId()
   local targetName = me.GetGenericEnemyName()
-  local missTypeName = me.GetMissTypeNameById(missType)
   local actualCategory
   local actualSpellType
   local actualSpell
 
   -- luacheck: ignore _
   local fakeSpellCastCombatEvent = function()
-    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, _, spellName, _, missTypeName
+    return  _, event, _, _, _, sourceFlags, _, target, targetName, _, _, spellId, spellName, _, missTypeName
   end
 
   me.HookCombatLogGetCurrentEventInfo(fakeSpellCastCombatEvent)

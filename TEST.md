@@ -211,6 +211,7 @@ Misstype one of:
 * BLOCK (blocked)
 * RESIST (resisted)
 
+-- TODO update
 ```lua
 function me.TestCombatEventSelfAvoid[spellname][misstype]() -- without whitespace e.g. BerserkerRage / miss type e.g
 immune
@@ -218,6 +219,7 @@ immune
     "TestCombatEventSelfAvoid[spellname][misstype]", -- without whitespace e.g. BerserkerRage / miss type e.g immune
     testCategory,
     "[spellname]", -- as displayed e.g. Berserker Rage
+    -- TODO SPELL_TYPES renamed
     RGPVPW_CONSTANTS.SPELL_TYPES.[enemy or self avoid], -- MISSED_SELF / MISSED_ENEMY
     RGPVPW_CONSTANTS.MISS_TYPES.[misstype] -- e.g. IMMUNE
   )
