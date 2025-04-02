@@ -22,853 +22,113 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetLocale
-
 local mod = rgpvpw
 local me = {}
 mod.spellAvoidMap = me
 
 me.tag = "SpellAvoidMap"
 
---[[
-
-]]--
-local spellAvoidMap
-
-if (GetLocale() == "deDE") then
-  spellAvoidMap = {
-    ["warrior"] = {
-
+local spellAvoidMap = {
+  ["warrior"] = {
+    [7922] = {
+      name = "Charge Stun",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "charge",
+      spellIcon = "ability_warrior_charge",
+      allRanks = {7922},
+      self_avoid = true,
+      enemy_avoid = true
     },
-    ["priest"] = {
-
+    [20615] = {
+      name = "Intercept Stun",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "intercept",
+      spellIcon = "ability_rogue_sprint",
+      allRanks = {20253, 20614, 20615},
+      self_avoid = true,
+      enemy_avoid = true
     },
-    ["rogue"] = {
-
+    [20253] = { refId = 20615 },
+    [20614] = { refId = 20615 },
+    [7373] = {
+      name = "Hamstring",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "hamstring",
+      spellIcon = "ability_shockwave",
+      allRanks = {7372, 7373, 25212},
+      self_avoid = true,
+      enemy_avoid = true
     },
-    ["mage"] = {
-
+    [7372] = { refId = 7373 },
+    [25212] = { refId = 7373 },
+    [21553] = {
+      name = "Mortal Strike",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "mortal_strike",
+      spellIcon = "ability_warrior_savageblow",
+      allRanks = {12294, 21551, 21552, 21553},
+      self_avoid = true,
+      enemy_avoid = true
     },
-    ["hunter"] = {
-
+    [12294] = { refId = 21553 },
+    [21551] = { refId = 21553 },
+    [21552] = { refId = 21553 },
+    [5246] = {
+      name = "Intimidating Shout",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "intimidating_shout",
+      spellIcon = "ability_golemthunderclap",
+      allRanks = {5246},
+      self_avoid = true,
+      enemy_avoid = true
     },
-    ["warlock"] = {
-
+    [6554] = {
+      name = "Pummel",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "pummel",
+      spellIcon = "inv_gauntlets_04",
+      allRanks = {6552, 6554},
+      self_avoid = true,
+      enemy_avoid = true
     },
-    ["paladin"] = {
-
-    },
-    ["druid"] = {
-
-    },
-    ["shaman"] = {
-
-    },
-    ["racials"] = {
-
-    },
-    ["items"] = {
-
-    },
-    ["misc"] = {
-
+    [6552] = { refId = 6554 },
+    [676] = {
+      name = "Disarm",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "disarm",
+      spellIcon = "ability_warrior_disarm",
+      allRanks = {676},
+      self_avoid = true,
+      enemy_avoid = true
     }
   }
-else
-  spellAvoidMap = {
-    ["warrior"] = {
-      ["charge_stun"] = {
-        ["name"] = "Charge Stun",
-        ["spellId"] = 7922,
-        ["spellIcon"] = "ability_warrior_charge",
-        ["soundFileName"] = "charge",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["intercept_stun"] = {
-        ["name"] = "Intercept Stun",
-        ["spellId"] = 20615, -- rank 3
-        ["spellIcon"] = "ability_rogue_sprint",
-        ["soundFileName"] = "intercept",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["hamstring"] = {
-        ["name"] = "Hamstring",
-        ["spellId"] = 7373, -- rank 3
-        ["spellIcon"] = "ability_shockwave",
-        ["soundFileName"] = "hamstring",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = true,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["mortal_strike"] = {
-        ["name"] = "Mortal Strike",
-        ["spellId"] = 21553, -- rank 4
-        ["spellIcon"] = "ability_warrior_savageblow",
-        ["soundFileName"] = "mortal_strike",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["intimidating_shout"] = {
-        ["name"] = "Intimidating Shout",
-        ["spellId"] = 5246,
-        ["spellIcon"] = "ability_golemthunderclap",
-        ["soundFileName"] = "intimidating_shout",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["pummel"] = {
-        ["name"] = "Pummel",
-        ["spellId"] = 6554, -- rank 2
-        ["spellIcon"] = "inv_gauntlets_04",
-        ["soundFileName"] = "pummel",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = true,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["disarm"] = {
-        ["name"] = "Disarm",
-        ["spellId"] = 676,
-        ["spellIcon"] = "ability_warrior_disarm",
-        ["soundFileName"] = "disarm",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      }
-    },
-    ["priest"] = {
-      ["devouring_plague"] = {
-        ["name"] = "Devouring Plague",
-        ["spellId"] = 19280, -- rank 6
-        ["spellIcon"] = "spell_shadow_blackplague",
-        ["soundFileName"] = "devouring_plague",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["blackout"] = {
-        ["name"] = "Blackout",
-        ["spellId"] = 15326, -- rank 5 (skillpoints)
-        ["spellIcon"] = "spell_shadow_gathershadows",
-        ["soundFileName"] = "blackout",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["mana_burn"] = {
-        ["name"] = "Mana Burn",
-        ["spellId"] = 10876, -- rank 5
-        ["spellIcon"] = "spell_shadow_manaburn",
-        ["soundFileName"] = "mana_burn",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["mind_control"] = {
-        ["name"] = "Mind Control",
-        ["spellId"] = 10912, -- rank 3
-        ["spellIcon"] = "spell_shadow_shadowworddominate",
-        ["soundFileName"] = "mind_control",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["psychic_scream"] = {
-        ["name"] = "Psychic Scream",
-        ["spellId"] = 10890,
-        ["spellIcon"] = "spell_shadow_psychicscream",
-        ["soundFileName"] = "psychic_scream",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["shadow_word_pain"] = {
-        ["name"] = "Shadow Word: Pain",
-        ["spellId"] = 10894, -- rank 8
-        ["spellIcon"] = "spell_shadow_shadowwordpain",
-        ["soundFileName"] = "shadow_word_pain",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["silence"] = {
-        ["name"] = "Silence",
-        ["spellId"] = 15487,
-        ["spellIcon"] = "spell_shadow_impphaseshift",
-        ["soundFileName"] = "silence",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["vampiric_embrace"] = {
-        ["name"] = "Vampiric Embrace",
-        ["spellId"] = 15286,
-        ["spellIcon"] = "spell_shadow_unsummonbuilding",
-        ["soundFileName"] = "vampiric_embrace",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      }
-    },
-    ["rogue"] = {
-      ["kick"] = {
-        ["name"] = "Kick",
-        ["spellId"] = 1769,
-        ["spellIcon"] = "ability_kick",
-        ["soundFileName"] = "kick",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = true,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["cheap_shot"] = {
-        ["name"] = "Cheap Shot",
-        ["spellId"] = 1833,
-        ["spellIcon"] = "ability_cheapshot",
-        ["soundFileName"] = "cheap_shot",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["gouge"] = {
-        ["name"] = "Gouge",
-        ["spellId"] = 11286,
-        ["spellIcon"] = "ability_gouge",
-        ["soundFileName"] = "gouge",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = true,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["kidney_shot"] = {
-        ["name"] = "Kidney Shot",
-        ["spellId"] = 8643,
-        ["spellIcon"] = "ability_rogue_kidneyshot",
-        ["soundFileName"] = "kidney_shot",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["blind"] = {
-        ["name"] = "Blind",
-        ["spellId"] = 2094,
-        ["spellIcon"] = "spell_shadow_mindsteal",
-        ["soundFileName"] = "blind",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["ghostly_strike"] = {
-        ["name"] = "Ghostly Strike",
-        ["spellId"] = 14278,
-        ["spellIcon"] = "spell_shadow_curse",
-        ["soundFileName"] = "ghostly_strike",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["sap"] = {
-        ["name"] = "Sap",
-        ["spellId"] = 11297, -- rank 3
-        ["spellIcon"] = "ability_sap",
-        ["soundFileName"] = "sap",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["distract"] = {
-        ["name"] = "Distract",
-        ["spellId"] = 1725,
-        ["spellIcon"] = "ability_rogue_distract",
-        ["soundFileName"] = "distract",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["expose_armor"] = {
-        ["name"] = "Expose Armor",
-        ["spellId"] = 11198, -- rank 5
-        ["spellIcon"] = "ability_warrior_riposte",
-        ["soundFileName"] = "expose_armor",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["garrote"] = {
-        ["name"] = "Garrote",
-        ["spellId"] = 11290, -- rank 6
-        ["spellIcon"] = "ability_rogue_garrote",
-        ["soundFileName"] = "garrote",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["rupture"] = {
-        ["name"] = "Rupture",
-        ["spellId"] = 11275, -- rank 6
-        ["spellIcon"] = "ability_rogue_rupture",
-        ["soundFileName"] = "rupture",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      }
-    },
-    ["mage"] = {
-      ["counterspell"] = {
-        ["name"] = "Counterspell",
-        ["spellId"] = 2139,
-        ["spellIcon"] = "spell_frost_iceshock",
-        ["soundFileName"] = "silence",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["counterspell_silenced"] = {
-        ["name"] = "Counterspell - Silenced",
-        ["spellId"] = 2139,
-        ["spellIcon"] = "spell_frost_iceshock",
-        ["soundFileName"] = "silence",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = false, -- immune event is only happening for counterspell
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["polymorph"] = {
-        ["name"] = "Polymorph",
-        ["spellId"] = 12826,
-        ["spellIcon"] = "spell_nature_polymorph",
-        ["soundFileName"] = "polymorph",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["frost_nova"] = {
-        ["name"] = "Frost Nova",
-        ["spellId"] = 10230, -- rank 4
-        ["spellIcon"] = "spell_frost_frostnova",
-        ["soundFileName"] = "frost_nova",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["cone_of_cold"] = {
-        ["name"] = "Cone of Cold",
-        ["spellId"] = 10161, -- rank 5
-        ["spellIcon"] = "spell_frost_glacier",
-        ["soundFileName"] = "cone_of_cold",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      }
-    },
-    ["hunter"] = {
-      ["concussive_shot"] = {
-        ["name"] = "Concussive Shot",
-        ["spellId"] = 5116,
-        ["spellIcon"] = "spell_frost_stun",
-        ["soundFileName"] = "concussive_shot",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["scatter_shot"] = {
-        ["name"] = "Scatter Shot",
-        ["spellId"] = 19503,
-        ["spellIcon"] = "ability_golemstormbolt",
-        ["soundFileName"] = "scatter_shot",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["serpent_sting"] = {
-        ["name"] = "Serpent Sting",
-        ["spellId"] = 13555, -- rank 8
-        ["spellIcon"] = "ability_hunter_quickshot",
-        ["soundFileName"] = "serpent_sting",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["viper_sting"] = {
-        ["name"] = "Viper Sting",
-        ["spellId"] = 14280, -- rank 3
-        ["spellIcon"] = "ability_hunter_aimedshot",
-        ["soundFileName"] = "viper_sting",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["freezing_trap_effect"] = {
-        ["name"] = "Freezing Trap Effect",
-        ["spellId"] = 27753, -- rank 3
-        ["spellIcon"] = "spell_frost_chainsofice",
-        ["soundFileName"] = "freezing_trap",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["wing_clip"] = {
-        ["name"] = "Wing Clip",
-        ["spellId"] = 14268, -- rank 3
-        ["spellIcon"] = "ability_rogue_trip",
-        ["soundFileName"] = "wing_clip",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = true,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      }
-    },
-    ["warlock"] = {
-      ["curse_of_tongues"] = {
-        ["name"] = "Curse of Tongues",
-        ["spellId"] = 11719, -- rank 2
-        ["spellIcon"] = "spell_shadow_curseoftounges",
-        ["soundFileName"] = "curse_of_tongues",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["death_coil"] = {
-        ["name"] = "Death Coil",
-        ["spellId"] = 17926, -- rank 3
-        ["spellIcon"] = "spell_shadow_deathcoil",
-        ["soundFileName"] = "death_coil",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["fear"] = {
-        ["name"] = "Fear",
-        ["spellId"] = 6215, -- rank 3
-        ["spellIcon"] = "spell_shadow_possession",
-        ["soundFileName"] = "fear",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["howl_of_terror"] = {
-        ["name"] = "Howl of Terror",
-        ["spellId"] = 17928, -- rank 2
-        ["spellIcon"] = "spell_shadow_deathscream",
-        ["soundFileName"] = "howl_of_terror",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      }
-    },
-    ["paladin"] = {
-      ["hammer_of_wrath"] = {
-        ["name"] = "Hammer of Wrath",
-        ["spellId"] = 24239, -- rank 3
-        ["spellIcon"] = "ability_thunderclap",
-        ["soundFileName"] = "hammer_of_wrath",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = false,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["hammer_of_justice"] = {
-        ["name"] = "Hammer of Justice",
-        ["spellId"] = 10308, -- rank 4
-        ["spellIcon"] = "spell_holy_sealofmight",
-        ["soundFileName"] = "hammer_of_justice",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      }
-    },
-    ["druid"] = {
-      ["entangling_roots"] = {
-        ["name"] = "Entangling Roots",
-        ["spellId"] = 19970, -- rank 6
-        ["spellIcon"] = "spell_nature_stranglevines",
-        ["soundFileName"] = "entangling_roots",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["faerie_fire"] = {
-        ["name"] = "Faerie Fire",
-        ["spellId"] = 9907, -- rank 4
-        ["spellIcon"] = "spell_nature_faeriefire",
-        ["soundFileName"] = "faerie_fire",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["faerie_fire_feral"] = {
-        ["name"] = "Farie Fire (Feral)",
-        ["spellId"] = 17392, -- rank 4
-        ["spellIcon"] = "spell_nature_faeriefire",
-        ["soundFileName"] = "faerie_fire",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["bash"] = {
-        ["name"] = "Bash",
-        ["spellId"] = 8983, -- rank 3
-        ["spellIcon"] = "ability_druid_bash",
-        ["soundFileName"] = "bash",
-        ["dodge"] = true,
-        ["parry"] = true,
-        ["immune"] = true,
-        ["miss"] = true,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["feral_charge_effect"] = {
-        ["name"] = "Feral Charge Effect",
-        ["spellId"] = 16979,
-        ["spellIcon"] = "ability_hunter_pet_bear",
-        ["soundFileName"] = "feral_charge",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      }
-    },
-    ["shaman"] = {
-      ["earth_shock"] = {
-        ["name"] = "Earth Shock",
-        ["spellId"] = 10414, -- rank 7
-        ["spellIcon"] = "spell_nature_earthshock",
-        ["soundFileName"] = "earth_shock",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["flame_shock"] = {
-        ["name"] = "Flame Shock",
-        ["spellId"] = 29228, -- rank 6
-        ["spellIcon"] = "spell_fire_flameshock",
-        ["soundFileName"] = "flame_shock",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      },
-      ["frost_shock"] = {
-        ["name"] = "Frost Shock",
-        ["spellId"] = 10473, -- rank 4
-        ["spellIcon"] = "spell_frost_frostshock",
-        ["soundFileName"] = "frost_shock",
-        ["dodge"] = false,
-        ["parry"] = false,
-        ["immune"] = true,
-        ["miss"] = false,
-        ["block"] = false,
-        ["resist"] = true,
-        ["self_avoid"] = true,
-        ["enemy_avoid"] = true
-      }
-    }
-  }
-end
+}
 
 --[[
-  NEVER returning the original list we dont want to give anyone the option to modify it
+  Get the spellAvoidMap
 
   @return {table}
-   A clone of the spellMap
+    The spellAvoidMap
 ]]--
-function me.GetSpellConfiguration()
+function me.GetSpellAvoidMap()
   return mod.common.Clone(spellAvoidMap)
 end
 
 --[[
-  Search the spellmap for a specific spell by its name
-
-  @param {string} name
-
-  @return ({string} {table}) | {nil}
-]]--
-function me.SearchByName(name)
-  if not name then return nil end
-
-  local spellName = mod.common.NormalizeSpellname(name)
-
-  mod.logger.LogDebug(me.tag, string.format("Searching for %s in spellAvoidMap", spellName))
-
-  for category, _ in pairs(spellAvoidMap) do
-    for spellEntry, _ in pairs(spellAvoidMap[category]) do
-      if spellEntry == spellName then
-        mod.logger.LogDebug(me.tag, string.format("Found spell - %s - in spellAvoidMap", spellName))
-
-        local clonedSpell = mod.common.Clone(spellAvoidMap[category][spellEntry])
-        clonedSpell.normalizedSpellName = spellEntry -- add normalizedSpellName that would get lost otherwise
-
-        return category, clonedSpell
-      end
-    end
-  end
-
-  return nil
-end
-
---[[
-  Get map for a certain category
+  Get spellAvoidMap for a certain category
 
   @param {string} category
 
   @return {table}
     Map for the passed category
 ]]--
-function me.GetAllForCategory(category)
-  if not category then return nil end
+function me.GetSpellAvoidMapByCategory(category)
+  if not category or not spellAvoidMap[category] then
+    mod.logger.LogError(me.tag, "Unable to retrieve spellMap for category: "
+        .. category)
 
-  local spellAvoidList = {}
-
-  for normalizedSpellName, spell in pairs(spellAvoidMap[category]) do
-    local clonedSpell = mod.common.Clone(spell)
-    clonedSpell.normalizedSpellName = normalizedSpellName
-    table.insert(spellAvoidList, clonedSpell)
+    return nil
   end
 
-  return spellAvoidList
+  return mod.common.Clone(spellAvoidMap[category])
 end

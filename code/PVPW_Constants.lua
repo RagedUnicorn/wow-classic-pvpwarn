@@ -125,15 +125,24 @@ RGPVPW_CONSTANTS = {
     ["MISSED_ENEMY"] = 7, -- SPELL_MISSED
   },
   --[[
-    Subtype of SPELL_MISSED
+    Miss types that are considered relevant for tracking spell avoidance
+
+    Subtype of SPELL_MISSED - Excludes "ABSORB"
   ]]--
-  MISS_TYPES = {
-    ["DODGE"] = 1,
-    ["PARRY"] = 2,
-    ["IMMUNE"] = 3,
-    ["MISS"] = 4,
-    ["BLOCK"] = 5,
-    ["RESIST"] = 6
+  RELEVANT_MISS_TYPES = {
+    DODGE = "DODGE",
+    BLOCK = "BLOCK",
+    PARRY = "PARRY",
+    MISS = "MISS",
+    RESIST = "RESIST",
+    IMMUNE = "IMMUNE",
+    REFLECT = "REFLECT"
+  },
+  --[[
+    Miss types that are considered irrelevant for tracking spell avoidance
+  ]]--
+  IRRELEVANT_MISS_TYPES = {
+    ABSORB = "ABSORB"
   },
   EVENT_SPELL_CAST_SUCCESS = "SPELL_CAST_SUCCESS",
   EVENT_SPELL_CAST_START = "SPELL_CAST_START",

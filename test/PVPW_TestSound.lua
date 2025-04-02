@@ -56,8 +56,8 @@ function me.Test(categoryName)
 
   me.ShouldHaveSoundTestForAllSpells(categoryName)
   me.ShouldHaveSoundDownTestForAllSpells(categoryName)
-  -- me.ShouldHaveSoundAvoidTestForAllSpells(language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName)
-  -- me.ShouldHaveSoundAvoidTestForAllSpells(language, RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName)
+  me.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName)
+  me.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName)
 
   mod.testReporter.StopTestGroup()
 end
@@ -99,8 +99,8 @@ end
 function me.ShouldHaveSoundTest()
   local spellMap = mod.spellMapHelper.GetSpellConfiguration()
 
-  for category, categoryData in pairs(spellMap) do
-    me.SoundTest(category, categoryData)
+  for categoryName, categoryData in pairs(spellMap) do
+    me.SoundTest(categoryName, categoryData)
   end
 end
 
@@ -220,56 +220,45 @@ end
 --[[
   Tests whether there is an appropriate sound testcase for every spell found in the spellAvoidMap
 
-  @param {string} language
-    A supported language such as en, de etc.
   @param {number} spellAvoidType
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
   @param {string} categoryName
     Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
-function me.ShouldHaveSoundAvoidTestForAllSpells(language, spellAvoidType, categoryName)
-  if language == nil then
-    mod.logger.LogError(me.tag, "Missing language - aborting...")
-    return
-  end
-
+function me.ShouldHaveSoundAvoidTestForAllSpells(spellAvoidType, categoryName)
   if categoryName ~= nil then
-    me.ShouldHaveSoundAvoidTestByCategory(categoryName, language, spellAvoidType)
+    me.ShouldHaveSoundAvoidTestByCategory(categoryName, spellAvoidType)
   else
-    me.ShouldHaveSoundAvoidTest(language, spellAvoidType)
+    me.ShouldHaveSoundAvoidTest(spellAvoidType)
   end
 end
 
 --[[
   @param {string} categoryName
     A valid categoryName such as "priest", "warrior" etc.
-  @param {string} language
-    A supported language such as en, de etc.
   @param {number} spellAvoidType
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
-function me.ShouldHaveSoundAvoidTestByCategory(categoryName, language, spellAvoidType)
-  local spellAvoidMap = mod.testHelper.GetAllForCategory(RGPVPW_CONSTANTS.SPELL_AVOID_MAP, categoryName)
+function me.ShouldHaveSoundAvoidTestByCategory(categoryName, spellAvoidType)
+  local categoryData = mod.spellAvoidMapHelper.GetSpellConfigurationByCategory(categoryName)
 
-  if spellAvoidMap == nil then
-    mod.logger.LogError(me.tag, "Unable to get spellAvoidMap for categoryName: " .. categoryName)
+  if categoryData == nil then
+    mod.logger.LogError(me.tag, "Unable to get categoryData for categoryName: " .. categoryName)
     return
   end
 
-  me.SoundAvoidTest(categoryName, spellAvoidMap, language, spellAvoidType)
+  me.SoundAvoidTest(categoryName, categoryData, spellAvoidType)
 end
 
 --[[
-  @param {string} language
-    A supported language such as en, de etc.
   @param {number} spellAvoidType
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
-function me.ShouldHaveSoundAvoidTest(language, spellAvoidType)
-  local spellAvoidMap = mod.spellAvoidMap.GetSpellConfiguration()
+function me.ShouldHaveSoundAvoidTest(spellAvoidType)
+  local spellAvoidMap = mod.spellAvoidMapHelper.GetSpellConfiguration()
 
-  for category, categoryData in pairs(spellAvoidMap) do
-    me.SoundAvoidTest(category, categoryData, language, spellAvoidType)
+  for categoryName, categoryData in pairs(spellAvoidMap) do
+    me.SoundAvoidTest(categoryName, categoryData, spellAvoidType)
   end
 end
 
@@ -279,13 +268,16 @@ end
   @param {string} categoryName
     A valid categoryName such as "priest", "warrior" etc.
   @param {table} categoryData
-  @param {string} language
   @param {number} spellAvoidType
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
-function me.SoundAvoidTest(categoryName, categoryData, language, spellAvoidType)
-  for name, _ in pairs (categoryData) do
-    local spellName = mod.testHelper.NormalizeSpellName(name)
+function me.SoundAvoidTest(categoryName, categoryData, spellAvoidType)
+  for spellId, spell in pairs (categoryData) do
+    if spell.refId then
+      spell = categoryData[spell.refId]
+    end
+
+    local spellName = mod.testHelper.NormalizeSpellName(spell.name)
     local moduleNameBase
     local testNameBase
     local testFunctionBase
@@ -303,11 +295,12 @@ function me.SoundAvoidTest(categoryName, categoryData, language, spellAvoidType)
     end
 
     local testName = testNameBase .. mod.testHelper.FirstToUpper(categoryName) .. spellName
+      .. "_" .. spellId
 
     mod.testReporter.StartTestRun(testName)
 
-    local func = mod[moduleNameBase .. mod.testHelper.FirstToUpper(categoryName)
-      .. mod.testHelper.FirstToUpper(language)][testFunctionBase .. spellName]
+    local func = mod[moduleNameBase .. mod.testHelper.FirstToUpper(categoryName)]
+      [testFunctionBase .. spellName .. "_" .. spellId]
 
     if type(func) ~= "function" then
       mod.testReporter.ReportFailureTestRun(
