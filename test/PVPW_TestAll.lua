@@ -42,17 +42,17 @@ function me.TestAll()
   mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
   mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
   mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName
+    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
   )
   mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName
+    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
   )
 
   mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName
+    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
   )
   mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName
+    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
   )
 
   me.TestAllSound()

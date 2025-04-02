@@ -110,6 +110,7 @@ function me.ProcessStart(event, callback, ...)
   -- TODO this is unfinished
   local spellName = select(13, ...)
   local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
+  local spellId = 123 -- TODO
   local category, spell = mod.spellMapHelper.SearchBySpellId(spellId, event)
 
   local spellType = mod.common.GetSpellType(event)
