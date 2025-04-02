@@ -70,7 +70,8 @@ function me.GetFilteredSpellMap()
     for spellId, spellData in pairs(baseSpellMap[category]) do
       -- spells that only contain a refId are not added to the filtered SpellMap
       if spellData.refId == nil then
-        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and mod.season.IsSodActive() or RGPVPW_ENVIRONMENT.TEST then
+        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and mod.season.IsSodActive()
+          or RGPVPW_ENVIRONMENT.TEST then
           filteredSpellMap[category][spellId] = spellData
         end
 

@@ -6,5 +6,6 @@ globals = {
   "PVPWarnTestLog",
   "PVPWarnConfiguration",
   "PVPWarnProfiles",
-  "PVPWarnLogTracker"
+  "PVPWarnLogTracker",
+  "PVPWarnLogTrackerAvoid"
 }
