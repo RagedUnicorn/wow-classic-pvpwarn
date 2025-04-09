@@ -13,7 +13,7 @@
     <addon.name>PVPWarn</addon.name>
     <addon.displayName>pvpwarn</addon.displayName>
     <addon.curseforge.projectId>475326</addon.curseforge.projectId>
-    <addon.curseforge.gameVersion>12345</addon.curseforge.gameVersion>
+    <addon.curseforge.gameVersion>12919</addon.curseforge.gameVersion>
     <addon.wago.projectId>0mNwP46o</addon.wago.projectId>
     <addon.name.short>PVPW</addon.name.short>
     <addon.tag.version>v${project.version}</addon.tag.version>
