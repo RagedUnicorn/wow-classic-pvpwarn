@@ -98,6 +98,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRetaliation_20230)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRetaliation_20230)
 
+  -- start runes
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFlagellation_402877)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFlagellation_402877)
 
@@ -140,7 +141,7 @@ function me.TestSoundBerserkerRage_18499()
   mod.testHelper.TestSoundApplied(
     "TestSoundBerserkerRage_18499",
     testCategory,
-    18499 -- Berserker Rage
+    18499
   )
 end
 
@@ -148,7 +149,7 @@ function me.TestSoundDownBerserkerRage_18499()
   mod.testHelper.TestSoundRemoved(
     "TestSoundDownBerserkerRage_18499",
     testCategory,
-    18499 -- Berserker Rage
+    18499
   )
 end
 
