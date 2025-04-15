@@ -299,6 +299,39 @@ function me.TestSoundRemoved(testName, testCategory, spellId)
 end
 
 --[[
+  Tests whether a sound can be played for a certain category, spellName and the SPELL_AURA_REFRESH event
+
+  @param {string} testName
+  @param {string} testCategory
+  @param {number} spellId
+]]--
+function me.TestSoundRefresh(testName, testCategory, spellId)
+  assert(type(testName) == "string", string.format(
+    "bad argument #1 to `TestSoundRefresh` (expected string, got %s)", type(testName)))
+
+  assert(type(testCategory) == "string", string.format(
+    "bad argument #2 to `TestSoundRefresh` (expected string, got %s)", type(testCategory)))
+
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `TestSoundRefresh` (expected number, got %s)", type(spellId)))
+
+  mod.testReporter.StartTestRun(testName)
+
+  local status = me.TestSound(
+    spellId,
+    testCategory,
+    RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REFRESH,
+    RGPVPW_CONSTANTS.SPELL_TYPES.REFRESH
+  )
+
+  if status then
+    mod.testReporter.ReportSuccessTestRun()
+  else
+    mod.testReporter.ReportFailureTestRun(testCategory, testName, mod.testHelper.unableToPlay)
+  end
+end
+
+--[[
   Tests whether a sound can be played for a certain category, spellName and the SPELL_CAST_SUCCESS event
 
   @param {string} testName

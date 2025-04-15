@@ -39,6 +39,8 @@
     )
 ]]--
 
+-- luacheck: globals tContains
+
 local mod = rgpvpw
 local me = {}
 mod.testSound = me
@@ -56,6 +58,7 @@ function me.Test(categoryName)
 
   me.ShouldHaveSoundTestForAllSpells(categoryName)
   me.ShouldHaveSoundDownTestForAllSpells(categoryName)
+  me.ShouldHaveSoundRefreshTestForAllSpells(categoryName)
   me.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName)
   me.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName)
 
@@ -216,6 +219,89 @@ function me.SoundDownTest(categoryName, categoryData)
     end
   end
 end
+
+--[[
+  Tests whether there is an appropriate sound refresh testcase for every spell found in the spell map
+
+  @param {string} categoryName
+    A valid categoryName such as "priest", "warrior" etc.
+]]--
+function me.ShouldHaveSoundRefreshTestForAllSpells(categoryName)
+  if categoryName ~= nil then
+    me.ShouldHaveSoundRefreshTestByCategory(categoryName)
+  else
+    me.ShouldHaveSoundRefreshTest()
+  end
+end
+
+--[[
+  Get through all spells for a specific category and check if there is a sound refresh test present
+
+  @param {string} categoryName
+    A valid categoryName such as "priest", "warrior" etc.
+]]--
+function me.ShouldHaveSoundRefreshTestByCategory(categoryName)
+  local spellMap = mod.spellMapHelper.GetSpellConfigurationByCategory(categoryName)
+
+  if spellMap == nil then
+    mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
+    return
+  end
+
+  me.SoundRefreshTest(categoryName, spellMap)
+end
+
+--[[
+  Go through all spells and check if there is a sound refresh test present
+]]--
+function me.ShouldHaveSoundRefreshTest()
+  local spellMap = mod.spellMapHelper.GetSpellConfiguration()
+
+  for category, categoryData in pairs(spellMap) do
+    me.SoundRefreshTest(category, categoryData)
+  end
+end
+
+--[[
+  Do the actual test whether the expected function is present or not
+
+  @param {string} categoryName
+    A valid categoryName such as "priest", "warrior" etc.
+  @param {table} categoryData
+]]--
+function me.SoundRefreshTest(categoryName, categoryData)
+  for spellId, spell in pairs(categoryData) do
+    -- Use reference spell if present
+    if spell.refId then
+      spell = categoryData[spell.refId]
+    end
+
+    -- Only expect a test if SPELL_AURA_REFRESH is in trackedEvents
+    local shouldHaveTest = spell.trackedEvents ~= nil and
+        tContains(spell.trackedEvents, RGPVPW_CONSTANTS.EVENT_SPELL_AURA_REFRESH)
+    if shouldHaveTest then
+      local spellName = mod.testHelper.NormalizeSpellName(spell.name)
+      local testName = "SoundRefreshTestPresent" .. mod.testHelper.FirstToUpper(categoryName) .. spellName
+        .. "_" .. spellId
+
+      mod.testReporter.StartTestRun(testName)
+
+      local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName)]
+      ["TestSoundRefresh" .. spellName .. "_" .. spellId]
+
+      if type(func) ~= "function" then
+        mod.testReporter.ReportFailureTestRun(
+          categoryName,
+          testName,
+          string.format(mod.testHelper.missingSoundDownTest, categoryName, spellName)
+        )
+      else
+        mod.testReporter.ReportSuccessTestRun()
+      end
+    end
+  end
+end
+
 
 --[[
   Tests whether there is an appropriate sound testcase for every spell found in the spellAvoidMap
