@@ -467,6 +467,372 @@ local spellMap = {
       },
       allRanks = {412513}
     }
+  },
+  ["priest"] = {
+    [10890] = {
+      name = "Psychic Scream",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "psychic_scream",
+      spellIcon = "spell_shadow_psychicscream",
+      hasFade = false,
+      active = true,
+      trackedEvents = { "SPELL_CAST_SUCCESS" },
+      allRanks = { 8122, 8124, 10888, 10890 }
+    },
+    [8122] = { refId = 10890 },
+    [8124] = { refId = 10890 },
+    [10888] = { refId = 10890 },
+    [15487] = {
+      name = "Silence",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "silence",
+      spellIcon = "spell_shadow_impphaseshift",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 15487 }
+    },
+    [10060] = {
+      name = "Power Infusion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "power_infusion",
+      spellIcon = "spell_holy_powerinfusion",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED",
+        "SPELL_AURA_REFRESH"
+      },
+      allRanks = { 10060 }
+    },
+    [10952] = {
+      name = "Inner Fire",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "inner_fire",
+      spellIcon = "spell_holy_innerfire",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED",
+        "SPELL_AURA_REFRESH"
+      },
+      allRanks = { 588, 7128, 602, 1006, 10951, 10952 }
+    },
+    [588] = { refId = 10952 },
+    [7128] = { refId = 10952 },
+    [602] = { refId = 10952 },
+    [1006] = { refId = 10952 },
+    [10951] = { refId = 10952 },
+    [15286] = {
+      name = "Vampiric Embrace",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "vampiric_embrace",
+      spellIcon = "spell_shadow_unsummonbuilding",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REFRESH"
+      },
+      allRanks = { 15286 }
+    },
+    [19280] = {
+      name = "Devouring Plague",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "devouring_plague",
+      spellIcon = "spell_shadow_blackplague",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 2944, 19276, 19277, 19278, 19279, 19280 }
+    },
+    [2944] = { refId = 19280 },
+    [19276] = { refId = 19280 },
+    [19277] = { refId = 19280 },
+    [19278] = { refId = 19280 },
+    [19279] = { refId = 19280 },
+    [19266] = {
+      name = "Touch of Weakness",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "touch_of_weakness",
+      spellIcon = "spell_shadow_deadofnight",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED",
+        "SPELL_AURA_REFRESH"
+      },
+      allRanks = { 2652, 19261, 19262, 19264, 19265, 19266 }
+    },
+    [2652] = { refId = 19266 },
+    [19261] = { refId = 19266 },
+    [19262] = { refId = 19266 },
+    [19264] = { refId = 19266 },
+    [19265] = { refId = 19266 },
+    [6346] = {
+      name = "Fear Ward",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "fear_ward",
+      spellIcon = "spell_holy_excorcism",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED",
+        "SPELL_AURA_REFRESH"
+      },
+      allRanks = { 6346 }
+    },
+    [19243] = {
+      name = "Desperate Prayer",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "desperate_prayer",
+      spellIcon = "spell_holy_restoration",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 13908, 19238, 19240, 19241, 19242, 19243 }
+    },
+    [13908] = { refId = 19243 },
+    [19238] = { refId = 19243 },
+    [19240] = { refId = 19243 },
+    [19241] = { refId = 19243 },
+    [19242] = { refId = 19243 },
+    [9035] = {
+      name = "Hex of Weakness",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "hex_of_weakness",
+      spellIcon = "spell_shadow_fingerofdeath",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 9035, 19281, 19282, 19283, 19284, 19285 }
+    },
+    [19281] = { refId = 9035 },
+    [19282] = { refId = 9035 },
+    [19283] = { refId = 9035 },
+    [19284] = { refId = 9035 },
+    [19285] = { refId = 9035 },
+    [18137] = {
+      name = "Shadowguard",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "shadowguard",
+      spellIcon = "spell_nature_lightningshield",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED",
+        "SPELL_AURA_REFRESH"
+      },
+      allRanks = { 18137, 19308, 19309, 19310, 19311, 19312 }
+    },
+    [19308] = { refId = 18137 },
+    [19309] = { refId = 18137 },
+    [19310] = { refId = 18137 },
+    [19311] = { refId = 18137 },
+    [19312] = { refId = 18137 },
+    [402174] = {
+      name = "Penance",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "penance",
+      spellIcon = "spell_holy_penance",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 402174 }
+    },
+    [401946] = {
+      name = "Circle of Healing",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "circle_of_healing",
+      spellIcon = "spell_holy_circleofrenewal",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 401946 }
+    },
+    [401955] = {
+      name = "Shadow Word: Death",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "shadow_word_death",
+      spellIcon = "spell_shadow_demonicfortitude",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 401955 }
+    },
+    [402799] = {
+      name = "Homunculi",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "homunculi",
+      spellIcon = "spell_shadow_twistedfaith",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [425294] = {
+      name = "Dispersion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "dispersion",
+      spellIcon = "spell_shadow_dispersion",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 425294 }
+    },
+    [402004] = {
+      name = "Pain Suppression",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "pain_suppression",
+      spellIcon = "spell_holy_painsupression",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [401977] = {
+      name = "Shadowfiend",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "shadowfiend",
+      spellIcon = "spell_shadow_shadowfiend",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 401977 }
+    },
+    [401859] = {
+      name = "Prayer of Mending",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "prayer_of_mending",
+      spellIcon = "spell_holy_prayerofmendingtga",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 401859 }
+    },
+    [425204] = {
+      name = "Void Plague",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "void_plague",
+      spellIcon = "spell_deathknight_bloodplague",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 425204 }
+    },
+    [431655] = {
+      name = "Mind Spike",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "mind_spike",
+      spellIcon = "spell_shadow_painspike",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 431655 }
+    },
+    [402789] = {
+      name = "Eye of the Void",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "eye_of_the_void",
+      spellIcon = "inv_misc_eye_03",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [431681] = {
+      name = "Void Zone",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "void_zone",
+      spellIcon = "inv_enchant_voidsphere",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [402668] = {
+      name = "Vampiric Touch",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "vampiric_touch",
+      spellIcon = "spell_holy_stoicism",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [425284] = {
+      name = "Spirit of the Redeemer",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "spirit_of_the_redeemer",
+      spellIcon = "inv_enchant_essenceeternallarge",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [431664] = {
+      name = "Surge of Light",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "surge_of_light",
+      spellIcon = "spell_holy_surgeoflight",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [413248] = {
+      name = "Serendipity",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "serendipity",
+      spellIcon = "spell_holy_serendipity",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED",
+        "SPELL_AURA_REFRESH"
+      }
+    }
   }
 }
 
