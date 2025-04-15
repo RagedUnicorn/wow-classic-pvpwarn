@@ -39,6 +39,7 @@ function me.TestAll()
   mod.testReporter.StartTestGroup(testGroupName)
   mod.testSound.ShouldHaveSoundTestForAllSpells()
   mod.testSound.ShouldHaveSoundDownTestForAllSpells()
+  mod.testSound.ShouldHaveSoundRefreshTestForAllSpells()
   mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
   mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
   mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
