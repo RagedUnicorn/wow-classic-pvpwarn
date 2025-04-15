@@ -120,6 +120,7 @@ function me.CollectTestCases()
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCommandingShoutSuccess_403215)
 
+  -- start runes
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRampageApplied_426940)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRampageRemoved_426940)
 

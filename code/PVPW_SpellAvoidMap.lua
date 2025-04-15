@@ -200,6 +200,131 @@ local spellAvoidMap = {
       self_avoid = true,
       enemy_avoid = true
     }
+  },
+  ["rogue"] = {
+    [1769] = {
+      name = "Kick",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "kick",
+      spellIcon = "ability_kick",
+      allRanks = {1766, 1767, 1768, 1769},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [1766] = { refId = 1769 },
+    [1767] = { refId = 1769 },
+    [1768] = { refId = 1769 },
+    [1833] = {
+      name = "Cheap Shot",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "cheap_shot",
+      spellIcon = "ability_cheapshot",
+      allRanks = {1833},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [11286] = {
+      name = "Gouge",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "gouge",
+      spellIcon = "ability_gouge",
+      allRanks = {1776, 1777, 8629, 11285, 11286},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [1776] = { refId = 11286 },
+    [1777] = { refId = 11286 },
+    [8629] = { refId = 11286 },
+    [11285] = { refId = 11286 },
+    [8643] = {
+      name = "Kidney Shot",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "kidney_shot",
+      spellIcon = "ability_rogue_kidneyshot",
+      allRanks = {408, 8643},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [408] = { refId = 8643 },
+    [2094] = {
+      name = "Blind",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "blind",
+      spellIcon = "spell_shadow_mindsteal",
+      allRanks = {2094},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [14278] = {
+      name = "Ghostly Strike",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "ghostly_strike",
+      spellIcon = "spell_shadow_curse",
+      allRanks = {14278},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [11297] = {
+      name = "Sap",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "sap",
+      spellIcon = "ability_sap",
+      allRanks = {6770, 2070, 11297},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [6770] = { refId = 11297 },
+    [2070] = { refId = 11297 },
+    [1725] = {
+      name = "Distract",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "distract",
+      spellIcon = "ability_rogue_distract",
+      allRanks = {1725},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [11198] = {
+      name = "Expose Armor",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "expose_armor",
+      spellIcon = "ability_warrior_riposte",
+      allRanks = {8647, 8649, 8650, 11197, 11198},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [8647] = { refId = 11198 },
+    [8649] = { refId = 11198 },
+    [8650] = { refId = 11198 },
+    [11197] = { refId = 11198 },
+    [11290] = {
+      name = "Garrote",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "garrote",
+      spellIcon = "ability_rogue_garrote",
+      allRanks = {703, 8631, 8632, 8633, 11289, 11290},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [703] = { refId = 11290 },
+    [8631] = { refId = 11290 },
+    [8632] = { refId = 11290 },
+    [8633] = { refId = 11290 },
+    [11289] = { refId = 11290 },
+    [11275] = {
+      name = "Rupture",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "rupture",
+      spellIcon = "ability_rogue_rupture",
+      allRanks = {1943, 8639, 8640, 11273, 11274, 11275},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [1943] = { refId = 11275 },
+    [8639] = { refId = 11275 },
+    [8640] = { refId = 11275 },
+    [11273] = { refId = 11275 },
+    [11274] = { refId = 11275 }
   }
 }
 
