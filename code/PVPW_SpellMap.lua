@@ -848,18 +848,25 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "blind",
       spellIcon = "spell_shadow_mindsteal",
-      allRanks = {2094},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REFRESH"
+      },
+      allRanks = {2094}
     },
     [1769] = {
       name = "Kick",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "kick",
       spellIcon = "ability_kick",
-      allRanks = {1766, 1767, 1768, 1769},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {1766, 1767, 1768, 1769}
     },
     [1766] = { refId = 1769 },
     [1767] = { refId = 1769 },
@@ -869,9 +876,13 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "sprint",
       spellIcon = "ability_rogue_sprint",
-      allRanks = {2983, 8696, 11305},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = {2983, 8696, 11305}
     },
     [2983] = { refId = 11305 },
     [8696] = { refId = 11305 },
@@ -880,18 +891,25 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "evasion",
       spellIcon = "spell_shadow_shadowward",
-      allRanks = {5277},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = {5277}
     },
     [8643] = {
       name = "Kidney Shot",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "kidney_shot",
       spellIcon = "ability_rogue_kidneyshot",
-      allRanks = {408, 8643},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {408, 8643}
     },
     [408] = { refId = 8643 },
     [1833] = {
@@ -899,54 +917,75 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "cheap_shot",
       spellIcon = "ability_cheapshot",
-      allRanks = {1833},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {1833}
     },
     [13750] = {
       name = "Adrenaline Rush",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "adrenaline_rush",
       spellIcon = "spell_shadow_shadowworddominate",
-      allRanks = {13750},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = {13750}
     },
     [13877] = {
       name = "Blade Flurry",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "blade_flurry",
       spellIcon = "ability_warrior_punishingblow",
-      allRanks = {13877},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = {13877}
     },
     [14177] = {
       name = "Cold Blood",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "cold_blood",
       spellIcon = "spell_ice_lament",
-      allRanks = {14177},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = {14177}
     },
     [14185] = {
       name = "Preparation",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "preparation",
       spellIcon = "spell_shadow_antishadow",
-      allRanks = {14185},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {14185}
     },
     [1857] = {
       name = "Vanish",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "vanish",
       spellIcon = "ability_vanish",
-      allRanks = {1856, 1857},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {1856, 1857}
     },
     [1856] = { refId = 1857 },
     [1787] = {
@@ -954,9 +993,12 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "stealth",
       spellIcon = "ability_stealth",
-      allRanks = {1784, 1785, 1786, 1787},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {1784, 1785, 1786, 1787}
     },
     [1784] = { refId = 1787 },
     [1785] = { refId = 1787 },
@@ -966,144 +1008,195 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "quick_draw",
       spellIcon = "inv_musket_02",
-      allRanks = {398196},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {398196}
     },
     [400009] = {
       name = "Between the Eyes",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "between_the_eyes",
       spellIcon = "inv_weapon_rifle_01",
-      allRanks = {400009},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {400009}
     },
     [400012] = {
       name = "Blade Dance",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "blade_dance",
       spellIcon = "ability_warrior_punishingblow",
-      allRanks = {400012},
-      self_avoid = false,
-      enemy_avoid = false
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = {400012}
     },
     [399960] = {
       name = "Mutilate",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "mutilate",
       spellIcon = "ability_rogue_shadowstrikes",
-      allRanks = {399960},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {399960}
     },
     [399985] = {
       name = "Shadowstrike",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "shadowstrike",
       spellIcon = "ability_rogue_envelopingshadows",
-      allRanks = {399985},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {399985}
     },
     [424785] = {
       name = "Saber Slash",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "saber_slash",
       spellIcon = "inv_1h_haremmatron_d_01",
-      allRanks = {424785},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {424785}
     },
     [400029] = {
       name = "Shadowstep",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "shadowstep",
       spellIcon = "ability_rogue_shadowstep",
-      allRanks = {400029},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {400029}
     },
     [425012] = {
       name = "Poisoned Knife",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "poisoned_knife",
       spellIcon = "ability_rogue_deadlybrew",
-      allRanks = {425012},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {425012}
     },
     [399986] = {
       name = "Shuriken Toss",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "shuriken_toss",
       spellIcon = "ability_upgrademoonglaive",
-      allRanks = {399986},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {399986}
     },
     [399963] = {
       name = "Envenom",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "envenom",
       spellIcon = "ability_rogue_disembowel",
-      allRanks = {399963},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {399963}
     },
     [424919] = {
       name = "Main Gauche",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "main_gauche",
       spellIcon = "spell_deathknight_spelldeflection",
-      allRanks = {424919},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {424919}
     },
     [425096] = {
       name = "Master of Subtlety",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "master_of_subtlety",
       spellIcon = "ability_rogue_masterofsubtlety",
-      allRanks = {425096},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = {425096}
     },
     [462708] = {
       name = "Cutthroat",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "cutthroat",
       spellIcon = "ability_rogue_slaughterfromtheshadows",
-      allRanks = {462708},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = {462708}
     },
     [436610] = {
       name = "Blunderbuss",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "blunderbuss",
       spellIcon = "inv_musket_04",
-      allRanks = {436610},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {436610}
     },
     [412096] = {
       name = "Crimson Tempest",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "crimson_tempest",
       spellIcon = "inv_sword_17",
-      allRanks = {412096},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {412096}
     },
     [409240] = {
       name = "Fan of Knives",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "fan_of_knives",
       spellIcon = "ability_rogue_fanofknives",
-      allRanks = {409240},
-      self_avoid = true,
-      enemy_avoid = true
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {409240}
     }
   }
 }

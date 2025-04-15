@@ -48,7 +48,6 @@ function me.TestAll()
   mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
   )
-
   mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
   )
@@ -63,7 +62,6 @@ function me.TestAll()
   me.TestAllCombatEvents()
   me.TestAllCombatSelfAvoidEvents()
   me.TestAllCombatEnemyAvoidEvents()
-
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- async finish of test group
   end)
@@ -72,8 +70,8 @@ end
 function me.TestAllSound()
   mod.testSoundWarrior.CollectTestCases()
   mod.testSoundPriest.CollectTestCases()
-  --[[
   mod.testSoundRogue.CollectTestCases()
+  --[[
   mod.testSoundMage.CollectTestCases()
   mod.testSoundHunter.CollectTestCases()
   mod.testSoundWarlock.CollectTestCases()
@@ -89,8 +87,8 @@ end
 function me.TestAllSoundSelfAvoid()
   mod.testSoundSelfAvoidWarrior.CollectTestCases()
   mod.testSoundSelfAvoidPriest.CollectTestCases()
-  --[[
   mod.testSoundSelfAvoidRogue.CollectTestCases()
+  --[[
   mod.testSoundSelfAvoidMage.CollectTestCases()
   mod.testSoundSelfAvoidHunter.CollectTestCases()
   mod.testSoundSelfAvoidWarlock.CollectTestCases()
@@ -103,8 +101,8 @@ end
 function me.TestAllSoundEnemyAvoid()
   mod.testSoundEnemyAvoidWarrior.CollectTestCases()
   mod.testSoundEnemyAvoidPriest.CollectTestCases()
-  --[[
   mod.testSoundEnemyAvoidRogue.CollectTestCases()
+  --[[
   mod.testSoundEnemyAvoidMage.CollectTestCases()
   mod.testSoundEnemyAvoidHunter.CollectTestCases()
   mod.testSoundEnemyAvoidWarlock.CollectTestCases()
@@ -117,8 +115,8 @@ end
 function me.TestAllCombatEvents()
   mod.testCombatEventsWarrior.CollectTestCases()
   mod.testCombatEventsPriest.CollectTestCases()
-  --[[
   mod.testCombatEventsRogue.CollectTestCases()
+  --[[
   mod.testCombatEventsMage.CollectTestCases()
   mod.testCombatEventsHunter.CollectTestCases()
   mod.testCombatEventsWarlock.CollectTestCases()
@@ -134,8 +132,8 @@ end
 function me.TestAllCombatSelfAvoidEvents()
   mod.testCombatEventsSelfAvoidWarrior.CollectTestCases()
   mod.testCombatEventsSelfAvoidPriest.CollectTestCases()
-  --[[
   mod.testCombatEventsSelfAvoidRogue.CollectTestCases()
+  --[[
   mod.testCombatEventsSelfAvoidMage.CollectTestCases()
   mod.testCombatEventsSelfAvoidHunter.CollectTestCases()
   mod.testCombatEventsSelfAvoidWarlock.CollectTestCases()
@@ -148,8 +146,8 @@ end
 function me.TestAllCombatEnemyAvoidEvents()
   mod.testCombatEventsEnemyAvoidWarrior.CollectTestCases()
   mod.testCombatEventsEnemyAvoidPriest.CollectTestCases()
-  --[[
   mod.testCombatEventsEnemyAvoidRogue.CollectTestCases()
+  --[[
   mod.testCombatEventsEnemyAvoidMage.CollectTestCases()
   mod.testCombatEventsEnemyAvoidHunter.CollectTestCases()
   mod.testCombatEventsEnemyAvoidWarlock.CollectTestCases()

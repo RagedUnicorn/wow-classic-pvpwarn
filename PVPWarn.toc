@@ -97,12 +97,12 @@ test/priest/PVPW_TestCombatEventsPriest.lua
 test/priest/PVPW_TestCombatEventsSelfAvoidPriest.lua
 test/priest/PVPW_TestCombatEventsEnemyAvoidPriest.lua
 # rogue
-test/rogue/PVPW_TestSoundRogueEn.lua
-test/rogue/PVPW_TestSoundSelfAvoidRogueEn.lua
-test/rogue/PVPW_TestSoundEnemyAvoidRogueEn.lua
-test/rogue/PVPW_TestCombatEventsRogueEn.lua
-test/rogue/PVPW_TestCombatEventsSelfAvoidRogueEn.lua
-test/rogue/PVPW_TestCombatEventsEnemyAvoidRogueEn.lua
+test/rogue/PVPW_TestSoundRogue.lua
+test/rogue/PVPW_TestSoundSelfAvoidRogue.lua
+test/rogue/PVPW_TestSoundEnemyAvoidRogue.lua
+test/rogue/PVPW_TestCombatEventsRogue.lua
+test/rogue/PVPW_TestCombatEventsSelfAvoidRogue.lua
+test/rogue/PVPW_TestCombatEventsEnemyAvoidRogue.lua
 # mage
 test/mage/PVPW_TestSoundMageEn.lua
 test/mage/PVPW_TestSoundSelfAvoidMageEn.lua
