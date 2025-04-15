@@ -140,6 +140,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowguardRemoved_19312)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowguardRefresh_19312)
 
+  -- start runes
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPenanceSuccess_402174)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCircleofHealingSuccess_401946)
