@@ -107,27 +107,29 @@ function me.ProcessStart(event, callback, ...)
     mod.debug.TrackLogNormalEvent(...)
   end
 
-  -- TODO this is unfinished
-  local spellName = select(13, ...)
+  local spellId, spellName = select(12, ...)
   local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
-  local spellId = 123 -- TODO
-  local category, spell = mod.spellMapHelper.SearchBySpellId(spellId, event)
 
+  local category, realSpellId, spell = mod.spellMapHelper.SearchBySpellId(spellId, event)
   local spellType = mod.common.GetSpellType(event)
   local spellMap = mod.common.GetSpellMap(spellType)
   local playSound
   local playVisual
 
-  if not me.IsValidSpellType(spellType) then return end
   if not me.HasFoundSpell(category, spell, spellName) then return end
+  if not me.IsValidSpellType(spellType) then return end
   if not me.IsSpellActive(spellMap, category, normalizedSpellName) then return end
 
-  local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
-    spellMap, category, normalizedSpellName
-  )
+  playSound = me.IsSoundWarningActive(spellMap, category, spellId, normalizedSpellName)
+  playVisual = me.IsVisualWarningActive(spellMap, category, spellId, normalizedSpellName)
 
-  playSound = me.IsSoundWarningActive(spellMap, category, spellName, normalizedSpellName)
-  playVisual = me.IsVisualWarningActive(category, normalizedSpellName, visualWarningColor)
+  if playVisual then
+    local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
+      spellMap, category, realSpellId
+    )
+
+    spell.visualWarningColor = visualWarningColor
+  end
 
   mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
 end

@@ -1198,6 +1198,379 @@ local spellMap = {
       },
       allRanks = {409240}
     }
+  },
+  ["mage"] = {
+    [11958] = {
+      name = "Ice Block",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "ice_block",
+      spellIcon = "spell_frost_frost",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [12826] = {
+      name = "Polymorph",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "polymorph",
+      spellIcon = "spell_nature_polymorph",
+      hasFade = false,
+      hasCast = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS",
+        "SPELL_CAST_START"
+      },
+      allRanks = {118, 12824, 12825, 12826, 28271, 28272}
+    },
+    [118] = { refId = 12826 },
+    [12824] = { refId = 12826 },
+    [12825] = { refId = 12826 },
+    [28271] = { refId = 12826 },
+    [28272] = { refId = 12826 },
+    [1953] = {
+      name = "Blink",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "blink",
+      spellIcon = "spell_arcane_blink",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [10225] = {
+      name = "Fire Ward",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "fire_ward",
+      spellIcon = "spell_fire_firearmor",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = {543, 8457, 8458, 10223, 10225}
+    },
+    [543] = { refId = 10225 },
+    [8457] = { refId = 10225 },
+    [8458] = { refId = 10225 },
+    [10223] = { refId = 10225 },
+    [28609] = {
+      name = "Frost Ward",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "frost_ward",
+      spellIcon = "spell_frost_frostward",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = {6143, 8461, 8462, 10177, 28609}
+    },
+    [6143] = { refId = 28609 },
+    [8461] = { refId = 28609 },
+    [8462] = { refId = 28609 },
+    [10177] = { refId = 28609 },
+    [2139] = {
+      name = "Counterspell",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "counterspell",
+      spellIcon = "spell_frost_iceshock",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [10193] = {
+      name = "Mana Shield",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "mana_shield",
+      spellIcon = "spell_shadow_detectlesserinvisibility",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED",
+        "SPELL_AURA_REFRESH"
+      },
+      allRanks = {1463, 8494, 8495, 10191, 10192, 10193}
+    },
+    [1463] = { refId = 10193 },
+    [8494] = { refId = 10193 },
+    [8495] = { refId = 10193 },
+    [10191] = { refId = 10193 },
+    [10192] = { refId = 10193 },
+    [13033] = {
+      name = "Ice Barrier",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "ice_barrier",
+      spellIcon = "spell_ice_lament",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED",
+        "SPELL_AURA_REFRESH"
+      },
+      allRanks = {11426, 13031, 13032, 13033}
+    },
+    [11426] = { refId = 13033 },
+    [13031] = { refId = 13033 },
+    [13032] = { refId = 13033 },
+    [10230] = {
+      name = "Frost Nova",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "frost_nova",
+      spellIcon = "spell_frost_frostnova",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {122, 865, 6131, 10230}
+    },
+    [122] = { refId = 10230 },
+    [865] = { refId = 10230 },
+    [6131] = { refId = 10230 },
+    [12042] = {
+      name = "Arcane Power",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "arcane_power",
+      spellIcon = "spell_nature_lightning",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [12051] = {
+      name = "Evocation",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "evocation",
+      spellIcon = "spell_nature_purge",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [12043] = {
+      name = "Presence of Mind",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "presence_of_mind",
+      spellIcon = "spell_nature_enchantarmor",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [11129] = {
+      name = "Combustion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "combustion",
+      spellIcon = "spell_fire_sealoffire",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [13021] = {
+      name = "Blast Wave",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "blast_wave",
+      spellIcon = "spell_holy_excorcism_02",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {11113, 13018, 13019, 13020, 13021}
+    },
+    [11113] = { refId = 13021 },
+    [13018] = { refId = 13021 },
+    [13019] = { refId = 13021 },
+    [13020] = { refId = 13021 },
+    [12472] = {
+      name = "Cold Snap",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "cold_snap",
+      spellIcon = "spell_frost_wizardmark",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [400647] = {
+      name = "Fingers of Frost",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "fingers_of_frost",
+      spellIcon = "ability_mage_wintersgrasp",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [425121] = {
+      name = "Icy Veins",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "icy_veins",
+      spellIcon = "spell_frost_coldhearted",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [425124] = {
+      name = "Arcane Surge",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "arcane_surge",
+      spellIcon = "spell_arcane_arcanetorrent",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [400613] = {
+      name = "Living Bomb",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "living_bomb",
+      spellIcon = "ability_mage_livingbomb",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [436516] = {
+      name = "Chronostatic Preservation",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "chronostatic_preservation",
+      spellIcon = "spell_arcane_arcane02",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [401556] = {
+      name = "Living Flame",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "living_flame",
+      spellIcon = "spell_fire_masterofelements",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [400640] = {
+      name = "Ice Lance",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "ice_lance",
+      spellIcon = "spell_frost_frostblast",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [428739] = {
+      name = "Deep Freeze",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "deep_freeze",
+      spellIcon = "ability_mage_deepfreeze",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [401502] = {
+      name = "Frostfire Bolt",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "frostfire_bolt",
+      spellIcon = "ability_mage_frostfirebolt",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [412532] = {
+      name = "Spellfrost Bolt",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "spellfrost_bolt",
+      spellIcon = "spell_fire_blueflamebolt",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [428878] = {
+      name = "Balefire Bolt",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "balefire_bolt",
+      spellIcon = "spell_fire_firebolt",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    },
+    [400624] = {
+      name = "Hot Streak",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "hot_streak",
+      spellIcon = "ability_mage_hotstreak",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [400731] = {
+      name = "Brain Freeze",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "brain_freeze",
+      spellIcon = "ability_mage_brainfreeze",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      }
+    },
+    [440802] = {
+      name = "Frozen Orb",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "frozen_orb",
+      spellIcon = "spell_frost_frozencore",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      }
+    }
   }
 }
 
