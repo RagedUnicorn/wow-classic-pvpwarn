@@ -325,6 +325,56 @@ local spellAvoidMap = {
     [8640] = { refId = 11275 },
     [11273] = { refId = 11275 },
     [11274] = { refId = 11275 }
+  },
+  ["mage"] = {
+    [2139] = {
+      name = "Counterspell",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "silence",
+      spellIcon = "spell_frost_iceshock",
+      allRanks = {2139},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [12826] = {
+      name = "Polymorph",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "polymorph",
+      spellIcon = "spell_nature_polymorph",
+      allRanks = {118, 12824, 12825, 12826, 28271, 28272},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [118] = { refId = 12826 },
+    [12824] = { refId = 12826 },
+    [12825] = { refId = 12826 },
+    [28271] = { refId = 12826 },
+    [28272] = { refId = 12826 },
+    [10230] = {
+      name = "Frost Nova",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "frost_nova",
+      spellIcon = "spell_frost_frostnova",
+      allRanks = {122, 865, 6131, 10230},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [122] = { refId = 10230 },
+    [865] = { refId = 10230 },
+    [6131] = { refId = 10230 },
+    [10161] = {
+      name = "Cone of Cold",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "cone_of_cold",
+      spellIcon = "spell_frost_glacier",
+      allRanks = {120, 8492, 10159, 10160, 10161},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [120] = { refId = 10161 },
+    [8492] = { refId = 10161 },
+    [10159] = { refId = 10161 },
+    [10160] = { refId = 10161 }
   }
 }
 

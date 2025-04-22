@@ -369,22 +369,22 @@ end
 
   @param {string} testName
   @param {string} testCategory
-  @param {string} spellName
+  @param {string} spellId
 ]]--
-function me.TestSoundStart(testName, testCategory, spellName) -- TODO has to be rewritten for spellId
+function me.TestSoundStart(testName, testCategory, spellId)
   assert(type(testName) == "string", string.format(
     "bad argument #1 to `TestSoundStart` (expected string, got %s)", type(testName)))
 
   assert(type(testCategory) == "string", string.format(
     "bad argument #2 to `TestSoundStart` (expected string, got %s)", type(testCategory)))
 
-  assert(type(spellName) == "string", string.format(
-    "bad argument #3 to `TestSoundStart` (expected string, got %s)", type(spellName)))
+  assert(type(spellId) == "number", string.format(
+    "bad argument #3 to `TestSoundStart` (expected number, got %s)", type(spellId)))
 
   mod.testReporter.StartTestRun(testName)
 
   local status = me.TestSound(
-    spellName,
+    spellId,
     testCategory,
     RGPVPW_CONSTANTS.EVENT_SPELL_CAST_START,
     RGPVPW_CONSTANTS.SPELL_TYPES.START
