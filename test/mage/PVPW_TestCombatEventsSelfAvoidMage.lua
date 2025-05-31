@@ -132,7 +132,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidFrostNovaImmune_6131)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidFrostNovaReflect_6131)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidFrostNovaAbsorbIgnored_6131)
-  
+
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidConeOfColdDodge_10161)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidConeOfColdBlock_10161)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSelfAvoidConeOfColdParry_10161)
