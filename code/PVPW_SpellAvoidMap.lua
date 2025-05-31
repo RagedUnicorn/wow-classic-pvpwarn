@@ -35,7 +35,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "charge",
       spellIcon = "ability_warrior_charge",
-      allRanks = {7922},
+      allRanks = { 7922 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -44,7 +44,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "intercept",
       spellIcon = "ability_rogue_sprint",
-      allRanks = {20253, 20614, 20615},
+      allRanks = { 20253, 20614, 20615 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -55,7 +55,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "hamstring",
       spellIcon = "ability_shockwave",
-      allRanks = {7372, 7373, 25212},
+      allRanks = { 7372, 7373, 25212 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -66,7 +66,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "mortal_strike",
       spellIcon = "ability_warrior_savageblow",
-      allRanks = {12294, 21551, 21552, 21553},
+      allRanks = { 12294, 21551, 21552, 21553 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -78,7 +78,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "intimidating_shout",
       spellIcon = "ability_golemthunderclap",
-      allRanks = {5246},
+      allRanks = { 5246 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -87,7 +87,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "pummel",
       spellIcon = "inv_gauntlets_04",
-      allRanks = {6552, 6554},
+      allRanks = { 6552, 6554 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -97,7 +97,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "disarm",
       spellIcon = "ability_warrior_disarm",
-      allRanks = {676},
+      allRanks = { 676 },
       self_avoid = true,
       enemy_avoid = true
     }
@@ -108,7 +108,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "devouring_plague",
       spellIcon = "spell_shadow_blackplague",
-      allRanks = {2944, 19276, 19277, 19278, 19279, 19280},
+      allRanks = { 2944, 19276, 19277, 19278, 19279, 19280 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -122,7 +122,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "blackout",
       spellIcon = "spell_shadow_gathershadows",
-      allRanks = {15268, 15323, 15324, 15325, 15326},
+      allRanks = { 15268, 15323, 15324, 15325, 15326 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -135,7 +135,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "mana_burn",
       spellIcon = "spell_shadow_manaburn",
-      allRanks = {8129, 8131, 10874, 10875, 10876},
+      allRanks = { 8129, 8131, 10874, 10875, 10876 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -148,7 +148,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "mind_control",
       spellIcon = "spell_shadow_shadowworddominate",
-      allRanks = {605, 10911, 10912},
+      allRanks = { 605, 10911, 10912 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -159,7 +159,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "psychic_scream",
       spellIcon = "spell_shadow_psychicscream",
-      allRanks = {8122, 8124, 10888, 10890},
+      allRanks = { 8122, 8124, 10888, 10890 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -171,7 +171,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "shadow_word_pain",
       spellIcon = "spell_shadow_shadowwordpain",
-      allRanks = {589, 594, 970, 992, 2767, 10892, 10893, 10894},
+      allRanks = { 589, 594, 970, 992, 2767, 10892, 10893, 10894 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -187,7 +187,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "silence",
       spellIcon = "spell_shadow_impphaseshift",
-      allRanks = {15487},
+      allRanks = { 15487 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -196,7 +196,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "vampiric_embrace",
       spellIcon = "spell_shadow_unsummonbuilding",
-      allRanks = {15286},
+      allRanks = { 15286 },
       self_avoid = true,
       enemy_avoid = true
     }
@@ -207,7 +207,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "kick",
       spellIcon = "ability_kick",
-      allRanks = {1766, 1767, 1768, 1769},
+      allRanks = { 1766, 1767, 1768, 1769 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -219,7 +219,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "cheap_shot",
       spellIcon = "ability_cheapshot",
-      allRanks = {1833},
+      allRanks = { 1833 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -228,7 +228,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "gouge",
       spellIcon = "ability_gouge",
-      allRanks = {1776, 1777, 8629, 11285, 11286},
+      allRanks = { 1776, 1777, 8629, 11285, 11286 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -241,7 +241,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "kidney_shot",
       spellIcon = "ability_rogue_kidneyshot",
-      allRanks = {408, 8643},
+      allRanks = { 408, 8643 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -251,7 +251,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "blind",
       spellIcon = "spell_shadow_mindsteal",
-      allRanks = {2094},
+      allRanks = { 2094 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -260,7 +260,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "ghostly_strike",
       spellIcon = "spell_shadow_curse",
-      allRanks = {14278},
+      allRanks = { 14278 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -269,7 +269,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "sap",
       spellIcon = "ability_sap",
-      allRanks = {6770, 2070, 11297},
+      allRanks = { 6770, 2070, 11297 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -280,7 +280,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "distract",
       spellIcon = "ability_rogue_distract",
-      allRanks = {1725},
+      allRanks = { 1725 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -289,7 +289,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "expose_armor",
       spellIcon = "ability_warrior_riposte",
-      allRanks = {8647, 8649, 8650, 11197, 11198},
+      allRanks = { 8647, 8649, 8650, 11197, 11198 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -302,7 +302,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "garrote",
       spellIcon = "ability_rogue_garrote",
-      allRanks = {703, 8631, 8632, 8633, 11289, 11290},
+      allRanks = { 703, 8631, 8632, 8633, 11289, 11290 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -316,7 +316,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "rupture",
       spellIcon = "ability_rogue_rupture",
-      allRanks = {1943, 8639, 8640, 11273, 11274, 11275},
+      allRanks = { 1943, 8639, 8640, 11273, 11274, 11275 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -332,7 +332,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "silence",
       spellIcon = "spell_frost_iceshock",
-      allRanks = {2139},
+      allRanks = { 2139 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -341,7 +341,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "polymorph",
       spellIcon = "spell_nature_polymorph",
-      allRanks = {118, 12824, 12825, 12826, 28271, 28272},
+      allRanks = { 118, 12824, 12825, 12826, 28271, 28272 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -355,7 +355,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "frost_nova",
       spellIcon = "spell_frost_frostnova",
-      allRanks = {122, 865, 6131, 10230},
+      allRanks = { 122, 865, 6131, 10230 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -367,7 +367,7 @@ local spellAvoidMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "cone_of_cold",
       spellIcon = "spell_frost_glacier",
-      allRanks = {120, 8492, 10159, 10160, 10161},
+      allRanks = { 120, 8492, 10159, 10160, 10161 },
       self_avoid = true,
       enemy_avoid = true
     },
@@ -375,9 +375,76 @@ local spellAvoidMap = {
     [8492] = { refId = 10161 },
     [10159] = { refId = 10161 },
     [10160] = { refId = 10161 }
+  },
+  ["hunter"] = {
+    [5116] = {
+      name = "Concussive Shot",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "concussive_shot",
+      spellIcon = "spell_frost_stun",
+      allRanks = { 5116 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [19503] = {
+      name = "Scatter Shot",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "scatter_shot",
+      spellIcon = "ability_golemstormbolt",
+      allRanks = {19503},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [13555] = {
+      name = "Serpent Sting",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "serpent_sting",
+      spellIcon = "ability_hunter_quickshot",
+      allRanks = {1978, 13549, 13550, 13551, 13552, 13553, 13554, 13555},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [1978] = { refId = 13555 },
+    [13549] = { refId = 13555 },
+    [13550] = { refId = 13555 },
+    [13551] = { refId = 13555 },
+    [13552] = { refId = 13555 },
+    [13553] = { refId = 13555 },
+    [13554] = { refId = 13555 },
+    [14280] = {
+      name = "Viper Sting",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "viper_sting",
+      spellIcon = "ability_hunter_aimedshot",
+      allRanks = {3034, 14279, 14280},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [3034] = { refId = 14280 },
+    [14279] = { refId = 14280 },
+    [14308] = {
+      name = "Freezing Trap", -- freezing trap effect
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "freezing_trap",
+      spellIcon = "spell_frost_chainsofice",
+      allRanks = {3355, 14308},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [3355] = { refId = 14308 },
+    [14268] = {
+      name = "Wing Clip",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "wing_clip",
+      spellIcon = "ability_rogue_trip",
+      allRanks = {2974, 14267, 14268},
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [2974] = { refId = 14268 },
+    [14267] = { refId = 14268 },
   }
 }
-
 --[[
   Get the spellAvoidMap
 

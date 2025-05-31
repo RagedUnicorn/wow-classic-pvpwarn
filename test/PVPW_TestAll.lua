@@ -74,8 +74,8 @@ function me.TestAllSound()
   mod.testSoundPriest.CollectTestCases()
   mod.testSoundRogue.CollectTestCases()
   mod.testSoundMage.CollectTestCases()
-  --[[
   mod.testSoundHunter.CollectTestCases()
+  --[[
   mod.testSoundWarlock.CollectTestCases()
   mod.testSoundPaladin.CollectTestCases()
   mod.testSoundDruid.CollectTestCases()
@@ -91,8 +91,8 @@ function me.TestAllSoundSelfAvoid()
   mod.testSoundSelfAvoidPriest.CollectTestCases()
   mod.testSoundSelfAvoidRogue.CollectTestCases()
   mod.testSoundSelfAvoidMage.CollectTestCases()
-  --[[
   mod.testSoundSelfAvoidHunter.CollectTestCases()
+  --[[
   mod.testSoundSelfAvoidWarlock.CollectTestCases()
   mod.testSoundSelfAvoidPaladin.CollectTestCases()
   mod.testSoundSelfAvoidDruid.CollectTestCases()
@@ -105,8 +105,8 @@ function me.TestAllSoundEnemyAvoid()
   mod.testSoundEnemyAvoidPriest.CollectTestCases()
   mod.testSoundEnemyAvoidRogue.CollectTestCases()
   mod.testSoundEnemyAvoidMage.CollectTestCases()
-  --[[
   mod.testSoundEnemyAvoidHunter.CollectTestCases()
+  --[[
   mod.testSoundEnemyAvoidWarlock.CollectTestCases()
   mod.testSoundEnemyAvoidPaladin.CollectTestCases()
   mod.testSoundEnemyAvoidDruid.CollectTestCases()
@@ -119,8 +119,8 @@ function me.TestAllCombatEvents()
   mod.testCombatEventsPriest.CollectTestCases()
   mod.testCombatEventsRogue.CollectTestCases()
   mod.testCombatEventsMage.CollectTestCases()
-  --[[
   mod.testCombatEventsHunter.CollectTestCases()
+  --[[
   mod.testCombatEventsWarlock.CollectTestCases()
   mod.testCombatEventsPaladin.CollectTestCases()
   mod.testCombatEventsDruid.CollectTestCases()
@@ -136,8 +136,8 @@ function me.TestAllCombatSelfAvoidEvents()
   mod.testCombatEventsSelfAvoidPriest.CollectTestCases()
   mod.testCombatEventsSelfAvoidRogue.CollectTestCases()
   mod.testCombatEventsSelfAvoidMage.CollectTestCases()
-  --[[
   mod.testCombatEventsSelfAvoidHunter.CollectTestCases()
+  --[[
   mod.testCombatEventsSelfAvoidWarlock.CollectTestCases()
   mod.testCombatEventsSelfAvoidPaladin.CollectTestCases()
   mod.testCombatEventsSelfAvoidDruid.CollectTestCases()
@@ -150,8 +150,8 @@ function me.TestAllCombatEnemyAvoidEvents()
   mod.testCombatEventsEnemyAvoidPriest.CollectTestCases()
   mod.testCombatEventsEnemyAvoidRogue.CollectTestCases()
   mod.testCombatEventsEnemyAvoidMage.CollectTestCases()
-  --[[
   mod.testCombatEventsEnemyAvoidHunter.CollectTestCases()
+  --[[
   mod.testCombatEventsEnemyAvoidWarlock.CollectTestCases()
   mod.testCombatEventsEnemyAvoidPaladin.CollectTestCases()
   mod.testCombatEventsEnemyAvoidDruid.CollectTestCases()
