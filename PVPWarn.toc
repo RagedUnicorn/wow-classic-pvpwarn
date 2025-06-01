@@ -125,12 +125,12 @@ test/warlock/PVPW_TestCombatEventsWarlock.lua
 test/warlock/PVPW_TestCombatEventsSelfAvoidWarlock.lua
 test/warlock/PVPW_TestCombatEventsEnemyAvoidWarlock.lua
 # paladin
-test/paladin/PVPW_TestSoundPaladinEn.lua
-test/paladin/PVPW_TestSoundSelfAvoidPaladinEn.lua
-test/paladin/PVPW_TestSoundEnemyAvoidPaladinEn.lua
-test/paladin/PVPW_TestCombatEventsPaladinEn.lua
-test/paladin/PVPW_TestCombatEventsSelfAvoidPaladinEn.lua
-test/paladin/PVPW_TestCombatEventsEnemyAvoidPaladinEn.lua
+test/paladin/PVPW_TestSoundPaladin.lua
+test/paladin/PVPW_TestSoundSelfAvoidPaladin.lua
+test/paladin/PVPW_TestSoundEnemyAvoidPaladin.lua
+test/paladin/PVPW_TestCombatEventsPaladin.lua
+test/paladin/PVPW_TestCombatEventsSelfAvoidPaladin.lua
+test/paladin/PVPW_TestCombatEventsEnemyAvoidPaladin.lua
 # druid
 test/druid/PVPW_TestSoundDruidEn.lua
 test/druid/PVPW_TestSoundSelfAvoidDruidEn.lua

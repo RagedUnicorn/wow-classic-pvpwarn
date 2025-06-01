@@ -76,8 +76,8 @@ function me.TestAllSound()
   mod.testSoundMage.CollectTestCases()
   mod.testSoundHunter.CollectTestCases()
   mod.testSoundWarlock.CollectTestCases()
-  --[[
   mod.testSoundPaladin.CollectTestCases()
+  --[[
   mod.testSoundDruid.CollectTestCases()
   mod.testSoundShaman.CollectTestCases()
   mod.testSoundRacials.CollectTestCases()
@@ -93,8 +93,8 @@ function me.TestAllSoundSelfAvoid()
   mod.testSoundSelfAvoidMage.CollectTestCases()
   mod.testSoundSelfAvoidHunter.CollectTestCases()
   mod.testSoundSelfAvoidWarlock.CollectTestCases()
-  --[[
   mod.testSoundSelfAvoidPaladin.CollectTestCases()
+  --[[
   mod.testSoundSelfAvoidDruid.CollectTestCases()
   mod.testSoundSelfAvoidShaman.CollectTestCases()
   ]]--
@@ -107,8 +107,8 @@ function me.TestAllSoundEnemyAvoid()
   mod.testSoundEnemyAvoidMage.CollectTestCases()
   mod.testSoundEnemyAvoidHunter.CollectTestCases()
   mod.testSoundEnemyAvoidWarlock.CollectTestCases()
-  --[[
   mod.testSoundEnemyAvoidPaladin.CollectTestCases()
+  --[[
   mod.testSoundEnemyAvoidDruid.CollectTestCases()
   mod.testSoundEnemyAvoidShaman.CollectTestCases()
   ]]--
@@ -121,8 +121,8 @@ function me.TestAllCombatEvents()
   mod.testCombatEventsMage.CollectTestCases()
   mod.testCombatEventsHunter.CollectTestCases()
   mod.testCombatEventsWarlock.CollectTestCases()
-  --[[
   mod.testCombatEventsPaladin.CollectTestCases()
+  --[[
   mod.testCombatEventsDruid.CollectTestCases()
   mod.testCombatEventsShaman.CollectTestCases()
   mod.testCombatEventsRacials.CollectTestCases()
@@ -138,8 +138,8 @@ function me.TestAllCombatSelfAvoidEvents()
   mod.testCombatEventsSelfAvoidMage.CollectTestCases()
   mod.testCombatEventsSelfAvoidHunter.CollectTestCases()
   mod.testCombatEventsSelfAvoidWarlock.CollectTestCases()
-  --[[
   mod.testCombatEventsSelfAvoidPaladin.CollectTestCases()
+  --[[
   mod.testCombatEventsSelfAvoidDruid.CollectTestCases()
   mod.testCombatEventsSelfAvoidShaman.CollectTestCases()
   ]]--
@@ -152,8 +152,8 @@ function me.TestAllCombatEnemyAvoidEvents()
   mod.testCombatEventsEnemyAvoidMage.CollectTestCases()
   mod.testCombatEventsEnemyAvoidHunter.CollectTestCases()
   mod.testCombatEventsEnemyAvoidWarlock.CollectTestCases()
-  --[[
   mod.testCombatEventsEnemyAvoidPaladin.CollectTestCases()
+  --[[
   mod.testCombatEventsEnemyAvoidDruid.CollectTestCases()
   mod.testCombatEventsEnemyAvoidShaman.CollectTestCases()
   ]]--
