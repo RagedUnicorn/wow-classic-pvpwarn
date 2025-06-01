@@ -118,12 +118,12 @@ test/hunter/PVPW_TestCombatEventsHunter.lua
 test/hunter/PVPW_TestCombatEventsSelfAvoidHunter.lua
 test/hunter/PVPW_TestCombatEventsEnemyAvoidHunter.lua
 # warlock
-test/warlock/PVPW_TestSoundWarlockEn.lua
-test/warlock/PVPW_TestSoundSelfAvoidWarlockEn.lua
-test/warlock/PVPW_TestSoundEnemyAvoidWarlockEn.lua
-test/warlock/PVPW_TestCombatEventsWarlockEn.lua
-test/warlock/PVPW_TestCombatEventsSelfAvoidWarlockEn.lua
-test/warlock/PVPW_TestCombatEventsEnemyAvoidWarlockEn.lua
+test/warlock/PVPW_TestSoundWarlock.lua
+test/warlock/PVPW_TestSoundSelfAvoidWarlock.lua
+test/warlock/PVPW_TestSoundEnemyAvoidWarlock.lua
+test/warlock/PVPW_TestCombatEventsWarlock.lua
+test/warlock/PVPW_TestCombatEventsSelfAvoidWarlock.lua
+test/warlock/PVPW_TestCombatEventsEnemyAvoidWarlock.lua
 # paladin
 test/paladin/PVPW_TestSoundPaladinEn.lua
 test/paladin/PVPW_TestSoundSelfAvoidPaladinEn.lua

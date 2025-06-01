@@ -1849,6 +1849,224 @@ local spellMap = {
         "SPELL_AURA_REMOVED"
       }
     }
+  },
+  ["warlock"] = {
+    [6215] = {
+      name = "Fear",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "fear",
+      spellIcon = "spell_shadow_possession",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 5782, 6213, 6215 }
+    },
+    [5782] = { refId = 6215 },
+    [6213] = { refId = 6215 },
+    [18871] = {
+      name = "Shadowburn",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "shadowburn",
+      spellIcon = "spell_shadow_scourgebuild",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 17877, 18867, 18868, 18869, 18870, 18871 }
+    },
+    [17877] = { refId = 18871 },
+    [18867] = { refId = 18871 },
+    [18868] = { refId = 18871 },
+    [18869] = { refId = 18871 },
+    [18870] = { refId = 18871 },
+    [28610] = {
+      name = "Shadow Ward",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "shadow_ward",
+      spellIcon = "spell_shadow_antishadow",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 6229, 11739, 11740, 28610 }
+    },
+    [6229] = { refId = 28610 },
+    [11739] = { refId = 28610 },
+    [11740] = { refId = 28610 },
+    [17928] = {
+      name = "Howl of Terror",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "howl_of_terror",
+      spellIcon = "spell_shadow_deathscream",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 5484, 17928 }
+    },
+    [5484] = { refId = 17928 },
+    [17926] = {
+      name = "Death Coil",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "death_coil",
+      spellIcon = "spell_shadow_deathcoil",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 6789, 17925, 17926 }
+    },
+    [6789] = { refId = 17926 },
+    [17925] = { refId = 17926 },
+    [18288] = {
+      name = "Amplify Curse",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "amplify_curse",
+      spellIcon = "spell_shadow_contagion",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 18288 }
+    },
+    [19647] = {
+      name = "Spell Lock",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "spell_lock",
+      spellIcon = "spell_shadow_mindrot",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 19244, 19647 }
+    },
+    [19244] = { refId = 19647 },
+    [19028] = {
+      name = "Soul Link",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "soul_link",
+      spellIcon = "spell_shadow_gathershadows",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 19028 },
+      ignorePet = true
+    },
+    [18708] = {
+      name = "Fel Domination",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "fel_domination",
+      spellIcon = "spell_nature_removecurse",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 18708 }
+    },
+    [425463] = {
+      name = "Demonic Grace",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "demonic_grace",
+      spellIcon = "ability_warlock_demonicpower",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 425463 }
+    },
+    [403501] = {
+      name = "Haunt",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "haunt",
+      spellIcon = "ability_warlock_haunt",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 403501 }
+    },
+    [426195] = {
+      name = "Vengeance",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "vengeance",
+      spellIcon = "ability_warlock_improveddemonictactics",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 426195 }
+    },
+    [427726] = {
+      name = "Immolation Aura",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "immolation_aura",
+      spellIcon = "spell_fire_felimmolation",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 427726 }
+    },
+    [427717] = {
+      name = "Unstable Affliction",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "unstable_affliction",
+      spellIcon = "spell_shadow_unstableaffliction_3",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 427717 }
+    },
+    [427713] = {
+      name = "Backdraft",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "backdraft",
+      spellIcon = "ability_warlock_backdraft",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 427713 }
+    },
+    [440882] = {
+      name = "Infernal Armor",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "infernal_armor",
+      spellIcon = "achievement_boss_kiljaedan",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 440882 }
+    }
   }
 }
 

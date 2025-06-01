@@ -443,6 +443,50 @@ local spellAvoidMap = {
     },
     [2974] = { refId = 14268 },
     [14267] = { refId = 14268 },
+  },
+  ["warlock"] = {
+    [11719] = {
+      name = "Curse of Tongues",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "curse_of_tongues",
+      spellIcon = "spell_shadow_curseoftounges",
+      allRanks = { 1714, 11719 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [1714] = { refId = 11719 },
+    [17926] = {
+      name = "Death Coil",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "death_coil",
+      spellIcon = "spell_shadow_deathcoil",
+      allRanks = { 6789, 17925, 17926 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [6789] = { refId = 17926 },
+    [17925] = { refId = 17926 },
+    [6215] = {
+      name = "Fear",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "fear",
+      spellIcon = "spell_shadow_possession",
+      allRanks = { 5782, 6213, 6215 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [5782] = { refId = 6215 },
+    [6213] = { refId = 6215 },
+    [17928] = {
+      name = "Howl of Terror",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "howl_of_terror",
+      spellIcon = "spell_shadow_deathscream",
+      allRanks = { 5484, 17928 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [5484] = { refId = 17928 }
   }
 }
 --[[
