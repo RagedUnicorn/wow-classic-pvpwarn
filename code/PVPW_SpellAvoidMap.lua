@@ -487,6 +487,29 @@ local spellAvoidMap = {
       enemy_avoid = true
     },
     [5484] = { refId = 17928 }
+  },
+  ["paladin"] = {
+    [24239] = {
+      name = "Hammer of Wrath",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "hammer_of_wrath",
+      spellIcon = "ability_thunderclap",
+      allRanks = { 24239 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [10308] = {
+      name = "Hammer of Justice",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "hammer_of_justice",
+      spellIcon = "spell_holy_sealofmight",
+      allRanks = { 853, 5588, 5589, 10308 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [853] = { refId = 10308 },
+    [5588] = { refId = 10308 },
+    [5589] = { refId = 10308 }
   }
 }
 --[[

@@ -2067,6 +2067,363 @@ local spellMap = {
       },
       allRanks = { 440882 }
     }
+  },
+  ["paladin"] = {
+    [10293] = {
+      name = "Devotion Aura",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "devotion_aura",
+      spellIcon = "spell_holy_devotionaura",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 465, 10290, 643, 10291, 1032, 10292, 10293 }
+    },
+    [465] = { refId = 10293 },
+    [10290] = { refId = 10293 },
+    [643] = { refId = 10293 },
+    [10291] = { refId = 10293 },
+    [1032] = { refId = 10293 },
+    [10292] = { refId = 10293 },
+    [10301] = {
+      name = "Retribution Aura",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "retribution_aura",
+      spellIcon = "spell_holy_auraoflight",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 7294, 10298, 10299, 10300, 10301 }
+    },
+    [7294] = { refId = 10301 },
+    [10298] = { refId = 10301 },
+    [10299] = { refId = 10301 },
+    [10300] = { refId = 10301 },
+    [19746] = {
+      name = "Concentration Aura",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "concentration_aura",
+      spellIcon = "spell_holy_mindsooth",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 19746 }
+    },
+    [19896] = {
+      name = "Shadow Resistance Aura",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "shadow_resistance_aura",
+      spellIcon = "spell_shadow_sealofkings",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 19876, 19895, 19896 }
+    },
+    [19876] = { refId = 19896 },
+    [19895] = { refId = 19896 },
+    [19898] = {
+      name = "Frost Resistance Aura",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "frost_resistance_aura",
+      spellIcon = "spell_frost_wizardmark",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 19888, 19897, 19898 }
+    },
+    [19888] = { refId = 19898 },
+    [19897] = { refId = 19898 },
+    [19900] = {
+      name = "Fire Resistance Aura",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "fire_resistance_aura",
+      spellIcon = "spell_fire_sealoffire",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 19891, 19899, 19900 }
+    },
+    [19891] = { refId = 19900 },
+    [19899] = { refId = 19900 },
+    [10278] = {
+      name = "Blessing of Protection",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "blessing_of_protection",
+      spellIcon = "spell_holy_sealofprotection",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 1022, 5599, 10278 }
+    },
+    [1022] = { refId = 10278 },
+    [5599] = { refId = 10278 },
+    [1044] = {
+      name = "Blessing of Freedom",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "blessing_of_freedom",
+      spellIcon = "spell_holy_sealofvalor",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 1044 }
+    },
+    [20729] = {
+      name = "Blessing of Sacrifice",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "blessing_of_sacrifice",
+      spellIcon = "spell_holy_sealofsacrifice",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 6940, 20729 }
+    },
+    [6940] = { refId = 20729 },
+    [10308] = {
+      name = "Hammer of Justice",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "hammer_of_justice",
+      spellIcon = "spell_holy_sealofmight",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 853, 5588, 5589, 10308 }
+    },
+    [853] = { refId = 10308 },
+    [5588] = { refId = 10308 },
+    [5589] = { refId = 10308 },
+    [20066] = {
+      name = "Repentance",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "repentance",
+      spellIcon = "spell_holy_prayerofhealing",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 20066 }
+    },
+    [642] = {
+      name = "Divine Shield",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "divine_shield",
+      spellIcon = "spell_holy_divineintervention",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 498, 642 }
+    },
+    [498] = { refId = 642 },
+    [25771] = {
+      name = "Forbearance",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "forbearance",
+      spellIcon = "spell_holy_removecurse",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 25771 }
+    },
+    [10310] = {
+      name = "Lay on Hands",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "lay_on_hands",
+      spellIcon = "spell_holy_layonhands",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 633, 2800, 10310 }
+    },
+    [633] = { refId = 10310 },
+    [2800] = { refId = 10310 },
+    [5573] = {
+      name = "Divine Protection",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "divine_protection",
+      spellIcon = "spell_holy_restoration",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 498, 5573 }
+    },
+    --[[
+      [498] = { refId = 5573 },
+      Note: Rank 1 (498) is shared with Divine Shield (also 498).
+      They are mutually exclusive spells—Divine Shield replaces Divine Protection at higher levels.
+      The addon will always recognize 498 as divine shield even though it could be divine protection.
+      It is however more likely that is is divine shield.
+    ]]--
+    [425589] = {
+      name = "Aegis",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "aegis",
+      spellIcon = "inv_shield_48",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 425589 }
+    },
+    [407804] = {
+      name = "Divine Sacrifice",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "divine_sacrifice",
+      spellIcon = "spell_holy_powerwordbarrier",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 407804 }
+    },
+    [407880] = {
+      name = "Inspiration Exemplar",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "inspiration_exemplar",
+      spellIcon = "spell_holy_power",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 407880 }
+    },
+    [407669] = {
+      name = "Avenger's Shield",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "avengers_shield",
+      spellIcon = "spell_holy_avengersshield",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 407669 }
+    },
+    [425609] = {
+      name = "Rebuke",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "rebuke",
+      spellIcon = "inv_relics_totemofrage",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 425609 }
+    },
+    [407676] = {
+      name = "Crusader Strike",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "crusader_strike",
+      spellIcon = "spell_holy_crusaderstrike",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 407676 }
+    },
+    [407778] = {
+      name = "Divine Storm",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "divine_storm",
+      spellIcon = "ability_paladin_divinestorm",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 407778 }
+    },
+    [461607] = {
+      name = "Divine Steed",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "divine_steed",
+      spellIcon = "spell_holy_crusaderaura",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 461607 }
+    },
+    [462853] = {
+      name = "Hand of Sacrifice",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "hand_of_sacrifice",
+      spellIcon = "spell_holy_sealofsacrifice",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 462853 }
+    },
+    [409925] = {
+      name = "Divine Light",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "divine_light",
+      spellIcon = "spell_holy_surgeoflight",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 409925 }
+    },
+    [407788] = {
+      name = "Avenging Wrath",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "avenging_wrath",
+      spellIcon = "spell_holy_avenginewrath",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 407788 }
+    }
   }
 }
 

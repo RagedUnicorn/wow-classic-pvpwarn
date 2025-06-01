@@ -113,9 +113,10 @@ end
     The normalized spellName
 ]]--
 function me.NormalizeSpellName(spellName)
+  local cleanedName = spellName:gsub("'", "")
   local name = ""
 
-  for match in string.gmatch(spellName, "%a+") do
+  for match in string.gmatch(cleanedName, "%a+") do
     name = name .. me.FirstToUpper(match)
   end
 

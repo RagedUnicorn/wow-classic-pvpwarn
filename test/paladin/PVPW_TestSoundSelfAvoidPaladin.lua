@@ -24,11 +24,11 @@
 
 local mod = rgpvpw
 local me = {}
-mod.testSoundEnemyAvoidPaladinEn = me
+mod.testSoundSelfAvoidPaladin = me
 
-me.tag = "TestSoundEnemyAvoidPaladinEn"
+me.tag = "TestSoundSelfAvoidPaladin"
 
-local testGroupName = "SoundEnemyAvoidPaladinEn"
+local testGroupName = "SoundSelfAvoidPaladin"
 local testCategory = "paladin"
 
 function me.Test()
@@ -42,22 +42,50 @@ function me.Test()
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHammerOfWrath)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHammerOfJustice)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHammerOfWrath_24239)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHammerOfJustice_10308)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHammerOfJustice_853)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHammerOfJustice_5588)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHammerOfJustice_5589)
 end
 
-function me.TestSoundEnemyAvoidHammerOfWrath()
-  mod.testHelper.TestSoundSpellMissedEnemy(
-    "TestSoundEnemyAvoidHammerOfWrath",
+function me.TestSoundSelfAvoidHammerOfWrath_24239()
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidHammerOfWrath_24239",
     testCategory,
-    "Hammer of Wrath"
+    24239
   )
 end
 
-function me.TestSoundEnemyAvoidHammerOfJustice()
-  mod.testHelper.TestSoundSpellMissedEnemy(
-    "TestSoundEnemyAvoidHammerOfJustice",
+function me.TestSoundSelfAvoidHammerOfJustice_10308()
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidHammerOfJustice_10308",
     testCategory,
-    "Hammer of Justice"
+    10308
+  )
+end
+
+function me.TestSoundSelfAvoidHammerOfJustice_853()
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidHammerOfJustice_853",
+    testCategory,
+    853
+  )
+end
+
+function me.TestSoundSelfAvoidHammerOfJustice_5588()
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidHammerOfJustice_5588",
+    testCategory,
+    5588
+  )
+end
+
+function me.TestSoundSelfAvoidHammerOfJustice_5589()
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidHammerOfJustice_5589",
+    testCategory,
+    5589
   )
 end
