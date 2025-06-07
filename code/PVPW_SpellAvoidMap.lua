@@ -510,6 +510,66 @@ local spellAvoidMap = {
     [853] = { refId = 10308 },
     [5588] = { refId = 10308 },
     [5589] = { refId = 10308 }
+  },
+  ["druid"] = {
+    [19970] = {
+      name = "Entangling Roots",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "entangling_roots",
+      spellIcon = "spell_nature_stranglevines",
+      allRanks = { 339, 1062, 5195, 5196, 9852, 19970 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [339] = { refId = 19970 },
+    [1062] = { refId = 19970 },
+    [5195] = { refId = 19970 },
+    [5196] = { refId = 19970 },
+    [9852] = { refId = 19970 },
+    [9907] = {
+      name = "Faerie Fire",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "faerie_fire",
+      spellIcon = "spell_nature_faeriefire",
+      allRanks = { 770, 778, 9749, 9907 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [770] = { refId = 9907 },
+    [778] = { refId = 9907 },
+    [9749] = { refId = 9907 },
+    [17392] = {
+      name = "Faerie Fire (Feral)",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "faerie_fire",
+      spellIcon = "spell_nature_faeriefire",
+      allRanks = { 16857, 17390, 17391, 17392 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [16857] = { refId = 17392 },
+    [17390] = { refId = 17392 },
+    [17391] = { refId = 17392 },
+    [8983] = {
+      name = "Bash",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "bash",
+      spellIcon = "ability_druid_bash",
+      allRanks = { 5211, 6798, 8983 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [5211] = { refId = 8983 },
+    [6798] = { refId = 8983 },
+    [19675] = {
+      name = "Feral Charge Effect",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "feral_charge",
+      spellIcon = "ability_hunter_pet_bear",
+      allRanks = { 19675 },
+      self_avoid = true,
+      enemy_avoid = true
+    }
   }
 }
 --[[
