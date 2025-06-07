@@ -132,12 +132,12 @@ test/paladin/PVPW_TestCombatEventsPaladin.lua
 test/paladin/PVPW_TestCombatEventsSelfAvoidPaladin.lua
 test/paladin/PVPW_TestCombatEventsEnemyAvoidPaladin.lua
 # druid
-test/druid/PVPW_TestSoundDruidEn.lua
-test/druid/PVPW_TestSoundSelfAvoidDruidEn.lua
-test/druid/PVPW_TestSoundEnemyAvoidDruidEn.lua
-test/druid/PVPW_TestCombatEventsDruidEn.lua
-test/druid/PVPW_TestCombatEventsSelfAvoidDruidEn.lua
-test/druid/PVPW_TestCombatEventsEnemyAvoidDruidEn.lua
+test/druid/PVPW_TestSoundDruid.lua
+test/druid/PVPW_TestSoundSelfAvoidDruid.lua
+test/druid/PVPW_TestSoundEnemyAvoidDruid.lua
+test/druid/PVPW_TestCombatEventsDruid.lua
+test/druid/PVPW_TestCombatEventsSelfAvoidDruid.lua
+test/druid/PVPW_TestCombatEventsEnemyAvoidDruid.lua
 # shaman
 test/shaman/PVPW_TestSoundShamanEn.lua
 test/shaman/PVPW_TestSoundSelfAvoidShamanEn.lua

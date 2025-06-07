@@ -2424,6 +2424,347 @@ local spellMap = {
       },
       allRanks = { 407788 }
     }
+  },
+  ["druid"] = {
+    [9634] = {
+      name = "Dire Bear Form",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "dire_bear_form",
+      spellIcon = "ability_racial_bearform",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 9634 }
+    },
+    [768] = {
+      name = "Cat Form",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "cat_form",
+      spellIcon = "ability_druid_catform",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 768 }
+    },
+    [783] = {
+      name = "Travel Form",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "travel_form",
+      spellIcon = "ability_druid_travelform",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 783 }
+    },
+    [1066] = {
+      name = "Aquatic Form",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "aquatic_form",
+      spellIcon = "ability_druid_aquaticform",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 1066 }
+    },
+    [24858] = {
+      name = "Moonkin Form",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "moonkin_form",
+      spellIcon = "spell_nature_forceofnature",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 24858 }
+    },
+    [22812] = {
+      name = "Barkskin",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "barkskin",
+      spellIcon = "spell_nature_stoneclawtotem",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 22812 }
+    },
+    [17329] = {
+      name = "Nature's Grasp",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "natures_grasp",
+      spellIcon = "spell_nature_natureswrath",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 16689, 16810, 16811, 16812, 16813, 17329 }
+    },
+    [16689] = { refId = 17329 },
+    [16810] = { refId = 17329 },
+    [16811] = { refId = 17329 },
+    [16812] = { refId = 17329 },
+    [16813] = { refId = 17329 },
+    [8983] = {
+      name = "Bash",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "bash",
+      spellIcon = "ability_druid_bash",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 5211, 6798, 8983 }
+    },
+    [5211] = { refId = 8983 },
+    [6798] = { refId = 8983 },
+    [16979] = {
+      name = "Feral Charge",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "feral_charge",
+      spellIcon = "ability_hunter_pet_bear",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 16979 }
+    },
+    [22896] = {
+      name = "Frenzied Regeneration",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "frenzied_regeneration",
+      spellIcon = "ability_bullrush",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 22842, 22895, 22896 }
+    },
+    [22842] = { refId = 22896 },
+    [22895] = { refId = 22896 },
+    [2893] = {
+      name = "Abolish Poison",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "abolish_poison",
+      spellIcon = "spell_nature_nullifypoison_02",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 2893 }
+    },
+    [29166] = {
+      name = "Innervate",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "innervate",
+      spellIcon = "spell_nature_lightning",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 29166 }
+    },
+    [17116] = {
+      name = "Nature's Swiftness",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "natures_swiftness",
+      spellIcon = "spell_nature_ravenform",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 17116 }
+    },
+    [9907] = {
+      name = "Faerie Fire",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "faerie_fire",
+      spellIcon = "spell_nature_faeriefire",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 770, 778, 9749, 9907 }
+    },
+    [770] = { refId = 9907 },
+    [778] = { refId = 9907 },
+    [9749] = { refId = 9907 },
+    [17392] = {
+      name = "Faerie Fire (Feral)",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "faerie_fire",
+      spellIcon = "spell_nature_faeriefire",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 16857, 17390, 17391, 17392 }
+    },
+    [16857] = { refId = 17392 },
+    [17390] = { refId = 17392 },
+    [17391] = { refId = 17392 },
+    [410176] = {
+      name = "Skull Bash",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "skull_bash",
+      spellIcon = "inv_misc_bone_taurenskull_01",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 410176 }
+    },
+    [407988] = {
+      name = "Savage Roar",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "savage_roar",
+      spellIcon = "ability_druid_skinteeth",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 407988 }
+    },
+    [414644] = {
+      name = "Lacerate",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "lacerate",
+      spellIcon = "ability_druid_lacerate",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 414644 }
+    },
+    [408120] = {
+      name = "Wild Growth",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "wild_growth",
+      spellIcon = "ability_druid_flourish",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 408120 }
+    },
+    [407995] = {
+      name = "Mangle",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "mangle",
+      spellIcon = "ability_druid_mangle2",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 407995 }
+    },
+    [417141] = {
+      name = "Berserk",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "berserk",
+      spellIcon = "ability_druid_berserk",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 417141 }
+    },
+    [408024] = {
+      name = "Survival Instincts",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "survival_instincts",
+      spellIcon = "ability_mount_whitedirewolf",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 408024 }
+    },
+    [439733] = {
+      name = "Tree of Life",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "tree_of_life",
+      spellIcon = "ability_druid_treeoflife",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 439733 }
+    },
+    [414799] = {
+      name = "Fury of Stormrage",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "fury_of_stormrage",
+      spellIcon = "inv_staff_90",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 414799 }
+    },
+    [408250] = {
+      name = "Eclipse: Solar",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "eclipse_solar",
+      spellIcon = "ability_druid_eclipseorange",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 408250 }
+    },
+    [441260] = {
+      name = "Eclipse: Lunar",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "eclipse_lunar",
+      spellIcon = "ability_druid_eclipse",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 441260 }
+    }
   }
 }
 
