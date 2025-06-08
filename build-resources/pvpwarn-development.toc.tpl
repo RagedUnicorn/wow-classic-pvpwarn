@@ -139,12 +139,12 @@ test/druid/PVPW_TestCombatEventsDruid.lua
 test/druid/PVPW_TestCombatEventsSelfAvoidDruid.lua
 test/druid/PVPW_TestCombatEventsEnemyAvoidDruid.lua
 # shaman
-test/shaman/PVPW_TestSoundShamanEn.lua
-test/shaman/PVPW_TestSoundSelfAvoidShamanEn.lua
-test/shaman/PVPW_TestSoundEnemyAvoidShamanEn.lua
-test/shaman/PVPW_TestCombatEventsShamanEn.lua
-test/shaman/PVPW_TestCombatEventsSelfAvoidShamanEn.lua
-test/shaman/PVPW_TestCombatEventsEnemyAvoidShamanEn.lua
+test/shaman/PVPW_TestSoundShaman.lua
+test/shaman/PVPW_TestSoundSelfAvoidShaman.lua
+test/shaman/PVPW_TestSoundEnemyAvoidShaman.lua
+test/shaman/PVPW_TestCombatEventsShaman.lua
+test/shaman/PVPW_TestCombatEventsSelfAvoidShaman.lua
+test/shaman/PVPW_TestCombatEventsEnemyAvoidShaman.lua
 # racials
 test/racials/PVPW_TestSoundRacialsEn.lua
 test/racials/PVPW_TestCombatEventsRacialsEn.lua

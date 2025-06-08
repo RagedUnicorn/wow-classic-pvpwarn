@@ -78,8 +78,8 @@ function me.TestAllSound()
   mod.testSoundWarlock.CollectTestCases()
   mod.testSoundPaladin.CollectTestCases()
   mod.testSoundDruid.CollectTestCases()
-  --[[
   mod.testSoundShaman.CollectTestCases()
+  --[[
   mod.testSoundRacials.CollectTestCases()
   mod.testSoundItems.CollectTestCases()
   mod.testSoundMisc.CollectTestCases()
@@ -95,9 +95,7 @@ function me.TestAllSoundSelfAvoid()
   mod.testSoundSelfAvoidWarlock.CollectTestCases()
   mod.testSoundSelfAvoidPaladin.CollectTestCases()
   mod.testSoundSelfAvoidDruid.CollectTestCases()
-  --[[
   mod.testSoundSelfAvoidShaman.CollectTestCases()
-  ]]--
 end
 
 function me.TestAllSoundEnemyAvoid()
@@ -109,9 +107,7 @@ function me.TestAllSoundEnemyAvoid()
   mod.testSoundEnemyAvoidWarlock.CollectTestCases()
   mod.testSoundEnemyAvoidPaladin.CollectTestCases()
   mod.testSoundEnemyAvoidDruid.CollectTestCases()
-  --[[
   mod.testSoundEnemyAvoidShaman.CollectTestCases()
-  ]]--
 end
 
 function me.TestAllCombatEvents()
@@ -123,8 +119,8 @@ function me.TestAllCombatEvents()
   mod.testCombatEventsWarlock.CollectTestCases()
   mod.testCombatEventsPaladin.CollectTestCases()
   mod.testCombatEventsDruid.CollectTestCases()
-  --[[
   mod.testCombatEventsShaman.CollectTestCases()
+  --[[
   mod.testCombatEventsRacials.CollectTestCases()
   mod.testCombatEventsItems.CollectTestCases()
   mod.testCombatEventsMisc.CollectTestCases()
@@ -140,9 +136,7 @@ function me.TestAllCombatSelfAvoidEvents()
   mod.testCombatEventsSelfAvoidWarlock.CollectTestCases()
   mod.testCombatEventsSelfAvoidPaladin.CollectTestCases()
   mod.testCombatEventsSelfAvoidDruid.CollectTestCases()
-  --[[
   mod.testCombatEventsSelfAvoidShaman.CollectTestCases()
-  ]]--
 end
 
 function me.TestAllCombatEnemyAvoidEvents()
@@ -154,7 +148,5 @@ function me.TestAllCombatEnemyAvoidEvents()
   mod.testCombatEventsEnemyAvoidWarlock.CollectTestCases()
   mod.testCombatEventsEnemyAvoidPaladin.CollectTestCases()
   mod.testCombatEventsEnemyAvoidDruid.CollectTestCases()
-  --[[
   mod.testCombatEventsEnemyAvoidShaman.CollectTestCases()
-  ]]--
 end

@@ -2765,6 +2765,486 @@ local spellMap = {
       },
       allRanks = { 441260 }
     }
+  },
+  ["shaman"] = {
+    [16166] = {
+      name = "Elemental Mastery",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "elemental_mastery",
+      spellIcon = "spell_nature_wispheal",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 16166 }
+    },
+    [16188] = {
+      name = "Nature's Swiftness",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "natures_swiftness",
+      spellIcon = "spell_nature_ravenform",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 16188 },
+    },
+    [8143] = {
+      name = "Tremor Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "tremor_totem",
+      spellIcon = "spell_nature_tremortotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8143 },
+    },
+    [8166] = {
+      name = "Poison Cleansing Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "poison_cleansing_totem",
+      spellIcon = "spell_nature_poisoncleansingtotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8166 },
+    },
+    [8177] = {
+      name = "Grounding Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "grounding_totem",
+      spellIcon = "spell_nature_groundingtotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8177 }
+    },
+    [10538] = {
+      name = "Fire Resistance Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "fire_resistance_totem",
+      spellIcon = "spell_fireresistancetotem_01",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8184, 10537, 10538 }
+    },
+    [8184] = { refId = 10538 },
+    [10537] = { refId = 10538 },
+    [10479] = {
+      name = "Frost Resistance Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "frost_resistance_totem",
+      spellIcon = "spell_frostresistancetotem_01",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8181, 10478, 10479 }
+    },
+    [8181] = { refId = 10479 },
+    [10478] = { refId = 10479 },
+    [10601] = {
+      name = "Nature Resistance Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "nature_resistance_totem",
+      spellIcon = "spell_nature_natureresistancetotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 10595, 10600, 10601 }
+    },
+    [10595] = { refId = 10601 },
+    [10600] = { refId = 10601 },
+    [16387] = {
+      name = "Flametongue Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "flametongue_totem",
+      spellIcon = "spell_nature_guardianward",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8227, 8249, 10526, 16387 }
+    },
+    [8227] = { refId = 16387 },
+    [8249] = { refId = 16387 },
+    [10526] = { refId = 16387 },
+    [25359] = {
+      name = "Grace of Air Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "grace_of_air_totem",
+      spellIcon = "spell_nature_invisibilitytotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8835, 10627, 25359 }
+    },
+    [8835] = { refId = 25359 },
+    [10627] = { refId = 25359 },
+    [10408] = {
+      name = "Stoneskin Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "stoneskin_totem",
+      spellIcon = "spell_nature_stoneskintotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8071, 8154, 8155, 10406, 10407, 10408 }
+    },
+    [8071] = { refId = 10408 },
+    [8154] = { refId = 10408 },
+    [8155] = { refId = 10408 },
+    [10406] = { refId = 10408 },
+    [10407] = { refId = 10408 },
+    [25361] = {
+      name = "Strength of Earth Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "strength_of_earth_totem",
+      spellIcon = "spell_nature_earthbindtotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8075, 8160, 8161, 10442, 25361 }
+    },
+    [8075] = { refId = 25361 },
+    [8160] = { refId = 25361 },
+    [8161] = { refId = 25361 },
+    [10442] = { refId = 25361 },
+    [10614] = {
+      name = "Windfury Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "windfury_totem",
+      spellIcon = "spell_nature_windfury",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8512, 10613, 10614 }
+    },
+    [8512] = { refId = 10614 },
+    [10613] = { refId = 10614 },
+    [15112] = {
+      name = "Windwall Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "windwall_totem",
+      spellIcon = "spell_nature_earthbind",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 15107, 15111, 15112 }
+    },
+    [15107] = { refId = 15112 },
+    [15111] = { refId = 15112 },
+    [2484] = {
+      name = "Earthbind Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "earthbind_totem",
+      spellIcon = "spell_nature_strengthofearthtotem02",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 2484 }
+    },
+    [11315] = {
+      name = "Fire Nova Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "fire_nova_totem",
+      spellIcon = "spell_fire_sealoffire",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 1535, 8498, 8499, 11314, 11315 }
+    },
+    [1535] = { refId = 11315 },
+    [8498] = { refId = 11315 },
+    [8499] = { refId = 11315 },
+    [11314] = { refId = 11315 },
+    [10587] = {
+      name = "Magma Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "magma_totem",
+      spellIcon = "spell_fire_selfdestruct",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8190, 10585, 10586, 10587 }
+    },
+    [8190] = { refId = 10587 },
+    [10585] = { refId = 10587 },
+    [10586] = { refId = 10587 },
+    [10438] = {
+      name = "Searing Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "searing_totem",
+      spellIcon = "spell_fire_searingtotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 3599, 6363, 6364, 6365, 10437, 10438 }
+    },
+    [3599] = { refId = 10438 },
+    [6363] = { refId = 10438 },
+    [6364] = { refId = 10438 },
+    [6365] = { refId = 10438 },
+    [10437] = { refId = 10438 },
+    [10428] = {
+      name = "Stoneclaw Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "stoneclaw_totem",
+      spellIcon = "spell_nature_stoneclawtotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 5730, 6390, 6391, 6392, 10427, 10428 }
+    },
+    [5730] = { refId = 10428 },
+    [6390] = { refId = 10428 },
+    [6391] = { refId = 10428 },
+    [6392] = { refId = 10428 },
+    [10427] = { refId = 10428 },
+    [10463] = {
+      name = "Healing Stream Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "healing_stream_totem",
+      spellIcon = "inv_spear_04",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 5394, 6375, 6377, 10462, 10463 }
+    },
+    [5394] = { refId = 10463 },
+    [6375] = { refId = 10463 },
+    [6377] = { refId = 10463 },
+    [10462] = { refId = 10463 },
+    [8170] = {
+      name = "Disease Cleansing Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "disease_cleansing_totem",
+      spellIcon = "spell_nature_diseasecleansingtotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 8170 }
+    },
+    [10497] = {
+      name = "Mana Spring Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "mana_spring_totem",
+      spellIcon = "spell_nature_manaregentotem",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 5675, 10495, 10496, 10497 }
+    },
+    [5675] = { refId = 10497 },
+    [10495] = { refId = 10497 },
+    [10496] = { refId = 10497 },
+    [17359] = {
+      name = "Mana Tide Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "mana_tide_totem",
+      spellIcon = "spell_frost_summonwaterelemental",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 16190, 17354, 17359 }
+    },
+    [16190] = { refId = 17359 },
+    [17354] = { refId = 17359 },
+    [25908] = {
+      name = "Tranquil Air Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "tranquil_air_totem",
+      spellIcon = "spell_nature_brilliance",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 25908 }
+    },
+    [415236] = {
+      name = "Healing Rain",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "healing_rain",
+      spellIcon = "spell_nature_tranquility",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 415236 }
+    },
+    [409324] = {
+      name = "Ancestral Guidance",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "ancestral_guidance",
+      spellIcon = "ability_druid_lunarguidance",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 409324 }
+    },
+    [408514] = {
+      name = "Earth Shield",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "earth_shield",
+      spellIcon = "spell_nature_skinofearth",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 408514 }
+    },
+    [408510] = {
+      name = "Water Shield",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "water_shield",
+      spellIcon = "ability_shaman_watershield",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 408510 }
+    },
+    [425874] = {
+      name = "Decoy Totem",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "decoy_totem",
+      spellIcon = "inv_misc_toy_04",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 425874 }
+    },
+    [437009] = {
+      name = "Totemic Projection",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "totemic_projection",
+      spellIcon = "spell_shaman_totemrecall",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 437009 }
+    },
+    [408498] = {
+      name = "Maelstrom Weapon",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "maelstrom_weapon",
+      spellIcon = "spell_shaman_maelstromweapon",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 408498 }
+    },
+    [432042] = {
+      name = "Tidal Waves",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "tidal_waves",
+      spellIcon = "spell_shaman_tidalwaves",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 432042 }
+    },
+    [409954] = {
+      name = "Riptide",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "riptide",
+      spellIcon = "spell_nature_riptide",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 409954 }
+    },
+    [415100] = {
+      name = "Power Surge",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "power_surge",
+      spellIcon = "inv_misc_orb_05",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 415100 }
+    },
+    [440580] = {
+      name = "Feral Spirit",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "feral_spirit",
+      spellIcon = "spell_shaman_feralspirit",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 440580 }
+    }
   }
 }
 
