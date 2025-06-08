@@ -570,6 +570,49 @@ local spellAvoidMap = {
       self_avoid = true,
       enemy_avoid = true
     }
+  },
+  ["shaman"] = {
+    [10414] = {
+      name = "Earth Shock",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "earth_shock",
+      spellIcon = "spell_nature_earthshock",
+      allRanks = { 8042, 8044, 8045, 8046, 10412, 10413, 10414 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [8042] = { refId = 10414 },
+    [8044] = { refId = 10414 },
+    [8045] = { refId = 10414 },
+    [8046] = { refId = 10414 },
+    [10412] = { refId = 10414 },
+    [10413] = { refId = 10414 },
+    [29228] = {
+      name = "Flame Shock",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "flame_shock",
+      spellIcon = "spell_fire_flameshock",
+      allRanks = { 8050, 8052, 8053, 10447, 10448, 29228 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [8050] = { refId = 29228 },
+    [8052] = { refId = 29228 },
+    [8053] = { refId = 29228 },
+    [10447] = { refId = 29228 },
+    [10448] = { refId = 29228 },
+    [10473] = {
+      name = "Frost Shock",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "frost_shock",
+      spellIcon = "spell_frost_frostshock",
+      allRanks = { 8056, 8058, 10472, 10473 },
+      self_avoid = true,
+      enemy_avoid = true
+    },
+    [8056] = { refId = 10473 },
+    [8058] = { refId = 10473 },
+    [10472] = { refId = 10473 },
   }
 }
 --[[
