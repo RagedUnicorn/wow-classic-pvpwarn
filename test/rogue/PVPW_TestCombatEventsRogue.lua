@@ -22,8 +22,6 @@
   SOFTWARE.
 ]]--
 
--- luacheck: ignore _
-
 local mod = rgpvpw
 local me = {}
 mod.testCombatEventsRogue = me
