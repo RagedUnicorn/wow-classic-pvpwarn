@@ -79,8 +79,8 @@ function me.TestAllSound()
   mod.testSoundPaladin.CollectTestCases()
   mod.testSoundDruid.CollectTestCases()
   mod.testSoundShaman.CollectTestCases()
-  --[[
   mod.testSoundRacials.CollectTestCases()
+  --[[
   mod.testSoundItems.CollectTestCases()
   mod.testSoundMisc.CollectTestCases()
   ]]--
@@ -120,8 +120,8 @@ function me.TestAllCombatEvents()
   mod.testCombatEventsPaladin.CollectTestCases()
   mod.testCombatEventsDruid.CollectTestCases()
   mod.testCombatEventsShaman.CollectTestCases()
-  --[[
   mod.testCombatEventsRacials.CollectTestCases()
+  --[[
   mod.testCombatEventsItems.CollectTestCases()
   mod.testCombatEventsMisc.CollectTestCases()
   ]]--

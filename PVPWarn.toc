@@ -146,8 +146,8 @@ test/shaman/PVPW_TestCombatEventsShaman.lua
 test/shaman/PVPW_TestCombatEventsSelfAvoidShaman.lua
 test/shaman/PVPW_TestCombatEventsEnemyAvoidShaman.lua
 # racials
-test/racials/PVPW_TestSoundRacialsEn.lua
-test/racials/PVPW_TestCombatEventsRacialsEn.lua
+test/racials/PVPW_TestSoundRacials.lua
+test/racials/PVPW_TestCombatEventsRacials.lua
 # items
 test/items/PVPW_TestSoundItemsEn.lua
 test/items/PVPW_TestCombatEventsItemsEn.lua

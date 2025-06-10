@@ -3245,6 +3245,115 @@ local spellMap = {
       },
       allRanks = { 440580 }
     }
+  },
+  ["racials"] = {
+    [20600] = {
+      name = "Perception",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "perception",
+      spellIcon = "spell_nature_sleep",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 20600 }
+    },
+    [7744] = {
+      name = "Will of the Forsaken",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "will_of_the_forsaken",
+      spellIcon = "spell_shadow_raisedead",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 7744 }
+    },
+    [20594] = {
+      name = "Stoneform",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "stoneform",
+      spellIcon = "spell_shadow_unholystrength",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 20594 }
+    },
+    [20589] = {
+      name = "Escape Artist",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "escape_artist",
+      spellIcon = "ability_rogue_trip",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 20589 }
+    },
+    [20549] = {
+      name = "War Stomp",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "war_stomp",
+      spellIcon = "ability_warstomp",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 20549 }
+    },
+    [20554] = { -- mana
+      name = "Berserking",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "berserking",
+      spellIcon = "racial_troll_berserk",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 20554 }
+    },
+    [26297] = { refId = 20554 }, -- energy
+    [26296] = { refId = 20554 }, -- rage
+    [20580] = {
+      name = "Shadowmeld",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "shadowmeld",
+      spellIcon = "ability_ambush",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 20580 }
+    },
+    --[[
+      This spell is very special and does not work like a traditional buff.
+      Instead a serverside script is doing all the work. Because of this only
+      SPELL_CAST_SUCCESS can be tracked
+    ]]--
+    [20572] = {
+      name = "Blood Fury",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "blood_fury",
+      spellIcon = "racial_orc_berserkerstrength",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 20572 }
+    }
   }
 }
 
