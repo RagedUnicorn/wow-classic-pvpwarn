@@ -3851,20 +3851,6 @@ local spellMap = {
       },
       allRanks = { 437382 }
     },
-    [437340] = {
-      name = "Reflective Truesilver Braincage",
-      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
-      soundFileName = "radical_rad_resistance",
-      spellIcon = "inv_helmet_41",
-      itemId = 215382,
-      hasFade = true,
-      active = true,
-      trackedEvents = {
-        "SPELL_AURA_APPLIED",
-        "SPELL_AURA_REMOVED"
-      },
-      allRanks = { 437340 }
-    },
     [437362] = {
       name = "Glowing Hyperconductive Scale Coif",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
