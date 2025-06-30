@@ -4030,6 +4030,261 @@ local spellMap = {
         "SPELL_AURA_REMOVED"
       },
       allRanks = { 461253 }
+    },
+  },
+  ["misc"] = {
+    [9512] = {
+      name = "Thistle Tea",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "thistle_tea",
+      spellIcon = "inv_drink_milk_05",
+      itemId = 7676,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 9512 }
+    },
+    [17528] = {
+      name = "Mighty Rage Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "mighty_rage_potion",
+      spellIcon = "inv_potion_41",
+      itemId = 13442,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 17528 }
+    },
+    [18610] = {
+      name = "First Aid",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "first_aid",
+      spellIcon = "inv_misc_bandage_12",
+      itemId = 14530,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {
+        746,    -- Linen Bandage
+        1159,   -- Heavy Linen Bandage
+        3267,   -- Wool Bandage
+        3268,   -- Heavy Wool Bandage
+        7926,   -- Silk Bandage
+        7927,   -- Heavy Silk Bandage
+        10838,  -- Mageweave Bandage
+        10839,  -- Heavy Mageweave Bandage
+        18608,  -- Runecloth Bandage
+        18610   -- Heavy Runecloth Bandage
+      }
+    },
+    [746] = { refId = 18610 },
+    [1159] = { refId = 18610 },
+    [3267] = { refId = 18610 },
+    [3268] = { refId = 18610 },
+    [7926] = { refId = 18610 },
+    [7927] = { refId = 18610 },
+    [10838] = { refId = 18610 },
+    [10839] = { refId = 18610 },
+    [18608] = { refId = 18610 },
+    [17548] = {
+      name = "Greater Shadow Protection Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "shadow_protection",
+      spellIcon = "inv_potion_23",
+      itemId = 13459,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 17548 }
+    },
+    [17544] = {
+      name = "Greater Frost Protection Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "frost_protection",
+      spellIcon = "inv_potion_20",
+      itemId = 13456,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 17544 }
+    },
+    [17543] = {
+      name = "Greater Fire Protection Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "fire_protection",
+      spellIcon = "inv_potion_24",
+      itemId = 13457,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 17543 }
+    },
+    [17546] = {
+      name = "Greater Nature Protection Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "nature_protection",
+      spellIcon = "inv_potion_22",
+      itemId = 13458,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 17546 }
+    },
+    [17549] = {
+      name = "Greater Arcane Protection Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "arcane_protection",
+      spellIcon = "inv_potion_83",
+      itemId = 13461,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 17549 }
+    },
+    [11359] = {
+      name = "Restorative Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "restorative_potion",
+      spellIcon = "inv_potion_01",
+      itemId = 9030,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 11359 }
+    },
+    [24364] = {
+      name = "Living Free Action",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "living_free_action_potion",
+      spellIcon = "inv_potion_07",
+      itemId = 20008,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 24364 }
+    },
+    [6615] = {
+      name = "Free Action Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "free_action_potion",
+      spellIcon = "inv_potion_04",
+      itemId = 5634,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 6615 }
+    },
+    [3169] = {
+      name = "Limited Invulnerability Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "invulnerability_potion",
+      spellIcon = "inv_potion_62",
+      itemId = 3387,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 3169 }
+    },
+    [11392] = {
+      name = "Invisibility Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "invisibility_potion",
+      spellIcon = "inv_potion_25",
+      itemId = 9172,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 11392 }
+    },
+    [3680] = {
+      name = "Lesser Invisibility Potion",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "lesser_invisibility_potion",
+      spellIcon = "inv_potion_18",
+      itemId = 3823,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 3680 }
+    },
+    [12608] = {
+      name = "Catseye Elixir",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "catseye_elixir",
+      spellIcon = "inv_potion_36",
+      itemId = 10592,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 12608 }
+    },
+    [26677] = {
+      name = "Elixir of Poison Resistance",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "cure_poison",
+      spellIcon = "inv_potion_12",
+      itemId = 3386,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 26677 }
+    },
+    [470345] = {
+      name = "First Aid",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "first_aid",
+      spellIcon = "inv_misc_bandage_netherweave_heavy",
+      itemId = 232433,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = {
+        470345 -- Dense Runecloth Bandage
+      }
     }
   }
 }
