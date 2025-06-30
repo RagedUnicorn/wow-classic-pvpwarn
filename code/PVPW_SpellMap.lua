@@ -22,6 +22,8 @@
   SOFTWARE.
 ]]--
 
+-- luacheck: globals UnitFactionGroup
+
 local mod = rgpvpw
 local me = {}
 mod.spellMap = me
