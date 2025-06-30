@@ -3354,6 +3354,683 @@ local spellMap = {
       },
       allRanks = { 20572 }
     }
+  },
+  ["items"] = {
+    [23271] = {
+      name = "Ephemeral Power",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "ephemeral_power",
+      spellIcon = "inv_misc_stonetablet_11",
+      itemId = 18820,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 23271 }
+    },
+    [23097] = {
+      name = "Fire Reflector",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "fire_reflector",
+      spellIcon = "inv_misc_enggizmos_04",
+      itemId = 18638,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 23097 }
+    },
+    [23131] = {
+      name = "Frost Reflector",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "frost_reflector",
+      spellIcon = "inv_misc_enggizmos_02",
+      itemId = 18634,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 23131 }
+    },
+    [23132] = {
+      name = "Shadow Reflector",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "shadow_reflector",
+      spellIcon = "inv_misc_enggizmos_16",
+      itemId = 18639,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 23132 }
+    },
+    [5024] = {
+      name = "Skull of Impending Doom",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "flee",
+      spellIcon = "inv_misc_bone_elfskull_01",
+      itemId = 4984,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 5024 }
+    },
+    [9774] = {
+      name = "Spider Belt",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "immune_root",
+      spellIcon = "inv_belt_25",
+      itemId = 4328,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 9774 }
+    },
+    [22641] = {
+      name = "Goblin Rocket Helmet",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "rocket_helmet",
+      spellIcon = "inv_helmet_49",
+      itemId = 10588,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 22641 }
+    },
+    [13120] = {
+      name = "Net-o-Matic",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "net_o_matic",
+      spellIcon = "ability_ensnare",
+      itemId = 10720,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 13120 }
+    },
+    [835] = {
+      name = "Tidal Charm",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "tidal_charm",
+      spellIcon = "inv_misc_rune_01",
+      itemId = 1404,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 835 }
+    },
+    [13180] = {
+      name = "Gnomish Mind Control Cap",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "mind_control_cap",
+      spellIcon = "inv_helmet_49",
+      itemId = 10726,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 13180 }
+    },
+    [13141] = {
+      name = "Gnomish Rocket Boots",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "gnomish_rocket_boots",
+      spellIcon = "inv_boots_02",
+      itemId = 10724,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 13141 }
+    },
+    [8892] = {
+      name = "Goblin Rocket Boots",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "goblin_rocket_boots",
+      spellIcon = "inv_gizmo_rocketboot_01",
+      itemId = 7189,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 8892 }
+    },
+    [14530] = {
+      name = "Speed",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "nifty_stopwatch",
+      spellIcon = "inv_misc_pocketwatch_01",
+      itemId = 2820,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 14530 }
+    },
+    [23075] = {
+      name = "Mithril Mechanical Dragonling",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "mithril_dragonling",
+      spellIcon = "inv_misc_head_dragon_01",
+      itemId = 10576,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 23075 }
+    },
+    [5579] = {
+      name = "Insignia Warrior/Hunter/Shaman",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "insignia",
+      spellIcon = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return "inv_jewelry_trinketpvp_02"
+        else
+          return "inv_jewelry_trinketpvp_01"
+        end
+      end)(),
+      itemId = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return 18834
+        else
+          return 18854
+        end
+      end)(),
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 5579 }
+    },
+    [23273] = {
+      name = "Insignia Warlock/Rogue",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "insignia",
+      spellIcon = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return "inv_jewelry_trinketpvp_02"
+        else
+          return "inv_jewelry_trinketpvp_01"
+        end
+      end)(),
+      itemId = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return 18852
+        else
+          return 18858
+        end
+      end)(),
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 23273 }
+    },
+    [23274] = {
+      name = "Insignia Mage",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "insignia",
+      spellIcon = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return "inv_jewelry_trinketpvp_02"
+        else
+          return "inv_jewelry_trinketpvp_01"
+        end
+      end)(),
+      itemId = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return 18850
+        else
+          return 18859
+        end
+      end)(),
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 23274 }
+    },
+    [23276] = {
+      name = "Insignia Priest/Paladin",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "insignia",
+      spellIcon = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return "inv_jewelry_trinketpvp_02"
+        else
+          return "inv_jewelry_trinketpvp_01"
+        end
+      end)(),
+      itemId = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return 18851
+        else
+          return 18862
+        end
+      end)(),
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 23276 }
+    },
+    [23277] = {
+      name = "Insignia Druid",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "insignia",
+      spellIcon = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return "inv_jewelry_trinketpvp_02"
+        else
+          return "inv_jewelry_trinketpvp_01"
+        end
+      end)(),
+      itemId = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return 18853
+        else
+          return 18863
+        end
+      end)(),
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 23277 }
+    },
+    [23506] = {
+      name = "Arena Grand Master",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "arena_grand_master",
+      spellIcon = "inv_misc_armorkit_04",
+      itemId = 19024,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 23506 }
+    },
+    [17330] = {
+      name = "Smolderweb's Eye",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "smolderwebs_poison",
+      spellIcon = "inv_misc_gem_pearl_01",
+      itemId = 228576,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 17330 }
+    },
+    --[[
+      The itemId is the same for both factions, but the name and icon
+      are different. The spellId is also used for the Dark Heart of Darkness
+      trinket (228093) which has a different name and icon.
+
+      Note that the opposite faction's itemId is used for the spell icon because usually
+      the player will want to track the insignia of the opposing faction. It does however only
+      matter for the icon, the itemId is always correct for the player faction.
+    ]]--
+    [438273] = {
+      name = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return "Greater Insignia of the Horde"
+        else
+          return "Greater Insignia of the Alliance"
+        end
+      end)(),
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "insignia",
+      itemId = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return 216938 -- alliance
+        else
+          return 216939 -- horde
+        end
+        -- also used for dark heart of darkness (228093)
+      end)(),
+      spellIcon = (function()
+        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+          return "inv_jewelry_trinketpvp_01" -- alliance
+        else
+          return "inv_jewelry_trinketpvp_02" -- horde
+        end
+      end)(),
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 438273 }
+    },
+    [474386] = {
+      name = "Blood-Caked Insignia",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "insignia",
+      spellIcon = "spell_deathknight_runetap",
+      itemId = 233728,
+      haseFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 474386 }
+    },
+    [429868] = {
+      name = "Void-Touched Leather Gauntlets/Gloves",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "void_madness",
+      spellIcon = "inv_gauntlets_24",
+      itemId = 211502,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 429868 }
+    },
+    [428489] = {
+      name = "Extraplanar Spidersilk Boots",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "planar_shift",
+      spellIcon = "inv_boots_05",
+      itemId = 210795,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 428489 }
+    },
+    [437327] = {
+      name = "Gneuro-Linked Arcano-Filament Monocle",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "charged_inspiration",
+      spellIcon = "inv_misc_enggizmos_27",
+      itemId = 215111,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 437327 }
+    },
+    [437349] = {
+      name = "Glowing Gneuro-Linked Cowl",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "gneuro_logical_shock",
+      spellIcon = "inv_helmet_15",
+      itemId = 215166,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 437349 }
+    },
+    [437377] = {
+      name = "Tempered Interference-Negating Helmet",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "intense_concentration",
+      spellIcon = "inv_helmet_49",
+      itemId = 215161,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 437377 }
+    },
+    [437357] = {
+      name = "Gneuro-Conductive Channeler's Hood",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "gneuromantic_meditation",
+      spellIcon = "inv_helmet_42",
+      itemId = 215381,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 437357 }
+    },
+    [437382] = {
+      name = "Reflective Truesilver Braincage",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "reinforced_willpower",
+      spellIcon = "inv_helmet_49",
+      itemId = 215167,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 437382 }
+    },
+    [437340] = {
+      name = "Reflective Truesilver Braincage",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "radical_rad_resistance",
+      spellIcon = "inv_helmet_41",
+      itemId = 215382,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 437340 }
+    },
+    [437362] = {
+      name = "Glowing Hyperconductive Scale Coif",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "hyperconductive_shock",
+      spellIcon = "inv_helmet_43",
+      itemId = 215114,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 437362 }
+    },
+    [437699] = {
+      name = "Hyperconductive Goldwrap",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "coin_flip",
+      spellIcon = "inv_belt_32",
+      itemId = 215115,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 437699 }
+    },
+    [437698] = { refId = 437699 },
+    [13494] = {
+      name = "Catnip",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "haste",
+      spellIcon = "inv_misc_plant_01",
+      itemId = 213407,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 13494 }
+    },
+    [436069] = {
+      name = "Domesticated Attack Chicken",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "domesticated_attack_chicken",
+      spellIcon = "spell_magic_polymorphchicken",
+      itemId = 215461,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 436069 }
+    },
+    [435895] = {
+      name = "Gniodine Pill Bottle",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "gniodine_dispel",
+      spellIcon = "inv_valentinecolognebottle",
+      itemId = 213349,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 435895 }
+    },
+    [435359] = {
+      name = "Wirdal's Hardened Core",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "hardened_to_the_core",
+      spellIcon = "inv_gizmo_khoriumpowercore",
+      itemId = 213350,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 435359 }
+    },
+    [461231] = {
+      name = "Miniaturized Fire Extinguisher",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "extinguish_fire",
+      spellIcon = "inv_misc_enggizmos_essencedistiller",
+      itemId = 228084,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 461231 }
+    },
+    [461235] = {
+      name = "Woodcarved Moonstalker",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "moonstalker_fury",
+      spellIcon = "inv_jewelcrafting_blackpearlpanther",
+      itemId = 228089,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 461235 }
+    },
+    [461227] = {
+      name = "Germinating Poisonseed",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "guardian_of_nature",
+      spellIcon = "inv_misc_herb_nightmareseed",
+      itemId = 228081,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 461227 }
+    },
+    [461224] = {
+      name = "Accursed Chalice",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "demon_tainted_blood",
+      spellIcon = "inv_offhand_pvealliance_d_01",
+      itemId = 228078,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 461224 }
+    },
+    [467720] = {
+      name = "Mar'li's Eye",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "marlis_eye",
+      spellIcon = "inv_zulgurubtrinket",
+      itemId = 230920,
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 467720 }
+    },
+    [461253] = {
+      name = "Shadowflame Sword",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "shadowflame_fury",
+      spellIcon = "inv_sword_35",
+      itemId = 228143,
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 461253 }
+    }
   }
 }
 
