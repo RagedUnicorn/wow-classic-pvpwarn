@@ -121,9 +121,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundReflectiveTruesilverBraincage_437382)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownReflectiveTruesilverBraincage_437382)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHighperneticsGearcageCoif_437340)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHighperneticsGearcageCoif_437340)
-
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGlowingHyperconductiveScaleCoif_437362)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGlowingHyperconductiveScaleCoif_437362)
 
@@ -541,22 +538,6 @@ function me.TestSoundDownReflectiveTruesilverBraincage_437382()
     "TestSoundDownReflectiveTruesilverBraincage_437382",
     testCategory,
     437382
-  )
-end
-
-function me.TestSoundHighperneticsGearcageCoif_437340()
-  mod.testHelper.TestSoundApplied(
-    "TestSoundHighperneticsGearcageCoif_437340",
-    testCategory,
-    437340
-  )
-end
-
-function me.TestSoundDownHighperneticsGearcageCoif_437340()
-  mod.testHelper.TestSoundRemoved(
-    "TestSoundDownHighperneticsGearcageCoif_437340",
-    testCategory,
-    437340
   )
 end
 
