@@ -54,7 +54,6 @@ function me.TestAll()
   mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
   )
-  --[[
 
   me.TestAllSound()
   me.TestAllSoundSelfAvoid()
@@ -63,7 +62,7 @@ function me.TestAll()
   me.TestAllCombatEvents()
   me.TestAllCombatSelfAvoidEvents()
   me.TestAllCombatEnemyAvoidEvents()
-  ]]--
+
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- async finish of test group
   end)
