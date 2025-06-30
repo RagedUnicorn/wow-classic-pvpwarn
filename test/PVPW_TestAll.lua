@@ -80,10 +80,8 @@ function me.TestAllSound()
   mod.testSoundDruid.CollectTestCases()
   mod.testSoundShaman.CollectTestCases()
   mod.testSoundRacials.CollectTestCases()
-  --[[
   mod.testSoundItems.CollectTestCases()
   mod.testSoundMisc.CollectTestCases()
-  ]]--
 end
 
 function me.TestAllSoundSelfAvoid()
@@ -121,10 +119,8 @@ function me.TestAllCombatEvents()
   mod.testCombatEventsDruid.CollectTestCases()
   mod.testCombatEventsShaman.CollectTestCases()
   mod.testCombatEventsRacials.CollectTestCases()
-  --[[
   mod.testCombatEventsItems.CollectTestCases()
   mod.testCombatEventsMisc.CollectTestCases()
-  ]]--
 end
 
 function me.TestAllCombatSelfAvoidEvents()

@@ -54,19 +54,19 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowReflector_23132)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowReflector_23132)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFlee_5024)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFlee_5024)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSkullOfImpendingDoom_5024)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSkullOfImpendingDoom_5024)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmuneRoot_9774)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownImmuneRoot_9774)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpiderBelt_9774)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSpiderBelt_9774)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRocketHelmet_22641)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGoblinRocketHelmet_22641)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundNetOMatic_13120)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTidalCharm_835)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMindControlCap_13180)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGnomishMindControlCap_13180)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGnomishRocketBoots_13141)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGnomishRocketBoots_13141)
@@ -74,10 +74,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGoblinRocketBoots_8892)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGoblinRocketBoots_8892)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundNiftyStopwatch_14530)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownNiftyStopwatch_14530)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpeed_14530)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSpeed_14530)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMithrilDragonling_23075)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMithrilMechanicalDragonling_23075)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundInsigniaWarriorHunterShaman_5579)
 
@@ -92,71 +92,72 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundArenaGrandMaster_23506)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownArenaGrandMaster_23506)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSmolderwebsPoison_17330)
-
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPvpTrinket_438273)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSmolderwebsEye_17330)
 
   -- start sod items
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGreaterInsigniaOfTheHorde_438273)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGreaterInsigniaOfTheAlliance_438273)
+
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBloodCakedInsignia_474386)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVoidMadness_429868)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownVoidMadness_429868)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVoidTouchedLeatherGauntletsGloves_429868)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownVoidTouchedLeatherGauntletsGloves_429868)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPlanarShift_428489)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownPlanarShift_428489)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExtraplanarSpidersilkBoots_428489)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownExtraplanarSpidersilkBoots_428489)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundChargedInspiration_437327)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownChargedInspiration_437327)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGneuroLinkedArcanoFilamentMonocle_437327)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGneuroLinkedArcanoFilamentMonocle_437327)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGneuroLogicalShock_437349)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGneuroLogicalShock_437349)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGlowingGneuroLinkedCowl_437349)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGlowingGneuroLinkedCowl_437349)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundIntenseConcentration_437377)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownIntenseConcentration_437377)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTemperedInterferenceNegatingHelmet_437377)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownTemperedInterferenceNegatingHelmet_437377)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGneuromanticMeditation_437357)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGneuromanticMeditation_437357)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGneuroConductiveChannelersHood_437357)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGneuroConductiveChannelersHood_437357)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundReinforcedWillpower_437382)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownReinforcedWillpower_437382)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundReflectiveTruesilverBraincage_437382)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownReflectiveTruesilverBraincage_437382)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRadicalRadResistance_437340)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRadicalRadResistance_437340)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHighperneticsGearcageCoif_437340)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHighperneticsGearcageCoif_437340)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHyperconductiveShock_437362)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHyperconductiveShock_437362)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGlowingHyperconductiveScaleCoif_437362)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGlowingHyperconductiveScaleCoif_437362)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCoinFlip_437699)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownCoinFlip_437699)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCoinFlip_437698)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownCoinFlip_437698)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHyperconductiveGoldwrap_437699)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHyperconductiveGoldwrap_437699)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHyperconductiveGoldwrap_437698)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHyperconductiveGoldwrap_437698)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHaste_13494)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHaste_13494)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCatnip_13494)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownCatnip_13494)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDomesticatedAttackChicken_436069)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGniodineDispel_435895)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGniodineDispel_435895)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGniodinePillBottle_435895)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGniodinePillBottle_435895)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHardenedToTheCore_435359)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHardenedToTheCore_435359)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWirdalsHardenedCore_435359)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownWirdalsHardenedCore_435359)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExtinguishFire_461231)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMiniaturizedFireExtinguisher_461231)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMoonstalkerFury_461235)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMoonstalkerFury_461235)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWoodcarvedMoonstalker_461235)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownWoodcarvedMoonstalker_461235)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGuardianOfNature_461227)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGuardianOfNature_461227)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGerminatingPoisonseed_461227)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGerminatingPoisonseed_461227)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDemonTaintedBlood_461224)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDemonTaintedBlood_461224)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAccursedChalice_461224)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAccursedChalice_461224)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMarlisEye_467720)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowflameFury_461253)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowflameFury_461253)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowflameSword_461253)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowflameSword_461253)
 end
 
 function me.TestSoundEphemeralPower_23271()
@@ -223,41 +224,41 @@ function me.TestSoundDownShadowReflector_23132()
   )
 end
 
-function me.TestSoundFlee_5024()
+function me.TestSoundSkullOfImpendingDoom_5024()
   mod.testHelper.TestSoundApplied(
-    "TestSoundFlee_5024",
+    "TestSoundSkullOfImpendingDoom_5024",
     testCategory,
     5024
   )
 end
 
-function me.TestSoundDownFlee_5024()
+function me.TestSoundDownSkullOfImpendingDoom_5024()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownFlee_5024",
+    "TestSoundDownSkullOfImpendingDoom_5024",
     testCategory,
     5024
   )
 end
 
-function me.TestSoundImmuneRoot_9774()
+function me.TestSoundSpiderBelt_9774()
   mod.testHelper.TestSoundApplied(
-    "TestSoundImmuneRoot_9774",
+    "TestSoundSpiderBelt_9774",
     testCategory,
     9774
   )
 end
 
-function me.TestSoundDownImmuneRoot_9774()
+function me.TestSoundDownSpiderBelt_9774()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownImmuneRoot_9774",
+    "TestSoundDownSpiderBelt_9774",
     testCategory,
     9774
   )
 end
 
-function me.TestSoundRocketHelmet_22641()
+function me.TestSoundGoblinRocketHelmet_22641()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundRocketHelmet_22641",
+    "TestSoundGoblinRocketHelmet_22641",
     testCategory,
     22641
   )
@@ -279,9 +280,9 @@ function me.TestSoundTidalCharm_835()
   )
 end
 
-function me.TestSoundMindControlCap_13180()
+function me.TestSoundGnomishMindControlCap_13180()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundMindControlCap_13180",
+    "TestSoundGnomishMindControlCap_13180",
     testCategory,
     13180
   )
@@ -319,25 +320,25 @@ function me.TestSoundDownGoblinRocketBoots_8892()
   )
 end
 
-function me.TestSoundNiftyStopwatch_14530()
+function me.TestSoundSpeed_14530()
   mod.testHelper.TestSoundApplied(
-    "TestSoundNiftyStopwatch_14530",
+    "TestSoundSpeed_14530",
     testCategory,
     14530
   )
 end
 
-function me.TestSoundDownNiftyStopwatch_14530()
+function me.TestSoundDownSpeed_14530()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownNiftyStopwatch_14530",
+    "TestSoundDownSpeed_14530",
     testCategory,
     14530
   )
 end
 
-function me.TestSoundMithrilDragonling_23075()
+function me.TestSoundMithrilMechanicalDragonling_23075()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundMithrilDragonling_23075",
+    "TestSoundMithrilMechanicalDragonling_23075",
     testCategory,
     23075
   )
@@ -399,17 +400,25 @@ function me.TestSoundDownArenaGrandMaster_23506()
   )
 end
 
-function me.TestSoundSmolderwebsPoison_17330()
+function me.TestSoundSmolderwebsEye_17330()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundSmolderwebsPoison_17330",
+    "TestSoundSmolderwebsEye_17330",
     testCategory,
     17330
   )
 end
 
-function me.TestSoundPvpTrinket_438273()
+function me.TestSoundGreaterInsigniaOfTheHorde_438273()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundPvpTrinket_438273",
+    "TestSoundGreaterInsigniaOfTheHorde_438273",
+    testCategory,
+    438273
+  )
+end
+
+function me.TestSoundGreaterInsigniaOfTheAlliance_438273()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundGreaterInsigniaOfTheAlliance_438273",
     testCategory,
     438273
   )
@@ -423,193 +432,193 @@ function me.TestSoundBloodCakedInsignia_474386()
   )
 end
 
-function me.TestSoundVoidMadness_429868()
+function me.TestSoundVoidTouchedLeatherGauntletsGloves_429868()
   mod.testHelper.TestSoundApplied(
-    "TestSoundVoidMadness_429868",
+    "TestSoundVoidTouchedLeatherGauntletsGloves_429868",
     testCategory,
     429868
   )
 end
 
-function me.TestSoundDownVoidMadness_429868()
+function me.TestSoundDownVoidTouchedLeatherGauntletsGloves_429868()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownVoidMadness_429868",
+    "TestSoundDownVoidTouchedLeatherGauntletsGloves_429868",
     testCategory,
     429868
   )
 end
 
-function me.TestSoundPlanarShift_428489()
+function me.TestSoundExtraplanarSpidersilkBoots_428489()
   mod.testHelper.TestSoundApplied(
-    "TestSoundPlanarShift_428489",
+    "TestSoundExtraplanarSpidersilkBoots_428489",
     testCategory,
     428489
   )
 end
 
-function me.TestSoundDownPlanarShift_428489()
+function me.TestSoundDownExtraplanarSpidersilkBoots_428489()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownPlanarShift_428489",
+    "TestSoundDownExtraplanarSpidersilkBoots_428489",
     testCategory,
     428489
   )
 end
 
-function me.TestSoundChargedInspiration_437327()
+function me.TestSoundGneuroLinkedArcanoFilamentMonocle_437327()
   mod.testHelper.TestSoundApplied(
-    "TestSoundChargedInspiration_437327",
+    "TestSoundGneuroLinkedArcanoFilamentMonocle_437327",
     testCategory,
     437327
   )
 end
 
-function me.TestSoundDownChargedInspiration_437327()
+function me.TestSoundDownGneuroLinkedArcanoFilamentMonocle_437327()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownChargedInspiration_437327",
+    "TestSoundDownGneuroLinkedArcanoFilamentMonocle_437327",
     testCategory,
     437327
   )
 end
 
-function me.TestSoundGneuroLogicalShock_437349()
+function me.TestSoundGlowingGneuroLinkedCowl_437349()
   mod.testHelper.TestSoundApplied(
-    "TestSoundGneuroLogicalShock_437349",
+    "TestSoundGlowingGneuroLinkedCowl_437349",
     testCategory,
     437349
   )
 end
 
-function me.TestSoundDownGneuroLogicalShock_437349()
+function me.TestSoundDownGlowingGneuroLinkedCowl_437349()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownGneuroLogicalShock_437349",
+    "TestSoundDownGlowingGneuroLinkedCowl_437349",
     testCategory,
     437349
   )
 end
 
-function me.TestSoundIntenseConcentration_437377()
+function me.TestSoundTemperedInterferenceNegatingHelmet_437377()
   mod.testHelper.TestSoundApplied(
-    "TestSoundIntenseConcentration_437377",
+    "TestSoundTemperedInterferenceNegatingHelmet_437377",
     testCategory,
     437377
   )
 end
 
-function me.TestSoundDownIntenseConcentration_437377()
+function me.TestSoundDownTemperedInterferenceNegatingHelmet_437377()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownIntenseConcentration_437377",
+    "TestSoundDownTemperedInterferenceNegatingHelmet_437377",
     testCategory,
     437377
   )
 end
 
-function me.TestSoundGneuromanticMeditation_437357()
+function me.TestSoundGneuroConductiveChannelersHood_437357()
   mod.testHelper.TestSoundApplied(
-    "TestSoundGneuromanticMeditation_437357",
+    "TestSoundGneuroConductiveChannelersHood_437357",
     testCategory,
     437357
   )
 end
 
-function me.TestSoundDownGneuromanticMeditation_437357()
+function me.TestSoundDownGneuroConductiveChannelersHood_437357()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownGneuromanticMeditation_437357",
+    "TestSoundDownGneuroConductiveChannelersHood_437357",
     testCategory,
     437357
   )
 end
 
-function me.TestSoundReinforcedWillpower_437382()
+function me.TestSoundReflectiveTruesilverBraincage_437382()
   mod.testHelper.TestSoundApplied(
-    "TestSoundReinforcedWillpower_437382",
+    "TestSoundReflectiveTruesilverBraincage_437382",
     testCategory,
     437382
   )
 end
 
-function me.TestSoundDownReinforcedWillpower_437382()
+function me.TestSoundDownReflectiveTruesilverBraincage_437382()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownReinforcedWillpower_437382",
+    "TestSoundDownReflectiveTruesilverBraincage_437382",
     testCategory,
     437382
   )
 end
 
-function me.TestSoundRadicalRadResistance_437340()
+function me.TestSoundHighperneticsGearcageCoif_437340()
   mod.testHelper.TestSoundApplied(
-    "TestSoundRadicalRadResistance_437340",
+    "TestSoundHighperneticsGearcageCoif_437340",
     testCategory,
     437340
   )
 end
 
-function me.TestSoundDownRadicalRadResistance_437340()
+function me.TestSoundDownHighperneticsGearcageCoif_437340()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownRadicalRadResistance_437340",
+    "TestSoundDownHighperneticsGearcageCoif_437340",
     testCategory,
     437340
   )
 end
 
-function me.TestSoundHyperconductiveShock_437362()
+function me.TestSoundGlowingHyperconductiveScaleCoif_437362()
   mod.testHelper.TestSoundApplied(
-    "TestSoundHyperconductiveShock_437362",
+    "TestSoundGlowingHyperconductiveScaleCoif_437362",
     testCategory,
     437362
   )
 end
 
-function me.TestSoundDownHyperconductiveShock_437362()
+function me.TestSoundDownGlowingHyperconductiveScaleCoif_437362()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownHyperconductiveShock_437362",
+    "TestSoundDownGlowingHyperconductiveScaleCoif_437362",
     testCategory,
     437362
   )
 end
 
-function me.TestSoundCoinFlip_437699()
+function me.TestSoundHyperconductiveGoldwrap_437699()
   mod.testHelper.TestSoundApplied(
-    "TestSoundCoinFlip_437699",
+    "TestSoundHyperconductiveGoldwrap_437699",
     testCategory,
     437699
   )
 end
 
-function me.TestSoundDownCoinFlip_437699()
+function me.TestSoundDownHyperconductiveGoldwrap_437699()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownCoinFlip_437699",
+    "TestSoundDownHyperconductiveGoldwrap_437699",
     testCategory,
     437699
   )
 end
 
-function me.TestSoundCoinFlip_437698()
+function me.TestSoundHyperconductiveGoldwrap_437698()
   mod.testHelper.TestSoundApplied(
-    "TestSoundCoinFlip_437698",
+    "TestSoundHyperconductiveGoldwrap_437698",
     testCategory,
     437698
   )
 end
 
-function me.TestSoundDownCoinFlip_437698()
+function me.TestSoundDownHyperconductiveGoldwrap_437698()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownCoinFlip_437698",
+    "TestSoundDownHyperconductiveGoldwrap_437698",
     testCategory,
     437698
   )
 end
 
-function me.TestSoundHaste_13494()
+function me.TestSoundCatnip_13494()
   mod.testHelper.TestSoundApplied(
-    "TestSoundHaste_13494",
+    "TestSoundCatnip_13494",
     testCategory,
     13494
   )
 end
 
-function me.TestSoundDownHaste_13494()
+function me.TestSoundDownCatnip_13494()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownHaste_13494",
+    "TestSoundDownCatnip_13494",
     testCategory,
     13494
   )
@@ -623,89 +632,89 @@ function me.TestSoundDomesticatedAttackChicken_436069()
   )
 end
 
-function me.TestSoundGniodineDispel_435895()
+function me.TestSoundGniodinePillBottle_435895()
   mod.testHelper.TestSoundApplied(
-    "TestSoundGniodineDispel_435895",
+    "TestSoundGniodinePillBottle_435895",
     testCategory,
     435895
   )
 end
 
-function me.TestSoundDownGniodineDispel_435895()
+function me.TestSoundDownGniodinePillBottle_435895()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownGniodineDispel_435895",
+    "TestSoundDownGniodinePillBottle_435895",
     testCategory,
     435895
   )
 end
 
-function me.TestSoundHardenedToTheCore_435359()
+function me.TestSoundWirdalsHardenedCore_435359()
   mod.testHelper.TestSoundApplied(
-    "TestSoundHardenedToTheCore_435359",
+    "TestSoundWirdalsHardenedCore_435359",
     testCategory,
     435359
   )
 end
 
-function me.TestSoundDownHardenedToTheCore_435359()
+function me.TestSoundDownWirdalsHardenedCore_435359()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownHardenedToTheCore_435359",
+    "TestSoundDownWirdalsHardenedCore_435359",
     testCategory,
     435359
   )
 end
 
-function me.TestSoundExtinguishFire_461231()
+function me.TestSoundMiniaturizedFireExtinguisher_461231()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundExtinguishFire_461231",
+    "TestSoundMiniaturizedFireExtinguisher_461231",
     testCategory,
     461231
   )
 end
 
-function me.TestSoundMoonstalkerFury_461235()
+function me.TestSoundWoodcarvedMoonstalker_461235()
   mod.testHelper.TestSoundApplied(
-    "TestSoundMoonstalkerFury_461235",
+    "TestSoundWoodcarvedMoonstalker_461235",
     testCategory,
     461235
   )
 end
 
-function me.TestSoundDownMoonstalkerFury_461235()
+function me.TestSoundDownWoodcarvedMoonstalker_461235()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownMoonstalkerFury_461235",
+    "TestSoundDownWoodcarvedMoonstalker_461235",
     testCategory,
     461235
   )
 end
 
-function me.TestSoundGuardianOfNature_461227()
+function me.TestSoundGerminatingPoisonseed_461227()
   mod.testHelper.TestSoundApplied(
-    "TestSoundGuardianOfNature_461227",
+    "TestSoundGerminatingPoisonseed_461227",
     testCategory,
     461227
   )
 end
 
-function me.TestSoundDownGuardianOfNature_461227()
+function me.TestSoundDownGerminatingPoisonseed_461227()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownGuardianOfNature_461227",
+    "TestSoundDownGerminatingPoisonseed_461227",
     testCategory,
     461227
   )
 end
 
-function me.TestSoundDemonTaintedBlood_461224()
+function me.TestSoundAccursedChalice_461224()
   mod.testHelper.TestSoundApplied(
-    "TestSoundDemonTaintedBlood_461224",
+    "TestSoundAccursedChalice_461224",
     testCategory,
     461224
   )
 end
 
-function me.TestSoundDownDemonTaintedBlood_461224()
+function me.TestSoundDownAccursedChalice_461224()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownDemonTaintedBlood_461224",
+    "TestSoundDownAccursedChalice_461224",
     testCategory,
     461224
   )
@@ -719,17 +728,17 @@ function me.TestSoundMarlisEye_467720()
   )
 end
 
-function me.TestSoundShadowflameFury_461253()
+function me.TestSoundShadowflameSword_461253()
   mod.testHelper.TestSoundApplied(
-    "TestSoundShadowflameFury_461253",
+    "TestSoundShadowflameSword_461253",
     testCategory,
     461253
   )
 end
 
-function me.TestSoundDownShadowflameFury_461253()
+function me.TestSoundDownShadowflameSword_461253()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownShadowflameFury_461253",
+    "TestSoundDownShadowflameSword_461253",
     testCategory,
     461253
   )
