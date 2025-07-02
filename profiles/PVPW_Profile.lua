@@ -88,6 +88,11 @@ end
   @param {string} profileName
 ]]--
 function me.CreateProfile(profileName)
+  if not profileName or profileName == "" then
+    mod.logger.LogWarn(me.tag, "CreateProfile called with invalid profile name")
+    return
+  end
+
   if #PVPWarnProfiles >= maxProfiles then
     mod.logger.PrintUserError(
       string.format(rgpvpw.L["user_message_add_new_profile_max_reached"], maxProfiles)
@@ -130,13 +135,8 @@ end
   @param {string} profileName
 ]]--
 function me.DeleteProfile(profileName)
-  if profileName == nil then
-    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_delete"])
-    return
-  end
-
-  if profileName == RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME then
-    mod.logger.PrintUserError(rgpvpw.L["user_message_default_profile_cannot_be_deleted"])
+  if not profileName or profileName == "" then
+    mod.logger.LogWarn(me.tag, "DeleteProfile called with invalid profile name")
     return
   end
 
@@ -156,8 +156,8 @@ end
   @param {string} profileName
 ]]--
 function me.LoadProfile(profileName)
-  if profileName == nil then
-    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_load"])
+  if not profileName or profileName == "" then
+    mod.logger.LogWarn(me.tag, "LoadProfile called with invalid profile name")
     return
   end
 
@@ -198,13 +198,8 @@ end
   @param {string} profileName
 ]]--
 function me.UpdateProfile(profileName)
-  if profileName == nil then
-    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_update"])
-    return
-  end
-
-  if profileName == RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME then
-    mod.logger.PrintUserError(rgpvpw.L["user_message_default_profile_cannot_be_modified"])
+  if not profileName or profileName == "" then
+    mod.logger.LogWarn(me.tag, "UpdateProfile called with invalid profile name")
     return
   end
 

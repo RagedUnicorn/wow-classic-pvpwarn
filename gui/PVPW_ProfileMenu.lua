@@ -38,7 +38,40 @@ local profileRows = {}
 -- holds a reference to the profile scrollFrame
 local profileListScrollFrame
 -- the name of the currently selected profile in the profile list
-local currentSelectedProfile
+local currentSelectedProfileName
+
+--[[
+  Get the currently selected profile name from the profile list.
+  If no profile is selected, nil will be returned.
+
+  @return {string}
+    The name of the currently selected profile or nil if no profile is selected
+]]--
+function me.GetCurrentSelectedProfileName()
+  return currentSelectedProfileName
+end
+
+--[[
+  Reset the currently selected profile.
+]]--
+function me.ResetCurrentSelectedProfileName()
+  currentSelectedProfileName = nil
+end
+
+--[[
+  Set the currently selected profile to the given profile name.
+  If the profile name is nil or empty, the current selected profile will be reset.
+
+  @param {string} profileName
+    The name of the profile to set as currently selected
+]]--
+function me.SetCurrentSelectedProfileName(profileName)
+  if profileName and profileName ~= "" then
+    currentSelectedProfileName = profileName
+  else
+    currentSelectedProfileName = nil
+  end
+end
 
 --[[
   Popup dialog for choosing a profile name
@@ -59,6 +92,7 @@ StaticPopupDialogs["RGPVPW_CHOOSE_PROFILE_NAME"] = {
   OnAccept = function(self)
     mod.profile.CreateProfile(self.editBox:GetText())
     me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+    me.ClearSelectedProfile()
   end,
   EditBoxOnTextChanged = function(self)
     local editBox = self:GetParent().editBox
@@ -87,8 +121,9 @@ StaticPopupDialogs["RGPVPW_DELETE_PROFILE_WARNING"] = {
   button1 = rgpvpw.L["confirm_delete_profile_yes_button"],
   button2 = rgpvpw.L["confirm_delete_profile_no_button"],
   OnAccept = function()
-    mod.profile.DeleteProfile(currentSelectedProfile)
+    mod.profile.DeleteProfile(me.GetCurrentSelectedProfileName())
     me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+    me.ClearSelectedProfile()
   end,
   timeout = 0,
   whileDead = true,
@@ -103,8 +138,9 @@ StaticPopupDialogs["RGPVPW_LOAD_PROFILE_WARNING"] = {
   button1 = rgpvpw.L["confirm_load_profile_yes_button"],
   button2 = rgpvpw.L["confirm_load_profile_no_button"],
   OnAccept = function()
-    mod.profile.LoadProfile(currentSelectedProfile)
+    mod.profile.LoadProfile(me.GetCurrentSelectedProfileName())
     me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+    me.ClearSelectedProfile()
   end,
   timeout = 0,
   whileDead = true,
@@ -119,8 +155,9 @@ StaticPopupDialogs["RGPVPW_UPDATE_PROFILE_WARNING"] = {
   button1 = rgpvpw.L["confirm_override_profile_yes_button"],
   button2 = rgpvpw.L["confirm_override_profile_no_button"],
   OnAccept = function()
-    mod.profile.UpdateProfile(currentSelectedProfile)
+    mod.profile.UpdateProfile(me.GetCurrentSelectedProfileName())
     me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+    me.ClearSelectedProfile()
   end,
   timeout = 0,
   whileDead = true,
@@ -346,12 +383,12 @@ function me.ProfileListUpdateOnUpdate(scrollFrame)
       end
       row.profileName.name = profile.name
       row.profileName:SetText(profileName)
+      row:Show()
     else
       row.profileName:SetText("")
       row.profileName.name = ""
+      row:Hide()
     end
-
-    row:Show()
   end
 end
 
@@ -362,12 +399,15 @@ end
     A reference to the clicked row
 ]]--
 function me.ProfileListCellOnClick(self)
-  currentSelectedProfile = self.profileName.name
-  -- clear all current highlighting
-  me.ClearCellList()
+  -- Only select profile if it has a valid name
+  if self.profileName.name and self.profileName.name ~= "" then
+    me.SetCurrentSelectedProfileName(self.profileName.name)
+    -- clear all current highlighting
+    me.ClearCellList()
 
-  self.selectedRow = true
-  self.highlight:Show()
+    self.selectedRow = true
+    self.highlight:Show()
+  end
 end
 
 --[[
@@ -378,6 +418,15 @@ function me.ClearCellList()
     profileRow.selectedRow = false
     profileRow.highlight:Hide()
   end
+end
+
+--[[
+  Clear the highlight of the currently selected row.
+  This will reset the current selected profile name.
+]]--
+function me.ClearSelectedProfile()
+  me.ClearCellList()
+  me.ResetCurrentSelectedProfileName()
 end
 
 --[[
@@ -422,6 +471,18 @@ end
   dialog for the user to confirm the action.
 ]]--
 function me.DeleteSelectedProfileButtonOnClick()
+  local selectedProfileName = me.GetCurrentSelectedProfileName()
+
+  if not selectedProfileName or selectedProfileName == "" then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_delete"])
+    return
+  end
+
+  if selectedProfileName == RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_default_profile_cannot_be_deleted"])
+    return
+  end
+
   StaticPopup_Show("RGPVPW_DELETE_PROFILE_WARNING")
 end
 
@@ -430,7 +491,13 @@ end
   dialog for the user to confirm the action.
 ]]--
 function me.LoadSelectedProfileButtonOnClick()
-  StaticPopup_Show("RGPVPW_LOAD_PROFILE_WARNING")
+  local selectedProfileName = me.GetCurrentSelectedProfileName()
+
+  if selectedProfileName and selectedProfileName ~= "" then
+    StaticPopup_Show("RGPVPW_LOAD_PROFILE_WARNING")
+  else
+    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_load"])
+  end
 end
 
 --[[
@@ -438,5 +505,17 @@ end
   dialog for the user to confirm the action.
 ]]--
 function me.UpdateProfileButtonOnClick()
+  local selectedProfileName = me.GetCurrentSelectedProfileName()
+
+  if not selectedProfileName or selectedProfileName == "" then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_update"])
+    return
+  end
+
+  if selectedProfileName == RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_default_profile_cannot_be_modified"])
+    return
+  end
+
   StaticPopup_Show("RGPVPW_UPDATE_PROFILE_WARNING")
 end
