@@ -2433,15 +2433,31 @@ local spellMap = {
     }
   },
   ["druid"] = {
+    [5487] = {
+      name = "Bear Form",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "bear_form",
+      spellIcon = "ability_racial_bearform",
+      hasFade = true,
+      isStanceSpell = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 5487 }
+    },
     [9634] = {
       name = "Dire Bear Form",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "dire_bear_form",
       spellIcon = "ability_racial_bearform",
-      hasFade = false,
+      hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
-        "SPELL_CAST_SUCCESS"
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
       },
       allRanks = { 9634 }
     },
@@ -2450,10 +2466,12 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "cat_form",
       spellIcon = "ability_druid_catform",
-      hasFade = false,
+      hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
-        "SPELL_CAST_SUCCESS"
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
       },
       allRanks = { 768 }
     },
@@ -2462,10 +2480,12 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "travel_form",
       spellIcon = "ability_druid_travelform",
-      hasFade = false,
+      hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
-        "SPELL_CAST_SUCCESS"
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
       },
       allRanks = { 783 }
     },
@@ -2474,10 +2494,12 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "aquatic_form",
       spellIcon = "ability_druid_aquaticform",
-      hasFade = false,
+      hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
-        "SPELL_CAST_SUCCESS"
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
       },
       allRanks = { 1066 }
     },
@@ -2486,10 +2508,12 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "moonkin_form",
       spellIcon = "spell_nature_forceofnature",
-      hasFade = false,
+      hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
-        "SPELL_CAST_SUCCESS"
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
       },
       allRanks = { 24858 }
     },
@@ -2726,10 +2750,12 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "tree_of_life",
       spellIcon = "ability_druid_treeoflife",
-      hasFade = false,
+      hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
-        "SPELL_CAST_SUCCESS"
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
       },
       allRanks = { 439733 }
     },
