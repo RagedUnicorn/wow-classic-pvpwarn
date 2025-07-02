@@ -201,18 +201,18 @@ function me.UpgradeToV2_0_0()
   -- Check if profiles exist and need to be upgraded
   if PVPWarnProfiles then
     local needsProfileUpgrade = false
-    
+
     -- Check each profile's version
     for i = 1, #PVPWarnProfiles do
       local profile = PVPWarnProfiles[i]
-      
+
       -- If profile has no version field, it needs upgrade
       if not profile.version then
         needsProfileUpgrade = true
         mod.logger.LogDebug(me.tag, "Found profile without version field: " .. (profile.name or "unnamed"))
         break
       end
-      
+
       -- Check if profile version is one of the old versions
       for _, oldVersion in pairs(versions) do
         if profile.version == oldVersion then
@@ -221,16 +221,17 @@ function me.UpgradeToV2_0_0()
           break
         end
       end
-      
+
       if needsProfileUpgrade then break end
     end
-    
+
     -- If any profile needs upgrade, reinitialize all profiles
     if needsProfileUpgrade then
       mod.logger.LogInfo(me.tag, "Profiles need upgrade - reinitializing with default profile")
       mod.profile.InitializeDefaultProfile()
       -- Inform the user about the profile reset
-      print("|cFF00FFB0" .. RGPVPW_CONSTANTS.ADDON_NAME .. ":|r " .. rgpvpw.L["user_message_profiles_reset_for_upgrade"])
+      print("|cFF00FFB0" .. RGPVPW_CONSTANTS.ADDON_NAME .. ":|r "
+        .. rgpvpw.L["user_message_profiles_reset_for_upgrade"])
     end
   end
 
