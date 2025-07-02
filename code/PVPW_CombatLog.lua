@@ -161,7 +161,11 @@ function me.ProcessNormal(event, callback, ...)
     Track stance spells, even if the spell is not active
   ]]--
   if me.IsStanceSpell(spell) then
-    mod.stanceState.TrackStanceApplied(spell, target)
+    if event == "SPELL_AURA_APPLIED" then
+      mod.stanceState.TrackStanceApplied(spell, target)
+    elseif event == "SPELL_AURA_REMOVED" then
+      mod.stanceState.TrackStanceRemoved(spell, target, category)
+    end
   end
 
   if not me.IsSpellActive(spellMap, category, realSpellId, normalizedSpellName) then return end
