@@ -44,6 +44,7 @@ code/PVPW_Season.lua
 
 # profiles
 profiles/PVPW_Profile.lua
+profiles/PVPW_ProfileHelper.lua
 profiles/PVPW_DruidProfile.lua
 profiles/PVPW_HunterProfile.lua
 profiles/PVPW_MageProfile.lua

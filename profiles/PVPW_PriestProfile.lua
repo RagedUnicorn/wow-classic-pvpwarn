@@ -3,23 +3,24 @@
 
   Copyright (c) 2025 Michael Wiesendanger
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
+  Permission is hereby granted, free of charge, to any person obtaining
+  a copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to
+  the following conditions:
 
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
 
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
 local mod = rgpvpw
@@ -28,234 +29,85 @@ mod.priestProfile = me
 
 me.tag = "PriestProfile"
 
---[[
-  ["type"] = {
-    -- e.g. paladin, racials
-    ["spellName"] = {
-      -- e.g. lay_on_hands as found in SpellMap
-      ["spellActive"] = false,
-        -- default false
-      ["soundWarningActive"] = false,
-        -- default false
-      ["visualWarningActive"] = false,
-        -- default false
-      ["visualWarningColor"] = [number] -- e.g. blue, orange see RGPVPW_CONSTANTS.TEXTURES
-        -- default color in RGPVPW_CONSTANTS.DEFAULT_COLOR
-    }
-  }
-]]--
+local profileHelper = mod.profileHelper
+local createSpellConfig = profileHelper.CreateSpellConfig
+
+local COLORS = RGPVPW_CONSTANTS.TEXTURES
+local SPELL_TYPES = RGPVPW_CONSTANTS.SPELL_TYPE
+
+-- Spell profile configuration
 local defaultSpellProfilePriest = {
   ["warrior"] = {
-    ["recklessness"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.brown.colorValue
-    },
-    ["berserker_rage"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.brown.colorValue
-    },
-    ["intimidating_shout"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.brown.colorValue
-    },
-    ["pummel"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.brown.colorValue
-    }
+    [1719] = createSpellConfig(true, true, true, COLORS.brown.colorValue),     -- Recklessness
+    [18499] = createSpellConfig(true, true, true, COLORS.brown.colorValue),    -- Berserker Rage
+    [5246] = createSpellConfig(true, true, false, COLORS.brown.colorValue),    -- Intimidating Shout
+    [6552] = createSpellConfig(true, true, false, COLORS.brown.colorValue)     -- Pummel
   },
   ["priest"] = {
-    ["psychic_scream"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.white.colorValue
-    },
-    ["silence"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.white.colorValue
-    }
+    [10890] = createSpellConfig(true, true, false, COLORS.white.colorValue),   -- Psychic Scream
+    [15487] = createSpellConfig(true, true, false, COLORS.white.colorValue)    -- Silence
   },
   ["rogue"] = {
-    ["blind"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
-    },
-    ["kick"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
-    },
-    ["sprint"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
-    },
-    ["adrenaline_rush"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
-    },
-    ["blade_flurry"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
-    },
-    ["cold_blood"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue
-    }
+    [2094] = createSpellConfig(true, true, false, COLORS.yellow.colorValue),   -- Blind
+    [1769] = createSpellConfig(true, true, false, COLORS.yellow.colorValue),   -- Kick
+    [11305] = createSpellConfig(true, true, true, COLORS.yellow.colorValue),   -- Sprint
+    [13750] = createSpellConfig(true, true, true, COLORS.yellow.colorValue),   -- Adrenaline Rush
+    [13877] = createSpellConfig(true, true, true, COLORS.yellow.colorValue),   -- Blade Flurry
+    [14177] = createSpellConfig(true, true, false, COLORS.yellow.colorValue)   -- Cold Blood
   },
   ["mage"] = {
-    ["ice_block"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
-    },
-    ["arcane_power"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
-    },
-    ["presence_of_mind"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
-    },
-    ["counterspell"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.light_blue.colorValue
-    }
+    [11958] = createSpellConfig(true, true, true, COLORS.light_blue.colorValue),   -- Ice Block
+    [12042] = createSpellConfig(true, true, true, COLORS.light_blue.colorValue),   -- Arcane Power
+    [12043] = createSpellConfig(true, true, true, COLORS.light_blue.colorValue),   -- Presence of Mind
+    [2139] = createSpellConfig(true, true, false, COLORS.light_blue.colorValue)    -- Counterspell
   },
   ["hunter"] = {
-    ["viper_sting"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.green.colorValue
-    }
+    [14280] = createSpellConfig(true, true, false, COLORS.green.colorValue)    -- Viper Sting
   },
   ["warlock"] = {
-    ["shadow_ward"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.violet.colorValue
-    },
-    ["amplify_curse"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.violet.colorValue
-    }
+    [28610] = createSpellConfig(true, true, true, COLORS.violet.colorValue),   -- Shadow Ward
+    [18288] = createSpellConfig(true, true, false, COLORS.violet.colorValue)   -- Amplify Curse
   },
   ["paladin"] = {},
   ["druid"] = {
-    ["barkskin"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.orange.colorValue
-    },
-    ["natures_swiftness"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.orange.colorValue
-    },
-    ["innervate"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.orange.colorValue
-    }
+    [22812] = createSpellConfig(true, true, true, COLORS.orange.colorValue),   -- Barkskin
+    [17116] = createSpellConfig(true, true, true, COLORS.orange.colorValue),   -- Nature's Swiftness
+    [29166] = createSpellConfig(true, true, true, COLORS.orange.colorValue)    -- Innervate
   },
   ["shaman"] = {
-    ["elemental_mastery"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.blue.colorValue
-    },
-    ["natures_swiftness"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.blue.colorValue
-    },
-    ["tremor_totem"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.blue.colorValue
-    }
+    [16166] = createSpellConfig(true, true, true, COLORS.blue.colorValue),     -- Elemental Mastery
+    [16188] = createSpellConfig(true, true, true, COLORS.blue.colorValue),     -- Nature's Swiftness
+    [8143] = createSpellConfig(true, true, false, COLORS.blue.colorValue)      -- Tremor Totem
   },
   ["racials"] = {},
   ["items"] = {
-    ["shadow_reflector"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["soundFadeWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
-    },
-    ["immune_root_snare_stun"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
-    },
-    ["immune_charm_fear_polymorph"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
-    },
-    ["immune_fear_polymorph_snare"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
-    },
-    ["immune_fear_polymorph_stun"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
-    },
-    ["immune_charm_fear_stun"] = {
-      ["spellActive"] = true,
-      ["soundWarningActive"] = true,
-      ["visualWarningColor"] = RGPVPW_CONSTANTS.TEXTURES.red.colorValue
-    }
+    [23132] = createSpellConfig(true, true, true, COLORS.red.colorValue),      -- Essence of Sapphiron
+    [9774] = createSpellConfig(true, true, false, COLORS.red.colorValue),      -- Spider Belt
+    [5579] = createSpellConfig(true, true, false, COLORS.red.colorValue),      -- PvP Trinket (Warrior/Hunter/Shaman)
+    [23273] = createSpellConfig(true, true, false, COLORS.red.colorValue),     -- PvP Trinket (Warlock/Rogue)
+    [23274] = createSpellConfig(true, true, false, COLORS.red.colorValue),     -- PvP Trinket (Mage)
+    [23276] = createSpellConfig(true, true, false, COLORS.red.colorValue)      -- PvP Trinket (Priest/Paladin)
   },
   ["misc"] = {}
 }
 
+-- Empty profile tables (could be populated later)
 local defaultSpellSelfAvoidProfilePriest = {}
-
 local defaultSpellEnemyAvoidProfilePriest = {}
 
 --[[
-  @param {string} spellType
+  Returns a clone of the requested spell profile
 
-  @return {table | nil}
+  @param {string} spellType - The type of spell profile to retrieve
+
+  @return {table | nil} - Cloned spell profile or nil if invalid type
 ]]--
 function me.GetSpellProfile(spellType)
-  if spellType == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL then
-    return mod.common.Clone(defaultSpellProfilePriest)
-  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID then
-    return mod.common.Clone(defaultSpellSelfAvoidProfilePriest)
-  elseif spellType == RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID then
-    return mod.common.Clone(defaultSpellEnemyAvoidProfilePriest)
-  else
-    mod.logger.LogError(me.tag, "Invalid spellType")
-    return nil
-  end
+  local profiles = {
+    [SPELL_TYPES.SPELL] = defaultSpellProfilePriest,
+    [SPELL_TYPES.SPELL_SELF_AVOID] = defaultSpellSelfAvoidProfilePriest,
+    [SPELL_TYPES.SPELL_ENEMY_AVOID] = defaultSpellEnemyAvoidProfilePriest
+  }
+
+  return profileHelper.GetSpellProfile(profiles, spellType, me.tag)
 end
