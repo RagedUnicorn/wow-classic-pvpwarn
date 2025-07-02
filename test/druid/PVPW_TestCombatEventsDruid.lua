@@ -42,15 +42,23 @@ function me.Test()
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDireBearFormSuccess_9634)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBearFormApplied_5487)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBearFormRemoved_5487)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCatFormSuccess_768)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDireBearFormApplied_9634)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDireBearFormRemoved_9634)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTravelFormSuccess_783)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCatFormApplied_768)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCatFormRemoved_768)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAquaticFormSuccess_1066)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTravelFormApplied_783)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTravelFormRemoved_783)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMoonkinFormSuccess_24858)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAquaticFormApplied_1066)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAquaticFormRemoved_1066)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMoonkinFormApplied_24858)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMoonkinFormRemoved_24858)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBarkskinApplied_22812)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBarkskinRemoved_22812)
@@ -118,7 +126,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSurvivalInstinctsApplied_408024)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSurvivalInstinctsRemoved_408024)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTreeOfLifeSuccess_439733)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTreeOfLifeApplied_439733)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTreeOfLifeRemoved_439733)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFuryOfStormrageApplied_414799)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFuryOfStormrageRemoved_414799)
@@ -130,45 +139,108 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEclipseLunarRemoved_441260)
 end
 
-function me.TestCombatEventDireBearFormSuccess_9634()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventDireBearFormSuccess_9634",
+function me.TestCombatEventBearFormApplied_5487()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventBearFormApplied_5487",
+    testCategory,
+    "Bear Form",
+    5487
+  )
+end
+
+function me.TestCombatEventBearFormRemoved_5487()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventBearFormRemoved_5487",
+    testCategory,
+    "Bear Form",
+    5487
+  )
+end
+
+function me.TestCombatEventDireBearFormApplied_9634()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDireBearFormApplied_9634",
     testCategory,
     "Dire Bear Form",
     9634
   )
 end
 
-function me.TestCombatEventCatFormSuccess_768()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventCatFormSuccess_768",
+function me.TestCombatEventDireBearFormRemoved_9634()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventDireBearFormRemoved_9634",
+    testCategory,
+    "Dire Bear Form",
+    9634
+  )
+end
+
+function me.TestCombatEventCatFormApplied_768()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventCatFormApplied_768",
     testCategory,
     "Cat Form",
     768
   )
 end
 
-function me.TestCombatEventTravelFormSuccess_783()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventTravelFormSuccess_783",
+function me.TestCombatEventCatFormRemoved_768()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventCatFormRemoved_768",
+    testCategory,
+    "Cat Form",
+    768
+  )
+end
+
+function me.TestCombatEventTravelFormApplied_783()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventTravelFormApplied_783",
     testCategory,
     "Travel Form",
     783
   )
 end
 
-function me.TestCombatEventAquaticFormSuccess_1066()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventAquaticFormSuccess_1066",
+function me.TestCombatEventTravelFormRemoved_783()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventTravelFormRemoved_783",
+    testCategory,
+    "Travel Form",
+    783
+  )
+end
+
+function me.TestCombatEventAquaticFormApplied_1066()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAquaticFormApplied_1066",
     testCategory,
     "Aquatic Form",
     1066
   )
 end
 
-function me.TestCombatEventMoonkinFormSuccess_24858()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventMoonkinFormSuccess_24858",
+function me.TestCombatEventAquaticFormRemoved_1066()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAquaticFormRemoved_1066",
+    testCategory,
+    "Aquatic Form",
+    1066
+  )
+end
+
+function me.TestCombatEventMoonkinFormApplied_24858()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventMoonkinFormApplied_24858",
+    testCategory,
+    "Moonkin Form",
+    24858
+  )
+end
+
+function me.TestCombatEventMoonkinFormRemoved_24858()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventMoonkinFormRemoved_24858",
     testCategory,
     "Moonkin Form",
     24858
@@ -607,9 +679,18 @@ function me.TestCombatEventSurvivalInstinctsRemoved_408024()
   )
 end
 
-function me.TestCombatEventTreeOfLifeSuccess_439733()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventTreeOfLifeSuccess_439733",
+function me.TestCombatEventTreeOfLifeApplied_439733()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventTreeOfLifeApplied_439733",
+    testCategory,
+    "Tree of Life",
+    439733
+  )
+end
+
+function me.TestCombatEventTreeOfLifeRemoved_439733()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventTreeOfLifeRemoved_439733",
     testCategory,
     "Tree of Life",
     439733
