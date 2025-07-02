@@ -42,15 +42,23 @@ function me.Test()
 end
 
 function me.CollectTestCases()
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBearForm_5487)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBearForm_5487)
+
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDireBearForm_9634)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDireBearForm_9634)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCatForm_768)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownCatForm_768)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTravelForm_783)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownTravelForm_783)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAquaticForm_1066)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAquaticForm_1066)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMoonkinForm_24858)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMoonkinForm_24858)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBarkskin_22812)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBarkskin_22812)
@@ -119,6 +127,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSurvivalInstincts_408024)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTreeOfLife_439733)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownTreeOfLife_439733)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFuryOfStormrage_414799)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFuryOfStormrage_414799)
@@ -130,41 +139,97 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEclipseLunar_441260)
 end
 
+function me.TestSoundBearForm_5487()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundBearForm_5487",
+    testCategory,
+    5487
+  )
+end
+
+function me.TestSoundDownBearForm_5487()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownBearForm_5487",
+    testCategory,
+    5487
+  )
+end
+
 function me.TestSoundDireBearForm_9634()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundDireBearForm_9634",
     testCategory,
     9634
   )
 end
 
+function me.TestSoundDownDireBearForm_9634()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownDireBearForm_9634",
+    testCategory,
+    9634
+  )
+end
+
 function me.TestSoundCatForm_768()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundCatForm_768",
     testCategory,
     768
   )
 end
 
+function me.TestSoundDownCatForm_768()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownCatForm_768",
+    testCategory,
+    768
+  )
+end
+
 function me.TestSoundTravelForm_783()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundTravelForm_783",
     testCategory,
     783
   )
 end
 
+function me.TestSoundDownTravelForm_783()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownTravelForm_783",
+    testCategory,
+    783
+  )
+end
+
 function me.TestSoundAquaticForm_1066()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundAquaticForm_1066",
     testCategory,
     1066
   )
 end
 
+function me.TestSoundDownAquaticForm_1066()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAquaticForm_1066",
+    testCategory,
+    1066
+  )
+end
+
 function me.TestSoundMoonkinForm_24858()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundMoonkinForm_24858",
+    testCategory,
+    24858
+  )
+end
+
+function me.TestSoundDownMoonkinForm_24858()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownMoonkinForm_24858",
     testCategory,
     24858
   )
@@ -555,8 +620,16 @@ function me.TestSoundDownSurvivalInstincts_408024()
 end
 
 function me.TestSoundTreeOfLife_439733()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundTreeOfLife_439733",
+    testCategory,
+    439733
+  )
+end
+
+function me.TestSoundDownTreeOfLife_439733()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownTreeOfLife_439733",
     testCategory,
     439733
   )
