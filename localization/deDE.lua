@@ -102,6 +102,7 @@ if (GetLocale() == "deDE") then
     .. "Du hast das maximum erreicht"
   rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "Das Standard Profil kann nicht gelöscht werden"
   rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "Das Standard Profil kann nicht verändert werden"
+  rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Deine Profile wurden aufgrund des Upgrades auf v2.0.0 auf die Standardeinstellungen zurückgesetzt."
 
   -- categories
   rgpvpw.L["category_druid"] = "Druide"
