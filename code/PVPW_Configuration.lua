@@ -136,6 +136,7 @@ end
 ]]--
 function me.MigrationPath()
   me.UpgradeToV1_1_2()
+  me.UpgradeToV2_0_0()
 end
 
 --[[
@@ -174,6 +175,67 @@ function me.UpgradeToV1_1_2()
   end
 
   mod.logger.LogDebug(me.tag, "Finished upgrade path from " .. PVPWarnConfiguration.addonVersion .. " to v1.1.2")
+end
+
+--[[
+  Should be run by versions: All < v2.0.0
+  Description: Profiles structure changed significantly in v2.0.0. This upgrade path checks all
+  existing profiles and if any have an old version (or no version), all profiles are reset
+  to ensure consistency with the new structure.
+]]--
+function me.UpgradeToV2_0_0()
+  local versions = {"v1.1.11", "v1.2.0", "v1.2.1", "v1.2.2", "v1.2.3", "v1.2.4", "v1.2.5", "v1.2.6", "v1.2.7", "v1.2.8"}
+  local shouldRunUpgradePath = false
+
+  for _, version in pairs(versions) do
+    if PVPWarnConfiguration.addonVersion == version then
+      shouldRunUpgradePath = true
+      break
+    end
+  end
+
+  if not shouldRunUpgradePath then return end
+
+  mod.logger.LogDebug(me.tag, "Running upgrade path from " .. PVPWarnConfiguration.addonVersion .. " to v2.0.0")
+
+  -- Check if profiles exist and need to be upgraded
+  if PVPWarnProfiles then
+    local needsProfileUpgrade = false
+
+    -- Check each profile's version
+    for i = 1, #PVPWarnProfiles do
+      local profile = PVPWarnProfiles[i]
+
+      -- If profile has no version field, it needs upgrade
+      if not profile.version then
+        needsProfileUpgrade = true
+        mod.logger.LogDebug(me.tag, "Found profile without version field: " .. (profile.name or "unnamed"))
+        break
+      end
+
+      -- Check if profile version is one of the old versions
+      for _, oldVersion in pairs(versions) do
+        if profile.version == oldVersion then
+          needsProfileUpgrade = true
+          mod.logger.LogDebug(me.tag, "Found profile with old version: " .. profile.name .. " - " .. profile.version)
+          break
+        end
+      end
+
+      if needsProfileUpgrade then break end
+    end
+
+    -- If any profile needs upgrade, reinitialize all profiles
+    if needsProfileUpgrade then
+      mod.logger.LogInfo(me.tag, "Profiles need upgrade - reinitializing with default profile")
+      mod.profile.InitializeDefaultProfile()
+      -- Inform the user about the profile reset
+      print("|cFF00FFB0" .. RGPVPW_CONSTANTS.ADDON_NAME .. ":|r "
+        .. rgpvpw.L["user_message_profiles_reset_for_upgrade"])
+    end
+  end
+
+  mod.logger.LogDebug(me.tag, "Finished upgrade path from " .. PVPWarnConfiguration.addonVersion .. " to v2.0.0")
 end
 
 --[[

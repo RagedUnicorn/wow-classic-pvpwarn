@@ -97,7 +97,8 @@ rgpvpw.L["user_message_select_profile_already_exists"] = "Profile already exist 
 rgpvpw.L["user_message_add_new_profile_max_reached"] = "A maximum of %s profiles is allowed you reached the maximum"
 rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "The default profile cannot be deleted"
 rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "The default profile cannot be modified"
-
+rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Your profiles have been reset to default due to the upgrade "
+  .. "to v2.0.0"
 -- categories
 rgpvpw.L["category_druid"] = "Druid"
 rgpvpw.L["category_hunter"] = "Hunter"
