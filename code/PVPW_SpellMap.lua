@@ -1635,7 +1635,7 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
       allRanks = { 13165, 14318, 14319, 14320, 14321, 14322, 25296 }
     },
     [13165] = { refId = 25296 },
