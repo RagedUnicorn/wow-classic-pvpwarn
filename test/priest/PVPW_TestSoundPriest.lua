@@ -42,6 +42,9 @@ function me.Test()
 end
 
 function me.CollectTestCases()
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowform_15473)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowform_15473)
+
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPsychicScream_10890)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPsychicScream_8122)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPsychicScream_8124)
@@ -176,6 +179,22 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSerendipity_413248)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSerendipity_413248)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshSerendipity_413248)
+end
+
+function me.TestSoundShadowform_15473()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundShadowform_15473",
+    testCategory,
+    15473
+  )
+end
+
+function me.TestSoundDownShadowform_15473()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownShadowform_15473",
+    testCategory,
+    15473
+  )
 end
 
 function me.TestSoundPsychicScream_10890()

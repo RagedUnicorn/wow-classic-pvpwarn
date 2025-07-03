@@ -42,6 +42,9 @@ function me.Test()
 end
 
 function me.CollectTestCases()
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowformApplied_15473)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowformRemoved_15473)
+
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPsychicScreamSuccess_8122)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPsychicScreamSuccess_8124)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPsychicScreamSuccess_10888)
@@ -176,6 +179,24 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSerendipityApplied_413248)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSerendipityRemoved_413248)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSerendipityRefresh_413248)
+end
+
+function me.TestCombatEventShadowformApplied_15473()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventShadowformApplied_15473",
+    testCategory,
+    "Shadowform",
+    15473
+  )
+end
+
+function me.TestCombatEventShadowformRemoved_15473()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventShadowformRemoved_15473",
+    testCategory,
+    "Shadowform",
+    15473
+  )
 end
 
 function me.TestCombatEventPsychicScreamSuccess_8122()
