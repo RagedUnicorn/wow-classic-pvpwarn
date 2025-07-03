@@ -101,6 +101,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundInfernalArmor_440882)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownInfernalArmor_440882)
 
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMetamorphosis_403789)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownMetamorphosis_403789)
 end
 
 function me.TestSoundFear_6215()
@@ -439,3 +441,18 @@ function me.TestSoundDownInfernalArmor_440882()
   )
 end
 
+function me.TestSoundMetamorphosis_403789()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundMetamorphosis_403789",
+    testCategory,
+    403789
+  )
+end
+
+function me.TestSoundDownMetamorphosis_403789()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownMetamorphosis_403789",
+    testCategory,
+    403789
+  )
+end

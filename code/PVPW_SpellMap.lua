@@ -2174,6 +2174,20 @@ local spellMap = {
         "SPELL_AURA_REMOVED"
       },
       allRanks = { 440882 }
+    },
+    [403789] = {
+      name = "Metamorphosis",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      soundFileName = "metamorphosis",
+      spellIcon = "spell_shadow_demonform",
+      hasFade = true,
+      isStanceSpell = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 403789 }
     }
   },
   ["paladin"] = {
