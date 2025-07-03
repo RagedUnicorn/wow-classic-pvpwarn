@@ -1607,10 +1607,11 @@ local spellMap = {
       soundFileName = "aspect_of_the_monkey",
       spellIcon = "ability_hunter_aspectofthemonkey",
       allRanks = {13163},
-      hasFade = false,
+      hasFade = true,
       active = true,
       trackedEvents = {
-        "SPELL_CAST_SUCCESS"
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
       }
     },
     [25296] = {
@@ -1619,10 +1620,11 @@ local spellMap = {
       soundFileName = "aspect_of_the_hawk",
       spellIcon = "spell_nature_ravenform",
       allRanks = {13165, 14318, 14319, 14320, 14321, 14322, 25296},
-      hasFade = false,
+      hasFade = true,
       active = true,
       trackedEvents = {
-        "SPELL_CAST_SUCCESS"
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
       }
     },
     [13165] = { refId = 25296 },
@@ -1631,6 +1633,85 @@ local spellMap = {
     [14320] = { refId = 25296 },
     [14321] = { refId = 25296 },
     [14322] = { refId = 25296 },
+    [13159] = {
+      name = "Aspect of the Pack",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "aspect_of_the_pack",
+      spellIcon = "ability_mount_whitetiger",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 13159 }
+    },
+    [5118] = {
+      name = "Aspect of the Cheetah",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "aspect_of_the_cheetah",
+      spellIcon = "ability_mount_jungletiger",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 5118 }
+    },
+    [20190] = {
+      name = "Aspect of the Wild",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "aspect_of_the_wild",
+      spellIcon = "spell_nature_protectionformnature",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 20043, 20190 }
+    },
+    [20043] = { refId = 20190 },
+    [13161] = {
+      name = "Aspect of the Beast",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "aspect_of_the_beast",
+      spellIcon = "ability_mount_pinktiger",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 13161 }
+    },
+    [469145] = {
+      name = "Aspect of the Falcon",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "aspect_of_the_falcon",
+      spellIcon = "ability_hunter_pet_dragonhawk",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 469145 }
+    },
+    [415423] = {
+      name = "Aspect of the Viper",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "aspect_of_the_viper",
+      spellIcon = "ability_hunter_aspectoftheviper",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 415423 }
+    },
     [3045] = {
       name = "Rapid Fire",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,

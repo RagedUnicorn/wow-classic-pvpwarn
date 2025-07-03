@@ -44,15 +44,43 @@ end
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConcussiveShotSuccess_5116)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheMonkeySuccess_13163)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheMonkeyApplied_13163)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheMonkeyRemoved_13163)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkSuccess_25296)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkSuccess_13165)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkSuccess_14318)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkSuccess_14319)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkSuccess_14320)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkSuccess_14321)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkSuccess_14322)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkApplied_25296)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkRemoved_25296)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkApplied_13165)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkRemoved_13165)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkApplied_14318)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkRemoved_14318)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkApplied_14319)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkRemoved_14319)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkApplied_14320)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkRemoved_14320)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkApplied_14321)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkRemoved_14321)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkApplied_14322)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheHawkRemoved_14322)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfThePackApplied_13159)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfThePackRemoved_13159)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheCheetahApplied_5118)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheCheetahRemoved_5118)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheWildApplied_20190)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheWildRemoved_20190)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheWildApplied_20043)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheWildRemoved_20043)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheBeastApplied_13161)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheBeastRemoved_13161)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheFalconApplied_469145)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheFalconRemoved_469145)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheViperApplied_415423)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAspectOfTheViperRemoved_415423)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRapidFireApplied_3045)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRapidFireRemoved_3045)
@@ -120,75 +148,273 @@ function me.TestCombatEventConcussiveShotSuccess_5116()
   )
 end
 
-function me.TestCombatEventAspectOfTheMonkeySuccess_13163()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventAspectOfTheMonkeySuccess_13163",
+function me.TestCombatEventAspectOfTheMonkeyApplied_13163()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheMonkeyApplied_13163",
     testCategory,
     "Aspect of the Monkey",
     13163
   )
 end
 
-function me.TestCombatEventAspectOfTheHawkSuccess_25296()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventAspectOfTheHawkSuccess_25296",
+function me.TestCombatEventAspectOfTheMonkeyRemoved_13163()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheMonkeyRemoved_13163",
+    testCategory,
+    "Aspect of the Monkey",
+    13163
+  )
+end
+
+function me.TestCombatEventAspectOfTheHawkApplied_25296()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheHawkApplied_25296",
     testCategory,
     "Aspect of the Hawk",
     25296
   )
 end
 
-function me.TestCombatEventAspectOfTheHawkSuccess_13165()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventAspectOfTheHawkSuccess_13165",
+function me.TestCombatEventAspectOfTheHawkRemoved_25296()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheHawkRemoved_25296",
+    testCategory,
+    "Aspect of the Hawk",
+    25296
+  )
+end
+
+function me.TestCombatEventAspectOfTheHawkApplied_13165()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheHawkApplied_13165",
     testCategory,
     "Aspect of the Hawk",
     13165
   )
 end
 
-function me.TestCombatEventAspectOfTheHawkSuccess_14318()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventAspectOfTheHawkSuccess_14318",
+function me.TestCombatEventAspectOfTheHawkRemoved_13165()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheHawkRemoved_13165",
+    testCategory,
+    "Aspect of the Hawk",
+    13165
+  )
+end
+
+function me.TestCombatEventAspectOfTheHawkApplied_14318()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheHawkApplied_14318",
     testCategory,
     "Aspect of the Hawk",
     14318
   )
 end
 
-function me.TestCombatEventAspectOfTheHawkSuccess_14319()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventAspectOfTheHawkSuccess_14319",
+function me.TestCombatEventAspectOfTheHawkRemoved_14318()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheHawkRemoved_14318",
+    testCategory,
+    "Aspect of the Hawk",
+    14318
+  )
+end
+
+function me.TestCombatEventAspectOfTheHawkApplied_14319()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheHawkApplied_14319",
     testCategory,
     "Aspect of the Hawk",
     14319
   )
 end
 
-function me.TestCombatEventAspectOfTheHawkSuccess_14320()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventAspectOfTheHawkSuccess_14320",
+function me.TestCombatEventAspectOfTheHawkRemoved_14319()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheHawkRemoved_14319",
+    testCategory,
+    "Aspect of the Hawk",
+    14319
+  )
+end
+
+function me.TestCombatEventAspectOfTheHawkApplied_14320()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheHawkApplied_14320",
     testCategory,
     "Aspect of the Hawk",
     14320
   )
 end
 
-function me.TestCombatEventAspectOfTheHawkSuccess_14321()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventAspectOfTheHawkSuccess_14321",
+function me.TestCombatEventAspectOfTheHawkRemoved_14320()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheHawkRemoved_14320",
+    testCategory,
+    "Aspect of the Hawk",
+    14320
+  )
+end
+
+function me.TestCombatEventAspectOfTheHawkApplied_14321()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheHawkApplied_14321",
     testCategory,
     "Aspect of the Hawk",
     14321
   )
 end
 
-function me.TestCombatEventAspectOfTheHawkSuccess_14322()
-  mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventAspectOfTheHawkSuccess_14322",
+function me.TestCombatEventAspectOfTheHawkRemoved_14321()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheHawkRemoved_14321",
+    testCategory,
+    "Aspect of the Hawk",
+    14321
+  )
+end
+
+function me.TestCombatEventAspectOfTheHawkApplied_14322()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheHawkApplied_14322",
     testCategory,
     "Aspect of the Hawk",
     14322
+  )
+end
+
+function me.TestCombatEventAspectOfTheHawkRemoved_14322()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheHawkRemoved_14322",
+    testCategory,
+    "Aspect of the Hawk",
+    14322
+  )
+end
+
+function me.TestCombatEventAspectOfThePackApplied_13159()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfThePackApplied_13159",
+    testCategory,
+    "Aspect of the Pack",
+    13159
+  )
+end
+
+function me.TestCombatEventAspectOfThePackRemoved_13159()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfThePackRemoved_13159",
+    testCategory,
+    "Aspect of the Pack",
+    13159
+  )
+end
+
+function me.TestCombatEventAspectOfTheCheetahApplied_5118()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheCheetahApplied_5118",
+    testCategory,
+    "Aspect of the Cheetah",
+    5118
+  )
+end
+
+function me.TestCombatEventAspectOfTheCheetahRemoved_5118()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheCheetahRemoved_5118",
+    testCategory,
+    "Aspect of the Cheetah",
+    5118
+  )
+end
+
+function me.TestCombatEventAspectOfTheWildApplied_20190()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheWildApplied_20190",
+    testCategory,
+    "Aspect of the Wild",
+    20190
+  )
+end
+
+function me.TestCombatEventAspectOfTheWildRemoved_20190()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheWildRemoved_20190",
+    testCategory,
+    "Aspect of the Wild",
+    20190
+  )
+end
+
+function me.TestCombatEventAspectOfTheWildApplied_20043()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheWildApplied_20043",
+    testCategory,
+    "Aspect of the Wild",
+    20043
+  )
+end
+
+function me.TestCombatEventAspectOfTheWildRemoved_20043()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheWildRemoved_20043",
+    testCategory,
+    "Aspect of the Wild",
+    20043
+  )
+end
+
+function me.TestCombatEventAspectOfTheBeastApplied_13161()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheBeastApplied_13161",
+    testCategory,
+    "Aspect of the Beast",
+    13161
+  )
+end
+
+function me.TestCombatEventAspectOfTheBeastRemoved_13161()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheBeastRemoved_13161",
+    testCategory,
+    "Aspect of the Beast",
+    13161
+  )
+end
+
+function me.TestCombatEventAspectOfTheFalconApplied_469145()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheFalconApplied_469145",
+    testCategory,
+    "Aspect of the Falcon",
+    469145
+  )
+end
+
+function me.TestCombatEventAspectOfTheFalconRemoved_469145()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheFalconRemoved_469145",
+    testCategory,
+    "Aspect of the Falcon",
+    469145
+  )
+end
+
+function me.TestCombatEventAspectOfTheViperApplied_415423()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheViperApplied_415423",
+    testCategory,
+    "Aspect of the Viper",
+    415423
+  )
+end
+
+function me.TestCombatEventAspectOfTheViperRemoved_415423()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheViperRemoved_415423",
+    testCategory,
+    "Aspect of the Viper",
+    415423
   )
 end
 

@@ -45,14 +45,42 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundConcussiveShot_5116)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheMonkey_13163)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheMonkey_13163)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheHawk_25296)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheHawk_25296)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheHawk_13165)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheHawk_13165)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheHawk_14318)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheHawk_14318)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheHawk_14319)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheHawk_14319)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheHawk_14320)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheHawk_14320)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheHawk_14321)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheHawk_14321)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheHawk_14322)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheHawk_14322)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfThePack_13159)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfThePack_13159)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheCheetah_5118)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheCheetah_5118)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheWild_20190)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheWild_20190)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheWild_20043)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheWild_20043)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheBeast_13161)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheBeast_13161)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheFalcon_469145)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheFalcon_469145)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheViper_415423)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheViper_415423)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRapidFire_3045)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRapidFire_3045)
@@ -119,66 +147,242 @@ function me.TestSoundConcussiveShot_5116()
 end
 
 function me.TestSoundAspectOfTheMonkey_13163()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundAspectOfTheMonkey_13163",
     testCategory,
     13163
   )
 end
 
+function me.TestSoundDownAspectOfTheMonkey_13163()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheMonkey_13163",
+    testCategory,
+    13163
+  )
+end
+
 function me.TestSoundAspectOfTheHawk_25296()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundAspectOfTheHawk_25296",
     testCategory,
     25296
   )
 end
 
+function me.TestSoundDownAspectOfTheHawk_25296()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheHawk_25296",
+    testCategory,
+    25296
+  )
+end
+
 function me.TestSoundAspectOfTheHawk_13165()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundAspectOfTheHawk_13165",
     testCategory,
     13165
   )
 end
 
+function me.TestSoundDownAspectOfTheHawk_13165()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheHawk_13165",
+    testCategory,
+    13165
+  )
+end
+
 function me.TestSoundAspectOfTheHawk_14318()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundAspectOfTheHawk_14318",
     testCategory,
     14318
   )
 end
 
+function me.TestSoundDownAspectOfTheHawk_14318()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheHawk_14318",
+    testCategory,
+    14318
+  )
+end
+
 function me.TestSoundAspectOfTheHawk_14319()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundAspectOfTheHawk_14319",
     testCategory,
     14319
   )
 end
 
+function me.TestSoundDownAspectOfTheHawk_14319()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheHawk_14319",
+    testCategory,
+    14319
+  )
+end
+
 function me.TestSoundAspectOfTheHawk_14320()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundAspectOfTheHawk_14320",
     testCategory,
     14320
   )
 end
 
+function me.TestSoundDownAspectOfTheHawk_14320()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheHawk_14320",
+    testCategory,
+    14320
+  )
+end
+
 function me.TestSoundAspectOfTheHawk_14321()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundAspectOfTheHawk_14321",
     testCategory,
     14321
   )
 end
 
+function me.TestSoundDownAspectOfTheHawk_14321()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheHawk_14321",
+    testCategory,
+    14321
+  )
+end
+
 function me.TestSoundAspectOfTheHawk_14322()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundAspectOfTheHawk_14322",
     testCategory,
     14322
+  )
+end
+
+function me.TestSoundDownAspectOfTheHawk_14322()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheHawk_14322",
+    testCategory,
+    14322
+  )
+end
+
+function me.TestSoundAspectOfThePack_13159()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAspectOfThePack_13159",
+    testCategory,
+    13159
+  )
+end
+
+function me.TestSoundDownAspectOfThePack_13159()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfThePack_13159",
+    testCategory,
+    13159
+  )
+end
+
+function me.TestSoundAspectOfTheCheetah_5118()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAspectOfTheCheetah_5118",
+    testCategory,
+    5118
+  )
+end
+
+function me.TestSoundDownAspectOfTheCheetah_5118()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheCheetah_5118",
+    testCategory,
+    5118
+  )
+end
+
+function me.TestSoundAspectOfTheWild_20190()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAspectOfTheWild_20190",
+    testCategory,
+    20190
+  )
+end
+
+function me.TestSoundDownAspectOfTheWild_20190()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheWild_20190",
+    testCategory,
+    20190
+  )
+end
+
+function me.TestSoundAspectOfTheWild_20043()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAspectOfTheWild_20043",
+    testCategory,
+    20043
+  )
+end
+
+function me.TestSoundDownAspectOfTheWild_20043()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheWild_20043",
+    testCategory,
+    20043
+  )
+end
+
+function me.TestSoundAspectOfTheBeast_13161()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAspectOfTheBeast_13161",
+    testCategory,
+    13161
+  )
+end
+
+function me.TestSoundDownAspectOfTheBeast_13161()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheBeast_13161",
+    testCategory,
+    13161
+  )
+end
+
+function me.TestSoundAspectOfTheFalcon_469145()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAspectOfTheFalcon_469145",
+    testCategory,
+    469145
+  )
+end
+
+function me.TestSoundDownAspectOfTheFalcon_469145()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheFalcon_469145",
+    testCategory,
+    469145
+  )
+end
+
+function me.TestSoundAspectOfTheViper_415423()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAspectOfTheViper_415423",
+    testCategory,
+    415423
+  )
+end
+
+function me.TestSoundDownAspectOfTheViper_415423()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheViper_415423",
+    testCategory,
+    415423
   )
 end
 
