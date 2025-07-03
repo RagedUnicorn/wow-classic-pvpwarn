@@ -99,6 +99,9 @@ function me.CollectTestCases()
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInfernalArmorApplied_440882)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInfernalArmorRemoved_440882)
+
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMetamorphosisApplied_403789)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMetamorphosisRemoved_403789)
 end
 
 function me.TestCombatEventFearSuccess_6215()
@@ -476,5 +479,23 @@ function me.TestCombatEventInfernalArmorRemoved_440882()
     testCategory,
     "Infernal Armor",
     440882
+  )
+end
+
+function me.TestCombatEventMetamorphosisApplied_403789()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventMetamorphosisApplied_403789",
+    testCategory,
+    "Metamorphosis",
+    403789
+  )
+end
+
+function me.TestCombatEventMetamorphosisRemoved_403789()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventMetamorphosisRemoved_403789",
+    testCategory,
+    "Metamorphosis",
+    403789
   )
 end
