@@ -39,7 +39,7 @@ local stanceTracker = {}
 -- Tracks whether configuration mode is enabled or not
 local configurationMode = false
 -- classes that should be considered to be tracked
-local supportedClasses = {"WARRIOR", "DRUID"}
+local supportedClasses = {"WARRIOR", "DRUID", "PRIEST", "HUNTER", "WARLOCK"}
 -- clear stances that are older than 5 minutes
 local stanceExpiredTimeout = 200 -- 300000
 
@@ -153,11 +153,8 @@ end
 ]]--
 function me.TrackStanceRemoved(spell, target, category)
   if target == nil or spell == nil then return end
-    -- TODO might not be necessary because we dont track warrior SPELL_AURA_REMOVED for stances
-    -- based on that it should never be called for warriors
-  if category == "druid" then
-    stanceTracker[target] = nil
-  end
+
+  stanceTracker[target] = nil
 
   -- update stance of current target if the update was for the current target
   if target == mod.target.GetCurrentTargetGuid() then
