@@ -458,6 +458,20 @@ local spellMap = {
     }
   },
   ["priest"] = {
+    [15473] = {
+      name = "Shadowform",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "shadowform",
+      spellIcon = "spell_shadow_shadowform",
+      hasFade = true,
+      isStanceSpell = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 15473 }
+    },
     [10890] = {
       name = "Psychic Scream",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
