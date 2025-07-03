@@ -149,9 +149,8 @@ end
 --[[
   @param {table} spell
   @param {string} target
-  @param {string} category
 ]]--
-function me.TrackStanceRemoved(spell, target, category)
+function me.TrackStanceRemoved(spell, target)
   if target == nil or spell == nil then return end
 
   stanceTracker[target] = nil
