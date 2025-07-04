@@ -178,5 +178,5 @@ function me.GetTextureNameByValue(colorValue)
     end
   end
 
-  return RGPVPW_CONSTANTS.TEXTURES.none.texturName -- default if none was found
+  return RGPVPW_CONSTANTS.TEXTURES.none.textureName -- default if none was found
 end
