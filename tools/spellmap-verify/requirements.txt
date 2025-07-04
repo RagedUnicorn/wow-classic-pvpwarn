@@ -1,0 +1,4 @@
+# SpellMap Verification Tool Requirements
+
+# Lua parser for accurate parsing of SpellMap.lua
+lupa==2.0
