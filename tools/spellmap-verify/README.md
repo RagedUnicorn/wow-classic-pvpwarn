@@ -12,6 +12,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```bash
+# From the spellmap-verify directory
 python3 verify_spellmap.py
 ```
 
@@ -67,15 +68,26 @@ The tool generates a comprehensive report showing:
 
 Exit code is 0 if no errors are found, 1 otherwise.
 
-## Architecture
+## Project Structure
 
-The tool is modularly designed with the following components:
-- `verify_spellmap.py` - Main entry point and orchestrator
-- `spellmap_verifier/` - Core verification package
-  - `file_reader.py` - Handles file I/O operations
-  - `lua_parser.py` - Lua parsing and environment setup
-  - `reporter.py` - Report generation and formatting
-  - `validators/` - Validation modules
-    - `base_validator.py` - Abstract base class for validators
-    - `name_validator.py` - Name property validation
-    - `duplicate_validator.py` - Duplicate spell ID detection
+```
+spellmap-verify/
+├── verify_spellmap.py      # Main script with SpellMapVerifier class
+├── requirements.txt        # Python dependencies
+├── pytest.ini              # pytest configuration
+├── README.md               # This file
+├── spellmap_verifier/      # Verification modules
+│   ├── __init__.py         # Package initialization
+│   ├── file_reader.py      # File I/O operations
+│   ├── lua_parser.py       # Lua parsing and environment
+│   ├── reporter.py         # Report generation
+│   ├── constants.py        # Shared constants
+│   └── validators/         # Validation modules
+│       ├── __init__.py
+│       ├── base_validator.py      # Abstract base class
+│       ├── name_validator.py      # Name validation
+│       ├── type_validator.py      # Type validation
+│       └── duplicate_validator.py # Duplicate detection
+└── tests/                  # Test suite
+    ├── fixtures/           # Test Lua files
+    └── validators/         # Validator tests

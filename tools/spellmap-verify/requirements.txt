@@ -2,3 +2,7 @@
 
 # Lua parser for accurate parsing of SpellMap.lua
 lupa==2.0
+
+# Testing framework
+pytest==7.4.3
+pytest-cov==4.1.0
