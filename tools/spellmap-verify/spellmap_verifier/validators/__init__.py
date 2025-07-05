@@ -10,6 +10,8 @@ from .type_validator import TypeValidator
 from .tracked_events_validator import TrackedEventsValidator
 from .sound_file_name_validator import SoundFileNameValidator
 from .spell_icon_validator import SpellIconValidator
+from .all_ranks_validator import AllRanksValidator
 
 __all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator", 
-          "TrackedEventsValidator", "SoundFileNameValidator", "SpellIconValidator"]
+          "TrackedEventsValidator", "SoundFileNameValidator", "SpellIconValidator",
+          "AllRanksValidator"]
