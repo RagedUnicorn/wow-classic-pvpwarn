@@ -8,5 +8,7 @@ from .name_validator import NameValidator
 from .duplicate_validator import DuplicateValidator
 from .type_validator import TypeValidator
 from .tracked_events_validator import TrackedEventsValidator
+from .sound_file_name_validator import SoundFileNameValidator
 
-__all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator", "TrackedEventsValidator"]
+__all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator", 
+          "TrackedEventsValidator", "SoundFileNameValidator"]
