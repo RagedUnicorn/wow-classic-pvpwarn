@@ -98,8 +98,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetaliationApplied_20230)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetaliationRemoved_20230)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFlagellationApplied_402877)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFlagellationRemoved_402877)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRagingBlowSuccess_402911)
 
@@ -470,23 +468,6 @@ function me.TestCombatEventRetaliationRemoved_20230()
   )
 end
 
-function me.TestCombatEventFlagellationApplied_402877()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventFlagellationApplied_402877",
-    testCategory,
-    "Flagellation",
-    402877
-  )
-end
-
-function me.TestCombatEventFlagellationRemoved_402877()
-  mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventFlagellationRemoved_402877",
-    testCategory,
-    "Flagellation",
-    402877
-  )
-end
 
 function me.TestCombatEventRagingBlowSuccess_402911()
   mod.testHelper.TestCombatEventSuccess(
