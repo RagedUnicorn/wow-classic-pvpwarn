@@ -106,9 +106,15 @@ class SpellMapVerifier:
         # Set dynamic properties found during parsing
         self.reporter.set_dynamic_properties(self.lua_parser.get_dynamic_properties())
 
-        # Collect errors from all validators
+        # Collect errors and results from all validators
         for validator in self.validators:
-            self.reporter.add_errors(validator.get_errors())
+            errors = validator.get_errors()
+            self.reporter.add_errors(errors)
+            self.reporter.add_validator_result(
+                validator.get_name(),
+                len(errors),
+                errors
+            )
 
 
 def main():
