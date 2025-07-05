@@ -100,6 +100,12 @@ def invalid_all_ranks_spellmap(fixture_loader):
 
 
 @pytest.fixture
+def invalid_active_spellmap(fixture_loader):
+    """Load the spellmap with invalid active values."""
+    return fixture_loader.load_fixture("invalid_active")
+
+
+@pytest.fixture
 def minimal_valid_spell():
     """Provide a minimal valid spell entry for testing."""
     return {

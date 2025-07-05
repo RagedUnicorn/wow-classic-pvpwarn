@@ -7,6 +7,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "simple",
       spellIcon = "simple",
+      active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
       allRanks = { 1 }
     },
@@ -16,6 +17,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "with_underscores",
       spellIcon = "with_underscores",
+      active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
       allRanks = { 2 }
     },
@@ -25,6 +27,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "without_numbers",
       spellIcon = "with_numbers_123",
+      active = false,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
       allRanks = { 3 }
     },
@@ -34,6 +37,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "complex_sound",
       spellIcon = "inv_1h_haremmatron_d_01",
+      active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
       allRanks = { 4 }
     },
@@ -43,6 +47,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "_leading_underscore",
       spellIcon = "_leading_underscore",
+      active = false,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
       allRanks = { 5 }
     },
@@ -52,6 +57,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "multiple_underscores_allowed",
       spellIcon = "ability_druid_ferociousbite_01",
+      active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
       allRanks = { 6 }
     },
@@ -61,6 +67,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "a",
       spellIcon = "a",
+      active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
       allRanks = { 7 }
     },
@@ -70,6 +77,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "all_events",
       spellIcon = "all_events",
+      active = false,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED",
@@ -85,6 +93,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "sod_spell",
       spellIcon = "sod_spell_icon",
+      active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
       allRanks = { 9 }
     }

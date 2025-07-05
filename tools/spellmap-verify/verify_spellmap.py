@@ -12,7 +12,7 @@ from spellmap_verifier import SpellMapFileReader, LuaParser, Reporter
 from spellmap_verifier.validators import (
     NameValidator, DuplicateValidator, TypeValidator, 
     TrackedEventsValidator, SoundFileNameValidator, SpellIconValidator, 
-    AllRanksValidator, BaseValidator
+    AllRanksValidator, ActiveValidator, BaseValidator
 )
 
 
@@ -45,6 +45,7 @@ class SpellMapVerifier:
         sound_file_name_validator = SoundFileNameValidator()
         spell_icon_validator = SpellIconValidator()
         all_ranks_validator = AllRanksValidator()
+        active_validator = ActiveValidator()
 
         # Add validators in order of execution
         self.validators = [
@@ -55,6 +56,7 @@ class SpellMapVerifier:
             sound_file_name_validator, # Then check sound file names
             spell_icon_validator,     # Then check spell icons
             all_ranks_validator,      # Then check all ranks
+            active_validator,         # Then check active property
         ]
 
     def run(self) -> bool:
