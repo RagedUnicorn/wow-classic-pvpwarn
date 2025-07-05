@@ -11,7 +11,8 @@ from .tracked_events_validator import TrackedEventsValidator
 from .sound_file_name_validator import SoundFileNameValidator
 from .spell_icon_validator import SpellIconValidator
 from .all_ranks_validator import AllRanksValidator
+from .active_validator import ActiveValidator
 
 __all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator", 
           "TrackedEventsValidator", "SoundFileNameValidator", "SpellIconValidator",
-          "AllRanksValidator"]
+          "AllRanksValidator", "ActiveValidator"]
