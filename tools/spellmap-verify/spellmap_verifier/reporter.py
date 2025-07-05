@@ -2,7 +2,7 @@
 Report generation for SpellMap verification results.
 """
 
-from typing import Dict, List, Optional, Set
+from typing import Dict, List, Optional, Set, Tuple
 from pathlib import Path
 
 from .constants import (
@@ -27,6 +27,7 @@ class Reporter:
         self.spell_entries: Dict[str, Dict[int, Dict]] = {}
         self.errors: List[str] = []
         self.dynamic_properties: List[str] = []
+        self.validator_results: List[Tuple[str, int, List[str]]] = []
 
     def set_spell_entries(self, spell_entries: Dict[str, Dict[int, Dict]]) -> None:
         """Set the spell entries for reporting."""
@@ -39,6 +40,10 @@ class Reporter:
     def set_dynamic_properties(self, dynamic_properties: List[str]) -> None:
         """Set the list of dynamic properties."""
         self.dynamic_properties = dynamic_properties
+
+    def add_validator_result(self, validator_name: str, error_count: int, errors: List[str]) -> None:
+        """Add a validator's result to the report."""
+        self.validator_results.append((validator_name, error_count, errors))
 
     def generate_report(self) -> str:
         """
@@ -62,6 +67,10 @@ class Reporter:
 
         # Category breakdown
         lines.extend(self._generate_category_breakdown())
+        lines.append("")
+
+        # Validator results
+        lines.extend(self._generate_validator_section())
         lines.append("")
 
         # Errors
@@ -124,3 +133,17 @@ class Reporter:
     def has_errors(self) -> bool:
         """Check if there are any errors."""
         return len(self.errors) > 0
+
+    def _generate_validator_section(self) -> List[str]:
+        """Generate validator results section."""
+        if not self.validator_results:
+            return []
+        
+        lines = ["Validators run:"]
+        for validator_name, error_count, errors in self.validator_results:
+            if error_count == 0:
+                lines.append(f"  {SUCCESS_PREFIX} {validator_name}: PASSED")
+            else:
+                lines.append(f"  {ERROR_PREFIX} {validator_name}: FAILED ({error_count} errors)")
+        
+        return lines
