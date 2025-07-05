@@ -465,7 +465,9 @@ local spellMap = {
       spellIcon = "spell_shadow_psychicscream",
       hasFade = false,
       active = true,
-      trackedEvents = { "SPELL_CAST_SUCCESS" },
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
       allRanks = { 8122, 8124, 10888, 10890 }
     },
     [8122] = { refId = 10890 },
@@ -1199,7 +1201,8 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 11958 }
     },
     [12826] = {
       name = "Polymorph",
@@ -1229,7 +1232,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 1953 }
     },
     [10225] = {
       name = "Fire Ward",
@@ -1274,7 +1278,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 2139 }
     },
     [10193] = {
       name = "Mana Shield",
@@ -1337,7 +1342,8 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 12042 }
     },
     [12051] = {
       name = "Evocation",
@@ -1348,7 +1354,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 12051 }
     },
     [12043] = {
       name = "Presence of Mind",
@@ -1360,7 +1367,8 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 12043 }
     },
     [11129] = {
       name = "Combustion",
@@ -1372,7 +1380,8 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 11129 }
     },
     [13021] = {
       name = "Blast Wave",
@@ -1399,7 +1408,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 12472 }
     },
     [400647] = {
       name = "Fingers of Frost",
@@ -1411,7 +1421,8 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 400647 }
     },
     [425121] = {
       name = "Icy Veins",
@@ -1423,7 +1434,8 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 425121 }
     },
     [425124] = {
       name = "Arcane Surge",
@@ -1434,7 +1446,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 425124 }
     },
     [400613] = {
       name = "Living Bomb",
@@ -1445,7 +1458,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 400613 }
     },
     [436516] = {
       name = "Chronostatic Preservation",
@@ -1457,7 +1471,8 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 436516 }
     },
     [401556] = {
       name = "Living Flame",
@@ -1468,7 +1483,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 401556 }
     },
     [400640] = {
       name = "Ice Lance",
@@ -1479,7 +1495,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 400640 }
     },
     [428739] = {
       name = "Deep Freeze",
@@ -1490,7 +1507,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 428739 }
     },
     [401502] = {
       name = "Frostfire Bolt",
@@ -1501,7 +1519,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 401502 }
     },
     [412532] = {
       name = "Spellfrost Bolt",
@@ -1512,7 +1531,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 412532 }
     },
     [428878] = {
       name = "Balefire Bolt",
@@ -1523,7 +1543,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 428878 }
     },
     [400624] = {
       name = "Hot Streak",
@@ -1535,7 +1556,8 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 400624 }
     },
     [400731] = {
       name = "Brain Freeze",
@@ -1547,7 +1569,8 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 400731 }
     },
     [440802] = {
       name = "Frozen Orb",
@@ -1558,7 +1581,8 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 440802 }
     }
   },
   ["hunter"] = {
@@ -1572,31 +1596,32 @@ local spellMap = {
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 5116 }
     },
     [13163] = {
       name = "Aspect of the Monkey",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "aspect_of_the_monkey",
       spellIcon = "ability_hunter_aspectofthemonkey",
-      allRanks = {13163},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 13163 }
     },
     [25296] = {
       name = "Aspect of the Hawk",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "aspect_of_the_hawk",
       spellIcon = "spell_nature_ravenform",
-      allRanks = {13165, 14318, 14319, 14320, 14321, 14322, 25296},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 13165, 14318, 14319, 14320, 14321, 14322, 25296 }
     },
     [13165] = { refId = 25296 },
     [14318] = { refId = 25296 },
@@ -1609,25 +1634,25 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "rapid_fire",
       spellIcon = "ability_hunter_runningshot",
-      allRanks = {3045},
       hasFade = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 3045 }
     },
     [14317] = {
       name = "Explosive Trap",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "explosive_trap",
       spellIcon = "spell_fire_selfdestruct",
-      allRanks = {13813, 14316, 14317},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 13813, 14316, 14317 }
     },
     [13813] = { refId = 14317 },
     [14316] = { refId = 14317 },
@@ -1636,12 +1661,12 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "freezing_trap",
       spellIcon = "spell_frost_chainsofice",
-      allRanks = {1499, 14310, 14311, 27753},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 1499, 14310, 14311, 27753 }
     },
     [1499] = { refId = 27753 },
     [14310] = { refId = 27753 },
@@ -1651,12 +1676,12 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "immolation_trap",
       spellIcon = "spell_fire_flameshock",
-      allRanks = {13795, 14302, 14303, 14304, 14305},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 13795, 14302, 14303, 14304, 14305 }
     },
     [13795] = { refId = 14305 },
     [14302] = { refId = 14305 },
@@ -1667,24 +1692,24 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "frost_trap",
       spellIcon = "spell_frost_freezingbreath",
-      allRanks = {13809},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 13809 }
     },
     [14280] = {
       name = "Viper Sting",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "viper_sting",
       spellIcon = "ability_hunter_aimedshot",
-      allRanks = {3034, 14279, 14280},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 3034, 14279, 14280 }
     },
     [3034] = { refId = 14280 },
     [14279] = { refId = 14280 },
@@ -1693,150 +1718,150 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "scatter_shot",
       spellIcon = "ability_golemstormbolt",
-      allRanks = {19503},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 19503 }
     },
     [1543] = {
       name = "Flare",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "flare",
       spellIcon = "spell_fire_flare",
-      allRanks = {1543},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 1543 }
     },
     [24394] = {
       name = "Intimidation",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "intimidation",
       spellIcon = "ability_devour",
-      allRanks = {24394},
       hasFade = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 24394 }
     },
     [19574] = {
       name = "Bestial Wrath",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "bestial_wrath",
       spellIcon = "ability_druid_ferociousbite",
-      allRanks = {19574},
       hasFade = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 19574 }
     },
     [19263] = {
       name = "Deterrence",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "deterrence",
       spellIcon = "ability_whirlwind",
-      allRanks = {19263},
       hasFade = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 19263 }
     },
     [415399] = {
       name = "Sniper Training",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "sniper_training",
       spellIcon = "ability_hunter_snipershot",
-      allRanks = {415399},
       hasFade = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 415399 }
     },
     [409974] = {
       name = "Kill Shot",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "kill_shot",
       spellIcon = "ability_hunter_assassinate2",
-      allRanks = {409974},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 409974 }
     },
     [415320] = {
       name = "Flanking Strike",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "flanking_strike",
       spellIcon = "ability_hunter_harass",
-      allRanks = {415320},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 415320 }
     },
     [409433] = {
       name = "Chimera Shot",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "chimera_shot",
       spellIcon = "ability_hunter_chimerashot2",
-      allRanks = {409433},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 409433 }
     },
     [409552] = {
       name = "Explosive Shot",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "explosive_shot",
       spellIcon = "ability_hunter_explosiveshot",
-      allRanks = {409552},
       hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
-      }
+      },
+      allRanks = { 409552 }
     },
     [415413] = {
       name = "Lock and Load",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "lock_and_load",
       spellIcon = "ability_hunter_lockandload",
-      allRanks = {415413},
       hasFade = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 415413 }
     },
     [440533] = {
       name = "Hit and Run",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "hit_and_run",
       spellIcon = "ability_hunter_displacement",
-      allRanks = {440533},
       hasFade = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
-      }
+      },
+      allRanks = { 440533 }
     }
   },
   ["warlock"] = {
@@ -3304,7 +3329,7 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 20554 }
+      allRanks = { 20554, 26296, 26297 }
     },
     [26297] = { refId = 20554 }, -- energy
     [26296] = { refId = 20554 }, -- rage
@@ -3860,7 +3885,7 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 437699 }
+      allRanks = { 437699, 437698 }
     },
     [437698] = { refId = 437699 },
     [13494] = {
