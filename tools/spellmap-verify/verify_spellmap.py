@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import List
 
 from spellmap_verifier import SpellMapFileReader, LuaParser, Reporter
-from spellmap_verifier.validators import NameValidator, DuplicateValidator, BaseValidator
+from spellmap_verifier.validators import NameValidator, DuplicateValidator, TypeValidator, BaseValidator
 
 
 class SpellMapVerifier:
@@ -36,11 +36,13 @@ class SpellMapVerifier:
         # Create validators with dependencies
         name_validator = NameValidator(self.lua_parser.get_dynamic_properties())
         duplicate_validator = DuplicateValidator()
+        type_validator = TypeValidator()
 
         # Add validators in order of execution
         self.validators = [
             duplicate_validator,  # Check duplicates first
             name_validator,       # Then check names
+            type_validator,       # Then check types
         ]
 
     def run(self) -> bool:

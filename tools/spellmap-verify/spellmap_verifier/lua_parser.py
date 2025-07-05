@@ -152,4 +152,3 @@ class LuaParser:
     def get_dynamic_properties(self) -> List[str]:
         """Get the list of dynamic properties found during parsing."""
         return self.dynamic_properties.copy()
-
