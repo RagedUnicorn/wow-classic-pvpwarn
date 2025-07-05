@@ -2283,7 +2283,7 @@ local spellMap = {
       allRanks = { 498, 5573 }
     },
     --[[
-      [498] = { refId = 5573 },
+      498 = { refId = 5573 },
       Note: Rank 1 (498) is shared with Divine Shield (also 498).
       They are mutually exclusive spells—Divine Shield replaces Divine Protection at higher levels.
       The addon will always recognize 498 as divine shield even though it could be divine protection.
