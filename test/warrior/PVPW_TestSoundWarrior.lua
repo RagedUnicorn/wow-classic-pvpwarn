@@ -99,8 +99,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRetaliation_20230)
 
   -- start runes
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFlagellation_402877)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFlagellation_402877)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRagingBlow_402911)
 
@@ -433,21 +431,6 @@ function me.TestSoundDownRetaliation_20230()
   )
 end
 
-function me.TestSoundFlagellation_402877()
-  mod.testHelper.TestSoundApplied(
-    "TestSoundFlagellation_402877",
-    testCategory,
-    402877
-  )
-end
-
-function me.TestSoundDownFlagellation_402877()
-  mod.testHelper.TestSoundRemoved(
-    "TestSoundDownFlagellation_402877",
-    testCategory,
-    402877
-  )
-end
 
 function me.TestSoundRagingBlow_402911()
   mod.testHelper.TestSoundSuccess(

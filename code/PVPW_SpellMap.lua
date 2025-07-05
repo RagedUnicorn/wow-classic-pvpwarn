@@ -281,19 +281,6 @@ local spellMap = {
       },
       allRanks = { 20230 }
     },
-    [402877] = {
-      name = "Flagellation",
-      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
-      soundFileName = "flagellation",
-      spellIcon = "inv-mace-1h-stratholme-d-01",
-      hasFade = true,
-      active = true,
-      trackedEvents = {
-        "SPELL_AURA_APPLIED",
-        "SPELL_AURA_REMOVED"
-      },
-      allRanks = { 402877 }
-    },
     [402911] = {
       name = "Raging Blow",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
