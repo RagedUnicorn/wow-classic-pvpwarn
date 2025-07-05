@@ -11,7 +11,7 @@ from typing import List
 from spellmap_verifier import SpellMapFileReader, LuaParser, Reporter
 from spellmap_verifier.validators import (
     NameValidator, DuplicateValidator, TypeValidator, 
-    TrackedEventsValidator, SoundFileNameValidator, BaseValidator
+    TrackedEventsValidator, SoundFileNameValidator, SpellIconValidator, BaseValidator
 )
 
 
@@ -42,6 +42,7 @@ class SpellMapVerifier:
         type_validator = TypeValidator()
         tracked_events_validator = TrackedEventsValidator()
         sound_file_name_validator = SoundFileNameValidator()
+        spell_icon_validator = SpellIconValidator()
 
         # Add validators in order of execution
         self.validators = [
@@ -50,6 +51,7 @@ class SpellMapVerifier:
             type_validator,           # Then check types
             tracked_events_validator, # Then check tracked events
             sound_file_name_validator, # Then check sound file names
+            spell_icon_validator,     # Then check spell icons
         ]
 
     def run(self) -> bool:

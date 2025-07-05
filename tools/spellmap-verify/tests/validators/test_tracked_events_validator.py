@@ -99,3 +99,25 @@ class TestTrackedEventsValidator:
 
         errors = validator.get_errors()
         assert len(errors) == 0
+    
+    def test_all_allowed_events_from_fixture(self, valid_spell_variations):
+        """Test that all allowed events are accepted using fixture."""
+        validator = TrackedEventsValidator()
+        validator.validate(valid_spell_variations)
+        
+        errors = validator.get_errors()
+        assert len(errors) == 0
+    
+    def test_reference_entry_skipped(self, reference_entry):
+        """Test that reference entries are properly skipped."""
+        test_entries = {
+            "test": {
+                1: reference_entry
+            }
+        }
+        
+        validator = TrackedEventsValidator()
+        validator.validate(test_entries)
+        
+        errors = validator.get_errors()
+        assert len(errors) == 0
