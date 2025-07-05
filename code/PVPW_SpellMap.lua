@@ -1591,7 +1591,6 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "concussive_shot",
       spellIcon = "spell_frost_stun",
-      allRanks = { 5116 },
       hasFade = false,
       active = true,
       trackedEvents = {
