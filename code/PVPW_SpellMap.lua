@@ -2215,7 +2215,7 @@ local spellMap = {
       },
       allRanks = { 20066 }
     },
-    [642] = {
+    [1020] = {
       name = "Divine Shield",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "divine_shield",
@@ -2226,9 +2226,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 498, 642 }
+      allRanks = { 642, 1020 }
     },
-    [498] = { refId = 642 },
+    [642] = { refId = 1020 },
     [25771] = {
       name = "Forbearance",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2269,13 +2269,7 @@ local spellMap = {
       },
       allRanks = { 498, 5573 }
     },
-    --[[
-      498 = { refId = 5573 },
-      Note: Rank 1 (498) is shared with Divine Shield (also 498).
-      They are mutually exclusive spells—Divine Shield replaces Divine Protection at higher levels.
-      The addon will always recognize 498 as divine shield even though it could be divine protection.
-      It is however more likely that is is divine shield.
-    ]]--
+    [498] = { refId = 5573 },
     [425589] = {
       name = "Aegis",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,

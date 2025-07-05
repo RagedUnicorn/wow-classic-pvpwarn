@@ -94,8 +94,8 @@ function me.CollectTestCases()
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDivineShield_642)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDivineShield_642)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDivineShield_498)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDivineShield_498)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDivineShield_1020)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDivineShield_1020)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundForbearance_25771)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownForbearance_25771)
@@ -466,19 +466,19 @@ function me.TestSoundDownDivineShield_642()
   )
 end
 
-function me.TestSoundDivineShield_498()
+function me.TestSoundDivineShield_1020()
   mod.testHelper.TestSoundApplied(
-    "TestSoundDivineShield_498",
+    "TestSoundDivineShield_1020",
     testCategory,
-    498
+    1020
   )
 end
 
-function me.TestSoundDownDivineShield_498()
+function me.TestSoundDownDivineShield_1020()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownDivineShield_498",
+    "TestSoundDownDivineShield_1020",
     testCategory,
-    498
+    1020
   )
 end
 
