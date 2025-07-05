@@ -95,8 +95,8 @@ function me.CollectTestCases()
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineShieldApplied_642)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineShieldRemoved_642)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineShieldApplied_498)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineShieldRemoved_498)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineShieldApplied_1020)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDivineShieldRemoved_1020)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventForbearanceApplied_25771)
   mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventForbearanceRemoved_25771)
@@ -508,21 +508,21 @@ function me.TestCombatEventDivineShieldRemoved_642()
   )
 end
 
-function me.TestCombatEventDivineShieldApplied_498()
+function me.TestCombatEventDivineShieldApplied_1020()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventDivineShieldApplied_498",
+    "TestCombatEventDivineShieldApplied_1020",
     testCategory,
     "Divine Shield",
-    498
+    1020
   )
 end
 
-function me.TestCombatEventDivineShieldRemoved_498()
+function me.TestCombatEventDivineShieldRemoved_1020()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventDivineShieldRemoved_498",
+    "TestCombatEventDivineShieldRemoved_1020",
     testCategory,
     "Divine Shield",
-    498
+    1020
   )
 end
 
