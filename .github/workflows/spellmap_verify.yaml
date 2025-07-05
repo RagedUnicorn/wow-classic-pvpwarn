@@ -30,6 +30,59 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run SpellMap verification
+        id: verify
         run: |
           cd tools/spellmap-verify
-          python verify_spellmap.py
+          echo "## 🔍 SpellMap Verification Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Run verification and capture output
+          if python verify_spellmap.py 2>&1 | tee verification_output.txt; then
+            echo "verification_passed=true" >> $GITHUB_OUTPUT
+            echo "✅ **Verification Status:** PASSED" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "verification_passed=false" >> $GITHUB_OUTPUT
+            echo "❌ **Verification Status:** FAILED" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Detailed Report" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          cat verification_output.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+      - name: Comment on PR (if failed)
+        if: github.event_name == 'pull_request' && steps.verify.outputs.verification_passed == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const output = fs.readFileSync('tools/spellmap-verify/verification_output.txt', 'utf8');
+            
+            const comment = `## ❌ SpellMap Verification Failed
+            
+            The SpellMap verification found errors that need to be fixed:
+            
+            \`\`\`
+            ${output}
+            \`\`\`
+            
+            Please fix the errors and push an update.`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+            
+      - name: Upload verification results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: spellmap-verification-results
+          path: tools/spellmap-verify/verification_output.txt
+          
+      - name: Fail if verification failed
+        if: steps.verify.outputs.verification_passed == 'false'
+        run: exit 1
