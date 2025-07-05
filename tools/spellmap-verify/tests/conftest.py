@@ -79,3 +79,33 @@ def invalid_tracked_events_spellmap(fixture_loader):
 def invalid_sound_file_names_spellmap(fixture_loader):
     """Load the spellmap with invalid sound file names."""
     return fixture_loader.load_fixture("invalid_sound_file_names")
+
+
+@pytest.fixture
+def invalid_spell_icons_spellmap(fixture_loader):
+    """Load the spellmap with invalid spell icons."""
+    return fixture_loader.load_fixture("invalid_spell_icons")
+
+
+@pytest.fixture
+def valid_spell_variations(fixture_loader):
+    """Load the spellmap with various valid spell patterns."""
+    return fixture_loader.load_fixture("valid_spell_variations")
+
+
+@pytest.fixture
+def minimal_valid_spell():
+    """Provide a minimal valid spell entry for testing."""
+    return {
+        "name": "Test Spell",
+        "type": "SPELL_TYPE_BASE",
+        "soundFileName": "test_sound",
+        "spellIcon": "test_icon",
+        "trackedEvents": ["SPELL_CAST_SUCCESS"]
+    }
+
+
+@pytest.fixture 
+def reference_entry():
+    """Provide a reference entry for testing."""
+    return {"refId": 12345}
