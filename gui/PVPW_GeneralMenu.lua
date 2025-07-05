@@ -310,7 +310,7 @@ end
 function me.GetLabelText(frameName)
   if not frameName then return end
 
-  for i = 1, table.getn(options) do
+  for i = 1, #options do
     if frameName == RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT .. options[i][1] then
       return options[i][2]
     end
@@ -327,7 +327,7 @@ function me.OptTooltipOnEnter(self)
 
   if not name then return end
 
-  for i = 1, table.getn(options) do
+  for i = 1, #options do
     if name == RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT .. options[i][1] then
       mod.tooltip.BuildTooltipForOption(options[i][2], options[i][3])
       break
