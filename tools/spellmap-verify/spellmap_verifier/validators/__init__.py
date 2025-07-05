@@ -12,7 +12,8 @@ from .sound_file_name_validator import SoundFileNameValidator
 from .spell_icon_validator import SpellIconValidator
 from .all_ranks_validator import AllRanksValidator
 from .active_validator import ActiveValidator
+from .has_fade_validator import HasFadeValidator
 
 __all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator", 
           "TrackedEventsValidator", "SoundFileNameValidator", "SpellIconValidator",
-          "AllRanksValidator", "ActiveValidator"]
+          "AllRanksValidator", "ActiveValidator", "HasFadeValidator"]

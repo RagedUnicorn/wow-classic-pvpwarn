@@ -3753,7 +3753,7 @@ local spellMap = {
       soundFileName = "insignia",
       spellIcon = "spell_deathknight_runetap",
       itemId = 233728,
-      haseFade = false,
+      hasFade = false,
       active = true,
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
