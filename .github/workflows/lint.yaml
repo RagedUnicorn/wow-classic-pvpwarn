@@ -11,4 +11,4 @@ jobs:
       - name: Luacheck for lua codebases
         uses: RagedUnicorn/action-luacheck@v1.0.0
         with:
-          path: code gui localization profiles test
+          files: code gui localization profiles test
