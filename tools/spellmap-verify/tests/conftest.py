@@ -73,3 +73,9 @@ def invalid_types_spellmap(fixture_loader):
 def invalid_tracked_events_spellmap(fixture_loader):
     """Load the spellmap with invalid tracked events."""
     return fixture_loader.load_fixture("invalid_tracked_events")
+
+
+@pytest.fixture
+def invalid_sound_file_names_spellmap(fixture_loader):
+    """Load the spellmap with invalid sound file names."""
+    return fixture_loader.load_fixture("invalid_sound_file_names")
