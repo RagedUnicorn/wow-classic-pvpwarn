@@ -68,7 +68,7 @@ class SpellMapVerifier:
         Returns:
             True if no errors were found, False otherwise
         """
-        print("Starting SpellMap verification with Lua parser...")
+        print("\n🔍 Starting SpellMap verification with Lua parser...\n")
 
         try:
             # Step 1: Read the file
