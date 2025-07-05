@@ -93,23 +93,19 @@ class LuaParser:
         if lupa.lua_type(lua_table) != 'table':
             return lua_table
 
-        # Try direct dict conversion first
+        # Always use manual conversion to ensure nested tables are converted
+        result = {}
         try:
-            return dict(lua_table)
-        except:
-            # Fall back to manual conversion
-            result = {}
-            try:
-                for key in list(lua_table):
-                    value = lua_table[key]
-                    if lupa.lua_type(value) == 'table':
-                        result[key] = self.lua_table_to_list_or_dict(value)
-                    else:
-                        result[key] = value
-            except Exception:
-                # Ignore table conversion issues - they don't affect functionality
-                pass
-            return result
+            for key in list(lua_table):
+                value = lua_table[key]
+                if lupa.lua_type(value) == 'table':
+                    result[key] = self.lua_table_to_list_or_dict(value)
+                else:
+                    result[key] = value
+        except Exception:
+            # Ignore table conversion issues - they don't affect functionality
+            pass
+        return result
 
     def lua_table_to_list_or_dict(self, lua_table):
         """Convert a Lua table to either a list or dict depending on its keys."""

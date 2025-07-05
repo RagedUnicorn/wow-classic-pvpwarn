@@ -67,3 +67,9 @@ def duplicate_spells_spellmap(fixture_loader):
 def invalid_types_spellmap(fixture_loader):
     """Load the spellmap with invalid types."""
     return fixture_loader.load_fixture("invalid_types")
+
+
+@pytest.fixture
+def invalid_tracked_events_spellmap(fixture_loader):
+    """Load the spellmap with invalid tracked events."""
+    return fixture_loader.load_fixture("invalid_tracked_events")

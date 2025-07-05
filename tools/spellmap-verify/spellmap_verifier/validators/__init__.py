@@ -7,5 +7,6 @@ from .base_validator import BaseValidator
 from .name_validator import NameValidator
 from .duplicate_validator import DuplicateValidator
 from .type_validator import TypeValidator
+from .tracked_events_validator import TrackedEventsValidator
 
-__all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator"]
+__all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator", "TrackedEventsValidator"]
