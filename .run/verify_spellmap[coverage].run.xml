@@ -14,7 +14,7 @@
     <option name="_new_keywords" value="&quot;&quot;" />
     <option name="_new_parameters" value="&quot;&quot;" />
     <option name="_new_additionalArguments" value="&quot;--cov\u003dspellmap_verifier --cov-report\u003dhtml&quot;" />
-    <option name="_new_target" value="&quot;C:\\Program Files (x86)\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\PVPWarn\\tools\\spellmap-verify\\tests&quot;" />
+    <option name="_new_target" value="&quot;$PROJECT_DIR$/tools/spellmap-verify/tests&quot;" />
     <option name="_new_targetType" value="&quot;PATH&quot;" />
     <method v="2" />
   </configuration>
