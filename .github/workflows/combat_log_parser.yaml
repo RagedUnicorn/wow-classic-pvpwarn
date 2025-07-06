@@ -1,9 +1,302 @@
-name: test
-on: [workflow_dispatch]
+name: Combat Log Parser
+
+on:
+  workflow_dispatch:
+    inputs:
+      s3_path:
+        description: 'S3 path to download logs from (relative to wow_pvpwarn/combat_logs/)'
+        required: false
+        type: string
+        default: ''
+      log_pattern:
+        description: 'Pattern to match log files (e.g., *.txt, WoWCombatLog*.txt)'
+        required: false
+        type: string
+        default: '*.txt'
+      use_latest:
+        description: 'Download only the most recent log file'
+        required: false
+        type: boolean
+        default: false
+      max_logs:
+        description: 'Maximum number of logs to download (ignored if use_latest is true)'
+        required: false
+        type: string
+        default: '10'
+
+permissions:
+  id-token: write  # Required for OIDC authentication
+  contents: read
 
 jobs:
-  placeholder:
+  parse-combat-logs:
     runs-on: ubuntu-latest
+    
+    env:
+      AWS_REGION: eu-central-1
+      S3_BUCKET: ragedunicorn-development
+      S3_LOGS_PREFIX: wow_pvpwarn/combat_logs
+      S3_OUTPUT_PREFIX: wow_pvpwarn/combat_log_coverage
+    
     steps:
-      - name: Placeholder
-        run: echo "This workflow is implemented on feature branches"
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r tools/combat_log_parser/requirements.txt
+    
+    - name: Create directories
+      run: |
+        mkdir -p tools/combat_log_parser/combat_logs
+        mkdir -p tools/combat_log_parser/output
+    
+    - name: Configure AWS Credentials (OIDC)
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::066249229474:role/rg-github-action
+        aws-region: ${{ env.AWS_REGION }}
+    
+    - name: Verify AWS access
+      run: |
+        echo "## 🔐 AWS Authentication" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Successfully authenticated using OIDC" >> $GITHUB_STEP_SUMMARY
+        echo "- **Region:** ${{ env.AWS_REGION }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Bucket:** ${{ env.S3_BUCKET }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # Verify access
+        aws sts get-caller-identity
+    
+    - name: List available logs in S3
+      run: |
+        echo "## 📥 Available Combat Logs in S3" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        FULL_PATH="${S3_LOGS_PREFIX}"
+        if [ -n "${{ inputs.s3_path }}" ]; then
+          FULL_PATH="${S3_LOGS_PREFIX}/${{ inputs.s3_path }}"
+        fi
+        
+        echo "**Path:** \`s3://${{ env.S3_BUCKET }}/${FULL_PATH}\`" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # List files matching the pattern
+        echo "### Files matching pattern: ${{ inputs.log_pattern }}" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        aws s3 ls s3://${{ env.S3_BUCKET }}/${FULL_PATH} --recursive | grep -E "${{ inputs.log_pattern }}$" | tail -20 >> $GITHUB_STEP_SUMMARY || echo "No files found matching pattern" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+    
+    - name: Download combat logs from S3
+      id: download
+      run: |
+        echo "## 📥 Download Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        FULL_PATH="${S3_LOGS_PREFIX}"
+        if [ -n "${{ inputs.s3_path }}" ]; then
+          FULL_PATH="${S3_LOGS_PREFIX}/${{ inputs.s3_path }}"
+        fi
+        
+        LOG_COUNT=0
+        
+        if [ "${{ inputs.use_latest }}" = "true" ]; then
+          echo "Downloading the most recent log file..." | tee -a $GITHUB_STEP_SUMMARY
+          
+          # Get the most recent file matching the pattern
+          LATEST_FILE=$(aws s3 ls s3://${{ env.S3_BUCKET }}/${FULL_PATH} --recursive | grep -E "${{ inputs.log_pattern }}$" | sort | tail -n 1 | awk '{print $4}')
+          
+          if [ -n "$LATEST_FILE" ]; then
+            echo "- **Latest file:** \`$LATEST_FILE\`" >> $GITHUB_STEP_SUMMARY
+            aws s3 cp s3://${{ env.S3_BUCKET }}/$LATEST_FILE tools/combat_log_parser/combat_logs/
+            LOG_COUNT=1
+          else
+            echo "❌ No files found matching pattern: ${{ inputs.log_pattern }}" | tee -a $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+        else
+          echo "Downloading logs matching pattern: ${{ inputs.log_pattern }}" | tee -a $GITHUB_STEP_SUMMARY
+          
+          # Create a temporary file with the list of files to download
+          aws s3 ls s3://${{ env.S3_BUCKET }}/${FULL_PATH} --recursive | grep -E "${{ inputs.log_pattern }}$" | sort -r | head -n ${{ inputs.max_logs }} | awk '{print $4}' > files_to_download.txt
+          
+          # Download each file
+          while IFS= read -r file; do
+            echo "Downloading: $file"
+            aws s3 cp s3://${{ env.S3_BUCKET }}/$file tools/combat_log_parser/combat_logs/$(basename "$file")
+            LOG_COUNT=$((LOG_COUNT + 1))
+          done < files_to_download.txt
+          
+          echo "- **Files downloaded:** $LOG_COUNT (max: ${{ inputs.max_logs }})" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        if [ $LOG_COUNT -eq 0 ]; then
+          echo "❌ **Error:** No combat logs downloaded!" >> $GITHUB_STEP_SUMMARY
+          exit 1
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # Show downloaded files
+        echo "### 📁 Downloaded Files" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        ls -lh tools/combat_log_parser/combat_logs/*.txt 2>/dev/null | awk '{print $9 ": " $5}' >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # Set output
+        echo "log_count=$LOG_COUNT" >> $GITHUB_OUTPUT
+    
+    - name: Run Combat Log Parser
+      id: parse
+      run: |
+        cd tools/combat_log_parser
+        echo "## 🔍 Combat Log Parser Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # Run the parser and capture output
+        if python parse_combat_logs.py 2>&1 | tee parser_output.txt; then
+          echo "✅ **Parser Status:** SUCCESS" >> $GITHUB_STEP_SUMMARY
+          PARSER_STATUS="success"
+        else
+          echo "❌ **Parser Status:** FAILED" >> $GITHUB_STEP_SUMMARY
+          PARSER_STATUS="failed"
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # Extract key statistics from the output
+        if [ -f "output/summary.md" ]; then
+          echo "### 📊 Summary Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Extract overall statistics section
+          sed -n '/## Overall Statistics/,/## Category Breakdown/p' output/summary.md | head -n -1 >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Count categories with issues
+          CATEGORIES_WITH_MISSING=$(find output -name "*.miss.md" -type f | wc -l)
+          echo "- **Categories with missing spells:** $CATEGORIES_WITH_MISSING" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        # Log parser output for visibility
+        echo "### 🔎 Parser Output (last 30 lines)" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        tail -n 30 parser_output.txt >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        
+        # Set output for later steps
+        echo "status=$PARSER_STATUS" >> $GITHUB_OUTPUT
+    
+    - name: Check for missing spells
+      if: always()
+      run: |
+        cd tools/combat_log_parser
+        
+        if [ -d "output" ]; then
+          echo "## 🚫 Missing Spells Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Count total missing spells
+          TOTAL_MISSING=0
+          
+          # List categories with missing spells
+          for miss_file in output/*.miss.md; do
+            if [ -f "$miss_file" ]; then
+              category=$(basename "$miss_file" .miss.md)
+              spell_count=$(grep -c "^## " "$miss_file" || true)
+              
+              if [ $spell_count -gt 0 ]; then
+                echo "- **$category**: $spell_count spells missing" >> $GITHUB_STEP_SUMMARY
+                TOTAL_MISSING=$((TOTAL_MISSING + spell_count))
+              fi
+            fi
+          done
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Total missing spells: $TOTAL_MISSING**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+        fi
+    
+    - name: Upload results to S3
+      if: always() && steps.parse.outputs.status == 'success'
+      run: |
+        cd tools/combat_log_parser
+        
+        # Create timestamp for versioning
+        TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+        S3_OUTPUT_PATH="${S3_OUTPUT_PREFIX}/${TIMESTAMP}"
+        
+        echo "## 📤 Upload Results to S3" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Uploading output files to: \`s3://${{ env.S3_BUCKET }}/${S3_OUTPUT_PATH}/\`" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # Upload all output files
+        if [ -d "output" ]; then
+          # Upload individual files
+          for file in output/*.md; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file")
+              aws s3 cp "$file" "s3://${{ env.S3_BUCKET }}/${S3_OUTPUT_PATH}/${filename}"
+              echo "- Uploaded: \`${filename}\`" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+          
+          # Create and upload metadata
+          echo "{\"timestamp\": \"${TIMESTAMP}\", \"logs_processed\": ${{ steps.download.outputs.log_count }}, \"workflow_run\": \"${{ github.run_id }}\"}" > output/metadata.json
+          aws s3 cp output/metadata.json "s3://${{ env.S3_BUCKET }}/${S3_OUTPUT_PATH}/metadata.json"
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Results uploaded successfully" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "View results at: https://s3.console.aws.amazon.com/s3/buckets/${{ env.S3_BUCKET }}?prefix=${S3_OUTPUT_PATH}/" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ No output files to upload" >> $GITHUB_STEP_SUMMARY
+        fi
+    
+    - name: Upload artifacts to GitHub
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: combat-log-parser-complete-output
+        path: |
+          tools/combat_log_parser/output/
+          tools/combat_log_parser/parser_output.txt
+        retention-days: 30
+    
+    - name: Upload hit files
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: spell-hit-files
+        path: tools/combat_log_parser/output/*.hit.md
+        retention-days: 30
+        if-no-files-found: ignore
+    
+    - name: Upload miss files
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: spell-miss-files
+        path: tools/combat_log_parser/output/*.miss.md
+        retention-days: 30
+        if-no-files-found: ignore
+    
+    - name: Upload summary
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: parser-summary
+        path: tools/combat_log_parser/output/summary.md
+        retention-days: 30
+        if-no-files-found: ignore
