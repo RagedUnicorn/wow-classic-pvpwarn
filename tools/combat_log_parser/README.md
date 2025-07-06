@@ -72,6 +72,14 @@ wow_pvpwarn/combat_log_coverage/
 │   └── metadata.json
 ```
 
+## How to Get Combat Logs
+
+1. Enable combat logging in WoW: `/combatlog`
+2. Participate in combat (PvP or PvE)
+3. Disable logging when done: `/combatlog`
+4. Find the log file in your WoW `Logs` directory
+5. Upload to S3 using the upload script
+
 ## How it Works
 
 1. **Reads SpellMap.lua** - Extracts all spell definitions and their tracked events
