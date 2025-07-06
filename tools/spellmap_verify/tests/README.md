@@ -23,14 +23,14 @@ tests/
 ### Install Test Dependencies
 
 ```bash
-cd tools/spellmap-verify
+cd tools/spellmap_verify
 pip install -r requirements.txt  # This includes pytest
 ```
 
 ### Run All Tests with pytest
 
 ```bash
-cd tools/spellmap-verify
+cd tools/spellmap_verify
 
 # Run all tests
 pytest

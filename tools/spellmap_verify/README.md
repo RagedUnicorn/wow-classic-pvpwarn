@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```bash
-# From the spellmap-verify directory
+# From the spellmap_verify directory
 python3 verify_spellmap.py
 ```
 
@@ -71,7 +71,7 @@ Exit code is 0 if no errors are found, 1 otherwise.
 ## Project Structure
 
 ```
-spellmap-verify/
+spellmap_verify/
 ├── verify_spellmap.py      # Main script with SpellMapVerifier class
 ├── requirements.txt        # Python dependencies
 ├── pytest.ini              # pytest configuration

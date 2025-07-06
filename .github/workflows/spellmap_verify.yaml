@@ -3,12 +3,12 @@ on:
   push:
     paths:
       - 'code/PVPW_SpellMap.lua'
-      - 'tools/spellmap-verify/**'
+      - 'tools/spellmap_verify/**'
       - '.github/workflows/spellmap_verify.yaml'
   pull_request:
     paths:
       - 'code/PVPW_SpellMap.lua'
-      - 'tools/spellmap-verify/**'
+      - 'tools/spellmap_verify/**'
       - '.github/workflows/spellmap_verify.yaml'
 
 jobs:
@@ -26,13 +26,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd tools/spellmap-verify
+          cd tools/spellmap_verify
           pip install -r requirements.txt
 
       - name: Run SpellMap verification
         id: verify
         run: |
-          cd tools/spellmap-verify
+          cd tools/spellmap_verify
           echo "## 🔍 SpellMap Verification Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
@@ -57,7 +57,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const output = fs.readFileSync('tools/spellmap-verify/verification_output.txt', 'utf8');
+            const output = fs.readFileSync('tools/spellmap_verify/verification_output.txt', 'utf8');
             
             const comment = `## ❌ SpellMap Verification Failed
             
@@ -81,7 +81,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: spellmap-verification-results
-          path: tools/spellmap-verify/verification_output.txt
+          path: tools/spellmap_verify/verification_output.txt
           
       - name: Fail if verification failed
         if: steps.verify.outputs.verification_passed == 'false'
