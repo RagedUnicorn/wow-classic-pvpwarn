@@ -13,7 +13,8 @@ from .spell_icon_validator import SpellIconValidator
 from .all_ranks_validator import AllRanksValidator
 from .active_validator import ActiveValidator
 from .has_fade_validator import HasFadeValidator
+from .avoid_properties_validator import AvoidPropertiesValidator
 
 __all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator", 
           "TrackedEventsValidator", "SoundFileNameValidator", "SpellIconValidator",
-          "AllRanksValidator", "ActiveValidator", "HasFadeValidator"]
+          "AllRanksValidator", "ActiveValidator", "HasFadeValidator", "AvoidPropertiesValidator"]
