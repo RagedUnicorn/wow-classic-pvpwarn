@@ -13,7 +13,7 @@ from spellmap_verifier.validators import (
     NameValidator, DuplicateValidator, TypeValidator,
     TrackedEventsValidator, SoundFileNameValidator, SpellIconValidator,
     AllRanksValidator, ActiveValidator, HasFadeValidator, BaseValidator,
-    AvoidPropertiesValidator
+    AvoidPropertiesValidator, ItemIdValidator
 )
 
 
@@ -73,10 +73,12 @@ class SpellMapVerifier:
             tracked_events_validator = TrackedEventsValidator()
             active_validator = ActiveValidator()
             has_fade_validator = HasFadeValidator()
+            item_id_validator = ItemIdValidator()
             self.validators.extend([
                 tracked_events_validator, # Then check tracked events
                 active_validator,         # Then check active property
                 has_fade_validator,       # Then check hasFade property
+                item_id_validator,        # Then check itemId property
             ])
 
     def run(self) -> bool:

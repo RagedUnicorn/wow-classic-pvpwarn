@@ -14,7 +14,9 @@ from .all_ranks_validator import AllRanksValidator
 from .active_validator import ActiveValidator
 from .has_fade_validator import HasFadeValidator
 from .avoid_properties_validator import AvoidPropertiesValidator
+from .item_id_validator import ItemIdValidator
 
 __all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator", 
           "TrackedEventsValidator", "SoundFileNameValidator", "SpellIconValidator",
-          "AllRanksValidator", "ActiveValidator", "HasFadeValidator", "AvoidPropertiesValidator"]
+          "AllRanksValidator", "ActiveValidator", "HasFadeValidator", "AvoidPropertiesValidator",
+          "ItemIdValidator"]
