@@ -1,6 +1,6 @@
 """Generate summary reports for combat log parsing."""
 
-from typing import Dict, Any, List
+from typing import Dict, Any
 from pathlib import Path
 from datetime import datetime
 from .constants import SUMMARY_FILE, REPORT_WIDTH, REPORT_TITLE

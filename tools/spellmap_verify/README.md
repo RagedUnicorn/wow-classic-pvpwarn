@@ -4,16 +4,26 @@ A Python tool to verify the integrity of `PVPW_SpellMap.lua` entries using full 
 
 ## Installation
 
+1. Navigate to the tools directory and activate the virtual environment:
 ```bash
-# Install dependencies
+cd tools
+# On Linux/Mac:
+source venv/.venv/bin/activate
+# On Windows:
+venv\.venv\Scripts\activate
+```
+
+2. Install dependencies:
+```bash
+cd spellmap_verify
 pip install -r requirements.txt
 ```
 
 ## Usage
 
 ```bash
-# From the spellmap_verify directory
-python3 verify_spellmap.py
+# From the spellmap_verify directory (with venv activated)
+python verify_spellmap.py
 ```
 
 The tool uses the `lupa` library to properly parse Lua code, including:

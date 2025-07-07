@@ -1,7 +1,7 @@
 """Lua parser for reading SpellMap data."""
 
 import lupa
-from typing import Dict, List, Any, Set, Tuple
+from typing import Dict, List, Any, Tuple
 from pathlib import Path
 
 

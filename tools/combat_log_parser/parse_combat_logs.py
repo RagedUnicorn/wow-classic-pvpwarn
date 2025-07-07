@@ -7,7 +7,6 @@ Parses WoW combat logs to find real examples of spells from the SpellMap.
 import sys
 import argparse
 from pathlib import Path
-from typing import Dict, Any
 
 from combat_log_parser import (
     CombatLogReader, LuaParser, SpellTracker,
@@ -86,7 +85,6 @@ class CombatLogParser:
             # Step 7: Write output files
             self.file_writer.write_all_files(
                 spells_by_category,
-                self.spell_tracker.found_spells,
                 self.spell_tracker.missing_spells,
                 hit_data_by_category
             )
