@@ -63,5 +63,5 @@ REPORT_WIDTH = 60
 REPORT_TITLE = "SpellMap Verification Report (Lua Parser)"
 
 # Error/Success prefixes
-ERROR_PREFIX = "❌"
-SUCCESS_PREFIX = "✅"
+ERROR_PREFIX = "[ERROR]"
+SUCCESS_PREFIX = "[OK]"

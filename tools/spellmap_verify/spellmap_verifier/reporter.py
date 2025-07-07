@@ -25,25 +25,45 @@ class Reporter:
         """
         self.file_path = file_path
         self.spell_entries: Dict[str, Dict[int, Dict]] = {}
-        self.errors: List[str] = []
+        self.spell_avoid_entries: Dict[str, Dict[int, Dict]] = {}
+        self.errors: Dict[str, List[str]] = {"SpellMap": [], "SpellAvoidMap": []}
         self.dynamic_properties: List[str] = []
-        self.validator_results: List[Tuple[str, int, List[str]]] = []
+        self.validator_results: Dict[str, List[Tuple[str, int, List[str]]]] = {
+            "SpellMap": [],
+            "SpellAvoidMap": []
+        }
 
     def set_spell_entries(self, spell_entries: Dict[str, Dict[int, Dict]]) -> None:
         """Set the spell entries for reporting."""
         self.spell_entries = spell_entries
 
-    def add_errors(self, errors: List[str]) -> None:
-        """Add error messages."""
-        self.errors.extend(errors)
+    def set_spell_avoid_entries(self, spell_avoid_entries: Dict[str, Dict[int, Dict]]) -> None:
+        """Set the spell avoid entries for reporting."""
+        self.spell_avoid_entries = spell_avoid_entries
+
+    def add_errors(self, errors: List[str], map_name: str = "SpellMap") -> None:
+        """Add error messages.
+
+        Args:
+            errors: List of error messages
+            map_name: Name of the map (SpellMap or SpellAvoidMap)
+        """
+        self.errors[map_name].extend(errors)
 
     def set_dynamic_properties(self, dynamic_properties: List[str]) -> None:
         """Set the list of dynamic properties."""
         self.dynamic_properties = dynamic_properties
 
-    def add_validator_result(self, validator_name: str, error_count: int, errors: List[str]) -> None:
-        """Add a validator's result to the report."""
-        self.validator_results.append((validator_name, error_count, errors))
+    def add_validator_result(self, validator_name: str, error_count: int, errors: List[str], map_name: str = "SpellMap") -> None:
+        """Add a validator's result to the report.
+
+        Args:
+            validator_name: Name of the validator
+            error_count: Number of errors found
+            errors: List of error messages
+            map_name: Name of the map (SpellMap or SpellAvoidMap)
+        """
+        self.validator_results[map_name].append((validator_name, error_count, errors))
 
     def generate_report(self) -> str:
         """
@@ -52,34 +72,41 @@ class Reporter:
         Returns:
             The complete formatted report
         """
-        lines = []
+        lines = ["=" * REPORT_WIDTH, REPORT_TITLE, "=" * REPORT_WIDTH, ""]
 
         # Header
-        lines.append("=" * REPORT_WIDTH)
-        lines.append(REPORT_TITLE)
-        lines.append("=" * REPORT_WIDTH)
-        lines.append(f"File: {self.file_path}")
-        lines.append("")
 
-        # Summary statistics
-        lines.extend(self._generate_summary())
-        lines.append("")
-
-        # Category breakdown
-        lines.extend(self._generate_category_breakdown())
-        lines.append("")
-
-        # Validator results
-        lines.extend(self._generate_validator_section())
-        lines.append("")
-
-        # Errors
-        lines.extend(self._generate_error_section())
-
-        # Success message if no issues
-        if not self.errors:
+        # SpellMap section
+        if self.spell_entries:
+            lines.append("PVPW_SpellMap.lua")
+            lines.append("-" * REPORT_WIDTH)
+            lines.extend(self._generate_summary("SpellMap"))
             lines.append("")
-            lines.append(f"{SUCCESS_PREFIX} All spell entries are valid!")
+            lines.extend(self._generate_category_breakdown("SpellMap"))
+            lines.append("")
+            lines.extend(self._generate_validator_section("SpellMap"))
+            lines.append("")
+            lines.extend(self._generate_error_section("SpellMap"))
+            lines.append("")
+            lines.append("")
+
+        # SpellAvoidMap section
+        if self.spell_avoid_entries:
+            lines.append("PVPW_SpellAvoidMap.lua")
+            lines.append("-" * REPORT_WIDTH)
+            lines.extend(self._generate_summary("SpellAvoidMap"))
+            lines.append("")
+            lines.extend(self._generate_category_breakdown("SpellAvoidMap"))
+            lines.append("")
+            lines.extend(self._generate_validator_section("SpellAvoidMap"))
+            lines.append("")
+            lines.extend(self._generate_error_section("SpellAvoidMap"))
+
+        # Overall success message if no issues in either map
+        total_errors = sum(len(errors) for errors in self.errors.values())
+        if total_errors == 0:
+            lines.append("")
+            lines.append(f"{SUCCESS_PREFIX} All spell entries in both maps are valid!")
 
         return "\n".join(lines)
 
@@ -87,13 +114,19 @@ class Reporter:
         """Print the report to stdout."""
         print(self.generate_report())
 
-    def _generate_summary(self) -> List[str]:
-        """Generate summary statistics."""
+    def _generate_summary(self, map_name: str) -> List[str]:
+        """Generate summary statistics for a specific map.
+
+        Args:
+            map_name: Name of the map (SpellMap or SpellAvoidMap)
+        """
+        entries = self.spell_entries if map_name == "SpellMap" else self.spell_avoid_entries
+
         total_spells = 0
         total_references = 0
         unique_spell_ids = set()
 
-        for category_spells in self.spell_entries.values():
+        for category_spells in entries.values():
             for spell_id, spell_data in category_spells.items():
                 unique_spell_ids.add(spell_id)
                 if 'refId' in spell_data and len(spell_data) == 1:
@@ -101,26 +134,42 @@ class Reporter:
                 else:
                     total_spells += 1
 
-        return [
-            f"Total categories found: {len(self.spell_entries)}",
+        lines = [
+            f"Total categories found: {len(entries)}",
             f"Total spell definitions: {total_spells}",
             f"Total spell references: {total_references}",
-            f"Total unique spell IDs: {len(unique_spell_ids)}",
-            f"Dynamic properties detected: {len(self.dynamic_properties)}"
+            f"Total unique spell IDs: {len(unique_spell_ids)}"
         ]
 
-    def _generate_category_breakdown(self) -> List[str]:
-        """Generate category breakdown."""
+        if map_name == "SpellMap":
+            lines.append(f"Dynamic properties detected: {len(self.dynamic_properties)}")
+
+        return lines
+
+    def _generate_category_breakdown(self, map_name: str) -> List[str]:
+        """Generate category breakdown for a specific map.
+
+        Args:
+            map_name: Name of the map (SpellMap or SpellAvoidMap)
+        """
+        entries = self.spell_entries if map_name == "SpellMap" else self.spell_avoid_entries
+
         lines = ["Spells per category:"]
-        for category, spells in sorted(self.spell_entries.items()):
+        for category, spells in sorted(entries.items()):
             lines.append(f"  {category}: {len(spells)} spells")
         return lines
 
-    def _generate_error_section(self) -> List[str]:
-        """Generate error section."""
-        if self.errors:
-            lines = [f"ERRORS ({len(self.errors)}):"]
-            for error in self.errors:
+    def _generate_error_section(self, map_name: str) -> List[str]:
+        """Generate error section for a specific map.
+
+        Args:
+            map_name: Name of the map (SpellMap or SpellAvoidMap)
+        """
+        errors = self.errors[map_name]
+
+        if errors:
+            lines = [f"ERRORS ({len(errors)}):"]
+            for error in errors:
                 # Handle multi-line errors
                 error_lines = error.split('\n')
                 lines.append(f"  {ERROR_PREFIX} {error_lines[0]}")
@@ -131,19 +180,25 @@ class Reporter:
             return [f"{SUCCESS_PREFIX} No errors found!"]
 
     def has_errors(self) -> bool:
-        """Check if there are any errors."""
-        return len(self.errors) > 0
+        """Check if there are any errors in any map."""
+        return any(len(errors) > 0 for errors in self.errors.values())
 
-    def _generate_validator_section(self) -> List[str]:
-        """Generate validator results section."""
-        if not self.validator_results:
+    def _generate_validator_section(self, map_name: str) -> List[str]:
+        """Generate validator results section for a specific map.
+
+        Args:
+            map_name: Name of the map (SpellMap or SpellAvoidMap)
+        """
+        results = self.validator_results[map_name]
+
+        if not results:
             return []
-        
+
         lines = ["Validators run:"]
-        for validator_name, error_count, errors in self.validator_results:
+        for validator_name, error_count, errors in results:
             if error_count == 0:
                 lines.append(f"  {SUCCESS_PREFIX} {validator_name}: PASSED")
             else:
                 lines.append(f"  {ERROR_PREFIX} {validator_name}: FAILED ({error_count} errors)")
-        
+
         return lines

@@ -3,7 +3,7 @@ Lua parsing functionality for SpellMap verification.
 """
 
 import re
-from typing import Dict, List, Any, Optional, Set
+from typing import Dict, List
 import lupa
 from lupa import LuaRuntime
 
@@ -25,6 +25,7 @@ class LuaParser:
         """Initialize the Lua parser with runtime."""
         self.lua = LuaRuntime(unpack_returned_tuples=True)
         self.spell_entries: Dict[str, Dict[int, Dict]] = {}
+        self.spell_avoid_entries: Dict[str, Dict[int, Dict]] = {}
         self.dynamic_properties: List[str] = []
 
     def setup_environment(self) -> None:
@@ -76,6 +77,49 @@ class LuaParser:
                 self.spell_entries[category][int(spell_id)] = spell_dict
 
         return self.spell_entries
+
+    def parse_spell_avoid_map(self, content: str) -> Dict[str, Dict[int, Dict]]:
+        """
+        Parse the spellAvoidMap table using Lua runtime.
+
+        Args:
+            content: The raw Lua file content
+
+        Returns:
+            Dictionary of spell avoid entries organized by category
+        """
+        # Reset state
+        self.spell_avoid_entries.clear()
+
+        # Detect dynamic properties
+        self._detect_dynamic_properties(content)
+
+        # Modify content to expose spellAvoidMap globally
+        modified_content = content.replace("local spellAvoidMap = {", "_G.spellAvoidMap = {")
+
+        # Execute in Lua environment
+        try:
+            self.lua.execute(modified_content)
+        except Exception as e:
+            raise RuntimeError(f"Failed to execute Lua content: {str(e)}")
+
+        # Get the spellAvoidMap table
+        spell_avoid_map = self.lua.eval("_G.spellAvoidMap")
+        if not spell_avoid_map:
+            raise ValueError("Could not find 'spellAvoidMap' variable in the file")
+
+        # Convert to Python dict
+        for category_name in spell_avoid_map:
+            category = str(category_name)
+            self.spell_avoid_entries[category] = {}
+
+            category_spells = spell_avoid_map[category_name]
+            for spell_id in category_spells:
+                spell_data = category_spells[spell_id]
+                spell_dict = self.lua_table_to_dict(spell_data)
+                self.spell_avoid_entries[category][int(spell_id)] = spell_dict
+
+        return self.spell_avoid_entries
 
     def _detect_dynamic_properties(self, content: str) -> None:
         """Detect spell entries with dynamic (function-based) properties."""
