@@ -53,3 +53,8 @@ nosetests.xml
 coverage.xml
 *.coveragerc
 .coverage.*
+
+# voice_generator
+.env
+tools/voice_generator/output/
+tools/voice_generator/cache/
