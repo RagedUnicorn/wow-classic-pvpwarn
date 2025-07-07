@@ -1,4 +1,4 @@
-"""Write hit and miss files for spell tracking."""
+"""Write hit-and-miss files for spell tracking."""
 
 from typing import Dict, List, Tuple, Any
 from pathlib import Path
@@ -7,7 +7,7 @@ from .constants import HIT_FILE_SUFFIX, MISS_FILE_SUFFIX
 
 
 class FileWriter:
-    """Handles writing hit and miss files."""
+    """Handles writing hit-and-miss files."""
 
     def __init__(self, output_dir: str):
         """
@@ -77,7 +77,8 @@ class FileWriter:
                             f.write(f"- {line}\n")
                         f.write("\n")
 
-    def write_miss_file(self, category: str, missing_spells: List[Tuple[int, str, Dict[int, List[str]]]]) -> None:
+
+    def write_miss_file(self, category: str, missing_spells: List[Tuple[int, str, List[str]]]) -> None:
         """
         Write a miss file for a category.
 
@@ -108,18 +109,19 @@ class FileWriter:
                         f.write(f"- Main rank ({rank_id}): {', '.join(missing_events)} not found\n")
                     else:
                         f.write(f"- Rank {rank_id}: {', '.join(missing_events)} not found\n")
+
                 f.write("\n")
 
+
     def write_all_files(self, spells_by_category: Dict[str, List[Tuple[int, Dict[str, Any]]]],
-                       found_spells: Dict[str, Any],
-                       missing_spells: Dict[str, List[Tuple[int, str, Dict[int, List[str]]]]],
-                       hit_data_by_category: Dict[str, Dict[int, Dict[str, Any]]]) -> None:
+                       missing_spells: Dict[str, List[Tuple[int, str, List[str]]]],
+    hit_data_by_category: Dict[str, Dict[int, Dict[str, Any]]]) -> None:
         """
-        Write all hit and miss files.
+        Write all hit-and-miss files.
 
         Args:
+            self : Instance of FileWriter
             spells_by_category: All spells organized by category
-            found_spells: Found spells by category
             missing_spells: Missing spells by category
             hit_data_by_category: Hit data with examples by category
         """

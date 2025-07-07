@@ -2,7 +2,6 @@
 
 from typing import Dict, List, Tuple, Set, Any
 from pathlib import Path
-import os
 
 
 class SpellTracker:
@@ -13,7 +12,7 @@ class SpellTracker:
         Initialize the spell tracker.
 
         Args:
-            output_dir: Directory to read/write hit and miss files
+            output_dir: Directory to read/write hit-and-miss files
         """
         self.output_dir = Path(output_dir)
         self.found_spells: Dict[str, Set[Tuple[int, str]]] = {}

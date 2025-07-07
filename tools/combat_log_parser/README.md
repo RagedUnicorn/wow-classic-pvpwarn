@@ -13,21 +13,26 @@ This tool parses World of Warcraft combat logs to find real-world examples of sp
 
 ## Installation
 
-1. Install Python 3.7 or higher
+1. Navigate to the tools directory and activate the virtual environment:
+```bash
+cd tools
+# On Linux/Mac:
+source venv/.venv/bin/activate
+# On Windows:
+venv\.venv\Scripts\activate
+```
+
 2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. (Optional) For S3 upload functionality:
-   ```bash
-   pip install boto3
-   ```
+```bash
+cd combat_log_parser
+pip install -r requirements.txt
+```
 
 ## Usage
 
 ### Local Usage
 
-Basic usage (from the combat_log_parser directory):
+Basic usage (from the combat_log_parser directory with venv activated):
 ```bash
 python parse_combat_logs.py
 ```

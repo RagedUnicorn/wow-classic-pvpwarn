@@ -1,12 +1,9 @@
 """Combat log reader and parser."""
 
-import os
-import re
-from typing import Dict, List, Tuple, Set
+from typing import Dict, List, Tuple
 from pathlib import Path
 from .constants import (
-    EVENT_TYPE_POS, SPELL_ID_POS, SPELL_NAME_POS,
-    TRACKED_EVENTS, TIMESTAMP_POS
+    TRACKED_EVENTS
 )
 
 
@@ -97,7 +94,6 @@ class CombatLogReader:
         try:
             # Spell ID is at position 9 (0-indexed), spell name at position 10
             spell_id = int(fields[9])
-            spell_name = fields[10].strip('"')  # Remove quotes from spell name
 
             # Store the example
             key = (spell_id, event_type)
@@ -111,7 +107,7 @@ class CombatLogReader:
                 self.spell_events[key].append(f"Found in: {filename}")
                 self.spell_events[key].append(f"Example: `{example}`")
 
-        except (ValueError, IndexError) as e:
+        except (ValueError, IndexError):
             # Skip lines that don't have valid spell data
             pass
 
