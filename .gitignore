@@ -41,6 +41,20 @@ wheels/
 .installed.cfg
 *.egg
 
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+virtualenv/
+.virtualenv/
+pipenv/
+.pipenv/
+tools/venv/
+tools/*/venv/
+tools/*/.venv/
+
 # pytest
 .pytest_cache/
 .coverage
