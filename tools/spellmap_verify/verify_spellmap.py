@@ -12,8 +12,8 @@ from spellmap_verifier import SpellMapFileReader, LuaParser, Reporter
 from spellmap_verifier.validators import (
     NameValidator, DuplicateValidator, TypeValidator,
     TrackedEventsValidator, SoundFileNameValidator, SpellIconValidator,
-    AllRanksValidator, ActiveValidator, HasFadeValidator, BaseValidator,
-    AvoidPropertiesValidator, ItemIdValidator
+    AllRanksValidator, ActiveValidator, HasFadeValidator, HasCastValidator,
+    BaseValidator, AvoidPropertiesValidator, ItemIdValidator
 )
 
 
@@ -73,11 +73,13 @@ class SpellMapVerifier:
             tracked_events_validator = TrackedEventsValidator()
             active_validator = ActiveValidator()
             has_fade_validator = HasFadeValidator()
+            has_cast_validator = HasCastValidator()
             item_id_validator = ItemIdValidator()
             self.validators.extend([
                 tracked_events_validator, # Then check tracked events
                 active_validator,         # Then check active property
                 has_fade_validator,       # Then check hasFade property
+                has_cast_validator,       # Then check hasCast property
                 item_id_validator,        # Then check itemId property
             ])
 

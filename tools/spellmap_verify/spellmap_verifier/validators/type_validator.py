@@ -2,7 +2,7 @@
 Type property validator for spell map entries.
 """
 
-from typing import Dict, List
+from typing import Dict
 
 from .base_validator import BaseValidator
 

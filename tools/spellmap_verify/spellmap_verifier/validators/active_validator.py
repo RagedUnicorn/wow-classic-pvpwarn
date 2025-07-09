@@ -2,7 +2,7 @@
 Validator for active property in SpellMap entries.
 """
 
-from typing import Dict, Any
+from typing import Dict
 from .base_validator import BaseValidator
 
 
@@ -13,7 +13,7 @@ class ActiveValidator(BaseValidator):
         """Return the name of this validator."""
         return "ActiveValidator"
     
-    def validate(self, spell_entries: Dict[str, Dict[int, Dict[str, Any]]], content: str = None) -> None:
+    def validate(self, spell_entries: Dict[str, Dict[int, Dict]], content: str = None, **kwargs) -> None:
         """
         Validate active property for all spell entries.
         
@@ -27,7 +27,7 @@ class ActiveValidator(BaseValidator):
             for spell_id, spell_data in spells.items():
                 self._validate_spell_active(category, spell_id, spell_data)
     
-    def _validate_spell_active(self, category: str, spell_id: int, spell_data: Dict[str, Any]) -> None:
+    def _validate_spell_active(self, category: str, spell_id: int, spell_data: Dict) -> None:
         """
         Validate active property for a single spell entry.
         
@@ -58,7 +58,7 @@ class ActiveValidator(BaseValidator):
         
         # Note: We don't need to validate the value itself since any boolean (True or False) is valid
     
-    def _is_reference_entry(self, spell_data: Dict[str, Any]) -> bool:
+    def _is_reference_entry(self, spell_data: Dict) -> bool:
         """
         Check if the spell entry is a reference entry.
         

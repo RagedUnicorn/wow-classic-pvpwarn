@@ -2,7 +2,7 @@
 Validator for trackedEvents property in SpellMap entries.
 """
 
-from typing import Dict, Any, List
+from typing import Dict
 from .base_validator import BaseValidator
 
 
@@ -21,7 +21,7 @@ class TrackedEventsValidator(BaseValidator):
         """Return the name of this validator."""
         return "TrackedEventsValidator"
 
-    def validate(self, spell_entries: Dict[str, Dict[int, Dict[str, Any]]], content: str = None) -> None:
+    def validate(self, spell_entries: Dict[str, Dict[int, Dict]], content: str = None, **kwargs) -> None:
         """
         Validate trackedEvents property for all spell entries.
 
@@ -35,7 +35,7 @@ class TrackedEventsValidator(BaseValidator):
             for spell_id, spell_data in spells.items():
                 self._validate_spell_tracked_events(category, spell_id, spell_data)
 
-    def _validate_spell_tracked_events(self, category: str, spell_id: int, spell_data: Dict[str, Any]) -> None:
+    def _validate_spell_tracked_events(self, category: str, spell_id: int, spell_data: Dict) -> None:
         """
         Validate trackedEvents for a single spell entry.
 
@@ -85,7 +85,7 @@ class TrackedEventsValidator(BaseValidator):
                 f"Allowed events: {', '.join(sorted(self.ALLOWED_EVENTS))}"
             )
 
-    def _is_reference_entry(self, spell_data: Dict[str, Any]) -> bool:
+    def _is_reference_entry(self, spell_data: Dict) -> bool:
         """
         Check if the spell entry is a reference entry.
 

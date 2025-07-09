@@ -139,11 +139,27 @@ class LuaParser:
                     'soundFileName': spell.soundFileName if hasattr(spell, 'soundFileName') else None,
                     'soundText': spell.soundText if hasattr(spell, 'soundText') else None,
                     'hasFade': spell.hasFade if hasattr(spell, 'hasFade') else False,
+                    'hasCast': spell.hasCast if hasattr(spell, 'hasCast') else False,
                     'active': spell.active if hasattr(spell, 'active') else True,
                     'spellId': int(spell_id) if spell_id else None,
                     'self_avoid': spell.self_avoid if hasattr(spell, 'self_avoid') else False,
                     'enemy_avoid': spell.enemy_avoid if hasattr(spell, 'enemy_avoid') else False,
                 }
+                
+                # Extract trackedEvents if present
+                if hasattr(spell, 'trackedEvents') and spell.trackedEvents:
+                    tracked_events = []
+                    # Convert Lua table to Python list
+                    try:
+                        for i in range(1, len(spell.trackedEvents) + 1):
+                            if spell.trackedEvents[i]:
+                                tracked_events.append(str(spell.trackedEvents[i]))
+                    except:
+                        # Handle case where trackedEvents is not a proper Lua table
+                        pass
+                    spell_dict['trackedEvents'] = tracked_events
+                else:
+                    spell_dict['trackedEvents'] = []
 
                 # Only include spells with valid data
                 if spell_dict['name'] and spell_dict['soundFileName']:
@@ -397,6 +413,27 @@ class LuaParser:
                             'category': category
                         })
                         seen_files.add(fade_file)
+                
+                # Add cast version if needed (hasCast=true or SPELL_CAST_START in trackedEvents)
+                has_cast_event = spell.get('hasCast', False) or 'SPELL_CAST_START' in spell.get('trackedEvents', [])
+                if has_cast_event:
+                    cast_file = f"{sound_file}_cast"
+                    if cast_file not in seen_files:
+                        # Extract category name from full_category (e.g., "warrior" from "class_warrior")
+                        full_category = spell.get('full_category', '')
+                        category_parts = full_category.split('_')
+                        category = category_parts[1] if len(category_parts) > 1 else full_category
+                        
+                        # Use soundText if available, otherwise use spell name
+                        voice_text = sound_text if sound_text else spell_name
+
+                        voice_files.append({
+                            'file_name': cast_file,
+                            'text': f"{voice_text} cast",
+                            'has_fade': False,
+                            'category': category
+                        })
+                        seen_files.add(cast_file)
 
         # Process avoid spells
         for spell in avoid_spells:
