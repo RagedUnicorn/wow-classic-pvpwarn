@@ -2,7 +2,7 @@
 Validator for allRanks property in SpellMap entries.
 """
 
-from typing import Dict, Any, List, Set
+from typing import Dict, Set
 from .base_validator import BaseValidator
 
 
@@ -13,7 +13,7 @@ class AllRanksValidator(BaseValidator):
         """Return the name of this validator."""
         return "AllRanksValidator"
 
-    def validate(self, spell_entries: Dict[str, Dict[int, Dict[str, Any]]], content: str = None) -> None:
+    def validate(self, spell_entries: Dict[str, Dict[int, Dict]], content: str = None, **kwargs) -> None:
         """
         Validate allRanks property for all spell entries.
 
@@ -31,7 +31,7 @@ class AllRanksValidator(BaseValidator):
             for spell_id, spell_data in spells.items():
                 self._validate_spell_all_ranks(category, spell_id, spell_data, reference_map)
 
-    def _build_reference_map(self, spell_entries: Dict[str, Dict[int, Dict[str, Any]]]) -> Dict[int, Set[int]]:
+    def _build_reference_map(self, spell_entries: Dict[str, Dict[int, Dict]]) -> Dict[int, Set[int]]:
         """
         Build a map of spell_id -> set of spell_ids that reference it.
 
@@ -53,7 +53,7 @@ class AllRanksValidator(BaseValidator):
 
         return reference_map
 
-    def _validate_spell_all_ranks(self, category: str, spell_id: int, spell_data: Dict[str, Any],
+    def _validate_spell_all_ranks(self, category: str, spell_id: int, spell_data: Dict,
                                   reference_map: Dict[int, Set[int]]) -> None:
         """
         Validate allRanks for a single spell entry.
@@ -130,7 +130,7 @@ class AllRanksValidator(BaseValidator):
                 f"{category}[{spell_id}]: 'allRanks' contains unexpected spell IDs: {extra_list}"
             )
 
-    def _is_reference_entry(self, spell_data: Dict[str, Any]) -> bool:
+    def _is_reference_entry(self, spell_data: Dict) -> bool:
         """
         Check if the spell entry is a reference entry.
 

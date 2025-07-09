@@ -3,7 +3,7 @@ Base validator class for spell map validation.
 """
 
 from abc import ABC, abstractmethod
-from typing import Dict, List, Any
+from typing import Dict, List
 
 
 class BaseValidator(ABC):

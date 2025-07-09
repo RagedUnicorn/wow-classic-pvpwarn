@@ -3,7 +3,7 @@ Duplicate spell ID validator for spell map entries.
 """
 
 import re
-from typing import Dict, List, Set, Optional
+from typing import Dict, List
 
 from .base_validator import BaseValidator
 from ..constants import (

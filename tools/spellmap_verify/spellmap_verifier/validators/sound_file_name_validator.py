@@ -3,7 +3,7 @@ Validator for soundFileName property in SpellMap entries.
 """
 
 import re
-from typing import Dict, Any
+from typing import Dict
 from .base_validator import BaseValidator
 
 
@@ -17,7 +17,7 @@ class SoundFileNameValidator(BaseValidator):
         """Return the name of this validator."""
         return "SoundFileNameValidator"
 
-    def validate(self, spell_entries: Dict[str, Dict[int, Dict[str, Any]]], content: str = None) -> None:
+    def validate(self, spell_entries: Dict[str, Dict[int, Dict]], content: str = None, **kwargs) -> None:
         """
         Validate soundFileName property for all spell entries.
 
@@ -31,7 +31,7 @@ class SoundFileNameValidator(BaseValidator):
             for spell_id, spell_data in spells.items():
                 self._validate_spell_sound_file_name(category, spell_id, spell_data)
 
-    def _validate_spell_sound_file_name(self, category: str, spell_id: int, spell_data: Dict[str, Any]) -> None:
+    def _validate_spell_sound_file_name(self, category: str, spell_id: int, spell_data: Dict) -> None:
         """
         Validate soundFileName for a single spell entry.
 
@@ -76,7 +76,7 @@ class SoundFileNameValidator(BaseValidator):
                 f"Found invalid characters: {', '.join(repr(c) for c in sorted(invalid_chars))}"
             )
 
-    def _is_reference_entry(self, spell_data: Dict[str, Any]) -> bool:
+    def _is_reference_entry(self, spell_data: Dict) -> bool:
         """
         Check if the spell entry is a reference entry.
 
