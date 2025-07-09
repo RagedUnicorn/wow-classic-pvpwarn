@@ -14,7 +14,8 @@ from voice_generator import (
     LuaParser,
     VoiceClient,
     FileManager,
-    Reporter
+    Reporter,
+    ALLOWED_LANGUAGE_MODELS
 )
 
 
@@ -217,6 +218,12 @@ def main():
         help="Generate only specific categories (e.g., warrior priest druid items racials)"
     )
 
+    parser.add_argument(
+        '--model',
+        choices=ALLOWED_LANGUAGE_MODELS,
+        help=f"Eleven Labs model to use for generation. Choices: {', '.join(ALLOWED_LANGUAGE_MODELS)}"
+    )
+
     args = parser.parse_args()
 
     try:
@@ -236,7 +243,8 @@ def main():
         # Initialize voice client
         client = VoiceClient(
             api_key=config['api_key'],
-            voice_id=config.get('voice_id')
+            voice_id=config.get('voice_id'),
+            model=args.model
         )
 
         # Determine voice ID
@@ -253,13 +261,30 @@ def main():
             print("Error: No voice specified. Use --voice or --voice-id, or set ELEVENLABS_VOICE_ID in .env")
             sys.exit(1)
 
-        # Log configuration
-        reporter.log_configuration({
+        # Build complete configuration
+        full_config = {
             'mode': args.mode,
             'voice_id': voice_id,
+            'model': client.model,
+            'output_format': client.output_format,
             'force': args.force,
             'output': file_manager.output_path,
-        })
+            'categories': args.categories if args.categories else 'all',
+        }
+        
+        # Add voice settings if configured
+        if client.voice_settings:
+            if client.voice_settings.get('stability') is not None:
+                full_config['stability'] = client.voice_settings.get('stability')
+            if client.voice_settings.get('similarity_boost') is not None:
+                full_config['similarity_boost'] = client.voice_settings.get('similarity_boost')
+            if client.voice_settings.get('style') is not None:
+                full_config['style'] = client.voice_settings.get('style')
+            if client.voice_settings.get('use_speaker_boost') is not None:
+                full_config['use_speaker_boost'] = client.voice_settings.get('use_speaker_boost')
+        
+        # Log configuration
+        reporter.log_configuration(full_config)
 
         # Handle clean if requested
         if args.clean:
