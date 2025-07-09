@@ -4,9 +4,11 @@ import os
 import time
 from typing import Optional, List, Dict
 from elevenlabs.client import ElevenLabs
+from elevenlabs import VoiceSettings
 from .constants import (
     DEFAULT_VOICE_MODEL,
     DEFAULT_OUTPUT_FORMAT,
+    ALLOWED_LANGUAGE_MODELS,
     RATE_LIMIT_DELAY,
     MAX_RETRIES,
     RETRY_DELAY
@@ -16,20 +18,69 @@ from .constants import (
 class VoiceClient:
     """Client for generating voice files using Eleven Labs API."""
 
-    def __init__(self, api_key: str, voice_id: Optional[str] = None):
+    def __init__(self, api_key: str, voice_id: Optional[str] = None, model: Optional[str] = None):
         """Initialize the voice client.
 
         Args:
             api_key: Eleven Labs API key
             voice_id: Optional voice ID to use for generation
+            model: Optional model to use (overrides environment/default)
         """
         self.api_key = api_key
         self.voice_id = voice_id
         self.client = ElevenLabs(api_key=api_key)
 
-        # Get voice model from environment or use default
-        self.model = os.getenv('ELEVENLABS_MODEL', DEFAULT_VOICE_MODEL)
+        # Get voice model from parameter, environment, or use default
+        if model:
+            if model not in ALLOWED_LANGUAGE_MODELS:
+                raise ValueError(f"Model '{model}' not allowed. Must be one of: {', '.join(ALLOWED_LANGUAGE_MODELS)}")
+            self.model = model
+        else:
+            self.model = os.getenv('ELEVENLABS_MODEL', DEFAULT_VOICE_MODEL)
+
         self.output_format = os.getenv('ELEVENLABS_OUTPUT_FORMAT', DEFAULT_OUTPUT_FORMAT)
+
+        # Get voice settings from environment
+        self.voice_settings = self._load_voice_settings()
+
+    def _load_voice_settings(self) -> Dict[str, Optional[float]]:
+        """Load voice settings from environment variables.
+
+        Returns:
+            Dictionary of voice settings
+        """
+        settings = {}
+
+        # Load stability (0.0 to 1.0)
+        stability = os.getenv('ELEVENLABS_STABILITY')
+        if stability is not None:
+            try:
+                settings['stability'] = float(stability)
+            except ValueError:
+                print(f"Warning: Invalid ELEVENLABS_STABILITY value: {stability}")
+
+        # Load similarity boost (0.0 to 1.0)
+        similarity = os.getenv('ELEVENLABS_SIMILARITY_BOOST')
+        if similarity is not None:
+            try:
+                settings['similarity_boost'] = float(similarity)
+            except ValueError:
+                print(f"Warning: Invalid ELEVENLABS_SIMILARITY_BOOST value: {similarity}")
+
+        # Load style (0.0 to 1.0, for newer models)
+        style = os.getenv('ELEVENLABS_STYLE')
+        if style is not None:
+            try:
+                settings['style'] = float(style)
+            except ValueError:
+                print(f"Warning: Invalid ELEVENLABS_STYLE value: {style}")
+
+        # Load speaker boost (true/false)
+        speaker_boost = os.getenv('ELEVENLABS_USE_SPEAKER_BOOST')
+        if speaker_boost is not None:
+            settings['use_speaker_boost'] = speaker_boost.lower() in ('true', '1', 'yes')
+
+        return settings
 
     def list_voices(self) -> List[Dict]:
         """List all available voices.
@@ -101,12 +152,27 @@ class VoiceClient:
         # Retry logic for API calls
         for attempt in range(MAX_RETRIES):
             try:
+                # Prepare API parameters
+                api_params = {
+                    "text": text,
+                    "voice_id": voice_to_use,
+                    "model_id": self.model,
+                    "output_format": self.output_format
+                }
+
+                # Add voice settings if configured
+                if self.voice_settings:
+                    # Create VoiceSettings object from our settings dictionary
+                    voice_settings = VoiceSettings(
+                        stability=self.voice_settings.get('stability'),
+                        similarity_boost=self.voice_settings.get('similarity_boost'),
+                        style=self.voice_settings.get('style'),
+                        use_speaker_boost=self.voice_settings.get('use_speaker_boost')
+                    )
+                    api_params["voice_settings"] = voice_settings
+
                 # Generate audio using the new API
-                audio_generator = self.client.text_to_speech.convert(
-                    text=text,
-                    voice_id=voice_to_use,
-                    model_id=self.model
-                )
+                audio_generator = self.client.text_to_speech.convert(**api_params)
 
                 # For the generator API, we need to consume it
                 audio_chunks = []
