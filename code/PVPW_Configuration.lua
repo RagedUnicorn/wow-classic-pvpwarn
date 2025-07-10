@@ -60,6 +60,10 @@ PVPWarnConfiguration = {
   ]]--
   ["addonZoneConfiguration"] = nil,
   --[[
+    The active voice pack name, "default" for built-in sounds
+  ]]--
+  ["activeVoicePack"] = RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME,
+  --[[
     Framepositions for user draggable Frames
     frames = {
       -- should match the actual frame name
@@ -102,6 +106,11 @@ function me.SetupConfiguration()
   if PVPWarnConfiguration.frames == nil then
     mod.logger.LogInfo(me.tag, "frames has unexpected nil value")
     PVPWarnConfiguration.frames = {}
+  end
+
+  -- Migrate nil to "default" for existing users
+  if PVPWarnConfiguration.activeVoicePack == nil then
+    PVPWarnConfiguration.activeVoicePack = RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME
   end
 
   --[[
@@ -441,4 +450,24 @@ function me.IsZoneEnabled(zoneId)
     ]]--
     return true
   end
+end
+
+--[[
+  Get the active voice pack
+
+  @return {string | nil}
+    The name of the active voice pack, or nil if using default
+]]--
+function me.GetActiveVoicePack()
+  return PVPWarnConfiguration.activeVoicePack
+end
+
+--[[
+  Set the active voice pack
+
+  @param {string | nil} voicePackName
+    The name of the voice pack to activate, or nil for default
+]]--
+function me.SetActiveVoicePack(voicePackName)
+  PVPWarnConfiguration.activeVoicePack = voicePackName
 end

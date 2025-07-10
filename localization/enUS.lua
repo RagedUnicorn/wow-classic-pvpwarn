@@ -56,6 +56,12 @@ rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Tracks the stancestate of an
 rgpvpw.L["lock_frame_stance_state"] = "Lock stancestate frame"
 rgpvpw.L["lock_frame_stance_state_tooltip"] = "Locks or unlocks the stancestate frame"
 
+-- voice pack
+rgpvpw.L["configuration_menu_voice_pack"] = "Voice Packs"
+rgpvpw.L["voice_pack_title"] = "Voice Pack Configuration"
+rgpvpw.L["voice_pack_dropdown_label"] = "Select Voice Pack:"
+rgpvpw.L["voice_pack_default"] = "Default"
+
 -- zones
 rgpvpw.L["configuration_menu_zone"] = "Zones"
 rgpvpw.L["zone_title"] = "Configure Zones"

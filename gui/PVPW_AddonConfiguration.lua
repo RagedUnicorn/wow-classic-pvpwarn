@@ -75,6 +75,13 @@ function me.SetupAddonConfiguration()
   )
 
   me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_SUB_OPTION_FRAME,
+    category,
+    rgpvpw.L["configuration_menu_voice_pack"],
+    mod.voicePackMenu.BuildUi
+  )
+
+  me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_profiles"],
