@@ -19,6 +19,7 @@ localization/deDE.lua
 
 # code
 code/PVPW_Core.lua
+code/PVPW_Addon.lua
 code/PVPW_Logger.lua
 code/PVPW_Filter.lua
 code/PVPW_Ticker.lua
