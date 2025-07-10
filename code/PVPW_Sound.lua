@@ -50,7 +50,7 @@ local FILE_TYPE = ".mp3"
     The base path for sound files
 ]]--
 local function GetBasePath()
-  local voicePackPath = mod.addon.GetActiveVoicePackPath()
+  local voicePackPath = mod.voicePack.GetActiveVoicePackPath()
 
   if voicePackPath then
     return voicePackPath

@@ -94,7 +94,7 @@ end
   Initialize the dropdown menu with available voice packs
 ]]--
 function me.InitializeDropdown()
-  local voicePacks = mod.addon.GetRegisteredVoicePacks()
+  local voicePacks = mod.voicePack.GetRegisteredVoicePacks()
 
   for name, voicePack in pairs(voicePacks) do
     local info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
@@ -118,7 +118,7 @@ function me.OnVoicePackSelect(self)
   local voicePackName = self.value
 
   mod.configuration.SetActiveVoicePack(voicePackName)
-  mod.addon.SetActiveVoicePack(voicePackName)
+  mod.voicePack.SetActiveVoicePack(voicePackName)
   me.UpdateDropdownSelection()
   me.UpdateDropdownWidth()
   mod.libUiDropDownMenu.CloseDropDownMenus()
@@ -131,7 +131,7 @@ end
 ]]--
 function me.UpdateDropdownSelection()
   local activeVoicePack = mod.configuration.GetActiveVoicePack()
-  local voicePacks = mod.addon.GetRegisteredVoicePacks()
+  local voicePacks = mod.voicePack.GetRegisteredVoicePacks()
   local voicePack = voicePacks[activeVoicePack]
   local displayText = voicePack and voicePack.displayName or rgpvpw.L["voice_pack_default"]
 
@@ -149,7 +149,7 @@ function me.UpdateDropdownWidth()
   tempFontString:SetFont(STANDARD_TEXT_FONT, 12) -- standard dropdown font size
 
   local maxWidth = 0
-  local voicePacks = mod.addon.GetRegisteredVoicePacks()
+  local voicePacks = mod.voicePack.GetRegisteredVoicePacks()
 
   -- measure all voice pack display names
   for _, voicePack in pairs(voicePacks) do
