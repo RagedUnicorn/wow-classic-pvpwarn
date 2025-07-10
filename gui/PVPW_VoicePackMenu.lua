@@ -92,16 +92,12 @@ end
 
 --[[
   Initialize the dropdown menu with available voice packs
-
-  @param {table} self
-    The dropdown frame
 ]]--
-function me.InitializeDropdown(self)
-  local info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
+function me.InitializeDropdown()
   local voicePacks = mod.addon.GetRegisteredVoicePacks()
 
   for name, voicePack in pairs(voicePacks) do
-    info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
+    local info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
     info.text = voicePack.displayName
     info.value = name
     info.func = me.OnVoicePackSelect
@@ -156,7 +152,7 @@ function me.UpdateDropdownWidth()
   local voicePacks = mod.addon.GetRegisteredVoicePacks()
 
   -- measure all voice pack display names
-  for name, voicePack in pairs(voicePacks) do
+  for _, voicePack in pairs(voicePacks) do
     tempFontString:SetText(voicePack.displayName)
     local textWidth = tempFontString:GetStringWidth()
     if textWidth > maxWidth then
