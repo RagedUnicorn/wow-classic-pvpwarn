@@ -26,9 +26,9 @@
 local mod = rgpvpw
 local me = {}
 
-mod.addon = me
+mod.voicePack = me
 
-me.tag = "Addon"
+me.tag = "VoicePack"
 
 local registeredVoicePacks = {}
 

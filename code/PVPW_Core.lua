@@ -94,7 +94,7 @@ function me.Initialize()
   -- setup slash commands
   me.cmd.SetupSlashCmdList()
   -- register default voice pack
-  me.addon.RegisterDefaultVoicePack()
+  me.voicePack.RegisterDefaultVoicePack()
   -- load addon variables
   me.configuration.SetupConfiguration()
   -- setup addon configuration ui
