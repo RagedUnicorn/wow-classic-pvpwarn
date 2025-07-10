@@ -134,3 +134,7 @@ To add stance tracking for a new spell:
 3. Add the class to `supportedClasses` in PVPW_StanceState.lua if needed
 
 For a detailed flow diagram and more information, see [docs/stance-tracking-flow.md](docs/stance_tracking_flow.md).
+
+### Voice Pack Integration
+
+PVPWarn supports custom voice packs as separate addons that can provide alternative sound files. Voice packs register themselves with the main addon and users can select them through the settings menu. For detailed information about how voice packs work and implementation details, see [docs/voice_pack_loading_flow.md](docs/voice_pack_loading_flow.md).
