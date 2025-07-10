@@ -33,7 +33,7 @@ me.tag = "Sound"
 --[[
   Private
 ]]--
-local BASE_PATH = "Interface\\AddOns\\PVPWarn\\assets\\sounds\\en\\"
+local DEFAULT_BASE_PATH = "Interface\\AddOns\\PVPWarn\\assets\\sounds\\en\\"
 local FILE_NAME_DOWN = "_down"
 local PATH_SELF_AVOID = "self_avoid\\"
 local PATH_ENEMY_AVOID = "enemy_avoid\\"
@@ -41,6 +41,22 @@ local FILE_NAME_SELF_AVOID = "you_avoided_"
 local FILE_NAME_ENEMY_AVOID = "enemy_avoided_"
 local FILE_NAME_START = "_cast"
 local FILE_TYPE = ".mp3"
+
+--[[
+  Get the base path for sound files
+  Uses voice pack path if available, otherwise defaults to built-in sounds
+
+  @return {string}
+    The base path for sound files
+]]--
+local function GetBasePath()
+  local voicePackPath = mod.addon.GetActiveVoicePackPath()
+
+  if voicePackPath then
+    return voicePackPath
+  end
+  return DEFAULT_BASE_PATH
+end
 
 --[[
   Play a sound from the assets-folder
@@ -65,7 +81,7 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
     string.format("bad argument #3 to `PlaySound` (expected string, got %s)", type(soundFileName)))
 
   local status = 0
-  local soundPath = BASE_PATH .. soundCategory .. "\\"
+  local soundPath = GetBasePath() .. soundCategory .. "\\"
   local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
 
   if spellType == spellTypes.NORMAL or spellType == spellTypes.APPLIED or spellType == spellTypes.REFRESH then
