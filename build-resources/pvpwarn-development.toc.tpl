@@ -68,6 +68,7 @@ gui/PVPW_AddonConfiguration.lua
 gui/PVPW_AboutContent.lua
 gui/PVPW_GeneralMenu.lua
 gui/PVPW_ZoneMenu.lua
+gui/PVPW_VoicePackMenu.lua
 gui/PVPW_ProfileMenu.lua
 gui/PVPW_CategoryMenu.lua
 gui/PVPW_CategoryMenuSpellsTab.lua

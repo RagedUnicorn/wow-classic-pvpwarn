@@ -28,6 +28,7 @@ RGPVPW_CONSTANTS = {
   --[[
     Unit ids
   ]]--
+  DEFAULT_VOICE_PACK_NAME = "default",
   UNIT_ID_PLAYER = "player",
   UNIT_ID_TARGET = "target",
   --[[
@@ -229,6 +230,13 @@ RGPVPW_CONSTANTS = {
   ELEMENT_ZONE_ALTERAC_VALLEY = "PVPW_AlteracValleyCheckBox",
   ELEMENT_ZONE_ARATHI_BASIN = "PVPW_ArathiBasinCheckBox",
   ELEMENT_ZONE_WARSONG_GULCH = "PVPW_WarsongGulchCheckBox",
+  --[[
+    VoicePackMenu
+  ]]--
+  ELEMENT_VOICE_PACK_SUB_OPTION_FRAME = "PVPW_VoicePackMenuOptionsFrame",
+  ELEMENT_VOICE_PACK_TITLE = "PVPW_VoicePackTitle",
+  ELEMENT_VOICE_PACK_DROPDOWN = "PVPW_VoicePackDropdown",
+  ELEMENT_VOICE_PACK_DROPDOWN_MIN_WIDTH = 120,
   --[[
     A list of available categories consisting of all classes, racials, items and a
     misc category

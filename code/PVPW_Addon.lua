@@ -31,7 +31,6 @@ mod.addon = me
 me.tag = "Addon"
 
 local registeredVoicePacks = {}
-local activeVoicePack = nil
 
 --[[
   Register a voice pack addon
@@ -59,6 +58,13 @@ function me.RegisterVoicePack(name, displayName, assetPath)
   }
 
   mod.logger.LogInfo(me.tag, "Registered voice pack: " .. name .. " with path: " .. assetPath)
+
+  -- check if this is the configured voice pack
+  local configuredVoicePack = mod.configuration.GetActiveVoicePack()
+  if configuredVoicePack == name then
+    mod.logger.LogInfo(me.tag, "Registered voice pack matches configured pack, activating: " .. name)
+  end
+
   return true
 end
 
@@ -79,25 +85,11 @@ end
     The name of the voice pack to activate, or nil for default
 ]]--
 function me.SetActiveVoicePack(name)
-  if name and not registeredVoicePacks[name] then
-    mod.logger.LogError(me.tag, "Cannot set active voice pack - not registered: " .. name)
-    return false
-  end
 
-  activeVoicePack = name
-  mod.logger.LogInfo(me.tag, "Set active voice pack: " .. (name or "default"))
-  return true
+  mod.configuration.SetActiveVoicePack(name or RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME)
+  mod.logger.LogInfo(me.tag, "Set active voice pack: " .. (name or RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME))
 end
 
---[[
-  Get the active voice pack
-
-  @return {string|nil}
-    The name of the active voice pack, or nil if using default
-]]--
-function me.GetActiveVoicePack()
-  return activeVoicePack
-end
 
 --[[
   Get the asset path for the active voice pack
@@ -106,11 +98,32 @@ end
     The asset path for the active voice pack, or nil if using default
 ]]--
 function me.GetActiveVoicePackPath()
-  if not activeVoicePack then
+  local activeVoicePack = mod.configuration.GetActiveVoicePack()
+
+  if not activeVoicePack or activeVoicePack == RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME then
     return nil
   end
 
   local voicePack = registeredVoicePacks[activeVoicePack]
-  return voicePack and voicePack.assetPath or nil
+  -- if voice pack not found, fallback to default
+  if not voicePack then
+    mod.logger.LogDebug(me.tag, "Voice pack not found: " .. activeVoicePack .. ", using default")
+    return nil
+  end
+
+  return voicePack.assetPath
 end
 
+--[[
+  Register the default voice pack
+
+  This is called during addon initialization
+]]--
+function me.RegisterDefaultVoicePack()
+  me.RegisterVoicePack(
+    RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME,
+    rgpvpw.L["voice_pack_default"],
+    "Interface\\AddOns\\PVPWarn\\assets\\sounds\\en\\"
+   )
+  mod.logger.LogInfo(me.tag, "Registered default voice pack")
+end

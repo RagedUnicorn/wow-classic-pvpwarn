@@ -93,6 +93,8 @@ function me.Initialize()
   me.logger.LogDebug(me.tag, "Initialize addon")
   -- setup slash commands
   me.cmd.SetupSlashCmdList()
+  -- register default voice pack
+  me.addon.RegisterDefaultVoicePack()
   -- load addon variables
   me.configuration.SetupConfiguration()
   -- setup addon configuration ui

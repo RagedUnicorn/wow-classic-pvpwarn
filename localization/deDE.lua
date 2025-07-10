@@ -58,6 +58,12 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["lock_frame_stance_state"] = "Blockiere das Haltungszustand Fenster"
   rgpvpw.L["lock_frame_stance_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Haltungszustand Fenster"
 
+  -- voice pack
+  rgpvpw.L["configuration_menu_voice_pack"] = "Sprachpakete"
+  rgpvpw.L["voice_pack_title"] = "Sprachpaket Konfiguration"
+  rgpvpw.L["voice_pack_dropdown_label"] = "Sprachpaket auswählen:"
+  rgpvpw.L["voice_pack_default"] = "Standard"
+
   -- zones
   rgpvpw.L["configuration_menu_zone"] = "Zonen"
   rgpvpw.L["zone_title"] = "Konfiguriere Zonen"
