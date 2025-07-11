@@ -43,8 +43,13 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Default PVPWarn Sounds" >> $GITHUB_STEP_SUMMARY
 
-          # Run verification and capture both output and exit code
-          if python verify_sounds.py --sound-path ../../assets --output-format summary 2>&1 | tee default_verification.txt; then
+          # Run verification and capture exit code properly
+          set +e  # Don't exit on error
+          python verify_sounds.py --sound-path ../../assets/sounds/en --output-format summary 2>&1 | tee default_verification.txt
+          VERIFY_EXIT_CODE=${PIPESTATUS[0]}
+          set -e  # Re-enable exit on error
+          
+          if [ $VERIFY_EXIT_CODE -eq 0 ]; then
             echo "default_passed=true" >> $GITHUB_OUTPUT
 
             # Extract statistics from output
@@ -79,7 +84,7 @@ jobs:
         if: always()
         run: |
           cd tools/verify_sounds
-          python verify_sounds.py --sound-path ../../assets --output-format detailed > default_detailed_report.txt 2>&1 || true
+          python verify_sounds.py --sound-path ../../assets/sounds/en --output-format detailed > default_detailed_report.txt 2>&1 || true
 
       - name: Upload default verification results
         if: always()
@@ -89,6 +94,10 @@ jobs:
           path: |
             tools/verify_sounds/default_verification.txt
             tools/verify_sounds/default_detailed_report.txt
+
+      - name: Fail if verification failed
+        if: steps.verify_default.outputs.default_passed == 'false'
+        run: exit 1
 
   verify-external-sounds:
     runs-on: ubuntu-latest
@@ -236,7 +245,7 @@ jobs:
             You can run the verification locally with:
             \`\`\`bash
             cd tools/verify_sounds
-            python verify_sounds.py --sound-path ../../assets
+            python verify_sounds.py --sound-path ../../assets/sounds/en
             \`\`\``;
 
             github.rest.issues.createComment({
