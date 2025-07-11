@@ -5,14 +5,14 @@ on:
     paths:
       - 'code/SpellMap.lua'
       - 'code/SpellAvoidMap.lua'
-      - 'tools/spellmap_verify/**'
-      - '.github/workflows/spellmap_verify.yaml'
+      - 'tools/verify_spellmap/**'
+      - '.github/workflows/verify_spellmap.yaml'
   pull_request:
     paths:
       - 'code/SpellMap.lua'
       - 'code/SpellAvoidMap.lua'
-      - 'tools/spellmap_verify/**'
-      - '.github/workflows/spellmap_verify.yaml'
+      - 'tools/verify_spellmap/**'
+      - '.github/workflows/verify_spellmap.yaml'
   workflow_dispatch:
 
 jobs:
@@ -30,13 +30,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd tools/spellmap_verify
+          cd tools/verify_spellmap
           pip install -r requirements.txt
 
       - name: Run SpellMap verification
         id: verify
         run: |
-          cd tools/spellmap_verify
+          cd tools/verify_spellmap
           echo "## 🔍 SpellMap & SpellAvoidMap Verification Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
@@ -61,7 +61,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const output = fs.readFileSync('tools/spellmap_verify/verification_output.txt', 'utf8');
+            const output = fs.readFileSync('tools/verify_spellmap/verification_output.txt', 'utf8');
 
             const comment = `## ❌ SpellMap Verification Failed
 
@@ -85,7 +85,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: spellmap-verification-results
-          path: tools/spellmap_verify/verification_output.txt
+          path: tools/verify_spellmap/verification_output.txt
 
       - name: Fail if verification failed
         if: steps.verify.outputs.verification_passed == 'false'
