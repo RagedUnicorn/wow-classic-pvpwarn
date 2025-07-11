@@ -1,0 +1,247 @@
+name: Sound File Verification
+
+on:
+  push:
+    paths:
+      - 'assets/**'
+      - 'code/SpellMap.lua'
+      - 'code/SpellAvoidMap.lua'
+      - 'tools/verify_sounds/**'
+      - '.github/workflows/verify_sounds.yaml'
+  pull_request:
+    paths:
+      - 'assets/**'
+      - 'code/SpellMap.lua'
+      - 'code/SpellAvoidMap.lua'
+      - 'tools/verify_sounds/**'
+      - '.github/workflows/verify_sounds.yaml'
+  workflow_dispatch:
+
+jobs:
+  verify-default-sounds:
+    runs-on: ubuntu-latest
+    name: Verify Default Sounds
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          cd tools/verify_sounds
+          pip install -r requirements.txt
+
+      - name: Verify default sound files
+        id: verify_default
+        run: |
+          cd tools/verify_sounds
+          echo "## 🔊 Sound File Verification Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Default PVPWarn Sounds" >> $GITHUB_STEP_SUMMARY
+
+          # Run verification and capture both output and exit code
+          if python verify_sounds.py --sound-path ../../assets --output-format summary 2>&1 | tee default_verification.txt; then
+            echo "default_passed=true" >> $GITHUB_OUTPUT
+
+            # Extract statistics from output
+            total_files=$(grep -oP 'Required files: \K\d+' default_verification.txt || echo "0")
+            found_files=$(grep -oP 'Found files: \K\d+' default_verification.txt || echo "0")
+
+            echo "✅ **Status:** PASSED ($found_files/$total_files files found)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "default_passed=false" >> $GITHUB_OUTPUT
+
+            # Extract statistics from output
+            total_files=$(grep -oP 'Required files: \K\d+' default_verification.txt || echo "0")
+            found_files=$(grep -oP 'Found files: \K\d+' default_verification.txt || echo "0")
+            missing_files=$(grep -oP 'Missing files: \K\d+' default_verification.txt || echo "0")
+
+            echo "❌ **Status:** FAILED ($found_files/$total_files files found, $missing_files missing)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+
+            # Extract and format missing files (limit to first 20)
+            echo "<details>" >> $GITHUB_STEP_SUMMARY
+            echo "<summary>Missing files (showing first 20)</summary>" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            grep -A 20 "Missing Files" default_verification.txt | tail -n +2 | head -20 >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "</details>" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+      - name: Generate detailed report
+        if: always()
+        run: |
+          cd tools/verify_sounds
+          python verify_sounds.py --sound-path ../../assets --output-format detailed > default_detailed_report.txt 2>&1 || true
+
+      - name: Upload default verification results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: default-sound-verification
+          path: |
+            tools/verify_sounds/default_verification.txt
+            tools/verify_sounds/default_detailed_report.txt
+
+  verify-external-sounds:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        voice_pack:
+          - name: "Voice Pack Nightelf Female Classic"
+            repo: "RagedUnicorn/wow-classic-pvpwarn-vpnfc"
+            assets_path: "assets/sounds"
+    name: Verify ${{ matrix.voice_pack.name }}
+    steps:
+      - name: Checkout PVPWarn Repository
+        uses: actions/checkout@v4
+        with:
+          path: pvpwarn
+
+      - name: Checkout External Voice Pack
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.voice_pack.repo }}
+          path: external_pack
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          cd pvpwarn/tools/verify_sounds
+          pip install -r requirements.txt
+
+      - name: Verify external sound files
+        id: verify_external
+        run: |
+          cd pvpwarn/tools/verify_sounds
+
+          PACK_NAME="${{ matrix.voice_pack.name }}"
+          SAFE_PACK_NAME=$(echo "$PACK_NAME" | sed 's/[^a-zA-Z0-9]/_/g')
+
+          echo "### External Voice Pack: $PACK_NAME" >> $GITHUB_STEP_SUMMARY
+
+          # Run verification with external pack path
+          if python verify_sounds.py \
+            --sound-path "../../../external_pack/${{ matrix.voice_pack.assets_path }}" \
+            --spell-map "../../code/SpellMap.lua" \
+            --spell-avoid-map "../../code/SpellAvoidMap.lua" \
+            --output-format summary 2>&1 | tee "${SAFE_PACK_NAME}_verification.txt"; then
+
+            echo "external_passed=true" >> $GITHUB_OUTPUT
+
+            # Extract statistics
+            total_files=$(grep -oP 'Required files: \K\d+' "${SAFE_PACK_NAME}_verification.txt" || echo "0")
+            found_files=$(grep -oP 'Found files: \K\d+' "${SAFE_PACK_NAME}_verification.txt" || echo "0")
+
+            echo "✅ **Status:** PASSED ($found_files/$total_files files found)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "external_passed=false" >> $GITHUB_OUTPUT
+
+            # Extract statistics
+            total_files=$(grep -oP 'Required files: \K\d+' "${SAFE_PACK_NAME}_verification.txt" || echo "0")
+            found_files=$(grep -oP 'Found files: \K\d+' "${SAFE_PACK_NAME}_verification.txt" || echo "0")
+            missing_files=$(grep -oP 'Missing files: \K\d+' "${SAFE_PACK_NAME}_verification.txt" || echo "0")
+
+            echo "❌ **Status:** FAILED ($found_files/$total_files files found, $missing_files missing)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+
+            # Show missing files
+            echo "<details>" >> $GITHUB_STEP_SUMMARY
+            echo "<summary>Missing files (showing first 20)</summary>" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            grep -A 20 "Missing Files" "${SAFE_PACK_NAME}_verification.txt" | tail -n +2 | head -20 >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "</details>" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Repository: [${{ matrix.voice_pack.repo }}](https://github.com/${{ matrix.voice_pack.repo }})" >> $GITHUB_STEP_SUMMARY
+          echo "Assets Path: \`${{ matrix.voice_pack.assets_path }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+      - name: Generate detailed report
+        if: always()
+        run: |
+          cd pvpwarn/tools/verify_sounds
+
+          PACK_NAME="${{ matrix.voice_pack.name }}"
+          SAFE_PACK_NAME=$(echo "$PACK_NAME" | sed 's/[^a-zA-Z0-9]/_/g')
+
+          python verify_sounds.py \
+            --sound-path "../../../external_pack/${{ matrix.voice_pack.assets_path }}" \
+            --spell-map "../../code/SpellMap.lua" \
+            --spell-avoid-map "../../code/SpellAvoidMap.lua" \
+            --output-format detailed > "${SAFE_PACK_NAME}_detailed_report.txt" 2>&1 || true
+
+      - name: Upload external verification results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.voice_pack.name }}-verification
+          path: |
+            pvpwarn/tools/verify_sounds/*_verification.txt
+            pvpwarn/tools/verify_sounds/*_detailed_report.txt
+
+  summary:
+    needs: [verify-default-sounds, verify-external-sounds]
+    if: always()
+    runs-on: ubuntu-latest
+    name: Verification Summary
+    steps:
+      - name: Create summary
+        run: |
+          echo "## 📊 Overall Verification Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Default sounds status
+          if [ "${{ needs.verify-default-sounds.result }}" == "success" ]; then
+            echo "- ✅ Default PVPWarn sounds verification passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ Default PVPWarn sounds verification failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # External packs status
+          if [ "${{ needs.verify-external-sounds.result }}" == "success" ]; then
+            echo "- ✅ External voice pack verification passed" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ needs.verify-external-sounds.result }}" == "failure" ]; then
+            echo "- ❌ External voice pack verification failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Comment on PR (if failed)
+        if: |
+          github.event_name == 'pull_request' &&
+          needs.verify-default-sounds.result == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = `## ❌ Sound File Verification Failed
+
+            The sound file verification found missing files in the default sound pack.
+
+            Please check the [workflow summary](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details about which files are missing.
+
+            You can run the verification locally with:
+            \`\`\`bash
+            cd tools/verify_sounds
+            python verify_sounds.py --sound-path ../../assets
+            \`\`\``;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
