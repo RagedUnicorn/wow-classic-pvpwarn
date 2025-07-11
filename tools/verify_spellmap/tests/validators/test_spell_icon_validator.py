@@ -3,7 +3,7 @@ Tests for SpellIconValidator using pytest with Lua fixtures.
 """
 
 import pytest
-from spellmap_verifier.validators import SpellIconValidator
+from verify_spellmap.validators import SpellIconValidator
 
 
 class TestSpellIconValidator:

@@ -3,7 +3,7 @@ Tests for TypeValidator using pytest with Lua fixtures.
 """
 
 import pytest
-from spellmap_verifier.validators import TypeValidator
+from verify_spellmap.validators import TypeValidator
 
 
 class TestTypeValidator:

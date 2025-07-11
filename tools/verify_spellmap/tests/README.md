@@ -23,14 +23,14 @@ tests/
 ### Install Test Dependencies
 
 ```bash
-cd tools/spellmap_verify
+cd tools/verify_spellmap
 pip install -r requirements.txt  # This includes pytest
 ```
 
 ### Run All Tests with pytest
 
 ```bash
-cd tools/spellmap_verify
+cd tools/verify_spellmap
 
 # Run all tests
 pytest
@@ -134,7 +134,7 @@ Tests for MyNewValidator using pytest.
 """
 
 import pytest
-from spellmap_verifier.validators import MyNewValidator
+from verify_spellmap.validators import MyNewValidator
 
 
 class TestMyNewValidator:

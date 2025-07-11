@@ -3,7 +3,7 @@ Tests for SoundFileNameValidator using pytest with Lua fixtures.
 """
 
 import pytest
-from spellmap_verifier.validators import SoundFileNameValidator
+from verify_spellmap.validators import SoundFileNameValidator
 
 
 class TestSoundFileNameValidator:

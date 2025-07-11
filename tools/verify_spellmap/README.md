@@ -15,14 +15,14 @@ venv\.venv\Scripts\activate
 
 2. Install dependencies:
 ```bash
-cd spellmap_verify
+cd verify_spellmap
 pip install -r requirements.txt
 ```
 
 ## Usage
 
 ```bash
-# From the spellmap_verify directory (with venv activated)
+# From the verify_spellmap directory (with venv activated)
 python verify_spellmap.py
 ```
 
@@ -172,7 +172,7 @@ spellmap_verify/
 ├── requirements.txt        # Python dependencies
 ├── pytest.ini              # pytest configuration
 ├── README.md               # This file
-├── spellmap_verifier/      # Verification modules
+├── verify_spellmap/        # Verification modules
 │   ├── __init__.py         # Package initialization
 │   ├── file_reader.py      # File I/O operations
 │   ├── lua_parser.py       # Lua parsing and environment

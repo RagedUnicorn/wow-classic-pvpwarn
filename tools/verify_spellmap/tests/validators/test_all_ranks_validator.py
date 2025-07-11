@@ -5,8 +5,8 @@ Tests for AllRanksValidator
 import os
 import pytest
 from pathlib import Path
-from spellmap_verifier.validators.all_ranks_validator import AllRanksValidator
-from spellmap_verifier.lua_parser import LuaParser
+from verify_spellmap.validators.all_ranks_validator import AllRanksValidator
+from verify_spellmap.lua_parser import LuaParser
 
 
 @pytest.fixture

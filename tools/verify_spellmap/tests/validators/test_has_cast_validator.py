@@ -3,7 +3,7 @@ Tests for HasCastValidator
 """
 
 import pytest
-from spellmap_verifier.validators.has_cast_validator import HasCastValidator
+from verify_spellmap.validators.has_cast_validator import HasCastValidator
 
 
 @pytest.fixture

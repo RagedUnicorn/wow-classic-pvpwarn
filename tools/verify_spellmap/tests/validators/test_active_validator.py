@@ -3,7 +3,7 @@ Tests for ActiveValidator
 """
 
 import pytest
-from spellmap_verifier.validators.active_validator import ActiveValidator
+from verify_spellmap.validators.active_validator import ActiveValidator
 
 
 @pytest.fixture

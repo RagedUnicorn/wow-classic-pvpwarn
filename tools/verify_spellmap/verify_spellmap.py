@@ -8,8 +8,8 @@ import sys
 from pathlib import Path
 from typing import List
 
-from spellmap_verifier import SpellMapFileReader, LuaParser, Reporter
-from spellmap_verifier.validators import (
+from verify_spellmap import SpellMapFileReader, LuaParser, Reporter
+from verify_spellmap.validators import (
     NameValidator, DuplicateValidator, TypeValidator,
     TrackedEventsValidator, SoundFileNameValidator, SpellIconValidator,
     AllRanksValidator, ActiveValidator, HasFadeValidator, HasCastValidator,

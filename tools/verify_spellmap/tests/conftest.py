@@ -6,7 +6,7 @@ import pytest
 from pathlib import Path
 from typing import Dict, Any
 
-from spellmap_verifier import LuaParser, SpellMapFileReader
+from verify_spellmap import LuaParser, SpellMapFileReader
 
 
 class FixtureLoader:

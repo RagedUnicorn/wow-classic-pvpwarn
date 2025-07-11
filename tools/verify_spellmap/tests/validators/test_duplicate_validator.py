@@ -3,7 +3,7 @@ Tests for DuplicateValidator using pytest with Lua fixtures.
 """
 
 import pytest
-from spellmap_verifier.validators import DuplicateValidator
+from verify_spellmap.validators import DuplicateValidator
 
 
 class TestDuplicateValidator:

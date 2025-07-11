@@ -3,7 +3,7 @@ Tests for HasFadeValidator
 """
 
 import pytest
-from spellmap_verifier.validators.has_fade_validator import HasFadeValidator
+from verify_spellmap.validators.has_fade_validator import HasFadeValidator
 
 
 @pytest.fixture

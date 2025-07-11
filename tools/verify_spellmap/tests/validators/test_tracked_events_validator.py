@@ -3,7 +3,7 @@ Tests for TrackedEventsValidator using pytest with Lua fixtures.
 """
 
 import pytest
-from spellmap_verifier.validators import TrackedEventsValidator
+from verify_spellmap.validators import TrackedEventsValidator
 
 
 class TestTrackedEventsValidator:

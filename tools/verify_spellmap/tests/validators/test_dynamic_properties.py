@@ -3,7 +3,7 @@ Tests for dynamic property detection using pytest with Lua fixtures.
 """
 
 import pytest
-from spellmap_verifier.validators import NameValidator
+from verify_spellmap.validators import NameValidator
 
 
 class TestDynamicProperties:
