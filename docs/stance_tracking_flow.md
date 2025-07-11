@@ -62,7 +62,7 @@ graph TD
 ### Stance Detection
 
 - Spells with `isStanceSpell = true` are tracked
-- Events are filtered in `ProcessNormal` (PVPW_CombatLog.lua:142)
+- Events are filtered in `ProcessNormal` (CombatLog.lua:142)
 
 ### Class-Specific Behavior
 

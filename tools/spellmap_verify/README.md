@@ -1,6 +1,6 @@
 # SpellMap Verification Tool
 
-A Python tool to verify the integrity of both `PVPW_SpellMap.lua` and `PVPW_SpellAvoidMap.lua` files using full Lua parsing capabilities.
+A Python tool to verify the integrity of both `SpellMap.lua` and `SpellAvoidMap.lua` files using full Lua parsing capabilities.
 
 ## Installation
 
@@ -66,7 +66,7 @@ Starting SpellAvoidMap verification...
 SpellMap Verification Report (Lua Parser)
 ============================================================
 
-PVPW_SpellMap.lua
+SpellMap.lua
 ------------------------------------------------------------
 Total categories found: 12
 Total spell definitions: 317
@@ -103,7 +103,7 @@ Validators run:
 [OK] No errors found!
 
 
-PVPW_SpellAvoidMap.lua
+SpellAvoidMap.lua
 ------------------------------------------------------------
 Total categories found: 9
 Total spell definitions: 50
@@ -140,7 +140,7 @@ Validators run:
 When errors are found, they are clearly reported:
 
 ```
-PVPW_SpellMap.lua
+SpellMap.lua
 ------------------------------------------------------------
 ...
 Validators run:

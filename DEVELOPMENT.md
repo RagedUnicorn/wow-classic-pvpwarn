@@ -4,25 +4,25 @@
 
 #### Spell
 
-- [ ] Create an entry for the spell in /code/PVPW_SpellMap.lua and the matching category
+- [ ] Create an entry for the spell in /code/SpellMap.lua and the matching category
 - [ ] Create an entry in /example-events/[category] and gather a mtaching event
 - [ ] Create a sound file /assets/sounds/[language]/[category]/[spellName].mp3
-- [ ] Add sound test /test/PVPW_TestSound[category][language].lua
-- [ ] Add combat test /test/PVPW_TestCombatEvents[category][language].lua
+- [ ] Add sound test /test/TestSound[category][language].lua
+- [ ] Add combat test /test/TestCombatEvents[category][language].lua
 
 #### Avoid Spell
 
-- [ ] Create an entry for the spell in /code/PVPW_SpellAvoidMap.lua and the matching category
+- [ ] Create an entry for the spell in /code/SpellAvoidMap.lua and the matching category
 - [ ] Create an entry in /example-events/[category] and gather events such as dodge, miss etc.
 - [ ] Create enemy avoid sound file /assets/sounds/[language]/[category]/enemy_avoid/[spellName].mp3
 - [ ] Create self avoid sound file /assets/sounds/[language]/[category]/self_avoid/[spellName].mp3
-- [ ] Add enemy avoid sound test /test/PVPW_TestSoundEnemyAvoid[category][language].lua
-- [ ] Add self avoid sound test /test/PVPW_TestSoundSelfAvoid[category][language].lua
-- [ ] Add enemy avoid combat test /test/PVPW_TestCombatEventsEnemyAvoid[category][language].lua
+- [ ] Add enemy avoid sound test /test/TestSoundEnemyAvoid[category][language].lua
+- [ ] Add self avoid sound test /test/TestSoundSelfAvoid[category][language].lua
+- [ ] Add enemy avoid combat test /test/TestCombatEventsEnemyAvoid[category][language].lua
   - Depending on what possible avoids the spell supports different testcases need to be created
-- [ ] Add self avoid combat test /test/PVPW_TestCombatEventsSelfAvoid[category][language].lua
+- [ ] Add self avoid combat test /test/TestCombatEventsSelfAvoid[category][language].lua
   - Depending on what possible avoids the spell supports different testcases need to be created
-- [ ] Add tests to /test/PVPW_TestAll[language].lua
+- [ ] Add tests to /test/TestAll[language].lua
 
 ### Avoid and How it Works
 
@@ -121,17 +121,17 @@ PVPWarn tracks stance states for Warriors, Druids, Priests, Hunters, and Warlock
 
 #### Key Files
 
-- **PVPW_StanceState.lua**: Core stance tracking logic
-- **PVPW_SpellMap.lua**: Defines which spells are stance spells (`isStanceSpell = true`)
-- **PVPW_CombatLog.lua**: Processes combat events and triggers stance tracking
+- **StanceState.lua**: Core stance tracking logic
+- **SpellMap.lua**: Defines which spells are stance spells (`isStanceSpell = true`)
+- **CombatLog.lua**: Processes combat events and triggers stance tracking
 
 #### Adding Stance Support
 
 To add stance tracking for a new spell:
 
-1. Add `isStanceSpell = true` to the spell entry in PVPW_SpellMap.lua
+1. Add `isStanceSpell = true` to the spell entry in SpellMap.lua
 2. Include both `SPELL_AURA_APPLIED` and `SPELL_AURA_REMOVED` in `trackedEvents`
-3. Add the class to `supportedClasses` in PVPW_StanceState.lua if needed
+3. Add the class to `supportedClasses` in StanceState.lua if needed
 
 For a detailed flow diagram and more information, see [docs/stance-tracking-flow.md](docs/stance_tracking_flow.md).
 

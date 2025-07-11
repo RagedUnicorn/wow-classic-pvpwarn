@@ -39,7 +39,7 @@ python parse_combat_logs.py
 
 With custom paths:
 ```bash
-python parse_combat_logs.py --spellmap /path/to/PVPW_SpellMap.lua --logs-dir /path/to/combat/logs --output-dir /path/to/output
+python parse_combat_logs.py --spellmap /path/to/SpellMap.lua --logs-dir /path/to/combat/logs --output-dir /path/to/output
 ```
 
 ### GitHub Actions Usage (AWS S3 with OIDC)

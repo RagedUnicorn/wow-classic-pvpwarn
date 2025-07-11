@@ -172,8 +172,8 @@ def main():
     # Determine paths to Lua files
     script_dir = Path(__file__).parent
     addon_root = script_dir.parent.parent
-    spellmap_path = addon_root / "code" / "PVPW_SpellMap.lua"
-    spell_avoid_map_path = addon_root / "code" / "PVPW_SpellAvoidMap.lua"
+    spellmap_path = addon_root / "code" / "SpellMap.lua"
+    spell_avoid_map_path = addon_root / "code" / "SpellAvoidMap.lua"
 
     # Create and run verifier
     verifier = SpellMapVerifier(str(spellmap_path), str(spell_avoid_map_path))

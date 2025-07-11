@@ -24,7 +24,7 @@
         <include>localization/*.lua</include>
       </includes>
       <excludes>
-        <exclude>code/PVPW_Debug.lua</exclude>
+        <exclude>code/Debug.lua</exclude>
       </excludes>
     </fileSet>
   </fileSets>

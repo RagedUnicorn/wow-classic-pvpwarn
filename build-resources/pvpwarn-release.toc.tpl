@@ -9,52 +9,52 @@
 ## X-Wago-ID: ${addon.wago.projectId}
 
 # constant values
-code/PVPW_Constants.lua
+code/Constants.lua
 # environment variables
-code/PVPW_Environment.lua
+code/Environment.lua
 
 # localization
 localization/enUS.lua
 localization/deDE.lua
 
 # code
-code/PVPW_Core.lua
-code/PVPW_VoicePack.lua
-code/PVPW_Logger.lua
-code/PVPW_Filter.lua
-code/PVPW_Ticker.lua
-code/PVPW_Warn.lua
-code/PVPW_Sound.lua
-code/PVPW_Visual.lua
-code/PVPW_CombatLog.lua
-code/PVPW_SpellMapHelper.lua
-code/PVPW_SpellMap.lua
-code/PVPW_SpellAvoidMapHelper.lua
-code/PVPW_SpellAvoidMap.lua
-code/PVPW_Common.lua
-code/PVPW_Target.lua
-code/PVPW_CombatState.lua
-code/PVPW_StanceState.lua
-code/PVPW_Configuration.lua
-code/PVPW_SpellConfiguration.lua
-code/PVPW_Cmd.lua
-code/PVPW_Tooltip.lua
-code/PVPW_Macro.lua
-code/PVPW_Zone.lua
-code/PVPW_Season.lua
+code/Core.lua
+code/VoicePack.lua
+code/Logger.lua
+code/Filter.lua
+code/Ticker.lua
+code/Warn.lua
+code/Sound.lua
+code/Visual.lua
+code/CombatLog.lua
+code/SpellMapHelper.lua
+code/SpellMap.lua
+code/SpellAvoidMapHelper.lua
+code/SpellAvoidMap.lua
+code/Common.lua
+code/Target.lua
+code/CombatState.lua
+code/StanceState.lua
+code/Configuration.lua
+code/SpellConfiguration.lua
+code/Cmd.lua
+code/Tooltip.lua
+code/Macro.lua
+code/Zone.lua
+code/Season.lua
 
 # profiles
-profiles/PVPW_Profile.lua
-profiles/PVPW_ProfileHelper.lua
-profiles/PVPW_DruidProfile.lua
-profiles/PVPW_HunterProfile.lua
-profiles/PVPW_MageProfile.lua
-profiles/PVPW_PaladinProfile.lua
-profiles/PVPW_PriestProfile.lua
-profiles/PVPW_RogueProfile.lua
-profiles/PVPW_ShamanProfile.lua
-profiles/PVPW_WarlockProfile.lua
-profiles/PVPW_WarriorProfile.lua
+profiles/Profile.lua
+profiles/ProfileHelper.lua
+profiles/DruidProfile.lua
+profiles/HunterProfile.lua
+profiles/MageProfile.lua
+profiles/PaladinProfile.lua
+profiles/PriestProfile.lua
+profiles/RogueProfile.lua
+profiles/ShamanProfile.lua
+profiles/WarlockProfile.lua
+profiles/WarriorProfile.lua
 
 # gui
 # custom blizzard dropdown impl
@@ -63,16 +63,16 @@ libs/LibUiDropDownMenu/LibUiDropDownMenu.xml
 libs/LibUiDropDownMenu/LibUiDropDownMenuTemplates.lua
 libs/LibUiDropDownMenu/LibUiDropDownMenuTemplates.xml
 
-gui/PVPW_Frame.xml
-gui/PVPW_AddonConfiguration.lua
-gui/PVPW_AboutContent.lua
-gui/PVPW_GeneralMenu.lua
-gui/PVPW_ZoneMenu.lua
-gui/PVPW_VoicePackMenu.lua
-gui/PVPW_ProfileMenu.lua
-gui/PVPW_CategoryMenu.lua
-gui/PVPW_CategoryMenuSpellsTab.lua
-gui/PVPW_CategoryMenuAvoidTab.lua
-gui/PVPW_EnemyAvoidMenu.lua
-gui/PVPW_TargetFrame.lua
-gui/PVPW_GuiHelper.lua
+gui/Frame.xml
+gui/AddonConfiguration.lua
+gui/AboutContent.lua
+gui/GeneralMenu.lua
+gui/ZoneMenu.lua
+gui/VoicePackMenu.lua
+gui/ProfileMenu.lua
+gui/CategoryMenu.lua
+gui/CategoryMenuSpellsTab.lua
+gui/CategoryMenuAvoidTab.lua
+gui/EnemyAvoidMenu.lua
+gui/TargetFrame.lua
+gui/GuiHelper.lua

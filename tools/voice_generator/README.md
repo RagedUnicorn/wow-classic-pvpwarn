@@ -131,7 +131,7 @@ The following categories can be used with the `--categories` parameter:
 
 ## How It Works
 
-1. **Parsing**: The tool reads both `PVPW_SpellMap.lua` and `PVPW_SpellAvoidMap.lua`
+1. **Parsing**: The tool reads both `SpellMap.lua` and `SpellAvoidMap.lua`
    - Regular spells from SpellMap:
      - Uses spell `name` property for text-to-speech (e.g., "Berserker Rage")
      - Uses spell `soundFileName` property for output file name (e.g., "berserker_rage.mp3")

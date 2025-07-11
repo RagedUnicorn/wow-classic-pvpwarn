@@ -15,7 +15,7 @@
     <option name="ADD_SOURCE_ROOTS" value="true" />
     <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/combat_log_parser/parse_combat_logs.py" />
-    <option name="PARAMETERS" value="--spellmap code/PVPW_SpellMap.lua --logs-dir tools/combat_log_parser/combat_logs --output-dir tools/combat_log_parser/output" />
+    <option name="PARAMETERS" value="--spellmap code/SpellMap.lua --logs-dir tools/combat_log_parser/combat_logs --output-dir tools/combat_log_parser/output" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />

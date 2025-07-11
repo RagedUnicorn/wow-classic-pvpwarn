@@ -34,7 +34,7 @@ Sound tests have the goal of testing whether playing a certain sound is working.
 #####  Filename pattern to follow when adding categories or other languages
 
 ```
-PVPW_TestSound[category][language].lua
+TestSound[category][language].lua
 ```
 
 ##### Manual execution of a specific category and language testmodule
@@ -45,7 +45,7 @@ PVPW_TestSound[category][language].lua
 
 #### Sound Test Base
 
-The `testSound(PVPW_TestSound.lua)` module is testing whether there is a required testcase for every spell that is
+The `testSound(TestSound.lua)` module is testing whether there is a required testcase for every spell that is
 found in the spell map.
 
 #### Run Tests
@@ -122,7 +122,7 @@ Sound tests have the goal of testing whether playing a certain sound is working.
 #####  Filename pattern to follow when adding categories or other languages
 
 ```
-PVPW_TestCombatEvents[category][language].lua
+TestCombatEvents[category][language].lua
 ```
 ##### Manual execution of a specific category and language testmodule
 
@@ -132,7 +132,7 @@ PVPW_TestCombatEvents[category][language].lua
 
 #### Combat Events Test Base
 
-The `testCombatEvent(PVPW_TestCombatEvent.lua)` module is testing whether there is a required testcase for every
+The `testCombatEvent(TestCombatEvent.lua)` module is testing whether there is a required testcase for every
 spell found in the spell map and its tracked events.
 
 #### Run Tests

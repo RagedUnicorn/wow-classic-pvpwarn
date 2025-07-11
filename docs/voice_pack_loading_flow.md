@@ -82,7 +82,7 @@ flowchart TD
 ### Initial Load Sequence
 
 1. **PVPWarn Loads**: When WoW starts, PVPWarn addon initializes
-2. **Default Registration**: `RegisterDefaultVoicePack()` is called in `PVPW_Core.lua`
+2. **Default Registration**: `RegisterDefaultVoicePack()` is called in `Core.lua`
 3. **Default Activation**: Default voice pack is immediately active and available for use
 4. **Configuration Check**: System checks saved configuration for previously selected voice pack
 
@@ -91,7 +91,7 @@ flowchart TD
 Each voice pack addon must call `RegisterVoicePack()` when it loads:
 
 ```lua
-mod.addon.RegisterVoicePack(name, displayName, assetPath)
+mod.voicePack.RegisterVoicePack(name, displayName, assetPath)
 ```
 
 - **name**: Internal identifier (e.g., "julie_us")
@@ -123,7 +123,7 @@ When a voice pack registers:
 
 ### Sound Loading Logic
 
-In `PVPW_Sound.lua`, the `GetBasePath()` function:
+In `Sound.lua`, the `GetBasePath()` function:
 1. Calls `GetActiveVoicePackPath()`
 2. If a custom pack is active and registered, returns its path
 3. If not (or if "default" is selected), returns built-in sound path

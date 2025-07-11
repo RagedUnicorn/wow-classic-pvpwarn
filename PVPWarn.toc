@@ -6,55 +6,55 @@
 ## SavedVariablesPerCharacter: PVPWarnConfiguration PVPWarnProfiles PVPWarnLogTracker PVPWarnLogTrackerAvoid PVPWarnTestLog
 
 # constant values
-code/PVPW_Constants.lua
+code/Constants.lua
 # environment variables
-code/PVPW_Environment.lua
+code/Environment.lua
 
 # localization
 localization/enUS.lua
 localization/deDE.lua
 
 # code
-code/PVPW_Core.lua
-code/PVPW_VoicePack.lua
-code/PVPW_Logger.lua
-code/PVPW_Filter.lua
-code/PVPW_Ticker.lua
-code/PVPW_Warn.lua
-code/PVPW_Sound.lua
-code/PVPW_Visual.lua
-code/PVPW_CombatLog.lua
-code/PVPW_SpellMapHelper.lua
-code/PVPW_SpellMap.lua
-code/PVPW_SpellAvoidMapHelper.lua
-code/PVPW_SpellAvoidMap.lua
-code/PVPW_Common.lua
-code/PVPW_Target.lua
-code/PVPW_CombatState.lua
-code/PVPW_StanceState.lua
-code/PVPW_Configuration.lua
-code/PVPW_SpellConfiguration.lua
-code/PVPW_Cmd.lua
-code/PVPW_Tooltip.lua
-code/PVPW_Macro.lua
-code/PVPW_Zone.lua
-code/PVPW_Season.lua
+code/Core.lua
+code/VoicePack.lua
+code/Logger.lua
+code/Filter.lua
+code/Ticker.lua
+code/Warn.lua
+code/Sound.lua
+code/Visual.lua
+code/CombatLog.lua
+code/SpellMapHelper.lua
+code/SpellMap.lua
+code/SpellAvoidMapHelper.lua
+code/SpellAvoidMap.lua
+code/Common.lua
+code/Target.lua
+code/CombatState.lua
+code/StanceState.lua
+code/Configuration.lua
+code/SpellConfiguration.lua
+code/Cmd.lua
+code/Tooltip.lua
+code/Macro.lua
+code/Zone.lua
+code/Season.lua
 
 # profiles
-profiles/PVPW_Profile.lua
-profiles/PVPW_ProfileHelper.lua
-profiles/PVPW_DruidProfile.lua
-profiles/PVPW_HunterProfile.lua
-profiles/PVPW_MageProfile.lua
-profiles/PVPW_PaladinProfile.lua
-profiles/PVPW_PriestProfile.lua
-profiles/PVPW_RogueProfile.lua
-profiles/PVPW_ShamanProfile.lua
-profiles/PVPW_WarlockProfile.lua
-profiles/PVPW_WarriorProfile.lua
+profiles/Profile.lua
+profiles/ProfileHelper.lua
+profiles/DruidProfile.lua
+profiles/HunterProfile.lua
+profiles/MageProfile.lua
+profiles/PaladinProfile.lua
+profiles/PriestProfile.lua
+profiles/RogueProfile.lua
+profiles/ShamanProfile.lua
+profiles/WarlockProfile.lua
+profiles/WarriorProfile.lua
 
 # debug
-code/PVPW_Debug.lua
+code/Debug.lua
 
 # gui
 # custom blizzard dropdown impl
@@ -63,100 +63,100 @@ libs/LibUiDropDownMenu/LibUiDropDownMenu.xml
 libs/LibUiDropDownMenu/LibUiDropDownMenuTemplates.lua
 libs/LibUiDropDownMenu/LibUiDropDownMenuTemplates.xml
 
-gui/PVPW_Frame.xml
-gui/PVPW_AddonConfiguration.lua
-gui/PVPW_AboutContent.lua
-gui/PVPW_GeneralMenu.lua
-gui/PVPW_ZoneMenu.lua
-gui/PVPW_VoicePackMenu.lua
-gui/PVPW_ProfileMenu.lua
-gui/PVPW_CategoryMenu.lua
-gui/PVPW_CategoryMenuSpellsTab.lua
-gui/PVPW_CategoryMenuAvoidTab.lua
-gui/PVPW_EnemyAvoidMenu.lua
-gui/PVPW_TargetFrame.lua
-gui/PVPW_GuiHelper.lua
+gui/Frame.xml
+gui/AddonConfiguration.lua
+gui/AboutContent.lua
+gui/GeneralMenu.lua
+gui/ZoneMenu.lua
+gui/VoicePackMenu.lua
+gui/ProfileMenu.lua
+gui/CategoryMenu.lua
+gui/CategoryMenuSpellsTab.lua
+gui/CategoryMenuAvoidTab.lua
+gui/EnemyAvoidMenu.lua
+gui/TargetFrame.lua
+gui/GuiHelper.lua
 
 # test
-test/PVPW_TestReporter.lua
-test/PVPW_TestHelper.lua
+test/TestReporter.lua
+test/TestHelper.lua
 
 # testbase
-test/PVPW_TestSound.lua
-test/PVPW_TestCombatEvent.lua
+test/TestSound.lua
+test/TestCombatEvent.lua
 
 # warrior
-test/warrior/PVPW_TestSoundWarrior.lua
-test/warrior/PVPW_TestSoundSelfAvoidWarrior.lua
-test/warrior/PVPW_TestSoundEnemyAvoidWarrior.lua
-test/warrior/PVPW_TestCombatEventsWarrior.lua
-test/warrior/PVPW_TestCombatEventsSelfAvoidWarrior.lua
-test/warrior/PVPW_TestCombatEventsEnemyAvoidWarrior.lua
+test/warrior/TestSoundWarrior.lua
+test/warrior/TestSoundSelfAvoidWarrior.lua
+test/warrior/TestSoundEnemyAvoidWarrior.lua
+test/warrior/TestCombatEventsWarrior.lua
+test/warrior/TestCombatEventsSelfAvoidWarrior.lua
+test/warrior/TestCombatEventsEnemyAvoidWarrior.lua
 # priest
-test/priest/PVPW_TestSoundPriest.lua
-test/priest/PVPW_TestSoundSelfAvoidPriest.lua
-test/priest/PVPW_TestSoundEnemyAvoidPriest.lua
-test/priest/PVPW_TestCombatEventsPriest.lua
-test/priest/PVPW_TestCombatEventsSelfAvoidPriest.lua
-test/priest/PVPW_TestCombatEventsEnemyAvoidPriest.lua
+test/priest/TestSoundPriest.lua
+test/priest/TestSoundSelfAvoidPriest.lua
+test/priest/TestSoundEnemyAvoidPriest.lua
+test/priest/TestCombatEventsPriest.lua
+test/priest/TestCombatEventsSelfAvoidPriest.lua
+test/priest/TestCombatEventsEnemyAvoidPriest.lua
 # rogue
-test/rogue/PVPW_TestSoundRogue.lua
-test/rogue/PVPW_TestSoundSelfAvoidRogue.lua
-test/rogue/PVPW_TestSoundEnemyAvoidRogue.lua
-test/rogue/PVPW_TestCombatEventsRogue.lua
-test/rogue/PVPW_TestCombatEventsSelfAvoidRogue.lua
-test/rogue/PVPW_TestCombatEventsEnemyAvoidRogue.lua
+test/rogue/TestSoundRogue.lua
+test/rogue/TestSoundSelfAvoidRogue.lua
+test/rogue/TestSoundEnemyAvoidRogue.lua
+test/rogue/TestCombatEventsRogue.lua
+test/rogue/TestCombatEventsSelfAvoidRogue.lua
+test/rogue/TestCombatEventsEnemyAvoidRogue.lua
 # mage
-test/mage/PVPW_TestSoundMage.lua
-test/mage/PVPW_TestSoundSelfAvoidMage.lua
-test/mage/PVPW_TestSoundEnemyAvoidMage.lua
-test/mage/PVPW_TestCombatEventsMage.lua
-test/mage/PVPW_TestCombatEventsSelfAvoidMage.lua
-test/mage/PVPW_TestCombatEventsEnemyAvoidMage.lua
+test/mage/TestSoundMage.lua
+test/mage/TestSoundSelfAvoidMage.lua
+test/mage/TestSoundEnemyAvoidMage.lua
+test/mage/TestCombatEventsMage.lua
+test/mage/TestCombatEventsSelfAvoidMage.lua
+test/mage/TestCombatEventsEnemyAvoidMage.lua
 # hunter
-test/hunter/PVPW_TestSoundHunter.lua
-test/hunter/PVPW_TestSoundSelfAvoidHunter.lua
-test/hunter/PVPW_TestSoundEnemyAvoidHunter.lua
-test/hunter/PVPW_TestCombatEventsHunter.lua
-test/hunter/PVPW_TestCombatEventsSelfAvoidHunter.lua
-test/hunter/PVPW_TestCombatEventsEnemyAvoidHunter.lua
+test/hunter/TestSoundHunter.lua
+test/hunter/TestSoundSelfAvoidHunter.lua
+test/hunter/TestSoundEnemyAvoidHunter.lua
+test/hunter/TestCombatEventsHunter.lua
+test/hunter/TestCombatEventsSelfAvoidHunter.lua
+test/hunter/TestCombatEventsEnemyAvoidHunter.lua
 # warlock
-test/warlock/PVPW_TestSoundWarlock.lua
-test/warlock/PVPW_TestSoundSelfAvoidWarlock.lua
-test/warlock/PVPW_TestSoundEnemyAvoidWarlock.lua
-test/warlock/PVPW_TestCombatEventsWarlock.lua
-test/warlock/PVPW_TestCombatEventsSelfAvoidWarlock.lua
-test/warlock/PVPW_TestCombatEventsEnemyAvoidWarlock.lua
+test/warlock/TestSoundWarlock.lua
+test/warlock/TestSoundSelfAvoidWarlock.lua
+test/warlock/TestSoundEnemyAvoidWarlock.lua
+test/warlock/TestCombatEventsWarlock.lua
+test/warlock/TestCombatEventsSelfAvoidWarlock.lua
+test/warlock/TestCombatEventsEnemyAvoidWarlock.lua
 # paladin
-test/paladin/PVPW_TestSoundPaladin.lua
-test/paladin/PVPW_TestSoundSelfAvoidPaladin.lua
-test/paladin/PVPW_TestSoundEnemyAvoidPaladin.lua
-test/paladin/PVPW_TestCombatEventsPaladin.lua
-test/paladin/PVPW_TestCombatEventsSelfAvoidPaladin.lua
-test/paladin/PVPW_TestCombatEventsEnemyAvoidPaladin.lua
+test/paladin/TestSoundPaladin.lua
+test/paladin/TestSoundSelfAvoidPaladin.lua
+test/paladin/TestSoundEnemyAvoidPaladin.lua
+test/paladin/TestCombatEventsPaladin.lua
+test/paladin/TestCombatEventsSelfAvoidPaladin.lua
+test/paladin/TestCombatEventsEnemyAvoidPaladin.lua
 # druid
-test/druid/PVPW_TestSoundDruid.lua
-test/druid/PVPW_TestSoundSelfAvoidDruid.lua
-test/druid/PVPW_TestSoundEnemyAvoidDruid.lua
-test/druid/PVPW_TestCombatEventsDruid.lua
-test/druid/PVPW_TestCombatEventsSelfAvoidDruid.lua
-test/druid/PVPW_TestCombatEventsEnemyAvoidDruid.lua
+test/druid/TestSoundDruid.lua
+test/druid/TestSoundSelfAvoidDruid.lua
+test/druid/TestSoundEnemyAvoidDruid.lua
+test/druid/TestCombatEventsDruid.lua
+test/druid/TestCombatEventsSelfAvoidDruid.lua
+test/druid/TestCombatEventsEnemyAvoidDruid.lua
 # shaman
-test/shaman/PVPW_TestSoundShaman.lua
-test/shaman/PVPW_TestSoundSelfAvoidShaman.lua
-test/shaman/PVPW_TestSoundEnemyAvoidShaman.lua
-test/shaman/PVPW_TestCombatEventsShaman.lua
-test/shaman/PVPW_TestCombatEventsSelfAvoidShaman.lua
-test/shaman/PVPW_TestCombatEventsEnemyAvoidShaman.lua
+test/shaman/TestSoundShaman.lua
+test/shaman/TestSoundSelfAvoidShaman.lua
+test/shaman/TestSoundEnemyAvoidShaman.lua
+test/shaman/TestCombatEventsShaman.lua
+test/shaman/TestCombatEventsSelfAvoidShaman.lua
+test/shaman/TestCombatEventsEnemyAvoidShaman.lua
 # racials
-test/racials/PVPW_TestSoundRacials.lua
-test/racials/PVPW_TestCombatEventsRacials.lua
+test/racials/TestSoundRacials.lua
+test/racials/TestCombatEventsRacials.lua
 # items
-test/items/PVPW_TestSoundItems.lua
-test/items/PVPW_TestCombatEventsItems.lua
+test/items/TestSoundItems.lua
+test/items/TestCombatEventsItems.lua
 # misc
-test/misc/PVPW_TestSoundMisc.lua
-test/misc/PVPW_TestCombatEventsMisc.lua
+test/misc/TestSoundMisc.lua
+test/misc/TestCombatEventsMisc.lua
 
 # test all
-test/PVPW_TestAll.lua
+test/TestAll.lua

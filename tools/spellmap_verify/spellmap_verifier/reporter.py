@@ -78,7 +78,7 @@ class Reporter:
 
         # SpellMap section
         if self.spell_entries:
-            lines.append("PVPW_SpellMap.lua")
+            lines.append("SpellMap.lua")
             lines.append("-" * REPORT_WIDTH)
             lines.extend(self._generate_summary("SpellMap"))
             lines.append("")
@@ -92,7 +92,7 @@ class Reporter:
 
         # SpellAvoidMap section
         if self.spell_avoid_entries:
-            lines.append("PVPW_SpellAvoidMap.lua")
+            lines.append("SpellAvoidMap.lua")
             lines.append("-" * REPORT_WIDTH)
             lines.extend(self._generate_summary("SpellAvoidMap"))
             lines.append("")

@@ -1,4 +1,4 @@
-"""Lua parser for extracting spell data from PVPW_SpellMap.lua and PVPW_SpellAvoidMap.lua."""
+"""Lua parser for extracting spell data from SpellMap.lua and SpellAvoidMap.lua."""
 
 import os
 from typing import Dict, List, Optional, Set
@@ -145,7 +145,7 @@ class LuaParser:
                     'self_avoid': spell.self_avoid if hasattr(spell, 'self_avoid') else False,
                     'enemy_avoid': spell.enemy_avoid if hasattr(spell, 'enemy_avoid') else False,
                 }
-                
+
                 # Extract trackedEvents if present
                 if hasattr(spell, 'trackedEvents') and spell.trackedEvents:
                     tracked_events = []
@@ -382,7 +382,7 @@ class LuaParser:
                     full_category = spell.get('full_category', '')
                     category_parts = full_category.split('_')
                     category = category_parts[1] if len(category_parts) > 1 else full_category
-                    
+
                     # Use soundText if available, otherwise use spell name
                     voice_text = sound_text if sound_text else spell_name
 
@@ -402,7 +402,7 @@ class LuaParser:
                         full_category = spell.get('full_category', '')
                         category_parts = full_category.split('_')
                         category = category_parts[1] if len(category_parts) > 1 else full_category
-                        
+
                         # Use soundText if available, otherwise use spell name
                         voice_text = sound_text if sound_text else spell_name
 
@@ -413,7 +413,7 @@ class LuaParser:
                             'category': category
                         })
                         seen_files.add(fade_file)
-                
+
                 # Add cast version if needed (hasCast=true or SPELL_CAST_START in trackedEvents)
                 has_cast_event = spell.get('hasCast', False) or 'SPELL_CAST_START' in spell.get('trackedEvents', [])
                 if has_cast_event:
@@ -423,7 +423,7 @@ class LuaParser:
                         full_category = spell.get('full_category', '')
                         category_parts = full_category.split('_')
                         category = category_parts[1] if len(category_parts) > 1 else full_category
-                        
+
                         # Use soundText if available, otherwise use spell name
                         voice_text = sound_text if sound_text else spell_name
 
@@ -444,7 +444,7 @@ class LuaParser:
             if sound_file and spell_name:
                 # Use soundText if available, otherwise use spell name
                 voice_text = sound_text if sound_text else spell_name
-                
+
                 # Add enemy avoid version
                 if spell.get('enemy_avoid', False):
                     enemy_file = f"enemy_avoided_{sound_file}"
