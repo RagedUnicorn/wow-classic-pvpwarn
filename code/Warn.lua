@@ -32,6 +32,11 @@ me.tag = "Warn"
 
 local warnQueue = {}
 
+-- forward declaration
+local RemoveFromQueue
+local PlaySound
+local PlayVisual
+
 --[[
  Whether queue is currently busy playing a sound. Preventing multiple sounds and
  warnings playing at the same time. Queue is first in first served.
@@ -70,7 +75,7 @@ end
 --[[
   @param {number} position
 ]]--
-function me.RemoveFromQueue(position)
+RemoveFromQueue = function(position)
   table.remove(warnQueue, position)
   mod.logger.LogDebug(me.tag, "Removed warning with position '" .. position .. "' from queue")
 end
@@ -90,7 +95,7 @@ function me.ProcessQueue()
 
     if age > RGPVPW_CONSTANTS.MAX_WARN_AGE then
       mod.logger.LogWarn(me.tag, "Skipping warn message because max age was reached")
-      me.RemoveFromQueue(key)
+      RemoveFromQueue(key)
     else
       local playedSound = false
       local playedVisual = false
@@ -99,18 +104,18 @@ function me.ProcessQueue()
       if warning.spellType == spellTypes.NORMAL or
         warning.spellType == spellTypes.APPLIED or
         warning.spellType == spellTypes.REFRESH then
-        playedSound = me.PlaySound(warning, spellTypes.NORMAL)
-        playedVisual = me.PlayVisual(warning)
+        playedSound = PlaySound(warning, spellTypes.NORMAL)
+        playedVisual = PlayVisual(warning)
       elseif warning.spellType == spellTypes.REMOVED then
-        playedSound = me.PlaySound(warning, spellTypes.REMOVED)
+        playedSound = PlaySound(warning, spellTypes.REMOVED)
       elseif warning.spellType == spellTypes.MISSED_SELF then
-        playedSound = me.PlaySound(warning, spellTypes.MISSED_SELF)
-        playedVisual = me.PlayVisual(warning)
+        playedSound = PlaySound(warning, spellTypes.MISSED_SELF)
+        playedVisual = PlayVisual(warning)
       elseif warning.spellType == spellTypes.MISSED_ENEMY then
-        playedSound = me.PlaySound(warning, spellTypes.MISSED_ENEMY)
-        playedVisual = me.PlayVisual(warning)
+        playedSound = PlaySound(warning, spellTypes.MISSED_ENEMY)
+        playedVisual = PlayVisual(warning)
       elseif warning.spellType == spellTypes.START then
-        playedSound = me.PlaySound(warning, spellTypes.START)
+        playedSound = PlaySound(warning, spellTypes.START)
       else
         mod.logger.LogError(me.tag, "Found invalid spelltype: " .. warning.spellType)
       end
@@ -122,7 +127,7 @@ function me.ProcessQueue()
         end)
       end
 
-      me.RemoveFromQueue(key)
+      RemoveFromQueue(key)
 
       return -- abort
     end
@@ -165,7 +170,7 @@ end
     true - if a sound was played
     false - if no sound was played
 ]]--
-function me.PlaySound(warning, spellType)
+PlaySound = function(warning, spellType)
   if warning.playSound then
     mod.sound.PlaySound(
       warning.category,
@@ -189,7 +194,7 @@ end
     true - if a visual warning was played
     false - if no visual warning was played
 ]]--
-function me.PlayVisual(warning)
+PlayVisual = function(warning)
   if warning.playVisual then
     mod.visual.ShowVisualAlert(warning.spell.visualWarningColor)
 
