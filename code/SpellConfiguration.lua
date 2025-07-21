@@ -268,7 +268,21 @@ function me.SetupPrerequisiteForOptionEntry(spellList, categoryName, spellId)
   if type(PVPWarnConfiguration[spellList][categoryName][spellId]) ~= "table" then
     mod.logger.LogInfo(me.tag,
       "SpellId - " .. spellId .. " for class " .. categoryName .. " does not exist. Creating new one...")
-    PVPWarnConfiguration[spellList][categoryName][spellId] = me.GetDefaultSpellConfiguration()
+
+    local spellConfig = me.GetDefaultSpellConfiguration()
+    local spellMetadata = mod.spellMap.GetSpellMetadata(categoryName, spellId)
+
+    if spellMetadata then
+      if spellMetadata.hasFade then
+        spellConfig["soundFadeWarningActive"] = false
+      end
+
+      if spellMetadata.hasCast then
+        spellConfig["soundStartWarningActive"] = false
+      end
+    end
+
+    PVPWarnConfiguration[spellList][categoryName][spellId] = spellConfig
   end
 end
 
@@ -333,6 +347,7 @@ function me.ToggleOption(spellList, categoryName, spellId, spellName, optionName
   end
 
   local currentState = spell[optionName]
+
   if type(currentState) ~= "boolean" then
     mod.logger.LogError(me.tag,
       string.format("Option '%s' is not a boolean in spell entry %s - %s", optionName, spellId, spellName)

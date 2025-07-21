@@ -4498,3 +4498,25 @@ function me.GetSpellMapByCategory(category)
 
   return mod.common.Clone(spellMap[category])
 end
+
+--[[
+  Gets spell metadata from the spell map for a specific spellId
+
+  @param {string} categoryName
+  @param {number} spellId
+
+  @return {table|nil}
+    Returns spell metadata or nil if not found
+]]--
+function me.GetSpellMetadata(category, spellId)
+  local spell = spellMap[category][spellId]
+
+  if spell then
+    if spell.refId then
+      spell = spellMap[spell.refId]
+    end
+    return spell
+  end
+
+  return nil
+end
