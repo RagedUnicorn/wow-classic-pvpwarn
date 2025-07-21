@@ -30,10 +30,8 @@ mod.zone = me
 
 me.tag = "Zone"
 
-local zoneType = {
-  ["battleGround"] = "pvp",
-  ["none"] = "none"
-}
+-- forward declaration
+local UpdateZoneStatus
 
 --[[
   List of supported zones and their respective map or instance id
@@ -44,6 +42,10 @@ RGPVPW_ZONE = {
   ZONE_BATTLEGROUND_ALTERAC_VALLEY = 30
 }
 
+local zoneType = {
+  ["battleGround"] = "pvp",
+  ["none"] = "none"
+}
 --[[
   Only update if not set or after a zone change. After that the value is cached to avoid the repeated work for every
   combatevent
@@ -54,7 +56,7 @@ local isZoneEnabled = false
 ]]--
 local zoneIdentifier
 
-local addonZoneConfiguration = {
+local initialAddonZoneConfiguration = {
   --[[
     Battleground instance ids
   --]]
@@ -78,7 +80,7 @@ local addonZoneConfiguration = {
   @return {table}
 ]]--
 function me.InitializeDefaultZoneConfiguration()
-  return addonZoneConfiguration
+  return initialAddonZoneConfiguration
 end
 
 --[[
@@ -90,11 +92,11 @@ function me.UpdateZone()
   if type == zoneType.battleGround then
     zoneIdentifier = select(8, GetInstanceInfo())
     mod.logger.LogInfo(me.tag, "Updated instance id to: " .. zoneIdentifier)
-    me.UpdateZoneStatus(zoneIdentifier)
+    UpdateZoneStatus(zoneIdentifier)
   elseif type == zoneType.none then
     zoneIdentifier = C_Map.GetBestMapForUnit(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) or "unknown"
     mod.logger.LogInfo(me.tag, "Updated map id to: " .. zoneIdentifier)
-    me.UpdateZoneStatus(zoneIdentifier)
+    UpdateZoneStatus(zoneIdentifier)
   else
     mod.logger.LogInfo(me.tag, "Ignore non-tracked zone type: " .. type)
   end
@@ -106,7 +108,7 @@ end
   @param {number} zone
     A zone from RGPVPW_ZONE
 ]]--
-function me.UpdateZoneStatus(zone)
+UpdateZoneStatus = function(zone)
   if mod.configuration.IsZoneEnabled(zone) then
     isZoneEnabled = true
     mod.logger.LogInfo(me.tag, "Enabled addon for zone with id {" .. zone .. "}")
