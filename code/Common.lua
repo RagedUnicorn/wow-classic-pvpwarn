@@ -95,23 +95,6 @@ function me.Clone(obj)
 end
 
 --[[
-  Calculate the length of a table
-
-  @param {table} t
-
-  return {number}
-]]--
-function me.TableLength(t)
-  local count = 0
-
-  for _ in pairs(t) do
-    count = count + 1
-  end
-
-  return count
-end
-
---[[
   Map wow events to a constant mapping
 
   @param {string} event

@@ -352,7 +352,7 @@ end
 ]]--
 function me.ProfileListUpdateOnUpdate(scrollFrame)
   local profiles = PVPWarnProfiles
-  local maxValue = mod.common.TableLength(profiles) or 0
+  local maxValue = #profiles
 
   if maxValue <= RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS then
     maxValue = RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS + 1

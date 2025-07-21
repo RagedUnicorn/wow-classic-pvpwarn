@@ -339,7 +339,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, categoryName)
     cachedCategoryData = mod.spellAvoidMapHelper.GetAllForCategory(categoryName)
   end
 
-  local maxValue = mod.common.TableLength(cachedCategoryData) or 0
+  local maxValue = #cachedCategoryData
 
   if maxValue <= RGPVPW_CONSTANTS.SPELL_SELF_AVOID_LIST_MAX_ROWS then
     maxValue = RGPVPW_CONSTANTS.SPELL_SELF_AVOID_LIST_MAX_ROWS + 1
