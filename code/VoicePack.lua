@@ -85,8 +85,8 @@ end
     The name of the voice pack to activate, or nil for default
 ]]--
 function me.SetActiveVoicePack(name)
-
   mod.configuration.SetActiveVoicePack(name or RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME)
+
   mod.logger.LogInfo(me.tag, "Set active voice pack: " .. (name or RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME))
 end
 
