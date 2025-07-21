@@ -49,14 +49,14 @@ function me.UpdateCombatState()
     local affectingCombat = UnitAffectingCombat(RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode
 
     mod.logger.LogDebug(me.tag, "Targeted unit is affected by combat: " .. tostring(affectingCombat))
-    mod.targetFrame.UpdateCombatStateUi(affectingCombat)
+    mod.combatFrame.UpdateCombatStateUi(affectingCombat)
     --[[
       Start combatState timer - if not already started
     ]]--
     mod.ticker.StartTickerCheckCombatState()
   else
     -- Update combatState ui to hidden
-    mod.targetFrame.HideCombatState()
+    mod.combatFrame.HideCombatState()
     -- stop combatState time - no valid target (e.g. friendly or none at all)
     mod.ticker.StopTickerCheckCombatState()
   end
@@ -67,7 +67,7 @@ end
 ]]--
 function me.DisableCombatStateTracking()
   mod.ticker.StopTickerCheckCombatState()
-  mod.targetFrame.HideCombatState()
+  mod.combatFrame.HideCombatState()
 end
 
 --[[
@@ -81,7 +81,7 @@ function me.EnableConfigurationMode()
     mod.logger.PrintUserError("Make sure to target something to see the frame")
   end
 
-  mod.targetFrame.ShowCombatState()
+  mod.combatFrame.ShowCombatState()
 end
 
 --[[
@@ -90,5 +90,5 @@ end
 function me.DisableConfigurationMode()
   configurationMode = false
   mod.logger.LogInfo(me.tag, "Disabled combat state configuration mode")
-  mod.targetFrame.HideCombatState()
+  mod.combatFrame.HideCombatState()
 end

@@ -112,6 +112,8 @@ RGPVPW_CONSTANTS = {
     ["items"] = { 0, 0.96, 0.83, 1},
     ["misc"] = { 0.47, 0.21, 0.74, 1 }
   },
+  NEUTRAL_COLOR = { 0.5, 0.5, 0.5, 1 }, -- neutral gray color
+  COMBAT_STATE_COLOR = {1, .1, 0, .8}, -- orange color for combat state
   --[[
     default color based on TEXTURES - colorValue
   ]]--
@@ -183,7 +185,7 @@ RGPVPW_CONSTANTS = {
   ]]--
   STATE_ICON_HOLDER_ICON_SIZE = 20,
   --[[
-    TargetFrame combatState
+    CombatFrame combatState
   ]]--
   ELEMENT_COMBAT_STATE_FRAME = "PVPW_CombatStateFrame",
   ELEMENT_COMBAT_STATE_TEXTURE = "PVPW_CombatStateTexture",

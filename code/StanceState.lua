@@ -58,14 +58,14 @@ function me.UpdateStanceState()
     if playerStanceData ~= nil then
       mod.logger.LogInfo(me.tag, "Found tracked stance: " .. playerStanceData.spell.name
         .. " for target: " .. currentTargetGuid)
-      mod.targetFrame.UpdateStanceStateUi(select(3, GetSpellInfo(playerStanceData.spell.spellId)))
+      mod.stanceFrame.UpdateStanceStateUi(select(3, GetSpellInfo(playerStanceData.spell.spellId)))
     else
       mod.logger.LogDebug(me.tag, "Unknown stance for player: " .. currentTargetGuid)
-      mod.targetFrame.UpdateStanceStateUi(RGPVPW_CONSTANTS.STANCE_STATE_UNKNOWN_STANCE_ICON_ID)
+      mod.stanceFrame.UpdateStanceStateUi(RGPVPW_CONSTANTS.STANCE_STATE_UNKNOWN_STANCE_ICON_ID)
     end
   else
     mod.logger.LogDebug(me.tag, "Stance checking was ignored")
-    mod.targetFrame.HideStanceState()
+    mod.stanceFrame.HideStanceState()
   end
 end
 
@@ -93,7 +93,7 @@ end
 ]]--
 function me.DisableStanceStateTracking()
   mod.ticker.StopTickerCheckStanceStateExpired()
-  mod.targetFrame.HideStanceState()
+  mod.stanceFrame.HideStanceState()
 end
 
 --[[
@@ -114,7 +114,7 @@ function me.EnableConfigurationMode()
     mod.logger.PrintUserError("Make sure to target something to see the frame")
   end
 
-  mod.targetFrame.ShowStanceState()
+  mod.stanceFrame.UpdateStanceStateUi(RGPVPW_CONSTANTS.STANCE_STATE_UNKNOWN_STANCE_ICON_ID)
 end
 
 --[[
@@ -123,7 +123,7 @@ end
 function me.DisableConfigurationMode()
   configurationMode = false
   mod.logger.LogInfo(me.tag, "Disabled stance state configuration mode")
-  mod.targetFrame.HideStanceState()
+  mod.stanceFrame.HideStanceState()
 end
 
 --[[

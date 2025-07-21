@@ -74,7 +74,8 @@ gui/CategoryMenu.lua
 gui/CategoryMenuSpellsTab.lua
 gui/CategoryMenuAvoidTab.lua
 gui/EnemyAvoidMenu.lua
-gui/TargetFrame.lua
+gui/CombatFrame.lua
+gui/StanceFrame.lua
 gui/GuiHelper.lua
 
 # test

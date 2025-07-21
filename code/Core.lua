@@ -100,9 +100,9 @@ function me.Initialize()
   -- setup addon configuration ui
   me.addonConfiguration.SetupAddonConfiguration()
   -- setup combat state ui
-  me.targetFrame.BuildCombatStateUi()
+  me.combatFrame.BuildCombatStateUi()
   -- setup stance state ui
-  me.targetFrame.BuildStanceStateUi()
+  me.stanceFrame.BuildStanceStateUi()
   -- start ticker intervals
   me.ticker.StartTickerWarnQueue()
 

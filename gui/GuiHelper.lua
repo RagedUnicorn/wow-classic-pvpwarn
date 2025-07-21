@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT CloseMenus
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT CloseMenus TargetFrame
 
 local mod = rgpvpw
 local me = {}
@@ -375,4 +375,71 @@ function me.CreateVisualWarningDropdown(parentFrame, dropdownName, initializeFun
   mod.libUiDropDownMenu.UiDropDownMenu_Initialize(chooseVisualWarningDropdownMenu, initializeFunction)
 
   return chooseVisualWarningDropdownMenu
+end
+
+--[[
+  Build an icon holder UI element that can display a texture with a backdrop
+
+  @param {string} frameName
+    A reference name for the frame that holds the texture
+  @param {string} textureName
+    A reference name for the texture
+  @param {table} position
+    The initial position of the frame
+  @param {table} borderColor
+    The color to use for the border of the iconHolder
+  @param {function} dragFrameCallback
+    The function that registers the dragFrame listeners
+  @param {string} defaultTexture
+    Optional default texture to display
+
+  @return {table}
+    The created texture object with iconHolder reference
+]]--
+function me.BuildIconHolderUi(frameName, textureName, position, borderColor, dragFrameCallback, defaultTexture)
+  local iconHolder = CreateFrame("Frame", frameName, TargetFrame, "BackdropTemplate")
+  iconHolder:SetSize(
+    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE + 5,
+    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE + 5
+  )
+  iconHolder:SetPoint(unpack(position))
+  iconHolder:SetMovable(true)
+  iconHolder:SetClampedToScreen(true)
+
+  me.LoadFramePosition(iconHolder, frameName)
+  dragFrameCallback(iconHolder)
+
+  local texture = iconHolder:CreateTexture(textureName, "ARTWORK")
+  texture.iconHolder = iconHolder
+  texture:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+  texture:SetPoint("CENTER", 0, 0)
+  texture:SetSize(
+    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE,
+    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE
+  )
+
+  local backdrop = {
+    bgFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
+    edgeFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
+    tile = false,
+    tileSize = 32,
+    edgeSize = 20,
+    insets = {
+      left = 2,
+      right = 2,
+      top = 2,
+      bottom = 2
+    }
+  }
+
+  iconHolder:SetBackdrop(backdrop)
+  texture.iconHolder:SetBackdropBorderColor(unpack(borderColor))
+
+  if defaultTexture ~= nil then
+    texture:SetTexture(defaultTexture)
+  end
+
+  iconHolder:Hide()
+
+  return texture
 end
