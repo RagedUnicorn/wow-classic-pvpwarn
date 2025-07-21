@@ -181,7 +181,8 @@ function me.CreateSpellStateCheckbox(spellFrame)
       mod.spellConfiguration.ToggleSpellState(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
         activeCategory,
-        spellFrame.normalizedSpellName
+        spellFrame.spellId,
+        spellFrame.spellTitle:GetText()
       )
 
       local parentFrame = self:GetParent()
@@ -193,7 +194,7 @@ function me.CreateSpellStateCheckbox(spellFrame)
       local isActive = mod.spellConfiguration.IsSpellActive(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
         activeCategory,
-        spellFrame.normalizedSpellName
+        spellFrame.spellId
       )
 
       if isActive then
@@ -222,14 +223,15 @@ function me.CreateSpellAvoidSoundCheckBox(spellFrame)
       mod.spellConfiguration.ToggleSoundWarning(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
         activeCategory,
-        spellFrame.normalizedSpellName
+        spellFrame.spellId,
+        spellFrame.spellTitle:GetText()
       )
     end,
     function(self)
       local isActive = mod.spellConfiguration.IsSoundWarningActive(
         RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
         activeCategory,
-        spellFrame.normalizedSpellName
+        spellFrame.spellId
       )
 
       if isActive then
@@ -284,15 +286,18 @@ end
     A reference to the dropdownbutton
 ]]--
 function me.DropDownMenuCallback(self)
+  local parentDropdown = self:GetParent().dropdown
+
   mod.spellConfiguration.UpdateVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
     activeCategory,
-    self:GetParent().dropdown:GetParent().normalizedSpellName,
+    parentDropdown:GetParent().spellId,
+    parentDropdown:GetParent().spellTitle:GetText(),
     self.value
   )
 
   mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(
-    self:GetParent().dropdown,
+    parentDropdown,
     self.value
   )
 end
@@ -307,7 +312,7 @@ function me.ToggleAvoidVisualWarningOnClick(self)
   local color = mod.spellConfiguration.GetVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
     self:GetParent().category,
-    self:GetParent().normalizedSpellName
+    self:GetParent().spellId
   )
 
   if color == RGPVPW_CONSTANTS.DEFAULT_COLOR then
@@ -331,7 +336,7 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, categoryName)
 
   if cachedCategoryData == nil then
     mod.logger.LogInfo(me.tag, string.format("Warmed up cached spellAvoidList for category '%s'", categoryName))
-    cachedCategoryData = mod.spellAvoidMap.GetAllForCategory(categoryName)
+    cachedCategoryData = mod.spellAvoidMapHelper.GetAllForCategory(categoryName)
   end
 
   local maxValue = mod.common.TableLength(cachedCategoryData) or 0
@@ -356,6 +361,8 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, categoryName)
       local row = spellAvoidRows[i]
 
       if cachedCategoryData[value] ~= nil then
+        local spellId = cachedCategoryData[value].spellId
+        row.spellId = spellId
         row.normalizedSpellName = cachedCategoryData[value].normalizedSpellName
         row.category = categoryName
         row.spellTitle:SetText(cachedCategoryData[value].name)
@@ -365,13 +372,13 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, categoryName)
           row.spellIcon, categoryName, cachedCategoryData[value]
         )
         me.UpdateSpellStateCheckBox(
-          row.spellStateCheckBox, categoryName, cachedCategoryData[value].normalizedSpellName
+          row.spellStateCheckBox, categoryName, spellId
         )
         me.UpdateSound(
-          row.avoidSoundCheckBox, categoryName, cachedCategoryData[value].normalizedSpellName
+          row.avoidSoundCheckBox, categoryName, spellId
         )
         me.UpdateChooseVisualDropdownMenu(
-          row.chooseAvoidVisual, categoryName, cachedCategoryData[value].normalizedSpellName
+          row.chooseAvoidVisual, categoryName, spellId
         )
 
         row:Show()
@@ -408,20 +415,20 @@ end
 --[[
   @param {table} spellStateCheckBox
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.UpdateSpellStateCheckBox(spellStateCheckBox, categoryName, spellName)
+function me.UpdateSpellStateCheckBox(spellStateCheckBox, categoryName, spellId)
   local isSpellActive = mod.spellConfiguration.IsSpellActive(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
     categoryName,
-    spellName
+    spellId
   )
 
   local parentFrame = spellStateCheckBox:GetParent()
 
   if isSpellActive then
     mod.logger.LogDebug(me.tag, string.format(
-      "Spell %s for category %s is active", spellName, categoryName)
+      "Spell %s for category %s is active", spellId, categoryName)
     )
     spellStateCheckBox:SetChecked(true)
 
@@ -429,7 +436,7 @@ function me.UpdateSpellStateCheckBox(spellStateCheckBox, categoryName, spellName
     me.UpdateChooseVisualDropdownMenuState(parentFrame, true)
   else
     mod.logger.LogDebug(me.tag, string.format(
-      "Spell %s for category %s is inactive", spellName, categoryName)
+      "Spell %s for category %s is inactive", spellId, categoryName)
     )
     spellStateCheckBox:SetChecked(false)
 
@@ -441,15 +448,15 @@ end
 --[[
   @param {table} soundCheckBox
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.UpdateSound(soundCheckBox, categoryName, spellName)
+function me.UpdateSound(soundCheckBox, categoryName, spellId)
   -- update sound checkbox state
   soundCheckBox:SetChecked(
     mod.spellConfiguration.IsSoundWarningActive(
       RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
       categoryName,
-      spellName
+      spellId
     )
   )
 end
@@ -457,13 +464,13 @@ end
 --[[
   @param {table} dropdownMenu
   @param {string} categoryName
-  @param {string} spellName
+  @param {number} spellId
 ]]--
-function me.UpdateChooseVisualDropdownMenu(dropdownMenu, categoryName, spellName)
+function me.UpdateChooseVisualDropdownMenu(dropdownMenu, categoryName, spellId)
   local colorValue = mod.spellConfiguration.GetVisualWarningColor(
     RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
     categoryName,
-    spellName
+    spellId
   )
 
   mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(dropdownMenu, colorValue)
