@@ -40,8 +40,8 @@ local stanceTracker = {}
 local configurationMode = false
 -- classes that should be considered to be tracked
 local supportedClasses = {"WARRIOR", "DRUID", "PRIEST", "HUNTER", "WARLOCK"}
--- clear stances that are older than 5 minutes
-local stanceExpiredTimeout = 200 -- 300000
+-- clear stances that are older than 2 minutes
+local stanceExpiredTimeout = 120
 
 --[[
   Update the stance state of the current target (if there is a valid one)
