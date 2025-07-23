@@ -192,7 +192,10 @@ function me.BuildStanceStateOptions(frame)
     -160,
     me.EnableStanceStateTrackingOnShow,
     me.EnableStanceStateTrackingOnClick,
-    { RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE, RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_HIDE_UNKNOWN_STANCE }
+    {
+      RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE,
+      RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_HIDE_UNKNOWN_STANCE
+    }
   )
 
   me.BuildCheckButtonOption(
