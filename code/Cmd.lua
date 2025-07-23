@@ -30,6 +30,9 @@ mod.cmd = me
 
 me.tag = "Cmd"
 
+-- forward declaration
+local ParseSlashCommand
+
 --[[
   Print cmd options for addon
 ]]--
@@ -48,40 +51,46 @@ function me.SetupSlashCmdList()
   SLASH_PVPWARN1 = "/rgpvpw"
   SLASH_PVPWARN2 = "/pvpwarn"
 
-  SlashCmdList["PVPWARN"] = function(msg)
-    local args = {}
+  SlashCmdList["PVPWARN"] = ParseSlashCommand
+end
 
-    mod.logger.LogDebug(me.tag, "/rgpvpw passed argument: " .. msg)
+--[[
+  Parse and handle slash command arguments
+  @param {string} msg - The message/arguments passed to the slash command
+]]--
+ParseSlashCommand = function(msg)
+  local args = {}
 
-    -- parse arguments by whitespace
-    for arg in string.gmatch(msg, "%S+") do
-      table.insert(args, arg)
-    end
+  mod.logger.LogDebug(me.tag, "/rgpvpw passed argument: " .. msg)
 
-    if args[1] == "" or args[1] == "help" or #args == 0 then
-      ShowInfoMessage()
-    elseif args[1] == "rl" or args[1] == "reload" then
-      ReloadUI()
-    elseif args[1] == "opt" then
-      mod.addonConfiguration.OpenMainCategory()
-    elseif args[1] == "combatstate" then
-      if args[2] == "enable" then
-        mod.combatState.EnableConfigurationMode()
-      elseif args[2] == "disable" then
-        mod.combatState.DisableConfigurationMode()
-      else
-        mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
-      end
-    elseif args[1] == "stancestate" then
-      if args[2] == "enable" then
-        mod.stanceState.EnableConfigurationMode()
-      elseif args[2] == "disable" then
-        mod.stanceState.DisableConfigurationMode()
-      else
-        mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
-      end
+  -- parse arguments by whitespace
+  for arg in string.gmatch(msg, "%S+") do
+    table.insert(args, arg)
+  end
+
+  if args[1] == "" or args[1] == "help" or #args == 0 then
+    ShowInfoMessage()
+  elseif args[1] == "rl" or args[1] == "reload" then
+    ReloadUI()
+  elseif args[1] == "opt" then
+    mod.addonConfiguration.OpenMainCategory()
+  elseif args[1] == "combatstate" then
+    if args[2] == "enable" then
+      mod.combatState.EnableConfigurationMode()
+    elseif args[2] == "disable" then
+      mod.combatState.DisableConfigurationMode()
     else
       mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
     end
+  elseif args[1] == "stancestate" then
+    if args[2] == "enable" then
+      mod.stanceState.EnableConfigurationMode()
+    elseif args[2] == "disable" then
+      mod.stanceState.DisableConfigurationMode()
+    else
+      mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
+    end
+  else
+    mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
   end
 end

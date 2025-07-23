@@ -35,8 +35,8 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["help"] = "|cFFFFC300(%s)|r: Benutze |cFFFFC300/rgpvpw|r oder |cFFFFC300/pvpwarn|r "
     .. "für eine Liste der verfügbaren Optionen"
   rgpvpw.L["opt"] = "|cFFFFC300opt|r - zeige Optionsmenu an"
-  rgpvpw.L["combatstate"] = "|cFFFFC300combatstate|r - Konfiguriere die Position des Kampfstatus Symbol"
-  rgpvpw.L["stancestate"] = "|cFFFFC300stancestate|r - Konfiguriere die Position des Haltungszustand Symbol"
+  rgpvpw.L["combatstate"] = "|cFFFFC300combatstate enable/disable|r - Konfiguriere die Position des Kampfstatus Symbol"
+  rgpvpw.L["stancestate"] = "|cFFFFC300stancestate enable/disable|r - Konfiguriere die Position des Haltungszustand Symbol"
   rgpvpw.L["reload"] = "|cFFFFC300reload|r - UI neu laden"
   rgpvpw.L["invalid_argument"] = "Ungültiges Argument übergeben"
 
