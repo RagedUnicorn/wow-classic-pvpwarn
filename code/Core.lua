@@ -29,6 +29,9 @@ local me = rgpvpw
 
 me.tag = "Core"
 
+-- Track whether addon initialization is complete
+local isInitialized = false
+
 --[[
   Addon load
 
@@ -75,9 +78,19 @@ function me.OnEvent(event, ...)
       me.zone.UpdateZone()
     end
   elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
+    if not isInitialized then
+      me.logger.LogDebug(me.tag, "Ignoring COMBAT_LOG_EVENT_UNFILTERED - addon not yet initialized")
+
+      return
+    end
     me.logger.LogEvent(me.tag, "COMBAT_LOG_EVENT_UNFILTERED")
     me.combatLog.ProcessUnfilteredCombatLogEvent(nil, CombatLogGetCurrentEventInfo())
   elseif event == "PLAYER_TARGET_CHANGED" then
+    if not isInitialized then
+      me.logger.LogDebug(me.tag, "Ignoring PLAYER_TARGET_CHANGED - addon not yet initialized")
+
+      return
+    end
     me.logger.LogEvent(me.tag, "PLAYER_TARGET_CHANGED")
     me.target.UpdateCurrentTarget()
   elseif event == "ZONE_CHANGED_NEW_AREA" then
@@ -111,6 +124,9 @@ function me.Initialize()
   end
 
   me.ShowWelcomeMessage()
+
+  isInitialized = true
+  me.logger.LogInfo(me.tag, "Addon initialization complete")
 end
 
 --[[
