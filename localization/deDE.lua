@@ -57,6 +57,8 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Überwacht den Haltungszustand eines gegnerischen Zieles"
   rgpvpw.L["lock_frame_stance_state"] = "Blockiere das Haltungszustand Fenster"
   rgpvpw.L["lock_frame_stance_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Haltungszustand Fenster"
+  rgpvpw.L["hide_unknown_stance"] = "Unbekannte Haltung ausblenden"
+  rgpvpw.L["hide_unknown_stance_tooltip"] = "Blendet das Haltungssymbol aus, wenn die Haltung unbekannt ist"
 
   -- voice pack
   rgpvpw.L["configuration_menu_voice_pack"] = "Sprachpakete"

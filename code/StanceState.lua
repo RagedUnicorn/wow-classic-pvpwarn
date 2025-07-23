@@ -53,6 +53,17 @@ function me.UpdateStanceState()
     RGPVPW_CONSTANTS.UNIT_ID_TARGET) and me.IsCurrentTargetSupportedClass() or configurationMode then
 
     local currentTargetGuid = mod.target.GetCurrentTargetGuid()
+
+    if currentTargetGuid == nil then
+      --[[
+        This can only happen in configurationMode because the target check is ignored
+      ]]--
+      mod.logger.LogDebug(me.tag, "No current target guid available")
+      mod.stanceFrame.HideStanceState()
+
+      return
+    end
+
     local playerStanceData = stanceTracker[currentTargetGuid]
 
     if playerStanceData ~= nil then
@@ -61,7 +72,11 @@ function me.UpdateStanceState()
       mod.stanceFrame.UpdateStanceStateUi(select(3, GetSpellInfo(playerStanceData.spell.spellId)))
     else
       mod.logger.LogDebug(me.tag, "Unknown stance for player: " .. currentTargetGuid)
-      mod.stanceFrame.UpdateStanceStateUi(RGPVPW_CONSTANTS.STANCE_STATE_UNKNOWN_STANCE_ICON_ID)
+      if mod.configuration.IsHideUnknownStanceEnabled() and not configurationMode then
+        mod.stanceFrame.HideStanceState()
+      else
+        mod.stanceFrame.UpdateStanceStateUi(RGPVPW_CONSTANTS.STANCE_STATE_UNKNOWN_STANCE_ICON_ID)
+      end
     end
   else
     mod.logger.LogDebug(me.tag, "Stance checking was ignored")

@@ -55,6 +55,10 @@ PVPWarnConfiguration = {
   ]]--
   ["lockCombatStateFrame"] = true,
   --[[
+    Whether to hide the stance icon when the stance is unknown
+  ]]--
+  ["hideUnknownStance"] = false,
+  --[[
     A configuration object that tracks in what places the addon should be enabled or disabled. This mostly helps prevent
     spamming events in places where the player doesn't want to receive warnings.
   ]]--
@@ -96,6 +100,11 @@ function me.SetupConfiguration()
   if PVPWarnConfiguration.lockCombatStateFrame == nil then
     mod.logger.LogInfo(me.tag, "lockCombatStateFrame has unexpected nil value")
     PVPWarnConfiguration.lockCombatStateFrame = true
+  end
+
+  if PVPWarnConfiguration.hideUnknownStance == nil then
+    mod.logger.LogInfo(me.tag, "hideUnknownStance has unexpected nil value")
+    PVPWarnConfiguration.hideUnknownStance = false
   end
 
   if PVPWarnConfiguration.addonZoneConfiguration == nil then
@@ -341,6 +350,29 @@ end
 ]]--
 function me.IsStanceStateFrameLocked()
   return PVPWarnConfiguration.lockStanceStateFrame
+end
+
+--[[
+  Enable hide unknown stance
+]]--
+function me.EnableHideUnknownStance()
+  PVPWarnConfiguration.hideUnknownStance = true
+end
+
+--[[
+  Disable hide unknown stance
+]]--
+function me.DisableHideUnknownStance()
+  PVPWarnConfiguration.hideUnknownStance = false
+end
+
+--[[
+  @return {boolean}
+    true - if hide unknown stance is enabled
+    false - if hide unknown stance is disabled
+]]--
+function me.IsHideUnknownStanceEnabled()
+  return PVPWarnConfiguration.hideUnknownStance
 end
 
 --[[

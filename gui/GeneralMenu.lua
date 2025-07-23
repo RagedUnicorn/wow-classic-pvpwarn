@@ -51,6 +51,10 @@ local options = {
     "LockFrameStanceState",
     rgpvpw.L["lock_frame_stance_state"],
     rgpvpw.L["lock_frame_stance_state_tooltip"]
+  }, {
+    "HideUnknownStance",
+    rgpvpw.L["hide_unknown_stance"],
+    rgpvpw.L["hide_unknown_stance_tooltip"]
   }
 }
 
@@ -183,6 +187,16 @@ end
 function me.BuildStanceStateOptions(frame)
   me.BuildCheckButtonOption(
     frame,
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_ENABLE_STANCE_STATE,
+    20,
+    -160,
+    me.EnableStanceStateTrackingOnShow,
+    me.EnableStanceStateTrackingOnClick,
+    { RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE, RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_HIDE_UNKNOWN_STANCE }
+  )
+
+  me.BuildCheckButtonOption(
+    frame,
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE,
     40,
     -190,
@@ -192,12 +206,11 @@ function me.BuildStanceStateOptions(frame)
 
   me.BuildCheckButtonOption(
     frame,
-    RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_ENABLE_STANCE_STATE,
-    20,
-    -160,
-    me.EnableStanceStateTrackingOnShow,
-    me.EnableStanceStateTrackingOnClick,
-    { RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE }
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_HIDE_UNKNOWN_STANCE,
+    40,
+    -220,
+    me.HideUnknownStanceOnShow,
+    me.HideUnknownStanceOnClick
   )
 end
 
@@ -207,7 +220,7 @@ end
   @param {table} self
 ]]--
 function me.LockFrameStanceStateOnShow(self)
-  if mod.configuration.IsCombatStateFrameLocked() then
+  if mod.configuration.IsStanceStateFrameLocked() then
     self:SetChecked(true)
   else
     self:SetChecked(false)
@@ -258,6 +271,34 @@ function me.EnableStanceStateTrackingOnClick(self)
   else
     mod.configuration.DisableStanceStateTracking()
     me.DisableCheckButtons(self.linkedCheckButtonNames)
+  end
+end
+
+--[[
+  OnShow callback for checkbuttons - hide unknown stance
+
+  @param {table} self
+]]--
+function me.HideUnknownStanceOnShow(self)
+  if mod.configuration.IsHideUnknownStanceEnabled() then
+    self:SetChecked(true)
+  else
+    self:SetChecked(false)
+  end
+end
+
+--[[
+  OnClick callback for checkbuttons - hide unknown stance
+
+  @param {table} self
+]]--
+function me.HideUnknownStanceOnClick(self)
+  local enabled = self:GetChecked()
+
+  if enabled then
+    mod.configuration.EnableHideUnknownStance()
+  else
+    mod.configuration.DisableHideUnknownStance()
   end
 end
 
