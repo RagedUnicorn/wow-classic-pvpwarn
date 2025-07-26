@@ -95,14 +95,28 @@ end
 ]]--
 function me.InitializeDropdown()
   local voicePacks = mod.voicePack.GetRegisteredVoicePacks()
+  local activeVoicePack = mod.configuration.GetActiveVoicePack()
 
-  for name, voicePack in pairs(voicePacks) do
+  local function addVoicePackToDropdown(name, voicePack)
     local info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
+
     info.text = voicePack.displayName
     info.value = name
     info.func = me.OnVoicePackSelect
-    info.checked = mod.configuration.GetActiveVoicePack() == name
+    info.checked = activeVoicePack == name
     mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
+  end
+
+  local defaultVoicePack = voicePacks[RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME]
+
+  if defaultVoicePack then
+    addVoicePackToDropdown(RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME, defaultVoicePack)
+  end
+
+  for name, voicePack in pairs(voicePacks) do
+    if name ~= RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME then
+      addVoicePackToDropdown(name, voicePack)
+    end
   end
 
   me.UpdateDropdownWidth()
