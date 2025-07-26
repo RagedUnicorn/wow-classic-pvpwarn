@@ -224,6 +224,7 @@ RGPVPW_CONSTANTS = {
   ELEMENT_VOICE_PACK_TITLE = "PVPW_VoicePackTitle",
   ELEMENT_VOICE_PACK_DROPDOWN = "PVPW_VoicePackDropdown",
   ELEMENT_VOICE_PACK_DROPDOWN_MIN_WIDTH = 120,
+  ELEMENT_VOICE_PACK_PLAY_SOUND_BUTTON = "PVPW_VoicePackPlaySoundButton",
   --[[
     A list of available categories consisting of all classes, racials, items and a
     misc category

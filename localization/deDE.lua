@@ -66,6 +66,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["voice_pack_title"] = "Sprachpaket Konfiguration"
   rgpvpw.L["voice_pack_dropdown_label"] = "Sprachpaket auswählen:"
   rgpvpw.L["voice_pack_default"] = "Standard"
+  rgpvpw.L["voice_pack_play_sound_button"] = "Sprachpaket testen"
 
   -- zones
   rgpvpw.L["configuration_menu_zone"] = "Zonen"

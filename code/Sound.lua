@@ -66,9 +66,9 @@ end
     see constants SPELL_TYPES
   @param {string} soundFileName
     part of the name of the soundfile
-  @return {number}
-    0 if there was a problem
-    1 if sound was played
+  @return {boolean}
+    true if sound was played successfully
+    false if there was a problem
 ]]--
 function me.PlaySound(soundCategory, spellType, soundFileName)
   assert(type(soundCategory) == "string",
@@ -80,7 +80,7 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
   assert(type(soundFileName) == "string",
     string.format("bad argument #3 to `PlaySound` (expected string, got %s)", type(soundFileName)))
 
-  local status = 0
+  local status = false
   local soundPath = GetBasePath() .. soundCategory .. "\\"
   local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
 

@@ -63,6 +63,7 @@ rgpvpw.L["configuration_menu_voice_pack"] = "Voice Packs"
 rgpvpw.L["voice_pack_title"] = "Voice Pack Configuration"
 rgpvpw.L["voice_pack_dropdown_label"] = "Select Voice Pack:"
 rgpvpw.L["voice_pack_default"] = "Default"
+rgpvpw.L["voice_pack_play_sound_button"] = "Test Voice Pack"
 
 -- zones
 rgpvpw.L["configuration_menu_zone"] = "Zones"

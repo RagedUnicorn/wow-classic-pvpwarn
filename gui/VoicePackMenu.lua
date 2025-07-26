@@ -36,6 +36,22 @@ local builtMenu = false
 -- reference to the dropdown frame
 local voicePackDropdown
 
+-- sample sounds to play for testing voice packs
+local sampleSounds = {
+  {category = "warrior", sound = "shield_wall"},
+  {category = "mage", sound = "polymorph"},
+  {category = "priest", sound = "psychic_scream"},
+  {category = "rogue", sound = "vanish"},
+  {category = "paladin", sound = "divine_shield"},
+  {category = "warlock", sound = "fear"},
+  {category = "hunter", sound = "freezing_trap"},
+  {category = "druid", sound = "bear_form"},
+  {category = "shaman", sound = "grounding_totem"},
+  {category = "racials", sound = "will_of_the_forsaken"},
+  {category = "items", sound = "insignia"},
+  {category = "misc", sound = "first_aid"}
+}
+
 --[[
   Build the ui for the voice pack menu
 
@@ -47,6 +63,7 @@ function me.BuildUi(frame)
 
   me.BuildTitle(frame)
   me.BuildVoicePackDropdown(frame)
+  me.BuildPlaySoundButton(frame)
 
   builtMenu = true
 end
@@ -185,4 +202,37 @@ function me.UpdateDropdownWidth()
   end
 
   mod.libUiDropDownMenu.UiDropDownMenu_SetWidth(voicePackDropdown, dropdownWidth)
+end
+
+--[[
+  Build the play sound button for testing voice packs
+
+  @param {table} frame
+    The addon configuration frame to attach to
+]]--
+function me.BuildPlaySoundButton(frame)
+  mod.guiHelper.CreatePlayButton(
+    RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_PLAY_SOUND_BUTTON,
+    frame,
+    {"TOPLEFT", voicePackDropdown, "TOPRIGHT", 10, -2},
+    me.PlayRandomSoundOnClick,
+    rgpvpw.L["voice_pack_play_sound_button"]
+  )
+end
+
+--[[
+  Play a random spell sound from the active voice pack
+]]--
+function me.PlayRandomSoundOnClick()
+  local randomIndex = math.random(1, #sampleSounds)
+  local sample = sampleSounds[randomIndex]
+
+
+  local status = mod.sound.PlaySound(sample.category, RGPVPW_CONSTANTS.SPELL_TYPES.NORMAL, sample.sound)
+
+  if status then
+    mod.logger.LogInfo(me.tag, "Playing sample sound: " .. sample.category .. "/" .. sample.sound)
+  else
+    mod.logger.LogWarn(me.tag, "Failed to play sample sound: " .. sample.category .. "/" .. sample.sound)
+  end
 end
