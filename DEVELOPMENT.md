@@ -182,3 +182,16 @@ Before committing changes:
 2. Test the addon with `/reload` to ensure saved variables work correctly
 3. Verify functionality in-game (spell warnings, stance tracking, etc.)
 4. Run any relevant tests from the test suite
+
+## Dependency Management
+
+This repository uses [Renovate](https://renovatebot.com/) for automated dependency updates. Renovate monitors and updates:
+
+- Maven dependencies (plugins and libraries)
+- GitHub Actions versions
+- World of Warcraft interface versions and related properties
+  - `addon.interface` - WoW interface version
+  - `addon.supported.patch` - WoW patch version
+  - `addon.curseforge.gameVersion` - CurseForge game version ID
+
+The configuration can be found in `renovate.json`. Renovate runs on a weekly schedule and creates pull requests for available updates.
