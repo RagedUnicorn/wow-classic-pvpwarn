@@ -1,7 +1,7 @@
 # SpellMap Verification Tool Requirements
 
 # Lua parser for accurate parsing of SpellMap.lua
-lupa==2.0
+lupa==2.5
 
 # Testing framework
 pytest==7.4.4
