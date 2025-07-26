@@ -138,3 +138,47 @@ For a detailed flow diagram and more information, see [docs/stance-tracking-flow
 ### Voice Pack Integration
 
 PVPWarn supports custom voice packs as separate addons that can provide alternative sound files. Voice packs register themselves with the main addon and users can select them through the settings menu. For detailed information about how voice packs work and implementation details, see [docs/voice_pack_loading_flow.md](docs/voice_pack_loading_flow.md).
+
+## Code Quality
+
+### Running Luacheck
+
+The project includes a Docker Compose configuration for running [Luacheck](https://github.com/lunarmodules/luacheck), a static analyzer and linter for Lua. This ensures code quality and catches common issues.
+
+**To run Luacheck:**
+
+```bash
+docker compose up
+```
+
+This will:
+- Mount the project directory as read-only
+- Run Luacheck on all Lua files
+- Output any warnings or errors found
+
+**Note for IntelliJ IDEA users:** The console output may be truncated due to buffer limits. To see full output:
+- Run `docker compose run --rm luacheck .` in terminal
+- Use JUnit formatter for CI/CD: `docker compose run --rm luacheck-junit`
+- Increase IntelliJ console buffer: Help → Edit Custom Properties → Add `idea.cycle.buffer.size=1048576`
+
+**To save output to file:**
+```bash
+docker compose run --rm luacheck . > luacheck-report.txt
+# or with JUnit format for CI/CD integration:
+docker compose run --rm luacheck-junit > target/luacheck-report.xml
+```
+
+**Configuration:**
+- `.luacheckrc` - Contains Luacheck configuration, including:
+  - Global variables specific to WoW addons
+  - Lua 5.1 standard for compatibility
+  - Excluded directories (e.g., `target/`, `tools/`)
+
+### Testing and Code Quality
+
+Before committing changes:
+
+1. Run Luacheck to ensure code quality: `docker compose up`
+2. Test the addon with `/reload` to ensure saved variables work correctly
+3. Verify functionality in-game (spell warnings, stance tracking, etc.)
+4. Run any relevant tests from the test suite
