@@ -4,5 +4,5 @@
 lupa==2.5
 
 # Testing framework
-pytest==7.4.4
+pytest==8.4.1
 pytest-cov==6.2.1
