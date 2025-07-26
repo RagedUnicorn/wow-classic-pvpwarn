@@ -1,4 +1,4 @@
-lupa==2.0
+lupa==2.5
 
 # Optional: For S3 upload functionality
 # boto3==1.28.0
