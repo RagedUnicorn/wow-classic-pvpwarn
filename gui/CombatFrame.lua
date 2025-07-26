@@ -42,7 +42,7 @@ function me.BuildCombatStateUi()
     RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME,
     RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_TEXTURE,
     {"RIGHT", 0, 0},
-    RGPVPW_CONSTANTS.COMBAT_STATE_COLOR,
+    RGPVPW_COLORS.UI.combat_active,
     function(frame)
       frame:SetScript("OnMouseDown", me.StartCombatStateDragFrame)
       frame:SetScript("OnMouseUp", me.StopCombatStateDragFrame)

@@ -98,22 +98,6 @@ RGPVPW_CONSTANTS = {
       colorValue = 10
     }
   },
-  CATEGORY_COLOR = {
-    ["warrior"] = { 0.78, 0.61, 0.43, 1},
-    ["priest"] = { 1.00, 1.00, 1.00, 1},
-    ["rogue"] = { 1.00, 0.96, 0.41, 1 },
-    ["mage"] = { 0.25, 0.78, 0.92, 1},
-    ["hunter"] = { 0.67, 0.83, 0.45, 1},
-    ["warlock"] = { 0.53, 0.53, 0.93, 1},
-    ["paladin"] = { 0.96, 0.55, 0.73, 1},
-    ["druid"] = { 1.00, 0.49, 0.04, 1},
-    ["shaman"] = { 0.00, 0.44, 0.87, 1},
-    ["racials"] = { 0.94, 0.37, 0.36, 1},
-    ["items"] = { 0, 0.96, 0.83, 1},
-    ["misc"] = { 0.47, 0.21, 0.74, 1 }
-  },
-  NEUTRAL_COLOR = { 0.5, 0.5, 0.5, 1 }, -- neutral gray color
-  COMBAT_STATE_COLOR = {1, .1, 0, .8}, -- orange color for combat state
   --[[
     default color based on TEXTURES - colorValue
   ]]--

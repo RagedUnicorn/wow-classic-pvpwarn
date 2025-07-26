@@ -32,62 +32,61 @@ me.tag = "DruidProfile"
 local profileHelper = mod.profileHelper
 local createSpellConfig = profileHelper.CreateSpellConfig
 
-local COLORS = RGPVPW_CONSTANTS.TEXTURES
 local SPELL_TYPES = RGPVPW_CONSTANTS.SPELL_TYPE
 
 -- Spell profile configuration
 local defaultSpellProfileDruid = {
   ["warrior"] = {
-    [1719] = createSpellConfig(true, true, true, COLORS.brown.colorValue),     -- Recklessness
-    [2687] = createSpellConfig(true, true, true, COLORS.brown.colorValue),     -- Bloodrage
-    [5246] = createSpellConfig(true, true, false, COLORS.brown.colorValue),    -- Intimidating Shout
-    [6552] = createSpellConfig(true, true, false, COLORS.brown.colorValue)     -- Pummel
+    [1719] = createSpellConfig(true, true, true, RGPVPW_COLORS.BROWN),     -- Recklessness
+    [2687] = createSpellConfig(true, true, true, RGPVPW_COLORS.BROWN),     -- Bloodrage
+    [5246] = createSpellConfig(true, true, false, RGPVPW_COLORS.BROWN),    -- Intimidating Shout
+    [6552] = createSpellConfig(true, true, false, RGPVPW_COLORS.BROWN)     -- Pummel
   },
   ["priest"] = {
-    [10890] = createSpellConfig(true, true, false, COLORS.white.colorValue),   -- Psychic Scream
-    [15487] = createSpellConfig(true, true, false, COLORS.white.colorValue)    -- Silence
+    [10890] = createSpellConfig(true, true, false, RGPVPW_COLORS.WHITE),   -- Psychic Scream
+    [15487] = createSpellConfig(true, true, false, RGPVPW_COLORS.WHITE)    -- Silence
   },
   ["rogue"] = {
-    [2094] = createSpellConfig(true, true, false, COLORS.yellow.colorValue),   -- Blind
-    [1769] = createSpellConfig(true, true, false, COLORS.yellow.colorValue),   -- Kick
-    [5277] = createSpellConfig(true, true, true, COLORS.yellow.colorValue),    -- Evasion
-    [13750] = createSpellConfig(true, true, true, COLORS.yellow.colorValue),   -- Adrenaline Rush
-    [13877] = createSpellConfig(true, true, true, COLORS.yellow.colorValue),   -- Blade Flurry
-    [14177] = createSpellConfig(true, true, false, COLORS.yellow.colorValue)   -- Cold Blood
+    [2094] = createSpellConfig(true, true, false, RGPVPW_COLORS.YELLOW),   -- Blind
+    [1769] = createSpellConfig(true, true, false, RGPVPW_COLORS.YELLOW),   -- Kick
+    [5277] = createSpellConfig(true, true, true, RGPVPW_COLORS.YELLOW),    -- Evasion
+    [13750] = createSpellConfig(true, true, true, RGPVPW_COLORS.YELLOW),   -- Adrenaline Rush
+    [13877] = createSpellConfig(true, true, true, RGPVPW_COLORS.YELLOW),   -- Blade Flurry
+    [14177] = createSpellConfig(true, true, false, RGPVPW_COLORS.YELLOW)   -- Cold Blood
   },
   ["mage"] = {
-    [11958] = createSpellConfig(true, true, true, COLORS.light_blue.colorValue),   -- Ice Block
-    [12042] = createSpellConfig(true, true, true, COLORS.light_blue.colorValue),   -- Arcane Power
-    [12043] = createSpellConfig(true, true, true, COLORS.light_blue.colorValue),   -- Presence of Mind
-    [2139] = createSpellConfig(true, true, false, COLORS.light_blue.colorValue)    -- Counterspell
+    [11958] = createSpellConfig(true, true, true, RGPVPW_COLORS.LIGHT_BLUE),   -- Ice Block
+    [12042] = createSpellConfig(true, true, true, RGPVPW_COLORS.LIGHT_BLUE),   -- Arcane Power
+    [12043] = createSpellConfig(true, true, true, RGPVPW_COLORS.LIGHT_BLUE),   -- Presence of Mind
+    [2139] = createSpellConfig(true, true, false, RGPVPW_COLORS.LIGHT_BLUE)    -- Counterspell
   },
   ["hunter"] = {
-    [14280] = createSpellConfig(true, true, false, COLORS.green.colorValue),   -- Viper Sting
-    [1543] = createSpellConfig(true, true, false, COLORS.green.colorValue),    -- Flare
-    [19263] = createSpellConfig(true, true, true, COLORS.green.colorValue)     -- Deterrence
+    [14280] = createSpellConfig(true, true, false, RGPVPW_COLORS.GREEN),   -- Viper Sting
+    [1543] = createSpellConfig(true, true, false, RGPVPW_COLORS.GREEN),    -- Flare
+    [19263] = createSpellConfig(true, true, true, RGPVPW_COLORS.GREEN)     -- Deterrence
   },
   ["warlock"] = {},
   ["paladin"] = {
-    [10278] = createSpellConfig(true, true, true, COLORS.pink.colorValue),     -- Blessing of Protection
-    [1044] = createSpellConfig(true, true, true, COLORS.pink.colorValue),      -- Blessing of Freedom
-    [642] = createSpellConfig(true, true, true, COLORS.pink.colorValue)        -- Divine Shield
+    [10278] = createSpellConfig(true, true, true, RGPVPW_COLORS.PINK),     -- Blessing of Protection
+    [1044] = createSpellConfig(true, true, true, RGPVPW_COLORS.PINK),      -- Blessing of Freedom
+    [642] = createSpellConfig(true, true, true, RGPVPW_COLORS.PINK)        -- Divine Shield
   },
   ["druid"] = {
-    [22812] = createSpellConfig(true, true, true, COLORS.orange.colorValue),   -- Barkskin
-    [17116] = createSpellConfig(true, true, true, COLORS.orange.colorValue)    -- Nature's Swiftness
+    [22812] = createSpellConfig(true, true, true, RGPVPW_COLORS.ORANGE),   -- Barkskin
+    [17116] = createSpellConfig(true, true, true, RGPVPW_COLORS.ORANGE)    -- Nature's Swiftness
   },
   ["shaman"] = {
-    [16166] = createSpellConfig(true, true, true, COLORS.blue.colorValue),     -- Elemental Mastery
-    [16188] = createSpellConfig(true, true, true, COLORS.blue.colorValue)      -- Nature's Swiftness
+    [16166] = createSpellConfig(true, true, true, RGPVPW_COLORS.BLUE),     -- Elemental Mastery
+    [16188] = createSpellConfig(true, true, true, RGPVPW_COLORS.BLUE)      -- Nature's Swiftness
   },
   ["racials"] = {},
   ["items"] = {
-    [9774] = createSpellConfig(true, true, false, COLORS.red.colorValue),      -- Spider Belt
-    [5579] = createSpellConfig(true, true, false, COLORS.red.colorValue),      -- PvP Trinket (Warrior/Hunter/Shaman)
-    [23273] = createSpellConfig(true, true, false, COLORS.red.colorValue),     -- PvP Trinket (Warlock/Rogue)
-    [23274] = createSpellConfig(true, true, false, COLORS.red.colorValue),     -- PvP Trinket (Mage)
-    [23276] = createSpellConfig(true, true, false, COLORS.red.colorValue),     -- PvP Trinket (Priest/Paladin)
-    [23277] = createSpellConfig(true, true, false, COLORS.red.colorValue)      -- PvP Trinket (Druid)
+    [9774] = createSpellConfig(true, true, false, RGPVPW_COLORS.RED),      -- Spider Belt
+    [5579] = createSpellConfig(true, true, false, RGPVPW_COLORS.RED),      -- PvP Trinket (Warrior/Hunter/Shaman)
+    [23273] = createSpellConfig(true, true, false, RGPVPW_COLORS.RED),     -- PvP Trinket (Warlock/Rogue)
+    [23274] = createSpellConfig(true, true, false, RGPVPW_COLORS.RED),     -- PvP Trinket (Mage)
+    [23276] = createSpellConfig(true, true, false, RGPVPW_COLORS.RED),     -- PvP Trinket (Priest/Paladin)
+    [23277] = createSpellConfig(true, true, false, RGPVPW_COLORS.RED)      -- PvP Trinket (Druid)
   },
   ["misc"] = {}
 }

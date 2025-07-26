@@ -2,6 +2,7 @@ globals = {
   "rgpvpw",
   "RGPVPW_CONSTANTS",
   "RGPVPW_ENVIRONMENT",
+  "RGPVPW_COLORS",
   "RGPVPW_ZONE",
   "PVPWarnTestLog",
   "PVPWarnConfiguration",
@@ -10,14 +11,16 @@ globals = {
   "PVPWarnLogTrackerAvoid"
 }
 
--- Only lint specific directories
-files["code"] = {std = "lua51"}
-files["gui"] = {std = "lua51"}
-files["localization"] = {std = "lua51"}
-files["profiles"] = {std = "lua51"}
-files["test"] = {std = "lua51"}
+files = {
+  ["code"] = {std = "lua51"},
+  ["gui"] = {std = "lua51"},
+  ["localization"] = {std = "lua51"},
+  ["profiles"] = {std = "lua51"},
+  ["test"] = {std = "lua51"}
+}
 
--- Exclude tools directory
 exclude_files = {
+  ".luacheckrc",
+  "target/",
   "tools/**/*.lua"
 }

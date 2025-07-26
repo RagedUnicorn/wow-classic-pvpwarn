@@ -46,7 +46,7 @@ function me.BuildStanceStateUi()
     RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_FRAME,
     RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_TEXTURE,
     {"RIGHT", 25, 0},
-    RGPVPW_CONSTANTS.NEUTRAL_COLOR,
+    RGPVPW_COLORS.UI.neutral,
     function(frame)
       frame:SetScript("OnMouseDown", me.StartStanceStateDragFrame)
       frame:SetScript("OnMouseUp", me.StopStanceStateDragFrame)
@@ -129,11 +129,7 @@ UpdateStanceBorderColor = function()
   local targetClass = mod.target.GetCurrentTargetClass()
   local color
 
-  if targetClass and RGPVPW_CONSTANTS.CATEGORY_COLOR[string.lower(targetClass)] then
-    color = RGPVPW_CONSTANTS.CATEGORY_COLOR[string.lower(targetClass)]
-  else
-    color = RGPVPW_CONSTANTS.NEUTRAL_COLOR
-  end
+  color = RGPVPW_COLORS.GetClassColor(targetClass)
 
   stanceStateFrame.iconHolder:SetBackdropBorderColor(unpack(color))
 end

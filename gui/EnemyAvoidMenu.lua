@@ -396,7 +396,7 @@ end
 ]]--
 function me.UpdateIcon(spellIcon, category, spell)
   local iconId
-  local color = RGPVPW_CONSTANTS.CATEGORY_COLOR[category]
+  local color = RGPVPW_COLORS.GetCategoryColor(category)
 
   --[[
     For most items we have to track the actual spelleffect in the combat log. However for

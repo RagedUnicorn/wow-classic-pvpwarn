@@ -11,6 +11,7 @@ ${addon.comment.generated.toc}
 
 # constant values
 code/Constants.lua
+code/Colors.lua
 # environment variables
 code/Environment.lua
 
