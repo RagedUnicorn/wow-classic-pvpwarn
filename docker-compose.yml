@@ -6,8 +6,6 @@ services:
       - ./:/workspace:ro
     working_dir: /workspace
     command: ["."]
-    init: true
-
   luacheck-report:
     image: ragedunicorn/luacheck:1.2.0-alpine3.22.1-1
     container_name: pvpwarn-luacheck-report
@@ -17,4 +15,3 @@ services:
     working_dir: /workspace
     entrypoint: /bin/sh
     command: ["-c", "luacheck --formatter JUnit . > /reports/luacheck-junit.xml"]
-    init: true
