@@ -136,7 +136,7 @@ end
 ]]--
 function me.TrackLogAvoidEvent(...)
   local logEvent = {...}
-  local _, _, _, _, _, sourceFlags = select(1, ...)
+  local sourceFlags = select(6, ...)
 
   if PVPWarnLogTrackerAvoid == nil then
     PVPWarnLogTrackerAvoid = {}

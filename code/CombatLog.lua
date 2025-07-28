@@ -39,7 +39,7 @@ me.tag = "CombatLog"
   @param {vararg} ...
 ]]--
 function me.ProcessUnfilteredCombatLogEvent(callback, ...)
-  local _, event, _, _, _, sourceFlags = select(1, ...)
+  local event, sourceFlags = mod.common.SelectMultiple({2, 6}, ...)
 
   --[[
     Ignore events while the player is in a zone that is not enabled
@@ -107,9 +107,8 @@ function me.ProcessStart(event, callback, ...)
     mod.debug.TrackLogNormalEvent(...)
   end
 
-  local spellId, spellName = select(12, ...)
+  local spellId, spellName = mod.common.SelectMultiple({12, 13}, ...)
   local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
-
   local category, realSpellId, spell = mod.spellMapHelper.SearchBySpellId(spellId, event)
   local spellType = mod.common.GetSpellType(event)
   local spellMap = mod.common.GetSpellMap(spellType)
@@ -144,7 +143,7 @@ function me.ProcessNormal(event, callback, ...)
     mod.debug.TrackLogNormalEvent(...)
   end
 
-  local target, _, _, _, spellId, spellName, _, buffType = select(8, ...)
+  local target, spellId, spellName, buffType = mod.common.SelectMultiple({8, 12, 13, 15}, ...)
   local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
   local category, realSpellId, spell = mod.spellMapHelper.SearchBySpellId(spellId, event)
   local spellType = mod.common.GetSpellType(event)
@@ -210,7 +209,7 @@ function me.ProcessMissed(event, spellMissedTarget, callback, ...)
     mod.debug.TrackLogAvoidEvent(...)
   end
 
-  local spellId, spellName, _, missType = select(12, ...)
+  local spellId, spellName, missType = mod.common.SelectMultiple({12, 13, 15}, ...)
 
   -- Filter out irrelevant miss types
   if not me.IsRelevantMissType(missType) then
