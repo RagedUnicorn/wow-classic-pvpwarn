@@ -139,7 +139,42 @@ For a detailed flow diagram and more information, see [docs/stance-tracking-flow
 
 PVPWarn supports custom voice packs as separate addons that can provide alternative sound files. Voice packs register themselves with the main addon and users can select them through the settings menu. For detailed information about how voice packs work and implementation details, see [docs/voice_pack_loading_flow.md](docs/voice_pack_loading_flow.md).
 
-## Code Quality
+## Development Tools
+
+### Docker Compose Services
+
+The project includes a comprehensive Docker Compose configuration with multiple services for development and validation tasks. Each service is containerized and requires no local setup beyond Docker.
+
+**Available Services:**
+
+```bash
+# Code Quality
+docker compose run --rm luacheck                    # Run lua linting
+docker compose run --rm luacheck-report             # Generate lua lint report
+
+# Combat Log Analysis
+docker compose run --rm combat-log-parser           # Parse combat logs 
+docker compose run --rm combat-log-parser-report    # Parse combat logs with report output
+
+# Sound Verification
+docker compose run --rm verify-sounds               # Verify sound files exist
+docker compose run --rm verify-sounds-report        # Verify sound files with detailed report
+
+# SpellMap Validation
+docker compose run --rm verify-spellmap             # Verify SpellMap and SpellAvoidMap
+docker compose run --rm verify-spellmap-report      # Verify SpellMap with report output
+
+# Voice Generation
+docker compose run --rm voice-generator             # Generate voice files using ElevenLabs API
+```
+
+**Output Files:**
+Services with "-report" suffix generate output files in the `./target/` directory:
+- `./target/luacheck-junit.xml` - Luacheck results in JUnit format
+- `./target/combat_log_parser_output/` - Combat log analysis results  
+- `./target/verify_sounds_output/verification_report.txt` - Sound verification report
+- `./target/verify_spellmap_output/verification_report.txt` - SpellMap validation report
+- `./target/voice_output/` - Generated voice files
 
 ### Running Luacheck
 
@@ -148,7 +183,7 @@ The project includes a Docker Compose configuration for running [Luacheck](https
 **To run Luacheck:**
 
 ```bash
-docker compose up
+docker compose run --rm luacheck
 ```
 
 This will:
@@ -156,16 +191,9 @@ This will:
 - Run Luacheck on all Lua files
 - Output any warnings or errors found
 
-**Note for IntelliJ IDEA users:** The console output may be truncated due to buffer limits. To see full output:
-- Run `docker compose run --rm luacheck .` in terminal
-- Use JUnit formatter for CI/CD: `docker compose run --rm luacheck-junit`
-- Increase IntelliJ console buffer: Help → Edit Custom Properties → Add `idea.cycle.buffer.size=1048576`
-
-**To save output to file:**
+**To generate a report:**
 ```bash
-docker compose run --rm luacheck . > luacheck-report.txt
-# or with JUnit format for CI/CD integration:
-docker compose run --rm luacheck-junit > target/luacheck-report.xml
+docker compose run --rm luacheck-report
 ```
 
 **Configuration:**
