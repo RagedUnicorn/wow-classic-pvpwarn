@@ -5,6 +5,7 @@ Main entry point that orchestrates the verification process.
 """
 
 import sys
+import argparse
 from pathlib import Path
 from typing import List
 
@@ -90,7 +91,12 @@ class SpellMapVerifier:
         Returns:
             True if no errors were found, False otherwise
         """
-        print("\nStarting SpellMap verification with Lua parser...\n")
+        print(f"\nStarting SpellMap verification with Lua parser...")
+        print(f"Testing SpellMap: {self.file_reader.get_path()}")
+
+        if self.avoid_file_reader:
+            print(f"Testing SpellAvoidMap: {self.avoid_file_reader.get_path()}")
+        print()
 
         try:
             # Step 1: Read the SpellMap file
@@ -167,16 +173,39 @@ class SpellMapVerifier:
             )
 
 
-def main():
-    """Main entry point."""
-    # Determine paths to Lua files
+def parse_arguments():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        description='Verify SpellMap.lua and SpellAvoidMap.lua files for PVPWarn'
+    )
+
+    # Default paths
     script_dir = Path(__file__).parent
     addon_root = script_dir.parent.parent
-    spellmap_path = addon_root / "code" / "SpellMap.lua"
-    spell_avoid_map_path = addon_root / "code" / "SpellAvoidMap.lua"
+    default_spellmap_path = addon_root / "code" / "SpellMap.lua"
+    default_spell_avoid_map_path = addon_root / "code" / "SpellAvoidMap.lua"
+
+    parser.add_argument(
+        '--spellmap', '--spell-map',
+        default=str(default_spellmap_path),
+        help=f'Path to SpellMap.lua (default: {default_spellmap_path})'
+    )
+
+    parser.add_argument(
+        '--spellavoidmap', '--spell-avoid-map',
+        default=str(default_spell_avoid_map_path),
+        help=f'Path to SpellAvoidMap.lua (default: {default_spell_avoid_map_path})'
+    )
+
+    return parser.parse_args()
+
+
+def main():
+    """Main entry point."""
+    args = parse_arguments()
 
     # Create and run verifier
-    verifier = SpellMapVerifier(str(spellmap_path), str(spell_avoid_map_path))
+    verifier = SpellMapVerifier(args.spellmap, args.spellavoidmap)
     success = verifier.run()
 
     # Exit with appropriate code

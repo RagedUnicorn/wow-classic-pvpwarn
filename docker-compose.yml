@@ -86,3 +86,35 @@ services:
           --spellmap /code/SpellMap.lua \
           --spellavoidmap /code/SpellAvoidMap.lua \
           --output-format detailed > /target/verify_sounds_output/verification_report.txt
+  verify-spellmap:
+    image: ragedunicorn/python:3-alpine3.22.1-1
+    volumes:
+      - ./tools/verify_spellmap:/app
+      - ./code:/code
+    working_dir: /app
+    entrypoint: [ ]
+    command:
+      - sh
+      - -c
+      - |
+        pip install -r requirements.txt &&
+        python verify_spellmap.py \
+          --spellmap /code/SpellMap.lua \
+          --spellavoidmap /code/SpellAvoidMap.lua
+  verify-spellmap-report:
+    image: ragedunicorn/python:3-alpine3.22.1-1
+    volumes:
+      - ./tools/verify_spellmap:/app
+      - ./code:/code
+      - ./target:/target
+    working_dir: /app
+    entrypoint: [ ]
+    command:
+      - sh
+      - -c
+      - |
+        pip install -r requirements.txt &&
+        mkdir -p /target/verify_spellmap_output &&
+        python verify_spellmap.py \
+          --spellmap /code/SpellMap.lua \
+          --spellavoidmap /code/SpellAvoidMap.lua > /target/verify_spellmap_output/verification_report.txt

@@ -24,7 +24,18 @@ pip install -r requirements.txt
 ```bash
 # From the verify_spellmap directory (with venv activated)
 python verify_spellmap.py
+
+# With custom SpellMap paths
+python verify_spellmap.py --spellmap /path/to/SpellMap.lua --spellavoidmap /path/to/SpellAvoidMap.lua
+
+# Using short parameter names (backward compatibility)
+python verify_spellmap.py --spell-map /path/to/SpellMap.lua --spell-avoid-map /path/to/SpellAvoidMap.lua
 ```
+
+### Command Line Arguments
+
+- `--spellmap`, `--spell-map`: Path to SpellMap.lua file (default: ../../code/SpellMap.lua)
+- `--spellavoidmap`, `--spell-avoid-map`: Path to SpellAvoidMap.lua file (default: ../../code/SpellAvoidMap.lua)
 
 The tool uses the `lupa` library to properly parse Lua code, including:
 - Function-based dynamic properties
@@ -59,6 +70,8 @@ The tool uses the `lupa` library to properly parse Lua code, including:
 
 ```
 Starting SpellMap verification with Lua parser...
+Testing SpellMap: /code/SpellMap.lua
+Testing SpellAvoidMap: /code/SpellAvoidMap.lua
 
 Starting SpellAvoidMap verification...
 
