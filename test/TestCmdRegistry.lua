@@ -135,5 +135,19 @@ function me.Initialize()
     end
   end)
 
+  -- Register test validation commands
+  mod.cmd.RegisterCommand("testvalidation", function(args)
+    if not mod.testValidationCmd then
+      mod.logger.LogError(me.tag, "TestValidationCmd module not available")
+      return
+    end
+    
+    if #args > 0 then
+      mod.testValidationCmd.HandleValidation(args[1])
+    else
+      mod.testValidationCmd.ShowValidationHelp()
+    end
+  end)
+
   mod.logger.LogDebug(me.tag, "Test commands registered")
 end

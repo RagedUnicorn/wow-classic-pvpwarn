@@ -1,0 +1,98 @@
+--[[
+  MIT License
+
+  Copyright (c) 2025 Michael Wiesendanger
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+]]--
+
+-- Test validation command handler for PVPWarn addon
+-- Handles test validation commands that verify test coverage completeness
+-- This module is only loaded in development builds
+
+local mod = rgpvpw
+local me = {}
+mod.testValidationCmd = me
+
+me.tag = "TestValidationCmd"
+
+--[[
+  Show test validation command help
+
+  Note: Will not be translated as this is a development-only feature
+]]--
+function me.ShowValidationHelp()
+  print("|cFF00FFFFTest Validation Commands:|r")
+  print("|cFF00FFFF/rgpvpw testvalidation|r - Show this help")
+  print("|cFF00FFFF/rgpvpw testvalidation all|r - Run all validation tests")
+  print("|cFF00FFFF/rgpvpw testvalidation sound|r - Validate sound test coverage")
+  print("|cFF00FFFF/rgpvpw testvalidation sounddown|r - Validate sound down test coverage")
+  print("|cFF00FFFF/rgpvpw testvalidation soundrefresh|r - Validate sound refresh test coverage")
+  print("|cFF00FFFF/rgpvpw testvalidation soundselfavoid|r - Validate self avoid sound test coverage")
+  print("|cFF00FFFF/rgpvpw testvalidation soundenemyavoid|r - Validate enemy avoid sound test coverage")
+  print("")
+  print("These commands validate that test cases exist for every spell in the spell maps.")
+  print("They do not run the actual tests, but check test coverage completeness.")
+  print("")
+  print("Examples:")
+  print("  |cFF00FFFF/rgpvpw testvalidation all|r - Run all validation tests")
+  print("  |cFF00FFFF/rgpvpw testvalidation sound|r - Check if sound tests exist for all spells")
+end
+
+--[[
+  Handle test validation commands
+
+  @param {string} testCommand - The test command to execute
+]]--
+function me.HandleValidation(testCommand)
+  local command = string.lower(testCommand)
+
+  if command == "all" then
+    mod.logger.LogInfo(me.tag, "Running all validation tests...")
+    mod.testSound.Test()
+  elseif command == "sound" then
+    mod.logger.LogInfo(me.tag, "Validating sound test coverage...")
+    mod.testReporter.StartTestGroup("SoundTestValidation")
+    mod.testSound.ShouldHaveSoundTestForAllSpells()
+    mod.testReporter.StopTestGroup()
+  elseif command == "sounddown" then
+    mod.logger.LogInfo(me.tag, "Validating sound down test coverage...")
+    mod.testReporter.StartTestGroup("SoundDownTestValidation")
+    mod.testSound.ShouldHaveSoundDownTestForAllSpells()
+    mod.testReporter.StopTestGroup()
+  elseif command == "soundrefresh" then
+    mod.logger.LogInfo(me.tag, "Validating sound refresh test coverage...")
+    mod.testReporter.StartTestGroup("SoundRefreshTestValidation")
+    mod.testSound.ShouldHaveSoundRefreshTestForAllSpells()
+    mod.testReporter.StopTestGroup()
+  elseif command == "soundselfavoid" then
+    mod.logger.LogInfo(me.tag, "Validating self avoid sound test coverage...")
+    mod.testReporter.StartTestGroup("SoundSelfAvoidTestValidation")
+    mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
+    mod.testReporter.StopTestGroup()
+  elseif command == "soundenemyavoid" then
+    mod.logger.LogInfo(me.tag, "Validating enemy avoid sound test coverage...")
+    mod.testReporter.StartTestGroup("SoundEnemyAvoidTestValidation")
+    mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+    mod.testReporter.StopTestGroup()
+  else
+    mod.logger.LogError(me.tag, "Unknown validation command: " .. testCommand)
+    me.ShowValidationHelp()
+  end
+end

@@ -87,6 +87,7 @@ test/TestCmdRegistry.lua
 test/TestLogCmd.lua
 test/TestSoundCmd.lua
 test/TestCombatEventCmd.lua
+test/TestValidationCmd.lua
 test/TestCmd.lua
 test/TestLogWindow.xml
 test/TestLogWindow.lua
