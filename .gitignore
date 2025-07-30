@@ -72,3 +72,6 @@ coverage.xml
 .env
 tools/voice_generator/output/
 tools/voice_generator/cache/
+
+# combat_log_parser
+combat-logs/
