@@ -22,19 +22,44 @@
   SOFTWARE.
 ]]--
 
+-- Test log command handler for PVPWarn addon
+-- Handles testlog commands for managing the test log window
+-- This module is only loaded in development builds
+
 local mod = rgpvpw
 local me = {}
-mod.testCmd = me
+mod.testLogCmd = me
 
-me.tag = "TestCmd"
+me.tag = "TestLogCmd"
 
 --[[
-  Initialize test command module (delegates to new modular structure)
+  Show test log command help
+
+  Note: Will not be translated as this is a development-only feature
 ]]--
-function me.Initialize()
-  if mod.testCmdRegistry and mod.testCmdRegistry.Initialize then
-    mod.testCmdRegistry.Initialize()
+function me.ShowHelp()
+  print("|cFF00FFFFTest Log Commands:|r")
+  print("|cFF00FFFF/rgpvpw testlog|r - Show this help")
+  print("|cFF00FFFF/rgpvpw testlog show|r - Show test log window (loads saved test logs)")
+  print("|cFF00FFFF/rgpvpw testlog hide|r - Hide test log window")
+  print("|cFF00FFFF/rgpvpw testlog clear|r - Clear test log window display")
+  print("")
+  print("Note: Test logs are saved to PVPWarnTestLog and displayed when window is shown.")
+end
+
+--[[
+  Handle test log commands
+
+  @param {string} testCommand - The test command to execute
+]]--
+function me.Handle(testCommand)
+  if testCommand == "show" then
+    mod.testLogWindow.Show()
+  elseif testCommand == "hide" then
+    mod.testLogWindow.Hide()
+  elseif testCommand == "clear" then
+    mod.testLogWindow.ClearLog()
   else
-    mod.logger.LogError(me.tag, "TestCmdRegistry module not available - ensure new modular structure is loaded")
+    me.ShowHelp()
   end
 end
