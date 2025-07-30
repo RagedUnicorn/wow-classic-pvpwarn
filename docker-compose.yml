@@ -15,6 +15,40 @@ services:
     working_dir: /workspace
     entrypoint: /bin/sh
     command: ["-c", "luacheck --formatter JUnit . > /reports/luacheck-junit.xml"]
+  combat-log-parser:
+    image: ragedunicorn/python:3-alpine3.22.1-1
+    volumes:
+      - ./tools/combat_log_parser:/app
+      - ./code:/code
+      - ./combat-logs:/combat-logs
+    working_dir: /app
+    entrypoint: [ ]
+    command:
+      - sh
+      - -c
+      - |
+        pip install -r requirements.txt &&
+        python parse_combat_logs.py \
+          --logs-dir /combat-logs \
+          --spellmap /code/SpellMap.lua
+  combat-log-parser-report:
+    image: ragedunicorn/python:3-alpine3.22.1-1
+    volumes:
+      - ./tools/combat_log_parser:/app
+      - ./code:/code
+      - ./combat-logs:/combat-logs
+      - ./target:/target
+    working_dir: /app
+    entrypoint: [ ]
+    command:
+      - sh
+      - -c
+      - |
+        pip install -r requirements.txt &&
+        python parse_combat_logs.py \
+          --spellmap /code/SpellMap.lua \
+          --logs-dir /combat-logs \
+          --output-dir /target/combat_log_parser_output
   verify-sounds:
     image: ragedunicorn/python:3-alpine3.22.1-1
     volumes:
