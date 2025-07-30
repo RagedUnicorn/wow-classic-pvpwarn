@@ -1,0 +1,39 @@
+services:
+  verify-sounds-tests:
+    image: ragedunicorn/python:3-alpine3.22.1-1
+    volumes:
+      - ./tools/verify_sounds:/app
+      - ./target:/target
+    working_dir: /app
+    entrypoint: [ ]
+    command:
+      - sh
+      - -c
+      - |
+        pip install -r requirements.txt &&
+        mkdir -p /target/test_results/verify_sounds &&
+        python -m pytest tests/ \
+          --verbose \
+          --tb=short \
+          --junit-xml=/target/test_results/verify_sounds/junit.xml
+
+  verify-spellmap-tests:
+    image: ragedunicorn/python:3-alpine3.22.1-1
+    volumes:
+      - ./tools/verify_spellmap:/app
+      - ./target:/target
+    working_dir: /app
+    entrypoint: [ ]
+    command:
+      - sh
+      - -c
+      - |
+        pip install -r requirements.txt &&
+        mkdir -p /target/test_results/verify_spellmap &&
+        python -m pytest tests/ \
+          --verbose \
+          --tb=short \
+          --cov=verify_spellmap \
+          --cov-report=html:/target/test_results/verify_spellmap/coverage_html \
+          --cov-report=xml:/target/test_results/verify_spellmap/coverage.xml \
+          --junit-xml=/target/test_results/verify_spellmap/junit.xml
