@@ -64,8 +64,8 @@ services:
         pip install -r requirements.txt &&
         python verify_sounds.py \
           --sound-path /assets \
-          --spell-map /code/SpellMap.lua \
-          --spell-avoid-map /code/SpellAvoidMap.lua
+          --spellmap /code/SpellMap.lua \
+          --spellavoidmap /code/SpellAvoidMap.lua
   verify-sounds-report:
     image: ragedunicorn/python:3-alpine3.22.1-1
     volumes:
@@ -83,6 +83,6 @@ services:
         mkdir -p /target/verify_sounds_output &&
         python verify_sounds.py \
           --sound-path /assets \
-          --spell-map /code/SpellMap.lua \
-          --spell-avoid-map /code/SpellAvoidMap.lua \
+          --spellmap /code/SpellMap.lua \
+          --spellavoidmap /code/SpellAvoidMap.lua \
           --output-format detailed > /target/verify_sounds_output/verification_report.txt

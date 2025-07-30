@@ -37,13 +37,13 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        '--spell-map',
+        '--spell-map', '--spellmap',
         default=DEFAULT_SPELL_MAP_PATH,
         help=f'Path to SpellMap.lua (default: {DEFAULT_SPELL_MAP_PATH})'
     )
 
     parser.add_argument(
-        '--spell-avoid-map',
+        '--spell-avoid-map', '--spellavoidmap',
         default=DEFAULT_SPELL_AVOID_MAP_PATH,
         help=f'Path to SpellAvoidMap.lua (default: {DEFAULT_SPELL_AVOID_MAP_PATH})'
     )
