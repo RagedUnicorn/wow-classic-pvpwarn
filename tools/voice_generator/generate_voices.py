@@ -224,6 +224,16 @@ def main():
         help=f"Eleven Labs model to use for generation. Choices: {', '.join(ALLOWED_LANGUAGE_MODELS)}"
     )
 
+    parser.add_argument(
+        '--spellmap',
+        help="Path to SpellMap.lua file (default: uses relative path from voice_generator)"
+    )
+
+    parser.add_argument(
+        '--spellavoidmap', 
+        help="Path to SpellAvoidMap.lua file (default: uses relative path from voice_generator)"
+    )
+
     args = parser.parse_args()
 
     try:
@@ -231,7 +241,10 @@ def main():
         config = setup_environment()
 
         # Initialize components
-        lua_parser = LuaParser()
+        lua_parser = LuaParser(
+            spellmap_path=args.spellmap,
+            spellavoidmap_path=args.spellavoidmap
+        )
         file_manager = FileManager(
             output_path=args.output
         )

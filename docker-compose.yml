@@ -118,3 +118,22 @@ services:
         python verify_spellmap.py \
           --spellmap /code/SpellMap.lua \
           --spellavoidmap /code/SpellAvoidMap.lua > /target/verify_spellmap_output/verification_report.txt
+  voice-generator:
+    image: ragedunicorn/python:3-alpine3.22.1-1
+    volumes:
+      - ./tools/voice_generator:/app
+      - ./code:/code
+      - ./target:/target
+    working_dir: /app
+    entrypoint: [ ]
+    env_file:
+      - ./tools/voice_generator/.env
+    command:
+      - sh
+      - -c
+      - |
+        pip install -r requirements.txt &&
+        python generate_voices.py all \
+          --spellmap /code/SpellMap.lua \
+          --spellavoidmap /code/SpellAvoidMap.lua \
+          --output /target/voice_output
