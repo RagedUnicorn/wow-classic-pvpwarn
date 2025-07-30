@@ -36,8 +36,16 @@ local HandleTestLogCommand
 local ShowTestLogHelp
 local HandleTestSoundCommand
 local ShowTestSoundHelp
+local HandleTestSelfSoundCommand
+local ShowTestSelfSoundHelp
+local HandleTestEnemySoundCommand
+local ShowTestEnemySoundHelp
 local GetAvailableCategories
+local GetAvailableSelfAvoidCategories
+local GetAvailableEnemyAvoidCategories
 local RunTestForCategory
+local RunSelfAvoidTestForCategory
+local RunEnemyAvoidTestForCategory
 
 --[[
   Initialize test command module
@@ -57,6 +65,22 @@ function me.Initialize()
         HandleTestSoundCommand(args[1])
       else
         ShowTestSoundHelp()
+      end
+    end)
+
+    mod.cmd.RegisterCommand("testselfsound", function(args)
+      if #args > 0 then
+        HandleTestSelfSoundCommand(args[1])
+      else
+        ShowTestSelfSoundHelp()
+      end
+    end)
+
+    mod.cmd.RegisterCommand("testenemysound", function(args)
+      if #args > 0 then
+        HandleTestEnemySoundCommand(args[1])
+      else
+        ShowTestEnemySoundHelp()
       end
     end)
 
@@ -144,6 +168,44 @@ GetAvailableCategories = function()
 end
 
 --[[
+  Get available test sound self avoid categories mapping
+
+  @return {table} - Map of category names to module names
+]]--
+GetAvailableSelfAvoidCategories = function()
+  return {
+    druid = "testSoundSelfAvoidDruid",
+    hunter = "testSoundSelfAvoidHunter",
+    mage = "testSoundSelfAvoidMage",
+    paladin = "testSoundSelfAvoidPaladin",
+    priest = "testSoundSelfAvoidPriest",
+    rogue = "testSoundSelfAvoidRogue",
+    shaman = "testSoundSelfAvoidShaman",
+    warlock = "testSoundSelfAvoidWarlock",
+    warrior = "testSoundSelfAvoidWarrior"
+  }
+end
+
+--[[
+  Get available test sound enemy avoid categories mapping
+
+  @return {table} - Map of category names to module names
+]]--
+GetAvailableEnemyAvoidCategories = function()
+  return {
+    druid = "testSoundEnemyAvoidDruid",
+    hunter = "testSoundEnemyAvoidHunter",
+    mage = "testSoundEnemyAvoidMage",
+    paladin = "testSoundEnemyAvoidPaladin",
+    priest = "testSoundEnemyAvoidPriest",
+    rogue = "testSoundEnemyAvoidRogue",
+    shaman = "testSoundEnemyAvoidShaman",
+    warlock = "testSoundEnemyAvoidWarlock",
+    warrior = "testSoundEnemyAvoidWarrior"
+  }
+end
+
+--[[
   Run tests for a single category
 
   @param {string} categoryName - Name of the category
@@ -155,11 +217,57 @@ RunTestForCategory = function(categoryName, moduleName)
 
   if not testModule or not testModule.Test then
     mod.logger.LogError(me.tag, "Test module for category '" .. categoryName .. "' not found or missing Test() function")
+
     return false
   end
 
   mod.logger.LogInfo(me.tag, "Running " .. categoryName .. " sound tests...")
   testModule.Test()
+
+  return true
+end
+
+--[[
+  Run self avoid tests for a single category
+
+  @param {string} categoryName - Name of the category
+  @param {string} moduleName - Name of the test module
+  @return {boolean} - True if tests were run successfully
+]]--
+RunSelfAvoidTestForCategory = function(categoryName, moduleName)
+  local testModule = mod[moduleName]
+
+  if not testModule or not testModule.Test then
+    mod.logger.LogError(me.tag, "Self avoid test module for category '" .. categoryName .. "' not found or missing Test() function")
+
+    return false
+  end
+
+  mod.logger.LogInfo(me.tag, "Running " .. categoryName .. " self avoid sound tests...")
+  testModule.Test()
+
+  return true
+end
+
+--[[
+  Run enemy avoid tests for a single category
+
+  @param {string} categoryName - Name of the category
+  @param {string} moduleName - Name of the test module
+  @return {boolean} - True if tests were run successfully
+]]--
+RunEnemyAvoidTestForCategory = function(categoryName, moduleName)
+  local testModule = mod[moduleName]
+
+  if not testModule or not testModule.Test then
+    mod.logger.LogError(me.tag, "Enemy avoid test module for category '" .. categoryName .. "' not found or missing Test() function")
+
+    return false
+  end
+
+  mod.logger.LogInfo(me.tag, "Running " .. categoryName .. " enemy avoid sound tests...")
+  testModule.Test()
+
   return true
 end
 
@@ -192,4 +300,109 @@ HandleTestSoundCommand = function(testCommand)
 
   mod.logger.LogInfo(me.tag, "Starting " .. category .. " sound tests...")
   RunTestForCategory(category, moduleName)
+end
+
+--[[
+  Show test self sound command help
+
+  Note: Will not be translated as this is a development-only feature
+]]--
+ShowTestSelfSoundHelp = function()
+  print("|cFF00FFFFTest Self Sound Commands:|r")
+  print("|cFF00FFFF/rgpvpw testselfsound|r - Show this help")
+  print("|cFF00FFFF/rgpvpw testselfsound <category>|r - Run self avoid sound tests for category")
+  print("|cFF00FFFF/rgpvpw testselfsound all|r - Run self avoid sound tests for ALL categories")
+  print("")
+  print("Runs actual self avoid sound tests with delayed execution for the specified category.")
+  print("")
+  print("Available categories:")
+  print("  all, druid, hunter, mage, paladin, priest, rogue, shaman, warlock, warrior")
+  print("")
+  print("Examples:")
+  print("  |cFF00FFFF/rgpvpw testselfsound mage|r - Run all mage self avoid sound tests")
+  print("  |cFF00FFFF/rgpvpw testselfsound all|r - Run self avoid sound tests for all categories")
+end
+
+--[[
+  Handle test self sound commands
+
+  @param {string} testCommand - The test command to execute
+]]--
+HandleTestSelfSoundCommand = function(testCommand)
+  local availableCategories = GetAvailableSelfAvoidCategories()
+  local category = string.lower(testCommand)
+
+  if category == "all" then
+    mod.logger.LogInfo(me.tag, "Starting self avoid sound tests for ALL categories...")
+
+    for categoryName, moduleName in pairs(availableCategories) do
+      RunSelfAvoidTestForCategory(categoryName, moduleName)
+    end
+
+    return
+  end
+
+  local moduleName = availableCategories[category]
+
+  if not moduleName then
+    mod.logger.LogError(me.tag, "Unknown self avoid category: " .. testCommand)
+    ShowTestSelfSoundHelp()
+
+    return
+  end
+
+  mod.logger.LogInfo(me.tag, "Starting " .. category .. " self avoid sound tests...")
+  RunSelfAvoidTestForCategory(category, moduleName)
+end
+
+--[[
+  Show test enemy sound command help
+
+  Note: Will not be translated as this is a development-only feature
+]]--
+ShowTestEnemySoundHelp = function()
+  print("|cFF00FFFFTest Enemy Sound Commands:|r")
+  print("|cFF00FFFF/rgpvpw testenemysound|r - Show this help")
+  print("|cFF00FFFF/rgpvpw testenemysound <category>|r - Run enemy avoid sound tests for category")
+  print("|cFF00FFFF/rgpvpw testenemysound all|r - Run enemy avoid sound tests for ALL categories")
+  print("")
+  print("Runs actual enemy avoid sound tests with delayed execution for the specified category.")
+  print("")
+  print("Available categories:")
+  print("  all, druid, hunter, mage, paladin, priest, rogue, shaman, warlock, warrior")
+  print("")
+  print("Examples:")
+  print("  |cFF00FFFF/rgpvpw testenemysound mage|r - Run all mage enemy avoid sound tests")
+  print("  |cFF00FFFF/rgpvpw testenemysound all|r - Run enemy avoid sound tests for all categories")
+end
+
+--[[
+  Handle test enemy sound commands
+
+  @param {string} testCommand - The test command to execute
+]]--
+HandleTestEnemySoundCommand = function(testCommand)
+  local availableCategories = GetAvailableEnemyAvoidCategories()
+  local category = string.lower(testCommand)
+
+  if category == "all" then
+    mod.logger.LogInfo(me.tag, "Starting enemy avoid sound tests for ALL categories...")
+
+    for categoryName, moduleName in pairs(availableCategories) do
+      RunEnemyAvoidTestForCategory(categoryName, moduleName)
+    end
+
+    return
+  end
+
+  local moduleName = availableCategories[category]
+
+  if not moduleName then
+    mod.logger.LogError(me.tag, "Unknown enemy avoid category: " .. testCommand)
+    ShowTestEnemySoundHelp()
+    return
+  end
+
+  mod.logger.LogInfo(me.tag, "Starting " .. category .. " enemy avoid sound tests...")
+  RunEnemyAvoidTestForCategory(category, moduleName)
 end
