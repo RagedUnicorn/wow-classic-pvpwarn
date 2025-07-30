@@ -111,7 +111,10 @@ RunTestForCategory = function(categoryName, moduleName, testType)
   local testModule = mod[moduleName]
 
   if not testModule or not testModule.Test then
-    mod.logger.LogError(me.tag, testType .. " test module for category '" .. categoryName .. "' not found or missing Test() function")
+    mod.logger.LogError(
+      me.tag,
+      testType .. " test module for category '" .. categoryName .. "' not found or missing Test() function"
+    )
     return false
   end
 

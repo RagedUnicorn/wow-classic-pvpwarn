@@ -95,5 +95,45 @@ function me.Initialize()
     end
   end)
 
+  -- Register combat event test commands
+  mod.cmd.RegisterCommand("testcombatevent", function(args)
+    if not mod.testCombatEventCmd then
+      mod.logger.LogError(me.tag, "TestCombatEventCmd module not available")
+      return
+    end
+
+    if #args > 0 then
+      mod.testCombatEventCmd.HandleCombatEvent(args[1])
+    else
+      mod.testCombatEventCmd.ShowCombatEventHelp()
+    end
+  end)
+
+  mod.cmd.RegisterCommand("testselfcombatevent", function(args)
+    if not mod.testCombatEventCmd then
+      mod.logger.LogError(me.tag, "TestCombatEventCmd module not available")
+      return
+    end
+
+    if #args > 0 then
+      mod.testCombatEventCmd.HandleSelfCombatEvent(args[1])
+    else
+      mod.testCombatEventCmd.ShowSelfCombatEventHelp()
+    end
+  end)
+
+  mod.cmd.RegisterCommand("testenemycombatevent", function(args)
+    if not mod.testCombatEventCmd then
+      mod.logger.LogError(me.tag, "TestCombatEventCmd module not available")
+      return
+    end
+
+    if #args > 0 then
+      mod.testCombatEventCmd.HandleEnemyCombatEvent(args[1])
+    else
+      mod.testCombatEventCmd.ShowEnemyCombatEventHelp()
+    end
+  end)
+
   mod.logger.LogDebug(me.tag, "Test commands registered")
 end
