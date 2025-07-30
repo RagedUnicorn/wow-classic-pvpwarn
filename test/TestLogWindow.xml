@@ -1,0 +1,123 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+
+  <!-- PVPWarn Test Log Window -->
+  <Frame name="PVPW_TestLogWindow" inherits="BackdropTemplate" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent">
+    <Size>
+      <AbsDimension x="800" y="400"/>
+    </Size>
+    <Anchors>
+      <Anchor point="CENTER"/>
+    </Anchors>
+
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString name="$parentTitle" inherits="GameFontNormal" text="PVPWarn Test Log">
+          <Anchors>
+            <Anchor point="TOP">
+              <Offset>
+                <AbsDimension x="0" y="-9"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+
+    <Frames>
+      <!-- Close button -->
+      <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+        <Anchors>
+          <Anchor point="TOPRIGHT">
+            <Offset>
+              <AbsDimension x="-5" y="-5"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Button>
+
+      <!-- Clear button -->
+      <Button name="$parentClearButton" inherits="UIPanelButtonTemplate" text="Clear">
+        <Size>
+          <AbsDimension x="80" y="22"/>
+        </Size>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT">
+            <Offset>
+              <AbsDimension x="-10" y="10"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            rgpvpw.testLogWindow.ClearLog()
+          </OnClick>
+        </Scripts>
+      </Button>
+
+      <!-- Auto-scroll checkbox -->
+      <CheckButton name="$parentAutoScrollCheckBox" inherits="UICheckButtonTemplate">
+        <Size>
+          <AbsDimension x="24" y="24"/>
+        </Size>
+        <Anchors>
+          <Anchor point="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="10" y="8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnLoad>
+            _G[self:GetName().."Text"]:SetText("Auto-scroll")
+            self:SetChecked(true)
+          </OnLoad>
+        </Scripts>
+      </CheckButton>
+
+      <!-- Scroll frame -->
+      <ScrollFrame name="$parentScrollFrame" inherits="UIPanelScrollFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="12" y="-30"/>
+            </Offset>
+          </Anchor>
+          <Anchor point="BOTTOMRIGHT">
+            <Offset>
+              <AbsDimension x="-30" y="40"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <ScrollChild>
+          <Frame name="$parentScrollChild">
+            <Size>
+              <AbsDimension x="730" y="1"/>
+            </Size>
+          </Frame>
+        </ScrollChild>
+      </ScrollFrame>
+    </Frames>
+
+    <Scripts>
+      <OnLoad>
+        tinsert(UISpecialFrames, self:GetName())
+        self:RegisterForDrag("LeftButton")
+        self:SetBackdrop({
+          bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+          edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+          tile = true,
+          tileSize = 32,
+          edgeSize = 32,
+          insets = { left = 11, right = 12, top = 12, bottom = 11 }
+        })
+      </OnLoad>
+      <OnDragStart>
+        self:StartMoving()
+      </OnDragStart>
+      <OnDragStop>
+        self:StopMovingOrSizing()
+      </OnDragStop>
+    </Scripts>
+  </Frame>
+</Ui>

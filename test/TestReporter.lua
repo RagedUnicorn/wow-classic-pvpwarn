@@ -48,13 +48,19 @@ end
   @param {string} message
 ]]--
 function me.LogTestMessage(message)
-  print("|cff1cdb4f" .. GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Title") .. ":" .. message)
+  if RGPVPW_ENVIRONMENT.TEST_LOG_TO_CHAT then
+    print("|cff1cdb4f" .. GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Title") .. ":" .. message)
+  end
 end
 
 --[[
   Add line seperator based on the width of the DEFAULT_CHAT_FRAME
 ]]--
 function me.AddLine()
+  if not RGPVPW_ENVIRONMENT.TEST_LOG_TO_CHAT then
+    return
+  end
+
   local chatFrameWidth = DEFAULT_CHAT_FRAME:GetWidth()
   local line = "="
 
@@ -102,6 +108,9 @@ function me.StartTestGroup(groupName)
   PVPWarnTestLog[groupName].testSuccess = 0
   PVPWarnTestLog[groupName].testFailure = 0
   table.insert(PVPWarnTestLog[groupName], logMessage)
+
+  me.NotifyTestLogWindow("=== Test Group: " .. groupName .. " ===", "GROUP_HEADER")
+  me.NotifyTestLogWindow(logMessage)
 end
 
 --[[
@@ -138,9 +147,18 @@ function me.StopTestGroup()
 
   table.insert(PVPWarnTestLog[testManager.currentTestGroup], logMessage)
   mod.testHelper.RestoreMaxWarnAge()
-
   mod.testHelper.DisableTestMode()
-  -- reset
+  me.NotifyTestLogWindow(logMessage)
+
+  -- Add test group summary
+  local summaryMessage = string.format("Total: %d, Success: %d, Failure: %d",
+    PVPWarnTestLog[testManager.currentTestGroup].testCount,
+    PVPWarnTestLog[testManager.currentTestGroup].testSuccess,
+    PVPWarnTestLog[testManager.currentTestGroup].testFailure)
+
+  me.NotifyTestLogWindow(summaryMessage, "INFO")
+  me.NotifyTestLogWindow("", "SEPARATOR")
+
   testManager.currentTestGroup = nil
   testManager.currentFailedTests = {}
 end
@@ -168,6 +186,8 @@ function me.StartTestRun(testName)
   PVPWarnTestLog[testManager.currentTestGroup][testName] = {}
   PVPWarnTestLog[testManager.currentTestGroup][testName].status = nil
   table.insert(PVPWarnTestLog[testManager.currentTestGroup][testName], logMessage)
+
+  me.NotifyTestLogWindow(logMessage)
 end
 
 --[[
@@ -187,7 +207,8 @@ function me.ReportSuccessTestRun()
   PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest].status = "SUCCESS"
   table.insert(PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest], logMessage)
 
-  -- reset
+  me.NotifyTestLogWindow(logMessage, "SUCCESS")
+
   testManager.currentTest = nil
 end
 
@@ -219,7 +240,8 @@ function me.ReportFailureTestRun(category, testName, reason)
 
   table.insert(testManager.currentFailedTests, category .. " - " .. testName)
 
-  -- reset
+  me.NotifyTestLogWindow(logMessage, "FAILURE")
+
   testManager.currentTest = nil
 end
 
@@ -248,4 +270,24 @@ function me.PlayTestQueueWithDelay(callback)
   C_Timer.After(0.8, function()
     me.PlayTestQueueWithDelay(callback)
   end)
+end
+
+--[[
+  Notify the test log window to append the latest message if it's currently shown
+
+  @param {string} message - The message to append
+  @param {string} messageType - Optional message type
+]]--
+function me.NotifyTestLogWindow(message, messageType)
+  if not RGPVPW_ENVIRONMENT.TEST_LOG_TO_WINDOW or not mod.testLogWindow or not message then
+    return
+  end
+
+  local testLogWindow = _G["PVPW_TestLogWindow"]
+
+  if not testLogWindow or not testLogWindow:IsShown() then
+    return
+  end
+
+  mod.testLogWindow.AppendMessage(message, messageType)
 end

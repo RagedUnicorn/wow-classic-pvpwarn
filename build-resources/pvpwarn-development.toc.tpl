@@ -83,6 +83,9 @@ gui/GuiHelper.lua
 # test
 test/TestReporter.lua
 test/TestHelper.lua
+test/TestCmd.lua
+test/TestLogWindow.xml
+test/TestLogWindow.lua
 
 # testbase
 test/TestSound.lua

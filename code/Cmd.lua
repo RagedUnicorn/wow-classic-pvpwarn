@@ -33,6 +33,9 @@ me.tag = "Cmd"
 -- forward declaration
 local ParseSlashCommand
 
+-- registered subcommands
+me.registeredCommands = {}
+
 --[[
   Print cmd options for addon
 ]]--
@@ -91,6 +94,29 @@ ParseSlashCommand = function(msg)
       mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
     end
   else
-    mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
+    if me.registeredCommands[args[1]] then
+      local commandName = args[1]
+
+      table.remove(args, 1)
+      me.registeredCommands[commandName](args)
+    else
+      mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
+    end
   end
+end
+
+--[[
+  Register a subcommand handler
+
+  @param {string} command - The subcommand name
+  @param {function} handler - The function to handle the subcommand
+]]--
+function me.RegisterCommand(command, handler)
+  if type(command) ~= "string" or type(handler) ~= "function" then
+    mod.logger.LogError(me.tag, "Invalid command registration - command must be string and handler must be function")
+    return
+  end
+
+  me.registeredCommands[command] = handler
+  mod.logger.LogDebug(me.tag, "Registered command: " .. command)
 end

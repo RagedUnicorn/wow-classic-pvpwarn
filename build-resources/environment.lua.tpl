@@ -30,5 +30,7 @@ RGPVPW_ENVIRONMENT = {
   LOG_LEVEL = ${addon.logLevel},
   LOG_EVENT = ${addon.logEvent},
   DEBUG = ${addon.debug},
-  TEST = false -- changed by testing framework
+  TEST = false, -- changed by testing framework
+  TEST_LOG_TO_CHAT = true, -- controls whether test messages appear in chat
+  TEST_LOG_TO_WINDOW = true -- controls whether test messages appear in test log window
 }
