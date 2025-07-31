@@ -35,6 +35,8 @@ me.logMessages = {}
 me.maxMessages = 1000
 me.messageHeight = 14
 me.messagePadding = 2
+me.selectedSession = nil
+local sessionDropdown
 
 -- Metadata keys that should be excluded from message processing
 local METADATA_KEYS = {
@@ -61,6 +63,82 @@ me.messageColors = {
 function me.Initialize()
   me.initialized = true
   mod.logger.LogInfo(me.tag, "Test log window initialized")
+end
+
+--[[
+  Create session dropdown following VoicePackMenu pattern
+]]--
+function me.CreateSessionDropdown(frame)
+  sessionDropdown = mod.libUiDropDownMenu.CreateUiDropDownMenu("PVPW_TestLogWindowSessionDropdown", frame)
+  sessionDropdown:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, -40)
+
+  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(sessionDropdown, me.SessionDropdown_Initialize)
+  mod.libUiDropDownMenu.UiDropDownMenu_SetWidth(sessionDropdown, 200)
+  mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Select Session")
+end
+
+--[[
+  Initialize session dropdown menu items
+]]--
+function me.SessionDropdown_Initialize()
+  local info
+
+  -- Add current session if active
+  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
+    local currentSession = mod.testSessionManager.GetCurrentSession()
+    info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
+    info.text = "Current: " .. currentSession.sessionName
+    info.value = "current"
+    info.func = me.SessionDropdown_OnClick
+    info.checked = (me.selectedSession == "current")
+    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
+  end
+
+  -- Add all AutoSession entries from PVPWarnTestLog
+  if PVPWarnTestLog then
+    for groupName, groupData in pairs(PVPWarnTestLog) do
+      if type(groupData) == "table" and groupName:match("^AutoSession_") then
+        info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
+        info.text = groupName
+        info.value = "session_" .. groupName
+        info.func = me.SessionDropdown_OnClick
+        info.checked = (me.selectedSession == "session_" .. groupName)
+        mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
+      end
+    end
+  end
+
+  -- Add clear selection option
+  if me.selectedSession then
+    info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
+    info.text = "Clear Selection"
+    info.value = nil
+    info.func = me.SessionDropdown_OnClick
+    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
+  end
+end
+
+--[[
+  Handle session dropdown selection
+]]--
+function me.SessionDropdown_OnClick(self)
+  me.selectedSession = self.value
+
+  if self.value then
+    if self.value == "current" then
+      mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, self:GetText())
+      me.ShowCurrentSession()
+    elseif self.value:match("^session_") then
+      local groupName = self.value:gsub("^session_", "")
+      mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, self:GetText())
+      me.ShowStoredSession(groupName)
+    end
+  else
+    mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Select Session")
+    me.ShowEmptyState()
+  end
+
+  mod.libUiDropDownMenu.CloseDropDownMenus()
 end
 
 --[[
@@ -153,11 +231,22 @@ function me.Show()
     return
   end
 
+  -- Create dropdown if it hasn't been created yet
+  if not sessionDropdown then
+    me.CreateSessionDropdown(testLogWindow)
+  end
+
   testLogWindow:Show()
   testLogWindow:ClearAllPoints()
 
   mod.guiHelper.LoadFramePosition(testLogWindow, "PVPW_TestLogWindow")
-  me.LoadTestLogs()
+
+  -- Show empty state by default unless a session is already selected
+  if not me.selectedSession then
+    me.ShowEmptyState()
+  else
+    me.LoadTestLogs()
+  end
 end
 
 --[[
@@ -332,4 +421,151 @@ function me.DetermineMessageType(message)
   end
 
   return "INFO"
+end
+
+--[[
+  Show empty state when no session is selected
+]]--
+function me.ShowEmptyState()
+  me.ClearLog()
+  me.AppendMessage("No session selected. Choose a session from the dropdown above or run a test command.", "INFO")
+end
+
+--[[
+  Show current active session
+]]--
+function me.ShowCurrentSession()
+  if not mod.testSessionManager or not mod.testSessionManager.IsSessionActive() then
+    me.ShowEmptyState()
+    return
+  end
+
+  me.ClearLog()
+  local currentSession = mod.testSessionManager.GetCurrentSession()
+  me.AppendMessage("=== Current Active Session ===", "GROUP_HEADER")
+  me.AppendMessage("Session: " .. currentSession.sessionName, "INFO")
+  me.AppendMessage("Type: " .. currentSession.commandType .. " - " .. currentSession.commandCategory, "INFO")
+  me.AppendMessage("Started: " .. currentSession.startTime, "INFO")
+  me.AppendMessage("Status: RUNNING", "INFO")
+  me.AppendMessage("", "SEPARATOR")
+  me.AppendMessage("Live test output will appear below as tests execute...", "INFO")
+end
+
+
+--[[
+  Show stored session from PVPWarnTestLog
+
+  @param {string} groupName - Session name to display
+]]--
+function me.ShowStoredSession(groupName)
+  if not PVPWarnTestLog or not PVPWarnTestLog[groupName] then
+    me.ShowEmptyState()
+    return
+  end
+
+  me.ClearLog()
+  me.LoadSpecificSession(groupName)
+end
+
+--[[
+  Load specific session data
+
+  @param {string} sessionName - Session name to load
+]]--
+function me.LoadSpecificSession(sessionName)
+  if not PVPWarnTestLog or not PVPWarnTestLog[sessionName] then
+    return
+  end
+
+  local groupData = PVPWarnTestLog[sessionName]
+
+  me.AppendMessage("=== Test Session: " .. sessionName .. " ===", "GROUP_HEADER")
+
+  if groupData.testCount then
+    me.AppendMessage(string.format("Total: %d, Success: %d, Failure: %d",
+      groupData.testCount or 0,
+      groupData.testSuccess or 0,
+      groupData.testFailure or 0), "INFO")
+  end
+
+  for _, message in ipairs(groupData) do
+    if type(message) == "string" then
+      local messageType = me.DetermineMessageType(message)
+      me.AppendMessage(message, messageType)
+    end
+  end
+
+  for testName, testData in pairs(groupData) do
+    if type(testData) == "table" and not METADATA_KEYS[testName] then
+      me.ProcessTestMessages(testData)
+    end
+  end
+
+  me.AppendMessage("", "SEPARATOR")
+end
+
+--[[
+  Update dropdown when sessions change
+]]--
+function me.UpdateSessionDropdown()
+  if sessionDropdown then
+    mod.libUiDropDownMenu.UiDropDownMenu_Initialize(sessionDropdown, me.SessionDropdown_Initialize)
+  end
+end
+
+--[[
+  Called when a new test session starts
+]]--
+function me.OnSessionStart()
+  -- Clear current window content
+  me.ClearLog()
+
+  -- Update dropdown to show current session
+  me.UpdateSessionDropdown()
+
+  -- Select current session and update dropdown text
+  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
+    local currentSession = mod.testSessionManager.GetCurrentSession()
+    me.selectedSession = "current"
+    if sessionDropdown then
+      mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Current: " .. currentSession.sessionName)
+      -- Disable dropdown while session is running
+      mod.libUiDropDownMenu.UiDropDownMenu_DisableDropDown(sessionDropdown)
+    end
+    me.ShowCurrentSession()
+  end
+end
+
+--[[
+  Called when a test session ends
+
+  @param {string} completedSessionName - Name of the session that just completed
+]]--
+function me.OnSessionEnd(completedSessionName)
+  -- Re-enable dropdown when session ends
+  if sessionDropdown then
+    mod.libUiDropDownMenu.UiDropDownMenu_EnableDropDown(sessionDropdown)
+  end
+
+  -- Add a small delay to allow TestReporter to finish writing to PVPWarnTestLog
+  C_Timer.After(0.1, function()
+    -- Update dropdown to reflect new state (reload from PVPWarnTestLog)
+    me.UpdateSessionDropdown()
+
+    -- Preselect the just-completed session if it exists in PVPWarnTestLog
+    if completedSessionName and PVPWarnTestLog and PVPWarnTestLog[completedSessionName] then
+      me.selectedSession = "session_" .. completedSessionName
+      if sessionDropdown then
+        mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, completedSessionName)
+      end
+      me.ShowStoredSession(completedSessionName)
+    else
+      me.selectedSession = nil
+
+      if sessionDropdown then
+        mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Select Session")
+      end
+      me.ShowEmptyState()
+    end
+  end)
 end

@@ -50,7 +50,16 @@ local testGroupName = "ShouldHaveCombatEventTestForAllTrackedEvents"
     Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
 function me.Test(categoryName)
-  mod.testReporter.StartTestGroup(testGroupName)
+  local isUsingSessionManager = false
+  
+  -- Check if session manager is handling test group management
+  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
+    -- Session manager is active, just collect tests without managing test group
+    isUsingSessionManager = true
+  else
+    -- No session manager, handle test group ourselves
+    mod.testReporter.StartTestGroup(testGroupName)
+  end
 
   me.ShouldHaveCombatEventTestForAllTrackedEvents(categoryName)
 
@@ -67,7 +76,9 @@ function me.Test(categoryName)
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName
   )
 
-  mod.testReporter.StopTestGroup()
+  if not isUsingSessionManager then
+    mod.testReporter.StopTestGroup()
+  end
 end
 
 --[[

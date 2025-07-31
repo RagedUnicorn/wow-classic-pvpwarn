@@ -158,8 +158,15 @@ function me.HandleSound(testCommand)
   if category == "all" then
     mod.logger.LogInfo(me.tag, "Starting sound tests for ALL categories...")
 
-    for categoryName, moduleName in pairs(availableCategories) do
-      RunTestForCategory(categoryName, moduleName, "sound")
+    -- Start automatic session for "all" category tests
+    local success = mod.testSessionManager.StartAutoSession("Sound", "all", function()
+      for categoryName, moduleName in pairs(availableCategories) do
+        RunTestForCategory(categoryName, moduleName, "sound")
+      end
+    end)
+
+    if not success then
+      return
     end
 
     return
@@ -175,7 +182,15 @@ function me.HandleSound(testCommand)
   end
 
   mod.logger.LogInfo(me.tag, "Starting " .. category .. " sound tests...")
-  RunTestForCategory(category, moduleName, "sound")
+
+  -- Start automatic session for single category test
+  local success = mod.testSessionManager.StartAutoSession("Sound", category, function()
+    RunTestForCategory(category, moduleName, "sound")
+  end)
+
+  if not success then
+    return
+  end  
 end
 
 --[[
@@ -211,8 +226,15 @@ function me.HandleSelfSound(testCommand)
   if category == "all" then
     mod.logger.LogInfo(me.tag, "Starting self avoid sound tests for ALL categories...")
 
-    for categoryName, moduleName in pairs(availableCategories) do
-      RunTestForCategory(categoryName, moduleName, "self avoid sound")
+    -- Start automatic session for "all" category tests
+    local success = mod.testSessionManager.StartAutoSession("SelfSound", "all", function()
+      for categoryName, moduleName in pairs(availableCategories) do
+        RunTestForCategory(categoryName, moduleName, "self avoid sound")
+      end
+    end)
+
+    if not success then
+      return
     end
 
     return
@@ -228,7 +250,15 @@ function me.HandleSelfSound(testCommand)
   end
 
   mod.logger.LogInfo(me.tag, "Starting " .. category .. " self avoid sound tests...")
-  RunTestForCategory(category, moduleName, "self avoid sound")
+
+  -- Start automatic session for single category test
+  local success = mod.testSessionManager.StartAutoSession("SelfSound", category, function()
+    RunTestForCategory(category, moduleName, "self avoid sound")
+  end)
+
+  if not success then
+    return
+  end
 end
 
 --[[
@@ -264,8 +294,15 @@ function me.HandleEnemySound(testCommand)
   if category == "all" then
     mod.logger.LogInfo(me.tag, "Starting enemy avoid sound tests for ALL categories...")
 
-    for categoryName, moduleName in pairs(availableCategories) do
-      RunTestForCategory(categoryName, moduleName, "enemy avoid sound")
+    -- Start automatic session for "all" category tests
+    local success = mod.testSessionManager.StartAutoSession("EnemySound", "all", function()
+      for categoryName, moduleName in pairs(availableCategories) do
+        RunTestForCategory(categoryName, moduleName, "enemy avoid sound")
+      end
+    end)
+
+    if not success then
+      return
     end
 
     return
@@ -281,5 +318,13 @@ function me.HandleEnemySound(testCommand)
   end
 
   mod.logger.LogInfo(me.tag, "Starting " .. category .. " enemy avoid sound tests...")
-  RunTestForCategory(category, moduleName, "enemy avoid sound")
+
+  -- Start automatic session for single category test
+  local success = mod.testSessionManager.StartAutoSession("EnemySound", category, function()
+    RunTestForCategory(category, moduleName, "enemy avoid sound")
+  end)
+
+  if not success then
+    return
+  end
 end

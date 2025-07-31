@@ -54,7 +54,16 @@ local testGroupName = "ShouldHaveSoundTestForAllSpells"
     Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
 function me.Test(categoryName)
-  mod.testReporter.StartTestGroup(testGroupName)
+  local isUsingSessionManager = false
+  
+  -- Check if session manager is handling test group management
+  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
+    -- Session manager is active, just collect tests without managing test group
+    isUsingSessionManager = true
+  else
+    -- No session manager, handle test group ourselves
+    mod.testReporter.StartTestGroup(testGroupName)
+  end
 
   me.ShouldHaveSoundTestForAllSpells(categoryName)
   me.ShouldHaveSoundDownTestForAllSpells(categoryName)
@@ -62,7 +71,9 @@ function me.Test(categoryName)
   me.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName)
   me.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName)
 
-  mod.testReporter.StopTestGroup()
+  if not isUsingSessionManager then
+    mod.testReporter.StopTestGroup()
+  end
 end
 
 --[[

@@ -49,8 +49,10 @@ function me.ShowValidationHelp()
   print("|cFF00FFFF/rgpvpw testvalidation combatevent|r - Validate combat event test coverage")
   print("|cFF00FFFF/rgpvpw testvalidation combateventselfavoid|r - Validate self avoid combat event test coverage")
   print("|cFF00FFFF/rgpvpw testvalidation combateventenemyavoid|r - Validate enemy avoid combat event test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation combateventselfavoidirrelevant|r - Validate self avoid irrelevant combat event test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation combateventenemyavoidirrelevant|r - Validate enemy avoid irrelevant combat event test coverage")
+  print("|cFF00FFFF/rgpvpw testvalidation combateventselfavoidirrelevant|r - " ..
+        "Validate self avoid irrelevant combat event test coverage")
+  print("|cFF00FFFF/rgpvpw testvalidation combateventenemyavoidirrelevant|r - " ..
+        "Validate enemy avoid irrelevant combat event test coverage")
   print("")
   print("These commands validate that test cases exist for every spell in the spell maps.")
   print("They do not run the actual tests, but check test coverage completeness.")
@@ -115,12 +117,14 @@ function me.HandleValidation(testCommand)
   elseif command == "combateventselfavoidirrelevant" then
     mod.logger.LogInfo(me.tag, "Validating self avoid irrelevant combat event test coverage...")
     mod.testReporter.StartTestGroup("CombatEventSelfAvoidIrrelevantTestValidation")
-    mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
+    mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
     mod.testReporter.StopTestGroup()
   elseif command == "combateventenemyavoidirrelevant" then
     mod.logger.LogInfo(me.tag, "Validating enemy avoid irrelevant combat event test coverage...")
     mod.testReporter.StartTestGroup("CombatEventEnemyAvoidIrrelevantTestValidation")
-    mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+    mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
     mod.testReporter.StopTestGroup()
   else
     mod.logger.LogError(me.tag, "Unknown validation command: " .. testCommand)
