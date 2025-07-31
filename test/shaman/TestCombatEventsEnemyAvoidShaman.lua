@@ -32,12 +32,23 @@ local testGroupName = "CombatEventsEnemyAvoidShaman"
 local testCategory = "shaman"
 
 function me.Test()
-  mod.testReporter.StartTestGroup(testGroupName)
+  local isUsingSessionManager = false
 
-  me.CollectTestCases()
+  -- Check if session manager is handling test group management
+  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
+    -- Session manager is active, just collect tests without managing test group
+    isUsingSessionManager = true
+    me.CollectTestCases()
+  else
+    -- No session manager, handle test group ourselves
+    mod.testReporter.StartTestGroup(testGroupName)
+    me.CollectTestCases()
+  end
 
   mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- async finish of test group
+    if not isUsingSessionManager then
+      mod.testReporter.StopTestGroup() -- async finish of test group
+    end
   end)
 end
 

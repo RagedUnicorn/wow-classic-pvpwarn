@@ -81,6 +81,7 @@ gui/StanceFrame.lua
 gui/GuiHelper.lua
 
 # test
+test/TestSessionManager.lua
 test/TestReporter.lua
 test/TestHelper.lua
 test/TestCmdRegistry.lua

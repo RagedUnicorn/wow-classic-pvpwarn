@@ -158,8 +158,15 @@ function me.HandleCombatEvent(testCommand)
   if category == "all" then
     mod.logger.LogInfo(me.tag, "Starting combat event tests for ALL categories...")
 
-    for categoryName, moduleName in pairs(availableCategories) do
-      RunTestForCategory(categoryName, moduleName, "combat event")
+    -- Start automatic session for "all" category tests
+    local success = mod.testSessionManager.StartAutoSession("CombatEvent", "all", function()
+      for categoryName, moduleName in pairs(availableCategories) do
+        RunTestForCategory(categoryName, moduleName, "combat event")
+      end
+    end)
+
+    if not success then
+      return
     end
 
     return
@@ -175,7 +182,15 @@ function me.HandleCombatEvent(testCommand)
   end
 
   mod.logger.LogInfo(me.tag, "Starting " .. category .. " combat event tests...")
-  RunTestForCategory(category, moduleName, "combat event")
+
+  -- Start automatic session for single category test
+  local success = mod.testSessionManager.StartAutoSession("CombatEvent", category, function()
+    RunTestForCategory(category, moduleName, "combat event")
+  end)
+
+  if not success then
+    return
+  end
 end
 
 --[[
@@ -211,8 +226,15 @@ function me.HandleSelfCombatEvent(testCommand)
   if category == "all" then
     mod.logger.LogInfo(me.tag, "Starting self avoid combat event tests for ALL categories...")
 
-    for categoryName, moduleName in pairs(availableCategories) do
-      RunTestForCategory(categoryName, moduleName, "self avoid combat event")
+    -- Start automatic session for "all" category tests
+    local success = mod.testSessionManager.StartAutoSession("SelfCombatEvent", "all", function()
+      for categoryName, moduleName in pairs(availableCategories) do
+        RunTestForCategory(categoryName, moduleName, "self avoid combat event")
+      end
+    end)
+
+    if not success then
+      return
     end
 
     return
@@ -228,7 +250,15 @@ function me.HandleSelfCombatEvent(testCommand)
   end
 
   mod.logger.LogInfo(me.tag, "Starting " .. category .. " self avoid combat event tests...")
-  RunTestForCategory(category, moduleName, "self avoid combat event")
+
+  -- Start automatic session for single category test
+  local success = mod.testSessionManager.StartAutoSession("SelfCombatEvent", category, function()
+    RunTestForCategory(category, moduleName, "self avoid combat event")
+  end)
+
+  if not success then
+    return
+  end
 end
 
 --[[
@@ -264,8 +294,15 @@ function me.HandleEnemyCombatEvent(testCommand)
   if category == "all" then
     mod.logger.LogInfo(me.tag, "Starting enemy avoid combat event tests for ALL categories...")
 
-    for categoryName, moduleName in pairs(availableCategories) do
-      RunTestForCategory(categoryName, moduleName, "enemy avoid combat event")
+    -- Start automatic session for "all" category tests
+    local success = mod.testSessionManager.StartAutoSession("EnemyCombatEvent", "all", function()
+      for categoryName, moduleName in pairs(availableCategories) do
+        RunTestForCategory(categoryName, moduleName, "enemy avoid combat event")
+      end
+    end)
+
+    if not success then
+      return
     end
 
     return
@@ -281,5 +318,13 @@ function me.HandleEnemyCombatEvent(testCommand)
   end
 
   mod.logger.LogInfo(me.tag, "Starting " .. category .. " enemy avoid combat event tests...")
-  RunTestForCategory(category, moduleName, "enemy avoid combat event")
+
+  -- Start automatic session for single category test
+  local success = mod.testSessionManager.StartAutoSession("EnemyCombatEvent", category, function()
+    RunTestForCategory(category, moduleName, "enemy avoid combat event")
+  end)
+
+  if not success then
+    return
+  end
 end

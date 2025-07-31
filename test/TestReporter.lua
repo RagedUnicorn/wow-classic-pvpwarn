@@ -114,9 +114,20 @@ function me.StartTestGroup(groupName)
 end
 
 --[[
+  Force clear test manager state (for cleanup between sessions)
+]]--
+function me.ForceResetTestManager()
+  testManager.currentTestGroup = nil
+  testManager.currentTest = nil
+  testManager.currentFailedTests = {}
+  mod.logger.LogInfo(me.tag, "TestReporter state forcibly reset")
+end
+
+--[[
   Stopping a test group
 ]]--
 function me.StopTestGroup()
+
   if testManager.currentTestGroup == nil then
     mod.logger.LogError(me.tag, "No running test group found to stop")
     return
@@ -132,7 +143,6 @@ function me.StopTestGroup()
     PVPWarnTestLog[testManager.currentTestGroup].testCount)
 
   me.LogTestMessage(logMessage)
-
   me.AddLine()
 
   -- display failed test names if there where any
