@@ -44,7 +44,7 @@ function me.ShowHelp()
   print("|cFF00FFFF/rgpvpw testlog hide|r - Hide test log window")
   print("|cFF00FFFF/rgpvpw testlog clear|r - Clear test log window display")
   print("")
-  print("Note: Test logs are saved to PVPWarnTestLog and displayed when window is shown.")
+  print("Note: Test logs are saved to PVPWarnTestLog and displayed in the test log window.")
 end
 
 --[[
