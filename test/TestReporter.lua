@@ -235,8 +235,10 @@ end
 
 --[[
   Stopping a test group
+
+  @param {function} completionCallback - Optional callback to call after test group cleanup
 ]]--
-function me.StopTestGroup()
+function me.StopTestGroup(completionCallback)
   if testManager.currentTestGroup == nil then
     mod.logger.LogError(me.tag, "No running test group found to stop")
     return
@@ -253,6 +255,10 @@ function me.StopTestGroup()
 
   testManager.currentTestGroup = nil
   testManager.currentFailedTests = {}
+
+  if type(completionCallback) == "function" then
+    completionCallback(groupName)
+  end
 end
 
 --[[
