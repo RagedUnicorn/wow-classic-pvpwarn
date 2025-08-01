@@ -517,6 +517,12 @@ end
   Called when a new test session starts
 ]]--
 function me.OnSessionStart()
+  -- Auto-open the test log window if it's not already visible
+  local testLogWindow = _G["PVPW_TestLogWindow"]
+  if testLogWindow and not testLogWindow:IsShown() then
+    me.Show()
+  end
+
   -- Clear current window content
   me.ClearLog()
 
