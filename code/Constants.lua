@@ -103,13 +103,13 @@ RGPVPW_CONSTANTS = {
   ]]--
   DEFAULT_COLOR = 0, -- none
   SPELL_TYPES = {
-    ["NORMAL"] = 1, -- SPELL_CAST_SUCCESS
-    ["START"] = 2, -- SPELL_CAST_START
-    ["APPLIED"] = 3, -- SPELL_AURA_APPLIED
-    ["REMOVED"] = 4, -- SPELL_AURA_REMOVED
-    ["REFRESH"] = 5, -- SPELL_AURA_REFRESH
-    ["MISSED_SELF"] = 6, -- SPELL_MISSED
-    ["MISSED_ENEMY"] = 7, -- SPELL_MISSED
+    NORMAL = 1, -- SPELL_CAST_SUCCESS
+    START = 2, -- SPELL_CAST_START
+    APPLIED = 3, -- SPELL_AURA_APPLIED
+    REMOVED = 4, -- SPELL_AURA_REMOVED
+    REFRESH = 5, -- SPELL_AURA_REFRESH
+    MISSED_SELF = 6, -- SPELL_MISSED
+    MISSED_ENEMY = 7, -- SPELL_MISSED
   },
   --[[
     Miss types that are considered relevant for tracking spell avoidance
