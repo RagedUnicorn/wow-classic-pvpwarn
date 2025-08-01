@@ -151,7 +151,7 @@ local function extractAllMessages(testLog)
             sequence = value.sequence,
             messageType = value.messageType
           })
-        elseif type(value) == "table" and type(key) == "string" and key:match("^Test") then
+        elseif type(value) == "table" and type(key) == "string" and (key:match("^Test") or key:match("TestPresent")) then
           -- This is a test case, extract its messages
           for _, testMessage in ipairs(value) do
             if type(testMessage) == "table" and testMessage.message and testMessage.timestamp then

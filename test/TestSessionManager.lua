@@ -118,14 +118,14 @@ function me.StartSession(commandType, category, testFunction)
 
   mod.testReporter.StartTestGroup(sessionName)
 
-  if type(testFunction) == "function" then
-    testFunction()
-  end
-
   me.SetupSessionCleanup()
 
   if mod.testLogWindow and mod.testLogWindow.OnSessionStart then
     mod.testLogWindow.OnSessionStart()
+  end
+
+  if type(testFunction) == "function" then
+    testFunction()
   end
 
   return true
