@@ -79,8 +79,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRestorativePotion_11359)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRestorativePotion_11359)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLivingFreeAction_24364)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLivingFreeAction_24364)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLivingActionPotion_24364)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLivingActionPotion_24364)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreeActionPotion_6615)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFreeActionPotion_6615)
@@ -293,17 +293,17 @@ function me.TestSoundDownRestorativePotion_11359()
   )
 end
 
-function me.TestSoundLivingFreeAction_24364()
+function me.TestSoundLivingActionPotion_24364()
   mod.testHelper.TestSoundApplied(
-    "TestSoundLivingFreeAction_24364",
+    "TestSoundLivingActionPotion_24364",
     testCategory,
     24364
   )
 end
 
-function me.TestSoundDownLivingFreeAction_24364()
+function me.TestSoundDownLivingActionPotion_24364()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownLivingFreeAction_24364",
+    "TestSoundDownLivingActionPotion_24364",
     testCategory,
     24364
   )
