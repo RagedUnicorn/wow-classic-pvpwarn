@@ -47,97 +47,97 @@ function me.Test(completionCallback)
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkerRageApplied_18499)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkerRageRemoved_18499)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkerRageApplied_18499)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkerRageRemoved_18499)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRecklessnessApplied_1719)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRecklessnessRemoved_1719)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRecklessnessApplied_1719)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRecklessnessRemoved_1719)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeathWishApplied_12292)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDeathWishRemoved_12292)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeathWishApplied_12292)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeathWishRemoved_12292)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBattleStanceApplied_2457)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBattleStanceApplied_2457)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkerStanceApplied_2458)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkerStanceApplied_2458)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDefensiveStanceApplied_71)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDefensiveStanceApplied_71)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInterceptSuccess_20252)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInterceptSuccess_20616)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInterceptSuccess_20617)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInterceptSuccess_20252)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInterceptSuccess_20616)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInterceptSuccess_20617)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDisarmSuccess_676)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDisarmSuccess_676)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConcussionBlowSuccess_12809)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventConcussionBlowSuccess_12809)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBloodrageApplied_2687)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBloodrageRemoved_2687)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodrageApplied_2687)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodrageRemoved_2687)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPummelSuccess_6552)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPummelSuccess_6554)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPummelSuccess_6552)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPummelSuccess_6554)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChargeSuccess_100)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChargeSuccess_6178)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventChargeSuccess_11578)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChargeSuccess_100)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChargeSuccess_6178)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChargeSuccess_11578)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventIntimidatingShoutSuccess_5246)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIntimidatingShoutSuccess_5246)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBlockApplied_2565)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBlockRemoved_2565)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBlockApplied_2565)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBlockRemoved_2565)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldSlamSuccess_23922)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldSlamSuccess_23923)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldSlamSuccess_23924)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldSlamSuccess_23925)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldSlamSuccess_23922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldSlamSuccess_23923)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldSlamSuccess_23924)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldSlamSuccess_23925)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldWallApplied_871)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldWallRemoved_871)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldWallApplied_871)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldWallRemoved_871)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLastStandApplied_12975)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLastStandRemoved_12975)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLastStandApplied_12975)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLastStandRemoved_12975)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBashSuccess_72)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBashSuccess_1671)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShieldBashSuccess_1672)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBashSuccess_72)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBashSuccess_1671)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBashSuccess_1672)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetaliationApplied_20230)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRetaliationRemoved_20230)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRetaliationApplied_20230)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRetaliationRemoved_20230)
 
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRagingBlowSuccess_402911)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRagingBlowSuccess_402911)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConsumedByRageApplied_425418)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventConsumedByRageRemoved_425418)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventConsumedByRageApplied_425418)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventConsumedByRageRemoved_425418)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventQuickStrikeSuccess_429765)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventQuickStrikeSuccess_429765)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnragedRegenerationApplied_402913)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEnragedRegenerationRemoved_402913)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnragedRegenerationApplied_402913)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnragedRegenerationRemoved_402913)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRallyingCryApplied_426490)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRallyingCryRemoved_426490)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRallyingCryApplied_426490)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRallyingCryRemoved_426490)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInterveneSuccess_403338)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInterveneSuccess_403338)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCommandingShoutSuccess_403215)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCommandingShoutSuccess_403215)
 
   -- start runes
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRampageApplied_426940)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRampageRemoved_426940)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRampageApplied_426940)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRampageRemoved_426940)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMeathookSuccess_403228)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMeathookSuccess_403228)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShockwaveSuccess_440488)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShockwaveSuccess_440488)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSuddenDeathApplied_440113)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSuddenDeathRemoved_440113)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSuddenDeathApplied_440113)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSuddenDeathRemoved_440113)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventValorOfAzerothApplied_461475)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventValorOfAzerothRemoved_461475)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventValorOfAzerothApplied_461475)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventValorOfAzerothRemoved_461475)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVictoryRushSuccess_402927)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVictoryRushSuccess_402927)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGladiatorStanceApplied_412513)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGladiatorStanceApplied_412513)
 end
 
 function me.TestCombatEventBerserkerRageApplied_18499()

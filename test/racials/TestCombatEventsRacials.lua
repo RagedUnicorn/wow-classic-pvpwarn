@@ -47,29 +47,29 @@ function me.Test(completionCallback)
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPerceptionApplied_20600)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventPerceptionRemoved_20600)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPerceptionApplied_20600)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPerceptionRemoved_20600)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWillOfTheForsakenApplied_7744)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWillOfTheForsakenRemoved_7744)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWillOfTheForsakenApplied_7744)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWillOfTheForsakenRemoved_7744)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventStoneformApplied_20594)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventStoneformRemoved_20594)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventStoneformApplied_20594)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventStoneformRemoved_20594)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEscapeArtistSuccess_20589)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEscapeArtistSuccess_20589)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWarStompSuccess_20549)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWarStompSuccess_20549)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkingApplied_20554)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkingRemoved_20554)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkingApplied_26297)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkingRemoved_26297)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkingApplied_26296)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBerserkingRemoved_26296)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkingApplied_20554)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkingRemoved_20554)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkingApplied_26297)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkingRemoved_26297)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkingApplied_26296)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkingRemoved_26296)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowmeldSuccess_20580)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowmeldSuccess_20580)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBloodFurySuccess_20572)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodFurySuccess_20572)
 end
 
 function me.TestCombatEventPerceptionApplied_20600()

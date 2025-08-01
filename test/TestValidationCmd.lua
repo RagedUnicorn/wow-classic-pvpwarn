@@ -80,8 +80,12 @@ function me.HandleValidation(testCommand)
       mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
       mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
       mod.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents()
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
+      )
+      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+      )
       mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
         RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
       mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
@@ -127,13 +131,17 @@ function me.HandleValidation(testCommand)
   elseif command == "combateventselfavoid" then
     mod.logger.LogInfo(me.tag, "Starting self avoid combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combateventselfavoid", function(completionCallback)
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
+      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
+      )
       completionCallback()
     end)
   elseif command == "combateventenemyavoid" then
     mod.logger.LogInfo(me.tag, "Starting enemy avoid combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combateventenemyavoid", function(completionCallback)
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+      )
       completionCallback()
     end)
   elseif command == "combateventselfavoidirrelevant" then

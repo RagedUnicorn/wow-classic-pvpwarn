@@ -37,6 +37,7 @@ local testManager = {
 }
 
 local testQueueWithDelay = {}
+local testQueueImmediate = {}
 
 if PVPWarnTestLog == nil then
   PVPWarnTestLog = {}
@@ -377,7 +378,7 @@ function me.ReportFailureTestRun(category, testName, reason)
 end
 
 --[[
-  add a function to the test queue
+  add a function to the test queue with delay
   @param {function} testFunction
     testfunction to execute
 ]]--
@@ -386,10 +387,51 @@ function me.AddToTestQueueWithDelay(testFunction)
 end
 
 --[[
+  add a function to the immediate test queue (no delay)
+  @param {function} testFunction
+    testfunction to execute
+]]--
+function me.AddToTestQueueImmediate(testFunction)
+  table.insert(testQueueImmediate, testFunction)
+end
+
+--[[
+  Execute all immediate tests first, then delayed tests
   @param {function} callback
-    Callback function that is invoked once the test queue is empty/done
+    Callback function that is invoked once all test queues are empty/done
 ]]--
 function me.PlayTestQueueWithDelay(callback)
+  -- First execute all immediate tests
+  if #testQueueImmediate > 0 then
+    me.PlayTestQueueImmediate(function()
+      -- After immediate tests are done, start delayed tests
+      me.PlayDelayedTests(callback)
+    end)
+  else
+    -- No immediate tests, start delayed tests directly
+    me.PlayDelayedTests(callback)
+  end
+end
+
+--[[
+  Execute immediate tests without delay
+  @param {function} callback
+    Callback function that is invoked once the immediate queue is empty
+]]--
+function me.PlayTestQueueImmediate(callback)
+  while testQueueImmediate[1] ~= nil do
+    testQueueImmediate[1]()
+    table.remove(testQueueImmediate, 1)
+  end
+  callback()
+end
+
+--[[
+  Execute delayed tests with 0.8s delay between each
+  @param {function} callback
+    Callback function that is invoked once the delayed queue is empty/done
+]]--
+function me.PlayDelayedTests(callback)
   if testQueueWithDelay[1] ~= nil then
     testQueueWithDelay[1]()
     table.remove(testQueueWithDelay, 1)
@@ -399,7 +441,7 @@ function me.PlayTestQueueWithDelay(callback)
   end
 
   C_Timer.After(0.8, function()
-    me.PlayTestQueueWithDelay(callback)
+    me.PlayDelayedTests(callback)
   end)
 end
 

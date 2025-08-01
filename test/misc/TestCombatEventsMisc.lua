@@ -46,59 +46,59 @@ function me.Test(completionCallback)
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventThistleTeaSuccess_9512)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventThistleTeaSuccess_9512)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMightyRagePotionSuccess_17528)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMightyRagePotionSuccess_17528)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_18610)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_746)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_1159)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_3267)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_3268)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_7926)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_7927)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_10838)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_10839)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_18608)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_18610)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_746)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_1159)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_3267)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_3268)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_7926)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_7927)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_10838)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_10839)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_18608)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterShadowProtectionPotionApplied_17548)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterShadowProtectionPotionRemoved_17548)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterShadowProtectionPotionApplied_17548)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterShadowProtectionPotionRemoved_17548)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterFrostProtectionPotionApplied_17544)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterFrostProtectionPotionRemoved_17544)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterFrostProtectionPotionApplied_17544)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterFrostProtectionPotionRemoved_17544)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterFireProtectionPotionApplied_17543)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterFireProtectionPotionRemoved_17543)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterFireProtectionPotionApplied_17543)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterFireProtectionPotionRemoved_17543)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterNatureProtectionPotionApplied_17546)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterNatureProtectionPotionRemoved_17546)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterNatureProtectionPotionApplied_17546)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterNatureProtectionPotionRemoved_17546)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterArcaneProtectionPotionApplied_17549)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterArcaneProtectionPotionRemoved_17549)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterArcaneProtectionPotionApplied_17549)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterArcaneProtectionPotionRemoved_17549)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRestorativePotionApplied_11359)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventRestorativePotionRemoved_11359)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRestorativePotionApplied_11359)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRestorativePotionRemoved_11359)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLivingFreeActionApplied_24364)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLivingFreeActionRemoved_24364)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLivingFreeActionApplied_24364)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLivingFreeActionRemoved_24364)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFreeActionPotionApplied_6615)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFreeActionPotionRemoved_6615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFreeActionPotionApplied_6615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFreeActionPotionRemoved_6615)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLimitedInvulnerabilityPotionApplied_3169)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLimitedInvulnerabilityPotionRemoved_3169)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLimitedInvulnerabilityPotionApplied_3169)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLimitedInvulnerabilityPotionRemoved_3169)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInvisibilityPotionSuccess_11392)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInvisibilityPotionSuccess_11392)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventLesserInvisibilityPotionSuccess_3680)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLesserInvisibilityPotionSuccess_3680)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCatseyeElixirApplied_12608)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCatseyeElixirRemoved_12608)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCatseyeElixirApplied_12608)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCatseyeElixirRemoved_12608)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventElixirOfPoisonResistanceSuccess_26677)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventElixirOfPoisonResistanceSuccess_26677)
 
   -- start sod items
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFirstAidSuccess_470345)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFirstAidSuccess_470345)
 end
 
 function me.TestCombatEventThistleTeaSuccess_9512()
