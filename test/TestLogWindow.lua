@@ -435,7 +435,7 @@ end
   Show current active session
 ]]--
 function me.ShowCurrentSession()
-  if not mod.testSessionManager or not mod.testSessionManager.IsSessionActive() then
+  if not mod.testSessionManager.IsSessionActive() then
     me.ShowEmptyState()
     return
   end
