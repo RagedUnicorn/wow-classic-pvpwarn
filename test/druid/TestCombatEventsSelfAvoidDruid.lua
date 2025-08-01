@@ -28,12 +28,12 @@ mod.testCombatEventsSelfAvoidDruid = me
 
 me.tag = "TestCombatEventsSelfAvoidDruid"
 
-local testGroupName = "CombatEventsSelfAvoidDruid"
 local testCategory = "druid"
 
 function me.Test()
   if not mod.testSessionManager.IsSessionActive() then
-    mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: /rgpvpw testselfavoidcombatevent druid")
+    mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: " ..
+      "/rgpvpw testselfavoidcombatevent druid")
     return
   end
 

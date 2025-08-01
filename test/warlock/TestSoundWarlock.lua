@@ -28,7 +28,6 @@ mod.testSoundWarlock = me
 
 me.tag = "TestSoundWarlock"
 
-local testGroupName = "SoundWarlock"
 local testCategory = "warlock"
 
 function me.Test()

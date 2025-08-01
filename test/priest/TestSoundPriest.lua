@@ -28,7 +28,6 @@ mod.testSoundPriest = me
 
 me.tag = "TestSoundPriest"
 
-local testGroupName = "SoundPriest"
 local testCategory = "priest"
 
 function me.Test()

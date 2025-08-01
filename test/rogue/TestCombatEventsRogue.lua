@@ -28,7 +28,6 @@ mod.testCombatEventsRogue = me
 
 me.tag = "TestCombatEventsRogue"
 
-local testGroupName = "CombatEventsRogue"
 local testCategory = "rogue"
 
 function me.Test()

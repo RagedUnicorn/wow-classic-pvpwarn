@@ -28,12 +28,12 @@ mod.testCombatEventsEnemyAvoidMage = me
 
 me.tag = "TestCombatEventsEnemyAvoidMage"
 
-local testGroupName = "CombatEventsEnemyAvoidMage"
 local testCategory = "mage"
 
 function me.Test()
   if not mod.testSessionManager.IsSessionActive() then
-    mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: /rgpvpw testenemycombatevent mage")
+    mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: " ..
+      "/rgpvpw testenemycombatevent mage")
     return
   end
 

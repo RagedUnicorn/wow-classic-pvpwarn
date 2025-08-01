@@ -36,14 +36,8 @@ me.maxMessages = 1000
 me.messageHeight = 14
 me.messagePadding = 2
 me.selectedSession = nil
-local sessionDropdown
 
--- Metadata keys that should be excluded from message processing
-local METADATA_KEYS = {
-  testCount = true,
-  testSuccess = true,
-  testFailure = true
-}
+local sessionDropdown
 
 -- Color codes for different message types
 me.messageColors = {
@@ -244,7 +238,6 @@ function me.AppendMessage(message, messageType, storedTimestamp)
     return
   end
 
-  -- All messages are now single-line, no need for multi-line handling
   local messageTypeToUse = messageType or me.DetermineMessageType(message)
   me.AddLogMessage(message, messageTypeToUse, storedTimestamp)
 end
