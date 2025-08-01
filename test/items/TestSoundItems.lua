@@ -46,17 +46,17 @@ function me.Test(completionCallback)
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEphemeralPower_23271)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEphemeralPower_23271)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTalismanOfEphemeralPower_23271)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownTalismanOfEphemeralPower_23271)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFireReflector_23097)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFireReflector_23097)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHyperRadiantFlameReflector_23097)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHyperRadiantFlameReflector_23097)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrostReflector_23131)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFrostReflector_23131)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGyrofreezeIceReflector_23131)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGyrofreezeIceReflector_23131)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowReflector_23132)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowReflector_23132)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundUltraFlashShadowReflector_23132)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownUltraFlashShadowReflector_23132)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSkullOfImpendingDoom_5024)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSkullOfImpendingDoom_5024)
@@ -66,7 +66,7 @@ function me.CollectTestCases()
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGoblinRocketHelmet_22641)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundNetOMatic_13120)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGnomishNetOMaticProjector_13120)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTidalCharm_835)
 
@@ -78,8 +78,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGoblinRocketBoots_8892)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGoblinRocketBoots_8892)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpeed_14530)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSpeed_14530)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundNiftyStopwatch_14530)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownNiftyStopwatch_14530)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMithrilMechanicalDragonling_23075)
 
@@ -161,65 +161,65 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowflameSword_461253)
 end
 
-function me.TestSoundEphemeralPower_23271()
+function me.TestSoundTalismanOfEphemeralPower_23271()
   mod.testHelper.TestSoundApplied(
-    "TestSoundEphemeralPower_23271",
+    "TestSoundTalismanOfEphemeralPower_23271",
     testCategory,
     23271
   )
 end
 
-function me.TestSoundDownEphemeralPower_23271()
+function me.TestSoundDownTalismanOfEphemeralPower_23271()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownEphemeralPower_23271",
+    "TestSoundDownTalismanOfEphemeralPower_23271",
     testCategory,
     23271
   )
 end
 
-function me.TestSoundFireReflector_23097()
+function me.TestSoundHyperRadiantFlameReflector_23097()
   mod.testHelper.TestSoundApplied(
-    "TestSoundFireReflector_23097",
+    "TestSoundHyperRadiantFlameReflector_23097",
     testCategory,
     23097
   )
 end
 
-function me.TestSoundDownFireReflector_23097()
+function me.TestSoundDownHyperRadiantFlameReflector_23097()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownFireReflector_23097",
+    "TestSoundDownHyperRadiantFlameReflector_23097",
     testCategory,
     23097
   )
 end
 
-function me.TestSoundFrostReflector_23131()
+function me.TestSoundGyrofreezeIceReflector_23131()
   mod.testHelper.TestSoundApplied(
-    "TestSoundFrostReflector_23131",
+    "TestSoundGyrofreezeIceReflector_23131",
     testCategory,
     23131
   )
 end
 
-function me.TestSoundDownFrostReflector_23131()
+function me.TestSoundDownGyrofreezeIceReflector_23131()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownFrostReflector_23131",
+    "TestSoundDownGyrofreezeIceReflector_23131",
     testCategory,
     23131
   )
 end
 
-function me.TestSoundShadowReflector_23132()
+function me.TestSoundUltraFlashShadowReflector_23132()
   mod.testHelper.TestSoundApplied(
-    "TestSoundShadowReflector_23132",
+    "TestSoundUltraFlashShadowReflector_23132",
     testCategory,
     23132
   )
 end
 
-function me.TestSoundDownShadowReflector_23132()
+function me.TestSoundDownUltraFlashShadowReflector_23132()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownShadowReflector_23132",
+    "TestSoundDownUltraFlashShadowReflector_23132",
     testCategory,
     23132
   )
@@ -265,9 +265,9 @@ function me.TestSoundGoblinRocketHelmet_22641()
   )
 end
 
-function me.TestSoundNetOMatic_13120()
+function me.TestSoundGnomishNetOMaticProjector_13120()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundNetOMatic_13120",
+    "TestSoundGnomishNetOMaticProjector_13120",
     testCategory,
     13120
   )
@@ -321,17 +321,17 @@ function me.TestSoundDownGoblinRocketBoots_8892()
   )
 end
 
-function me.TestSoundSpeed_14530()
+function me.TestSoundNiftyStopwatch_14530()
   mod.testHelper.TestSoundApplied(
-    "TestSoundSpeed_14530",
+    "TestSoundNiftyStopwatch_14530",
     testCategory,
     14530
   )
 end
 
-function me.TestSoundDownSpeed_14530()
+function me.TestSoundDownNiftyStopwatch_14530()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownSpeed_14530",
+    "TestSoundDownNiftyStopwatch_14530",
     testCategory,
     14530
   )
