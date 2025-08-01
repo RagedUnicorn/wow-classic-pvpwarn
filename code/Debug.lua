@@ -33,12 +33,12 @@ mod.debug = me
 me.tag = "Debug"
 
 _G["__PVPW__DEBUG__PLAYEXAMPLESOUND"] = function()
-  mod.sound.PlaySound("warrior", 2, "shield_wall")
+  mod.sound.PlaySound("warrior", RGPVPW_CONSTANTS.SPELL_TYPES.APPLIED, "shield_wall")
 end
 
 _G["__PVPW__DEBUG__SHOWEXAMPLEALERT"] = function()
   mod.visual.CreateVisualAlertFrame()
-  mod.visual.ShowVisualAlert()
+  mod.visual.ShowVisualAlert(RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue)
 end
 
 --[[
