@@ -112,7 +112,7 @@ function me.SessionDropdown_Initialize()
   if me.selectedSession then
     info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
     info.text = "Clear Selection"
-    info.value = nil
+    info.value = "clear"
     info.func = me.SessionDropdown_OnClick
     mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
   end
@@ -122,9 +122,13 @@ end
   Handle session dropdown selection
 ]]--
 function me.SessionDropdown_OnClick(self)
-  me.selectedSession = self.value
-
-  if self.value then
+  if self.value == "clear" then
+    me.selectedSession = nil
+    mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Select Session")
+    me.ShowEmptyState()
+  else
+    me.selectedSession = self.value
+    
     if self.value == "current" then
       mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, self:GetText())
       me.ShowCurrentSession()
@@ -133,9 +137,6 @@ function me.SessionDropdown_OnClick(self)
       mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, self:GetText())
       me.ShowStoredSession(groupName)
     end
-  else
-    mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Select Session")
-    me.ShowEmptyState()
   end
 
   mod.libUiDropDownMenu.CloseDropDownMenus()
