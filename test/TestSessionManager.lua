@@ -118,56 +118,54 @@ function me.StartSession(commandType, category, testFunction)
 
   mod.testReporter.StartTestGroup(sessionName)
 
-  me.SetupSessionCleanup()
-
   if mod.testLogWindow and mod.testLogWindow.OnSessionStart then
     mod.testLogWindow.OnSessionStart()
   end
 
   if type(testFunction) == "function" then
-    testFunction()
+    local completionCallback = me.CreateCompletionCallback()
+    testFunction(completionCallback)
   end
 
   return true
 end
 
 --[[
-  Set up automatic session cleanup when the test queue finishes
+  Create a completion callback for test functions to call when they finish
+
+  @return {function} - Completion callback that handles session cleanup
 ]]--
-function me.SetupSessionCleanup()
-  if not me.originalStopTestGroup then
-    me.originalStopTestGroup = mod.testReporter.StopTestGroup
-    mod.testReporter.StopTestGroup = me.WrappedStopTestGroup
-  end
-end
+function me.CreateCompletionCallback()
+  local callbackCalled = false -- Prevent multiple calls
+  
+  return function()
+    if callbackCalled then
+      mod.logger.LogInfo(me.tag, "Completion callback already called, ignoring duplicate call")
+      return
+    end
+    callbackCalled = true
+    
+    if currentSession.isActive then
+      local completedSessionName = currentSession.sessionName
+      
+      mod.logger.LogInfo(me.tag, "Test session completed: " .. completedSessionName)
 
---[[
-  Wrapped version of StopTestGroup that handles session cleanup
+      -- Create the session cleanup callback
+      local sessionCleanupCallback = function(groupName)
+        currentSession.isActive = false
+        currentSession.sessionName = nil
+        currentSession.sessionId = nil
+        currentSession.commandType = nil
+        currentSession.commandCategory = nil
+        currentSession.startTime = nil
 
-  This replaces the original StopTestGroup function to automatically
-  manage session state when tests complete
-]]--
-function me.WrappedStopTestGroup()
-  -- Call original StopTestGroup first
-  if me.originalStopTestGroup then
-    me.originalStopTestGroup()
-  end
+        if mod.testLogWindow and mod.testLogWindow.OnSessionEnd then
+          mod.testLogWindow.OnSessionEnd(completedSessionName)
+        end
+      end
 
-  -- Handle session cleanup
-  if currentSession.isActive then
-    mod.logger.LogInfo(me.tag, "Automatic test session completed: " .. currentSession.sessionName)
-
-    local completedSessionName = currentSession.sessionName
-
-    currentSession.isActive = false
-    currentSession.sessionName = nil
-    currentSession.sessionId = nil
-    currentSession.commandType = nil
-    currentSession.commandCategory = nil
-    currentSession.startTime = nil
-
-    if mod.testLogWindow and mod.testLogWindow.OnSessionEnd then
-      mod.testLogWindow.OnSessionEnd(completedSessionName)
+      -- Call StopTestGroup with the cleanup callback
+      mod.testReporter.StopTestGroup(sessionCleanupCallback)
     end
   end
 end

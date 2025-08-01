@@ -6,7 +6,7 @@ me.tag = "TestSoundEnemyAvoidWarrior"
 
 local testCategory = "warrior"
 
-function me.Test()
+function me.Test(completionCallback)
   if not mod.testSessionManager.IsSessionActive() then
     mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: /rgpvpw testenemysound warrior")
     return
@@ -15,7 +15,9 @@ function me.Test()
   me.CollectTestCases()
 
   mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- async finish of test group
+    if type(completionCallback) == "function" then
+      completionCallback()
+    end
   end)
 end
 

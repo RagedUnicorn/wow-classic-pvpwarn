@@ -107,7 +107,7 @@ end
 
   @return {boolean} - True if tests were run successfully
 ]]--
-RunTestForCategory = function(categoryName, moduleName, testType)
+RunTestForCategory = function(categoryName, moduleName, testType, completionCallback)
   local testModule = mod[moduleName]
 
   if not testModule or not testModule.Test then
@@ -119,7 +119,7 @@ RunTestForCategory = function(categoryName, moduleName, testType)
   end
 
   mod.logger.LogInfo(me.tag, "Running " .. categoryName .. " " .. testType .. " tests...")
-  testModule.Test()
+  testModule.Test(completionCallback)
 
   return true
 end
@@ -161,9 +161,24 @@ local function HandleTestCommand(commandType, testCommand, availableCategories, 
   
   if category == "all" then
     mod.logger.LogInfo(me.tag, "Starting " .. testTypeName .. " tests for ALL categories...")
-    return mod.testSessionManager.StartSession(commandType, "all", function()
+    return mod.testSessionManager.StartSession(commandType, "all", function(completionCallback)
+      local categoryList = {}
       for categoryName, moduleName in pairs(availableCategories) do
-        RunTestForCategory(categoryName, moduleName, testTypeName)
+        table.insert(categoryList, {categoryName = categoryName, moduleName = moduleName})
+      end
+      
+      local completedCount = 0
+      local totalCount = #categoryList
+      
+      local function onCategoryComplete()
+        completedCount = completedCount + 1
+        if completedCount >= totalCount then
+          completionCallback()
+        end
+      end
+      
+      for _, categoryInfo in ipairs(categoryList) do
+        RunTestForCategory(categoryInfo.categoryName, categoryInfo.moduleName, testTypeName, onCategoryComplete)
       end
     end)
   end
@@ -176,8 +191,8 @@ local function HandleTestCommand(commandType, testCommand, availableCategories, 
   end
 
   mod.logger.LogInfo(me.tag, "Starting " .. category .. " " .. testTypeName .. " tests...")
-  return mod.testSessionManager.StartSession(commandType, category, function()
-    RunTestForCategory(category, moduleName, testTypeName)
+  return mod.testSessionManager.StartSession(commandType, category, function(completionCallback)
+    RunTestForCategory(category, moduleName, testTypeName, completionCallback)
   end)
 end
 

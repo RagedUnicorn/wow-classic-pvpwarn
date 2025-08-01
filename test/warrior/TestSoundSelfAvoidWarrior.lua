@@ -31,7 +31,7 @@ me.tag = "TestSoundSelfAvoidWarrior"
 local testGroupName = "SoundSelfAvoidWarrior"
 local testCategory = "warrior"
 
-function me.Test()
+function me.Test(completionCallback)
   local isUsingSessionManager = false
 
   -- Check if session manager is handling test group management
@@ -47,7 +47,11 @@ function me.Test()
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     if not isUsingSessionManager then
-      mod.testReporter.StopTestGroup() -- async finish of test group
+      mod.testReporter.StopTestGroup(completionCallback)
+    else
+      if type(completionCallback) == "function" then
+        completionCallback()
+      end
     end
   end)
 end
