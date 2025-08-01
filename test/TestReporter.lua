@@ -70,7 +70,7 @@ end
 
 --[[
   Initialize PVPWarnTestLog structure for a test group
-  
+
   @param {string} groupName
 ]]--
 local function initializeTestLogStructure(groupName)
@@ -82,14 +82,17 @@ end
 
 --[[
   Log and display test group start message
-  
+
   @param {string} groupName
 ]]--
 local function logTestGroupStart(groupName)
   local logMessage = string.format("Starting test group with name %s", groupName)
   local sequence, timestamp = getMessageData()
-  table.insert(PVPWarnTestLog[groupName], {message = logMessage, timestamp = timestamp, sequence = sequence, messageType = "INFO"})
-  
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = logMessage, timestamp = timestamp, sequence = sequence, messageType = "INFO"}
+  )
+
   me.NotifyTestLogWindow("=== Test Group: " .. groupName .. " ===", "GROUP_HEADER")
   me.NotifyTestLogWindow(logMessage)
 end
@@ -110,7 +113,7 @@ function me.StartTestGroup(groupName)
 
   mod.testHelper.EnableTestMode()
   mod.testHelper.HookMaxWarnAge()
-  
+
   testManager.currentTestGroup = groupName
   initializeTestLogStructure(groupName)
   logTestGroupStart(groupName)
@@ -128,57 +131,85 @@ end
 
 --[[
   Log and display individual test group summary lines
-  
+
   @param {string} groupName
 ]]--
 local function logTestGroupSummary(groupName)
   local finishedMessage = string.format("Finished test group with name: %s", groupName)
   me.NotifyTestLogWindow(finishedMessage)
   local sequence1, timestamp1 = getMessageData()
-  table.insert(PVPWarnTestLog[groupName], {message = finishedMessage, timestamp = timestamp1, sequence = sequence1, messageType = "INFO"})
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = finishedMessage, timestamp = timestamp1, sequence = sequence1, messageType = "INFO"}
+  )
 
   local succeededMessage = string.format("Tests succeeded: %i", PVPWarnTestLog[groupName].testSuccess)
   me.NotifyTestLogWindow(succeededMessage, "SUCCESS")
   local sequence2, timestamp2 = getMessageData()
-  table.insert(PVPWarnTestLog[groupName], {message = succeededMessage, timestamp = timestamp2, sequence = sequence2, messageType = "SUCCESS"})
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = succeededMessage, timestamp = timestamp2, sequence = sequence2, messageType = "SUCCESS"}
+  )
 
   local failedMessage = string.format("Tests failed: %i", PVPWarnTestLog[groupName].testFailure)
   local failedMessageType = PVPWarnTestLog[groupName].testFailure > 0 and "FAILURE" or "INFO"
   me.NotifyTestLogWindow(failedMessage, failedMessageType)
   local sequence3, timestamp3 = getMessageData()
-  table.insert(PVPWarnTestLog[groupName], {message = failedMessage, timestamp = timestamp3, sequence = sequence3, messageType = failedMessageType})
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = failedMessage, timestamp = timestamp3, sequence = sequence3, messageType = failedMessageType}
+  )
 
   local totalMessage = string.format("Tests total: %i", PVPWarnTestLog[groupName].testCount)
   me.NotifyTestLogWindow(totalMessage, "INFO")
   local sequence4, timestamp4 = getMessageData()
-  table.insert(PVPWarnTestLog[groupName], {message = totalMessage, timestamp = timestamp4, sequence = sequence4, messageType = "INFO"})
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = totalMessage, timestamp = timestamp4, sequence = sequence4, messageType = "INFO"}
+  )
 end
 
 --[[
   Log and display failed test details
-  
+
   @param {string} groupName
 ]]--
 local function logFailedTests(groupName)
   if #testManager.currentFailedTests == 0 then
     return
   end
-  
+
   local failedTestsMessage = "Failed tests:"
   me.NotifyTestLogWindow(failedTestsMessage, "FAILURE")
   local failedSequence, failedTimestamp = getMessageData()
-  table.insert(PVPWarnTestLog[groupName], {message = failedTestsMessage, timestamp = failedTimestamp, sequence = failedSequence, messageType = "FAILURE"})
-  
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {
+      message = failedTestsMessage,
+      timestamp = failedTimestamp,
+      sequence = failedSequence,
+      messageType = "FAILURE"
+    }
+  )
+
   for i = 1, #testManager.currentFailedTests do
     me.NotifyTestLogWindow(testManager.currentFailedTests[i], "FAILURE")
     local testSequence, testTimestamp = getMessageData()
-    table.insert(PVPWarnTestLog[groupName], {message = testManager.currentFailedTests[i], timestamp = testTimestamp, sequence = testSequence, messageType = "FAILURE"})
+    table.insert(
+      PVPWarnTestLog[groupName],
+      {
+        message = testManager.currentFailedTests[i],
+        timestamp = testTimestamp,
+        sequence = testSequence,
+        messageType = "FAILURE"
+      }
+    )
   end
 end
 
 --[[
   Log and display final summary statistics
-  
+
   @param {string} groupName
 ]]--
 local function logFinalSummary(groupName)
@@ -189,8 +220,16 @@ local function logFinalSummary(groupName)
 
   me.NotifyTestLogWindow(summaryStats, "INFO")
   local summarySequence, summaryTimestamp = getMessageData()
-  table.insert(PVPWarnTestLog[groupName], {message = summaryStats, timestamp = summaryTimestamp, sequence = summarySequence, messageType = "INFO"})
-  
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {
+      message = summaryStats,
+      timestamp = summaryTimestamp,
+      sequence = summarySequence,
+      messageType = "INFO"
+    }
+  )
+
   me.NotifyTestLogWindow("", "SEPARATOR")
 end
 
@@ -204,11 +243,11 @@ function me.StopTestGroup()
   end
 
   local groupName = testManager.currentTestGroup
-  
+
   logFailedTests(groupName)
   logTestGroupSummary(groupName)
   logFinalSummary(groupName)
-  
+
   mod.testHelper.RestoreMaxWarnAge()
   mod.testHelper.DisableTestMode()
 
@@ -238,7 +277,15 @@ function me.StartTestRun(testName)
   PVPWarnTestLog[testManager.currentTestGroup][testName] = {}
   PVPWarnTestLog[testManager.currentTestGroup][testName].status = nil
   local sequence, timestamp = getMessageData()
-  table.insert(PVPWarnTestLog[testManager.currentTestGroup][testName], {message = logMessage, timestamp = timestamp, sequence = sequence, messageType = "INFO"})
+  table.insert(
+    PVPWarnTestLog[testManager.currentTestGroup][testName],
+    {
+      message = logMessage,
+      timestamp = timestamp,
+      sequence = sequence,
+      messageType = "INFO"
+    }
+  )
 
   me.NotifyTestLogWindow(logMessage)
 end
@@ -258,7 +305,15 @@ function me.ReportSuccessTestRun()
     PVPWarnTestLog[testManager.currentTestGroup].testSuccess + 1
   PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest].status = "SUCCESS"
   local sequence, timestamp = getMessageData()
-  table.insert(PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest], {message = logMessage, timestamp = timestamp, sequence = sequence, messageType = "SUCCESS"})
+  table.insert(
+    PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest],
+    {
+      message = logMessage,
+      timestamp = timestamp,
+      sequence = sequence,
+      messageType = "SUCCESS"
+    }
+  )
 
   me.NotifyTestLogWindow(logMessage, "SUCCESS")
 
@@ -280,20 +335,35 @@ function me.ReportFailureTestRun(category, testName, reason)
   end
 
   local logMessage = string.format("Test with name %s finished with status FAILURE", testManager.currentTest)
-  
+
   if reason then
     local failureDetail = category .. " : " .. testName .. " - " .. reason
     me.NotifyTestLogWindow(failureDetail, "FAILURE")
     local sequence, timestamp = getMessageData()
-    table.insert(PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest], {message = failureDetail, timestamp = timestamp, sequence = sequence, messageType = "FAILURE"})
+    table.insert(
+      PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest],
+      {
+        message = failureDetail,
+        timestamp = timestamp,
+        sequence = sequence,
+        messageType = "FAILURE"
+      }
+    )
   end
 
   PVPWarnTestLog[testManager.currentTestGroup].testFailure =
     PVPWarnTestLog[testManager.currentTestGroup].testFailure + 1
   PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest].status = "FAILURE"
   local sequence, timestamp = getMessageData()
-  table.insert(PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest], {message = logMessage, timestamp = timestamp, sequence = sequence, messageType = "FAILURE"})
-
+  table.insert(
+    PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest],
+    {
+      message = logMessage,
+      timestamp = timestamp,
+      sequence = sequence,
+      messageType = "FAILURE"
+    }
+  )
   table.insert(testManager.currentFailedTests, category .. " - " .. testName)
 
   me.NotifyTestLogWindow(logMessage, "FAILURE")

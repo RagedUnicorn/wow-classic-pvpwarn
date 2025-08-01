@@ -190,7 +190,7 @@ function me.HandleSound(testCommand)
 
   if not success then
     return
-  end  
+  end
 end
 
 --[[

@@ -28,7 +28,6 @@ mod.testSoundEnemyAvoidDruid = me
 
 me.tag = "TestSoundEnemyAvoidDruid"
 
-local testGroupName = "SoundEnemyAvoidDruid"
 local testCategory = "druid"
 
 function me.Test()

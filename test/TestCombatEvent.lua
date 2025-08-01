@@ -51,7 +51,7 @@ local testGroupName = "ShouldHaveCombatEventTestForAllTrackedEvents"
 ]]--
 function me.Test(categoryName)
   local isUsingSessionManager = false
-  
+
   -- Check if session manager is handling test group management
   if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
     -- Session manager is active, just collect tests without managing test group

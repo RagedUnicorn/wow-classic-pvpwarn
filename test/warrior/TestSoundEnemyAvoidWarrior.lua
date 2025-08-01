@@ -4,7 +4,6 @@ mod.testSoundEnemyAvoidWarrior = me
 
 me.tag = "TestSoundEnemyAvoidWarrior"
 
-local testGroupName = "SoundEnemyAvoidWarrior"
 local testCategory = "warrior"
 
 function me.Test()
