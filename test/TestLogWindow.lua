@@ -161,7 +161,8 @@ local function extractAllMessages(testLog)
             session = sessionName,
             message = value.message,
             timestamp = value.timestamp,
-            sequence = value.sequence
+            sequence = value.sequence,
+            messageType = value.messageType
           })
         elseif type(value) == "table" and type(key) == "string" and key:match("^Test") then
           -- This is a test case, extract its messages
@@ -172,7 +173,8 @@ local function extractAllMessages(testLog)
                 test = key,
                 message = testMessage.message,
                 timestamp = testMessage.timestamp,
-                sequence = testMessage.sequence
+                sequence = testMessage.sequence,
+                messageType = testMessage.messageType
               })
             end
           end
@@ -211,7 +213,7 @@ function me.LoadTestLogs()
 
   -- For multiple sessions, display all messages in global chronological order
   for _, msgData in ipairs(sortedMessages) do
-    local messageType = me.DetermineMessageType(msgData.message)
+    local messageType = msgData.messageType or me.DetermineMessageType(msgData.message)
     me.AppendMessage(msgData.message, messageType, msgData.timestamp)
   end
 end
@@ -224,7 +226,7 @@ end
 function me.ProcessTestMessages(testData)
   for _, testMessage in ipairs(testData) do
     if type(testMessage) == "table" and testMessage.message then
-      local messageType = me.DetermineMessageType(testMessage.message)
+      local messageType = testMessage.messageType or me.DetermineMessageType(testMessage.message)
       me.AppendMessage(testMessage.message, messageType, testMessage.timestamp)
     end
   end
@@ -242,21 +244,9 @@ function me.AppendMessage(message, messageType, storedTimestamp)
     return
   end
 
-  local lines = {}
-
-  for line in string.gmatch(message, "[^\r\n]+") do
-    table.insert(lines, line)
-  end
-
-  if #lines == 0 then
-    local messageTypeToUse = messageType or me.DetermineMessageType(message)
-    me.AddLogMessage(message, messageTypeToUse, storedTimestamp)
-  else
-    for _, line in ipairs(lines) do
-      local messageTypeToUse = messageType or me.DetermineMessageType(line)
-      me.AddLogMessage(line, messageTypeToUse, storedTimestamp)
-    end
-  end
+  -- All messages are now single-line, no need for multi-line handling
+  local messageTypeToUse = messageType or me.DetermineMessageType(message)
+  me.AddLogMessage(message, messageTypeToUse, storedTimestamp)
 end
 
 --[[
@@ -465,8 +455,10 @@ function me.DetermineMessageType(message)
 
   if message:find("Tests succeeded:") then
     return "SUCCESS"
-  elseif message:find("Tests failed:") then
+  elseif message:find("Tests failed:") and not message:find("Tests failed: 0") then
     return "FAILURE"
+  elseif message:find("Tests failed: 0") or message:find("Tests total:") then
+    return "INFO"
   end
 
   return "INFO"
@@ -535,7 +527,7 @@ function me.LoadSpecificSession(sessionName)
 
   -- Display messages in chronological order
   for _, msgData in ipairs(sortedMessages) do
-    local messageType = me.DetermineMessageType(msgData.message)
+    local messageType = msgData.messageType or me.DetermineMessageType(msgData.message)
     me.AppendMessage(msgData.message, messageType, msgData.timestamp)
   end
 
