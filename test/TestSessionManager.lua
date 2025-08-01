@@ -136,15 +136,7 @@ end
   @return {function} - Completion callback that handles session cleanup
 ]]--
 function me.CreateCompletionCallback()
-  local callbackCalled = false -- Prevent multiple calls
-
   return function()
-    if callbackCalled then
-      mod.logger.LogInfo(me.tag, "Completion callback already called, ignoring duplicate call")
-      return
-    end
-    callbackCalled = true
-
     if currentSession.isActive then
       local completedSessionName = currentSession.sessionName
 
