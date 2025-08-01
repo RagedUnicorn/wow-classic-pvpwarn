@@ -274,6 +274,7 @@ function me.StartTestRun(testName)
 
   local logMessage = string.format("Starting test with name %s", testName)
 
+  me.NotifyTestLogWindow(logMessage, "INFO")
   PVPWarnTestLog[testManager.currentTestGroup][testName] = {}
   PVPWarnTestLog[testManager.currentTestGroup][testName].status = nil
   local sequence, timestamp = getMessageData()
@@ -286,8 +287,6 @@ function me.StartTestRun(testName)
       messageType = "INFO"
     }
   )
-
-  me.NotifyTestLogWindow(logMessage)
 end
 
 --[[
@@ -301,6 +300,7 @@ function me.ReportSuccessTestRun()
 
   local logMessage = string.format("Test with name %s finished with status SUCCESS", testManager.currentTest)
 
+  me.NotifyTestLogWindow(logMessage, "SUCCESS")
   PVPWarnTestLog[testManager.currentTestGroup].testSuccess =
     PVPWarnTestLog[testManager.currentTestGroup].testSuccess + 1
   PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest].status = "SUCCESS"
@@ -314,8 +314,6 @@ function me.ReportSuccessTestRun()
       messageType = "SUCCESS"
     }
   )
-
-  me.NotifyTestLogWindow(logMessage, "SUCCESS")
 
   testManager.currentTest = nil
 end
@@ -336,6 +334,7 @@ function me.ReportFailureTestRun(category, testName, reason)
 
   local logMessage = string.format("Test with name %s finished with status FAILURE", testManager.currentTest)
 
+  me.NotifyTestLogWindow(logMessage, "FAILURE")
   if reason then
     local failureDetail = category .. " : " .. testName .. " - " .. reason
     me.NotifyTestLogWindow(failureDetail, "FAILURE")
