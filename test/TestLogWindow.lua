@@ -135,34 +135,55 @@ end
   @param {table} testLog - The test log data structure
   @return {table} - Array of message objects with timestamps
 ]]--
+local function extractSessionMessage(sessionName, key, value)
+  if type(key) == "number" and value.message and value.timestamp then
+    return {
+      session = sessionName,
+      message = value.message,
+      timestamp = value.timestamp,
+      sequence = value.sequence,
+      messageType = value.messageType
+    }
+  end
+  return nil
+end
+
+local function extractTestMessages(sessionName, testName, testData)
+  local messages = {}
+
+  for _, testMessage in ipairs(testData) do
+    if type(testMessage) == "table" and testMessage.message and testMessage.timestamp then
+      table.insert(messages, {
+        session = sessionName,
+        test = testName,
+        message = testMessage.message,
+        timestamp = testMessage.timestamp,
+        sequence = testMessage.sequence,
+        messageType = testMessage.messageType
+      })
+    end
+  end
+  return messages
+end
+
 local function extractAllMessages(testLog)
   local messages = {}
 
-  -- Iterate through each test session
   for sessionName, sessionData in pairs(testLog) do
     if type(sessionData) == "table" then
-      -- Check if it's a direct message entry (numbered)
       for key, value in pairs(sessionData) do
-        if type(key) == "number" and type(value) == "table" and value.message and value.timestamp then
-          table.insert(messages, {
-            session = sessionName,
-            message = value.message,
-            timestamp = value.timestamp,
-            sequence = value.sequence,
-            messageType = value.messageType
-          })
-        elseif type(value) == "table" and type(key) == "string" and (key:match("^Test") or key:match("TestPresent")) then
-          -- This is a test case, extract its messages
-          for _, testMessage in ipairs(value) do
-            if type(testMessage) == "table" and testMessage.message and testMessage.timestamp then
-              table.insert(messages, {
-                session = sessionName,
-                test = key,
-                message = testMessage.message,
-                timestamp = testMessage.timestamp,
-                sequence = testMessage.sequence,
-                messageType = testMessage.messageType
-              })
+        if type(value) == "table" then
+          -- Session-level message
+          local sessionMessage = extractSessionMessage(sessionName, key, value)
+
+          if sessionMessage then
+            table.insert(messages, sessionMessage)
+          -- Test case messages
+          elseif type(key) == "string" and key:match("^Test") then
+            local testMessages = extractTestMessages(sessionName, key, value)
+
+            for _, msg in ipairs(testMessages) do
+              table.insert(messages, msg)
             end
           end
         end
