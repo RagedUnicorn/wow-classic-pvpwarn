@@ -128,7 +128,7 @@ function me.SessionDropdown_OnClick(self)
     me.ShowEmptyState()
   else
     me.selectedSession = self.value
-    
+
     if self.value == "current" then
       mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, self:GetText())
       me.ShowCurrentSession()
@@ -143,52 +143,89 @@ function me.SessionDropdown_OnClick(self)
 end
 
 --[[
-  Load test logs from PVPWarnTestLog SavedVariable
+  Extract all messages with timestamps from the test log
+
+  @param {table} testLog - The test log data structure
+  @return {table} - Array of message objects with timestamps
+]]--
+local function extractAllMessages(testLog)
+  local messages = {}
+
+  -- Iterate through each test session
+  for sessionName, sessionData in pairs(testLog) do
+    if type(sessionData) == "table" then
+      -- Check if it's a direct message entry (numbered)
+      for key, value in pairs(sessionData) do
+        if type(key) == "number" and type(value) == "table" and value.message and value.timestamp then
+          table.insert(messages, {
+            session = sessionName,
+            message = value.message,
+            timestamp = value.timestamp,
+            sequence = value.sequence
+          })
+        elseif type(value) == "table" and type(key) == "string" and key:match("^Test") then
+          -- This is a test case, extract its messages
+          for _, testMessage in ipairs(value) do
+            if type(testMessage) == "table" and testMessage.message and testMessage.timestamp then
+              table.insert(messages, {
+                session = sessionName,
+                test = key,
+                message = testMessage.message,
+                timestamp = testMessage.timestamp,
+                sequence = testMessage.sequence
+              })
+            end
+          end
+        end
+      end
+    end
+  end
+
+  return messages
+end
+
+--[[
+  Sort messages by sequence number for guaranteed chronological order
+
+  @param {table} messages - Array of message objects
+  @return {table} - Sorted array of message objects
+]]--
+local function sortMessagesBySequence(messages)
+  table.sort(messages, function(a, b)
+    return a.sequence < b.sequence
+  end)
+  return messages
+end
+
+--[[
+  Load test logs from PVPWarnTestLog SavedVariable with sequence-based sorting
 ]]--
 function me.LoadTestLogs()
   if not PVPWarnTestLog then return end
 
   me.ClearLog()
 
-  for groupName, groupData in pairs(PVPWarnTestLog) do
-    if type(groupData) == "table" then
-      me.AppendMessage("=== Test Group: " .. groupName .. " ===", "GROUP_HEADER")
+  -- Extract and sort all messages by sequence number across all sessions
+  local allMessages = extractAllMessages(PVPWarnTestLog)
+  local sortedMessages = sortMessagesBySequence(allMessages)
 
-      if groupData.testCount then
-        me.AppendMessage(string.format("Total: %d, Success: %d, Failure: %d",
-          groupData.testCount or 0,
-          groupData.testSuccess or 0,
-          groupData.testFailure or 0), "INFO")
-      end
-
-      for _, message in ipairs(groupData) do
-        if type(message) == "string" then
-          local messageType = me.DetermineMessageType(message)
-          me.AppendMessage(message, messageType)
-        end
-      end
-
-      for testName, testData in pairs(groupData) do
-        if type(testData) == "table" and not METADATA_KEYS[testName] then
-          me.ProcessTestMessages(testData)
-        end
-      end
-
-      me.AppendMessage("", "SEPARATOR")
-    end
+  -- For multiple sessions, display all messages in global chronological order
+  for _, msgData in ipairs(sortedMessages) do
+    local messageType = me.DetermineMessageType(msgData.message)
+    me.AppendMessage(msgData.message, messageType, msgData.timestamp)
   end
 end
 
 --[[
   Process test messages from test data
 
-  @param {table} testData - Array of test messages
+  @param {table} testData - Array of test message objects
 ]]--
 function me.ProcessTestMessages(testData)
   for _, testMessage in ipairs(testData) do
-    if type(testMessage) == "string" then
-      local messageType = me.DetermineMessageType(testMessage)
-      me.AppendMessage(testMessage, messageType)
+    if type(testMessage) == "table" and testMessage.message then
+      local messageType = me.DetermineMessageType(testMessage.message)
+      me.AppendMessage(testMessage.message, messageType, testMessage.timestamp)
     end
   end
 end
@@ -198,8 +235,9 @@ end
 
   @param {string} message - The message to add
   @param {string} messageType - Type of message (SUCCESS, FAILURE, INFO, etc.)
+  @param {number} storedTimestamp - Optional stored timestamp from session data
 ]]--
-function me.AppendMessage(message, messageType)
+function me.AppendMessage(message, messageType, storedTimestamp)
   if not message or message == "" then
     return
   end
@@ -212,11 +250,11 @@ function me.AppendMessage(message, messageType)
 
   if #lines == 0 then
     local messageTypeToUse = messageType or me.DetermineMessageType(message)
-    me.AddLogMessage(message, messageTypeToUse)
+    me.AddLogMessage(message, messageTypeToUse, storedTimestamp)
   else
     for _, line in ipairs(lines) do
       local messageTypeToUse = messageType or me.DetermineMessageType(line)
-      me.AddLogMessage(line, messageTypeToUse)
+      me.AddLogMessage(line, messageTypeToUse, storedTimestamp)
     end
   end
 end
@@ -232,7 +270,6 @@ function me.Show()
     return
   end
 
-  -- Create dropdown if it hasn't been created yet
   if not sessionDropdown then
     me.CreateSessionDropdown(testLogWindow)
   end
@@ -279,8 +316,9 @@ end
 
   @param {string} message - The message to display
   @param {string} messageType - Type of message (SUCCESS, FAILURE, INFO, GROUP_HEADER, SEPARATOR)
+  @param {number} storedTimestamp - Optional stored timestamp from session data
 ]]--
-function me.AddLogMessage(message, messageType)
+function me.AddLogMessage(message, messageType, storedTimestamp)
   local testLogWindow = _G["PVPW_TestLogWindow"]
 
   if not testLogWindow then return end
@@ -300,7 +338,7 @@ function me.AddLogMessage(message, messageType)
 
   if not scrollFrame or not scrollChild then return end
 
-  local messageFrame = me.CreateMessageFrame(scrollChild, message, messageType)
+  local messageFrame = me.CreateMessageFrame(scrollChild, message, messageType, storedTimestamp)
   local yOffset = -(#me.logMessages * (me.messageHeight + me.messagePadding))
   messageFrame:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 0, yOffset)
 
@@ -336,17 +374,27 @@ end
   @param {Frame} parent - Parent frame
   @param {string} message - The message to display
   @param {string} messageType - Type of message
+  @param {number} storedTimestamp - Optional stored timestamp from session data
 
   @return {Frame} - Created message frame
 ]]--
-function me.CreateMessageFrame(parent, message, messageType)
+function me.CreateMessageFrame(parent, message, messageType, storedTimestamp)
   local frame = CreateFrame("Frame", nil, parent)
   frame:SetHeight(me.messageHeight)
   frame:SetWidth(parent:GetWidth())
 
   local timestamp = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
   timestamp:SetPoint("LEFT", frame, "LEFT", 0, 0)
-  timestamp:SetText(date("%H:%M:%S"))
+
+  local timestampText
+  if storedTimestamp and storedTimestamp > 0 then
+    local seconds = math.floor(storedTimestamp)
+    timestampText = date("%H:%M:%S", seconds)
+  else
+    timestampText = date("%H:%M:%S")
+  end
+  timestamp:SetText(timestampText)
+
   timestamp:SetTextColor(unpack(me.messageColors.TIMESTAMP))
   timestamp:SetWidth(60)
   timestamp:SetJustifyH("LEFT")
@@ -469,7 +517,7 @@ function me.ShowStoredSession(groupName)
 end
 
 --[[
-  Load specific session data
+  Load specific session data with sequence-based sorting
 
   @param {string} sessionName - Session name to load
 ]]--
@@ -478,28 +526,17 @@ function me.LoadSpecificSession(sessionName)
     return
   end
 
-  local groupData = PVPWarnTestLog[sessionName]
+  local sessionData = {}
+  sessionData[sessionName] = PVPWarnTestLog[sessionName]
 
-  me.AppendMessage("=== Test Session: " .. sessionName .. " ===", "GROUP_HEADER")
+  -- Extract and sort all messages by sequence number
+  local allMessages = extractAllMessages(sessionData)
+  local sortedMessages = sortMessagesBySequence(allMessages)
 
-  if groupData.testCount then
-    me.AppendMessage(string.format("Total: %d, Success: %d, Failure: %d",
-      groupData.testCount or 0,
-      groupData.testSuccess or 0,
-      groupData.testFailure or 0), "INFO")
-  end
-
-  for _, message in ipairs(groupData) do
-    if type(message) == "string" then
-      local messageType = me.DetermineMessageType(message)
-      me.AppendMessage(message, messageType)
-    end
-  end
-
-  for testName, testData in pairs(groupData) do
-    if type(testData) == "table" and not METADATA_KEYS[testName] then
-      me.ProcessTestMessages(testData)
-    end
+  -- Display messages in chronological order
+  for _, msgData in ipairs(sortedMessages) do
+    local messageType = me.DetermineMessageType(msgData.message)
+    me.AppendMessage(msgData.message, messageType, msgData.timestamp)
   end
 
   me.AppendMessage("", "SEPARATOR")
