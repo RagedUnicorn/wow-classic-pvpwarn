@@ -419,7 +419,7 @@ function me.RepositionMessages()
 end
 
 --[[
-  Clear all log messages
+  Clear all log messages from display
 ]]--
 function me.ClearLog()
   for _, messageFrame in ipairs(me.logMessages) do
@@ -435,7 +435,31 @@ function me.ClearLog()
     scrollChild:SetHeight(1)
   end
 
-  mod.logger.LogInfo(me.tag, "Test log cleared")
+  mod.logger.LogInfo(me.tag, "Test log display cleared")
+end
+
+--[[
+  Show confirmation dialog for clearing all saved logs
+]]--
+function me.ConfirmClearAllLogs()
+  StaticPopup_Show("PVPW_CONFIRM_CLEAR_ALL_LOGS")
+end
+
+--[[
+  Clear all saved test logs and display
+]]--
+function me.ClearAllSavedLogs()
+  mod.testReporter.ClearSavedTestReports()
+  me.ClearLog()
+  me.selectedSession = nil
+
+  if sessionDropdown then
+    mod.libUiDropDownMenu.UiDropDownMenu_Initialize(sessionDropdown, me.SessionDropdown_Initialize)
+    mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Select Session")
+  end
+
+  me.ShowEmptyState()
+  mod.logger.LogInfo(me.tag, "All saved test logs cleared")
 end
 
 --[[
@@ -612,3 +636,17 @@ function me.OnSessionEnd(completedSessionName)
     end
   end)
 end
+
+-- StaticPopup for confirming clear all logs action
+StaticPopupDialogs["PVPW_CONFIRM_CLEAR_ALL_LOGS"] = {
+  text = "Are you sure you want to delete ALL saved test logs?\n\nThis action cannot be undone!",
+  button1 = "Yes, Delete All",
+  button2 = "Cancel",
+  OnAccept = function()
+    mod.testLogWindow.ClearAllSavedLogs()
+  end,
+  timeout = 0,
+  whileDead = true,
+  hideOnEscape = true,
+  preferredIndex = 3, -- avoid taint issues
+}
