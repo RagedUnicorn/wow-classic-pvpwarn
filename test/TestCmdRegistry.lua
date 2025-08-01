@@ -41,10 +41,6 @@ function me.Initialize()
     return
   end
 
-  -- Initialize session manager
-  if mod.testSessionManager then
-    mod.testSessionManager.Initialize()
-  end
 
   -- Register test log window commands
   mod.cmd.RegisterCommand("testlog", function(args)
