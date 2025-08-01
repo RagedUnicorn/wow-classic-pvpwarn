@@ -30,6 +30,5 @@ RGPVPW_ENVIRONMENT = {
   LOG_LEVEL = 4,
   LOG_EVENT = true,
   DEBUG = true,
-  TEST = false, -- changed by testing framework
-  TEST_LOG_TO_WINDOW = true -- controls whether test messages appear in test log window
+  TEST = false -- changed by testing framework
 }

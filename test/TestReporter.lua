@@ -335,7 +335,7 @@ end
   @param {string} messageType - Optional message type
 ]]--
 function me.NotifyTestLogWindow(message, messageType)
-  if not RGPVPW_ENVIRONMENT.TEST_LOG_TO_WINDOW or not mod.testLogWindow or not message then
+  if not mod.testLogWindow or not message then
     return
   end
 
