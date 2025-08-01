@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetAddOnMetadata DEFAULT_CHAT_FRAME C_Timer
+-- luacheck: globals GetAddOnMetadata DEFAULT_CHAT_FRAME C_Timer GetTime time
 
 local mod = rgpvpw
 local me = {}
@@ -40,6 +40,22 @@ local testQueueWithDelay = {}
 
 if PVPWarnTestLog == nil then
   PVPWarnTestLog = {}
+end
+
+-- Global sequence counter for message ordering
+local messageSequence = 0
+
+--[[
+  Get next sequence number and current timestamp for message ordering
+
+  @return {number, number} - sequence number, timestamp
+]]--
+local function getMessageData()
+  messageSequence = messageSequence + 1
+  local baseTime = time()
+  local gameTime = GetTime()
+  local fractionalSeconds = gameTime - math.floor(gameTime)
+  return messageSequence, baseTime + fractionalSeconds
 end
 
 --[[
@@ -107,7 +123,9 @@ function me.StartTestGroup(groupName)
   PVPWarnTestLog[groupName].testCount = 0
   PVPWarnTestLog[groupName].testSuccess = 0
   PVPWarnTestLog[groupName].testFailure = 0
-  table.insert(PVPWarnTestLog[groupName], logMessage)
+
+  local sequence, timestamp = getMessageData()
+  table.insert(PVPWarnTestLog[groupName], {message = logMessage, timestamp = timestamp, sequence = sequence})
 
   me.NotifyTestLogWindow("=== Test Group: " .. groupName .. " ===", "GROUP_HEADER")
   me.NotifyTestLogWindow(logMessage)
@@ -127,7 +145,6 @@ end
   Stopping a test group
 ]]--
 function me.StopTestGroup()
-
   if testManager.currentTestGroup == nil then
     mod.logger.LogError(me.tag, "No running test group found to stop")
     return
@@ -155,7 +172,8 @@ function me.StopTestGroup()
     me.AddLine()
   end
 
-  table.insert(PVPWarnTestLog[testManager.currentTestGroup], logMessage)
+  local sequence, timestamp = getMessageData()
+  table.insert(PVPWarnTestLog[testManager.currentTestGroup], {message = logMessage, timestamp = timestamp, sequence = sequence})
   mod.testHelper.RestoreMaxWarnAge()
   mod.testHelper.DisableTestMode()
   me.NotifyTestLogWindow(logMessage)
@@ -195,7 +213,8 @@ function me.StartTestRun(testName)
 
   PVPWarnTestLog[testManager.currentTestGroup][testName] = {}
   PVPWarnTestLog[testManager.currentTestGroup][testName].status = nil
-  table.insert(PVPWarnTestLog[testManager.currentTestGroup][testName], logMessage)
+  local sequence, timestamp = getMessageData()
+  table.insert(PVPWarnTestLog[testManager.currentTestGroup][testName], {message = logMessage, timestamp = timestamp, sequence = sequence})
 
   me.NotifyTestLogWindow(logMessage)
 end
@@ -215,7 +234,8 @@ function me.ReportSuccessTestRun()
   PVPWarnTestLog[testManager.currentTestGroup].testSuccess =
     PVPWarnTestLog[testManager.currentTestGroup].testSuccess + 1
   PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest].status = "SUCCESS"
-  table.insert(PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest], logMessage)
+  local sequence, timestamp = getMessageData()
+  table.insert(PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest], {message = logMessage, timestamp = timestamp, sequence = sequence})
 
   me.NotifyTestLogWindow(logMessage, "SUCCESS")
 
@@ -246,7 +266,8 @@ function me.ReportFailureTestRun(category, testName, reason)
   PVPWarnTestLog[testManager.currentTestGroup].testFailure =
     PVPWarnTestLog[testManager.currentTestGroup].testFailure + 1
   PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest].status = "FAILURE"
-  table.insert(PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest], logMessage)
+  local sequence, timestamp = getMessageData()
+  table.insert(PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest], {message = logMessage, timestamp = timestamp, sequence = sequence})
 
   table.insert(testManager.currentFailedTests, category .. " - " .. testName)
 
