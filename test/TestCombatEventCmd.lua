@@ -147,50 +147,47 @@ function me.ShowCombatEventHelp()
 end
 
 --[[
+  Generic handler for test commands - handles both "all" and single category cases
+
+  @param {string} commandType - Session command type (e.g., "CombatEvent", "SelfCombatEvent")
+  @param {string} testCommand - The test command to execute
+  @param {table} availableCategories - Table of available categories
+  @param {string} testTypeName - Display name for test type (e.g., "combat event", "self avoid combat event")
+  @param {function} helpFunction - Function to show help on error
+  @return {boolean|nil} - Success status or nil if error occurred
+]]--
+local function HandleTestCommand(commandType, testCommand, availableCategories, testTypeName, helpFunction)
+  local category = string.lower(testCommand)
+  
+  if category == "all" then
+    mod.logger.LogInfo(me.tag, "Starting " .. testTypeName .. " tests for ALL categories...")
+    return mod.testSessionManager.StartSession(commandType, "all", function()
+      for categoryName, moduleName in pairs(availableCategories) do
+        RunTestForCategory(categoryName, moduleName, testTypeName)
+      end
+    end)
+  end
+
+  local moduleName = availableCategories[category]
+  if not moduleName then
+    mod.logger.LogError(me.tag, "Unknown " .. testTypeName .. " category: " .. testCommand)
+    helpFunction()
+    return
+  end
+
+  mod.logger.LogInfo(me.tag, "Starting " .. category .. " " .. testTypeName .. " tests...")
+  return mod.testSessionManager.StartSession(commandType, category, function()
+    RunTestForCategory(category, moduleName, testTypeName)
+  end)
+end
+
+--[[
   Handle test combat event commands
 
   @param {string} testCommand - The test command to execute
 ]]--
 function me.HandleCombatEvent(testCommand)
-  local availableCategories = GetAvailableCategories()
-  local category = string.lower(testCommand)
-
-  if category == "all" then
-    mod.logger.LogInfo(me.tag, "Starting combat event tests for ALL categories...")
-
-    -- Start automatic session for "all" category tests
-    local success = mod.testSessionManager.StartAutoSession("CombatEvent", "all", function()
-      for categoryName, moduleName in pairs(availableCategories) do
-        RunTestForCategory(categoryName, moduleName, "combat event")
-      end
-    end)
-
-    if not success then
-      return
-    end
-
-    return
-  end
-
-  local moduleName = availableCategories[category]
-
-  if not moduleName then
-    mod.logger.LogError(me.tag, "Unknown category: " .. testCommand)
-    me.ShowCombatEventHelp()
-
-    return
-  end
-
-  mod.logger.LogInfo(me.tag, "Starting " .. category .. " combat event tests...")
-
-  -- Start automatic session for single category test
-  local success = mod.testSessionManager.StartAutoSession("CombatEvent", category, function()
-    RunTestForCategory(category, moduleName, "combat event")
-  end)
-
-  if not success then
-    return
-  end
+  HandleTestCommand("CombatEvent", testCommand, GetAvailableCategories(), "combat event", me.ShowCombatEventHelp)
 end
 
 --[[
@@ -220,45 +217,7 @@ end
   @param {string} testCommand - The test command to execute
 ]]--
 function me.HandleSelfCombatEvent(testCommand)
-  local availableCategories = GetAvailableSelfAvoidCategories()
-  local category = string.lower(testCommand)
-
-  if category == "all" then
-    mod.logger.LogInfo(me.tag, "Starting self avoid combat event tests for ALL categories...")
-
-    -- Start automatic session for "all" category tests
-    local success = mod.testSessionManager.StartAutoSession("SelfCombatEvent", "all", function()
-      for categoryName, moduleName in pairs(availableCategories) do
-        RunTestForCategory(categoryName, moduleName, "self avoid combat event")
-      end
-    end)
-
-    if not success then
-      return
-    end
-
-    return
-  end
-
-  local moduleName = availableCategories[category]
-
-  if not moduleName then
-    mod.logger.LogError(me.tag, "Unknown self avoid category: " .. testCommand)
-    me.ShowSelfCombatEventHelp()
-
-    return
-  end
-
-  mod.logger.LogInfo(me.tag, "Starting " .. category .. " self avoid combat event tests...")
-
-  -- Start automatic session for single category test
-  local success = mod.testSessionManager.StartAutoSession("SelfCombatEvent", category, function()
-    RunTestForCategory(category, moduleName, "self avoid combat event")
-  end)
-
-  if not success then
-    return
-  end
+  HandleTestCommand("SelfCombatEvent", testCommand, GetAvailableSelfAvoidCategories(), "self avoid combat event", me.ShowSelfCombatEventHelp)
 end
 
 --[[
@@ -288,43 +247,5 @@ end
   @param {string} testCommand - The test command to execute
 ]]--
 function me.HandleEnemyCombatEvent(testCommand)
-  local availableCategories = GetAvailableEnemyAvoidCategories()
-  local category = string.lower(testCommand)
-
-  if category == "all" then
-    mod.logger.LogInfo(me.tag, "Starting enemy avoid combat event tests for ALL categories...")
-
-    -- Start automatic session for "all" category tests
-    local success = mod.testSessionManager.StartAutoSession("EnemyCombatEvent", "all", function()
-      for categoryName, moduleName in pairs(availableCategories) do
-        RunTestForCategory(categoryName, moduleName, "enemy avoid combat event")
-      end
-    end)
-
-    if not success then
-      return
-    end
-
-    return
-  end
-
-  local moduleName = availableCategories[category]
-
-  if not moduleName then
-    mod.logger.LogError(me.tag, "Unknown enemy avoid category: " .. testCommand)
-    me.ShowEnemyCombatEventHelp()
-
-    return
-  end
-
-  mod.logger.LogInfo(me.tag, "Starting " .. category .. " enemy avoid combat event tests...")
-
-  -- Start automatic session for single category test
-  local success = mod.testSessionManager.StartAutoSession("EnemyCombatEvent", category, function()
-    RunTestForCategory(category, moduleName, "enemy avoid combat event")
-  end)
-
-  if not success then
-    return
-  end
+  HandleTestCommand("EnemyCombatEvent", testCommand, GetAvailableEnemyAvoidCategories(), "enemy avoid combat event", me.ShowEnemyCombatEventHelp)
 end

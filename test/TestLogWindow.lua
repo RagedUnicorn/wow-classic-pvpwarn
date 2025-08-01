@@ -51,13 +51,6 @@ me.messageColors = {
   TIMESTAMP = {0.6, 0.6, 0.6}       -- Gray for timestamps
 }
 
---[[
-  Initialize test log window
-]]--
-function me.Initialize()
-  me.initialized = true
-  mod.logger.LogInfo(me.tag, "Test log window initialized")
-end
 
 --[[
   Create session dropdown following VoicePackMenu pattern
@@ -88,10 +81,10 @@ function me.SessionDropdown_Initialize()
     mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
   end
 
-  -- Add all AutoSession entries from PVPWarnTestLog
+  -- Add all test session entries from PVPWarnTestLog
   if PVPWarnTestLog then
     for groupName, groupData in pairs(PVPWarnTestLog) do
-      if type(groupData) == "table" and groupName:match("^AutoSession_") then
+      if type(groupData) == "table" and groupName:match("^%w+_%w+_%d+_%d+$") then
         info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
         info.text = groupName
         info.value = "session_" .. groupName

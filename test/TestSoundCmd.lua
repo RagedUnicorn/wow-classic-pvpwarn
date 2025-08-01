@@ -115,6 +115,7 @@ RunTestForCategory = function(categoryName, moduleName, testType)
       me.tag,
       testType .. " test module for category '" .. categoryName .. "' not found or missing Test() function"
     )
+
     return false
   end
 
@@ -147,50 +148,47 @@ function me.ShowSoundHelp()
 end
 
 --[[
+  Generic handler for test commands - handles both "all" and single category cases
+
+  @param {string} commandType - Session command type (e.g., "Sound", "SelfSound")
+  @param {string} testCommand - The test command to execute
+  @param {table} availableCategories - Table of available categories
+  @param {string} testTypeName - Display name for test type (e.g., "sound", "self avoid sound")
+  @param {function} helpFunction - Function to show help on error
+  @return {boolean|nil} - Success status or nil if error occurred
+]]--
+local function HandleTestCommand(commandType, testCommand, availableCategories, testTypeName, helpFunction)
+  local category = string.lower(testCommand)
+  
+  if category == "all" then
+    mod.logger.LogInfo(me.tag, "Starting " .. testTypeName .. " tests for ALL categories...")
+    return mod.testSessionManager.StartSession(commandType, "all", function()
+      for categoryName, moduleName in pairs(availableCategories) do
+        RunTestForCategory(categoryName, moduleName, testTypeName)
+      end
+    end)
+  end
+
+  local moduleName = availableCategories[category]
+  if not moduleName then
+    mod.logger.LogError(me.tag, "Unknown " .. testTypeName .. " category: " .. testCommand)
+    helpFunction()
+    return
+  end
+
+  mod.logger.LogInfo(me.tag, "Starting " .. category .. " " .. testTypeName .. " tests...")
+  return mod.testSessionManager.StartSession(commandType, category, function()
+    RunTestForCategory(category, moduleName, testTypeName)
+  end)
+end
+
+--[[
   Handle test sound commands
 
   @param {string} testCommand - The test command to execute
 ]]--
 function me.HandleSound(testCommand)
-  local availableCategories = GetAvailableCategories()
-  local category = string.lower(testCommand)
-
-  if category == "all" then
-    mod.logger.LogInfo(me.tag, "Starting sound tests for ALL categories...")
-
-    -- Start automatic session for "all" category tests
-    local success = mod.testSessionManager.StartAutoSession("Sound", "all", function()
-      for categoryName, moduleName in pairs(availableCategories) do
-        RunTestForCategory(categoryName, moduleName, "sound")
-      end
-    end)
-
-    if not success then
-      return
-    end
-
-    return
-  end
-
-  local moduleName = availableCategories[category]
-
-  if not moduleName then
-    mod.logger.LogError(me.tag, "Unknown category: " .. testCommand)
-    me.ShowSoundHelp()
-
-    return
-  end
-
-  mod.logger.LogInfo(me.tag, "Starting " .. category .. " sound tests...")
-
-  -- Start automatic session for single category test
-  local success = mod.testSessionManager.StartAutoSession("Sound", category, function()
-    RunTestForCategory(category, moduleName, "sound")
-  end)
-
-  if not success then
-    return
-  end
+  HandleTestCommand("Sound", testCommand, GetAvailableCategories(), "sound", me.ShowSoundHelp)
 end
 
 --[[
@@ -220,45 +218,7 @@ end
   @param {string} testCommand - The test command to execute
 ]]--
 function me.HandleSelfSound(testCommand)
-  local availableCategories = GetAvailableSelfAvoidCategories()
-  local category = string.lower(testCommand)
-
-  if category == "all" then
-    mod.logger.LogInfo(me.tag, "Starting self avoid sound tests for ALL categories...")
-
-    -- Start automatic session for "all" category tests
-    local success = mod.testSessionManager.StartAutoSession("SelfSound", "all", function()
-      for categoryName, moduleName in pairs(availableCategories) do
-        RunTestForCategory(categoryName, moduleName, "self avoid sound")
-      end
-    end)
-
-    if not success then
-      return
-    end
-
-    return
-  end
-
-  local moduleName = availableCategories[category]
-
-  if not moduleName then
-    mod.logger.LogError(me.tag, "Unknown self avoid category: " .. testCommand)
-    me.ShowSelfSoundHelp()
-
-    return
-  end
-
-  mod.logger.LogInfo(me.tag, "Starting " .. category .. " self avoid sound tests...")
-
-  -- Start automatic session for single category test
-  local success = mod.testSessionManager.StartAutoSession("SelfSound", category, function()
-    RunTestForCategory(category, moduleName, "self avoid sound")
-  end)
-
-  if not success then
-    return
-  end
+  HandleTestCommand("SelfSound", testCommand, GetAvailableSelfAvoidCategories(), "self avoid sound", me.ShowSelfSoundHelp)
 end
 
 --[[
@@ -288,43 +248,5 @@ end
   @param {string} testCommand - The test command to execute
 ]]--
 function me.HandleEnemySound(testCommand)
-  local availableCategories = GetAvailableEnemyAvoidCategories()
-  local category = string.lower(testCommand)
-
-  if category == "all" then
-    mod.logger.LogInfo(me.tag, "Starting enemy avoid sound tests for ALL categories...")
-
-    -- Start automatic session for "all" category tests
-    local success = mod.testSessionManager.StartAutoSession("EnemySound", "all", function()
-      for categoryName, moduleName in pairs(availableCategories) do
-        RunTestForCategory(categoryName, moduleName, "enemy avoid sound")
-      end
-    end)
-
-    if not success then
-      return
-    end
-
-    return
-  end
-
-  local moduleName = availableCategories[category]
-
-  if not moduleName then
-    mod.logger.LogError(me.tag, "Unknown enemy avoid category: " .. testCommand)
-    me.ShowEnemySoundHelp()
-
-    return
-  end
-
-  mod.logger.LogInfo(me.tag, "Starting " .. category .. " enemy avoid sound tests...")
-
-  -- Start automatic session for single category test
-  local success = mod.testSessionManager.StartAutoSession("EnemySound", category, function()
-    RunTestForCategory(category, moduleName, "enemy avoid sound")
-  end)
-
-  if not success then
-    return
-  end
+  HandleTestCommand("EnemySound", testCommand, GetAvailableEnemyAvoidCategories(), "enemy avoid sound", me.ShowEnemySoundHelp)
 end

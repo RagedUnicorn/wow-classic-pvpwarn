@@ -25,7 +25,7 @@
 
 -- luacheck: globals date
 
--- Automatic test session management for PVPWarn addon
+-- Test session management for PVPWarn addon
 -- Manages complete test lifecycle with single entry point through commands
 -- Ensures only one session can be active at a time
 
@@ -45,12 +45,6 @@ local currentSession = {
   startTime = nil
 }
 
---[[
-  Initialize session manager
-]]--
-function me.Initialize()
-  mod.logger.LogInfo(me.tag, "Test session manager initialized")
-end
 
 --[[
   Check if a test session is currently active
@@ -90,7 +84,7 @@ end
 ]]--
 local function GenerateSessionName(commandType, category)
   local timestamp = date("%Y%m%d_%H%M%S")
-  return string.format("AutoSession_%s_%s_%s", commandType, category, timestamp)
+  return string.format("%s_%s_%s", commandType, category, timestamp)
 end
 
 --[[
@@ -102,11 +96,11 @@ end
 
   @return {boolean} - True if session started successfully
 ]]--
-function me.StartAutoSession(commandType, category, testFunction)
-
+function me.StartSession(commandType, category, testFunction)
   if currentSession.isActive then
     mod.logger.LogError(me.tag,
       "Cannot start new session - session '" .. currentSession.sessionName .. "' is already active")
+
     return false
   end
 
@@ -120,7 +114,7 @@ function me.StartAutoSession(commandType, category, testFunction)
   currentSession.commandCategory = category
   currentSession.startTime = date("%Y-%m-%d %H:%M:%S")
 
-  mod.logger.LogInfo(me.tag, "Starting automatic test session: " .. sessionName)
+  mod.logger.LogInfo(me.tag, "Starting test session: " .. sessionName)
 
   mod.testReporter.StartTestGroup(sessionName)
 
@@ -177,4 +171,3 @@ function me.WrappedStopTestGroup()
     end
   end
 end
-
