@@ -55,6 +55,25 @@
         </Scripts>
       </Button>
 
+      <!-- Clear All Logs button -->
+      <Button name="$parentClearAllButton" inherits="UIPanelButtonTemplate" text="Clear All Logs">
+        <Size>
+          <AbsDimension x="120" y="22"/>
+        </Size>
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" relativeTo="$parentClearButton" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="-5" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            rgpvpw.testLogWindow.ConfirmClearAllLogs()
+          </OnClick>
+        </Scripts>
+      </Button>
+
       <!-- Auto-scroll checkbox -->
       <CheckButton name="$parentAutoScrollCheckBox" inherits="UICheckButtonTemplate">
         <Size>
