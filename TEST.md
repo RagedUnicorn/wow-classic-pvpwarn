@@ -38,6 +38,7 @@ The test log window provides a comprehensive interface for viewing test results 
 
 #### Test Log Window Features
 
+- **Auto-open**: Window automatically opens when any test starts (if not already visible)
 - **Session Management**: View results from current and previous test sessions
 - **Real-time Updates**: See test results as they execute
 - **Filtering**: Focus on specific test categories or sessions
