@@ -232,7 +232,13 @@ end
   @param {string} testCommand - The test command to execute
 ]]--
 function me.HandleSelfCombatEvent(testCommand)
-  HandleTestCommand("SelfCombatEvent", testCommand, GetAvailableSelfAvoidCategories(), "self avoid combat event", me.ShowSelfCombatEventHelp)
+  HandleTestCommand(
+    "SelfCombatEvent",
+    testCommand,
+    GetAvailableSelfAvoidCategories(),
+    "self avoid combat event",
+    me.ShowSelfCombatEventHelp
+  )
 end
 
 --[[
@@ -262,5 +268,11 @@ end
   @param {string} testCommand - The test command to execute
 ]]--
 function me.HandleEnemyCombatEvent(testCommand)
-  HandleTestCommand("EnemyCombatEvent", testCommand, GetAvailableEnemyAvoidCategories(), "enemy avoid combat event", me.ShowEnemyCombatEventHelp)
+  HandleTestCommand(
+    "EnemyCombatEvent",
+    testCommand,
+    GetAvailableEnemyAvoidCategories(),
+    "enemy avoid combat event",
+    me.ShowEnemyCombatEventHelp
+  )
 end
