@@ -137,21 +137,21 @@ end
 ]]--
 function me.CreateCompletionCallback()
   local callbackCalled = false -- Prevent multiple calls
-  
+
   return function()
     if callbackCalled then
       mod.logger.LogInfo(me.tag, "Completion callback already called, ignoring duplicate call")
       return
     end
     callbackCalled = true
-    
+
     if currentSession.isActive then
       local completedSessionName = currentSession.sessionName
-      
+
       mod.logger.LogInfo(me.tag, "Test session completed: " .. completedSessionName)
 
       -- Create the session cleanup callback
-      local sessionCleanupCallback = function(groupName)
+      local sessionCleanupCallback = function()
         currentSession.isActive = false
         currentSession.sessionName = nil
         currentSession.sessionId = nil

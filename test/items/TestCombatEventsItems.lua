@@ -48,119 +48,119 @@ function me.Test(completionCallback)
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEphemeralPowerApplied_23271)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventEphemeralPowerRemoved_23271)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEphemeralPowerApplied_23271)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEphemeralPowerRemoved_23271)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireReflectorApplied_23097)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFireReflectorRemoved_23097)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFireReflectorApplied_23097)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFireReflectorRemoved_23097)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostReflectorApplied_23131)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventFrostReflectorRemoved_23131)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFrostReflectorApplied_23131)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFrostReflectorRemoved_23131)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowReflectorApplied_23132)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowReflectorRemoved_23132)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowReflectorApplied_23132)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowReflectorRemoved_23132)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSkullOfImpendingDoomApplied_5024)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSkullOfImpendingDoomRemoved_5024)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSkullOfImpendingDoomApplied_5024)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSkullOfImpendingDoomRemoved_5024)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpiderBeltApplied_9774)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpiderBeltRemoved_9774)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpiderBeltApplied_9774)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpiderBeltRemoved_9774)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGoblinRocketHelmetSuccess_22641)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGoblinRocketHelmetSuccess_22641)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventNetOMaticSuccess_13120)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventNetOMaticSuccess_13120)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTidalCharmSuccess_835)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTidalCharmSuccess_835)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGnomishMindControlCapSuccess_13180)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGnomishMindControlCapSuccess_13180)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGnomishRocketBootsApplied)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGnomishRocketBootsRemoved)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGnomishRocketBootsApplied)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGnomishRocketBootsRemoved)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGoblinRocketBootsApplied_8892)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGoblinRocketBootsRemoved_8892)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGoblinRocketBootsApplied_8892)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGoblinRocketBootsRemoved_8892)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpeedApplied_14530)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSpeedRemoved_14530)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpeedApplied_14530)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpeedRemoved_14530)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMithrilMechanicalDragonlingSuccess_23075)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMithrilMechanicalDragonlingSuccess_23075)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInsigniaWarriorHunterShamanSuccess_5579)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInsigniaWarriorHunterShamanSuccess_5579)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInsigniaWarlockRogueSuccess_23273)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInsigniaWarlockRogueSuccess_23273)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInsigniaMageSuccess_23274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInsigniaMageSuccess_23274)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInsigniaPriestPaladinSuccess_23276)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInsigniaPriestPaladinSuccess_23276)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventInsigniaDruidSuccess_23277)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInsigniaDruidSuccess_23277)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArenaGrandMasterApplied_23506)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventArenaGrandMasterRemoved_23506)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventArenaGrandMasterApplied_23506)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventArenaGrandMasterRemoved_23506)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventSmolderwebsEyeSuccess_17330)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSmolderwebsEyeSuccess_17330)
 
   -- start sod items
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGreaterInsigniaSuccess_438273)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterInsigniaSuccess_438273)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventBloodCakedInsigniaSuccess)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodCakedInsigniaSuccess)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVoidTouchedLeatherGauntletsApplied_429868)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventVoidTouchedLeatherGauntletsRemoved_429868)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVoidTouchedLeatherGauntletsApplied_429868)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVoidTouchedLeatherGauntletsRemoved_429868)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExtraplanarSpidersilkBootsApplied_428489)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventExtraplanarSpidersilkBootsRemoved_428489)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventExtraplanarSpidersilkBootsApplied_428489)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventExtraplanarSpidersilkBootsRemoved_428489)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGneuroLinkedArcanoFilamentMonocleApplied_437327)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGneuroLinkedArcanoFilamentMonocleRemoved_437327)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGneuroLinkedArcanoFilamentMonocleApplied_437327)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGneuroLinkedArcanoFilamentMonocleRemoved_437327)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGlowingGneuroLinkedCowlApplied_437349)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGlowingGneuroLinkedCowlRemoved_437349)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGlowingGneuroLinkedCowlApplied_437349)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGlowingGneuroLinkedCowlRemoved_437349)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTemperedInterferenceNegatingHelmetApplied_437377)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventTemperedInterferenceNegatingHelmetRemoved_437377)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTemperedInterferenceNegatingHelmetApplied_437377)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTemperedInterferenceNegatingHelmetRemoved_437377)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGneuroConductiveChannelersHoodApplied_437357)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGneuroConductiveChannelersHoodRemoved_437357)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGneuroConductiveChannelersHoodApplied_437357)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGneuroConductiveChannelersHoodRemoved_437357)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventReflectiveTruesilverBraincageApplied_437382)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventReflectiveTruesilverBraincageRemoved_437382)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventReflectiveTruesilverBraincageApplied_437382)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventReflectiveTruesilverBraincageRemoved_437382)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGlowingHyperconductiveScaleCoifApplied_437362)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGlowingHyperconductiveScaleCoifRemoved_437362)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGlowingHyperconductiveScaleCoifApplied_437362)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGlowingHyperconductiveScaleCoifRemoved_437362)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHyperconductiveGoldwrapApplied_437699)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHyperconductiveGoldwrapRemoved_437699)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHyperconductiveGoldwrapApplied_437699)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHyperconductiveGoldwrapRemoved_437699)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHyperconductiveGoldwrapApplied_437698)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventHyperconductiveGoldwrapRemoved_437698)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHyperconductiveGoldwrapApplied_437698)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHyperconductiveGoldwrapRemoved_437698)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCatnipApplied_13494)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventCatnipRemoved_13494)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCatnipApplied_13494)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCatnipRemoved_13494)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventDomesticatedAttackChickenSuccess_436069)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDomesticatedAttackChickenSuccess_436069)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGniodinePillBottleApplied_435895)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGniodinePillBottleRemoved_435895)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGniodinePillBottleApplied_435895)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGniodinePillBottleRemoved_435895)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWirdalsHardenedCoreApplied_435359)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWirdalsHardenedCoreRemoved_435359)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWirdalsHardenedCoreApplied_435359)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWirdalsHardenedCoreRemoved_435359)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMiniaturizedFireExtinguisherSuccess_461231)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMiniaturizedFireExtinguisherSuccess_461231)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWoodcarvedMoonstalkerApplied_461235)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventWoodcarvedMoonstalkerRemoved_461235)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWoodcarvedMoonstalkerApplied_461235)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWoodcarvedMoonstalkerRemoved_461235)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGerminatingPoisonseedApplied_461227)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventGerminatingPoisonseedRemoved_461227)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGerminatingPoisonseedApplied_461227)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGerminatingPoisonseedRemoved_461227)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAccursedChaliceApplied_461224)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventAccursedChaliceRemoved_461224)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAccursedChaliceApplied_461224)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAccursedChaliceRemoved_461224)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventMarlisEyeSuccess_467720)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMarlisEyeSuccess_467720)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowflameSwordApplied_461253)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventShadowflameSwordRemoved_461253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowflameSwordApplied_461253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowflameSwordRemoved_461253)
 end
 
 function me.TestCombatEventEphemeralPowerApplied_23271()

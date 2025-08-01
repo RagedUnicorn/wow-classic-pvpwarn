@@ -159,7 +159,7 @@ end
 ]]--
 local function HandleTestCommand(commandType, testCommand, availableCategories, testTypeName, helpFunction)
   local category = string.lower(testCommand)
-  
+
   if category == "all" then
     mod.logger.LogInfo(me.tag, "Starting " .. testTypeName .. " tests for ALL categories...")
     return mod.testSessionManager.StartSession(commandType, "all", function(completionCallback)
@@ -167,17 +167,17 @@ local function HandleTestCommand(commandType, testCommand, availableCategories, 
       for categoryName, moduleName in pairs(availableCategories) do
         table.insert(categoryList, {categoryName = categoryName, moduleName = moduleName})
       end
-      
+
       local completedCount = 0
       local totalCount = #categoryList
-      
+
       local function onCategoryComplete()
         completedCount = completedCount + 1
         if completedCount >= totalCount then
           completionCallback()
         end
       end
-      
+
       for _, categoryInfo in ipairs(categoryList) do
         RunTestForCategory(categoryInfo.categoryName, categoryInfo.moduleName, testTypeName, onCategoryComplete)
       end
@@ -233,7 +233,13 @@ end
   @param {string} testCommand - The test command to execute
 ]]--
 function me.HandleSelfSound(testCommand)
-  HandleTestCommand("SelfSound", testCommand, GetAvailableSelfAvoidCategories(), "self avoid sound", me.ShowSelfSoundHelp)
+  HandleTestCommand(
+    "SelfSound",
+    testCommand,
+    GetAvailableSelfAvoidCategories(),
+    "self avoid sound",
+    me.ShowSelfSoundHelp
+  )
 end
 
 --[[
@@ -263,5 +269,11 @@ end
   @param {string} testCommand - The test command to execute
 ]]--
 function me.HandleEnemySound(testCommand)
-  HandleTestCommand("EnemySound", testCommand, GetAvailableEnemyAvoidCategories(), "enemy avoid sound", me.ShowEnemySoundHelp)
+  HandleTestCommand(
+    "EnemySound",
+    testCommand,
+    GetAvailableEnemyAvoidCategories(),
+    "enemy avoid sound",
+    me.ShowEnemySoundHelp
+  )
 end
