@@ -32,23 +32,15 @@ local testGroupName = "CombatEventsRacials"
 local testCategory = "racials"
 
 function me.Test()
-  local isUsingSessionManager = false
-
-  -- Check if session manager is handling test group management
-  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
-    -- Session manager is active, just collect tests without managing test group
-    isUsingSessionManager = true
-    me.CollectTestCases()
-  else
-    -- No session manager, handle test group ourselves
-    mod.testReporter.StartTestGroup(testGroupName)
-    me.CollectTestCases()
+  if not mod.testSessionManager.IsSessionActive() then
+    mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: /rgpvpw testcombatevent racials")
+    return
   end
 
+  me.CollectTestCases()
+
   mod.testReporter.PlayTestQueueWithDelay(function()
-    if not isUsingSessionManager then
-      mod.testReporter.StopTestGroup() -- async finish of test group
-    end
+    mod.testReporter.StopTestGroup() -- async finish of test group
   end)
 end
 

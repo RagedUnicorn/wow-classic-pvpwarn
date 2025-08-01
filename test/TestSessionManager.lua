@@ -26,7 +26,7 @@
 -- luacheck: globals date
 
 -- Automatic test session management for PVPWarn addon
--- Provides automatic session wrapping for test commands without breaking existing API
+-- Manages complete test lifecycle with single entry point through commands
 -- Ensures only one session can be active at a time
 
 local mod = rgpvpw
@@ -76,6 +76,7 @@ function me.GetCurrentSession()
       startTime = currentSession.startTime
     }
   end
+
   return nil
 end
 
@@ -109,12 +110,9 @@ function me.StartAutoSession(commandType, category, testFunction)
     return false
   end
 
-  -- TestReporter.StartTestGroup will now auto-stop any existing test group
-
   local sessionName = GenerateSessionName(commandType, category)
   local sessionId = date("%Y%m%d_%H%M%S")
 
-  -- Update current session state
   currentSession.isActive = true
   currentSession.sessionName = sessionName
   currentSession.sessionId = sessionId
@@ -124,18 +122,14 @@ function me.StartAutoSession(commandType, category, testFunction)
 
   mod.logger.LogInfo(me.tag, "Starting automatic test session: " .. sessionName)
 
-
-  -- Start the actual test group with the generated name
   mod.testReporter.StartTestGroup(sessionName)
 
-  -- Execute the test function
   if type(testFunction) == "function" then
     testFunction()
   end
 
   me.SetupSessionCleanup()
 
-  -- Notify test log window that a session has started
   if mod.testLogWindow and mod.testLogWindow.OnSessionStart then
     mod.testLogWindow.OnSessionStart()
   end
@@ -160,17 +154,17 @@ end
   manage session state when tests complete
 ]]--
 function me.WrappedStopTestGroup()
+  -- Call original StopTestGroup first
   if me.originalStopTestGroup then
     me.originalStopTestGroup()
   end
 
+  -- Handle session cleanup
   if currentSession.isActive then
     mod.logger.LogInfo(me.tag, "Automatic test session completed: " .. currentSession.sessionName)
 
-    -- Store session name before clearing
     local completedSessionName = currentSession.sessionName
 
-    -- Reset current session
     currentSession.isActive = false
     currentSession.sessionName = nil
     currentSession.sessionId = nil
@@ -178,22 +172,9 @@ function me.WrappedStopTestGroup()
     currentSession.commandCategory = nil
     currentSession.startTime = nil
 
-    -- Notify test log window that session has ended
     if mod.testLogWindow and mod.testLogWindow.OnSessionEnd then
       mod.testLogWindow.OnSessionEnd(completedSessionName)
     end
   end
 end
 
---[[
-  Force clear TestReporter state to allow new test group to start
-]]--
-function me.ForceStopAnyActiveTestGroup()
-  -- Use the proper cleanup function added to TestReporter
-  if mod.testReporter and mod.testReporter.ForceResetTestManager then
-    mod.logger.LogInfo(me.tag, "Calling ForceResetTestManager to clear TestReporter state")
-    mod.testReporter.ForceResetTestManager()
-  else
-    mod.logger.LogWarn(me.tag, "ForceResetTestManager not available on TestReporter")
-  end
-end
