@@ -108,8 +108,8 @@ function me.Initialize()
   me.cmd.SetupSlashCmdList()
 
   -- setup test commands (development/debug only)
-  if RGPVPW_ENVIRONMENT.DEBUG and me.testCmd and me.testCmd.Initialize then
-    me.testCmd.Initialize()
+  if RGPVPW_ENVIRONMENT.DEBUG and me.testCmdRegistry and me.testCmdRegistry.Initialize then
+    me.testCmdRegistry.Initialize()
   end
   -- register default voice pack
   me.voicePack.RegisterDefaultVoicePack()
