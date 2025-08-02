@@ -48,17 +48,17 @@ function me.Test(completionCallback)
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEphemeralPowerApplied_23271)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEphemeralPowerRemoved_23271)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTalismanOfEphemeralPowerApplied_23271)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTalismanOfEphemeralPowerRemoved_23271)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFireReflectorApplied_23097)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFireReflectorRemoved_23097)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHyperRadiantFlameReflectorApplied_23097)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHyperRadiantFlameReflectorRemoved_23097)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFrostReflectorApplied_23131)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFrostReflectorRemoved_23131)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGyrofreezeIceReflectorApplied_23131)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGyrofreezeIceReflectorRemoved_23131)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowReflectorApplied_23132)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowReflectorRemoved_23132)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventUltraFlashShadowReflectorApplied_23132)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventUltraFlashShadowReflectorRemoved_23132)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSkullOfImpendingDoomApplied_5024)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSkullOfImpendingDoomRemoved_5024)
@@ -68,20 +68,20 @@ function me.CollectTestCases()
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGoblinRocketHelmetSuccess_22641)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventNetOMaticSuccess_13120)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGnomishNetOMaticProjectorSuccess_13120)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTidalCharmSuccess_835)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGnomishMindControlCapSuccess_13180)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGnomishRocketBootsApplied)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGnomishRocketBootsRemoved)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGnomishRocketBootsApplied_13141)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGnomishRocketBootsRemoved_13141)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGoblinRocketBootsApplied_8892)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGoblinRocketBootsRemoved_8892)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpeedApplied_14530)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpeedRemoved_14530)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventNiftyStopwatchApplied_14530)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventNiftyStopwatchRemoved_14530)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMithrilMechanicalDragonlingSuccess_23075)
 
@@ -101,12 +101,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSmolderwebsEyeSuccess_17330)
 
   -- start sod items
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterInsigniaSuccess_438273)
+  mod.testReporter.AddToTestQueueImmediate(TestCombatEventGreaterInsigniaOfTheHordeSuccess_438273)
+  mod.testReporter.AddToTestQueueImmediate(TestCombatEventGreaterInsigniaOfTheAllianceSuccess_438273)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodCakedInsigniaSuccess)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodCakedInsigniaSuccess_474386)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVoidTouchedLeatherGauntletsApplied_429868)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVoidTouchedLeatherGauntletsRemoved_429868)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVoidTouchedLeatherGauntletsGlovesApplied_429868)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVoidTouchedLeatherGauntletsGlovesRemoved_429868)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventExtraplanarSpidersilkBootsApplied_428489)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventExtraplanarSpidersilkBootsRemoved_428489)
@@ -163,72 +164,72 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowflameSwordRemoved_461253)
 end
 
-function me.TestCombatEventEphemeralPowerApplied_23271()
+function me.TestCombatEventTalismanOfEphemeralPowerApplied_23271()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventEphemeralPowerApplied_23271",
+    "TestCombatEventTalismanOfEphemeralPowerApplied_23271",
     testCategory,
     "Ephemeral Power",
     23271
   )
 end
 
-function me.TestCombatEventEphemeralPowerRemoved_23271()
+function me.TestCombatEventTalismanOfEphemeralPowerRemoved_23271()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventEphemeralPowerRemoved_23271",
+    "TestCombatEventTalismanOfEphemeralPowerRemoved_23271",
     testCategory,
     "Ephemeral Power",
     23271
   )
 end
 
-function me.TestCombatEventFireReflectorApplied_23097()
+function me.TestCombatEventHyperRadiantFlameReflectorApplied_23097()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventFireReflectorApplied_23097",
+    "TestCombatEventHyperRadiantFlameReflectorApplied_23097",
     testCategory,
     "Fire Reflector",
     23097
   )
 end
 
-function me.TestCombatEventFireReflectorRemoved_23097()
+function me.TestCombatEventHyperRadiantFlameReflectorRemoved_23097()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventFireReflectorRemoved_23097",
+    "TestCombatEventHyperRadiantFlameReflectorRemoved_23097",
     testCategory,
     "Fire Reflector",
     23097
   )
 end
 
-function me.TestCombatEventFrostReflectorApplied_23131()
+function me.TestCombatEventGyrofreezeIceReflectorApplied_23131()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventFrostReflectorApplied_23131",
+    "TestCombatEventGyrofreezeIceReflectorApplied_23131",
     testCategory,
     "Frost Reflector",
     23131
   )
 end
 
-function me.TestCombatEventFrostReflectorRemoved_23131()
+function me.TestCombatEventGyrofreezeIceReflectorRemoved_23131()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventFrostReflectorRemoved_23131",
+    "TestCombatEventGyrofreezeIceReflectorRemoved_23131",
     testCategory,
     "Frost Reflector",
     23131
   )
 end
 
-function me.TestCombatEventShadowReflectorApplied_23132()
+function me.TestCombatEventUltraFlashShadowReflectorApplied_23132()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventShadowReflectorApplied_23132",
+    "TestCombatEventUltraFlashShadowReflectorApplied_23132",
     testCategory,
     "Shadow Reflector",
     23132
   )
 end
 
-function me.TestCombatEventShadowReflectorRemoved_23132()
+function me.TestCombatEventUltraFlashShadowReflectorRemoved_23132()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventShadowReflectorRemoved_23132",
+    "TestCombatEventUltraFlashShadowReflectorRemoved_23132",
     testCategory,
     "Shadow Reflector",
     23132
@@ -280,9 +281,9 @@ function me.TestCombatEventGoblinRocketHelmetSuccess_22641()
   )
 end
 
-function me.TestCombatEventNetOMaticSuccess_13120()
+function me.TestCombatEventGnomishNetOMaticProjectorSuccess_13120()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventNetOMaticSuccess_13120",
+    "TestCombatEventGnomishNetOMaticProjectorSuccess_13120",
     testCategory,
     "Net-o-Matic",
     13120
@@ -307,18 +308,18 @@ function me.TestCombatEventGnomishMindControlCapSuccess_13180()
   )
 end
 
-function me.TestCombatEventGnomishRocketBootsApplied()
+function me.TestCombatEventGnomishRocketBootsApplied_13141()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventGnomishRocketBootsApplied",
+    "TestCombatEventGnomishRocketBootsApplied_13141",
     testCategory,
     "Gnomish Rocket Boots",
     13141
   )
 end
 
-function me.TestCombatEventGnomishRocketBootsRemoved()
+function me.TestCombatEventGnomishRocketBootsRemoved_13141()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventGnomishRocketBootsRemoved",
+    "TestCombatEventGnomishRocketBootsRemoved_13141",
     testCategory,
     "Gnomish Rocket Boots",
     13141
@@ -343,18 +344,18 @@ function me.TestCombatEventGoblinRocketBootsRemoved_8892()
   )
 end
 
-function me.TestCombatEventSpeedApplied_14530()
+function me.TestCombatEventNiftyStopwatchApplied_14530()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventSpeedApplied_14530",
+    "TestCombatEventNiftyStopwatchApplied_14530",
     testCategory,
     "Speed",
     14530
   )
 end
 
-function me.TestCombatEventSpeedRemoved_14530()
+function me.TestCombatEventNiftyStopwatchRemoved_14530()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventSpeedRemoved_14530",
+    "TestCombatEventNiftyStopwatchRemoved_14530",
     testCategory,
     "Speed",
     14530
@@ -442,7 +443,7 @@ function me.TestCombatEventSmolderwebsEyeSuccess_17330()
   )
 end
 
-function me.TestCombatEventGreaterInsigniaSuccess_438273()
+function me.TestCombatEventGreaterInsigniaOfTheHordeSuccess_438273()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventGreaterInsigniaSuccess_438273",
     testCategory,
@@ -453,27 +454,38 @@ function me.TestCombatEventGreaterInsigniaSuccess_438273()
   )
 end
 
-function me.TestCombatEventBloodCakedInsigniaSuccess()
+function me.TestCombatEventGreaterInsigniaOfTheAllianceSuccess_438273()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventBloodCakedInsigniaSuccess",
+    "TestCombatEventGreaterInsigniaSuccess_438273",
+    testCategory,
+    UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde"
+      and "Greater Insignia of the Alliance"
+      or "Greater Insignia of the Horder",
+    438273
+  )
+end
+
+function me.TestCombatEventBloodCakedInsigniaSuccess_474386()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventBloodCakedInsigniaSuccess_474386",
     testCategory,
     "Blood-Caked Insignia",
     474386
   )
 end
 
-function me.TestCombatEventVoidTouchedLeatherGauntletsApplied_429868()
+function me.TestCombatEventVoidTouchedLeatherGauntletsGlovesApplied_429868()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventVoidTouchedLeatherGauntletsApplied_429868",
+    "TestCombatEventVoidTouchedLeatherGauntletsGlovesApplied_429868",
     testCategory,
     "Void-Touched Leather Gauntlets/Gloves",
     429868
   )
 end
 
-function me.TestCombatEventVoidTouchedLeatherGauntletsRemoved_429868()
+function me.TestCombatEventVoidTouchedLeatherGauntletsGlovesRemoved_429868()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventVoidTouchedLeatherGauntletsRemoved_429868",
+    "TestCombatEventVoidTouchedLeatherGauntletsGlovesRemoved_429868",
     testCategory,
     "Void-Touched Leather Gauntlets/Gloves",
     429868

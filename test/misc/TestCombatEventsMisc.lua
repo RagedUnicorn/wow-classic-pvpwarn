@@ -79,8 +79,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRestorativePotionApplied_11359)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRestorativePotionRemoved_11359)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLivingFreeActionApplied_24364)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLivingFreeActionRemoved_24364)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLivingActionPotionApplied_24364)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLivingActionPotionRemoved_24364)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFreeActionPotionApplied_6615)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFreeActionPotionRemoved_6615)
@@ -317,18 +317,18 @@ function me.TestCombatEventRestorativePotionRemoved_11359()
   )
 end
 
-function me.TestCombatEventLivingFreeActionApplied_24364()
+function me.TestCombatEventLivingActionPotionApplied_24364()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventLivingFreeActionApplied_24364",
+    "TestCombatEventLivingActionPotionApplied_24364",
     testCategory,
     "Living Free Action",
     24364
   )
 end
 
-function me.TestCombatEventLivingFreeActionRemoved_24364()
+function me.TestCombatEventLivingActionPotionRemoved_24364()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventLivingFreeActionRemoved_24364",
+    "TestCombatEventLivingActionPotionRemoved_24364",
     testCategory,
     "Living Free Action",
     24364
