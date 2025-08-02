@@ -47,39 +47,39 @@ function me.Test(completionCallback)
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeStunDodge_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeStunBlock_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeStunParry_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeStunMiss_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeStunResist_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeStunImmune_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeStunReflect_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeStunAbsorbIgnored_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeDodge_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeBlock_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeParry_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeMiss_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeResist_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeImmune_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeReflect_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChargeAbsorbIgnored_7922)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunDodge_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunBlock_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunParry_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunMiss_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunResist_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunImmune_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunReflect_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunDodge_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunBlock_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunParry_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunMiss_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunResist_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunImmune_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunReflect_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunDodge_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunBlock_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunParry_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunMiss_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunResist_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunImmune_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunReflect_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptDodge_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptBlock_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptParry_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptMiss_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptResist_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptImmune_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptReflect_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptAbsorbIgnored_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptDodge_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptBlock_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptParry_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptMiss_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptResist_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptImmune_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptReflect_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptAbsorbIgnored_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptDodge_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptBlock_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptParry_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptMiss_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptResist_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptImmune_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptReflect_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidInterceptAbsorbIgnored_20614)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringDodge_7373)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringBlock_7373)
@@ -184,9 +184,9 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDisarmAbsorbIgnored_676)
 end
 
-function me.TestCombatEventSelfAvoidChargeStunDodge_7922()
+function me.TestCombatEventSelfAvoidChargeDodge_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidChargeStunDodge_7922",
+    "TestCombatEventSelfAvoidChargeDodge_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -195,9 +195,9 @@ function me.TestCombatEventSelfAvoidChargeStunDodge_7922()
   )
 end
 
-function me.TestCombatEventSelfAvoidChargeStunBlock_7922()
+function me.TestCombatEventSelfAvoidChargeBlock_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidChargeStunBlock_7922",
+    "TestCombatEventSelfAvoidChargeBlock_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -206,9 +206,9 @@ function me.TestCombatEventSelfAvoidChargeStunBlock_7922()
   )
 end
 
-function me.TestCombatEventSelfAvoidChargeStunParry_7922()
+function me.TestCombatEventSelfAvoidChargeParry_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidChargeStunParry_7922",
+    "TestCombatEventSelfAvoidChargeParry_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -217,9 +217,9 @@ function me.TestCombatEventSelfAvoidChargeStunParry_7922()
   )
 end
 
-function me.TestCombatEventSelfAvoidChargeStunMiss_7922()
+function me.TestCombatEventSelfAvoidChargeMiss_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidChargeStunMiss_7922",
+    "TestCombatEventSelfAvoidChargeMiss_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -228,9 +228,9 @@ function me.TestCombatEventSelfAvoidChargeStunMiss_7922()
   )
 end
 
-function me.TestCombatEventSelfAvoidChargeStunResist_7922()
+function me.TestCombatEventSelfAvoidChargeResist_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidChargeStunResist_7922",
+    "TestCombatEventSelfAvoidChargeResist_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -239,9 +239,9 @@ function me.TestCombatEventSelfAvoidChargeStunResist_7922()
   )
 end
 
-function me.TestCombatEventSelfAvoidChargeStunImmune_7922()
+function me.TestCombatEventSelfAvoidChargeImmune_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidChargeStunImmune_7922",
+    "TestCombatEventSelfAvoidChargeImmune_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -250,9 +250,9 @@ function me.TestCombatEventSelfAvoidChargeStunImmune_7922()
   )
 end
 
-function me.TestCombatEventSelfAvoidChargeStunReflect_7922()
+function me.TestCombatEventSelfAvoidChargeReflect_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidChargeStunReflect_7922",
+    "TestCombatEventSelfAvoidChargeReflect_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -261,9 +261,9 @@ function me.TestCombatEventSelfAvoidChargeStunReflect_7922()
   )
 end
 
-function me.TestCombatEventSelfAvoidChargeStunAbsorbIgnored_7922()
+function me.TestCombatEventSelfAvoidChargeAbsorbIgnored_7922()
   mod.testHelper.TestCombatEventSpellMissedIrrelevant(
-    "TestCombatEventSelfAvoidChargeStunAbsorbIgnored_7922",
+    "TestCombatEventSelfAvoidChargeAbsorbIgnored_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -272,9 +272,9 @@ function me.TestCombatEventSelfAvoidChargeStunAbsorbIgnored_7922()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunDodge_20615()
+function me.TestCombatEventSelfAvoidInterceptDodge_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunDodge_20615",
+    "TestCombatEventSelfAvoidInterceptDodge_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -283,9 +283,9 @@ function me.TestCombatEventSelfAvoidInterceptStunDodge_20615()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunBlock_20615()
+function me.TestCombatEventSelfAvoidInterceptBlock_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunBlock_20615",
+    "TestCombatEventSelfAvoidInterceptBlock_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -294,9 +294,9 @@ function me.TestCombatEventSelfAvoidInterceptStunBlock_20615()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunParry_20615()
+function me.TestCombatEventSelfAvoidInterceptParry_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunParry_20615",
+    "TestCombatEventSelfAvoidInterceptParry_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -305,9 +305,9 @@ function me.TestCombatEventSelfAvoidInterceptStunParry_20615()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunMiss_20615()
+function me.TestCombatEventSelfAvoidInterceptMiss_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunMiss_20615",
+    "TestCombatEventSelfAvoidInterceptMiss_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -316,9 +316,9 @@ function me.TestCombatEventSelfAvoidInterceptStunMiss_20615()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunResist_20615()
+function me.TestCombatEventSelfAvoidInterceptResist_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunResist_20615",
+    "TestCombatEventSelfAvoidInterceptResist_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -327,9 +327,9 @@ function me.TestCombatEventSelfAvoidInterceptStunResist_20615()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunImmune_20615()
+function me.TestCombatEventSelfAvoidInterceptImmune_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunImmune_20615",
+    "TestCombatEventSelfAvoidInterceptImmune_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -338,9 +338,9 @@ function me.TestCombatEventSelfAvoidInterceptStunImmune_20615()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunReflect_20615()
+function me.TestCombatEventSelfAvoidInterceptReflect_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunReflect_20615",
+    "TestCombatEventSelfAvoidInterceptReflect_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -349,9 +349,9 @@ function me.TestCombatEventSelfAvoidInterceptStunReflect_20615()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20615()
+function me.TestCombatEventSelfAvoidInterceptAbsorbIgnored_20615()
   mod.testHelper.TestCombatEventSpellMissedIrrelevant(
-    "TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20615",
+    "TestCombatEventSelfAvoidInterceptAbsorbIgnored_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -360,9 +360,9 @@ function me.TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20615()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunDodge_20253()
+function me.TestCombatEventSelfAvoidInterceptDodge_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunDodge_20253",
+    "TestCombatEventSelfAvoidInterceptDodge_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -371,9 +371,9 @@ function me.TestCombatEventSelfAvoidInterceptStunDodge_20253()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunBlock_20253()
+function me.TestCombatEventSelfAvoidInterceptBlock_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunBlock_20253",
+    "TestCombatEventSelfAvoidInterceptBlock_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -382,9 +382,9 @@ function me.TestCombatEventSelfAvoidInterceptStunBlock_20253()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunParry_20253()
+function me.TestCombatEventSelfAvoidInterceptParry_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunParry_20253",
+    "TestCombatEventSelfAvoidInterceptParry_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -393,9 +393,9 @@ function me.TestCombatEventSelfAvoidInterceptStunParry_20253()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunMiss_20253()
+function me.TestCombatEventSelfAvoidInterceptMiss_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunMiss_20253",
+    "TestCombatEventSelfAvoidInterceptMiss_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -404,9 +404,9 @@ function me.TestCombatEventSelfAvoidInterceptStunMiss_20253()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunResist_20253()
+function me.TestCombatEventSelfAvoidInterceptResist_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunResist_20253",
+    "TestCombatEventSelfAvoidInterceptResist_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -415,9 +415,9 @@ function me.TestCombatEventSelfAvoidInterceptStunResist_20253()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunImmune_20253()
+function me.TestCombatEventSelfAvoidInterceptImmune_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunImmune_20253",
+    "TestCombatEventSelfAvoidInterceptImmune_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -426,9 +426,9 @@ function me.TestCombatEventSelfAvoidInterceptStunImmune_20253()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunReflect_20253()
+function me.TestCombatEventSelfAvoidInterceptReflect_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunReflect_20253",
+    "TestCombatEventSelfAvoidInterceptReflect_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -437,9 +437,9 @@ function me.TestCombatEventSelfAvoidInterceptStunReflect_20253()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20253()
+function me.TestCombatEventSelfAvoidInterceptAbsorbIgnored_20253()
   mod.testHelper.TestCombatEventSpellMissedIrrelevant(
-    "TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20253",
+    "TestCombatEventSelfAvoidInterceptAbsorbIgnored_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -448,9 +448,9 @@ function me.TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20253()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunDodge_20614()
+function me.TestCombatEventSelfAvoidInterceptDodge_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunDodge_20614",
+    "TestCombatEventSelfAvoidInterceptDodge_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -459,9 +459,9 @@ function me.TestCombatEventSelfAvoidInterceptStunDodge_20614()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunBlock_20614()
+function me.TestCombatEventSelfAvoidInterceptBlock_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunBlock_20614",
+    "TestCombatEventSelfAvoidInterceptBlock_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -470,9 +470,9 @@ function me.TestCombatEventSelfAvoidInterceptStunBlock_20614()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunParry_20614()
+function me.TestCombatEventSelfAvoidInterceptParry_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunParry_20614",
+    "TestCombatEventSelfAvoidInterceptParry_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -481,9 +481,9 @@ function me.TestCombatEventSelfAvoidInterceptStunParry_20614()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunMiss_20614()
+function me.TestCombatEventSelfAvoidInterceptMiss_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunMiss_20614",
+    "TestCombatEventSelfAvoidInterceptMiss_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -492,9 +492,9 @@ function me.TestCombatEventSelfAvoidInterceptStunMiss_20614()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunResist_20614()
+function me.TestCombatEventSelfAvoidInterceptResist_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunResist_20614",
+    "TestCombatEventSelfAvoidInterceptResist_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -503,9 +503,9 @@ function me.TestCombatEventSelfAvoidInterceptStunResist_20614()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunImmune_20614()
+function me.TestCombatEventSelfAvoidInterceptImmune_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunImmune_20614",
+    "TestCombatEventSelfAvoidInterceptImmune_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -514,9 +514,9 @@ function me.TestCombatEventSelfAvoidInterceptStunImmune_20614()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunReflect_20614()
+function me.TestCombatEventSelfAvoidInterceptReflect_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventSelfAvoidInterceptStunReflect_20614",
+    "TestCombatEventSelfAvoidInterceptReflect_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -525,9 +525,9 @@ function me.TestCombatEventSelfAvoidInterceptStunReflect_20614()
   )
 end
 
-function me.TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20614()
+function me.TestCombatEventSelfAvoidInterceptAbsorbIgnored_20614()
   mod.testHelper.TestCombatEventSpellMissedIrrelevant(
-    "TestCombatEventSelfAvoidInterceptStunAbsorbIgnored_20614",
+    "TestCombatEventSelfAvoidInterceptAbsorbIgnored_20614",
     testCategory,
     20614,
     "Intercept Stun",

@@ -47,39 +47,39 @@ function me.Test(completionCallback)
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeStunDodge_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeStunBlock_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeStunParry_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeStunMiss_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeStunResist_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeStunImmune_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeStunReflect_7922)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeStunAbsorbIgnored_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeDodge_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeBlock_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeParry_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeMiss_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeResist_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeImmune_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeReflect_7922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChargeAbsorbIgnored_7922)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunDodge_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunBlock_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunParry_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunMiss_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunResist_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunImmune_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunReflect_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20615)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunDodge_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunBlock_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunParry_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunMiss_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunResist_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunImmune_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunReflect_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20253)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunDodge_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunBlock_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunParry_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunMiss_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunResist_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunImmune_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunReflect_20614)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptDodge_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptBlock_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptParry_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptMiss_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptResist_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptImmune_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptReflect_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptAbsorbIgnored_20615)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptDodge_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptBlock_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptParry_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptMiss_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptResist_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptImmune_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptReflect_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptAbsorbIgnored_20253)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptDodge_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptBlock_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptParry_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptMiss_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptResist_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptImmune_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptReflect_20614)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidInterceptAbsorbIgnored_20614)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringDodge_7373)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringBlock_7373)
@@ -175,9 +175,9 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDisarmAbsorbIgnored_676)
 end
 
-function me.TestCombatEventEnemyAvoidChargeStunDodge_7922()
+function me.TestCombatEventEnemyAvoidChargeDodge_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidChargeStunDodge_7922",
+    "TestCombatEventEnemyAvoidChargeDodge_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -186,9 +186,9 @@ function me.TestCombatEventEnemyAvoidChargeStunDodge_7922()
   )
 end
 
-function me.TestCombatEventEnemyAvoidChargeStunBlock_7922()
+function me.TestCombatEventEnemyAvoidChargeBlock_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidChargeStunBlock_7922",
+    "TestCombatEventEnemyAvoidChargeBlock_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -197,9 +197,9 @@ function me.TestCombatEventEnemyAvoidChargeStunBlock_7922()
   )
 end
 
-function me.TestCombatEventEnemyAvoidChargeStunParry_7922()
+function me.TestCombatEventEnemyAvoidChargeParry_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidChargeStunParry_7922",
+    "TestCombatEventEnemyAvoidChargeParry_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -208,9 +208,9 @@ function me.TestCombatEventEnemyAvoidChargeStunParry_7922()
   )
 end
 
-function me.TestCombatEventEnemyAvoidChargeStunMiss_7922()
+function me.TestCombatEventEnemyAvoidChargeMiss_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidChargeStunMiss_7922",
+    "TestCombatEventEnemyAvoidChargeMiss_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -219,9 +219,9 @@ function me.TestCombatEventEnemyAvoidChargeStunMiss_7922()
   )
 end
 
-function me.TestCombatEventEnemyAvoidChargeStunResist_7922()
+function me.TestCombatEventEnemyAvoidChargeResist_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidChargeStunResist_7922",
+    "TestCombatEventEnemyAvoidChargeResist_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -230,9 +230,9 @@ function me.TestCombatEventEnemyAvoidChargeStunResist_7922()
   )
 end
 
-function me.TestCombatEventEnemyAvoidChargeStunImmune_7922()
+function me.TestCombatEventEnemyAvoidChargeImmune_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidChargeStunImmune_7922",
+    "TestCombatEventEnemyAvoidChargeImmune_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -241,9 +241,9 @@ function me.TestCombatEventEnemyAvoidChargeStunImmune_7922()
   )
 end
 
-function me.TestCombatEventEnemyAvoidChargeStunReflect_7922()
+function me.TestCombatEventEnemyAvoidChargeReflect_7922()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidChargeStunReflect_7922",
+    "TestCombatEventEnemyAvoidChargeReflect_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -252,9 +252,9 @@ function me.TestCombatEventEnemyAvoidChargeStunReflect_7922()
   )
 end
 
-function me.TestCombatEventEnemyAvoidChargeStunAbsorbIgnored_7922()
+function me.TestCombatEventEnemyAvoidChargeAbsorbIgnored_7922()
   mod.testHelper.TestCombatEventSpellMissedIrrelevant(
-    "TestCombatEventEnemyAvoidChargeStunAbsorbIgnored_7922",
+    "TestCombatEventEnemyAvoidChargeAbsorbIgnored_7922",
     testCategory,
     7922,
     "Charge Stun",
@@ -263,9 +263,9 @@ function me.TestCombatEventEnemyAvoidChargeStunAbsorbIgnored_7922()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunDodge_20615()
+function me.TestCombatEventEnemyAvoidInterceptDodge_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunDodge_20615",
+    "TestCombatEventEnemyAvoidInterceptDodge_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -274,9 +274,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunDodge_20615()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunBlock_20615()
+function me.TestCombatEventEnemyAvoidInterceptBlock_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunBlock_20615",
+    "TestCombatEventEnemyAvoidInterceptBlock_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -285,9 +285,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunBlock_20615()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunParry_20615()
+function me.TestCombatEventEnemyAvoidInterceptParry_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunParry_20615",
+    "TestCombatEventEnemyAvoidInterceptParry_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -296,9 +296,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunParry_20615()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunMiss_20615()
+function me.TestCombatEventEnemyAvoidInterceptMiss_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunMiss_20615",
+    "TestCombatEventEnemyAvoidInterceptMiss_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -307,9 +307,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunMiss_20615()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunResist_20615()
+function me.TestCombatEventEnemyAvoidInterceptResist_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunResist_20615",
+    "TestCombatEventEnemyAvoidInterceptResist_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -318,9 +318,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunResist_20615()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunImmune_20615()
+function me.TestCombatEventEnemyAvoidInterceptImmune_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunImmune_20615",
+    "TestCombatEventEnemyAvoidInterceptImmune_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -329,9 +329,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunImmune_20615()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunReflect_20615()
+function me.TestCombatEventEnemyAvoidInterceptReflect_20615()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunReflect_20615",
+    "TestCombatEventEnemyAvoidInterceptReflect_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -340,9 +340,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunReflect_20615()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20615()
+function me.TestCombatEventEnemyAvoidInterceptAbsorbIgnored_20615()
   mod.testHelper.TestCombatEventSpellMissedIrrelevant(
-    "TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20615",
+    "TestCombatEventEnemyAvoidInterceptAbsorbIgnored_20615",
     testCategory,
     20615,
     "Intercept Stun",
@@ -351,9 +351,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20615()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunDodge_20253()
+function me.TestCombatEventEnemyAvoidInterceptDodge_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunDodge_20253",
+    "TestCombatEventEnemyAvoidInterceptDodge_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -362,9 +362,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunDodge_20253()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunBlock_20253()
+function me.TestCombatEventEnemyAvoidInterceptBlock_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunBlock_20253",
+    "TestCombatEventEnemyAvoidInterceptBlock_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -373,9 +373,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunBlock_20253()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunParry_20253()
+function me.TestCombatEventEnemyAvoidInterceptParry_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunParry_20253",
+    "TestCombatEventEnemyAvoidInterceptParry_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -384,9 +384,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunParry_20253()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunMiss_20253()
+function me.TestCombatEventEnemyAvoidInterceptMiss_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunMiss_20253",
+    "TestCombatEventEnemyAvoidInterceptMiss_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -395,9 +395,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunMiss_20253()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunResist_20253()
+function me.TestCombatEventEnemyAvoidInterceptResist_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunResist_20253",
+    "TestCombatEventEnemyAvoidInterceptResist_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -406,9 +406,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunResist_20253()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunImmune_20253()
+function me.TestCombatEventEnemyAvoidInterceptImmune_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunImmune_20253",
+    "TestCombatEventEnemyAvoidInterceptImmune_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -417,9 +417,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunImmune_20253()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunReflect_20253()
+function me.TestCombatEventEnemyAvoidInterceptReflect_20253()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunReflect_20253",
+    "TestCombatEventEnemyAvoidInterceptReflect_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -428,9 +428,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunReflect_20253()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20253()
+function me.TestCombatEventEnemyAvoidInterceptAbsorbIgnored_20253()
   mod.testHelper.TestCombatEventSpellMissedIrrelevant(
-    "TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20253",
+    "TestCombatEventEnemyAvoidInterceptAbsorbIgnored_20253",
     testCategory,
     20253,
     "Intercept Stun",
@@ -439,9 +439,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20253()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunDodge_20614()
+function me.TestCombatEventEnemyAvoidInterceptDodge_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunDodge_20614",
+    "TestCombatEventEnemyAvoidInterceptDodge_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -450,9 +450,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunDodge_20614()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunBlock_20614()
+function me.TestCombatEventEnemyAvoidInterceptBlock_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunBlock_20614",
+    "TestCombatEventEnemyAvoidInterceptBlock_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -461,9 +461,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunBlock_20614()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunParry_20614()
+function me.TestCombatEventEnemyAvoidInterceptParry_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunParry_20614",
+    "TestCombatEventEnemyAvoidInterceptParry_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -472,9 +472,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunParry_20614()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunMiss_20614()
+function me.TestCombatEventEnemyAvoidInterceptMiss_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunMiss_20614",
+    "TestCombatEventEnemyAvoidInterceptMiss_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -483,9 +483,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunMiss_20614()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunResist_20614()
+function me.TestCombatEventEnemyAvoidInterceptResist_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunResist_20614",
+    "TestCombatEventEnemyAvoidInterceptResist_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -494,9 +494,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunResist_20614()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunImmune_20614()
+function me.TestCombatEventEnemyAvoidInterceptImmune_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunImmune_20614",
+    "TestCombatEventEnemyAvoidInterceptImmune_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -505,9 +505,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunImmune_20614()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunReflect_20614()
+function me.TestCombatEventEnemyAvoidInterceptReflect_20614()
   mod.testHelper.TestCombatEventSpellMissed(
-    "TestCombatEventEnemyAvoidInterceptStunReflect_20614",
+    "TestCombatEventEnemyAvoidInterceptReflect_20614",
     testCategory,
     20614,
     "Intercept Stun",
@@ -516,9 +516,9 @@ function me.TestCombatEventEnemyAvoidInterceptStunReflect_20614()
   )
 end
 
-function me.TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20614()
+function me.TestCombatEventEnemyAvoidInterceptAbsorbIgnored_20614()
   mod.testHelper.TestCombatEventSpellMissedIrrelevant(
-    "TestCombatEventEnemyAvoidInterceptStunAbsorbIgnored_20614",
+    "TestCombatEventEnemyAvoidInterceptAbsorbIgnored_20614",
     testCategory,
     20614,
     "Intercept Stun",

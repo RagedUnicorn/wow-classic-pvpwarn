@@ -89,24 +89,24 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDevouringPlagueSuccess_19279)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDevouringPlagueSuccess_19280)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessApplied_2652)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRemoved_2652)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRefresh_2652)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessApplied_19261)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRemoved_19261)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRefresh_19261)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessApplied_19262)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRemoved_19262)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRefresh_19262)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessApplied_19264)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRemoved_19264)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRefresh_19264)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessApplied_19265)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRemoved_19265)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRefresh_19265)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessApplied_19266)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRemoved_19266)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchofWeaknessRefresh_19266)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessApplied_2652)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRemoved_2652)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRefresh_2652)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessApplied_19261)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRemoved_19261)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRefresh_19261)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessApplied_19262)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRemoved_19262)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRefresh_19262)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessApplied_19264)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRemoved_19264)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRefresh_19264)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessApplied_19265)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRemoved_19265)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRefresh_19265)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessApplied_19266)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRemoved_19266)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTouchOfWeaknessRefresh_19266)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFearWardApplied_6346)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFearWardRemoved_6346)
@@ -119,12 +119,12 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDesperatePrayerSuccess_19242)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDesperatePrayerSuccess_19243)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexofWeaknessSuccess_9035)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexofWeaknessSuccess_19281)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexofWeaknessSuccess_19282)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexofWeaknessSuccess_19283)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexofWeaknessSuccess_19284)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexofWeaknessSuccess_19285)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexOfWeaknessSuccess_9035)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexOfWeaknessSuccess_19281)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexOfWeaknessSuccess_19282)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexOfWeaknessSuccess_19283)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexOfWeaknessSuccess_19284)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHexOfWeaknessSuccess_19285)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowguardApplied_18137)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowguardRemoved_18137)
@@ -148,7 +148,7 @@ function me.CollectTestCases()
   -- start runes
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPenanceSuccess_402174)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCircleofHealingSuccess_401946)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCircleOfHealingSuccess_401946)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowWordDeathSuccess_401955)
 
@@ -162,23 +162,23 @@ function me.CollectTestCases()
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowfiendSuccess_401977)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPrayerofMendingSuccess_401859)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPrayerOfMendingSuccess_401859)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVoidPlagueSuccess_425204)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMindSpikeSuccess_431655)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEyeoftheVoidSuccess_402789)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEyeOfTheVoidSuccess_402789)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVoidZoneSuccess_431681)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVampiricTouchSuccess_402668)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpiritoftheRedeemerApplied_425284)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpiritoftheRedeemerRemoved_425284)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpiritOfTheRedeemerApplied_425284)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpiritOfTheRedeemerRemoved_425284)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSurgeofLightApplied_431664)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSurgeofLightRemoved_431664)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSurgeOfLightApplied_431664)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSurgeOfLightRemoved_431664)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSerendipityApplied_413248)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSerendipityRemoved_413248)
@@ -509,162 +509,162 @@ function me.TestCombatEventDevouringPlagueSuccess_19280()
   )
 end
 
-function me.TestCombatEventTouchofWeaknessApplied_2652()
+function me.TestCombatEventTouchOfWeaknessApplied_2652()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventTouchofWeaknessApplied_2652",
+    "TestCombatEventTouchOfWeaknessApplied_2652",
     testCategory,
     "Touch of Weakness",
     2652
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRemoved_2652()
+function me.TestCombatEventTouchOfWeaknessRemoved_2652()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventTouchofWeaknessRemoved_2652",
+    "TestCombatEventTouchOfWeaknessRemoved_2652",
     testCategory,
     "Touch of Weakness",
     2652
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRefresh_2652()
+function me.TestCombatEventTouchOfWeaknessRefresh_2652()
   mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventTouchofWeaknessRefresh_2652",
+    "TestCombatEventTouchOfWeaknessRefresh_2652",
     testCategory,
     "Touch of Weakness",
     2652
   )
 end
 
-function me.TestCombatEventTouchofWeaknessApplied_19261()
+function me.TestCombatEventTouchOfWeaknessApplied_19261()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventTouchofWeaknessApplied_19261",
+    "TestCombatEventTouchOfWeaknessApplied_19261",
     testCategory,
     "Touch of Weakness",
     19261
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRemoved_19261()
+function me.TestCombatEventTouchOfWeaknessRemoved_19261()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventTouchofWeaknessRemoved_19261",
+    "TestCombatEventTouchOfWeaknessRemoved_19261",
     testCategory,
     "Touch of Weakness",
     19261
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRefresh_19261()
+function me.TestCombatEventTouchOfWeaknessRefresh_19261()
   mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventTouchofWeaknessRefresh_19261",
+    "TestCombatEventTouchOfWeaknessRefresh_19261",
     testCategory,
     "Touch of Weakness",
     19261
   )
 end
 
-function me.TestCombatEventTouchofWeaknessApplied_19262()
+function me.TestCombatEventTouchOfWeaknessApplied_19262()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventTouchofWeaknessApplied_19262",
+    "TestCombatEventTouchOfWeaknessApplied_19262",
     testCategory,
     "Touch of Weakness",
     19262
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRemoved_19262()
+function me.TestCombatEventTouchOfWeaknessRemoved_19262()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventTouchofWeaknessRemoved_19262",
+    "TestCombatEventTouchOfWeaknessRemoved_19262",
     testCategory,
     "Touch of Weakness",
     19262
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRefresh_19262()
+function me.TestCombatEventTouchOfWeaknessRefresh_19262()
   mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventTouchofWeaknessRefresh_19262",
+    "TestCombatEventTouchOfWeaknessRefresh_19262",
     testCategory,
     "Touch of Weakness",
     19262
   )
 end
 
-function me.TestCombatEventTouchofWeaknessApplied_19264()
+function me.TestCombatEventTouchOfWeaknessApplied_19264()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventTouchofWeaknessApplied_19264",
+    "TestCombatEventTouchOfWeaknessApplied_19264",
     testCategory,
     "Touch of Weakness",
     19264
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRemoved_19264()
+function me.TestCombatEventTouchOfWeaknessRemoved_19264()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventTouchofWeaknessRemoved_19264",
+    "TestCombatEventTouchOfWeaknessRemoved_19264",
     testCategory,
     "Touch of Weakness",
     19264
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRefresh_19264()
+function me.TestCombatEventTouchOfWeaknessRefresh_19264()
   mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventTouchofWeaknessRefresh_19264",
+    "TestCombatEventTouchOfWeaknessRefresh_19264",
     testCategory,
     "Touch of Weakness",
     19264
   )
 end
 
-function me.TestCombatEventTouchofWeaknessApplied_19265()
+function me.TestCombatEventTouchOfWeaknessApplied_19265()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventTouchofWeaknessApplied_19265",
+    "TestCombatEventTouchOfWeaknessApplied_19265",
     testCategory,
     "Touch of Weakness",
     19265
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRemoved_19265()
+function me.TestCombatEventTouchOfWeaknessRemoved_19265()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventTouchofWeaknessRemoved_19265",
+    "TestCombatEventTouchOfWeaknessRemoved_19265",
     testCategory,
     "Touch of Weakness",
     19265
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRefresh_19265()
+function me.TestCombatEventTouchOfWeaknessRefresh_19265()
   mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventTouchofWeaknessRefresh_19265",
+    "TestCombatEventTouchOfWeaknessRefresh_19265",
     testCategory,
     "Touch of Weakness",
     19265
   )
 end
 
-function me.TestCombatEventTouchofWeaknessApplied_19266()
+function me.TestCombatEventTouchOfWeaknessApplied_19266()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventTouchofWeaknessApplied_19266",
+    "TestCombatEventTouchOfWeaknessApplied_19266",
     testCategory,
     "Touch of Weakness",
     19266
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRemoved_19266()
+function me.TestCombatEventTouchOfWeaknessRemoved_19266()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventTouchofWeaknessRemoved_19266",
+    "TestCombatEventTouchOfWeaknessRemoved_19266",
     testCategory,
     "Touch of Weakness",
     19266
   )
 end
 
-function me.TestCombatEventTouchofWeaknessRefresh_19266()
+function me.TestCombatEventTouchOfWeaknessRefresh_19266()
   mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventTouchofWeaknessRefresh_19266",
+    "TestCombatEventTouchOfWeaknessRefresh_19266",
     testCategory,
     "Touch of Weakness",
     19266
@@ -752,54 +752,54 @@ function me.TestCombatEventDesperatePrayerSuccess_19243()
   )
 end
 
-function me.TestCombatEventHexofWeaknessSuccess_9035()
+function me.TestCombatEventHexOfWeaknessSuccess_9035()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventHexofWeaknessSuccess_9035",
+    "TestCombatEventHexOfWeaknessSuccess_9035",
     testCategory,
     "Hex of Weakness",
     9035
   )
 end
 
-function me.TestCombatEventHexofWeaknessSuccess_19281()
+function me.TestCombatEventHexOfWeaknessSuccess_19281()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventHexofWeaknessSuccess_19281",
+    "TestCombatEventHexOfWeaknessSuccess_19281",
     testCategory,
     "Hex of Weakness",
     19281
   )
 end
 
-function me.TestCombatEventHexofWeaknessSuccess_19282()
+function me.TestCombatEventHexOfWeaknessSuccess_19282()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventHexofWeaknessSuccess_19282",
+    "TestCombatEventHexOfWeaknessSuccess_19282",
     testCategory,
     "Hex of Weakness",
     19282
   )
 end
 
-function me.TestCombatEventHexofWeaknessSuccess_19283()
+function me.TestCombatEventHexOfWeaknessSuccess_19283()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventHexofWeaknessSuccess_19283",
+    "TestCombatEventHexOfWeaknessSuccess_19283",
     testCategory,
     "Hex of Weakness",
     19283
   )
 end
 
-function me.TestCombatEventHexofWeaknessSuccess_19284()
+function me.TestCombatEventHexOfWeaknessSuccess_19284()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventHexofWeaknessSuccess_19284",
+    "TestCombatEventHexOfWeaknessSuccess_19284",
     testCategory,
     "Hex of Weakness",
     19284
   )
 end
 
-function me.TestCombatEventHexofWeaknessSuccess_19285()
+function me.TestCombatEventHexOfWeaknessSuccess_19285()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventHexofWeaknessSuccess_19285",
+    "TestCombatEventHexOfWeaknessSuccess_19285",
     testCategory,
     "Hex of Weakness",
     19285
@@ -977,9 +977,9 @@ function me.TestCombatEventPenanceSuccess_402174()
   )
 end
 
-function me.TestCombatEventCircleofHealingSuccess_401946()
+function me.TestCombatEventCircleOfHealingSuccess_401946()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventCircleofHealingSuccess_401946",
+    "TestCombatEventCircleOfHealingSuccess_401946",
     testCategory,
     "Circle of Healing",
     401946
@@ -1049,9 +1049,9 @@ function me.TestCombatEventShadowfiendSuccess_401977()
   )
 end
 
-function me.TestCombatEventPrayerofMendingSuccess_401859()
+function me.TestCombatEventPrayerOfMendingSuccess_401859()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventPrayerofMendingSuccess_401859",
+    "TestCombatEventPrayerOfMendingSuccess_401859",
     testCategory,
     "Prayer of Mending",
     401859
@@ -1076,9 +1076,9 @@ function me.TestCombatEventMindSpikeSuccess_431655()
   )
 end
 
-function me.TestCombatEventEyeoftheVoidSuccess_402789()
+function me.TestCombatEventEyeOfTheVoidSuccess_402789()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventEyeoftheVoidSuccess_402789",
+    "TestCombatEventEyeOfTheVoidSuccess_402789",
     testCategory,
     "Eye of the Void",
     402789
@@ -1103,36 +1103,36 @@ function me.TestCombatEventVampiricTouchSuccess_402668()
   )
 end
 
-function me.TestCombatEventSpiritoftheRedeemerApplied_425284()
+function me.TestCombatEventSpiritOfTheRedeemerApplied_425284()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventSpiritoftheRedeemerApplied_425284",
+    "TestCombatEventSpiritOfTheRedeemerApplied_425284",
     testCategory,
     "Spirit of the Redeemer",
     425284
   )
 end
 
-function me.TestCombatEventSpiritoftheRedeemerRemoved_425284()
+function me.TestCombatEventSpiritOfTheRedeemerRemoved_425284()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventSpiritoftheRedeemerRemoved_425284",
+    "TestCombatEventSpiritOfTheRedeemerRemoved_425284",
     testCategory,
     "Spirit of the Redeemer",
     425284
   )
 end
 
-function me.TestCombatEventSurgeofLightApplied_431664()
+function me.TestCombatEventSurgeOfLightApplied_431664()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventSurgeofLightApplied_431664",
+    "TestCombatEventSurgeOfLightApplied_431664",
     testCategory,
     "Surge of Light",
     431664
   )
 end
 
-function me.TestCombatEventSurgeofLightRemoved_431664()
+function me.TestCombatEventSurgeOfLightRemoved_431664()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventSurgeofLightRemoved_431664",
+    "TestCombatEventSurgeOfLightRemoved_431664",
     testCategory,
     "Surge of Light",
     431664

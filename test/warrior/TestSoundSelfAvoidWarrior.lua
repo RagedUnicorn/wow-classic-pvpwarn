@@ -57,11 +57,11 @@ function me.Test(completionCallback)
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidChargeStun_7922)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidCharge_7922)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidInterceptStun_20253)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidInterceptStun_20614)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidInterceptStun_20615)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidIntercept_20253)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidIntercept_20614)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidIntercept_20615)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHamstring_7372)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHamstring_7373)
@@ -80,33 +80,33 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidDisarm_676)
 end
 
-function me.TestSoundSelfAvoidChargeStun_7922()
+function me.TestSoundSelfAvoidCharge_7922()
   mod.testHelper.TestSoundSpellMissedSelf(
-    "TestSoundSelfAvoidChargeStun_7922",
+    "TestSoundSelfAvoidCharge_7922",
     testCategory,
     7922
   )
 end
 
-function me.TestSoundSelfAvoidInterceptStun_20253()
+function me.TestSoundSelfAvoidIntercept_20253()
   mod.testHelper.TestSoundSpellMissedSelf(
-    "TestSoundSelfAvoidInterceptStun_20253",
+    "TestSoundSelfAvoidIntercept_20253",
     testCategory,
     20253
   )
 end
 
-function me.TestSoundSelfAvoidInterceptStun_20614()
+function me.TestSoundSelfAvoidIntercept_20614()
   mod.testHelper.TestSoundSpellMissedSelf(
-    "TestSoundSelfAvoidInterceptStun_20614",
+    "TestSoundSelfAvoidIntercept_20614",
     testCategory,
     20614
   )
 end
 
-function me.TestSoundSelfAvoidInterceptStun_20615()
+function me.TestSoundSelfAvoidIntercept_20615()
   mod.testHelper.TestSoundSpellMissedSelf(
-    "TestSoundSelfAvoidInterceptStun_20615",
+    "TestSoundSelfAvoidIntercept_20615",
     testCategory,
     20615
   )

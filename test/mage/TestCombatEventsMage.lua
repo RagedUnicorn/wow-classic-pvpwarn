@@ -90,25 +90,35 @@ function me.CollectTestCases()
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldApplied_10193)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRemoved_10193)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestCombatEventManaShieldRefresh_10193)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldApplied_1463)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRemoved_1463)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRefresh_1463)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldApplied_8494)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRemoved_8494)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRefresh_8494)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldApplied_8495)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRemoved_8495)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRefresh_8495)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldApplied_10191)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRemoved_10191)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRefresh_10191)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldApplied_10192)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRemoved_10192)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaShieldRefresh_10192)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierApplied_13033)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierRemoved_13033)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierRefresh_13033)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierApplied_11426)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierRemoved_11426)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierRefresh_11426)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierApplied_13031)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierRemoved_13031)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierRefresh_13031)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierApplied_13032)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierRemoved_13032)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBarrierRefresh_13032)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFrostNovaSuccess_10230)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFrostNovaSuccess_122)
@@ -511,6 +521,15 @@ function me.TestCombatEventManaShieldRemoved_10193()
   )
 end
 
+function me.TestCombatEventManaShieldRefresh_10193()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventManaShieldRefresh_10193",
+    testCategory,
+    "Mana Shield",
+    10193
+  )
+end
+
 function me.TestCombatEventManaShieldApplied_1463()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventManaShieldApplied_1463",
@@ -523,6 +542,15 @@ end
 function me.TestCombatEventManaShieldRemoved_1463()
   mod.testHelper.TestCombatEventRemoved(
     "TestCombatEventManaShieldRemoved_1463",
+    testCategory,
+    "Mana Shield",
+    1463
+  )
+end
+
+function me.TestCombatEventManaShieldRefresh_1463()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventManaShieldRefresh_1463",
     testCategory,
     "Mana Shield",
     1463
@@ -547,6 +575,15 @@ function me.TestCombatEventManaShieldRemoved_8494()
   )
 end
 
+function me.TestCombatEventManaShieldRefresh_8494()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventManaShieldRefresh_8494",
+    testCategory,
+    "Mana Shield",
+    8494
+  )
+end
+
 function me.TestCombatEventManaShieldApplied_8495()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventManaShieldApplied_8495",
@@ -559,6 +596,15 @@ end
 function me.TestCombatEventManaShieldRemoved_8495()
   mod.testHelper.TestCombatEventRemoved(
     "TestCombatEventManaShieldRemoved_8495",
+    testCategory,
+    "Mana Shield",
+    8495
+  )
+end
+
+function me.TestCombatEventManaShieldRefresh_8495()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventManaShieldRefresh_8495",
     testCategory,
     "Mana Shield",
     8495
@@ -583,6 +629,15 @@ function me.TestCombatEventManaShieldRemoved_10191()
   )
 end
 
+function me.TestCombatEventManaShieldRefresh_10191()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventManaShieldRefresh_10191",
+    testCategory,
+    "Mana Shield",
+    10191
+  )
+end
+
 function me.TestCombatEventManaShieldApplied_10192()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventManaShieldApplied_10192",
@@ -595,6 +650,15 @@ end
 function me.TestCombatEventManaShieldRemoved_10192()
   mod.testHelper.TestCombatEventRemoved(
     "TestCombatEventManaShieldRemoved_10192",
+    testCategory,
+    "Mana Shield",
+    10192
+  )
+end
+
+function me.TestCombatEventManaShieldRefresh_10192()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventManaShieldRefresh_10192",
     testCategory,
     "Mana Shield",
     10192
@@ -619,6 +683,15 @@ function me.TestCombatEventIceBarrierRemoved_13033()
   )
 end
 
+function me.TestCombatEventIceBarrierRefresh_13033()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventIceBarrierRefresh_13033",
+    testCategory,
+    "Ice Barrier",
+    13033
+  )
+end
+
 function me.TestCombatEventIceBarrierApplied_11426()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventIceBarrierApplied_11426",
@@ -631,6 +704,15 @@ end
 function me.TestCombatEventIceBarrierRemoved_11426()
   mod.testHelper.TestCombatEventRemoved(
     "TestCombatEventIceBarrierRemoved_11426",
+    testCategory,
+    "Ice Barrier",
+    11426
+  )
+end
+
+function me.TestCombatEventIceBarrierRefresh_11426()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventIceBarrierRefresh_11426",
     testCategory,
     "Ice Barrier",
     11426
@@ -655,6 +737,15 @@ function me.TestCombatEventIceBarrierRemoved_13031()
   )
 end
 
+function me.TestCombatEventIceBarrierRefresh_13031()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventIceBarrierRefresh_13031",
+    testCategory,
+    "Ice Barrier",
+    13031
+  )
+end
+
 function me.TestCombatEventIceBarrierApplied_13032()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventIceBarrierApplied_13032",
@@ -667,6 +758,15 @@ end
 function me.TestCombatEventIceBarrierRemoved_13032()
   mod.testHelper.TestCombatEventRemoved(
     "TestCombatEventIceBarrierRemoved_13032",
+    testCategory,
+    "Ice Barrier",
+    13032
+  )
+end
+
+function me.TestCombatEventIceBarrierRefresh_13032()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventIceBarrierRefresh_13032",
     testCategory,
     "Ice Barrier",
     13032

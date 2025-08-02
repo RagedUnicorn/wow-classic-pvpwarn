@@ -22,11 +22,11 @@ function me.Test(completionCallback)
 end
 
 function me.CollectTestCases()
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidChargeStun_7922)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidCharge_7922)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidInterceptStun_20253)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidInterceptStun_20614)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidInterceptStun_20615)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidIntercept_20253)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidIntercept_20614)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidIntercept_20615)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHamstring_7372)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHamstring_7373)
@@ -45,33 +45,33 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidDisarm_676)
 end
 
-function me.TestSoundEnemyAvoidChargeStun_7922()
+function me.TestSoundEnemyAvoidCharge_7922()
   mod.testHelper.TestSoundSpellMissedEnemy(
-    "TestSoundEnemyAvoidChargeStun_7922",
+    "TestSoundEnemyAvoidCharge_7922",
     testCategory,
     7922
   )
 end
 
-function me.TestSoundEnemyAvoidInterceptStun_20253()
+function me.TestSoundEnemyAvoidIntercept_20253()
   mod.testHelper.TestSoundSpellMissedEnemy(
-    "TestSoundEnemyAvoidInterceptStun_20253",
+    "TestSoundEnemyAvoidIntercept_20253",
     testCategory,
     20253
   )
 end
 
-function me.TestSoundEnemyAvoidInterceptStun_20614()
+function me.TestSoundEnemyAvoidIntercept_20614()
   mod.testHelper.TestSoundSpellMissedEnemy(
-    "TestSoundEnemyAvoidInterceptStun_20614",
+    "TestSoundEnemyAvoidIntercept_20614",
     testCategory,
     20614
   )
 end
 
-function me.TestSoundEnemyAvoidInterceptStun_20615()
+function me.TestSoundEnemyAvoidIntercept_20615()
   mod.testHelper.TestSoundSpellMissedEnemy(
-    "TestSoundEnemyAvoidInterceptStun_20615",
+    "TestSoundEnemyAvoidIntercept_20615",
     testCategory,
     20615
   )
