@@ -97,6 +97,28 @@ PVPWarn was able to observe the stance in the combatlog.
 
 If PVPWarn is unable to determine the stance it will display a question mark for an icon.
 
+### Voice Packs
+
+PVPWarn supports configurable voice packs to customize the audio experience with different character voices. Voice packs are separate addon packages that can be installed alongside PVPWarn to provide alternative audio cues.
+
+#### Available Voice Packs
+
+**VPNFC - Night Elf Female Character**
+- Repository: [Nightelf Female Classic](https://github.com/RagedUnicorn/wow-classic-pvpwarn-vpnfc)
+- Features audio cues spoken by a Night Elf Female Character voice
+
+**VPUMC - Undead Male Character**
+- Repository: [Undead Male Classic](https://github.com/RagedUnicorn/wow-classic-pvpwarn-vpumc)
+- Features audio cues spoken by an Undead Male Character voice
+
+**VPGFC - Gnome Female Character**
+- Repository: [Gnome Female Classic](https://github.com/RagedUnicorn/wow-classic-pvpwarn-vpgfc)
+- Features audio cues spoken by a Gnome Female Character voice
+
+#### Installation and Usage
+
+Voice packs are installed as separate addons in your `Interface\AddOns` directory alongside PVPWarn. Once installed, you can configure which voice pack to use through PVPWarn's settings. Each voice pack provides a unique audio experience while maintaining all of PVPWarn's core functionality.
+
 ## FAQ
 
 #### The Addon is not showing up in WoW. What can I do?
