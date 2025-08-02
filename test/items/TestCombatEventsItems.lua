@@ -101,8 +101,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSmolderwebsEyeSuccess_17330)
 
   -- start sod items
-  mod.testReporter.AddToTestQueueImmediate(TestCombatEventGreaterInsigniaOfTheHordeSuccess_438273)
-  mod.testReporter.AddToTestQueueImmediate(TestCombatEventGreaterInsigniaOfTheAllianceSuccess_438273)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterInsigniaOfTheHordeSuccess_438273)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGreaterInsigniaOfTheAllianceSuccess_438273)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodCakedInsigniaSuccess_474386)
 
