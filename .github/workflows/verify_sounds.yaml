@@ -23,7 +23,7 @@ jobs:
     name: Verify Default Sounds
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -111,12 +111,12 @@ jobs:
     name: Verify ${{ matrix.voice_pack.name }}
     steps:
       - name: Checkout PVPWarn Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: pvpwarn
 
       - name: Checkout External Voice Pack
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ${{ matrix.voice_pack.repo }}
           path: external_pack
