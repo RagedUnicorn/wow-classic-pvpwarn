@@ -1,9 +1,9 @@
 # PVPWarn Docker Services
-# 
+#
 # Usage:
 #   docker compose run --rm luacheck                    # Run lua linting
 #   docker compose run --rm luacheck-report             # Generate lua lint report
-#   docker compose run --rm combat-log-parser           # Parse combat logs 
+#   docker compose run --rm combat-log-parser           # Parse combat logs
 #   docker compose run --rm combat-log-parser-report    # Parse combat logs with report output
 #   docker compose run --rm verify-sounds               # Verify sound files exist
 #   docker compose run --rm verify-sounds-report        # Verify sound files with detailed report
