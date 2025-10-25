@@ -81,7 +81,7 @@ StaticPopupDialogs["RGPVPW_CHOOSE_PROFILE_NAME"] = {
   button1 = rgpvpw.L["choose_profile_name_accept_button"],
   button2 = rgpvpw.L["choose_profile_name_cancel_button"],
   OnShow = function(self)
-    local editBox = self:GetParent().editBox
+    local editBox = self:GetParent().EditBox
     local button1 = self:GetParent().button1
 
     if editBox ~= nil and button1 ~= nil then
@@ -90,12 +90,12 @@ StaticPopupDialogs["RGPVPW_CHOOSE_PROFILE_NAME"] = {
     end
   end,
   OnAccept = function(self)
-    mod.profile.CreateProfile(self.editBox:GetText())
+    mod.profile.CreateProfile(self.EditBox:GetText())
     me.ProfileListUpdateOnUpdate(profileListScrollFrame)
     me.ClearSelectedProfile()
   end,
   EditBoxOnTextChanged = function(self)
-    local editBox = self:GetParent().editBox
+    local editBox = self:GetParent().EditBox
     local button1 = self:GetParent().button1
 
     if editBox ~= nil and button1 ~= nil then
