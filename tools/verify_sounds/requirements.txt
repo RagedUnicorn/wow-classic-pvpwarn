@@ -1,2 +1,2 @@
-lupa==2.5
+lupa==2.6
 pytest==8.4.2
