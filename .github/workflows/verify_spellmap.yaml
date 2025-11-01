@@ -82,7 +82,7 @@ jobs:
 
       - name: Upload verification results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: spellmap-verification-results
           path: tools/verify_spellmap/verification_output.txt
