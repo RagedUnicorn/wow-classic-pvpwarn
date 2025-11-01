@@ -117,10 +117,10 @@ function me.ProcessStart(event, callback, ...)
 
   if not me.HasFoundSpell(category, spell, spellName) then return end
   if not me.IsValidSpellType(spellType) then return end
-  if not me.IsSpellActive(spellMap, category, normalizedSpellName) then return end
+  if not me.IsSpellActive(spellMap, category, realSpellId, normalizedSpellName) then return end
 
-  playSound = me.IsSoundWarningActive(spellMap, category, spellId, normalizedSpellName)
-  playVisual = me.IsVisualWarningActive(spellMap, category, spellId, normalizedSpellName)
+  playSound = me.IsSoundWarningActive(spellMap, category, realSpellId, normalizedSpellName)
+  playVisual = me.IsVisualWarningActive(spellMap, category, realSpellId, normalizedSpellName)
 
   if playVisual then
     local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
@@ -169,8 +169,8 @@ function me.ProcessNormal(event, callback, ...)
 
   if not me.IsSpellActive(spellMap, category, realSpellId, normalizedSpellName) then return end
 
-  playSound = me.IsSoundWarningActive(spellMap, category, spellId, normalizedSpellName)
-  playVisual = me.IsVisualWarningActive(spellMap, category, spellId, normalizedSpellName)
+  playSound = me.IsSoundWarningActive(spellMap, category, realSpellId, normalizedSpellName)
+  playVisual = me.IsVisualWarningActive(spellMap, category, realSpellId, normalizedSpellName)
 
   if playVisual then
     local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
@@ -229,11 +229,11 @@ function me.ProcessMissed(event, spellMissedTarget, callback, ...)
   if not me.IsSpellActive(spellMap, category, realSpellId, normalizedSpellName) then return end
 
   local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(
-    spellMap, category, spellId
+    spellMap, category, realSpellId
   )
 
-  playSound = me.IsSoundWarningActive(spellMap, category, spellId, normalizedSpellName)
-  playVisual = me.IsVisualWarningActive(spellMap, category, spellId, normalizedSpellName)
+  playSound = me.IsSoundWarningActive(spellMap, category, realSpellId, normalizedSpellName)
+  playVisual = me.IsVisualWarningActive(spellMap, category, realSpellId, normalizedSpellName)
 
   if playVisual then
     spell.visualWarningColor = visualWarningColor
