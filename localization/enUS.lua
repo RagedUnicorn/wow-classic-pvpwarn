@@ -32,7 +32,7 @@ rgpvpw.L["addon_name"] = "PVPWarn"
 -- console
 rgpvpw.L["info_title"] = "|cFF00FFB0PVPWarn:|r"
 rgpvpw.L["help"] = "|cFFFFC300(%s)|r: Use |cFFFFC300/rgpvpw|r or |cFFFFC300/pvpwarn|r for a list of options"
-rgpvpw.L["opt"] = "|cFFFFC300opt|r - display Opionsmenu"
+rgpvpw.L["opt"] = "|cFFFFC300opt|r - display Optionsmenu"
 rgpvpw.L["combatstate"] = "|cFFFFC300combatstate enable/disable|r - configure the position of the combatstate icon"
 rgpvpw.L["stancestate"] = "|cFFFFC300stancestate enable/disable|r - configure the position of the stancestate icon"
 rgpvpw.L["reload"] = "|cFFFFC300reload|r - reload UI"
