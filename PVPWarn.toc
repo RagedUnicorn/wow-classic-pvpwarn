@@ -1,9 +1,9 @@
 # THIS FILE IS AUTO-GENERATED. ALL CHANGES ARE OVERWRITTEN
-## Interface: 11507
+## Interface: 11508
 ## Title: PVPWarn
 ## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
 ## Notes: PVPWarn aims to warn players visually and acoustically about pvp events
-## Version: v1.2.8
+## Version: v1.3.0
 ## SavedVariablesPerCharacter: PVPWarnConfiguration PVPWarnProfiles PVPWarnLogTracker PVPWarnLogTrackerAvoid PVPWarnTestLog
 
 # constant values
