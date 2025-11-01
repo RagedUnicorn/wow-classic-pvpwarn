@@ -146,7 +146,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowguardRefresh_19312)
 
   -- start runes
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPenanceSuccess_402174)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPenanceSuccess_402289)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPenanceSuccess_402284)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCircleOfHealingSuccess_401946)
 
@@ -968,12 +969,21 @@ function me.TestCombatEventShadowguardRefresh_19312()
   )
 end
 
-function me.TestCombatEventPenanceSuccess_402174()
+function me.TestCombatEventPenanceSuccess_402289()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventPenanceSuccess_402174",
+    "TestCombatEventPenanceSuccess_402289",
     testCategory,
     "Penance",
-    402174
+    402289
+  )
+end
+
+function me.TestCombatEventPenanceSuccess_402284()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventPenanceSuccess_402284",
+    testCategory,
+    "Penance",
+    402284
   )
 end
 

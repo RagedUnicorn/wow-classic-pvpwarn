@@ -648,7 +648,7 @@ local spellMap = {
     [19310] = { refId = 18137 },
     [19311] = { refId = 18137 },
     [19312] = { refId = 18137 },
-    [402174] = {
+    [402289] = {
       name = "Penance",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "penance",
@@ -658,8 +658,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 402174 }
+      allRanks = { 402289, 402284 }
+      -- When using offensive 402284
+      -- When using healing 402289
     },
+    [402284] = { refId = 402289 },
     [401946] = {
       name = "Circle of Healing",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,

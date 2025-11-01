@@ -146,7 +146,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshShadowguard_19312)
 
   -- start runes
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPenance_402174)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPenance_402289)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPenance_402284)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCircleOfHealing_401946)
 
@@ -881,11 +882,19 @@ function me.TestSoundRefreshShadowguard_19312()
   )
 end
 
-function me.TestSoundPenance_402174()
+function me.TestSoundPenance_402289()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundPenance_402174",
+    "TestSoundPenance_402289",
     testCategory,
-    402174
+    402289
+  )
+end
+
+function me.TestSoundPenance_402284()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundPenance_402284",
+    testCategory,
+    402284
   )
 end
 
