@@ -106,7 +106,8 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["user_message_add_new_profile_max_reached"] = "Достигнут максимум из %s профилей"
   rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "Профиль по умолчанию нельзя удалить"
   rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "Профиль по умолчанию нельзя изменить"
-  rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Ваши профили были сброшены на стандартные из-за обновления до v2.0.0"
+  rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Ваши профили были сброшены на стандартные "
+    .. "из-за обновления до v2.0.0"
   -- categories
   rgpvpw.L["category_druid"] = "Друид"
   rgpvpw.L["category_hunter"] = "Охотник"
