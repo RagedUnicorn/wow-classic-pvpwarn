@@ -292,7 +292,7 @@ function me.HasFoundSpell(category, spell, spellName)
       it might not match to the event that happened
     ]]--
     mod.logger.LogInfo(me.tag, string.format(
-      "Ignore spell %s because search in spellAvoidMap resulted in not found", spellName
+      "Ignore spell %s because search in spellMap resulted in not found", spellName
     ))
     return false
   end
