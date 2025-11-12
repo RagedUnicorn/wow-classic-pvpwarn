@@ -1,2 +1,2 @@
 lupa==2.6
-pytest==8.4.2
+pytest==9.0.1
