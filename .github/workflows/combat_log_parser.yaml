@@ -261,7 +261,7 @@ jobs:
     
     - name: Upload artifacts to GitHub
       if: always()
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: combat-log-parser-complete-output
         path: |
@@ -271,7 +271,7 @@ jobs:
     
     - name: Upload hit files
       if: always()
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: spell-hit-files
         path: tools/combat_log_parser/output/*.hit.md
@@ -280,7 +280,7 @@ jobs:
     
     - name: Upload miss files
       if: always()
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: spell-miss-files
         path: tools/combat_log_parser/output/*.miss.md
@@ -289,7 +289,7 @@ jobs:
     
     - name: Upload summary
       if: always()
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: parser-summary
         path: tools/combat_log_parser/output/summary.md
