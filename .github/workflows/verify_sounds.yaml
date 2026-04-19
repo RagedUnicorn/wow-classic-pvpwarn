@@ -233,7 +233,7 @@ jobs:
         if: |
           github.event_name == 'pull_request' &&
           needs.verify-default-sounds.result == 'failure'
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const comment = `## ❌ Sound File Verification Failed
