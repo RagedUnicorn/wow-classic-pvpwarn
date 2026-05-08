@@ -15,14 +15,14 @@
 
 services:
   luacheck:
-    image: ragedunicorn/luacheck:1.2.0-alpine3.22.1-1
+    image: ragedunicorn/luacheck:1.2.0-alpine3.23.4-1
     container_name: pvpwarn-luacheck
     volumes:
       - ./:/workspace:ro
     working_dir: /workspace
     command: ["."]
   luacheck-report:
-    image: ragedunicorn/luacheck:1.2.0-alpine3.22.1-1
+    image: ragedunicorn/luacheck:1.2.0-alpine3.23.4-1
     container_name: pvpwarn-luacheck-report
     volumes:
       - ./:/workspace:ro
@@ -31,7 +31,7 @@ services:
     entrypoint: /bin/sh
     command: ["-c", "luacheck --formatter JUnit . > /reports/luacheck-junit.xml"]
   combat-log-parser:
-    image: ragedunicorn/python:3-alpine3.22.1-1
+    image: ragedunicorn/python:3-alpine3.22.2-1
     volumes:
       - ./tools/combat_log_parser:/app
       - ./code:/code
@@ -47,7 +47,7 @@ services:
           --logs-dir /combat-logs \
           --spellmap /code/SpellMap.lua
   combat-log-parser-report:
-    image: ragedunicorn/python:3-alpine3.22.1-1
+    image: ragedunicorn/python:3-alpine3.22.2-1
     volumes:
       - ./tools/combat_log_parser:/app
       - ./code:/code
@@ -65,7 +65,7 @@ services:
           --logs-dir /combat-logs \
           --output-dir /target/combat_log_parser_output
   verify-sounds:
-    image: ragedunicorn/python:3-alpine3.22.1-1
+    image: ragedunicorn/python:3-alpine3.22.2-1
     volumes:
       - ./tools/verify_sounds:/app
       - ./assets/sounds/en:/assets
@@ -82,7 +82,7 @@ services:
           --spellmap /code/SpellMap.lua \
           --spellavoidmap /code/SpellAvoidMap.lua
   verify-sounds-report:
-    image: ragedunicorn/python:3-alpine3.22.1-1
+    image: ragedunicorn/python:3-alpine3.22.2-1
     volumes:
       - ./tools/verify_sounds:/app
       - ./assets/sounds/en:/assets
@@ -102,7 +102,7 @@ services:
           --spellavoidmap /code/SpellAvoidMap.lua \
           --output-format detailed > /target/verify_sounds_output/verification_report.txt
   verify-spellmap:
-    image: ragedunicorn/python:3-alpine3.22.1-1
+    image: ragedunicorn/python:3-alpine3.22.2-1
     volumes:
       - ./tools/verify_spellmap:/app
       - ./code:/code
@@ -117,7 +117,7 @@ services:
           --spellmap /code/SpellMap.lua \
           --spellavoidmap /code/SpellAvoidMap.lua
   verify-spellmap-report:
-    image: ragedunicorn/python:3-alpine3.22.1-1
+    image: ragedunicorn/python:3-alpine3.22.2-1
     volumes:
       - ./tools/verify_spellmap:/app
       - ./code:/code
@@ -134,7 +134,7 @@ services:
           --spellmap /code/SpellMap.lua \
           --spellavoidmap /code/SpellAvoidMap.lua > /target/verify_spellmap_output/verification_report.txt
   voice-generator:
-    image: ragedunicorn/python:3-alpine3.22.1-1
+    image: ragedunicorn/python:3-alpine3.22.2-1
     volumes:
       - ./tools/voice_generator:/app
       - ./code:/code
