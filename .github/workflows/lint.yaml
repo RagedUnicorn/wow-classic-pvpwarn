@@ -9,6 +9,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v6
       - name: Luacheck for lua codebases
-        uses: RagedUnicorn/action-luacheck@v1.0.0
+        uses: RagedUnicorn/action-luacheck@v2
         with:
           files: code gui localization profiles test
