@@ -13,15 +13,27 @@
     <addon.name>PVPWarn</addon.name>
     <addon.displayName>pvpwarn</addon.displayName>
     <addon.curseforge.projectId>475326</addon.curseforge.projectId>
-    <!-- renovate: datasource=custom.wow-game-versions depName=wow-gameversion versioning=loose -->
-    <addon.curseforge.gameVersion>14029</addon.curseforge.gameVersion>
+    <!--
+      Classic (Interface: 11508) - covers: Classic Era, Hardcore, Season of Discovery
+    -->
+    <!-- renovate: datasource=custom.wow-game-versions-classic depName=wow-gameversion-classic versioning=loose -->
+    <addon.curseforge.gameVersionClassic>14029</addon.curseforge.gameVersionClassic>
     <addon.wago.projectId>0mNwP46o</addon.wago.projectId>
     <addon.name.short>PVPW</addon.name.short>
     <addon.tag.version>v${project.version}</addon.tag.version>
-    <!-- renovate: datasource=custom.wow-versions depName=wow-interface versioning=loose -->
-    <addon.interface>11508</addon.interface>
-    <!-- renovate: datasource=custom.wow-patch-versions depName=wow-patch versioning=loose -->
-    <addon.supported.patch>1.15.8</addon.supported.patch>
+    <!--
+      Classic (Interface: 11508) - covers: Classic Era, Hardcore, Season of Discovery
+    -->
+    <!-- renovate: datasource=custom.wow-versions-classic depName=wow-interface-classic versioning=loose -->
+    <addon.interface.classic>11508</addon.interface.classic>
+    <!-- Aggregated interface line consumed by the .toc template. When additional WoW variants are supported, list them here as a comma-separated string. -->
+    <addon.interface>${addon.interface.classic}</addon.interface>
+    <!--
+      Wago patch versions.
+      Classic (1.15.8) - covers: Classic Era, Hardcore, Season of Discovery
+    -->
+    <!-- renovate: datasource=custom.wow-patch-versions-classic depName=wow-patch-classic versioning=loose -->
+    <addon.supported.patch.classic>1.15.8</addon.supported.patch.classic>
     <addon.identifier>${project.groupId}.${project.artifactId}</addon.identifier>
     <addon.project.categories>PvP Combat</addon.project.categories>
   </properties>
@@ -129,7 +141,7 @@
                   <changelogFile>${project.basedir}/build-resources/release-notes.md</changelogFile>
                   <changelogType>markdown</changelogType>
                   <gameVersions>
-                    <gameVersion>${addon.curseforge.gameVersion}</gameVersion>
+                    <gameVersion>${addon.curseforge.gameVersionClassic}</gameVersion>
                   </gameVersions>
                   <releaseType>release</releaseType>
                   <file>${project.basedir}/target/${addon.name}.zip</file>
@@ -170,7 +182,7 @@
                   <projectId>${addon.wago.projectId}</projectId>
                   <label>${addon.displayName}-${addon.tag.version}-classic.zip</label>
                   <changelogFile>${project.basedir}/build-resources/release-notes.md</changelogFile>
-                  <supportedClassicPatch>${addon.supported.patch}</supportedClassicPatch>
+                  <supportedClassicPatch>${addon.supported.patch.classic}</supportedClassicPatch>
                   <stability>stable</stability>
                   <file>${project.basedir}/target/${addon.name}.zip</file>
                   <!--suppress UnresolvedMavenProperty -->
