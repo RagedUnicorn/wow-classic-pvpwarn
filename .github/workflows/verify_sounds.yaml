@@ -3,18 +3,18 @@ name: Sound File Verification
 on:
   push:
     paths:
-      - 'assets/**'
-      - 'code/SpellMap.lua'
-      - 'code/SpellAvoidMap.lua'
-      - 'tools/verify_sounds/**'
-      - '.github/workflows/verify_sounds.yaml'
+      - assets/**
+      - code/SpellMap.lua
+      - code/SpellAvoidMap.lua
+      - tools/verify_sounds/**
+      - .github/workflows/verify_sounds.yaml
   pull_request:
     paths:
-      - 'assets/**'
-      - 'code/SpellMap.lua'
-      - 'code/SpellAvoidMap.lua'
-      - 'tools/verify_sounds/**'
-      - '.github/workflows/verify_sounds.yaml'
+      - assets/**
+      - code/SpellMap.lua
+      - code/SpellAvoidMap.lua
+      - tools/verify_sounds/**
+      - .github/workflows/verify_sounds.yaml
   workflow_dispatch:
 
 jobs:
@@ -105,9 +105,9 @@ jobs:
       fail-fast: false
       matrix:
         voice_pack:
-          - name: "Voice Pack Nightelf Female Classic"
-            repo: "RagedUnicorn/wow-classic-pvpwarn-vpnfc"
-            assets_path: "assets/sounds"
+          - name: Voice Pack Nightelf Female Classic
+            repo: RagedUnicorn/wow-classic-pvpwarn-vpnfc
+            assets_path: assets/sounds
     name: Verify ${{ matrix.voice_pack.name }}
     steps:
       - name: Checkout PVPWarn Repository

@@ -4,17 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       s3_path:
-        description: 'S3 path to download logs from (relative to wow_pvpwarn/combat_logs/)'
+        description: S3 path to download logs from (relative to wow_pvpwarn/combat_logs/)
         required: false
         type: string
         default: ''
       log_pattern:
-        description: 'Pattern to match log files (e.g., *.txt, WoWCombatLog*.txt)'
+        description: Pattern to match log files (e.g., *.txt, WoWCombatLog*.txt)
         required: false
         type: string
         default: '*.txt'
       use_latest:
-        description: 'Download only the most recent log file'
+        description: Download only the most recent log file
         required: false
         type: boolean
         default: false

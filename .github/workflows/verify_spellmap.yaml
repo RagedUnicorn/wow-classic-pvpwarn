@@ -3,16 +3,16 @@ name: SpellMap Verification
 on:
   push:
     paths:
-      - 'code/SpellMap.lua'
-      - 'code/SpellAvoidMap.lua'
-      - 'tools/verify_spellmap/**'
-      - '.github/workflows/verify_spellmap.yaml'
+      - code/SpellMap.lua
+      - code/SpellAvoidMap.lua
+      - tools/verify_spellmap/**
+      - .github/workflows/verify_spellmap.yaml
   pull_request:
     paths:
-      - 'code/SpellMap.lua'
-      - 'code/SpellAvoidMap.lua'
-      - 'tools/verify_spellmap/**'
-      - '.github/workflows/verify_spellmap.yaml'
+      - code/SpellMap.lua
+      - code/SpellAvoidMap.lua
+      - tools/verify_spellmap/**
+      - .github/workflows/verify_spellmap.yaml
   workflow_dispatch:
 
 jobs:
