@@ -13,13 +13,14 @@ This tool parses World of Warcraft combat logs to find real-world examples of sp
 
 ## Installation
 
-1. Navigate to the tools directory and activate the virtual environment:
+1. Create and activate a virtual environment:
 ```bash
 cd tools
+python -m venv .venv
 # On Linux/Mac:
-source venv/.venv/bin/activate
+source .venv/bin/activate
 # On Windows:
-venv\.venv\Scripts\activate
+.venv\Scripts\activate
 ```
 
 2. Install dependencies:
