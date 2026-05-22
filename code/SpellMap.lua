@@ -1772,6 +1772,7 @@ local spellMap = {
     [13813] = { refId = 14317 },
     [14316] = { refId = 14317 },
     [27753] = {
+    [14311] = {
       name = "Freezing Trap",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "freezing_trap",
@@ -1786,6 +1787,9 @@ local spellMap = {
     [1499] = { refId = 27753 },
     [14310] = { refId = 27753 },
     [14311] = { refId = 27753 },
+      allRanks = { 1499, 14310, 14311 }
+    [1499] = { refId = 14311 },
+    [14310] = { refId = 14311 },
     [14305] = {
       name = "Immolation Trap",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,

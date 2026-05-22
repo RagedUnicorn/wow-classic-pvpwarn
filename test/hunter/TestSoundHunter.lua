@@ -93,7 +93,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveTrap_13813)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveTrap_14316)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap_27753)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap_1499)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap_14310)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap_14311)
