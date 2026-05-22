@@ -71,6 +71,19 @@ local spellMap = {
       },
       allRanks = { 12328 }
     },
+    [12292] = {
+      name = "Sweeping Strikes",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
+      soundFileName = "sweeping_strikes",
+      spellIcon = "ability_rogue_slicedice",
+      hasFade = true,
+      active = true,
+      trackedEvents = {
+        "SPELL_AURA_APPLIED",
+        "SPELL_AURA_REMOVED"
+      },
+      allRanks = { 12292 }
+    },
     [2457] = {
       name = "Battle Stance",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,

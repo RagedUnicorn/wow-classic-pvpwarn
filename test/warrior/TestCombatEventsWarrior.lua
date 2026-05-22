@@ -56,6 +56,9 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeathWishApplied_12328)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeathWishRemoved_12328)
 
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSweepingStrikesApplied_12292)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSweepingStrikesRemoved_12292)
+
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBattleStanceApplied_2457)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkerStanceApplied_2458)
@@ -191,6 +194,24 @@ function me.TestCombatEventDeathWishRemoved_12328()
     testCategory,
     "Death Wish",
     12328
+  )
+end
+
+function me.TestCombatEventSweepingStrikesApplied_12292()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventSweepingStrikesApplied_12292",
+    testCategory,
+    "Sweeping Strikes",
+    12292
+  )
+end
+
+function me.TestCombatEventSweepingStrikesRemoved_12292()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventSweepingStrikesRemoved_12292",
+    testCategory,
+    "Sweeping Strikes",
+    12292
   )
 end
 
