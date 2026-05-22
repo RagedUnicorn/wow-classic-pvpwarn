@@ -58,7 +58,7 @@ local spellMap = {
       },
       allRanks = { 1719 }
     },
-    [12292] = {
+    [12328] = {
       name = "Death Wish",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "death_wish",
@@ -69,7 +69,7 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 12292 }
+      allRanks = { 12328 }
     },
     [2457] = {
       name = "Battle Stance",

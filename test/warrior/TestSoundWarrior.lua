@@ -52,8 +52,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRecklessness_1719)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRecklessness_1719)
 
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDeathWish_12292)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDeathWish_12292)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDeathWish_12328)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDeathWish_12328)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBattleStance_2457)
 
@@ -171,19 +171,19 @@ function me.TestSoundDownRecklessness_1719()
   )
 end
 
-function me.TestSoundDeathWish_12292()
+function me.TestSoundDeathWish_12328()
   mod.testHelper.TestSoundApplied(
-    "TestSoundDeathWish_12292",
+    "TestSoundDeathWish_12328",
     testCategory,
-    12292
+    12328
   )
 end
 
-function me.TestSoundDownDeathWish_12292()
+function me.TestSoundDownDeathWish_12328()
   mod.testHelper.TestSoundRemoved(
-    "TestSoundDownDeathWish_12292",
+    "TestSoundDownDeathWish_12328",
     testCategory,
-    12292
+    12328
   )
 end
 

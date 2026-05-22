@@ -53,8 +53,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRecklessnessApplied_1719)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRecklessnessRemoved_1719)
 
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeathWishApplied_12292)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeathWishRemoved_12292)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeathWishApplied_12328)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeathWishRemoved_12328)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBattleStanceApplied_2457)
 
@@ -176,21 +176,21 @@ function me.TestCombatEventRecklessnessRemoved_1719()
   )
 end
 
-function me.TestCombatEventDeathWishApplied_12292()
+function me.TestCombatEventDeathWishApplied_12328()
   mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventDeathWishApplied_12292",
+    "TestCombatEventDeathWishApplied_12328",
     testCategory,
     "Death Wish",
-    12292
+    12328
   )
 end
 
-function me.TestCombatEventDeathWishRemoved_12292()
+function me.TestCombatEventDeathWishRemoved_12328()
   mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventDeathWishRemoved_12292",
+    "TestCombatEventDeathWishRemoved_12328",
     testCategory,
     "Death Wish",
-    12292
+    12328
   )
 end
 
