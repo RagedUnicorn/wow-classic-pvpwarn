@@ -92,18 +92,30 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveTrap_14317)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveTrap_13813)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveTrap_14316)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveTrap_409535)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveTrap_409532)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveTrap_409534)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap_1499)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap_14310)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap_14311)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap_409519)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap_409510)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFreezingTrap_409512)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap_14305)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap_13795)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap_14302)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap_14303)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap_14304)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap_409530)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap_409521)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap_409524)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap_409526)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundImmolationTrap_409528)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrostTrap_13809)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFrostTrap_409520)
 
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundViperSting_14280)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundViperSting_3034)
@@ -429,11 +441,27 @@ function me.TestSoundExplosiveTrap_14316()
   )
 end
 
-function me.TestSoundFreezingTrap_27753()
+function me.TestSoundExplosiveTrap_409535()
   mod.testHelper.TestSoundSuccess(
-    "TestSoundFreezingTrap_27753",
+    "TestSoundExplosiveTrap_409535",
     testCategory,
-    27753
+    409535
+  )
+end
+
+function me.TestSoundExplosiveTrap_409532()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundExplosiveTrap_409532",
+    testCategory,
+    409532
+  )
+end
+
+function me.TestSoundExplosiveTrap_409534()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundExplosiveTrap_409534",
+    testCategory,
+    409534
   )
 end
 
@@ -458,6 +486,30 @@ function me.TestSoundFreezingTrap_14311()
     "TestSoundFreezingTrap_14311",
     testCategory,
     14311
+  )
+end
+
+function me.TestSoundFreezingTrap_409519()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFreezingTrap_409519",
+    testCategory,
+    409519
+  )
+end
+
+function me.TestSoundFreezingTrap_409510()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFreezingTrap_409510",
+    testCategory,
+    409510
+  )
+end
+
+function me.TestSoundFreezingTrap_409512()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFreezingTrap_409512",
+    testCategory,
+    409512
   )
 end
 
@@ -501,11 +553,59 @@ function me.TestSoundImmolationTrap_14304()
   )
 end
 
+function me.TestSoundImmolationTrap_409530()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundImmolationTrap_409530",
+    testCategory,
+    409530
+  )
+end
+
+function me.TestSoundImmolationTrap_409521()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundImmolationTrap_409521",
+    testCategory,
+    409521
+  )
+end
+
+function me.TestSoundImmolationTrap_409524()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundImmolationTrap_409524",
+    testCategory,
+    409524
+  )
+end
+
+function me.TestSoundImmolationTrap_409526()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundImmolationTrap_409526",
+    testCategory,
+    409526
+  )
+end
+
+function me.TestSoundImmolationTrap_409528()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundImmolationTrap_409528",
+    testCategory,
+    409528
+  )
+end
+
 function me.TestSoundFrostTrap_13809()
   mod.testHelper.TestSoundSuccess(
     "TestSoundFrostTrap_13809",
     testCategory,
     13809
+  )
+end
+
+function me.TestSoundFrostTrap_409520()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFrostTrap_409520",
+    testCategory,
+    409520
   )
 end
 

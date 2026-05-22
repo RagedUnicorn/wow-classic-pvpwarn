@@ -58,6 +58,7 @@ The tool uses the `lupa` library to properly parse Lua code, including:
 - **Active Property Validation**: Validates active property is a boolean when present
 - **Has Fade Validation**: Checks hasFade property is boolean and consistent with trackedEvents
 - **Item ID Validation**: Validates optional itemId property is a positive integer when present
+- **Overwrites Validation**: Validates the optional overwrites property is an integer on a `SPELL_TYPE_SOD` entry that references an existing `SPELL_TYPE_BASE` spell in the same category
 
 ### SpellAvoidMap-Specific Validators
 - **Avoid Properties Validation**: Ensures self_avoid and/or enemy_avoid boolean properties exist

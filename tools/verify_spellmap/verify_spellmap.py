@@ -14,7 +14,7 @@ from verify_spellmap.validators import (
     NameValidator, DuplicateValidator, TypeValidator,
     TrackedEventsValidator, SoundFileNameValidator, SpellIconValidator,
     AllRanksValidator, ActiveValidator, HasFadeValidator, HasCastValidator,
-    BaseValidator, AvoidPropertiesValidator, ItemIdValidator
+    BaseValidator, AvoidPropertiesValidator, ItemIdValidator, OverwritesValidator
 )
 
 
@@ -54,6 +54,7 @@ class SpellMapVerifier:
         sound_file_name_validator = SoundFileNameValidator()
         spell_icon_validator = SpellIconValidator()
         all_ranks_validator = AllRanksValidator()
+        overwrites_validator = OverwritesValidator()
 
         # Add validators in order of execution
         validators_list: List[BaseValidator] = [
@@ -63,6 +64,7 @@ class SpellMapVerifier:
             sound_file_name_validator, # Then check sound file names
             spell_icon_validator,     # Then check spell icons
             all_ranks_validator,      # Then check all ranks
+            overwrites_validator,     # Then check overwrites references
         ]
         self.validators = validators_list
 

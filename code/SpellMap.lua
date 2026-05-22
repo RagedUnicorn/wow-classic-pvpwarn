@@ -1771,7 +1771,22 @@ local spellMap = {
     },
     [13813] = { refId = 14317 },
     [14316] = { refId = 14317 },
-    [27753] = {
+    -- Season of Discovery reworked Explosive Trap - overwrites the base game spell [14317]
+    [409535] = {
+      name = "Explosive Trap",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      overwrites = 14317,
+      soundFileName = "explosive_trap",
+      spellIcon = "spell_fire_selfdestruct",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 409532, 409534, 409535 }
+    },
+    [409532] = { refId = 409535 },
+    [409534] = { refId = 409535 },
     [14311] = {
       name = "Freezing Trap",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1782,14 +1797,26 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 1499, 14310, 14311, 27753 }
-    },
-    [1499] = { refId = 27753 },
-    [14310] = { refId = 27753 },
-    [14311] = { refId = 27753 },
       allRanks = { 1499, 14310, 14311 }
+    },
     [1499] = { refId = 14311 },
     [14310] = { refId = 14311 },
+    -- Season of Discovery reworked Freezing Trap - overwrites the base game spell [14311]
+    [409519] = {
+      name = "Freezing Trap",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      overwrites = 14311,
+      soundFileName = "freezing_trap",
+      spellIcon = "spell_frost_chainsofice",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 409510, 409512, 409519 }
+    },
+    [409510] = { refId = 409519 },
+    [409512] = { refId = 409519 },
     [14305] = {
       name = "Immolation Trap",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1806,6 +1833,24 @@ local spellMap = {
     [14302] = { refId = 14305 },
     [14303] = { refId = 14305 },
     [14304] = { refId = 14305 },
+    -- Season of Discovery reworked Immolation Trap - overwrites the base game spell [14305]
+    [409530] = {
+      name = "Immolation Trap",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      overwrites = 14305,
+      soundFileName = "immolation_trap",
+      spellIcon = "spell_fire_flameshock",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 409521, 409524, 409526, 409528, 409530 }
+    },
+    [409521] = { refId = 409530 },
+    [409524] = { refId = 409530 },
+    [409526] = { refId = 409530 },
+    [409528] = { refId = 409530 },
     [13809] = {
       name = "Frost Trap",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1817,6 +1862,20 @@ local spellMap = {
         "SPELL_CAST_SUCCESS"
       },
       allRanks = { 13809 }
+    },
+    -- Season of Discovery reworked Frost Trap - overwrites the base game spell [13809]
+    [409520] = {
+      name = "Frost Trap",
+      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+      overwrites = 13809,
+      soundFileName = "frost_trap",
+      spellIcon = "spell_frost_freezingbreath",
+      hasFade = false,
+      active = true,
+      trackedEvents = {
+        "SPELL_CAST_SUCCESS"
+      },
+      allRanks = { 409520 }
     },
     [14280] = {
       name = "Viper Sting",

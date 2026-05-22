@@ -63,14 +63,17 @@ end
 function me.GetFilteredSpellMap()
   local filteredSpellMap = {}
   local baseSpellMap = mod.spellMap.GetSpellMap()
+  local isSodActive = mod.season.IsSodActive()
 
   for category, _ in pairs(baseSpellMap) do
     filteredSpellMap[category] = {}
+    -- spellIds of base spells that an active SoD spell overwrites and should be hidden
+    local overwrittenSpellIds = {}
 
     for spellId, spellData in pairs(baseSpellMap[category]) do
       -- spells that only contain a refId are not added to the filtered SpellMap
       if spellData.refId == nil then
-        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and mod.season.IsSodActive()
+        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and isSodActive
           or RGPVPW_ENVIRONMENT.TEST then
           filteredSpellMap[category][spellId] = spellData
         end
@@ -78,7 +81,22 @@ function me.GetFilteredSpellMap()
         if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_BASE then
           filteredSpellMap[category][spellId] = spellData
         end
+
+        --[[
+          A SoD spell that reworks a base spell hides the base spell it overwrites. This is only
+          done in an active Season of Discovery and never while testing - the test framework
+          force includes SoD spells and relies on the base spells being present as well.
+        ]]--
+        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and isSodActive
+          and not RGPVPW_ENVIRONMENT.TEST and spellData.overwrites ~= nil then
+          overwrittenSpellIds[spellData.overwrites] = true
+        end
       end
+    end
+
+    -- second pass - remove base spells that are overwritten by an active SoD spell
+    for overwrittenSpellId, _ in pairs(overwrittenSpellIds) do
+      filteredSpellMap[category][overwrittenSpellId] = nil
     end
   end
 

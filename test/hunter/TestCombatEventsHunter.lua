@@ -92,17 +92,29 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventExplosiveTrapSuccess_14317)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventExplosiveTrapSuccess_13813)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventExplosiveTrapSuccess_14316)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventExplosiveTrapSuccess_409535)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventExplosiveTrapSuccess_409532)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventExplosiveTrapSuccess_409534)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFreezingTrapSuccess_1499)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFreezingTrapSuccess_14310)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFreezingTrapSuccess_14311)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFreezingTrapSuccess_409519)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFreezingTrapSuccess_409510)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFreezingTrapSuccess_409512)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventImmolationTrapSuccess_14305)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventImmolationTrapSuccess_13795)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventImmolationTrapSuccess_14302)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventImmolationTrapSuccess_14303)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventImmolationTrapSuccess_14304)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventImmolationTrapSuccess_409530)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventImmolationTrapSuccess_409521)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventImmolationTrapSuccess_409524)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventImmolationTrapSuccess_409526)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventImmolationTrapSuccess_409528)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFrostTrapSuccess_13809)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFrostTrapSuccess_409520)
 
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventViperStingSuccess_14280)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventViperStingSuccess_3034)
@@ -466,12 +478,30 @@ function me.TestCombatEventExplosiveTrapSuccess_14316()
   )
 end
 
-function me.TestCombatEventFreezingTrapSuccess_27753()
+function me.TestCombatEventExplosiveTrapSuccess_409535()
   mod.testHelper.TestCombatEventSuccess(
-    "TestCombatEventFreezingTrapSuccess_27753",
+    "TestCombatEventExplosiveTrapSuccess_409535",
     testCategory,
-    "Freezing Trap",
-    27753
+    "Explosive Trap",
+    409535
+  )
+end
+
+function me.TestCombatEventExplosiveTrapSuccess_409532()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventExplosiveTrapSuccess_409532",
+    testCategory,
+    "Explosive Trap",
+    409532
+  )
+end
+
+function me.TestCombatEventExplosiveTrapSuccess_409534()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventExplosiveTrapSuccess_409534",
+    testCategory,
+    "Explosive Trap",
+    409534
   )
 end
 
@@ -499,6 +529,33 @@ function me.TestCombatEventFreezingTrapSuccess_14311()
     testCategory,
     "Freezing Trap",
     14311
+  )
+end
+
+function me.TestCombatEventFreezingTrapSuccess_409519()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFreezingTrapSuccess_409519",
+    testCategory,
+    "Freezing Trap",
+    409519
+  )
+end
+
+function me.TestCombatEventFreezingTrapSuccess_409510()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFreezingTrapSuccess_409510",
+    testCategory,
+    "Freezing Trap",
+    409510
+  )
+end
+
+function me.TestCombatEventFreezingTrapSuccess_409512()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFreezingTrapSuccess_409512",
+    testCategory,
+    "Freezing Trap",
+    409512
   )
 end
 
@@ -547,12 +604,66 @@ function me.TestCombatEventImmolationTrapSuccess_14304()
   )
 end
 
+function me.TestCombatEventImmolationTrapSuccess_409530()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventImmolationTrapSuccess_409530",
+    testCategory,
+    "Immolation Trap",
+    409530
+  )
+end
+
+function me.TestCombatEventImmolationTrapSuccess_409521()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventImmolationTrapSuccess_409521",
+    testCategory,
+    "Immolation Trap",
+    409521
+  )
+end
+
+function me.TestCombatEventImmolationTrapSuccess_409524()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventImmolationTrapSuccess_409524",
+    testCategory,
+    "Immolation Trap",
+    409524
+  )
+end
+
+function me.TestCombatEventImmolationTrapSuccess_409526()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventImmolationTrapSuccess_409526",
+    testCategory,
+    "Immolation Trap",
+    409526
+  )
+end
+
+function me.TestCombatEventImmolationTrapSuccess_409528()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventImmolationTrapSuccess_409528",
+    testCategory,
+    "Immolation Trap",
+    409528
+  )
+end
+
 function me.TestCombatEventFrostTrapSuccess_13809()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventFrostTrapSuccess_13809",
     testCategory,
     "Frost Trap",
     13809
+  )
+end
+
+function me.TestCombatEventFrostTrapSuccess_409520()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFrostTrapSuccess_409520",
+    testCategory,
+    "Frost Trap",
+    409520
   )
 end
 

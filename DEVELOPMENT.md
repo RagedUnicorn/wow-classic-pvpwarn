@@ -135,6 +135,34 @@ To add stance tracking for a new spell:
 
 For a detailed flow diagram and more information, see [docs/stance-tracking-flow.md](docs/stance_tracking_flow.md).
 
+### Season of Discovery Spells
+
+Spell entries in `SpellMap.lua` and `SpellAvoidMap.lua` carry a `type`:
+
+- `RGPVPW_CONSTANTS.SPELL_TYPE_BASE` - available in every game version, always shown.
+- `RGPVPW_CONSTANTS.SPELL_TYPE_SOD` - only available in Season of Discovery. The
+  filter (`SpellMapHelper.GetFilteredSpellMap`) includes these only while a SoD
+  season is active, or while the test framework runs.
+
+#### The `overwrites` property
+
+Some base game spells were reworked in Season of Discovery and given new spell
+IDs. Rather than carrying both the base entry and the SoD entry as two separate
+enable/disable options (which would show twice for SoD players), the SoD entry
+declares which base spell it replaces:
+
+```lua
+overwrites = <baseSpellId>
+```
+
+`overwrites` is optional and only valid on a `SPELL_TYPE_SOD` entry; it must
+reference a `SPELL_TYPE_BASE` entry in the same category. While a SoD season is
+active the filter hides the overwritten base spell, so each client shows exactly
+one enable/disable entry for the spell. Combat detection is unaffected - both the
+base and SoD spell IDs still resolve through `SearchBySpellId`. The hunter traps
+(Explosive/Freezing/Immolation/Frost Trap) are the worked example. The
+`overwrites` property is validated by the `verify-spellmap` tool.
+
 ### Voice Pack Integration
 
 PVPWarn supports custom voice packs as separate addons that can provide alternative sound files. Voice packs register themselves with the main addon and users can select them through the settings menu. For detailed information about how voice packs work and implementation details, see [docs/voice_pack_loading_flow.md](docs/voice_pack_loading_flow.md).
