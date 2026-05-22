@@ -294,7 +294,7 @@ local spellMap = {
       allRanks = { 402911 }
     },
     [425418] = {
-      name = "Consumed by Rage",
+      name = "Consumed By Rage",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
       soundFileName = "consumed_by_rage",
       spellIcon = "spell_nature_shamanrage",

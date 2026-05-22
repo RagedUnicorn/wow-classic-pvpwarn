@@ -487,7 +487,7 @@ function me.TestCombatEventConsumedByRageApplied_425418()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventConsumedByRageApplied_425418",
     testCategory,
-    "Consumed by Rage",
+    "Consumed By Rage",
     425418
   )
 end
@@ -496,7 +496,7 @@ function me.TestCombatEventConsumedByRageRemoved_425418()
   mod.testHelper.TestCombatEventRemoved(
     "TestCombatEventConsumedByRageRemoved_425418",
     testCategory,
-    "Consumed by Rage",
+    "Consumed By Rage",
     425418
   )
 end
