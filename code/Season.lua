@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals C_Seasons Enum
+-- luacheck: globals C_Seasons Enum WOW_PROJECT_ID WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 
 local mod = rgpvpw
 local me = {}
@@ -42,6 +42,21 @@ me.tag = "Season"
 ]]--
 function me.IsSodActive()
   if C_Seasons.HasActiveSeason() and C_Seasons.GetActiveSeason() == Enum.SeasonID.Placeholder then
+    return true
+  end
+
+  return false
+end
+
+--[[
+  Test if the Burning Crusade Classic (TBC Anniversary) client is active
+
+  @return {boolean}
+    true if TBC is active
+    false if TBC is not active
+]]--
+function me.IsTbcActive()
+  if WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
     return true
   end
 
