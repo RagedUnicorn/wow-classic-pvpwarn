@@ -79,7 +79,8 @@ local PrintLogMessage = function(levelColor, tag, message)
   end
 
   if not mod.filter.ShouldFilterTag(tag) then
-    print(levelColor .. C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Title") .. ":" .. tag .. " - " .. message)
+    print(levelColor ..
+        C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Title") .. ":" .. tag .. " - " .. message)
   end
 end
 
