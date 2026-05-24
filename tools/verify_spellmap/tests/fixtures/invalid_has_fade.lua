@@ -12,7 +12,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 100 }
+      allRanks = {
+        { spellId = 100, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
 
     -- hasFade is a string instead of boolean
@@ -27,7 +29,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 871 }
+      allRanks = {
+        { spellId = 871, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
 
     -- hasFade is a number instead of boolean
@@ -42,7 +46,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 2565 }
+      allRanks = {
+        { spellId = 2565, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
 
     -- hasFade is nil (Lua nil)
@@ -56,7 +62,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 676 }
+      allRanks = {
+        { spellId = 676, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
 
     -- hasFade is a table instead of boolean
@@ -70,7 +78,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 5246 }
+      allRanks = {
+        { spellId = 5246, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     }
   }
 }

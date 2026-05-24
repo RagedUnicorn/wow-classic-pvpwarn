@@ -91,12 +91,14 @@ class AllRanksValidator(BaseValidator):
             )
             return
 
-        # Convert all values to integers for comparison
+        # Extract spell IDs from the structured entries: each rank is
+        # `{ spellId = N, type = RGPVPW_CONSTANTS.SPELL_TYPE_* }`. Per-rank
+        # type strictness is intentionally out of scope here — see PWI-0005.
         try:
-            all_ranks_int = [int(rank) for rank in all_ranks]
-        except (TypeError, ValueError) as e:
+            all_ranks_int = [int(rank["spellId"]) for rank in all_ranks]
+        except (TypeError, ValueError, KeyError):
             self.add_error(
-                f"{category}[{spell_id}]: 'allRanks' contains non-numeric values"
+                f"{category}[{spell_id}]: 'allRanks' entries must be tables with a numeric 'spellId' field"
             )
             return
 

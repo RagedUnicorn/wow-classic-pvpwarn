@@ -43,7 +43,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 18499 }
+      allRanks = {
+        { spellId = 18499, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1719] = {
       name = "Recklessness",
@@ -56,7 +58,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 1719 }
+      allRanks = {
+        { spellId = 1719, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [12328] = {
       name = "Death Wish",
@@ -69,7 +73,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 12328 }
+      allRanks = {
+        { spellId = 12328, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [12292] = {
       name = "Sweeping Strikes",
@@ -82,7 +88,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 12292 }
+      allRanks = {
+        { spellId = 12292, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [2457] = {
       name = "Battle Stance",
@@ -95,7 +103,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED"
       },
-      allRanks = { 2457 }
+      allRanks = {
+        { spellId = 2457, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [2458] = {
       name = "Berserker Stance",
@@ -108,7 +118,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED"
       },
-      allRanks = { 2458 }
+      allRanks = {
+        { spellId = 2458, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [71] = {
       name = "Defensive Stance",
@@ -121,7 +133,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED"
       },
-      allRanks = { 71 }
+      allRanks = {
+        { spellId = 71, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [20252] = {
       name = "Intercept",
@@ -133,7 +147,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 20252, 20616, 20617 }
+      allRanks = {
+        { spellId = 20252, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 20616, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 20617, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [20616] = { refId = 20252 },
     [20617] = { refId = 20252 },
@@ -147,7 +165,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 676 }
+      allRanks = {
+        { spellId = 676, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [12809] = {
       name = "Concussion Blow",
@@ -159,7 +179,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 12809 }
+      allRanks = {
+        { spellId = 12809, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [2687] = {
       name = "Bloodrage",
@@ -172,7 +194,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 2687 }
+      allRanks = {
+        { spellId = 2687, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6552] = {
       name = "Pummel",
@@ -184,7 +208,10 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 6552, 6554 }
+      allRanks = {
+        { spellId = 6552, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6554, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6554] = { refId = 6552 },
     [100] = {
@@ -197,7 +224,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 100, 6178, 11578 }
+      allRanks = {
+        { spellId = 100, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6178, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11578, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6178] = { refId = 100 },
     [11578] = { refId = 100 },
@@ -211,7 +242,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 5246 }
+      allRanks = {
+        { spellId = 5246, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [2565] = {
       name = "Shield Block",
@@ -224,7 +257,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 2565 }
+      allRanks = {
+        { spellId = 2565, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23922] = {
       name = "Shield Slam",
@@ -236,7 +271,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 23922, 23923, 23924, 23925 }
+      allRanks = {
+        { spellId = 23922, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 23923, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 23924, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 23925, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23923] = { refId = 23922 },
     [23924] = { refId = 23922 },
@@ -252,7 +292,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 871 }
+      allRanks = {
+        { spellId = 871, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [12975] = {
       name = "Last Stand",
@@ -265,7 +307,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 12975 }
+      allRanks = {
+        { spellId = 12975, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [72] = {
       name = "Shield Bash",
@@ -277,7 +321,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 72, 1671, 1672 }
+      allRanks = {
+        { spellId = 72, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1671, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1672, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1671] = { refId = 72 },
     [1672] = { refId = 72 },
@@ -292,7 +340,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 20230 }
+      allRanks = {
+        { spellId = 20230, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [402911] = {
       name = "Raging Blow",
@@ -304,7 +354,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 402911 }
+      allRanks = {
+        { spellId = 402911, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [425418] = {
       name = "Consumed By Rage",
@@ -317,7 +369,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 425418 }
+      allRanks = {
+        { spellId = 425418, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [429765] = {
       name = "Quick Strike",
@@ -329,7 +383,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 429765 }
+      allRanks = {
+        { spellId = 429765, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [402913] = {
       name = "Enraged Regeneration",
@@ -342,7 +398,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 402913 }
+      allRanks = {
+        { spellId = 402913, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [426490] = {
       name = "Rallying Cry",
@@ -355,7 +413,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 426490 }
+      allRanks = {
+        { spellId = 426490, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [403338] = {
       name = "Intervene",
@@ -367,7 +427,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 403338 }
+      allRanks = {
+        { spellId = 403338, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [403215] = {
       name = "Commanding Shout",
@@ -379,7 +441,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 403215 }
+      allRanks = {
+        { spellId = 403215, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [426940] = {
       name = "Rampage",
@@ -392,7 +456,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 426940 }
+      allRanks = {
+        { spellId = 426940, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [403228] = {
       name = "Meathook",
@@ -404,7 +470,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 403228 }
+      allRanks = {
+        { spellId = 403228, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [440488] = {
       name = "Shockwave",
@@ -416,7 +484,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 440488 }
+      allRanks = {
+        { spellId = 440488, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [440113] = {
       name = "Sudden Death",
@@ -429,7 +499,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 440113 }
+      allRanks = {
+        { spellId = 440113, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [461475] = {
       name = "Valor of Azeroth",
@@ -442,7 +514,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 461475 }
+      allRanks = {
+        { spellId = 461475, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [402927] = {
       name = "Victory Rush",
@@ -454,7 +528,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 402927 }
+      allRanks = {
+        { spellId = 402927, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [412513] = {
       name = "Gladiator Stance",
@@ -467,7 +543,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_AURA_APPLIED"
       },
-      allRanks = { 412513 }
+      allRanks = {
+        { spellId = 412513, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     }
   },
   ["priest"] = {
@@ -483,7 +561,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 15473 }
+      allRanks = {
+        { spellId = 15473, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [10890] = {
       name = "Psychic Scream",
@@ -495,7 +575,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8122, 8124, 10888, 10890 }
+      allRanks = {
+        { spellId = 8122, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8124, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10888, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10890, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8122] = { refId = 10890 },
     [8124] = { refId = 10890 },
@@ -510,7 +595,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 15487 }
+      allRanks = {
+        { spellId = 15487, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [10060] = {
       name = "Power Infusion",
@@ -524,7 +611,9 @@ local spellMap = {
         "SPELL_AURA_REMOVED",
         "SPELL_AURA_REFRESH"
       },
-      allRanks = { 10060 }
+      allRanks = {
+        { spellId = 10060, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [10952] = {
       name = "Inner Fire",
@@ -538,7 +627,14 @@ local spellMap = {
         "SPELL_AURA_REMOVED",
         "SPELL_AURA_REFRESH"
       },
-      allRanks = { 588, 7128, 602, 1006, 10951, 10952 }
+      allRanks = {
+        { spellId = 588, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 7128, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 602, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1006, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10951, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10952, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [588] = { refId = 10952 },
     [7128] = { refId = 10952 },
@@ -556,7 +652,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REFRESH"
       },
-      allRanks = { 15286 }
+      allRanks = {
+        { spellId = 15286, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19280] = {
       name = "Devouring Plague",
@@ -568,7 +666,14 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 2944, 19276, 19277, 19278, 19279, 19280 }
+      allRanks = {
+        { spellId = 2944, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19276, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19277, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19278, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19279, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19280, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [2944] = { refId = 19280 },
     [19276] = { refId = 19280 },
@@ -587,7 +692,14 @@ local spellMap = {
         "SPELL_AURA_REMOVED",
         "SPELL_AURA_REFRESH"
       },
-      allRanks = { 2652, 19261, 19262, 19264, 19265, 19266 }
+      allRanks = {
+        { spellId = 2652, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19261, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19262, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19264, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19265, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19266, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [2652] = { refId = 19266 },
     [19261] = { refId = 19266 },
@@ -606,7 +718,9 @@ local spellMap = {
         "SPELL_AURA_REMOVED",
         "SPELL_AURA_REFRESH"
       },
-      allRanks = { 6346 }
+      allRanks = {
+        { spellId = 6346, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19243] = {
       name = "Desperate Prayer",
@@ -618,7 +732,14 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 13908, 19238, 19240, 19241, 19242, 19243 }
+      allRanks = {
+        { spellId = 13908, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19238, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19240, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19241, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19242, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19243, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13908] = { refId = 19243 },
     [19238] = { refId = 19243 },
@@ -635,7 +756,14 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 9035, 19281, 19282, 19283, 19284, 19285 }
+      allRanks = {
+        { spellId = 9035, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19281, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19282, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19283, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19284, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19285, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19281] = { refId = 9035 },
     [19282] = { refId = 9035 },
@@ -654,7 +782,14 @@ local spellMap = {
         "SPELL_AURA_REMOVED",
         "SPELL_AURA_REFRESH"
       },
-      allRanks = { 18137, 19308, 19309, 19310, 19311, 19312 }
+      allRanks = {
+        { spellId = 18137, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19308, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19309, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19310, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19311, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19312, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19308] = { refId = 18137 },
     [19309] = { refId = 18137 },
@@ -671,7 +806,10 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 402289, 402284 }
+      allRanks = {
+        { spellId = 402289, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+        { spellId = 402284, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
       -- When using offensive 402284
       -- When using healing 402289
     },
@@ -686,7 +824,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 401946 }
+      allRanks = {
+        { spellId = 401946, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [401955] = {
       name = "Shadow Word: Death",
@@ -699,7 +839,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 401955 }
+      allRanks = {
+        { spellId = 401955, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [402799] = {
       name = "Homunculi",
@@ -711,7 +853,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 402799 }
+      allRanks = {
+        { spellId = 402799, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [425294] = {
       name = "Dispersion",
@@ -724,7 +868,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 425294 }
+      allRanks = {
+        { spellId = 425294, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [402004] = {
       name = "Pain Suppression",
@@ -737,7 +883,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 402004 }
+      allRanks = {
+        { spellId = 402004, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [401977] = {
       name = "Shadowfiend",
@@ -749,7 +897,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 401977 }
+      allRanks = {
+        { spellId = 401977, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [401859] = {
       name = "Prayer of Mending",
@@ -761,7 +911,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 401859 }
+      allRanks = {
+        { spellId = 401859, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [425204] = {
       name = "Void Plague",
@@ -773,7 +925,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 425204 }
+      allRanks = {
+        { spellId = 425204, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [431655] = {
       name = "Mind Spike",
@@ -785,7 +939,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 431655 }
+      allRanks = {
+        { spellId = 431655, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [402789] = {
       name = "Eye of the Void",
@@ -797,7 +953,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 402789 }
+      allRanks = {
+        { spellId = 402789, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [431681] = {
       name = "Void Zone",
@@ -809,7 +967,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 431681 }
+      allRanks = {
+        { spellId = 431681, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [402668] = {
       name = "Vampiric Touch",
@@ -821,7 +981,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 402668 }
+      allRanks = {
+        { spellId = 402668, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [425284] = {
       name = "Spirit of the Redeemer",
@@ -834,7 +996,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 425284 }
+      allRanks = {
+        { spellId = 425284, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [431664] = {
       name = "Surge of Light",
@@ -847,7 +1011,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 431664 }
+      allRanks = {
+        { spellId = 431664, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [413248] = {
       name = "Serendipity",
@@ -861,7 +1027,9 @@ local spellMap = {
         "SPELL_AURA_REMOVED",
         "SPELL_AURA_REFRESH"
       },
-      allRanks = { 413248 }
+      allRanks = {
+        { spellId = 413248, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     }
   },
   ["rogue"] = {
@@ -876,7 +1044,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REFRESH"
       },
-      allRanks = { 2094 }
+      allRanks = {
+        { spellId = 2094, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1769] = {
       name = "Kick",
@@ -888,7 +1058,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 1766, 1767, 1768, 1769 }
+      allRanks = {
+        { spellId = 1766, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1767, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1768, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1769, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1766] = { refId = 1769 },
     [1767] = { refId = 1769 },
@@ -904,7 +1079,11 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 2983, 8696, 11305 }
+      allRanks = {
+        { spellId = 2983, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8696, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11305, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [2983] = { refId = 11305 },
     [8696] = { refId = 11305 },
@@ -919,7 +1098,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 5277 }
+      allRanks = {
+        { spellId = 5277, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8643] = {
       name = "Kidney Shot",
@@ -931,7 +1112,10 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 408, 8643 }
+      allRanks = {
+        { spellId = 408, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8643, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [408] = { refId = 8643 },
     [1833] = {
@@ -945,7 +1129,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 1833 }
+      allRanks = {
+        { spellId = 1833, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13750] = {
       name = "Adrenaline Rush",
@@ -958,7 +1144,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 13750 }
+      allRanks = {
+        { spellId = 13750, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13877] = {
       name = "Blade Flurry",
@@ -971,7 +1159,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 13877 }
+      allRanks = {
+        { spellId = 13877, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [14177] = {
       name = "Cold Blood",
@@ -984,7 +1174,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 14177 }
+      allRanks = {
+        { spellId = 14177, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [14185] = {
       name = "Preparation",
@@ -996,7 +1188,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 14185 }
+      allRanks = {
+        { spellId = 14185, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1857] = {
       name = "Vanish",
@@ -1008,7 +1202,10 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 1856, 1857 }
+      allRanks = {
+        { spellId = 1856, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1857, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1856] = { refId = 1857 },
     [1787] = {
@@ -1021,7 +1218,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 1784, 1785, 1786, 1787 }
+      allRanks = {
+        { spellId = 1784, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1785, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1786, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1787, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1784] = { refId = 1787 },
     [1785] = { refId = 1787 },
@@ -1036,7 +1238,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 398196 }
+      allRanks = {
+        { spellId = 398196, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [400009] = {
       name = "Between the Eyes",
@@ -1048,7 +1252,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 400009 }
+      allRanks = {
+        { spellId = 400009, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [400012] = {
       name = "Blade Dance",
@@ -1061,7 +1267,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 400012 }
+      allRanks = {
+        { spellId = 400012, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [399960] = {
       name = "Mutilate",
@@ -1073,7 +1281,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 399960 }
+      allRanks = {
+        { spellId = 399960, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [399985] = {
       name = "Shadowstrike",
@@ -1085,7 +1295,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 399985 }
+      allRanks = {
+        { spellId = 399985, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [424785] = {
       name = "Saber Slash",
@@ -1097,7 +1309,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 424785 }
+      allRanks = {
+        { spellId = 424785, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [400029] = {
       name = "Shadowstep",
@@ -1109,7 +1323,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 400029 }
+      allRanks = {
+        { spellId = 400029, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [425012] = {
       name = "Poisoned Knife",
@@ -1121,7 +1337,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 425012 }
+      allRanks = {
+        { spellId = 425012, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [399986] = {
       name = "Shuriken Toss",
@@ -1133,7 +1351,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 399986 }
+      allRanks = {
+        { spellId = 399986, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [399963] = {
       name = "Envenom",
@@ -1145,7 +1365,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 399963 }
+      allRanks = {
+        { spellId = 399963, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [424919] = {
       name = "Main Gauche",
@@ -1157,7 +1379,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 424919 }
+      allRanks = {
+        { spellId = 424919, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [425096] = {
       name = "Master of Subtlety",
@@ -1170,7 +1394,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 425096 }
+      allRanks = {
+        { spellId = 425096, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [462708] = {
       name = "Cutthroat",
@@ -1183,7 +1409,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 462708 }
+      allRanks = {
+        { spellId = 462708, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [436610] = {
       name = "Blunderbuss",
@@ -1195,7 +1423,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 436610 }
+      allRanks = {
+        { spellId = 436610, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [412096] = {
       name = "Crimson Tempest",
@@ -1207,7 +1437,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 412096 }
+      allRanks = {
+        { spellId = 412096, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [409240] = {
       name = "Fan of Knives",
@@ -1219,7 +1451,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 409240 }
+      allRanks = {
+        { spellId = 409240, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     }
   },
   ["mage"] = {
@@ -1234,7 +1468,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 11958 }
+      allRanks = {
+        { spellId = 11958, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [12826] = {
       name = "Polymorph",
@@ -1248,7 +1484,14 @@ local spellMap = {
         "SPELL_CAST_SUCCESS",
         "SPELL_CAST_START"
       },
-      allRanks = { 118, 12824, 12825, 12826, 28271, 28272 }
+      allRanks = {
+        { spellId = 118, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 12824, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 12825, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 12826, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 28271, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 28272, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [118] = { refId = 12826 },
     [12824] = { refId = 12826 },
@@ -1265,7 +1508,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 1953 }
+      allRanks = {
+        { spellId = 1953, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [10225] = {
       name = "Fire Ward",
@@ -1278,7 +1523,13 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 543, 8457, 8458, 10223, 10225 }
+      allRanks = {
+        { spellId = 543, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8457, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8458, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10223, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10225, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [543] = { refId = 10225 },
     [8457] = { refId = 10225 },
@@ -1295,7 +1546,13 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 6143, 8461, 8462, 10177, 28609 }
+      allRanks = {
+        { spellId = 6143, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8461, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8462, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10177, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 28609, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6143] = { refId = 28609 },
     [8461] = { refId = 28609 },
@@ -1311,7 +1568,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 2139 }
+      allRanks = {
+        { spellId = 2139, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [10193] = {
       name = "Mana Shield",
@@ -1326,7 +1585,14 @@ local spellMap = {
         "SPELL_AURA_REMOVED",
         "SPELL_AURA_REFRESH"
       },
-      allRanks = { 1463, 8494, 8495, 10191, 10192, 10193 }
+      allRanks = {
+        { spellId = 1463, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8494, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8495, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10191, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10192, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10193, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1463] = { refId = 10193 },
     [8494] = { refId = 10193 },
@@ -1345,7 +1611,12 @@ local spellMap = {
         "SPELL_AURA_REMOVED",
         "SPELL_AURA_REFRESH"
       },
-      allRanks = { 11426, 13031, 13032, 13033 }
+      allRanks = {
+        { spellId = 11426, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13031, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13032, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13033, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [11426] = { refId = 13033 },
     [13031] = { refId = 13033 },
@@ -1360,7 +1631,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 122, 865, 6131, 10230 }
+      allRanks = {
+        { spellId = 122, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 865, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6131, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10230, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [122] = { refId = 10230 },
     [865] = { refId = 10230 },
@@ -1376,7 +1652,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 12042 }
+      allRanks = {
+        { spellId = 12042, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [12051] = {
       name = "Evocation",
@@ -1388,7 +1666,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 12051 }
+      allRanks = {
+        { spellId = 12051, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [12043] = {
       name = "Presence of Mind",
@@ -1401,7 +1681,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 12043 }
+      allRanks = {
+        { spellId = 12043, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [11129] = {
       name = "Combustion",
@@ -1414,7 +1696,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 11129 }
+      allRanks = {
+        { spellId = 11129, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13021] = {
       name = "Blast Wave",
@@ -1427,7 +1711,13 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 11113, 13018, 13019, 13020, 13021 }
+      allRanks = {
+        { spellId = 11113, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13018, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13019, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13020, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13021, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [11113] = { refId = 13021 },
     [13018] = { refId = 13021 },
@@ -1443,7 +1733,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 12472 }
+      allRanks = {
+        { spellId = 12472, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [400647] = {
       name = "Fingers of Frost",
@@ -1456,7 +1748,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 400647 }
+      allRanks = {
+        { spellId = 400647, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [425121] = {
       name = "Icy Veins",
@@ -1469,7 +1763,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 425121 }
+      allRanks = {
+        { spellId = 425121, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [425124] = {
       name = "Arcane Surge",
@@ -1481,7 +1777,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 425124 }
+      allRanks = {
+        { spellId = 425124, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [400613] = {
       name = "Living Bomb",
@@ -1493,7 +1791,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 400613 }
+      allRanks = {
+        { spellId = 400613, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [436516] = {
       name = "Chronostatic Preservation",
@@ -1506,7 +1806,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 436516 }
+      allRanks = {
+        { spellId = 436516, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [401556] = {
       name = "Living Flame",
@@ -1518,7 +1820,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 401556 }
+      allRanks = {
+        { spellId = 401556, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [400640] = {
       name = "Ice Lance",
@@ -1530,7 +1834,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 400640 }
+      allRanks = {
+        { spellId = 400640, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [428739] = {
       name = "Deep Freeze",
@@ -1542,7 +1848,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 428739 }
+      allRanks = {
+        { spellId = 428739, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [401502] = {
       name = "Frostfire Bolt",
@@ -1555,7 +1863,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 401502 }
+      allRanks = {
+        { spellId = 401502, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [412532] = {
       name = "Spellfrost Bolt",
@@ -1567,7 +1877,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 412532 }
+      allRanks = {
+        { spellId = 412532, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [428878] = {
       name = "Balefire Bolt",
@@ -1579,7 +1891,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 428878 }
+      allRanks = {
+        { spellId = 428878, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [400624] = {
       name = "Hot Streak",
@@ -1592,7 +1906,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 400624 }
+      allRanks = {
+        { spellId = 400624, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [400731] = {
       name = "Brain Freeze",
@@ -1605,7 +1921,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 400731 }
+      allRanks = {
+        { spellId = 400731, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [440802] = {
       name = "Frozen Orb",
@@ -1617,7 +1935,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 440802 }
+      allRanks = {
+        { spellId = 440802, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     }
   },
   ["hunter"] = {
@@ -1631,7 +1951,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 5116 }
+      allRanks = {
+        { spellId = 5116, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13163] = {
       name = "Aspect of the Monkey",
@@ -1644,7 +1966,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 13163 }
+      allRanks = {
+        { spellId = 13163, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [25296] = {
       name = "Aspect of the Hawk",
@@ -1657,7 +1981,15 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 13165, 14318, 14319, 14320, 14321, 14322, 25296 }
+      allRanks = {
+        { spellId = 13165, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14318, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14319, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14320, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14321, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14322, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 25296, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13165] = { refId = 25296 },
     [14318] = { refId = 25296 },
@@ -1676,7 +2008,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 13159 }
+      allRanks = {
+        { spellId = 13159, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5118] = {
       name = "Aspect of the Cheetah",
@@ -1689,7 +2023,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 5118 }
+      allRanks = {
+        { spellId = 5118, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [20190] = {
       name = "Aspect of the Wild",
@@ -1702,7 +2038,10 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 20043, 20190 }
+      allRanks = {
+        { spellId = 20043, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 20190, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [20043] = { refId = 20190 },
     [13161] = {
@@ -1716,7 +2055,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 13161 }
+      allRanks = {
+        { spellId = 13161, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [469145] = {
       name = "Aspect of the Falcon",
@@ -1729,7 +2070,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 469145 }
+      allRanks = {
+        { spellId = 469145, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [415423] = {
       name = "Aspect of the Viper",
@@ -1742,7 +2085,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 415423 }
+      allRanks = {
+        { spellId = 415423, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [3045] = {
       name = "Rapid Fire",
@@ -1755,7 +2100,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 3045 }
+      allRanks = {
+        { spellId = 3045, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [14317] = {
       name = "Explosive Trap",
@@ -1767,7 +2114,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 13813, 14316, 14317 }
+      allRanks = {
+        { spellId = 13813, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14316, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14317, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13813] = { refId = 14317 },
     [14316] = { refId = 14317 },
@@ -1783,7 +2134,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 409532, 409534, 409535 }
+      allRanks = {
+        { spellId = 409532, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+        { spellId = 409534, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+        { spellId = 409535, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [409532] = { refId = 409535 },
     [409534] = { refId = 409535 },
@@ -1797,7 +2152,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 1499, 14310, 14311 }
+      allRanks = {
+        { spellId = 1499, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14310, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14311, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1499] = { refId = 14311 },
     [14310] = { refId = 14311 },
@@ -1813,7 +2172,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 409510, 409512, 409519 }
+      allRanks = {
+        { spellId = 409510, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+        { spellId = 409512, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+        { spellId = 409519, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [409510] = { refId = 409519 },
     [409512] = { refId = 409519 },
@@ -1827,7 +2190,13 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 13795, 14302, 14303, 14304, 14305 }
+      allRanks = {
+        { spellId = 13795, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14302, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14303, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14304, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14305, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13795] = { refId = 14305 },
     [14302] = { refId = 14305 },
@@ -1845,7 +2214,13 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 409521, 409524, 409526, 409528, 409530 }
+      allRanks = {
+        { spellId = 409521, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+        { spellId = 409524, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+        { spellId = 409526, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+        { spellId = 409528, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+        { spellId = 409530, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [409521] = { refId = 409530 },
     [409524] = { refId = 409530 },
@@ -1861,7 +2236,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 13809 }
+      allRanks = {
+        { spellId = 13809, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     -- Season of Discovery reworked Frost Trap - overwrites the base game spell [13809]
     [409520] = {
@@ -1875,7 +2252,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 409520 }
+      allRanks = {
+        { spellId = 409520, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [14280] = {
       name = "Viper Sting",
@@ -1887,7 +2266,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 3034, 14279, 14280 }
+      allRanks = {
+        { spellId = 3034, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14279, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14280, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [3034] = { refId = 14280 },
     [14279] = { refId = 14280 },
@@ -1901,7 +2284,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 19503 }
+      allRanks = {
+        { spellId = 19503, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1543] = {
       name = "Flare",
@@ -1913,7 +2298,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 1543 }
+      allRanks = {
+        { spellId = 1543, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [24394] = {
       name = "Intimidation",
@@ -1926,7 +2313,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 24394 }
+      allRanks = {
+        { spellId = 24394, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19574] = {
       name = "Bestial Wrath",
@@ -1939,7 +2328,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 19574 }
+      allRanks = {
+        { spellId = 19574, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19263] = {
       name = "Deterrence",
@@ -1952,7 +2343,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 19263 }
+      allRanks = {
+        { spellId = 19263, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [415399] = {
       name = "Sniper Training",
@@ -1965,7 +2358,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 415399 }
+      allRanks = {
+        { spellId = 415399, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [409974] = {
       name = "Kill Shot",
@@ -1977,7 +2372,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 409974 }
+      allRanks = {
+        { spellId = 409974, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [415320] = {
       name = "Flanking Strike",
@@ -1989,7 +2386,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 415320 }
+      allRanks = {
+        { spellId = 415320, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [409433] = {
       name = "Chimera Shot",
@@ -2001,7 +2400,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 409433 }
+      allRanks = {
+        { spellId = 409433, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [409552] = {
       name = "Explosive Shot",
@@ -2013,7 +2414,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 409552 }
+      allRanks = {
+        { spellId = 409552, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [415413] = {
       name = "Lock and Load",
@@ -2026,7 +2429,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 415413 }
+      allRanks = {
+        { spellId = 415413, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [440533] = {
       name = "Hit and Run",
@@ -2039,7 +2444,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 440533 }
+      allRanks = {
+        { spellId = 440533, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     }
   },
   ["warlock"] = {
@@ -2053,7 +2460,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 5782, 6213, 6215 }
+      allRanks = {
+        { spellId = 5782, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6213, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6215, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5782] = { refId = 6215 },
     [6213] = { refId = 6215 },
@@ -2067,7 +2478,14 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 17877, 18867, 18868, 18869, 18870, 18871 }
+      allRanks = {
+        { spellId = 17877, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 18867, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 18868, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 18869, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 18870, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 18871, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [17877] = { refId = 18871 },
     [18867] = { refId = 18871 },
@@ -2085,7 +2503,12 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 6229, 11739, 11740, 28610 }
+      allRanks = {
+        { spellId = 6229, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11739, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11740, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 28610, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6229] = { refId = 28610 },
     [11739] = { refId = 28610 },
@@ -2100,7 +2523,10 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 5484, 17928 }
+      allRanks = {
+        { spellId = 5484, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17928, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5484] = { refId = 17928 },
     [17926] = {
@@ -2113,7 +2539,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 6789, 17925, 17926 }
+      allRanks = {
+        { spellId = 6789, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17925, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17926, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6789] = { refId = 17926 },
     [17925] = { refId = 17926 },
@@ -2128,7 +2558,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 18288 }
+      allRanks = {
+        { spellId = 18288, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19647] = {
       name = "Spell Lock",
@@ -2140,7 +2572,10 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 19244, 19647 }
+      allRanks = {
+        { spellId = 19244, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19647, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19244] = { refId = 19647 },
     [19028] = {
@@ -2154,7 +2589,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 19028 },
+      allRanks = {
+        { spellId = 19028, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      },
       ignorePet = true
     },
     [18708] = {
@@ -2168,7 +2605,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 18708 }
+      allRanks = {
+        { spellId = 18708, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [425463] = {
       name = "Demonic Grace",
@@ -2181,7 +2620,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 425463 }
+      allRanks = {
+        { spellId = 425463, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [403501] = {
       name = "Haunt",
@@ -2193,7 +2634,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 403501 }
+      allRanks = {
+        { spellId = 403501, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [426195] = {
       name = "Vengeance",
@@ -2206,7 +2649,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 426195 }
+      allRanks = {
+        { spellId = 426195, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [427726] = {
       name = "Immolation Aura",
@@ -2219,7 +2664,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 427726 }
+      allRanks = {
+        { spellId = 427726, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [427717] = {
       name = "Unstable Affliction",
@@ -2231,7 +2678,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 427717 }
+      allRanks = {
+        { spellId = 427717, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [427713] = {
       name = "Backdraft",
@@ -2244,7 +2693,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 427713 }
+      allRanks = {
+        { spellId = 427713, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [440882] = {
       name = "Infernal Armor",
@@ -2257,7 +2708,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 440882 }
+      allRanks = {
+        { spellId = 440882, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [403789] = {
       name = "Metamorphosis",
@@ -2271,7 +2724,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 403789 }
+      allRanks = {
+        { spellId = 403789, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     }
   },
   ["paladin"] = {
@@ -2285,7 +2740,15 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 465, 10290, 643, 10291, 1032, 10292, 10293 }
+      allRanks = {
+        { spellId = 465, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10290, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 643, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10291, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1032, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10292, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10293, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [465] = { refId = 10293 },
     [10290] = { refId = 10293 },
@@ -2303,7 +2766,13 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 7294, 10298, 10299, 10300, 10301 }
+      allRanks = {
+        { spellId = 7294, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10298, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10299, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10300, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10301, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [7294] = { refId = 10301 },
     [10298] = { refId = 10301 },
@@ -2319,7 +2788,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 19746 }
+      allRanks = {
+        { spellId = 19746, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19896] = {
       name = "Shadow Resistance Aura",
@@ -2331,7 +2802,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 19876, 19895, 19896 }
+      allRanks = {
+        { spellId = 19876, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19895, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19896, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19876] = { refId = 19896 },
     [19895] = { refId = 19896 },
@@ -2345,7 +2820,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 19888, 19897, 19898 }
+      allRanks = {
+        { spellId = 19888, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19897, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19898, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19888] = { refId = 19898 },
     [19897] = { refId = 19898 },
@@ -2359,7 +2838,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 19891, 19899, 19900 }
+      allRanks = {
+        { spellId = 19891, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19899, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19900, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19891] = { refId = 19900 },
     [19899] = { refId = 19900 },
@@ -2374,7 +2857,11 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 1022, 5599, 10278 }
+      allRanks = {
+        { spellId = 1022, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 5599, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10278, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1022] = { refId = 10278 },
     [5599] = { refId = 10278 },
@@ -2389,7 +2876,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 1044 }
+      allRanks = {
+        { spellId = 1044, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [20729] = {
       name = "Blessing of Sacrifice",
@@ -2402,7 +2891,10 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 6940, 20729 }
+      allRanks = {
+        { spellId = 6940, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 20729, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6940] = { refId = 20729 },
     [10308] = {
@@ -2415,7 +2907,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 853, 5588, 5589, 10308 }
+      allRanks = {
+        { spellId = 853, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 5588, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 5589, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10308, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [853] = { refId = 10308 },
     [5588] = { refId = 10308 },
@@ -2430,7 +2927,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 20066 }
+      allRanks = {
+        { spellId = 20066, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1020] = {
       name = "Divine Shield",
@@ -2443,7 +2942,10 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 642, 1020 }
+      allRanks = {
+        { spellId = 642, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1020, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [642] = { refId = 1020 },
     [25771] = {
@@ -2457,7 +2959,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 25771 }
+      allRanks = {
+        { spellId = 25771, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [10310] = {
       name = "Lay on Hands",
@@ -2469,7 +2973,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 633, 2800, 10310 }
+      allRanks = {
+        { spellId = 633, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 2800, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10310, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [633] = { refId = 10310 },
     [2800] = { refId = 10310 },
@@ -2484,7 +2992,10 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 498, 5573 }
+      allRanks = {
+        { spellId = 498, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 5573, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [498] = { refId = 5573 },
     [425589] = {
@@ -2498,7 +3009,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 425589 }
+      allRanks = {
+        { spellId = 425589, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [407804] = {
       name = "Divine Sacrifice",
@@ -2511,7 +3024,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 407804 }
+      allRanks = {
+        { spellId = 407804, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [407880] = {
       name = "Inspiration Exemplar",
@@ -2523,7 +3038,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 407880 }
+      allRanks = {
+        { spellId = 407880, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [407669] = {
       name = "Avenger's Shield",
@@ -2535,7 +3052,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 407669 }
+      allRanks = {
+        { spellId = 407669, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [425609] = {
       name = "Rebuke",
@@ -2547,7 +3066,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 425609 }
+      allRanks = {
+        { spellId = 425609, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [407676] = {
       name = "Crusader Strike",
@@ -2559,7 +3080,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 407676 }
+      allRanks = {
+        { spellId = 407676, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [407778] = {
       name = "Divine Storm",
@@ -2571,7 +3094,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 407778 }
+      allRanks = {
+        { spellId = 407778, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [461607] = {
       name = "Divine Steed",
@@ -2584,7 +3109,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 461607 }
+      allRanks = {
+        { spellId = 461607, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [462853] = {
       name = "Hand of Sacrifice",
@@ -2597,7 +3124,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 462853 }
+      allRanks = {
+        { spellId = 462853, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [409925] = {
       name = "Divine Light",
@@ -2609,7 +3138,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 409925 }
+      allRanks = {
+        { spellId = 409925, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [407788] = {
       name = "Avenging Wrath",
@@ -2622,7 +3153,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 407788 }
+      allRanks = {
+        { spellId = 407788, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     }
   },
   ["druid"] = {
@@ -2638,7 +3171,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 5487 }
+      allRanks = {
+        { spellId = 5487, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [9634] = {
       name = "Dire Bear Form",
@@ -2652,7 +3187,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 9634 }
+      allRanks = {
+        { spellId = 9634, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [768] = {
       name = "Cat Form",
@@ -2666,7 +3203,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 768 }
+      allRanks = {
+        { spellId = 768, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [783] = {
       name = "Travel Form",
@@ -2680,7 +3219,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 783 }
+      allRanks = {
+        { spellId = 783, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1066] = {
       name = "Aquatic Form",
@@ -2694,7 +3235,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 1066 }
+      allRanks = {
+        { spellId = 1066, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [24858] = {
       name = "Moonkin Form",
@@ -2708,7 +3251,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 24858 }
+      allRanks = {
+        { spellId = 24858, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [22812] = {
       name = "Barkskin",
@@ -2721,7 +3266,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 22812 }
+      allRanks = {
+        { spellId = 22812, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [17329] = {
       name = "Nature's Grasp",
@@ -2734,7 +3281,14 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 16689, 16810, 16811, 16812, 16813, 17329 }
+      allRanks = {
+        { spellId = 16689, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 16810, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 16811, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 16812, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 16813, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17329, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [16689] = { refId = 17329 },
     [16810] = { refId = 17329 },
@@ -2751,7 +3305,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 5211, 6798, 8983 }
+      allRanks = {
+        { spellId = 5211, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6798, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8983, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5211] = { refId = 8983 },
     [6798] = { refId = 8983 },
@@ -2765,7 +3323,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 16979 }
+      allRanks = {
+        { spellId = 16979, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [22896] = {
       name = "Frenzied Regeneration",
@@ -2778,7 +3338,11 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 22842, 22895, 22896 }
+      allRanks = {
+        { spellId = 22842, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 22895, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 22896, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [22842] = { refId = 22896 },
     [22895] = { refId = 22896 },
@@ -2793,7 +3357,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 2893 }
+      allRanks = {
+        { spellId = 2893, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [29166] = {
       name = "Innervate",
@@ -2806,7 +3372,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 29166 }
+      allRanks = {
+        { spellId = 29166, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [17116] = {
       name = "Nature's Swiftness",
@@ -2819,7 +3387,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 17116 }
+      allRanks = {
+        { spellId = 17116, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [9907] = {
       name = "Faerie Fire",
@@ -2831,7 +3401,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 770, 778, 9749, 9907 }
+      allRanks = {
+        { spellId = 770, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 778, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 9749, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 9907, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [770] = { refId = 9907 },
     [778] = { refId = 9907 },
@@ -2846,7 +3421,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 16857, 17390, 17391, 17392 }
+      allRanks = {
+        { spellId = 16857, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17390, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17391, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17392, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [16857] = { refId = 17392 },
     [17390] = { refId = 17392 },
@@ -2861,7 +3441,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 410176 }
+      allRanks = {
+        { spellId = 410176, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [407988] = {
       name = "Savage Roar",
@@ -2874,7 +3456,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 407988 }
+      allRanks = {
+        { spellId = 407988, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [414644] = {
       name = "Lacerate",
@@ -2886,7 +3470,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 414644 }
+      allRanks = {
+        { spellId = 414644, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [408120] = {
       name = "Wild Growth",
@@ -2898,7 +3484,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 408120 }
+      allRanks = {
+        { spellId = 408120, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [407995] = {
       name = "Mangle",
@@ -2910,7 +3498,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 407995 }
+      allRanks = {
+        { spellId = 407995, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [417141] = {
       name = "Berserk",
@@ -2923,7 +3513,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 417141 }
+      allRanks = {
+        { spellId = 417141, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [408024] = {
       name = "Survival Instincts",
@@ -2936,7 +3528,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 408024 }
+      allRanks = {
+        { spellId = 408024, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [439733] = {
       name = "Tree of Life",
@@ -2950,7 +3544,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 439733 }
+      allRanks = {
+        { spellId = 439733, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [414799] = {
       name = "Fury of Stormrage",
@@ -2963,7 +3559,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 414799 }
+      allRanks = {
+        { spellId = 414799, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [408250] = {
       name = "Eclipse: Solar",
@@ -2976,7 +3574,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 408250 }
+      allRanks = {
+        { spellId = 408250, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [441260] = {
       name = "Eclipse: Lunar",
@@ -2989,7 +3589,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 441260 }
+      allRanks = {
+        { spellId = 441260, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     }
   },
   ["shaman"] = {
@@ -3004,7 +3606,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 16166 }
+      allRanks = {
+        { spellId = 16166, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [16188] = {
       name = "Nature's Swiftness",
@@ -3017,7 +3621,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 16188 },
+      allRanks = {
+        { spellId = 16188, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      },
     },
     [8143] = {
       name = "Tremor Totem",
@@ -3029,7 +3635,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8143 },
+      allRanks = {
+        { spellId = 8143, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      },
     },
     [8166] = {
       name = "Poison Cleansing Totem",
@@ -3041,7 +3649,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8166 },
+      allRanks = {
+        { spellId = 8166, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      },
     },
     [8177] = {
       name = "Grounding Totem",
@@ -3053,7 +3663,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8177 }
+      allRanks = {
+        { spellId = 8177, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [10538] = {
       name = "Fire Resistance Totem",
@@ -3065,7 +3677,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8184, 10537, 10538 }
+      allRanks = {
+        { spellId = 8184, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10537, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10538, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8184] = { refId = 10538 },
     [10537] = { refId = 10538 },
@@ -3079,7 +3695,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8181, 10478, 10479 }
+      allRanks = {
+        { spellId = 8181, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10478, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10479, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8181] = { refId = 10479 },
     [10478] = { refId = 10479 },
@@ -3093,7 +3713,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 10595, 10600, 10601 }
+      allRanks = {
+        { spellId = 10595, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10600, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10601, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [10595] = { refId = 10601 },
     [10600] = { refId = 10601 },
@@ -3107,7 +3731,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8227, 8249, 10526, 16387 }
+      allRanks = {
+        { spellId = 8227, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8249, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10526, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 16387, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8227] = { refId = 16387 },
     [8249] = { refId = 16387 },
@@ -3122,7 +3751,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8835, 10627, 25359 }
+      allRanks = {
+        { spellId = 8835, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10627, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 25359, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8835] = { refId = 25359 },
     [10627] = { refId = 25359 },
@@ -3136,7 +3769,14 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8071, 8154, 8155, 10406, 10407, 10408 }
+      allRanks = {
+        { spellId = 8071, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8154, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8155, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10406, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10407, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10408, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8071] = { refId = 10408 },
     [8154] = { refId = 10408 },
@@ -3153,7 +3793,13 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8075, 8160, 8161, 10442, 25361 }
+      allRanks = {
+        { spellId = 8075, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8160, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8161, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10442, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 25361, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8075] = { refId = 25361 },
     [8160] = { refId = 25361 },
@@ -3169,7 +3815,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8512, 10613, 10614 }
+      allRanks = {
+        { spellId = 8512, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10613, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10614, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8512] = { refId = 10614 },
     [10613] = { refId = 10614 },
@@ -3183,7 +3833,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 15107, 15111, 15112 }
+      allRanks = {
+        { spellId = 15107, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 15111, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 15112, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [15107] = { refId = 15112 },
     [15111] = { refId = 15112 },
@@ -3197,7 +3851,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 2484 }
+      allRanks = {
+        { spellId = 2484, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [11315] = {
       name = "Fire Nova Totem",
@@ -3209,7 +3865,13 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 1535, 8498, 8499, 11314, 11315 }
+      allRanks = {
+        { spellId = 1535, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8498, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8499, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11314, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11315, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1535] = { refId = 11315 },
     [8498] = { refId = 11315 },
@@ -3225,7 +3887,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8190, 10585, 10586, 10587 }
+      allRanks = {
+        { spellId = 8190, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10585, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10586, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10587, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8190] = { refId = 10587 },
     [10585] = { refId = 10587 },
@@ -3240,7 +3907,14 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 3599, 6363, 6364, 6365, 10437, 10438 }
+      allRanks = {
+        { spellId = 3599, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6363, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6364, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6365, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10437, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10438, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [3599] = { refId = 10438 },
     [6363] = { refId = 10438 },
@@ -3257,7 +3931,14 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 5730, 6390, 6391, 6392, 10427, 10428 }
+      allRanks = {
+        { spellId = 5730, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6390, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6391, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6392, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10427, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10428, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5730] = { refId = 10428 },
     [6390] = { refId = 10428 },
@@ -3274,7 +3955,13 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 5394, 6375, 6377, 10462, 10463 }
+      allRanks = {
+        { spellId = 5394, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6375, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6377, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10462, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10463, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5394] = { refId = 10463 },
     [6375] = { refId = 10463 },
@@ -3290,7 +3977,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 8170 }
+      allRanks = {
+        { spellId = 8170, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [10497] = {
       name = "Mana Spring Totem",
@@ -3302,7 +3991,12 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 5675, 10495, 10496, 10497 }
+      allRanks = {
+        { spellId = 5675, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10495, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10496, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10497, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5675] = { refId = 10497 },
     [10495] = { refId = 10497 },
@@ -3317,7 +4011,11 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 16190, 17354, 17359 }
+      allRanks = {
+        { spellId = 16190, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17354, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17359, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [16190] = { refId = 17359 },
     [17354] = { refId = 17359 },
@@ -3331,7 +4029,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 25908 }
+      allRanks = {
+        { spellId = 25908, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [415236] = {
       name = "Healing Rain",
@@ -3343,7 +4043,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 415236 }
+      allRanks = {
+        { spellId = 415236, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [409324] = {
       name = "Ancestral Guidance",
@@ -3356,7 +4058,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 409324 }
+      allRanks = {
+        { spellId = 409324, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [408514] = {
       name = "Earth Shield",
@@ -3369,7 +4073,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 408514 }
+      allRanks = {
+        { spellId = 408514, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [408510] = {
       name = "Water Shield",
@@ -3382,7 +4088,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 408510 }
+      allRanks = {
+        { spellId = 408510, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [425874] = {
       name = "Decoy Totem",
@@ -3394,7 +4102,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 425874 }
+      allRanks = {
+        { spellId = 425874, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [437009] = {
       name = "Totemic Projection",
@@ -3406,7 +4116,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 437009 }
+      allRanks = {
+        { spellId = 437009, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [408498] = {
       name = "Maelstrom Weapon",
@@ -3419,7 +4131,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 408498 }
+      allRanks = {
+        { spellId = 408498, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [432042] = {
       name = "Tidal Waves",
@@ -3432,7 +4146,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 432042 }
+      allRanks = {
+        { spellId = 432042, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [409954] = {
       name = "Riptide",
@@ -3444,7 +4160,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 409954 }
+      allRanks = {
+        { spellId = 409954, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [415100] = {
       name = "Power Surge",
@@ -3457,7 +4175,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 415100 }
+      allRanks = {
+        { spellId = 415100, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [440580] = {
       name = "Feral Spirit",
@@ -3469,7 +4189,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 440580 }
+      allRanks = {
+        { spellId = 440580, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     }
   },
   ["racials"] = {
@@ -3484,7 +4206,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 20600 }
+      allRanks = {
+        { spellId = 20600, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [7744] = {
       name = "Will of the Forsaken",
@@ -3497,7 +4221,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 7744 }
+      allRanks = {
+        { spellId = 7744, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [20594] = {
       name = "Stoneform",
@@ -3510,7 +4236,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 20594 }
+      allRanks = {
+        { spellId = 20594, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [20589] = {
       name = "Escape Artist",
@@ -3522,7 +4250,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 20589 }
+      allRanks = {
+        { spellId = 20589, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [20549] = {
       name = "War Stomp",
@@ -3534,7 +4264,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 20549 }
+      allRanks = {
+        { spellId = 20549, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [20554] = { -- mana
       name = "Berserking",
@@ -3547,7 +4279,11 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 20554, 26296, 26297 }
+      allRanks = {
+        { spellId = 20554, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 26296, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 26297, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [26297] = { refId = 20554 }, -- energy
     [26296] = { refId = 20554 }, -- rage
@@ -3561,7 +4297,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 20580 }
+      allRanks = {
+        { spellId = 20580, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     --[[
       This spell is very special and does not work like a traditional buff.
@@ -3578,7 +4316,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 20572 }
+      allRanks = {
+        { spellId = 20572, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     }
   },
   ["items"] = {
@@ -3595,7 +4335,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 23271 }
+      allRanks = {
+        { spellId = 23271, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23097] = {
       name = "Hyper-Radiant Flame Reflector",
@@ -3610,7 +4352,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 23097 }
+      allRanks = {
+        { spellId = 23097, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23131] = {
       name = "Gyrofreeze Ice Reflector",
@@ -3625,7 +4369,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 23131 }
+      allRanks = {
+        { spellId = 23131, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23132] = {
       name = "Ultra-Flash Shadow Reflector",
@@ -3640,7 +4386,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 23132 }
+      allRanks = {
+        { spellId = 23132, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5024] = {
       name = "Skull of Impending Doom",
@@ -3655,7 +4403,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 5024 }
+      allRanks = {
+        { spellId = 5024, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [9774] = {
       name = "Spider Belt",
@@ -3669,7 +4419,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 9774 }
+      allRanks = {
+        { spellId = 9774, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [22641] = {
       name = "Goblin Rocket Helmet",
@@ -3683,7 +4435,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 22641 }
+      allRanks = {
+        { spellId = 22641, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13120] = {
       name = "Gnomish Net-o-Matic Projector",
@@ -3697,7 +4451,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 13120 }
+      allRanks = {
+        { spellId = 13120, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [835] = {
       name = "Tidal Charm",
@@ -3710,7 +4466,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 835 }
+      allRanks = {
+        { spellId = 835, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13180] = {
       name = "Gnomish Mind Control Cap",
@@ -3724,7 +4482,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 13180 }
+      allRanks = {
+        { spellId = 13180, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13141] = {
       name = "Gnomish Rocket Boots",
@@ -3739,7 +4499,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 13141 }
+      allRanks = {
+        { spellId = 13141, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8892] = {
       name = "Goblin Rocket Boots",
@@ -3754,7 +4516,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 8892 }
+      allRanks = {
+        { spellId = 8892, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [14530] = {
       name = "Nifty Stopwatch",
@@ -3769,7 +4533,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 14530 }
+      allRanks = {
+        { spellId = 14530, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23075] = {
       name = "Mithril Mechanical Dragonling",
@@ -3783,7 +4549,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 23075 }
+      allRanks = {
+        { spellId = 23075, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5579] = {
       name = "Insignia Warrior/Hunter/Shaman",
@@ -3809,7 +4577,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 5579 }
+      allRanks = {
+        { spellId = 5579, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23273] = {
       name = "Insignia Warlock/Rogue",
@@ -3835,7 +4605,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 23273 }
+      allRanks = {
+        { spellId = 23273, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23274] = {
       name = "Insignia Mage",
@@ -3861,7 +4633,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 23274 }
+      allRanks = {
+        { spellId = 23274, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23276] = {
       name = "Insignia Priest/Paladin",
@@ -3887,7 +4661,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 23276 }
+      allRanks = {
+        { spellId = 23276, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23277] = {
       name = "Insignia Druid",
@@ -3913,7 +4689,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 23277 }
+      allRanks = {
+        { spellId = 23277, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [23506] = {
       name = "Arena Grand Master",
@@ -3927,7 +4705,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 23506 }
+      allRanks = {
+        { spellId = 23506, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [17330] = {
       name = "Smolderweb's Eye",
@@ -3941,7 +4721,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 17330 }
+      allRanks = {
+        { spellId = 17330, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     --[[
       The itemId is the same for both factions, but the name and icon
@@ -3983,7 +4765,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 438273 }
+      allRanks = {
+        { spellId = 438273, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [474386] = {
       name = "Blood-Caked Insignia",
@@ -3997,7 +4781,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 474386 }
+      allRanks = {
+        { spellId = 474386, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [429868] = {
       name = "Void-Touched Leather Gauntlets/Gloves",
@@ -4012,7 +4798,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 429868 }
+      allRanks = {
+        { spellId = 429868, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [428489] = {
       name = "Extraplanar Spidersilk Boots",
@@ -4027,7 +4815,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 428489 }
+      allRanks = {
+        { spellId = 428489, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [437327] = {
       name = "Gneuro-Linked Arcano-Filament Monocle",
@@ -4042,7 +4832,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 437327 }
+      allRanks = {
+        { spellId = 437327, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [437349] = {
       name = "Glowing Gneuro-Linked Cowl",
@@ -4057,7 +4849,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 437349 }
+      allRanks = {
+        { spellId = 437349, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [437377] = {
       name = "Tempered Interference-Negating Helmet",
@@ -4072,7 +4866,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 437377 }
+      allRanks = {
+        { spellId = 437377, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [437357] = {
       name = "Gneuro-Conductive Channeler's Hood",
@@ -4087,7 +4883,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 437357 }
+      allRanks = {
+        { spellId = 437357, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [437382] = {
       name = "Reflective Truesilver Braincage",
@@ -4102,7 +4900,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 437382 }
+      allRanks = {
+        { spellId = 437382, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [437362] = {
       name = "Glowing Hyperconductive Scale Coif",
@@ -4117,7 +4917,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 437362 }
+      allRanks = {
+        { spellId = 437362, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [437699] = {
       name = "Hyperconductive Goldwrap",
@@ -4132,7 +4934,10 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 437699, 437698 }
+      allRanks = {
+        { spellId = 437699, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+        { spellId = 437698, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [437698] = { refId = 437699 },
     [13494] = {
@@ -4148,7 +4953,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 13494 }
+      allRanks = {
+        { spellId = 13494, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [436069] = {
       name = "Domesticated Attack Chicken",
@@ -4162,7 +4969,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 436069 }
+      allRanks = {
+        { spellId = 436069, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [435895] = {
       name = "Gniodine Pill Bottle",
@@ -4177,7 +4986,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 435895 }
+      allRanks = {
+        { spellId = 435895, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [435359] = {
       name = "Wirdal's Hardened Core",
@@ -4192,7 +5003,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 435359 }
+      allRanks = {
+        { spellId = 435359, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [461231] = {
       name = "Miniaturized Fire Extinguisher",
@@ -4206,7 +5019,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 461231 }
+      allRanks = {
+        { spellId = 461231, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [461235] = {
       name = "Woodcarved Moonstalker",
@@ -4221,7 +5036,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 461235 }
+      allRanks = {
+        { spellId = 461235, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [461227] = {
       name = "Germinating Poisonseed",
@@ -4236,7 +5053,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 461227 }
+      allRanks = {
+        { spellId = 461227, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [461224] = {
       name = "Accursed Chalice",
@@ -4250,7 +5069,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 461224 }
+      allRanks = {
+        { spellId = 461224, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [467720] = {
       name = "Mar'li's Eye",
@@ -4263,7 +5084,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 467720 }
+      allRanks = {
+        { spellId = 467720, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
     [461253] = {
       name = "Shadowflame Sword",
@@ -4278,7 +5101,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 461253 }
+      allRanks = {
+        { spellId = 461253, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     },
   },
   ["misc"] = {
@@ -4293,7 +5118,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 9512 }
+      allRanks = {
+        { spellId = 9512, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [17528] = {
       name = "Mighty Rage Potion",
@@ -4306,7 +5133,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 17528 }
+      allRanks = {
+        { spellId = 17528, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [18610] = {
       name = "First Aid",
@@ -4320,16 +5149,16 @@ local spellMap = {
         "SPELL_CAST_SUCCESS"
       },
       allRanks = {
-        746,    -- Linen Bandage
-        1159,   -- Heavy Linen Bandage
-        3267,   -- Wool Bandage
-        3268,   -- Heavy Wool Bandage
-        7926,   -- Silk Bandage
-        7927,   -- Heavy Silk Bandage
-        10838,  -- Mageweave Bandage
-        10839,  -- Heavy Mageweave Bandage
-        18608,  -- Runecloth Bandage
-        18610   -- Heavy Runecloth Bandage
+        { spellId = 746, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Linen Bandage
+        { spellId = 1159, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Heavy Linen Bandage
+        { spellId = 3267, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Wool Bandage
+        { spellId = 3268, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Heavy Wool Bandage
+        { spellId = 7926, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Silk Bandage
+        { spellId = 7927, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Heavy Silk Bandage
+        { spellId = 10838, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Mageweave Bandage
+        { spellId = 10839, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Heavy Mageweave Bandage
+        { spellId = 18608, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Runecloth Bandage
+        { spellId = 18610, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Heavy Runecloth Bandage
       }
     },
     [746] = { refId = 18610 },
@@ -4354,7 +5183,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 17548 }
+      allRanks = {
+        { spellId = 17548, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [17544] = {
       name = "Greater Frost Protection Potion",
@@ -4369,7 +5200,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 17544 }
+      allRanks = {
+        { spellId = 17544, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [17543] = {
       name = "Greater Fire Protection Potion",
@@ -4384,7 +5217,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 17543 }
+      allRanks = {
+        { spellId = 17543, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [17546] = {
       name = "Greater Nature Protection Potion",
@@ -4399,7 +5234,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 17546 }
+      allRanks = {
+        { spellId = 17546, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [17549] = {
       name = "Greater Arcane Protection Potion",
@@ -4414,7 +5251,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 17549 }
+      allRanks = {
+        { spellId = 17549, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [11359] = {
       name = "Restorative Potion",
@@ -4428,7 +5267,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 11359 }
+      allRanks = {
+        { spellId = 11359, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [24364] = {
       name = "Living Action Potion",
@@ -4443,7 +5284,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 24364 }
+      allRanks = {
+        { spellId = 24364, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6615] = {
       name = "Free Action Potion",
@@ -4458,7 +5301,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 6615 }
+      allRanks = {
+        { spellId = 6615, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [3169] = {
       name = "Limited Invulnerability Potion",
@@ -4473,7 +5318,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 3169 }
+      allRanks = {
+        { spellId = 3169, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [11392] = {
       name = "Invisibility Potion",
@@ -4486,7 +5333,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 11392 }
+      allRanks = {
+        { spellId = 11392, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [3680] = {
       name = "Lesser Invisibility Potion",
@@ -4500,7 +5349,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 3680 }
+      allRanks = {
+        { spellId = 3680, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [12608] = {
       name = "Catseye Elixir",
@@ -4515,7 +5366,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 12608 }
+      allRanks = {
+        { spellId = 12608, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [26677] = {
       name = "Elixir of Poison Resistance",
@@ -4529,7 +5382,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 26677 }
+      allRanks = {
+        { spellId = 26677, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [470345] = {
       name = "First Aid",
@@ -4543,7 +5398,7 @@ local spellMap = {
         "SPELL_CAST_SUCCESS"
       },
       allRanks = {
-        470345 -- Dense Runecloth Bandage
+        { spellId = 470345, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD }, -- Dense Runecloth Bandage
       }
     }
   }

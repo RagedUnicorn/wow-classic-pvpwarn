@@ -11,7 +11,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 12323 }
+      allRanks = {
+        { spellId = 12323, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [18499] = {
       name = "Berserker Rage",
@@ -24,7 +26,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 18499 }
+      allRanks = {
+        { spellId = 18499, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     }
   },
   ["mage"] = {
@@ -39,7 +43,9 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 12042 }
+      allRanks = {
+        { spellId = 12042, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     -- Reference to warrior spell with different ID
     [99999] = {

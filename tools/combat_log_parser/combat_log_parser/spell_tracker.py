@@ -89,11 +89,12 @@ class SpellTracker:
             for spell_id, spell_data in spells:
                 spell_name = spell_data.get('name', 'Unknown')
                 tracked_events = spell_data.get('trackedEvents', [])
-                all_ranks = spell_data.get('allRanks', [spell_id])
+                all_ranks = spell_data.get('allRanks', [{'spellId': spell_id}])
 
                 # For each rank of this spell
                 missing_rank_events = {}
-                for rank_id in all_ranks:
+                for rank_entry in all_ranks:
+                    rank_id = rank_entry['spellId'] if isinstance(rank_entry, dict) else rank_entry
                     # Check each tracked event for this rank
                     missing_events = []
                     for event in tracked_events:

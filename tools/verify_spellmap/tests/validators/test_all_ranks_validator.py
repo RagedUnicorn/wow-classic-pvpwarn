@@ -84,7 +84,7 @@ def test_empty_all_ranks(validator, fixture_loader):
 
 
 def test_non_numeric_all_ranks(validator, fixture_loader):
-    """Test validation fails when allRanks contains non-numeric values."""
+    """Test validation fails when allRanks entries are not structured tables."""
     entries = fixture_loader.load_fixture("invalid_all_ranks")
 
     validator.validate(entries)
@@ -92,10 +92,13 @@ def test_non_numeric_all_ranks(validator, fixture_loader):
     assert validator.has_errors()
     errors = validator.get_errors()
 
-    # Check for non-numeric values error
-    non_numeric_error = next((e for e in errors if "2565" in e and "non-numeric" in e), None)
+    # Each rank must be `{ spellId = N, type = ... }`. Bare strings like
+    # `{ "not", "a", "number" }` should be flagged.
+    non_numeric_error = next(
+        (e for e in errors if "2565" in e and "numeric 'spellId'" in e), None
+    )
     assert non_numeric_error is not None
-    assert "warrior[2565]: 'allRanks' contains non-numeric values" in non_numeric_error
+    assert "warrior[2565]: 'allRanks' entries must be tables with a numeric 'spellId' field" in non_numeric_error
 
 
 def test_missing_own_spell_id(validator, fixture_loader):
@@ -157,7 +160,10 @@ def test_reference_entries_are_skipped(validator):
                 "hasFade": False,
                 "active": True,
                 "trackedEvents": ["SPELL_CAST_SUCCESS"],
-                "allRanks": [72, 1671]
+                "allRanks": [
+                    {"spellId": 72, "type": "SPELL_TYPE_BASE"},
+                    {"spellId": 1671, "type": "SPELL_TYPE_BASE"},
+                ]
             }
         }
     }

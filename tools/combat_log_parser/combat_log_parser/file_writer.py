@@ -43,7 +43,9 @@ class FileWriter:
                 # Find the base spell this rank belongs to
                 base_spell_id = None
                 for spell_id, spell_data in spell_map.items():
-                    if rank_id in spell_data.get('allRanks', []):
+                    rank_ids = [r['spellId'] if isinstance(r, dict) else r
+                                for r in spell_data.get('allRanks', [])]
+                    if rank_id in rank_ids:
                         base_spell_id = spell_id
                         break
 
@@ -56,10 +58,11 @@ class FileWriter:
             for spell_id in sorted(spell_groups.keys()):
                 spell_info = spell_map.get(spell_id, {})
                 spell_name = spell_info.get('name', 'Unknown')
-                all_ranks = spell_info.get('allRanks', [spell_id])
+                all_ranks = spell_info.get('allRanks', [{'spellId': spell_id}])
+                rank_ids = [r['spellId'] if isinstance(r, dict) else r for r in all_ranks]
 
                 f.write(f"## {spell_name} ({spell_id})\n")
-                f.write(f"### All ranks: {', '.join(map(str, all_ranks))}\n\n")
+                f.write(f"### All ranks: {', '.join(map(str, rank_ids))}\n\n")
 
                 # Write each rank that was found
                 for rank_id in sorted(spell_groups[spell_id].keys()):

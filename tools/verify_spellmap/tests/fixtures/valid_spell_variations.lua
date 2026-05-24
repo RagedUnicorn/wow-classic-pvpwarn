@@ -10,7 +10,9 @@ local spellMap = {
       hasFade = false,
       active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
-      allRanks = { 1 }
+      allRanks = {
+        { spellId = 1, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     -- With underscores
     [2] = {
@@ -21,7 +23,9 @@ local spellMap = {
       hasFade = false,
       active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
-      allRanks = { 2 }
+      allRanks = {
+        { spellId = 2, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     -- With numbers (only valid in spellIcon)
     [3] = {
@@ -32,7 +36,9 @@ local spellMap = {
       hasFade = false,
       active = false,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
-      allRanks = { 3 }
+      allRanks = {
+        { spellId = 3, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     -- Complex valid icon name
     [4] = {
@@ -43,7 +49,9 @@ local spellMap = {
       hasFade = false,
       active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
-      allRanks = { 4 }
+      allRanks = {
+        { spellId = 4, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     -- Leading underscore
     [5] = {
@@ -54,7 +62,9 @@ local spellMap = {
       hasFade = false,
       active = false,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
-      allRanks = { 5 }
+      allRanks = {
+        { spellId = 5, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     -- Multiple underscores and numbers
     [6] = {
@@ -65,7 +75,9 @@ local spellMap = {
       hasFade = false,
       active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
-      allRanks = { 6 }
+      allRanks = {
+        { spellId = 6, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     -- Single character
     [7] = {
@@ -76,7 +88,9 @@ local spellMap = {
       hasFade = true,
       active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
-      allRanks = { 7 }
+      allRanks = {
+        { spellId = 7, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     -- All allowed tracked events
     [8] = {
@@ -93,7 +107,9 @@ local spellMap = {
         "SPELL_AURA_REFRESH",
         "SPELL_CAST_START"
       },
-      allRanks = { 8 }
+      allRanks = {
+        { spellId = 8, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     -- Using SPELL_TYPE_SOD
     [9] = {
@@ -104,7 +120,9 @@ local spellMap = {
       hasFade = false,
       active = true,
       trackedEvents = { "SPELL_CAST_SUCCESS" },
-      allRanks = { 9 }
+      allRanks = {
+        { spellId = 9, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+      }
     }
   }
 }

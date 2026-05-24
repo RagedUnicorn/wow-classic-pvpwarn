@@ -70,7 +70,10 @@ local spellMap = {
         "SPELL_AURA_APPLIED",
         "SPELL_AURA_REMOVED"
       },
-      allRanks = { 1672, 1671 } -- Missing 871
+      allRanks = {
+        { spellId = 1672, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1671, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      } -- Missing 871
     },
 
     -- Shield Bash Rank 1
@@ -84,7 +87,9 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 72 } -- Missing 1671 and 1672
+      allRanks = {
+        { spellId = 72, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      } -- Missing 1671 and 1672
     },
 
     -- Shield Bash Rank 2 - references Rank 1
@@ -108,7 +113,10 @@ local spellMap = {
       trackedEvents = {
         "SPELL_CAST_SUCCESS"
       },
-      allRanks = { 676, 99999 } -- 99999 is not a valid reference
+      allRanks = {
+        { spellId = 676, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 99999, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      } -- 99999 is not a valid reference
     }
   }
 }

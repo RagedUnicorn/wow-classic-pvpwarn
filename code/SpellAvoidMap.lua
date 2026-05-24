@@ -37,7 +37,9 @@ local spellAvoidMap = {
       spellIcon = "ability_warrior_charge",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 7922 }
+      allRanks = {
+        { spellId = 7922, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [20615] = {
       name = "Intercept",
@@ -46,7 +48,11 @@ local spellAvoidMap = {
       spellIcon = "ability_rogue_sprint",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 20253, 20614, 20615 },
+      allRanks = {
+        { spellId = 20253, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 20614, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 20615, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      },
     },
     [20253] = { refId = 20615 },
     [20614] = { refId = 20615 },
@@ -57,7 +63,11 @@ local spellAvoidMap = {
       spellIcon = "ability_shockwave",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 7372, 7373, 25212 }
+      allRanks = {
+        { spellId = 7372, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 7373, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 25212, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [7372] = { refId = 7373 },
     [25212] = { refId = 7373 },
@@ -68,7 +78,12 @@ local spellAvoidMap = {
       spellIcon = "ability_warrior_savageblow",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 12294, 21551, 21552, 21553 }
+      allRanks = {
+        { spellId = 12294, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 21551, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 21552, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 21553, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [12294] = { refId = 21553 },
     [21551] = { refId = 21553 },
@@ -80,7 +95,9 @@ local spellAvoidMap = {
       spellIcon = "ability_golemthunderclap",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 5246 }
+      allRanks = {
+        { spellId = 5246, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6554] = {
       name = "Pummel",
@@ -89,7 +106,10 @@ local spellAvoidMap = {
       spellIcon = "inv_gauntlets_04",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 6552, 6554 }
+      allRanks = {
+        { spellId = 6552, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6554, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6552] = { refId = 6554 },
     [676] = {
@@ -99,7 +119,9 @@ local spellAvoidMap = {
       spellIcon = "ability_warrior_disarm",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 676 }
+      allRanks = {
+        { spellId = 676, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     }
   },
   ["priest"] = {
@@ -110,7 +132,14 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_blackplague",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 2944, 19276, 19277, 19278, 19279, 19280 }
+      allRanks = {
+        { spellId = 2944, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19276, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19277, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19278, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19279, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19280, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [2944] = { refId = 19280 },
     [19276] = { refId = 19280 },
@@ -124,7 +153,13 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_gathershadows",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 15268, 15323, 15324, 15325, 15326 }
+      allRanks = {
+        { spellId = 15268, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 15323, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 15324, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 15325, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 15326, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [15268] = { refId = 15326 },
     [15323] = { refId = 15326 },
@@ -137,7 +172,13 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_manaburn",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 8129, 8131, 10874, 10875, 10876 }
+      allRanks = {
+        { spellId = 8129, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8131, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10874, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10875, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10876, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8129] = { refId = 10876 },
     [8131] = { refId = 10876 },
@@ -150,7 +191,11 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_shadowworddominate",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 605, 10911, 10912 }
+      allRanks = {
+        { spellId = 605, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10911, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10912, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [605] = { refId = 10912 },
     [10911] = { refId = 10912 },
@@ -161,7 +206,12 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_psychicscream",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 8122, 8124, 10888, 10890 }
+      allRanks = {
+        { spellId = 8122, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8124, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10888, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10890, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8122] = { refId = 10890 },
     [8124] = { refId = 10890 },
@@ -174,7 +224,16 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_shadowwordpain",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 589, 594, 970, 992, 2767, 10892, 10893, 10894 }
+      allRanks = {
+        { spellId = 589, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 594, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 970, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 992, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 2767, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10892, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10893, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10894, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [589] = { refId = 10894 },
     [594] = { refId = 10894 },
@@ -190,7 +249,9 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_impphaseshift",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 15487 }
+      allRanks = {
+        { spellId = 15487, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [15286] = {
       name = "Vampiric Embrace",
@@ -199,7 +260,9 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_unsummonbuilding",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 15286 }
+      allRanks = {
+        { spellId = 15286, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     }
   },
   ["rogue"] = {
@@ -210,7 +273,12 @@ local spellAvoidMap = {
       spellIcon = "ability_kick",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 1766, 1767, 1768, 1769 }
+      allRanks = {
+        { spellId = 1766, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1767, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1768, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1769, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1766] = { refId = 1769 },
     [1767] = { refId = 1769 },
@@ -222,7 +290,9 @@ local spellAvoidMap = {
       spellIcon = "ability_cheapshot",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 1833 }
+      allRanks = {
+        { spellId = 1833, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [11286] = {
       name = "Gouge",
@@ -231,7 +301,13 @@ local spellAvoidMap = {
       spellIcon = "ability_gouge",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 1776, 1777, 8629, 11285, 11286 }
+      allRanks = {
+        { spellId = 1776, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1777, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8629, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11285, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11286, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1776] = { refId = 11286 },
     [1777] = { refId = 11286 },
@@ -244,7 +320,10 @@ local spellAvoidMap = {
       spellIcon = "ability_rogue_kidneyshot",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 408, 8643 }
+      allRanks = {
+        { spellId = 408, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8643, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [408] = { refId = 8643 },
     [2094] = {
@@ -254,7 +333,9 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_mindsteal",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 2094 }
+      allRanks = {
+        { spellId = 2094, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [14278] = {
       name = "Ghostly Strike",
@@ -263,7 +344,9 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_curse",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 14278 }
+      allRanks = {
+        { spellId = 14278, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [11297] = {
       name = "Sap",
@@ -272,7 +355,11 @@ local spellAvoidMap = {
       spellIcon = "ability_sap",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 6770, 2070, 11297 }
+      allRanks = {
+        { spellId = 6770, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 2070, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11297, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6770] = { refId = 11297 },
     [2070] = { refId = 11297 },
@@ -283,7 +370,9 @@ local spellAvoidMap = {
       spellIcon = "ability_rogue_distract",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 1725 }
+      allRanks = {
+        { spellId = 1725, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [11198] = {
       name = "Expose Armor",
@@ -293,7 +382,13 @@ local spellAvoidMap = {
       spellIcon = "ability_warrior_riposte",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 8647, 8649, 8650, 11197, 11198 }
+      allRanks = {
+        { spellId = 8647, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8649, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8650, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11197, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11198, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8647] = { refId = 11198 },
     [8649] = { refId = 11198 },
@@ -306,7 +401,14 @@ local spellAvoidMap = {
       spellIcon = "ability_rogue_garrote",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 703, 8631, 8632, 8633, 11289, 11290 }
+      allRanks = {
+        { spellId = 703, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8631, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8632, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8633, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11289, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11290, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [703] = { refId = 11290 },
     [8631] = { refId = 11290 },
@@ -320,7 +422,14 @@ local spellAvoidMap = {
       spellIcon = "ability_rogue_rupture",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 1943, 8639, 8640, 11273, 11274, 11275 }
+      allRanks = {
+        { spellId = 1943, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8639, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8640, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11273, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11274, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11275, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1943] = { refId = 11275 },
     [8639] = { refId = 11275 },
@@ -336,7 +445,9 @@ local spellAvoidMap = {
       spellIcon = "spell_frost_iceshock",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 2139 }
+      allRanks = {
+        { spellId = 2139, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [12826] = {
       name = "Polymorph",
@@ -345,7 +456,14 @@ local spellAvoidMap = {
       spellIcon = "spell_nature_polymorph",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 118, 12824, 12825, 12826, 28271, 28272 }
+      allRanks = {
+        { spellId = 118, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 12824, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 12825, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 12826, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 28271, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 28272, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [118] = { refId = 12826 },
     [12824] = { refId = 12826 },
@@ -359,7 +477,12 @@ local spellAvoidMap = {
       spellIcon = "spell_frost_frostnova",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 122, 865, 6131, 10230 }
+      allRanks = {
+        { spellId = 122, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 865, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6131, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10230, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [122] = { refId = 10230 },
     [865] = { refId = 10230 },
@@ -371,7 +494,13 @@ local spellAvoidMap = {
       spellIcon = "spell_frost_glacier",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 120, 8492, 10159, 10160, 10161 }
+      allRanks = {
+        { spellId = 120, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8492, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10159, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10160, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10161, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [120] = { refId = 10161 },
     [8492] = { refId = 10161 },
@@ -386,7 +515,9 @@ local spellAvoidMap = {
       spellIcon = "spell_frost_stun",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 5116 }
+      allRanks = {
+        { spellId = 5116, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [19503] = {
       name = "Scatter Shot",
@@ -395,7 +526,9 @@ local spellAvoidMap = {
       spellIcon = "ability_golemstormbolt",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 19503 }
+      allRanks = {
+        { spellId = 19503, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [13555] = {
       name = "Serpent Sting",
@@ -404,7 +537,16 @@ local spellAvoidMap = {
       spellIcon = "ability_hunter_quickshot",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 1978, 13549, 13550, 13551, 13552, 13553, 13554, 13555 }
+      allRanks = {
+        { spellId = 1978, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13549, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13550, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13551, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13552, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13553, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13554, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 13555, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1978] = { refId = 13555 },
     [13549] = { refId = 13555 },
@@ -420,7 +562,11 @@ local spellAvoidMap = {
       spellIcon = "ability_hunter_aimedshot",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 3034, 14279, 14280 }
+      allRanks = {
+        { spellId = 3034, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14279, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14280, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [3034] = { refId = 14280 },
     [14279] = { refId = 14280 },
@@ -431,7 +577,10 @@ local spellAvoidMap = {
       spellIcon = "spell_frost_chainsofice",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 3355, 14308 }
+      allRanks = {
+        { spellId = 3355, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14308, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [3355] = { refId = 14308 },
     [14268] = {
@@ -441,7 +590,11 @@ local spellAvoidMap = {
       spellIcon = "ability_rogue_trip",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 2974, 14267, 14268 }
+      allRanks = {
+        { spellId = 2974, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14267, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 14268, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [2974] = { refId = 14268 },
     [14267] = { refId = 14268 },
@@ -454,7 +607,10 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_curseoftounges",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 1714, 11719 }
+      allRanks = {
+        { spellId = 1714, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 11719, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [1714] = { refId = 11719 },
     [17926] = {
@@ -464,7 +620,11 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_deathcoil",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 6789, 17925, 17926 }
+      allRanks = {
+        { spellId = 6789, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17925, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17926, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [6789] = { refId = 17926 },
     [17925] = { refId = 17926 },
@@ -475,7 +635,11 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_possession",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 5782, 6213, 6215 }
+      allRanks = {
+        { spellId = 5782, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6213, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6215, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5782] = { refId = 6215 },
     [6213] = { refId = 6215 },
@@ -486,7 +650,10 @@ local spellAvoidMap = {
       spellIcon = "spell_shadow_deathscream",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 5484, 17928 }
+      allRanks = {
+        { spellId = 5484, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17928, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5484] = { refId = 17928 }
   },
@@ -498,7 +665,9 @@ local spellAvoidMap = {
       spellIcon = "ability_thunderclap",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 24239 }
+      allRanks = {
+        { spellId = 24239, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [10308] = {
       name = "Hammer of Justice",
@@ -507,7 +676,12 @@ local spellAvoidMap = {
       spellIcon = "spell_holy_sealofmight",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 853, 5588, 5589, 10308 }
+      allRanks = {
+        { spellId = 853, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 5588, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 5589, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10308, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [853] = { refId = 10308 },
     [5588] = { refId = 10308 },
@@ -521,7 +695,14 @@ local spellAvoidMap = {
       spellIcon = "spell_nature_stranglevines",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 339, 1062, 5195, 5196, 9852, 19970 }
+      allRanks = {
+        { spellId = 339, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 1062, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 5195, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 5196, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 9852, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19970, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [339] = { refId = 19970 },
     [1062] = { refId = 19970 },
@@ -535,7 +716,12 @@ local spellAvoidMap = {
       spellIcon = "spell_nature_faeriefire",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 770, 778, 9749, 9907 }
+      allRanks = {
+        { spellId = 770, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 778, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 9749, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 9907, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [770] = { refId = 9907 },
     [778] = { refId = 9907 },
@@ -547,7 +733,12 @@ local spellAvoidMap = {
       spellIcon = "spell_nature_faeriefire",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 16857, 17390, 17391, 17392 }
+      allRanks = {
+        { spellId = 16857, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17390, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17391, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 17392, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [16857] = { refId = 17392 },
     [17390] = { refId = 17392 },
@@ -559,7 +750,11 @@ local spellAvoidMap = {
       spellIcon = "ability_druid_bash",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 5211, 6798, 8983 }
+      allRanks = {
+        { spellId = 5211, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 6798, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8983, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [5211] = { refId = 8983 },
     [6798] = { refId = 8983 },
@@ -570,7 +765,9 @@ local spellAvoidMap = {
       spellIcon = "ability_hunter_pet_bear",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 19675 }
+      allRanks = {
+        { spellId = 19675, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     }
   },
   ["shaman"] = {
@@ -581,7 +778,15 @@ local spellAvoidMap = {
       spellIcon = "spell_nature_earthshock",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 8042, 8044, 8045, 8046, 10412, 10413, 10414 }
+      allRanks = {
+        { spellId = 8042, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8044, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8045, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8046, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10412, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10413, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10414, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8042] = { refId = 10414 },
     [8044] = { refId = 10414 },
@@ -596,7 +801,14 @@ local spellAvoidMap = {
       spellIcon = "spell_fire_flameshock",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 8050, 8052, 8053, 10447, 10448, 29228 }
+      allRanks = {
+        { spellId = 8050, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8052, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8053, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10447, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10448, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 29228, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8050] = { refId = 29228 },
     [8052] = { refId = 29228 },
@@ -610,7 +822,12 @@ local spellAvoidMap = {
       spellIcon = "spell_frost_frostshock",
       self_avoid = true,
       enemy_avoid = true,
-      allRanks = { 8056, 8058, 10472, 10473 }
+      allRanks = {
+        { spellId = 8056, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 8058, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10472, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 10473, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+      }
     },
     [8056] = { refId = 10473 },
     [8058] = { refId = 10473 },
