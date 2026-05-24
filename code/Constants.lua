@@ -43,6 +43,8 @@ RGPVPW_CONSTANTS = {
   SPELL_TYPE_BASE = "SPELL_TYPE_BASE",
   -- season of discovery spell types
   SPELL_TYPE_SOD = "SPELL_TYPE_SOD",
+  -- the burning crusade spell types
+  SPELL_TYPE_TBC = "SPELL_TYPE_TBC",
   --[[
     Intervals
   ]]--
