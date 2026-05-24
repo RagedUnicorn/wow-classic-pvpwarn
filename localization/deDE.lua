@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetLocale GetAddOnMetadata
+-- luacheck: globals GetLocale C_AddOns
 
 if (GetLocale() == "deDE") then
   rgpvpw = rgpvpw or {}
@@ -44,7 +44,7 @@ if (GetLocale() == "deDE") then
   -- about
   rgpvpw.L["author"] = "Authr: Michael Wiesendanger"
   rgpvpw.L["email"] = "E-Mail: michael.wiesendanger@gmail.com"
-  rgpvpw.L["version"] = "Version: " .. GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
+  rgpvpw.L["version"] = "Version: " .. C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
   rgpvpw.L["issues"] = "Probleme: https://github.com/RagedUnicorn/wow-classic-pvpwarn/issues"
 
   -- general

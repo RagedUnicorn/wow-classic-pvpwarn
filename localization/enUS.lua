@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetAddOnMetadata
+-- luacheck: globals C_AddOns
 
 rgpvpw = rgpvpw or {}
 rgpvpw.L = {}
@@ -41,7 +41,7 @@ rgpvpw.L["invalid_argument"] = "Invalid argument passed"
 -- about
 rgpvpw.L["author"] = "Author: Michael Wiesendanger"
 rgpvpw.L["email"] = "E-Mail: michael.wiesendanger@gmail.com"
-rgpvpw.L["version"] = "Version: " .. GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
+rgpvpw.L["version"] = "Version: " .. C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
 rgpvpw.L["issues"] = "Issues: https://github.com/RagedUnicorn/wow-classic-pvpwarn/issues"
 
 -- general

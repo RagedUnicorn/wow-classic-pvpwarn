@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals UnitClass strlower GetAddOnMetadata table.wipe
+-- luacheck: globals UnitClass strlower C_AddOns table.wipe
 
 local mod = rgpvpw
 local me = {}
@@ -67,7 +67,7 @@ function me.InitializeDefaultProfile()
     -- load default profile data into PVPWarnProfiles
     {
       ["name"] = RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME,
-      ["version"] = GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"),
+      ["version"] = C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"),
       ["spellConfiguration"] =
         mod[strlower(englishClass) .. "Profile"].GetSpellProfile(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL),
       ["spellSelfAvoidConfiguration"] =
@@ -109,7 +109,7 @@ function me.CreateProfile(profileName)
 
   local profile = {
     name = profileName,
-    version = GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"),
+    version = C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"),
     ["spellConfiguration"] = mod.configuration.GetSpellConfiguration(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL),
     ["spellSelfAvoidConfiguration"] =
       mod.configuration.GetSpellConfiguration(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID),

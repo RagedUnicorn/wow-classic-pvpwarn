@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetLocale GetAddOnMetadata
+-- luacheck: globals GetLocale C_AddOns
 -- Translator ZamestoTV
 if (GetLocale() == "ruRU") then
   rgpvpw = rgpvpw or {}
@@ -42,7 +42,7 @@ if (GetLocale() == "ruRU") then
   -- about
   rgpvpw.L["author"] = "Автор: Michael Wiesendanger"
   rgpvpw.L["email"] = "E-Mail: michael.wiesendanger@gmail.com"
-  rgpvpw.L["version"] = "Версия: " .. GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
+  rgpvpw.L["version"] = "Версия: " .. C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
   rgpvpw.L["issues"] = "Проблемы: https://github.com/RagedUnicorn/wow-classic-pvpwarn/issues"
 
   -- general

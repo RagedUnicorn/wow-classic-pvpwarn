@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetAddOnMetadata UnitClass strlower
+-- luacheck: globals C_AddOns UnitClass strlower
 
 local mod = rgpvpw
 local me = {}
@@ -134,17 +134,17 @@ end
   to run through migration paths. As of right now there is no migration path.
 ]]--
 function me.SetAddonVersion()
-  if PVPWarnConfiguration.addonVersion == GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version") then
+  if PVPWarnConfiguration.addonVersion == C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version") then
     return
   end
   -- if no version set so far make sure to set the current one
   if PVPWarnConfiguration.addonVersion == nil then
-    PVPWarnConfiguration.addonVersion = GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
+    PVPWarnConfiguration.addonVersion = C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
   end
 
   me.MigrationPath()
   -- migration done update addon version to current
-  PVPWarnConfiguration.addonVersion = GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
+  PVPWarnConfiguration.addonVersion = C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
 end
 
 --[[
@@ -181,7 +181,7 @@ function me.UpgradeToV1_1_2()
     local defaultProfile = {
       -- load default profile data into PVPWarnProfiles
       ["name"] = RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME,
-      ["version"] = GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"),
+      ["version"] = C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"),
       ["spellConfiguration"] =
       mod[strlower(englishClass) .. "Profile"].GetSpellProfile(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL),
       ["spellSelfAvoidConfiguration"] =

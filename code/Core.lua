@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetAddOnMetadata CombatLogGetCurrentEventInfo
+-- luacheck: globals C_AddOns CombatLogGetCurrentEventInfo
 
 rgpvpw = rgpvpw or {}
 local me = rgpvpw
@@ -140,6 +140,6 @@ end
 function me.ShowWelcomeMessage()
   print(
     string.format("|cFF00FFB0" .. RGPVPW_CONSTANTS.ADDON_NAME .. rgpvpw.L["help"],
-    GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"))
+    C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"))
   )
 end
