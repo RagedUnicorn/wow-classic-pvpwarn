@@ -54,3 +54,23 @@ class TestTypeValidator:
         errors = validator.get_errors()
         # Reference entries should not cause type errors
         assert not any("99999" in error for error in errors)
+
+    def test_valid_type_tbc_passes(self):
+        """Test that a parent-level spell typed SPELL_TYPE_TBC is accepted."""
+        spell_entries = {
+            "warrior": {
+                100: {
+                    "name": "Charge",
+                    "type": "SPELL_TYPE_TBC",
+                    "soundFileName": "charge",
+                    "spellIcon": "ability_warrior_charge",
+                    "trackedEvents": ["SPELL_CAST_SUCCESS"],
+                }
+            }
+        }
+
+        validator = TypeValidator()
+        validator.validate(spell_entries)
+
+        errors = validator.get_errors()
+        assert errors == []

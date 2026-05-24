@@ -13,7 +13,8 @@ class TypeValidator(BaseValidator):
     # Valid spell types
     VALID_TYPES = {
         "SPELL_TYPE_BASE",
-        "SPELL_TYPE_SOD"
+        "SPELL_TYPE_SOD",
+        "SPELL_TYPE_TBC"
     }
 
     def get_name(self) -> str:
@@ -42,15 +43,18 @@ class TypeValidator(BaseValidator):
                 if 'type' not in spell_data:
                     self.add_error(
                         f"{spell_key}: Missing or invalid 'type' property. "
-                        f"Expected: RGPVPW_CONSTANTS.SPELL_TYPE_BASE or RGPVPW_CONSTANTS.SPELL_TYPE_SOD"
+                        f"Expected: RGPVPW_CONSTANTS.SPELL_TYPE_BASE, RGPVPW_CONSTANTS.SPELL_TYPE_SOD, "
+                        f"or RGPVPW_CONSTANTS.SPELL_TYPE_TBC"
                     )
                 elif not spell_data['type']:
                     self.add_error(
                         f"{spell_key}: Empty 'type' property. "
-                        f"Expected: RGPVPW_CONSTANTS.SPELL_TYPE_BASE or RGPVPW_CONSTANTS.SPELL_TYPE_SOD"
+                        f"Expected: RGPVPW_CONSTANTS.SPELL_TYPE_BASE, RGPVPW_CONSTANTS.SPELL_TYPE_SOD, "
+                        f"or RGPVPW_CONSTANTS.SPELL_TYPE_TBC"
                     )
                 elif spell_data['type'] not in self.VALID_TYPES:
                     self.add_error(
                         f"{spell_key}: Invalid type '{spell_data['type']}'. "
-                        f"Expected: RGPVPW_CONSTANTS.SPELL_TYPE_BASE or RGPVPW_CONSTANTS.SPELL_TYPE_SOD"
+                        f"Expected: RGPVPW_CONSTANTS.SPELL_TYPE_BASE, RGPVPW_CONSTANTS.SPELL_TYPE_SOD, "
+                        f"or RGPVPW_CONSTANTS.SPELL_TYPE_TBC"
                     )
