@@ -172,3 +172,98 @@ def test_reference_entries_are_skipped(validator):
 
     # Should not have errors - reference entry should be skipped
     assert not validator.has_errors()
+
+
+def test_valid_rank_types_pass(validator):
+    """Test that ranks tagged with any of SPELL_TYPE_BASE, SPELL_TYPE_SOD, SPELL_TYPE_TBC pass."""
+    test_data = {
+        "warrior": {
+            2457: {"refId": 100},
+            7376: {"refId": 100},
+            100: {
+                "name": "Charge",
+                "type": "SPELL_TYPE_BASE",
+                "soundFileName": "charge",
+                "spellIcon": "ability_warrior_charge",
+                "hasFade": False,
+                "active": True,
+                "trackedEvents": ["SPELL_CAST_SUCCESS"],
+                "allRanks": [
+                    {"spellId": 100, "type": "SPELL_TYPE_BASE"},
+                    {"spellId": 2457, "type": "SPELL_TYPE_SOD"},
+                    {"spellId": 7376, "type": "SPELL_TYPE_TBC"},
+                ]
+            }
+        }
+    }
+
+    validator.validate(test_data)
+
+    if validator.has_errors():
+        print("\nErrors found:")
+        for error in validator.get_errors():
+            print(f"  - {error}")
+
+    assert not validator.has_errors()
+
+
+def test_invalid_rank_type_fails(validator):
+    """Test that a rank with an unknown type value is rejected with a descriptive error."""
+    test_data = {
+        "warrior": {
+            100: {
+                "name": "Charge",
+                "type": "SPELL_TYPE_BASE",
+                "soundFileName": "charge",
+                "spellIcon": "ability_warrior_charge",
+                "hasFade": False,
+                "active": True,
+                "trackedEvents": ["SPELL_CAST_SUCCESS"],
+                "allRanks": [
+                    {"spellId": 100, "type": "SPELL_TYPE_BOGUS"},
+                ]
+            }
+        }
+    }
+
+    validator.validate(test_data)
+
+    assert validator.has_errors()
+    errors = validator.get_errors()
+
+    bogus_error = next(
+        (e for e in errors if "warrior[100]" in e and "invalid type 'SPELL_TYPE_BOGUS'" in e), None
+    )
+    assert bogus_error is not None
+    assert "rank 100" in bogus_error
+
+
+def test_missing_rank_type_key_fails(validator):
+    """Test that a rank entry missing the `type` key is rejected."""
+    test_data = {
+        "warrior": {
+            100: {
+                "name": "Charge",
+                "type": "SPELL_TYPE_BASE",
+                "soundFileName": "charge",
+                "spellIcon": "ability_warrior_charge",
+                "hasFade": False,
+                "active": True,
+                "trackedEvents": ["SPELL_CAST_SUCCESS"],
+                "allRanks": [
+                    {"spellId": 100},
+                ]
+            }
+        }
+    }
+
+    validator.validate(test_data)
+
+    assert validator.has_errors()
+    errors = validator.get_errors()
+
+    missing_type_error = next(
+        (e for e in errors if "warrior[100]" in e and "is missing required 'type' field" in e), None
+    )
+    assert missing_type_error is not None
+    assert "rank 100" in missing_type_error

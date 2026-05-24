@@ -9,6 +9,12 @@ from .base_validator import BaseValidator
 class AllRanksValidator(BaseValidator):
     """Validates that allRanks property contains the spell's own ID and all referencing spell IDs."""
 
+    VALID_RANK_TYPES = {
+        "SPELL_TYPE_BASE",
+        "SPELL_TYPE_SOD",
+        "SPELL_TYPE_TBC",
+    }
+
     def get_name(self) -> str:
         """Return the name of this validator."""
         return "AllRanksValidator"
@@ -92,8 +98,7 @@ class AllRanksValidator(BaseValidator):
             return
 
         # Extract spell IDs from the structured entries: each rank is
-        # `{ spellId = N, type = RGPVPW_CONSTANTS.SPELL_TYPE_* }`. Per-rank
-        # type strictness is intentionally out of scope here — see PWI-0005.
+        # `{ spellId = N, type = RGPVPW_CONSTANTS.SPELL_TYPE_* }`.
         try:
             all_ranks_int = [int(rank["spellId"]) for rank in all_ranks]
         except (TypeError, ValueError, KeyError):
@@ -101,6 +106,9 @@ class AllRanksValidator(BaseValidator):
                 f"{category}[{spell_id}]: 'allRanks' entries must be tables with a numeric 'spellId' field"
             )
             return
+
+        # Validate each rank's `type` field against the canonical set.
+        self._validate_rank_types(category, spell_id, all_ranks)
 
         # Build expected allRanks: spell's own ID + all referencing IDs
         expected_ranks = {spell_id}
@@ -131,6 +139,29 @@ class AllRanksValidator(BaseValidator):
             self.add_error(
                 f"{category}[{spell_id}]: 'allRanks' contains unexpected spell IDs: {extra_list}"
             )
+
+    def _validate_rank_types(self, category: str, spell_id: int, all_ranks: list) -> None:
+        """
+        Validate that each rank entry has a `type` field set to one of the allowed values.
+
+        Args:
+            category: The spell category
+            spell_id: The parent spell ID
+            all_ranks: The list of rank dicts (each guaranteed to be a dict with a numeric spellId)
+        """
+        for rank in all_ranks:
+            rank_spell_id = int(rank["spellId"])
+            if "type" not in rank:
+                self.add_error(
+                    f"{category}[{spell_id}]: rank {rank_spell_id} is missing required 'type' field"
+                )
+                continue
+            rank_type = rank["type"]
+            if rank_type not in self.VALID_RANK_TYPES:
+                self.add_error(
+                    f"{category}[{spell_id}]: rank {rank_spell_id} has invalid type '{rank_type}', "
+                    f"must be one of {sorted(self.VALID_RANK_TYPES)}"
+                )
 
     def _is_reference_entry(self, spell_data: Dict) -> bool:
         """
