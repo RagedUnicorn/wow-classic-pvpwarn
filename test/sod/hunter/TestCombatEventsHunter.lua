@@ -69,6 +69,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLockAndLoadRemoved_415413)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHitAndRunApplied_440533)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHitAndRunRemoved_440533)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAspectOfTheFalconApplied_469145)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAspectOfTheFalconRemoved_469145)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAspectOfTheViperApplied_415423)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAspectOfTheViperRemoved_415423)
 end
 
 function me.TestCombatEventExplosiveTrapSuccess_409535()
@@ -275,5 +279,41 @@ function me.TestCombatEventHitAndRunRemoved_440533()
     testCategory,
     "Hit and Run",
     440533
+  )
+end
+
+function me.TestCombatEventAspectOfTheFalconApplied_469145()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheFalconApplied_469145",
+    testCategory,
+    "Aspect of the Falcon",
+    469145
+  )
+end
+
+function me.TestCombatEventAspectOfTheFalconRemoved_469145()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheFalconRemoved_469145",
+    testCategory,
+    "Aspect of the Falcon",
+    469145
+  )
+end
+
+function me.TestCombatEventAspectOfTheViperApplied_415423()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAspectOfTheViperApplied_415423",
+    testCategory,
+    "Aspect of the Viper",
+    415423
+  )
+end
+
+function me.TestCombatEventAspectOfTheViperRemoved_415423()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAspectOfTheViperRemoved_415423",
+    testCategory,
+    "Aspect of the Viper",
+    415423
   )
 end

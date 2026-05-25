@@ -68,6 +68,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLockAndLoad_415413)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHitAndRun_440533)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHitAndRun_440533)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheFalcon_469145)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheFalcon_469145)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheViper_415423)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheViper_415423)
 end
 
 function me.TestSoundExplosiveTrap_409535()
@@ -243,5 +247,37 @@ function me.TestSoundDownHitAndRun_440533()
     "TestSoundDownHitAndRun_440533",
     testCategory,
     440533
+  )
+end
+
+function me.TestSoundAspectOfTheFalcon_469145()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAspectOfTheFalcon_469145",
+    testCategory,
+    469145
+  )
+end
+
+function me.TestSoundDownAspectOfTheFalcon_469145()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheFalcon_469145",
+    testCategory,
+    469145
+  )
+end
+
+function me.TestSoundAspectOfTheViper_415423()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAspectOfTheViper_415423",
+    testCategory,
+    415423
+  )
+end
+
+function me.TestSoundDownAspectOfTheViper_415423()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAspectOfTheViper_415423",
+    testCategory,
+    415423
   )
 end

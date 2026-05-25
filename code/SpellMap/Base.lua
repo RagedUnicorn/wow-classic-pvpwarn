@@ -1194,36 +1194,6 @@ local spellMap = {
         { spellId = 13161, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [469145] = {
-      name = "Aspect of the Falcon",
-      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
-      soundFileName = "aspect_of_the_falcon",
-      spellIcon = "ability_hunter_pet_dragonhawk",
-      hasFade = true,
-      active = true,
-      trackedEvents = {
-        "SPELL_AURA_APPLIED",
-        "SPELL_AURA_REMOVED"
-      },
-      allRanks = {
-        { spellId = 469145, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
-      }
-    },
-    [415423] = {
-      name = "Aspect of the Viper",
-      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
-      soundFileName = "aspect_of_the_viper",
-      spellIcon = "ability_hunter_aspectoftheviper",
-      hasFade = true,
-      active = true,
-      trackedEvents = {
-        "SPELL_AURA_APPLIED",
-        "SPELL_AURA_REMOVED"
-      },
-      allRanks = {
-        { spellId = 415423, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
-      }
-    },
     [3045] = {
       name = "Rapid Fire",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,

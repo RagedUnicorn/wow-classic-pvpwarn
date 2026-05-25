@@ -73,10 +73,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheWild_20043)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheBeast_13161)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheBeast_13161)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheFalcon_469145)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheFalcon_469145)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheViper_415423)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheViper_415423)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRapidFire_3045)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownRapidFire_3045)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundExplosiveTrap_14317)
@@ -317,38 +313,6 @@ function me.TestSoundDownAspectOfTheBeast_13161()
     "TestSoundDownAspectOfTheBeast_13161",
     testCategory,
     13161
-  )
-end
-
-function me.TestSoundAspectOfTheFalcon_469145()
-  mod.testHelper.TestSoundApplied(
-    "TestSoundAspectOfTheFalcon_469145",
-    testCategory,
-    469145
-  )
-end
-
-function me.TestSoundDownAspectOfTheFalcon_469145()
-  mod.testHelper.TestSoundRemoved(
-    "TestSoundDownAspectOfTheFalcon_469145",
-    testCategory,
-    469145
-  )
-end
-
-function me.TestSoundAspectOfTheViper_415423()
-  mod.testHelper.TestSoundApplied(
-    "TestSoundAspectOfTheViper_415423",
-    testCategory,
-    415423
-  )
-end
-
-function me.TestSoundDownAspectOfTheViper_415423()
-  mod.testHelper.TestSoundRemoved(
-    "TestSoundDownAspectOfTheViper_415423",
-    testCategory,
-    415423
   )
 end
 
