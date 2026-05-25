@@ -531,6 +531,7 @@ local spellMap = {
       },
       allRanks = {
         { spellId = 13908, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 19236, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
         { spellId = 19238, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
         { spellId = 19240, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
         { spellId = 19241, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
@@ -539,6 +540,7 @@ local spellMap = {
       }
     },
     [13908] = { refId = 19243 },
+    [19236] = { refId = 19243 },
     [19238] = { refId = 19243 },
     [19240] = { refId = 19243 },
     [19241] = { refId = 19243 },

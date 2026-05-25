@@ -105,6 +105,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshFearWard_6346)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDesperatePrayer_19243)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDesperatePrayer_13908)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDesperatePrayer_19236)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDesperatePrayer_19238)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDesperatePrayer_19240)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDesperatePrayer_19241)
@@ -608,6 +609,14 @@ function me.TestSoundDesperatePrayer_13908()
     "TestSoundDesperatePrayer_13908",
     testCategory,
     13908
+  )
+end
+
+function me.TestSoundDesperatePrayer_19236()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundDesperatePrayer_19236",
+    testCategory,
+    19236
   )
 end
 

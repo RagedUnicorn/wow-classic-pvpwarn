@@ -104,6 +104,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFearWardRemoved_6346)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFearWardRefresh_6346)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDesperatePrayerSuccess_13908)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDesperatePrayerSuccess_19236)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDesperatePrayerSuccess_19238)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDesperatePrayerSuccess_19240)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDesperatePrayerSuccess_19241)
@@ -658,6 +659,15 @@ function me.TestCombatEventDesperatePrayerSuccess_13908()
     testCategory,
     "Desperate Prayer",
     13908
+  )
+end
+
+function me.TestCombatEventDesperatePrayerSuccess_19236()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDesperatePrayerSuccess_19236",
+    testCategory,
+    "Desperate Prayer",
+    19236
   )
 end
 
