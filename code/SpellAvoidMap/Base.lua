@@ -668,9 +668,13 @@ local spellAvoidMap = {
       self_avoid = true,
       enemy_avoid = true,
       allRanks = {
+        { spellId = 24275, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
+        { spellId = 24274, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
         { spellId = 24239, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
+    [24274] = { refId = 24239 },
+    [24275] = { refId = 24239 },
     [10308] = {
       name = "Hammer of Justice",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,

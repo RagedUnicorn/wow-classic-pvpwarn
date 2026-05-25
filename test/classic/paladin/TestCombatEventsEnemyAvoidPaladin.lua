@@ -55,6 +55,22 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathImmune_24239)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathReflect_24239)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_24239)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathDodge_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathBlock_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathParry_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathMiss_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathResist_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathImmune_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathReflect_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathDodge_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathBlock_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathParry_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathMiss_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathResist_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathImmune_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathReflect_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_24275)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfJusticeDodge_10308)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfJusticeBlock_10308)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHammerOfJusticeParry_10308)
@@ -171,6 +187,182 @@ function me.TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_24239()
     "TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_24239",
     testCategory,
     24239,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathDodge_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathDodge_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathBlock_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathBlock_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathParry_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathParry_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathMiss_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathMiss_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathResist_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathResist_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathImmune_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathImmune_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathReflect_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathReflect_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_24274()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathDodge_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathDodge_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathBlock_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathBlock_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathParry_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathParry_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathMiss_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathMiss_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathResist_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathResist_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathImmune_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathImmune_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathReflect_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHammerOfWrathReflect_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_24275()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_24275",
+    testCategory,
+    24275,
     "Hammer of Wrath",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB

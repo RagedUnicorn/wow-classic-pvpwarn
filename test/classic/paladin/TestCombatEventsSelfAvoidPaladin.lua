@@ -55,6 +55,22 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathImmune_24239)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathReflect_24239)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_24239)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathDodge_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathBlock_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathParry_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathMiss_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathResist_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathImmune_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathReflect_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_24274)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathDodge_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathBlock_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathParry_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathMiss_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathResist_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathImmune_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathReflect_24275)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_24275)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfJusticeDodge_10308)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfJusticeBlock_10308)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfJusticeParry_10308)
@@ -171,6 +187,182 @@ function me.TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_24239()
     "TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_24239",
     testCategory,
     24239,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathDodge_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathDodge_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathBlock_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathBlock_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathParry_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathParry_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathMiss_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathMiss_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathResist_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathResist_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathImmune_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathImmune_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathReflect_24274()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathReflect_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_24274()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_24274",
+    testCategory,
+    24274,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathDodge_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathDodge_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathBlock_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathBlock_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathParry_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathParry_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathMiss_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathMiss_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathResist_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathResist_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathImmune_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathImmune_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathReflect_24275()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHammerOfWrathReflect_24275",
+    testCategory,
+    24275,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_24275()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_24275",
+    testCategory,
+    24275,
     "Hammer of Wrath",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB

@@ -47,6 +47,8 @@ end
 
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHammerOfWrath_24239)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHammerOfWrath_24274)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHammerOfWrath_24275)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHammerOfJustice_10308)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHammerOfJustice_853)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHammerOfJustice_5588)
@@ -58,6 +60,22 @@ function me.TestSoundEnemyAvoidHammerOfWrath_24239()
     "TestSoundEnemyAvoidHammerOfWrath_24239",
     testCategory,
     24239
+  )
+end
+
+function me.TestSoundEnemyAvoidHammerOfWrath_24274()
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidHammerOfWrath_24274",
+    testCategory,
+    24274
+  )
+end
+
+function me.TestSoundEnemyAvoidHammerOfWrath_24275()
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidHammerOfWrath_24275",
+    testCategory,
+    24275
   )
 end
 
