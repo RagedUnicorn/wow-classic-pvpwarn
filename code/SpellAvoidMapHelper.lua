@@ -29,30 +29,6 @@ mod.spellAvoidMapHelper = me
 me.tag = "SpellAvoidMapHelper"
 
 --[[
-  Get an unfiltered complete copy of the spellAvoidMap. Used for testing purposes. Does not filter out
-  spells that might not be available in the current version of WoW.
-
-  @return {table}
-    The complete spellAvoidMap
-]]--
-function me.GetSpellConfiguration()
-  return mod.spellAvoidMap.GetSpellAvoidMap()
-end
-
---[[
-  Get an unfiltered copy of the spellAvoidMap for a certain category. Used for testing purposes. Does not filter out
-  spells that might not be available in the current version of WoW.
-
-  @param {string} category
-
-  @return {table} | nil
-    The spellAvoidMap for the passed category or nil if no category was found
-]]--
-function me.GetSpellConfigurationByCategory(category)
-  return mod.spellAvoidMap.GetSpellAvoidMapByCategory(category)
-end
-
---[[
   Retrieve the spellAvoidMap filtered to the version of WoW running. Base spells available in
   every version are marked with RGPVPW_CONSTANTS.SPELL_TYPE_BASE; Season of Discovery spells
   with RGPVPW_CONSTANTS.SPELL_TYPE_SOD; Burning Crusade Anniversary spells with
