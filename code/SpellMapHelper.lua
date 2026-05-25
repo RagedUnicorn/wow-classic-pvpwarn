@@ -29,30 +29,6 @@ mod.spellMapHelper = me
 me.tag = "SpellMapHelper"
 
 --[[
-  Get an unfiltered complete copy of the spellMap. Used for testing purposes. Does not filter out
-  spells that might not be available in the current version of WoW.
-
-  @return {table}
-    The complete spellMap
-]]--
-function me.GetSpellConfiguration()
-  return mod.spellMap.GetSpellMap()
-end
-
---[[
-  Get an unfiltered copy of the spellMap for a certain category. Used for testing purposes. Does not filter out
-  spells that might not be available in the current version of WoW.
-
-  @param {string} category
-
-  @return {table} | nil
-    The spellMap for the passed category or nil if no category was found
-]]--
-function me.GetSpellConfigurationByCategory(category)
-  return mod.spellMap.GetSpellMapByCategory(category)
-end
-
---[[
   Retrieve the spellMap filtered to the version of WoW running. Base spells available in every
   version are marked with RGPVPW_CONSTANTS.SPELL_TYPE_BASE; Season of Discovery spells with
   RGPVPW_CONSTANTS.SPELL_TYPE_SOD; Burning Crusade Anniversary spells with
