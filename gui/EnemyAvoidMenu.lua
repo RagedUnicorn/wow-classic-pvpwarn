@@ -338,7 +338,7 @@ end
 function me.FauxScrollFrameOnUpdate(scrollFrame)
   if cachedCategoryData == nil then
     mod.logger.LogInfo(me.tag, string.format("Warmed up cached spellEnemyAvoidList for category '%s'", activeCategory))
-    cachedCategoryData = mod.spellAvoidMap.GetAllForCategory(activeCategory)
+    cachedCategoryData = mod.spellAvoidMapHelper.GetAllForCategory(activeCategory)
   end
 
   local maxValue = #cachedCategoryData
