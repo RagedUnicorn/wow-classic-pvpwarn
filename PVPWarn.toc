@@ -28,8 +28,16 @@ code/Sound.lua
 code/Visual.lua
 code/CombatLog.lua
 code/SpellMapHelper.lua
+code/SpellMap/Base.lua
+code/SpellMap/Overlay/Sod.lua
+code/SpellMap/Overlay/Tbc.lua
+code/SpellMap/Assemble.lua
 code/SpellMap.lua
 code/SpellAvoidMapHelper.lua
+code/SpellAvoidMap/Base.lua
+code/SpellAvoidMap/Overlay/Sod.lua
+code/SpellAvoidMap/Overlay/Tbc.lua
+code/SpellAvoidMap/Assemble.lua
 code/SpellAvoidMap.lua
 code/Common.lua
 code/Target.lua
@@ -97,78 +105,112 @@ test/TestLogWindow.lua
 test/TestSound.lua
 test/TestCombatEvent.lua
 
-# warrior
-test/warrior/TestSoundWarrior.lua
-test/warrior/TestSoundSelfAvoidWarrior.lua
-test/warrior/TestSoundEnemyAvoidWarrior.lua
-test/warrior/TestCombatEventsWarrior.lua
-test/warrior/TestCombatEventsSelfAvoidWarrior.lua
-test/warrior/TestCombatEventsEnemyAvoidWarrior.lua
-# priest
-test/priest/TestSoundPriest.lua
-test/priest/TestSoundSelfAvoidPriest.lua
-test/priest/TestSoundEnemyAvoidPriest.lua
-test/priest/TestCombatEventsPriest.lua
-test/priest/TestCombatEventsSelfAvoidPriest.lua
-test/priest/TestCombatEventsEnemyAvoidPriest.lua
-# rogue
-test/rogue/TestSoundRogue.lua
-test/rogue/TestSoundSelfAvoidRogue.lua
-test/rogue/TestSoundEnemyAvoidRogue.lua
-test/rogue/TestCombatEventsRogue.lua
-test/rogue/TestCombatEventsSelfAvoidRogue.lua
-test/rogue/TestCombatEventsEnemyAvoidRogue.lua
-# mage
-test/mage/TestSoundMage.lua
-test/mage/TestSoundSelfAvoidMage.lua
-test/mage/TestSoundEnemyAvoidMage.lua
-test/mage/TestCombatEventsMage.lua
-test/mage/TestCombatEventsSelfAvoidMage.lua
-test/mage/TestCombatEventsEnemyAvoidMage.lua
-# hunter
-test/hunter/TestSoundHunter.lua
-test/hunter/TestSoundSelfAvoidHunter.lua
-test/hunter/TestSoundEnemyAvoidHunter.lua
-test/hunter/TestCombatEventsHunter.lua
-test/hunter/TestCombatEventsSelfAvoidHunter.lua
-test/hunter/TestCombatEventsEnemyAvoidHunter.lua
-# warlock
-test/warlock/TestSoundWarlock.lua
-test/warlock/TestSoundSelfAvoidWarlock.lua
-test/warlock/TestSoundEnemyAvoidWarlock.lua
-test/warlock/TestCombatEventsWarlock.lua
-test/warlock/TestCombatEventsSelfAvoidWarlock.lua
-test/warlock/TestCombatEventsEnemyAvoidWarlock.lua
-# paladin
-test/paladin/TestSoundPaladin.lua
-test/paladin/TestSoundSelfAvoidPaladin.lua
-test/paladin/TestSoundEnemyAvoidPaladin.lua
-test/paladin/TestCombatEventsPaladin.lua
-test/paladin/TestCombatEventsSelfAvoidPaladin.lua
-test/paladin/TestCombatEventsEnemyAvoidPaladin.lua
-# druid
-test/druid/TestSoundDruid.lua
-test/druid/TestSoundSelfAvoidDruid.lua
-test/druid/TestSoundEnemyAvoidDruid.lua
-test/druid/TestCombatEventsDruid.lua
-test/druid/TestCombatEventsSelfAvoidDruid.lua
-test/druid/TestCombatEventsEnemyAvoidDruid.lua
-# shaman
-test/shaman/TestSoundShaman.lua
-test/shaman/TestSoundSelfAvoidShaman.lua
-test/shaman/TestSoundEnemyAvoidShaman.lua
-test/shaman/TestCombatEventsShaman.lua
-test/shaman/TestCombatEventsSelfAvoidShaman.lua
-test/shaman/TestCombatEventsEnemyAvoidShaman.lua
-# racials
-test/racials/TestSoundRacials.lua
-test/racials/TestCombatEventsRacials.lua
-# items
-test/items/TestSoundItems.lua
-test/items/TestCombatEventsItems.lua
-# misc
-test/misc/TestSoundMisc.lua
-test/misc/TestCombatEventsMisc.lua
+# classic - warrior
+test/classic/warrior/TestSoundWarrior.lua
+test/classic/warrior/TestSoundSelfAvoidWarrior.lua
+test/classic/warrior/TestSoundEnemyAvoidWarrior.lua
+test/classic/warrior/TestCombatEventsWarrior.lua
+test/classic/warrior/TestCombatEventsSelfAvoidWarrior.lua
+test/classic/warrior/TestCombatEventsEnemyAvoidWarrior.lua
+# classic - priest
+test/classic/priest/TestSoundPriest.lua
+test/classic/priest/TestSoundSelfAvoidPriest.lua
+test/classic/priest/TestSoundEnemyAvoidPriest.lua
+test/classic/priest/TestCombatEventsPriest.lua
+test/classic/priest/TestCombatEventsSelfAvoidPriest.lua
+test/classic/priest/TestCombatEventsEnemyAvoidPriest.lua
+# classic - rogue
+test/classic/rogue/TestSoundRogue.lua
+test/classic/rogue/TestSoundSelfAvoidRogue.lua
+test/classic/rogue/TestSoundEnemyAvoidRogue.lua
+test/classic/rogue/TestCombatEventsRogue.lua
+test/classic/rogue/TestCombatEventsSelfAvoidRogue.lua
+test/classic/rogue/TestCombatEventsEnemyAvoidRogue.lua
+# classic - mage
+test/classic/mage/TestSoundMage.lua
+test/classic/mage/TestSoundSelfAvoidMage.lua
+test/classic/mage/TestSoundEnemyAvoidMage.lua
+test/classic/mage/TestCombatEventsMage.lua
+test/classic/mage/TestCombatEventsSelfAvoidMage.lua
+test/classic/mage/TestCombatEventsEnemyAvoidMage.lua
+# classic - hunter
+test/classic/hunter/TestSoundHunter.lua
+test/classic/hunter/TestSoundSelfAvoidHunter.lua
+test/classic/hunter/TestSoundEnemyAvoidHunter.lua
+test/classic/hunter/TestCombatEventsHunter.lua
+test/classic/hunter/TestCombatEventsSelfAvoidHunter.lua
+test/classic/hunter/TestCombatEventsEnemyAvoidHunter.lua
+# classic - warlock
+test/classic/warlock/TestSoundWarlock.lua
+test/classic/warlock/TestSoundSelfAvoidWarlock.lua
+test/classic/warlock/TestSoundEnemyAvoidWarlock.lua
+test/classic/warlock/TestCombatEventsWarlock.lua
+test/classic/warlock/TestCombatEventsSelfAvoidWarlock.lua
+test/classic/warlock/TestCombatEventsEnemyAvoidWarlock.lua
+# classic - paladin
+test/classic/paladin/TestSoundPaladin.lua
+test/classic/paladin/TestSoundSelfAvoidPaladin.lua
+test/classic/paladin/TestSoundEnemyAvoidPaladin.lua
+test/classic/paladin/TestCombatEventsPaladin.lua
+test/classic/paladin/TestCombatEventsSelfAvoidPaladin.lua
+test/classic/paladin/TestCombatEventsEnemyAvoidPaladin.lua
+# classic - druid
+test/classic/druid/TestSoundDruid.lua
+test/classic/druid/TestSoundSelfAvoidDruid.lua
+test/classic/druid/TestSoundEnemyAvoidDruid.lua
+test/classic/druid/TestCombatEventsDruid.lua
+test/classic/druid/TestCombatEventsSelfAvoidDruid.lua
+test/classic/druid/TestCombatEventsEnemyAvoidDruid.lua
+# classic - shaman
+test/classic/shaman/TestSoundShaman.lua
+test/classic/shaman/TestSoundSelfAvoidShaman.lua
+test/classic/shaman/TestSoundEnemyAvoidShaman.lua
+test/classic/shaman/TestCombatEventsShaman.lua
+test/classic/shaman/TestCombatEventsSelfAvoidShaman.lua
+test/classic/shaman/TestCombatEventsEnemyAvoidShaman.lua
+# classic - racials
+test/classic/racials/TestSoundRacials.lua
+test/classic/racials/TestCombatEventsRacials.lua
+# classic - items
+test/classic/items/TestSoundItems.lua
+test/classic/items/TestCombatEventsItems.lua
+# classic - misc
+test/classic/misc/TestSoundMisc.lua
+test/classic/misc/TestCombatEventsMisc.lua
+
+# sod - warrior
+test/sod/warrior/TestSoundWarrior.lua
+test/sod/warrior/TestCombatEventsWarrior.lua
+# sod - priest
+test/sod/priest/TestSoundPriest.lua
+test/sod/priest/TestCombatEventsPriest.lua
+# sod - rogue
+test/sod/rogue/TestSoundRogue.lua
+test/sod/rogue/TestCombatEventsRogue.lua
+# sod - mage
+test/sod/mage/TestSoundMage.lua
+test/sod/mage/TestCombatEventsMage.lua
+# sod - hunter
+test/sod/hunter/TestSoundHunter.lua
+test/sod/hunter/TestCombatEventsHunter.lua
+# sod - warlock
+test/sod/warlock/TestSoundWarlock.lua
+test/sod/warlock/TestCombatEventsWarlock.lua
+# sod - paladin
+test/sod/paladin/TestSoundPaladin.lua
+test/sod/paladin/TestCombatEventsPaladin.lua
+# sod - druid
+test/sod/druid/TestSoundDruid.lua
+test/sod/druid/TestCombatEventsDruid.lua
+# sod - shaman
+test/sod/shaman/TestSoundShaman.lua
+test/sod/shaman/TestCombatEventsShaman.lua
+# sod - items
+test/sod/items/TestSoundItems.lua
+test/sod/items/TestCombatEventsItems.lua
+# sod - misc
+test/sod/misc/TestSoundMisc.lua
+test/sod/misc/TestCombatEventsMisc.lua
 
 # test all
 test/TestAll.lua

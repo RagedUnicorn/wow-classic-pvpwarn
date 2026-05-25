@@ -65,68 +65,13 @@ end
 function me.GetFilteredSpellAvoidMap()
   local filteredSpellAvoidMap = {}
   local baseSpellAvoidMap = mod.spellAvoidMap.GetSpellAvoidMap()
-  local isSodActive = mod.season.IsSodActive()
-  local isTbcActive = mod.season.IsTbcActive()
 
   for category, _ in pairs(baseSpellAvoidMap) do
     filteredSpellAvoidMap[category] = {}
-    -- spellIds of base spells that an active SoD spell overwrites and should be hidden
-    local overwrittenSpellIds = {}
-
     for spellId, spellData in pairs(baseSpellAvoidMap[category]) do
-      -- spells that only contain a refId are not added to the filtered spellAvoidMap
       if spellData.refId == nil then
-        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and isSodActive
-          or RGPVPW_ENVIRONMENT.TEST then
-          filteredSpellAvoidMap[category][spellId] = spellData
-        end
-
-        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_BASE then
-          filteredSpellAvoidMap[category][spellId] = spellData
-        end
-
-        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_TBC and isTbcActive
-          or RGPVPW_ENVIRONMENT.TEST then
-          filteredSpellAvoidMap[category][spellId] = spellData
-        end
-
-        --[[
-          A SoD spell that reworks a base spell hides the base spell it overwrites. This is only
-          done in an active Season of Discovery and never while testing - the test framework
-          force includes SoD spells and relies on the base spells being present as well.
-        ]]--
-        if spellData.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and isSodActive
-          and not RGPVPW_ENVIRONMENT.TEST and spellData.overwrites ~= nil then
-          overwrittenSpellIds[spellData.overwrites] = true
-        end
+        filteredSpellAvoidMap[category][spellId] = spellData
       end
-    end
-
-    -- second pass - remove base spells that are overwritten by an active SoD spell
-    for overwrittenSpellId, _ in pairs(overwrittenSpellIds) do
-      filteredSpellAvoidMap[category][overwrittenSpellId] = nil
-    end
-
-    --[[
-      Per-rank pass - clone each surviving spell and drop allRanks entries whose .type is
-      not allowed in the active mode. Cloning is required because spellData still references
-      the shared underlying spellAvoidMap table.
-    ]]--
-    for spellId, spellData in pairs(filteredSpellAvoidMap[category]) do
-      local filteredRanks = {}
-
-      for _, rank in ipairs(spellData.allRanks) do
-        if rank.type == RGPVPW_CONSTANTS.SPELL_TYPE_BASE
-          or (rank.type == RGPVPW_CONSTANTS.SPELL_TYPE_SOD and isSodActive)
-          or (rank.type == RGPVPW_CONSTANTS.SPELL_TYPE_TBC and isTbcActive)
-          or RGPVPW_ENVIRONMENT.TEST then
-          table.insert(filteredRanks, rank)
-        end
-      end
-
-      local cloned = mod.common.Clone(spellData)
-      cloned.allRanks = filteredRanks
-      filteredSpellAvoidMap[category][spellId] = cloned
     end
   end
 

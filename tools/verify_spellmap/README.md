@@ -22,21 +22,26 @@ pip install -r requirements.txt
 
 ## Usage
 
+The Lua source uses a base + overlay layout. Each map (`SpellMap`, `SpellAvoidMap`) is a
+directory containing `Base.lua`, `Overlay/Sod.lua`, and `Overlay/Tbc.lua`. The verifier reads
+each and runs validators against the assembled view of every branch (Classic / SoD / TBC).
+
 ```bash
 # From the verify_spellmap directory (with venv activated)
 python verify_spellmap.py
 
-# With custom SpellMap paths
-python verify_spellmap.py --spellmap /path/to/SpellMap.lua --spellavoidmap /path/to/SpellAvoidMap.lua
-
-# Using short parameter names (backward compatibility)
-python verify_spellmap.py --spell-map /path/to/SpellMap.lua --spell-avoid-map /path/to/SpellAvoidMap.lua
+# With custom directories
+python verify_spellmap.py \
+  --spellmap-dir /path/to/code/SpellMap \
+  --spellavoidmap-dir /path/to/code/SpellAvoidMap
 ```
 
 ### Command Line Arguments
 
-- `--spellmap`, `--spell-map`: Path to SpellMap.lua file (default: ../../code/SpellMap.lua)
-- `--spellavoidmap`, `--spell-avoid-map`: Path to SpellAvoidMap.lua file (default: ../../code/SpellAvoidMap.lua)
+- `--spellmap-dir`: Path to `code/SpellMap/` (default: `../../code/SpellMap`)
+- `--spellavoidmap-dir`: Path to `code/SpellAvoidMap/` (default: `../../code/SpellAvoidMap`)
+
+Each directory must contain `Base.lua` + `Overlay/Sod.lua` + `Overlay/Tbc.lua`.
 
 The tool uses the `lupa` library to properly parse Lua code, including:
 - Function-based dynamic properties
@@ -45,20 +50,29 @@ The tool uses the `lupa` library to properly parse Lua code, including:
 
 ## Features
 
+The verifier mirrors the in-game test framework's three-pass model. For each map it:
+
+1. Parses `Base.lua` (Classic content) and each branch overlay file.
+2. Runs **structural validation** on every overlay against the base (mirrors
+   `mod.spellMapAssembler.Validate`): a `remove` must hit an existing key, an `add` must not
+   collide with one, a `replace` must hit an existing key.
+3. For each branch in `{classic, sod, tbc}`, **assembles** the branch's view of the map and
+   runs every per-entry validator against the assembled output.
+
 ### Common Validators (Both Maps)
 - **Name Property Validation**: Verifies that every spell entry has a `name` property with a non-empty string value
-- **Type Property Validation**: Validates spell types (SPELL_TYPE_BASE, SPELL_TYPE_SOD, etc.)
+- **Type Property Validation**: Validates spell types (SPELL_TYPE_BASE, SPELL_TYPE_SOD, SPELL_TYPE_TBC, etc.)
 - **Duplicate Spell ID Detection**: Checks for spell IDs that appear multiple times within the same category
 - **Sound File Name Validation**: Ensures soundFileName property exists and is non-empty
 - **Spell Icon Validation**: Validates spellIcon property exists and is non-empty
 - **All Ranks Validation**: Verifies allRanks property is a valid array of integers
+- **Overlay Operations Validation**: Mirrors `mod.spellMapAssembler.Validate` — checks remove/add/replace ops are coherent against the base
 
 ### SpellMap-Specific Validators
 - **Tracked Events Validation**: Ensures trackedEvents array exists with valid event types
 - **Active Property Validation**: Validates active property is a boolean when present
 - **Has Fade Validation**: Checks hasFade property is boolean and consistent with trackedEvents
 - **Item ID Validation**: Validates optional itemId property is a positive integer when present
-- **Overwrites Validation**: Validates the optional overwrites property is an integer on a `SPELL_TYPE_SOD` entry that references an existing `SPELL_TYPE_BASE` spell in the same category
 
 ### SpellAvoidMap-Specific Validators
 - **Avoid Properties Validation**: Ensures self_avoid and/or enemy_avoid boolean properties exist

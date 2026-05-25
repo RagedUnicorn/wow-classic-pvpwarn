@@ -1,216 +1,202 @@
 #!/usr/bin/env python3
 """
-SpellMap Verification Tool for PVPWarn
-Main entry point that orchestrates the verification process.
+SpellMap Verification Tool for PVPWarn.
+
+The Lua source lives in a base + overlay layout (post-refactor):
+
+    code/SpellMap/
+      Base.lua                      -- Classic Era content
+      Overlay/Sod.lua               -- SoD add/remove/replace ops
+      Overlay/Tbc.lua               -- TBC add/remove/replace ops (empty stub today)
+
+Same shape for code/SpellAvoidMap/. The verifier:
+
+1. Reads Base.lua + both overlays per map.
+2. Validates each overlay's structural ops (remove of missing, add of existing, ...) against
+   the base — using the Python port of mod.spellMapAssembler.Validate.
+3. For each branch (classic, sod, tbc), assembles that branch's view of the map and runs every
+   per-entry validator against it.
+4. Reports per-branch + an overall pass/fail.
 """
 
 import sys
 import argparse
 from pathlib import Path
-from typing import List
+from typing import Dict, List, Tuple
 
-from verify_spellmap import SpellMapFileReader, LuaParser, Reporter
+from verify_spellmap import LuaParser, Reporter
+from verify_spellmap.assembler import apply as assemble_apply
+from verify_spellmap.file_reader import SpellMapFileReader
+from verify_spellmap.reporter import ReportSection
 from verify_spellmap.validators import (
     NameValidator, DuplicateValidator, TypeValidator,
     TrackedEventsValidator, SoundFileNameValidator, SpellIconValidator,
     AllRanksValidator, ActiveValidator, HasFadeValidator, HasCastValidator,
-    BaseValidator, AvoidPropertiesValidator, ItemIdValidator, OverwritesValidator
+    BaseValidator, AvoidPropertiesValidator, ItemIdValidator,
+    OverlayOperationsValidator,
 )
 
 
-class SpellMapVerifier:
-    """Main verifier class that coordinates all verification components."""
+BRANCHES = ("classic", "sod", "tbc")
 
-    def __init__(self, spellmap_path: str, spell_avoid_map_path: str = None):
-        """
-        Initialize the verifier with all components.
 
-        Args:
-            spellmap_path: Path to the SpellMap.lua file
-            spell_avoid_map_path: Optional path to the SpellAvoidMap.lua file
-        """
-        self.file_reader = SpellMapFileReader(spellmap_path)
-        self.avoid_file_reader = SpellMapFileReader(spell_avoid_map_path) if spell_avoid_map_path else None
-        self.lua_parser = LuaParser()
-        self.reporter = Reporter(self.file_reader.get_path())
-        self.validators: List[BaseValidator] = []
+def _build_entry_validators(is_avoid_map: bool, dynamic_properties: List[str]) -> List[BaseValidator]:
+    """Build the per-entry validator stack for one branch pass."""
+    validators: List[BaseValidator] = [
+        DuplicateValidator(),
+        NameValidator(dynamic_properties),
+        TypeValidator(),
+        SoundFileNameValidator(),
+        SpellIconValidator(),
+        AllRanksValidator(),
+    ]
 
-        # File content and parsed data
-        self.content = ""
-        self.avoid_content = ""
-        self.spell_entries = {}
-        self.spell_avoid_entries = {}
+    if is_avoid_map:
+        validators.append(AvoidPropertiesValidator())
+    else:
+        validators.extend([
+            TrackedEventsValidator(),
+            ActiveValidator(),
+            HasFadeValidator(),
+            HasCastValidator(),
+            ItemIdValidator(),
+        ])
 
-    def setup_validators(self, is_avoid_map: bool = False) -> None:
-        """Set up all validators to be used.
+    return validators
 
-        Args:
-            is_avoid_map: Whether we're validating the avoid map
-        """
-        # Create validators with dependencies
-        name_validator = NameValidator(self.lua_parser.get_dynamic_properties())
-        duplicate_validator = DuplicateValidator()
-        type_validator = TypeValidator()
-        sound_file_name_validator = SoundFileNameValidator()
-        spell_icon_validator = SpellIconValidator()
-        all_ranks_validator = AllRanksValidator()
-        overwrites_validator = OverwritesValidator()
 
-        # Add validators in order of execution
-        validators_list: List[BaseValidator] = [
-            duplicate_validator,       # Check duplicates first
-            name_validator,           # Then check names
-            type_validator,           # Then check types
-            sound_file_name_validator, # Then check sound file names
-            spell_icon_validator,     # Then check spell icons
-            all_ranks_validator,      # Then check all ranks
-            overwrites_validator,     # Then check overwrites references
-        ]
-        self.validators = validators_list
+class MapVerifier:
+    """Verifies a single map (SpellMap or SpellAvoidMap) across all three branches."""
 
-        # Add map-specific validators
-        if is_avoid_map:
-            avoid_properties_validator = AvoidPropertiesValidator()
-            self.validators.append(avoid_properties_validator)
-        else:
-            tracked_events_validator = TrackedEventsValidator()
-            active_validator = ActiveValidator()
-            has_fade_validator = HasFadeValidator()
-            has_cast_validator = HasCastValidator()
-            item_id_validator = ItemIdValidator()
-            self.validators.extend([
-                tracked_events_validator, # Then check tracked events
-                active_validator,         # Then check active property
-                has_fade_validator,       # Then check hasFade property
-                has_cast_validator,       # Then check hasCast property
-                item_id_validator,        # Then check itemId property
-            ])
+    def __init__(self, map_name: str, base_path: Path, sod_path: Path, tbc_path: Path,
+                 is_avoid_map: bool):
+        self.map_name = map_name
+        self.base_path = base_path
+        self.sod_path = sod_path
+        self.tbc_path = tbc_path
+        self.is_avoid_map = is_avoid_map
 
-    def run(self) -> bool:
-        """
-        Run the complete verification process.
+    def run(self, reporter: Reporter) -> bool:
+        """Run the verification and append sections to ``reporter``. Returns False on errors."""
+        print(f"\nVerifying {self.map_name} from {self.base_path.parent}")
 
-        Returns:
-            True if no errors were found, False otherwise
-        """
-        print(f"\nStarting SpellMap verification with Lua parser...")
-        print(f"Testing SpellMap: {self.file_reader.get_path()}")
+        parser = LuaParser()
+        parser.setup_environment()
 
-        if self.avoid_file_reader:
-            print(f"Testing SpellAvoidMap: {self.avoid_file_reader.get_path()}")
-        print()
+        base_entries = parser.parse_spell_avoid_map(SpellMapFileReader(str(self.base_path)).read()) \
+            if self.is_avoid_map \
+            else parser.parse_spellmap(SpellMapFileReader(str(self.base_path)).read())
+        base_dynamic_properties = parser.get_dynamic_properties()
 
-        try:
-            # Step 1: Read the SpellMap file
-            self.content = self.file_reader.read()
+        sod_overlay = parser.parse_overlay(SpellMapFileReader(str(self.sod_path)).read())
+        tbc_overlay = parser.parse_overlay(SpellMapFileReader(str(self.tbc_path)).read())
 
-            # Step 2: Set up Lua environment and parse SpellMap
-            self.lua_parser.setup_environment()
-            self.spell_entries = self.lua_parser.parse_spellmap(self.content)
+        overlay_section = ReportSection(f"{self.map_name} (overlay structural validation)")
+        ops_validator = OverlayOperationsValidator(branch_name="sod")
+        ops_validator.validate(base_entries, overlays=[sod_overlay])
+        overlay_section.validator_results.append(
+            (ops_validator.get_name(), len(ops_validator.get_errors()), ops_validator.get_errors())
+        )
+        overlay_section.errors.extend(ops_validator.get_errors())
 
-            # Step 3: Set up validators for SpellMap
-            self.setup_validators(is_avoid_map=False)
+        ops_validator_tbc = OverlayOperationsValidator(branch_name="tbc")
+        ops_validator_tbc.validate(base_entries, overlays=[tbc_overlay])
+        overlay_section.validator_results.append(
+            (ops_validator_tbc.get_name(), len(ops_validator_tbc.get_errors()), ops_validator_tbc.get_errors())
+        )
+        overlay_section.errors.extend(ops_validator_tbc.get_errors())
+        reporter.add_section(overlay_section)
 
-            # Step 4: Run all validators on SpellMap
-            for validator in self.validators:
-                validator.validate(self.spell_entries, self.content)
+        branch_overlays = {
+            "classic": [],
+            "sod":     [sod_overlay],
+            "tbc":     [tbc_overlay],
+        }
 
-            # Step 5: Collect SpellMap results
-            self._collect_results("SpellMap")
+        any_errors = bool(overlay_section.errors)
 
-            # Step 6: If SpellAvoidMap exists, verify it too
-            if self.avoid_file_reader:
-                print("\nStarting SpellAvoidMap verification...\n")
+        for branch in BRANCHES:
+            assembled = assemble_apply(base_entries, branch_overlays[branch])
+            section = ReportSection(f"{self.map_name} ({branch} branch)")
+            section.spell_entries = assembled
+            section.dynamic_properties = base_dynamic_properties if branch == "classic" else []
 
-                # Read the SpellAvoidMap file
-                self.avoid_content = self.avoid_file_reader.read()
+            validators = _build_entry_validators(self.is_avoid_map, base_dynamic_properties)
+            for validator in validators:
+                validator.validate(assembled)
+                errors = validator.get_errors()
+                section.validator_results.append((validator.get_name(), len(errors), errors))
+                section.errors.extend(errors)
+                if errors:
+                    any_errors = True
 
-                # Parse SpellAvoidMap
-                self.spell_avoid_entries = self.lua_parser.parse_spell_avoid_map(self.avoid_content)
+            reporter.add_section(section)
 
-                # Set up validators for SpellAvoidMap
-                self.setup_validators(is_avoid_map=True)
+        return not any_errors
 
-                # Run all validators on SpellAvoidMap
-                for validator in self.validators:
-                    validator.validate(self.spell_avoid_entries, self.avoid_content)
 
-                # Collect SpellAvoidMap results
-                self._collect_results("SpellAvoidMap")
-
-            # Step 7: Generate and print combined report
-            self.reporter.print_report()
-
-            # Return success if no errors
-            return not self.reporter.has_errors()
-
-        except Exception as e:
-            print(f"Fatal error during verification: {str(e)}")
-            return False
-
-    def _collect_results(self, map_name: str) -> None:
-        """Collect results from all components for reporting.
-
-        Args:
-            map_name: Name of the map being verified (SpellMap or SpellAvoidMap)
-        """
-        # Set spell entries for statistics
-        if map_name == "SpellMap":
-            self.reporter.set_spell_entries(self.spell_entries)
-        else:
-            self.reporter.set_spell_avoid_entries(self.spell_avoid_entries)
-
-        # Set dynamic properties found during parsing
-        self.reporter.set_dynamic_properties(self.lua_parser.get_dynamic_properties())
-
-        # Collect errors and results from all validators
-        for validator in self.validators:
-            errors = validator.get_errors()
-            self.reporter.add_errors(errors, map_name)
-            self.reporter.add_validator_result(
-                validator.get_name(),
-                len(errors),
-                errors,
-                map_name
-            )
+def _resolve_map_paths(directory: Path, label: str) -> Tuple[Path, Path, Path]:
+    base = directory / "Base.lua"
+    sod = directory / "Overlay" / "Sod.lua"
+    tbc = directory / "Overlay" / "Tbc.lua"
+    for path in (base, sod, tbc):
+        if not path.exists():
+            print(f"Error: missing {label} file: {path}")
+            sys.exit(1)
+    return base, sod, tbc
 
 
 def parse_arguments():
-    """Parse command line arguments."""
     parser = argparse.ArgumentParser(
-        description='Verify SpellMap.lua and SpellAvoidMap.lua files for PVPWarn'
+        description="Verify the PVPWarn SpellMap / SpellAvoidMap source tree (base + overlays).",
     )
 
-    # Default paths
     script_dir = Path(__file__).parent
     addon_root = script_dir.parent.parent
-    default_spellmap_path = addon_root / "code" / "SpellMap.lua"
-    default_spell_avoid_map_path = addon_root / "code" / "SpellAvoidMap.lua"
+    default_spellmap_dir = addon_root / "code" / "SpellMap"
+    default_spellavoidmap_dir = addon_root / "code" / "SpellAvoidMap"
 
     parser.add_argument(
-        '--spellmap', '--spell-map',
-        default=str(default_spellmap_path),
-        help=f'Path to SpellMap.lua (default: {default_spellmap_path})'
+        "--spellmap-dir",
+        default=str(default_spellmap_dir),
+        help=f"Path to code/SpellMap/ (default: {default_spellmap_dir})",
     )
-
     parser.add_argument(
-        '--spellavoidmap', '--spell-avoid-map',
-        default=str(default_spell_avoid_map_path),
-        help=f'Path to SpellAvoidMap.lua (default: {default_spell_avoid_map_path})'
+        "--spellavoidmap-dir",
+        default=str(default_spellavoidmap_dir),
+        help=f"Path to code/SpellAvoidMap/ (default: {default_spellavoidmap_dir})",
     )
 
     return parser.parse_args()
 
 
 def main():
-    """Main entry point."""
     args = parse_arguments()
 
-    # Create and run verifier
-    verifier = SpellMapVerifier(args.spellmap, args.spellavoidmap)
-    success = verifier.run()
+    spellmap_dir = Path(args.spellmap_dir)
+    spellavoidmap_dir = Path(args.spellavoidmap_dir)
 
-    # Exit with appropriate code
+    spellmap_paths = _resolve_map_paths(spellmap_dir, "SpellMap")
+    spellavoidmap_paths = _resolve_map_paths(spellavoidmap_dir, "SpellAvoidMap")
+
+    reporter = Reporter(root_path=spellmap_dir.parent)
+
+    spellmap_verifier = MapVerifier(
+        "SpellMap", *spellmap_paths, is_avoid_map=False,
+    )
+    spellavoidmap_verifier = MapVerifier(
+        "SpellAvoidMap", *spellavoidmap_paths, is_avoid_map=True,
+    )
+
+    success = True
+    try:
+        success &= spellmap_verifier.run(reporter)
+        success &= spellavoidmap_verifier.run(reporter)
+    except Exception as exc:
+        print(f"Fatal error during verification: {exc}")
+        sys.exit(1)
+
+    reporter.print_report()
     sys.exit(0 if success else 1)
 
 

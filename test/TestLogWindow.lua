@@ -336,8 +336,13 @@ function me.AddLogMessage(message, messageType, storedTimestamp)
   if not scrollFrame or not scrollChild then return end
 
   local messageFrame = me.CreateMessageFrame(scrollChild, message, messageType, storedTimestamp)
-  local yOffset = -(#me.logMessages * (me.messageHeight + me.messagePadding))
-  messageFrame:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 0, yOffset)
+
+  if #me.logMessages == 0 then
+    messageFrame:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 0, 0)
+  else
+    local previousTail = me.logMessages[#me.logMessages]
+    messageFrame:SetPoint("TOPLEFT", previousTail, "BOTTOMLEFT", 0, -me.messagePadding)
+  end
 
   table.insert(me.logMessages, messageFrame)
 
@@ -346,7 +351,11 @@ function me.AddLogMessage(message, messageType, storedTimestamp)
     oldMessage:Hide()
     oldMessage:SetParent(nil)
 
-    me.RepositionMessages()
+    if #me.logMessages > 0 then
+      local newHead = me.logMessages[1]
+      newHead:ClearAllPoints()
+      newHead:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 0, 0)
+    end
   end
 
   local totalHeight = #me.logMessages * (me.messageHeight + me.messagePadding)
@@ -406,16 +415,6 @@ function me.CreateMessageFrame(parent, message, messageType, storedTimestamp)
   messageText:SetTextColor(unpack(color))
 
   return frame
-end
-
---[[
-  Reposition all messages after removal
-]]--
-function me.RepositionMessages()
-  for i, messageFrame in ipairs(me.logMessages) do
-    local yOffset = -((i - 1) * (me.messageHeight + me.messagePadding))
-    messageFrame:SetPoint("TOPLEFT", messageFrame:GetParent(), "TOPLEFT", 0, yOffset)
-  end
 end
 
 --[[

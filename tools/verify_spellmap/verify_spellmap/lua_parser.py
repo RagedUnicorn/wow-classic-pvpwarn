@@ -121,6 +121,86 @@ class LuaParser:
 
         return self.spell_avoid_entries
 
+    def parse_overlay(self, content: str) -> Dict[str, Dict]:
+        """Parse a SpellMap / SpellAvoidMap branch overlay file.
+
+        Overlay files declare ``function me.GetOverlay()`` returning a table of the shape
+        ``{ category = { remove = {...}, add = {...}, replace = {...} } }``. We rewrite the
+        function so it's reachable from Python (`_G.GetOverlay`), execute the file, invoke the
+        function, and normalise the result into:
+
+            {
+                "hunter": {
+                    "remove": [14317, 13813, ...],
+                    "add":     {409535: {name=..., ...}, ...},
+                    "replace": {11958: {name=..., ...}, ...}
+                },
+                ...
+            }
+
+        Missing sections are normalised to empty containers so the assembler can iterate
+        without nil-checks. Detects dynamic-name properties on overlay-added spells just like
+        ``parse_spellmap``.
+
+        Args:
+            content: Raw Lua source.
+
+        Returns:
+            The parsed overlay dict.
+        """
+        self._detect_dynamic_properties(content)
+
+        if "function me.GetOverlay()" not in content:
+            raise ValueError(
+                "Overlay file does not declare a `function me.GetOverlay()` entry point"
+            )
+
+        # Reset the slot so a previous parse_overlay run can't leak its result.
+        self.lua.execute("_G.__overlay_result = nil")
+
+        # Invoke me.GetOverlay() at the end of the file and stash the result on a global slot
+        # we can read from Python. Leaves the original definition alone.
+        modified_content = content + "\n_G.__overlay_result = me.GetOverlay()\n"
+
+        try:
+            self.lua.execute(modified_content)
+        except Exception as e:
+            raise RuntimeError(f"Failed to execute overlay Lua content: {str(e)}")
+
+        overlay_table = self.lua.eval("_G.__overlay_result")
+        if overlay_table is None:
+            return {}
+
+        result: Dict[str, Dict] = {}
+        for category_name in overlay_table:
+            category = str(category_name)
+            ops = overlay_table[category_name]
+
+            entry: Dict[str, object] = {
+                "remove": [],
+                "add": {},
+                "replace": {},
+            }
+
+            if lupa.lua_type(ops) == "table":
+                remove_table = ops["remove"]
+                if lupa.lua_type(remove_table) == "table":
+                    entry["remove"] = [int(remove_table[i]) for i in sorted(list(remove_table))]
+
+                for op_name in ("add", "replace"):
+                    section = ops[op_name]
+                    if lupa.lua_type(section) == "table":
+                        normalised: Dict[int, Dict] = {}
+                        for spell_id in section:
+                            spell_data = section[spell_id]
+                            spell_dict = self.lua_table_to_dict(spell_data)
+                            normalised[int(spell_id)] = spell_dict
+                        entry[op_name] = normalised
+
+            result[category] = entry
+
+        return result
+
     def _detect_dynamic_properties(self, content: str) -> None:
         """Detect spell entries with dynamic (function-based) properties."""
         for match in re.finditer(DYNAMIC_NAME_PATTERN, content, re.DOTALL):

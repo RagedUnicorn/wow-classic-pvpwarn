@@ -102,7 +102,7 @@ end
     A valid categoryName such as "priest", "warrior" etc.
 ]]--
 function me.ShouldHaveCombatEventTestByCategory(categoryName)
-  local spellMap = mod.spellMapHelper.GetSpellConfigurationByCategory(categoryName)
+  local spellMap = mod.testHelper.GetSpellMapForActiveBranch()[categoryName]
 
   if spellMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
@@ -116,7 +116,7 @@ end
   Go through all spells and check if there is a combat log test present
 ]]--
 function me.ShouldHaveCombatEventTest()
-  local spellMap = mod.spellMapHelper.GetSpellConfiguration()
+  local spellMap = mod.testHelper.GetSpellMapForActiveBranch()
 
   for category, categoryData in pairs(spellMap) do
     me.CombatEventTest(category, categoryData)
@@ -136,7 +136,6 @@ function me.CombatEventTest(categoryName, categoryData)
 
     local spellName = mod.testHelper.NormalizeSpellName(spell.name)
     local trackedEvents = spell.trackedEvents
-    local module = mod["testCombatEvents" .. mod.testHelper.FirstToUpper(categoryName)]
 
     for _, trackedEvent in ipairs(trackedEvents) do
       local testName = "CombatEventTestPresent" .. mod.testHelper.FirstToUpper(categoryName) ..
@@ -156,7 +155,9 @@ function me.CombatEventTest(categoryName, categoryData)
         return
       end
 
-      local func = module["TestCombatEvent" .. spellName .. eventName .. "_" .. spellId]
+      local func = mod.testHelper.ResolveTestFunction(
+        "testCombatEvents", categoryName, "TestCombatEvent" .. spellName .. eventName .. "_" .. spellId
+      )
 
       if type(func) ~= "function" then
         mod.testReporter.ReportFailureTestRun(
@@ -194,7 +195,7 @@ end
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
 function me.ShouldHaveCombatEventAvoidTestByCategory(categoryName, spellAvoidType)
-  local spellAvoidMap = mod.spellAvoidMapHelper.GetSpellConfigurationByCategory(categoryName)
+  local spellAvoidMap = mod.testHelper.GetSpellAvoidMapForActiveBranch()[categoryName]
 
   if spellAvoidMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellAvoidMap for categoryName: " .. categoryName)
@@ -209,7 +210,7 @@ end
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
 function me.ShouldHaveCombatEventAvoidTest(spellAvoidType)
-  local spellAvoidMap = mod.spellAvoidMapHelper.GetSpellConfiguration()
+  local spellAvoidMap = mod.testHelper.GetSpellAvoidMapForActiveBranch()
 
   for categoryName, categoryData in pairs(spellAvoidMap) do
     me.CombatEventAvoidTest(categoryName, categoryData, spellAvoidType)
@@ -232,7 +233,6 @@ function me.CombatEventAvoidTest(categoryName, categoryData, spellAvoidType)
 
     local spellName = mod.testHelper.NormalizeSpellName(spell.name)
     local moduleNameBase, testNameBase, testFunctionBase = me.GetAvoidTestIdentifiers(spellAvoidType, false)
-    local module = mod[moduleNameBase .. mod.testHelper.FirstToUpper(categoryName)]
     local avoidTestNames = {"Dodge", "Parry", "Immune", "Miss", "Block", "Resist", "Reflect"}
 
     for _, avoidTestName in ipairs(avoidTestNames) do
@@ -241,7 +241,9 @@ function me.CombatEventAvoidTest(categoryName, categoryData, spellAvoidType)
 
       mod.testReporter.StartTestRun(testName)
 
-      local func = module[testFunctionBase .. spellName .. avoidTestName .. "_" .. spellId]
+      local func = mod.testHelper.ResolveTestFunction(
+        moduleNameBase, categoryName, testFunctionBase .. spellName .. avoidTestName .. "_" .. spellId
+      )
 
       if type(func) ~= "function" then
         mod.testReporter.ReportFailureTestRun(
@@ -279,7 +281,7 @@ end
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
 function me.ShouldHaveCombatEventAvoidIrrelevantTestByCategory(categoryName, spellAvoidType)
-  local spellAvoidMap = mod.spellAvoidMapHelper.GetSpellConfigurationByCategory(categoryName)
+  local spellAvoidMap = mod.testHelper.GetSpellAvoidMapForActiveBranch()[categoryName]
 
   if spellAvoidMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellAvoidMap for categoryName: " .. categoryName)
@@ -294,7 +296,7 @@ end
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
 function me.ShouldHaveCombatEventAvoidIrrelevantTest(spellAvoidType)
-  local spellAvoidMap = mod.spellAvoidMapHelper.GetSpellConfiguration()
+  local spellAvoidMap = mod.testHelper.GetSpellAvoidMapForActiveBranch()
 
   for categoryName, categoryData in pairs(spellAvoidMap) do
     me.CombatEventAvoidIrrelevantTest(categoryName, categoryData, spellAvoidType)
@@ -317,7 +319,6 @@ function me.CombatEventAvoidIrrelevantTest(categoryName, categoryData, spellAvoi
     local spellName = mod.testHelper.NormalizeSpellName(spell.name)
     local moduleNameBase, testNameBase, testFunctionBase = me.GetAvoidTestIdentifiers(spellAvoidType, true)
 
-    local module = mod[moduleNameBase .. mod.testHelper.FirstToUpper(categoryName)]
     local irrelevantMissTypeNames = {"Absorb"}
 
     for _, irrelevantMissTypeName in ipairs(irrelevantMissTypeNames) do
@@ -326,7 +327,11 @@ function me.CombatEventAvoidIrrelevantTest(categoryName, categoryData, spellAvoi
 
       mod.testReporter.StartTestRun(testName)
 
-      local func = module[testFunctionBase .. spellName .. irrelevantMissTypeName .. "Ignored" .. "_" .. spellId]
+      local func = mod.testHelper.ResolveTestFunction(
+        moduleNameBase,
+        categoryName,
+        testFunctionBase .. spellName .. irrelevantMissTypeName .. "Ignored" .. "_" .. spellId
+      )
 
       if type(func) ~= "function" then
         mod.testReporter.ReportFailureTestRun(

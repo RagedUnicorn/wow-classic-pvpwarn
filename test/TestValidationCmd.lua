@@ -64,6 +64,26 @@ function me.ShowValidationHelp()
 end
 
 --[[
+  The fixed pass order. Every "all" / per-suite validation iterates these branches in turn,
+  setting mod.testHelper.SetActiveBranch before invoking the underlying validator so the
+  test framework consumes the branch-specific assembled map.
+]]--
+local branches = { "classic", "sod", "tbc" }
+
+--[[
+  Run a validator callback once per branch with the active branch set first.
+
+  @param {function} validator
+    The validator function to invoke each pass; receives no arguments.
+]]--
+local function forEachBranch(validator)
+  for _, branch in ipairs(branches) do
+    mod.testHelper.SetActiveBranch(branch)
+    validator()
+  end
+end
+
+--[[
   Handle test validation commands
 
   @param {string} testCommand - The test command to execute
@@ -74,88 +94,110 @@ function me.HandleValidation(testCommand)
   if command == "all" then
     mod.logger.LogInfo(me.tag, "Starting all validation tests...")
     mod.testSessionManager.StartSession("Validation", "all", function(completionCallback)
-      mod.testSound.ShouldHaveSoundTestForAllSpells()
-      mod.testSound.ShouldHaveSoundDownTestForAllSpells()
-      mod.testSound.ShouldHaveSoundRefreshTestForAllSpells()
-      mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
-      mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
-      mod.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents()
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
-      )
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
-      )
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
-        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
-        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+      forEachBranch(function()
+        mod.testSound.ShouldHaveSoundTestForAllSpells()
+        mod.testSound.ShouldHaveSoundDownTestForAllSpells()
+        mod.testSound.ShouldHaveSoundRefreshTestForAllSpells()
+        mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
+        mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+        mod.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents()
+        mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+          RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
+        )
+        mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+          RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+        )
+        mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
+          RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
+        mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
+          RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+      end)
       completionCallback()
     end)
   elseif command == "sound" then
     mod.logger.LogInfo(me.tag, "Starting sound test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "sound", function(completionCallback)
-      mod.testSound.ShouldHaveSoundTestForAllSpells()
+      forEachBranch(function()
+        mod.testSound.ShouldHaveSoundTestForAllSpells()
+      end)
       completionCallback()
     end)
   elseif command == "sounddown" then
     mod.logger.LogInfo(me.tag, "Starting sound down test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "sounddown", function(completionCallback)
-      mod.testSound.ShouldHaveSoundDownTestForAllSpells()
+      forEachBranch(function()
+        mod.testSound.ShouldHaveSoundDownTestForAllSpells()
+      end)
       completionCallback()
     end)
   elseif command == "soundrefresh" then
     mod.logger.LogInfo(me.tag, "Starting sound refresh test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "soundrefresh", function(completionCallback)
-      mod.testSound.ShouldHaveSoundRefreshTestForAllSpells()
+      forEachBranch(function()
+        mod.testSound.ShouldHaveSoundRefreshTestForAllSpells()
+      end)
       completionCallback()
     end)
   elseif command == "soundselfavoid" then
     mod.logger.LogInfo(me.tag, "Starting self avoid sound test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "soundselfavoid", function(completionCallback)
-      mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
+      forEachBranch(function()
+        mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
+      end)
       completionCallback()
     end)
   elseif command == "soundenemyavoid" then
     mod.logger.LogInfo(me.tag, "Starting enemy avoid sound test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "soundenemyavoid", function(completionCallback)
-      mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+      forEachBranch(function()
+        mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+      end)
       completionCallback()
     end)
   elseif command == "combatevent" then
     mod.logger.LogInfo(me.tag, "Starting combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combatevent", function(completionCallback)
-      mod.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents()
+      forEachBranch(function()
+        mod.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents()
+      end)
       completionCallback()
     end)
   elseif command == "combateventselfavoid" then
     mod.logger.LogInfo(me.tag, "Starting self avoid combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combateventselfavoid", function(completionCallback)
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
-      )
+      forEachBranch(function()
+        mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+          RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
+        )
+      end)
       completionCallback()
     end)
   elseif command == "combateventenemyavoid" then
     mod.logger.LogInfo(me.tag, "Starting enemy avoid combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combateventenemyavoid", function(completionCallback)
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
-      )
+      forEachBranch(function()
+        mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+          RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+        )
+      end)
       completionCallback()
     end)
   elseif command == "combateventselfavoidirrelevant" then
     mod.logger.LogInfo(me.tag, "Starting self avoid irrelevant combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combateventselfavoidirrelevant", function(completionCallback)
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
-        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
+      forEachBranch(function()
+        mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
+          RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
+      end)
       completionCallback()
     end)
   elseif command == "combateventenemyavoidirrelevant" then
     mod.logger.LogInfo(me.tag, "Starting enemy avoid irrelevant combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combateventenemyavoidirrelevant", function(completionCallback)
-      mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
-        RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+      forEachBranch(function()
+        mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
+          RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+      end)
       completionCallback()
     end)
   else

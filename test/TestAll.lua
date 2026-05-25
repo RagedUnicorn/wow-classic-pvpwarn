@@ -25,6 +25,10 @@
 --[[
   Run all tests:
     /run rgpvpw.testAll.TestAll()
+
+  Iterates the three branches in order (Classic, SoD, TBC). For each branch the active branch is
+  set before validators and CollectTestCases run so the assembled spell map and the discovery
+  lookups all target that branch's content.
 ]]--
 
 local mod = rgpvpw
@@ -35,113 +39,73 @@ me.tag = "TestAll"
 
 local testGroupName = "TestAll"
 
+-- Branch names as they appear when appended to a module name (e.g. testSoundHunterClassic).
+local branches = { "Classic", "Sod", "Tbc" }
+
+local soundCategories = {
+  "Warrior", "Priest", "Rogue", "Mage", "Hunter", "Warlock", "Paladin", "Druid", "Shaman",
+  "Racials", "Items", "Misc"
+}
+local soundAvoidCategories = {
+  "Warrior", "Priest", "Rogue", "Mage", "Hunter", "Warlock", "Paladin", "Druid", "Shaman"
+}
+
+local function queueIfPresent(modulePrefix, classCap, branchCap)
+  local moduleTable = mod[modulePrefix .. classCap .. branchCap]
+
+  if moduleTable and type(moduleTable.CollectTestCases) == "function" then
+    moduleTable.CollectTestCases()
+  end
+end
+
 function me.TestAll()
   mod.testReporter.StartTestGroup(testGroupName)
-  mod.testSound.ShouldHaveSoundTestForAllSpells()
-  mod.testSound.ShouldHaveSoundDownTestForAllSpells()
-  mod.testSound.ShouldHaveSoundRefreshTestForAllSpells()
-  mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
-  mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
-  mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
-  )
-  mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
-  )
-  mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
-  )
-  mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
-  )
 
-  me.TestAllSound()
-  me.TestAllSoundSelfAvoid()
-  me.TestAllSoundEnemyAvoid()
+  for _, branchCap in ipairs(branches) do
+    mod.testHelper.SetActiveBranch(string.lower(branchCap))
 
-  me.TestAllCombatEvents()
-  me.TestAllCombatSelfAvoidEvents()
-  me.TestAllCombatEnemyAvoidEvents()
+    -- Validators (coverage checks) for this branch's assembled map.
+    mod.testSound.ShouldHaveSoundTestForAllSpells()
+    mod.testSound.ShouldHaveSoundDownTestForAllSpells()
+    mod.testSound.ShouldHaveSoundRefreshTestForAllSpells()
+    mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
+    mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
+    mod.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents()
+    mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
+    )
+    mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
+    )
+    mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+    )
+    mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
+    )
+
+    -- Enqueue this branch's spell tests. Missing modules (e.g. no SoD avoid coverage) are
+    -- silently skipped via queueIfPresent.
+    for _, classCap in ipairs(soundCategories) do
+      queueIfPresent("testSound", classCap, branchCap)
+    end
+
+    for _, classCap in ipairs(soundAvoidCategories) do
+      queueIfPresent("testSoundSelfAvoid", classCap, branchCap)
+      queueIfPresent("testSoundEnemyAvoid", classCap, branchCap)
+    end
+
+    for _, classCap in ipairs(soundCategories) do
+      queueIfPresent("testCombatEvents", classCap, branchCap)
+    end
+
+    for _, classCap in ipairs(soundAvoidCategories) do
+      queueIfPresent("testCombatEventsSelfAvoid", classCap, branchCap)
+      queueIfPresent("testCombatEventsEnemyAvoid", classCap, branchCap)
+    end
+  end
 
   mod.testReporter.PlayTestQueueWithDelay(function()
     mod.testReporter.StopTestGroup() -- async finish of test group
   end)
-end
-
-function me.TestAllSound()
-  mod.testSoundWarrior.CollectTestCases()
-  mod.testSoundPriest.CollectTestCases()
-  mod.testSoundRogue.CollectTestCases()
-  mod.testSoundMage.CollectTestCases()
-  mod.testSoundHunter.CollectTestCases()
-  mod.testSoundWarlock.CollectTestCases()
-  mod.testSoundPaladin.CollectTestCases()
-  mod.testSoundDruid.CollectTestCases()
-  mod.testSoundShaman.CollectTestCases()
-  mod.testSoundRacials.CollectTestCases()
-  mod.testSoundItems.CollectTestCases()
-  mod.testSoundMisc.CollectTestCases()
-end
-
-function me.TestAllSoundSelfAvoid()
-  mod.testSoundSelfAvoidWarrior.CollectTestCases()
-  mod.testSoundSelfAvoidPriest.CollectTestCases()
-  mod.testSoundSelfAvoidRogue.CollectTestCases()
-  mod.testSoundSelfAvoidMage.CollectTestCases()
-  mod.testSoundSelfAvoidHunter.CollectTestCases()
-  mod.testSoundSelfAvoidWarlock.CollectTestCases()
-  mod.testSoundSelfAvoidPaladin.CollectTestCases()
-  mod.testSoundSelfAvoidDruid.CollectTestCases()
-  mod.testSoundSelfAvoidShaman.CollectTestCases()
-end
-
-function me.TestAllSoundEnemyAvoid()
-  mod.testSoundEnemyAvoidWarrior.CollectTestCases()
-  mod.testSoundEnemyAvoidPriest.CollectTestCases()
-  mod.testSoundEnemyAvoidRogue.CollectTestCases()
-  mod.testSoundEnemyAvoidMage.CollectTestCases()
-  mod.testSoundEnemyAvoidHunter.CollectTestCases()
-  mod.testSoundEnemyAvoidWarlock.CollectTestCases()
-  mod.testSoundEnemyAvoidPaladin.CollectTestCases()
-  mod.testSoundEnemyAvoidDruid.CollectTestCases()
-  mod.testSoundEnemyAvoidShaman.CollectTestCases()
-end
-
-function me.TestAllCombatEvents()
-  mod.testCombatEventsWarrior.CollectTestCases()
-  mod.testCombatEventsPriest.CollectTestCases()
-  mod.testCombatEventsRogue.CollectTestCases()
-  mod.testCombatEventsMage.CollectTestCases()
-  mod.testCombatEventsHunter.CollectTestCases()
-  mod.testCombatEventsWarlock.CollectTestCases()
-  mod.testCombatEventsPaladin.CollectTestCases()
-  mod.testCombatEventsDruid.CollectTestCases()
-  mod.testCombatEventsShaman.CollectTestCases()
-  mod.testCombatEventsRacials.CollectTestCases()
-  mod.testCombatEventsItems.CollectTestCases()
-  mod.testCombatEventsMisc.CollectTestCases()
-end
-
-function me.TestAllCombatSelfAvoidEvents()
-  mod.testCombatEventsSelfAvoidWarrior.CollectTestCases()
-  mod.testCombatEventsSelfAvoidPriest.CollectTestCases()
-  mod.testCombatEventsSelfAvoidRogue.CollectTestCases()
-  mod.testCombatEventsSelfAvoidMage.CollectTestCases()
-  mod.testCombatEventsSelfAvoidHunter.CollectTestCases()
-  mod.testCombatEventsSelfAvoidWarlock.CollectTestCases()
-  mod.testCombatEventsSelfAvoidPaladin.CollectTestCases()
-  mod.testCombatEventsSelfAvoidDruid.CollectTestCases()
-  mod.testCombatEventsSelfAvoidShaman.CollectTestCases()
-end
-
-function me.TestAllCombatEnemyAvoidEvents()
-  mod.testCombatEventsEnemyAvoidWarrior.CollectTestCases()
-  mod.testCombatEventsEnemyAvoidPriest.CollectTestCases()
-  mod.testCombatEventsEnemyAvoidRogue.CollectTestCases()
-  mod.testCombatEventsEnemyAvoidMage.CollectTestCases()
-  mod.testCombatEventsEnemyAvoidHunter.CollectTestCases()
-  mod.testCombatEventsEnemyAvoidWarlock.CollectTestCases()
-  mod.testCombatEventsEnemyAvoidPaladin.CollectTestCases()
-  mod.testCombatEventsEnemyAvoidDruid.CollectTestCases()
-  mod.testCombatEventsEnemyAvoidShaman.CollectTestCases()
 end

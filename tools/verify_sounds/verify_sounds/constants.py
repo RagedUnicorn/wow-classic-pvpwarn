@@ -10,8 +10,8 @@ TOOL_ROOT = Path(__file__).parent.parent
 
 # Default paths relative to tool location
 DEFAULT_SOUND_PATH = os.path.join(TOOL_ROOT, '..', '..', 'assets')
-DEFAULT_SPELL_MAP_PATH = os.path.join(TOOL_ROOT, '..', '..', 'code', 'SpellMap.lua')
-DEFAULT_SPELL_AVOID_MAP_PATH = os.path.join(TOOL_ROOT, '..', '..', 'code', 'SpellAvoidMap.lua')
+DEFAULT_SPELL_MAP_PATH = os.path.join(TOOL_ROOT, '..', '..', 'code', 'SpellMap')
+DEFAULT_SPELL_AVOID_MAP_PATH = os.path.join(TOOL_ROOT, '..', '..', 'code', 'SpellAvoidMap')
 
 # File configuration
 DEFAULT_FILE_EXTENSION = '.mp3'

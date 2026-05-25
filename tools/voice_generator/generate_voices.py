@@ -225,13 +225,13 @@ def main():
     )
 
     parser.add_argument(
-        '--spellmap',
-        help="Path to SpellMap.lua file (default: uses relative path from voice_generator)"
+        '--spellmap-dir', dest='spellmap',
+        help="Path to code/SpellMap directory (default: uses relative path from voice_generator)"
     )
 
     parser.add_argument(
-        '--spellavoidmap', 
-        help="Path to SpellAvoidMap.lua file (default: uses relative path from voice_generator)"
+        '--spellavoidmap-dir', dest='spellavoidmap',
+        help="Path to code/SpellAvoidMap directory (default: uses relative path from voice_generator)"
     )
 
     args = parser.parse_args()
