@@ -192,6 +192,107 @@ function me.DisableTestMode()
 end
 
 --[[
+  Active test branch. The test runner sets this before each pass (`classic` / `sod` / `tbc`) so
+  the facades and validators assemble the correct map for that pass. Defaults to "classic" so
+  any code that consults it without an explicit set sees a sensible value.
+]]--
+local activeBranch = "classic"
+
+--[[
+  Set the active test branch. Invalidates the facades' assembled-map caches so the next
+  GetSpellMap / GetSpellAvoidMap call returns the new branch's map.
+
+  @param {string} branch
+    One of "classic", "sod", "tbc".
+]]--
+function me.SetActiveBranch(branch)
+  assert(branch == "classic" or branch == "sod" or branch == "tbc",
+    string.format("SetActiveBranch: invalid branch %q (expected classic/sod/tbc)", tostring(branch)))
+  activeBranch = branch
+end
+
+--[[
+  @return {string}
+    The currently active test branch.
+]]--
+function me.GetActiveBranch()
+  return activeBranch
+end
+
+--[[
+  Resolve a test function for the active branch, falling back to the Classic module when the
+  branch-specific module doesn't define that specific function. Used by the validator discovery
+  so the SoD and TBC passes can borrow Classic test functions for shared base content (Classic
+  Era spells still in the assembled map); branch-specific spells like the SoD trap reworks live
+  only in the per-branch module and resolve directly.
+
+  @param {string} prefix
+    Module name prefix, e.g. "testSound", "testSoundSelfAvoid", "testCombatEvents".
+  @param {string} categoryName
+    Category in lowercase, e.g. "warrior", "mage".
+  @param {string} functionName
+    Test function name being looked up, e.g. "TestSoundIntercept_20616".
+
+  @return {function | nil}
+    The resolved test function, or nil if neither branch defines it.
+]]--
+function me.ResolveTestFunction(prefix, categoryName, functionName)
+  local categoryUp = me.FirstToUpper(categoryName)
+  local branchUp = me.FirstToUpper(activeBranch)
+  local primary = mod[prefix .. categoryUp .. branchUp]
+
+  if primary and type(primary[functionName]) == "function" then
+    return primary[functionName]
+  end
+
+  if branchUp ~= "Classic" then
+    local classicModule = mod[prefix .. categoryUp .. "Classic"]
+
+    if classicModule and type(classicModule[functionName]) == "function" then
+      return classicModule[functionName]
+    end
+  end
+
+  return nil
+end
+
+--[[
+  Build the spellMap for the active test branch directly through the assembler. Bypasses the
+  facade's cache and the runtime season detection, so a test pass sees exactly the map its
+  branch would see in production.
+
+  @return {table}
+]]--
+function me.GetSpellMapForActiveBranch()
+  local overlays = {}
+
+  if activeBranch == "sod" then
+    table.insert(overlays, mod.spellMapOverlaySod.GetOverlay())
+  elseif activeBranch == "tbc" then
+    table.insert(overlays, mod.spellMapOverlayTbc.GetOverlay())
+  end
+
+  return mod.spellMapAssembler.Apply(mod.spellMapBase.GetMap(), overlays)
+end
+
+--[[
+  Same as GetSpellMapForActiveBranch but for the avoid map.
+
+  @return {table}
+]]--
+function me.GetSpellAvoidMapForActiveBranch()
+  local overlays = {}
+
+  if activeBranch == "sod" then
+    table.insert(overlays, mod.spellAvoidMapOverlaySod.GetOverlay())
+  elseif activeBranch == "tbc" then
+    table.insert(overlays, mod.spellAvoidMapOverlayTbc.GetOverlay())
+  end
+
+  return mod.spellAvoidMapAssembler.Apply(mod.spellAvoidMapBase.GetMap(), overlays)
+end
+
+--[[
   @return {string}
 ]]--
 function me.GetGenericPlayerId()

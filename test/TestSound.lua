@@ -97,7 +97,7 @@ end
     A valid categoryName such as "priest", "warrior" etc.
 ]]--
 function me.ShouldHaveSoundTestByCategory(categoryName)
-  local spellMap = mod.spellMapHelper.GetSpellConfigurationByCategory(categoryName)
+  local spellMap = mod.testHelper.GetSpellMapForActiveBranch()[categoryName]
 
   if spellMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
@@ -111,7 +111,7 @@ end
   Go through all spells and check if there is a sound test present
 ]]--
 function me.ShouldHaveSoundTest()
-  local spellMap = mod.spellMapHelper.GetSpellConfiguration()
+  local spellMap = mod.testHelper.GetSpellMapForActiveBranch()
 
   for categoryName, categoryData in pairs(spellMap) do
     me.SoundTest(categoryName, categoryData)
@@ -137,8 +137,9 @@ function me.SoundTest(categoryName, categoryData)
 
     mod.testReporter.StartTestRun(testName)
 
-    local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName)]
-      ["TestSound" .. spellName .. "_" .. spellId]
+    local func = mod.testHelper.ResolveTestFunction(
+      "testSound", categoryName, "TestSound" .. spellName .. "_" .. spellId
+    )
 
     if type(func) ~= "function" then
       mod.testReporter.ReportFailureTestRun(
@@ -173,7 +174,7 @@ end
     A valid categoryName such as "priest", "warrior" etc.
 ]]--
 function me.ShouldHaveSoundDownTestByCategory(categoryName)
-  local spellMap = mod.spellMapHelper.GetSpellConfigurationByCategory(categoryName)
+  local spellMap = mod.testHelper.GetSpellMapForActiveBranch()[categoryName]
 
   if spellMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
@@ -187,7 +188,7 @@ end
   Go through all spells and check if there is a sound down test present
 ]]--
 function me.ShouldHaveSoundDownTest()
-  local spellMap = mod.spellMapHelper.GetSpellConfiguration()
+  local spellMap = mod.testHelper.GetSpellMapForActiveBranch()
 
   for category, categoryData in pairs(spellMap) do
     me.SoundDownTest(category, categoryData)
@@ -215,8 +216,9 @@ function me.SoundDownTest(categoryName, categoryData)
 
       mod.testReporter.StartTestRun(testName)
 
-      local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName)]
-      ["TestSoundDown" .. spellName .. "_" .. spellId]
+      local func = mod.testHelper.ResolveTestFunction(
+        "testSound", categoryName, "TestSoundDown" .. spellName .. "_" .. spellId
+      )
 
       if type(func) ~= "function" then
         mod.testReporter.ReportFailureTestRun(
@@ -252,7 +254,7 @@ end
     A valid categoryName such as "priest", "warrior" etc.
 ]]--
 function me.ShouldHaveSoundRefreshTestByCategory(categoryName)
-  local spellMap = mod.spellMapHelper.GetSpellConfigurationByCategory(categoryName)
+  local spellMap = mod.testHelper.GetSpellMapForActiveBranch()[categoryName]
 
   if spellMap == nil then
     mod.logger.LogError(me.tag, "Unable to get spellMap for categoryName: " .. categoryName)
@@ -266,7 +268,7 @@ end
   Go through all spells and check if there is a sound refresh test present
 ]]--
 function me.ShouldHaveSoundRefreshTest()
-  local spellMap = mod.spellMapHelper.GetSpellConfiguration()
+  local spellMap = mod.testHelper.GetSpellMapForActiveBranch()
 
   for category, categoryData in pairs(spellMap) do
     me.SoundRefreshTest(category, categoryData)
@@ -297,8 +299,9 @@ function me.SoundRefreshTest(categoryName, categoryData)
 
       mod.testReporter.StartTestRun(testName)
 
-      local func = mod["testSound" .. mod.testHelper.FirstToUpper(categoryName)]
-      ["TestSoundRefresh" .. spellName .. "_" .. spellId]
+      local func = mod.testHelper.ResolveTestFunction(
+        "testSound", categoryName, "TestSoundRefresh" .. spellName .. "_" .. spellId
+      )
 
       if type(func) ~= "function" then
         mod.testReporter.ReportFailureTestRun(
@@ -337,7 +340,7 @@ end
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
 function me.ShouldHaveSoundAvoidTestByCategory(categoryName, spellAvoidType)
-  local categoryData = mod.spellAvoidMapHelper.GetSpellConfigurationByCategory(categoryName)
+  local categoryData = mod.testHelper.GetSpellAvoidMapForActiveBranch()[categoryName]
 
   if categoryData == nil then
     mod.logger.LogError(me.tag, "Unable to get categoryData for categoryName: " .. categoryName)
@@ -352,7 +355,7 @@ end
     RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID or RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
 ]]--
 function me.ShouldHaveSoundAvoidTest(spellAvoidType)
-  local spellAvoidMap = mod.spellAvoidMapHelper.GetSpellConfiguration()
+  local spellAvoidMap = mod.testHelper.GetSpellAvoidMapForActiveBranch()
 
   for categoryName, categoryData in pairs(spellAvoidMap) do
     me.SoundAvoidTest(categoryName, categoryData, spellAvoidType)
@@ -396,8 +399,9 @@ function me.SoundAvoidTest(categoryName, categoryData, spellAvoidType)
 
     mod.testReporter.StartTestRun(testName)
 
-    local func = mod[moduleNameBase .. mod.testHelper.FirstToUpper(categoryName)]
-      [testFunctionBase .. spellName .. "_" .. spellId]
+    local func = mod.testHelper.ResolveTestFunction(
+      moduleNameBase, categoryName, testFunctionBase .. spellName .. "_" .. spellId
+    )
 
     if type(func) ~= "function" then
       mod.testReporter.ReportFailureTestRun(

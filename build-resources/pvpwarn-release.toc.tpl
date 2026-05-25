@@ -31,8 +31,16 @@ code/Sound.lua
 code/Visual.lua
 code/CombatLog.lua
 code/SpellMapHelper.lua
+code/SpellMap/Base.lua
+code/SpellMap/Overlay/Sod.lua
+code/SpellMap/Overlay/Tbc.lua
+code/SpellMap/Assemble.lua
 code/SpellMap.lua
 code/SpellAvoidMapHelper.lua
+code/SpellAvoidMap/Base.lua
+code/SpellAvoidMap/Overlay/Sod.lua
+code/SpellAvoidMap/Overlay/Tbc.lua
+code/SpellAvoidMap/Assemble.lua
 code/SpellAvoidMap.lua
 code/Common.lua
 code/Target.lua

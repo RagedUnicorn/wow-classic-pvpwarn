@@ -1,20 +1,35 @@
-"""Lua parser for extracting spell data from SpellMap.lua and SpellAvoidMap.lua."""
+"""
+Lua parser for extracting spell data from the SpellMap / SpellAvoidMap directory layout.
+
+The source is a base + overlay split:
+    <map_dir>/Base.lua                 -- Classic content (`local spellMap = {...}`)
+    <map_dir>/Overlay/Sod.lua          -- SoD ops
+    <map_dir>/Overlay/Tbc.lua          -- TBC ops (empty stub today)
+
+For voice generation we want a union view: every spell in any branch needs its voice file
+generated. We load Base, then merge each overlay's `add` and `replace` (skipping `remove` —
+Classic content shouldn't disappear just because SoD reworked a hunter trap).
+"""
 
 import os
-from typing import Dict, List, Optional, Set
+from pathlib import Path
+from typing import Dict, List, Optional, Set, Any
+
+import lupa
 from lupa import LuaRuntime
+
 from .constants import SPELLMAP_RELATIVE_PATH, SPELLAVOIDMAP_RELATIVE_PATH
 
 
 class LuaParser:
-    """Parser for extracting spell data from the SpellMap.lua file."""
+    """Parser for extracting spell data from the SpellMap / SpellAvoidMap directories."""
 
     def __init__(self, spellmap_path: Optional[str] = None, spellavoidmap_path: Optional[str] = None):
-        """Initialize the parser with paths to SpellMap.lua and SpellAvoidMap.lua.
+        """Initialize the parser.
 
         Args:
-            spellmap_path: Path to the SpellMap.lua file. If None, uses default path.
-            spellavoidmap_path: Path to the SpellAvoidMap.lua file. If None, uses default path.
+            spellmap_path: Path to the code/SpellMap directory. None uses the default relative path.
+            spellavoidmap_path: Path to the code/SpellAvoidMap directory. None uses the default.
         """
         current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -31,158 +46,54 @@ class LuaParser:
         self.spellmap_path = spellmap_path
         self.spellavoidmap_path = spellavoidmap_path
         self.lua = LuaRuntime(unpack_returned_tuples=True)
+        self._env_initialized = False
+
+    # ------------------------------------------------------------------
+    # Public API used by generate_voices.py
+    # ------------------------------------------------------------------
 
     def parse_spellmap(self) -> Dict[str, List[Dict]]:
-        """Parse the SpellMap.lua file and extract spell data.
-
-        Returns:
-            Dictionary mapping categories to lists of spell data
-        """
-        if not os.path.exists(self.spellmap_path):
-            raise FileNotFoundError(f"SpellMap file not found: {self.spellmap_path}")
-
-        # Read and execute the Lua file
-        with open(self.spellmap_path, 'r', encoding='utf-8') as f:
-            lua_content = f.read()
-
-        # Create a sandboxed environment with required globals
-        self.lua.execute("""
-            -- Mock the addon namespace
-            rgpvpw = {
-                spellMap = {},
-                spellAvoidMap = {},
-                logger = {
-                    LogError = function() end,
-                    LogInfo = function() end,
-                    LogDebug = function() end
-                },
-                common = {
-                    Clone = function(t) return t end
-                }
-            }
-
-            -- Initialize the lists
-            PVPW_CLASSLIST = {}
-            PVPW_RACELIST = {}
-            PVPW_ITEMLIST = {}
-            PVPW_MISCLIST = {}
-
-            -- Add required constants
-            RGPVPW_CONSTANTS = {
-                UNIT_ID_PLAYER = "player",
-                SPELL_TYPE_BASE = "SPELL_TYPE_BASE",
-                SPELL_TYPE_SOD = "SPELL_TYPE_SOD",
-                SPELL_TYPE_BS = "SPELL_TYPE_BS",
-                SPELL_TYPE_TBC = "SPELL_TYPE_TBC"
-            }
-
-            -- Mock UnitFactionGroup function
-            function UnitFactionGroup(unit)
-                -- Return a value for parsing to continue
-                return "Alliance"
-            end
-        """)
-
-        # Modify the lua content to make spellMap global instead of local
-        modified_content = lua_content.replace("local spellMap = {", "_G.spellMapData = {")
-
-        # Execute the modified SpellMap content
-        try:
-            self.lua.execute(modified_content)
-        except Exception as e:
-            print(f"ERROR executing SpellMap.lua: {e}")
-            raise
-
-        # Extract the data directly from spellMap
-        spell_data = {}
-
-        # Get the spellMap variable (it's now global as spellMapData)
-        spell_map = self.lua.eval("_G.spellMapData")
-        if spell_map:
-            # Iterate through all categories in spellMap
-            for category_name in spell_map:
-                category = str(category_name).lower()
-                category_spells = spell_map[category_name]
-
-                # Map categories to the expected format
-                if category in ['warrior', 'priest', 'rogue', 'mage', 'hunter', 'warlock', 'paladin', 'druid', 'shaman']:
-                    spell_data[f"class_{category}"] = self._extract_spells_from_map(category_spells)
-                elif category == 'racials':
-                    spell_data[f"race_{category}"] = self._extract_spells_from_map(category_spells)
-                elif category == 'items':
-                    spell_data[f"item_{category}"] = self._extract_spells_from_map(category_spells)
-                elif category == 'misc':
-                    spell_data[f"misc_{category}"] = self._extract_spells_from_map(category_spells)
-
-        return spell_data
-
-    def _extract_spells_from_map(self, spell_map) -> List[Dict]:
-        """Extract spells from a category in the spell map.
-
-        Args:
-            spell_map: Lua table containing spells indexed by spell ID
-
-        Returns:
-            List of spell dictionaries
-        """
-        spells = []
-
-        if not spell_map:
-            return spells
-
-        # Iterate through the spell map
-        for spell_id in spell_map:
-            spell = spell_map[spell_id]
-            if spell and hasattr(spell, 'name'):
-                spell_dict = {
-                    'name': spell.name if hasattr(spell, 'name') else None,
-                    'soundFileName': spell.soundFileName if hasattr(spell, 'soundFileName') else None,
-                    'soundText': spell.soundText if hasattr(spell, 'soundText') else None,
-                    'hasFade': spell.hasFade if hasattr(spell, 'hasFade') else False,
-                    'hasCast': spell.hasCast if hasattr(spell, 'hasCast') else False,
-                    'active': spell.active if hasattr(spell, 'active') else True,
-                    'spellId': int(spell_id) if spell_id else None,
-                    'self_avoid': spell.self_avoid if hasattr(spell, 'self_avoid') else False,
-                    'enemy_avoid': spell.enemy_avoid if hasattr(spell, 'enemy_avoid') else False,
-                }
-
-                # Extract trackedEvents if present
-                if hasattr(spell, 'trackedEvents') and spell.trackedEvents:
-                    tracked_events = []
-                    # Convert Lua table to Python list
-                    try:
-                        for i in range(1, len(spell.trackedEvents) + 1):
-                            if spell.trackedEvents[i]:
-                                tracked_events.append(str(spell.trackedEvents[i]))
-                    except:
-                        # Handle case where trackedEvents is not a proper Lua table
-                        pass
-                    spell_dict['trackedEvents'] = tracked_events
-                else:
-                    spell_dict['trackedEvents'] = []
-
-                # Only include spells with valid data
-                if spell_dict['name'] and spell_dict['soundFileName']:
-                    spells.append(spell_dict)
-
-        return spells
+        """Load SpellMap and return category-bucketed spell data with voice fields."""
+        assembled = self._load_dir(self.spellmap_path, "spellMap", "SpellMap")
+        return self._bucket_by_category(assembled, avoid=False)
 
     def parse_spellavoidmap(self) -> Dict[str, List[Dict]]:
-        """Parse the SpellAvoidMap.lua file and extract spell avoid data.
+        """Load SpellAvoidMap and return category-bucketed spell data with voice fields."""
+        assembled = self._load_dir(self.spellavoidmap_path, "spellAvoidMap", "SpellAvoidMap")
+        return self._bucket_by_category(assembled, avoid=True)
 
-        Returns:
-            Dictionary mapping categories to lists of spell data
-        """
-        if not os.path.exists(self.spellavoidmap_path):
-            raise FileNotFoundError(f"SpellAvoidMap file not found: {self.spellavoidmap_path}")
+    # ------------------------------------------------------------------
+    # Directory loading: Base.lua + overlay union
+    # ------------------------------------------------------------------
 
-        # Read and execute the Lua file
-        with open(self.spellavoidmap_path, 'r', encoding='utf-8') as f:
-            lua_content = f.read()
+    def _load_dir(self, map_dir: str, base_global_name: str, label: str) -> Dict[str, Dict[int, Dict]]:
+        """Load Base.lua and merge every overlay's adds + replaces (skip removes)."""
+        if not os.path.isdir(map_dir):
+            raise FileNotFoundError(f"{label} directory not found: {map_dir}")
 
-        # Create a sandboxed environment with required globals
-        self.lua.execute("""
-            -- Mock the addon namespace
+        base_path = Path(map_dir) / "Base.lua"
+        if not base_path.exists():
+            raise FileNotFoundError(f"Base.lua not found in: {map_dir}")
+
+        self._setup_environment()
+        assembled = self._parse_base_file(base_path, base_global_name)
+
+        for overlay_path in (
+            Path(map_dir) / "Overlay" / "Sod.lua",
+            Path(map_dir) / "Overlay" / "Tbc.lua",
+        ):
+            if overlay_path.exists():
+                overlay = self._parse_overlay_file(overlay_path)
+                self._union_merge_overlay(assembled, overlay)
+
+        return assembled
+
+    def _setup_environment(self) -> None:
+        """Inject the mocks the addon source files expect."""
+        if self._env_initialized:
+            return
+        self.lua.execute(
+            """
             rgpvpw = {
                 spellMap = {},
                 spellAvoidMap = {},
@@ -196,13 +107,11 @@ class LuaParser:
                 }
             }
 
-            -- Initialize the lists
             PVPW_CLASSLIST = {}
             PVPW_RACELIST = {}
             PVPW_ITEMLIST = {}
             PVPW_MISCLIST = {}
 
-            -- Add required constants
             RGPVPW_CONSTANTS = {
                 UNIT_ID_PLAYER = "player",
                 SPELL_TYPE_BASE = "SPELL_TYPE_BASE",
@@ -211,299 +120,313 @@ class LuaParser:
                 SPELL_TYPE_TBC = "SPELL_TYPE_TBC"
             }
 
-            -- Mock UnitFactionGroup function
             function UnitFactionGroup(unit)
-                -- Return a value for parsing to continue
                 return "Alliance"
             end
-        """)
+            """
+        )
+        self._env_initialized = True
 
-        # Modify the lua content to make spellAvoidMap global instead of local
-        modified_content = lua_content.replace("local spellAvoidMap = {", "_G.spellAvoidMapData = {")
+    def _parse_base_file(self, path: Path, base_global_name: str) -> Dict[str, Dict[int, Dict]]:
+        """Parse a Base.lua file (top-level ``local spellMap = {...}`` / ``local spellAvoidMap = {...}``)."""
+        with open(path, "r", encoding="utf-8") as f:
+            content = f.read()
 
-        # Execute the modified SpellAvoidMap content
-        self.lua.execute(modified_content)
+        suffix = f"\n_G.{base_global_name} = {base_global_name}\n"
+        try:
+            self.lua.execute(content + suffix)
+        except Exception as e:
+            raise RuntimeError(f"Failed to parse {path}: {e}") from e
 
-        # Extract the data directly from spellAvoidMap
-        spell_data = {}
+        table = getattr(self.lua.globals(), base_global_name)
+        if table is None:
+            raise ValueError(f"No `{base_global_name}` table found in {path}")
 
-        # Get the spellAvoidMap variable (it's now global as spellAvoidMapData)
-        spell_map = self.lua.eval("_G.spellAvoidMapData")
-        if spell_map:
-            # Iterate through all categories in spellAvoidMap
-            for category_name in spell_map:
-                category = str(category_name).lower()
-                category_spells = spell_map[category_name]
+        result: Dict[str, Dict[int, Dict]] = {}
+        for category_name in table:
+            category = str(category_name)
+            category_table = table[category_name]
+            result[category] = {}
+            for spell_id in category_table:
+                spell_data = category_table[spell_id]
+                if lupa.lua_type(spell_data) == "table":
+                    result[category][int(spell_id)] = self._lua_table_to_python(spell_data)
+                else:
+                    result[category][int(spell_id)] = spell_data
+        return result
 
-                # Map categories to the expected format
-                if category in ['warrior', 'priest', 'rogue', 'mage', 'hunter', 'warlock', 'paladin', 'druid', 'shaman']:
-                    spell_data[f"class_{category}_avoid"] = self._extract_spells_from_map(category_spells)
-                elif category == 'racials':
-                    spell_data[f"race_{category}_avoid"] = self._extract_spells_from_map(category_spells)
-                elif category == 'items':
-                    spell_data[f"item_{category}_avoid"] = self._extract_spells_from_map(category_spells)
-                elif category == 'misc':
-                    spell_data[f"misc_{category}_avoid"] = self._extract_spells_from_map(category_spells)
+    def _parse_overlay_file(self, path: Path) -> Dict[str, Dict[str, Any]]:
+        """Parse an Overlay/*.lua file (``function me.GetOverlay() return {...} end``)."""
+        with open(path, "r", encoding="utf-8") as f:
+            content = f.read()
 
-        return spell_data
+        if "function me.GetOverlay()" not in content:
+            raise ValueError(f"Overlay file {path} has no `function me.GetOverlay()` entry")
 
-    def _extract_spells(self, spell_list) -> List[Dict]:
-        """Extract individual spells from a spell list.
+        self.lua.execute("_G.__overlay_result = nil")
+        try:
+            self.lua.execute(content + "\n_G.__overlay_result = me.GetOverlay()\n")
+        except Exception as e:
+            raise RuntimeError(f"Failed to parse overlay {path}: {e}") from e
 
-        Args:
-            spell_list: Lua table containing spell data
+        overlay_table = self.lua.eval("_G.__overlay_result")
+        if overlay_table is None:
+            return {}
 
-        Returns:
-            List of spell dictionaries
-        """
-        spells = []
+        result: Dict[str, Dict[str, Any]] = {}
+        for category_name in overlay_table:
+            category = str(category_name)
+            ops = overlay_table[category_name]
+            entry: Dict[str, Any] = {"add": {}, "replace": {}}
+            if lupa.lua_type(ops) == "table":
+                for op_name in ("add", "replace"):
+                    section = ops[op_name]
+                    if lupa.lua_type(section) == "table":
+                        section_dict: Dict[int, Dict] = {}
+                        for spell_id in section:
+                            spell_data = section[spell_id]
+                            if lupa.lua_type(spell_data) == "table":
+                                section_dict[int(spell_id)] = self._lua_table_to_python(spell_data)
+                            else:
+                                section_dict[int(spell_id)] = spell_data
+                        entry[op_name] = section_dict
+            result[category] = entry
+        return result
 
-        if not spell_list:
-            return spells
+    @staticmethod
+    def _union_merge_overlay(assembled: Dict[str, Dict[int, Dict]],
+                             overlay: Dict[str, Dict[str, Any]]) -> None:
+        """Merge an overlay's add + replace into the assembled map in place. Skips `remove`."""
+        for category, ops in overlay.items():
+            if category not in assembled:
+                assembled[category] = {}
+            for spell_id, spell_data in (ops.get("add") or {}).items():
+                assembled[category][int(spell_id)] = spell_data
+            for spell_id, spell_data in (ops.get("replace") or {}).items():
+                assembled[category][int(spell_id)] = spell_data
 
-        # Iterate through the spell list
-        for i in range(1, len(spell_list) + 1):
-            spell = spell_list[i]
-            if spell:
-                spell_dict = {
-                    'name': spell.name if hasattr(spell, 'name') else None,
-                    'soundFileName': spell.soundFileName if hasattr(spell, 'soundFileName') else None,
-                    'soundText': spell.soundText if hasattr(spell, 'soundText') else None,
-                    'hasFade': spell.hasFade if hasattr(spell, 'hasFade') else False,
-                    'active': spell.active if hasattr(spell, 'active') else True,
-                    'spellId': spell.spellId if hasattr(spell, 'spellId') else None,
-                    'self_avoid': spell.self_avoid if hasattr(spell, 'self_avoid') else False,
-                    'enemy_avoid': spell.enemy_avoid if hasattr(spell, 'enemy_avoid') else False,
-                }
+    def _lua_table_to_python(self, lua_table) -> Any:
+        """Recursive Lua table → Python dict/list conversion. Detects integer-keyed array tables
+        that start at 1 (typical for ``allRanks`` and ``trackedEvents``) and surfaces them as
+        Python lists; everything else becomes a dict."""
+        if lupa.lua_type(lua_table) != "table":
+            return lua_table
 
-                # Only include spells with valid data
-                if spell_dict['name'] and spell_dict['soundFileName']:
-                    spells.append(spell_dict)
+        keys = list(lua_table)
+        if keys and all(isinstance(k, int) for k in keys):
+            sorted_keys = sorted(keys)
+            if sorted_keys == list(range(1, len(keys) + 1)):
+                return [self._lua_table_to_python(lua_table[i]) for i in sorted_keys]
 
-        return spells
+        result: Dict[Any, Any] = {}
+        for key in keys:
+            value = lua_table[key]
+            if lupa.lua_type(value) == "table":
+                result[key] = self._lua_table_to_python(value)
+            else:
+                result[key] = value
+        return result
+
+    # ------------------------------------------------------------------
+    # Category bucketing (preserves the legacy "class_<name>" / "race_<name>" keys
+    # generate_voices.py downstream code parses)
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _bucket_by_category(assembled: Dict[str, Dict[int, Dict]], avoid: bool) -> Dict[str, List[Dict]]:
+        """Convert the assembled `{category: {spellId: data}}` shape into the legacy
+        `{class_warrior: [spell_dict, ...], item_items: [...], ...}` shape that downstream code
+        expects. Filters out entries lacking name + soundFileName."""
+        result: Dict[str, List[Dict]] = {}
+
+        for category, spells in assembled.items():
+            category_lower = str(category).lower()
+            spell_list: List[Dict] = []
+
+            for spell_id, spell_data in spells.items():
+                if not isinstance(spell_data, dict):
+                    continue
+                if not spell_data.get("name") or not spell_data.get("soundFileName"):
+                    continue
+
+                tracked_events = spell_data.get("trackedEvents") or []
+                if not isinstance(tracked_events, list):
+                    tracked_events = []
+
+                spell_list.append({
+                    "name": spell_data.get("name"),
+                    "soundFileName": spell_data.get("soundFileName"),
+                    "soundText": spell_data.get("soundText"),
+                    "hasFade": bool(spell_data.get("hasFade", False)),
+                    "hasCast": bool(spell_data.get("hasCast", False)),
+                    "active": bool(spell_data.get("active", True)),
+                    "spellId": int(spell_id),
+                    "self_avoid": bool(spell_data.get("self_avoid", False)),
+                    "enemy_avoid": bool(spell_data.get("enemy_avoid", False)),
+                    "trackedEvents": [str(e) for e in tracked_events],
+                })
+
+            if not spell_list:
+                continue
+
+            if category_lower in {"warrior", "priest", "rogue", "mage", "hunter",
+                                  "warlock", "paladin", "druid", "shaman"}:
+                bucket_key = f"class_{category_lower}_avoid" if avoid else f"class_{category_lower}"
+            elif category_lower == "racials":
+                bucket_key = f"race_{category_lower}_avoid" if avoid else f"race_{category_lower}"
+            elif category_lower == "items":
+                bucket_key = f"item_{category_lower}_avoid" if avoid else f"item_{category_lower}"
+            elif category_lower == "misc":
+                bucket_key = f"misc_{category_lower}_avoid" if avoid else f"misc_{category_lower}"
+            else:
+                continue
+
+            result[bucket_key] = spell_list
+
+        return result
+
+    # ------------------------------------------------------------------
+    # Voice-generation helpers (unchanged shape, but consume the new bucketed data)
+    # ------------------------------------------------------------------
 
     def get_spells_for_voice_generation(self, categories: Optional[List[str]] = None) -> List[Dict]:
-        """Get all spells that need voice generation.
-
-        Args:
-            categories: Optional list of categories to filter (e.g., ['warrior', 'priest'])
-
-        Returns:
-            List of spell dictionaries with metadata for voice generation
-        """
+        """Get all spells that need voice generation."""
         all_spell_data = self.parse_spellmap()
-        spells_to_generate = []
+        spells_to_generate: List[Dict] = []
 
         for category, spells in all_spell_data.items():
-            # Extract the actual category name (e.g., "warrior" from "class_warrior")
-            category_parts = category.split('_')
-            if len(category_parts) > 1:
-                category_name = category_parts[1]
-            else:
-                category_name = category
+            category_parts = category.split("_")
+            category_name = category_parts[1] if len(category_parts) > 1 else category
 
-            # Skip if filtering by categories and this category is not in the list
             if categories and category_name.lower() not in [c.lower() for c in categories]:
                 continue
 
             for spell in spells:
-                # Skip inactive spells
-                if not spell.get('active', True):
+                if not spell.get("active", True):
                     continue
-
-                # Add category info for organization
-                spell['full_category'] = category
+                spell["full_category"] = category
                 spells_to_generate.append(spell)
 
         return spells_to_generate
 
     def get_avoid_spells_for_voice_generation(self, categories: Optional[List[str]] = None) -> List[Dict]:
-        """Get all avoid spells that need voice generation.
-
-        Args:
-            categories: Optional list of categories to filter (e.g., ['warrior', 'priest'])
-
-        Returns:
-            List of spell dictionaries with metadata for voice generation
-        """
+        """Get all avoid spells that need voice generation."""
         all_spell_data = self.parse_spellavoidmap()
-        spells_to_generate = []
+        spells_to_generate: List[Dict] = []
 
         for category, spells in all_spell_data.items():
-            # Extract the actual category name (e.g., "warrior" from "class_warrior_avoid")
-            category_parts = category.split('_')
-            if len(category_parts) > 1:
-                # Remove "_avoid" suffix if present
-                category_name = category_parts[1] if category_parts[-1] != 'avoid' else category_parts[1]
-            else:
-                category_name = category
+            category_parts = category.split("_")
+            category_name = category_parts[1] if len(category_parts) > 1 else category
 
-            # Skip if filtering by categories and this category is not in the list
             if categories and category_name.lower() not in [c.lower() for c in categories]:
                 continue
 
             for spell in spells:
-                # Only include spells that have either self_avoid or enemy_avoid
-                if not (spell.get('self_avoid', False) or spell.get('enemy_avoid', False)):
+                if not (spell.get("self_avoid", False) or spell.get("enemy_avoid", False)):
                     continue
-
-                # Add category info for organization
-                spell['full_category'] = category
+                spell["full_category"] = category
                 spells_to_generate.append(spell)
 
         return spells_to_generate
 
     def get_voice_files_with_text(self, categories: Optional[List[str]] = None) -> List[Dict[str, str]]:
-        """Get a list of voice files needed with their text content.
-
-        Args:
-            categories: Optional list of categories to filter (e.g., ['warrior', 'priest'])
-
-        Returns:
-            List of dictionaries with 'file_name' and 'text' keys
-        """
-        # Get spells from both maps
+        """Get a list of voice files needed with their text content."""
         regular_spells = self.get_spells_for_voice_generation(categories)
         avoid_spells = self.get_avoid_spells_for_voice_generation(categories)
 
-        voice_files = []
-        seen_files = set()
+        voice_files: List[Dict[str, str]] = []
+        seen_files: Set[str] = set()
 
-        # Process regular spells
         for spell in regular_spells:
-            sound_file = spell.get('soundFileName')
-            spell_name = spell.get('name')
-            sound_text = spell.get('soundText')
+            sound_file = spell.get("soundFileName")
+            spell_name = spell.get("name")
+            sound_text = spell.get("soundText")
 
-            if sound_file and spell_name:
-                # Add normal version
-                if sound_file not in seen_files:
-                    # Extract category name from full_category (e.g., "warrior" from "class_warrior")
-                    full_category = spell.get('full_category', '')
-                    category_parts = full_category.split('_')
-                    category = category_parts[1] if len(category_parts) > 1 else full_category
+            if not (sound_file and spell_name):
+                continue
 
-                    # Use soundText if available, otherwise use spell name
-                    voice_text = sound_text if sound_text else spell_name
+            full_category = spell.get("full_category", "")
+            category_parts = full_category.split("_")
+            category = category_parts[1] if len(category_parts) > 1 else full_category
+            voice_text = sound_text if sound_text else spell_name
 
+            if sound_file not in seen_files:
+                voice_files.append({
+                    "file_name": sound_file,
+                    "text": voice_text,
+                    "has_fade": spell.get("hasFade", False),
+                    "category": category,
+                })
+                seen_files.add(sound_file)
+
+            if spell.get("hasFade", False):
+                fade_file = f"{sound_file}_down"
+                if fade_file not in seen_files:
                     voice_files.append({
-                        'file_name': sound_file,
-                        'text': voice_text,
-                        'has_fade': spell.get('hasFade', False),
-                        'category': category
+                        "file_name": fade_file,
+                        "text": f"{voice_text} down",
+                        "has_fade": False,
+                        "category": category,
                     })
-                    seen_files.add(sound_file)
+                    seen_files.add(fade_file)
 
-                # Add fade version if needed
-                if spell.get('hasFade', False):
-                    fade_file = f"{sound_file}_down"
-                    if fade_file not in seen_files:
-                        # Extract category name from full_category (e.g., "warrior" from "class_warrior")
-                        full_category = spell.get('full_category', '')
-                        category_parts = full_category.split('_')
-                        category = category_parts[1] if len(category_parts) > 1 else full_category
+            has_cast_event = spell.get("hasCast", False) or "SPELL_CAST_START" in spell.get("trackedEvents", [])
+            if has_cast_event:
+                cast_file = f"{sound_file}_cast"
+                if cast_file not in seen_files:
+                    voice_files.append({
+                        "file_name": cast_file,
+                        "text": f"{voice_text} cast",
+                        "has_fade": False,
+                        "category": category,
+                    })
+                    seen_files.add(cast_file)
 
-                        # Use soundText if available, otherwise use spell name
-                        voice_text = sound_text if sound_text else spell_name
-
-                        voice_files.append({
-                            'file_name': fade_file,
-                            'text': f"{voice_text} down",
-                            'has_fade': False,  # This is already the fade version
-                            'category': category
-                        })
-                        seen_files.add(fade_file)
-
-                # Add cast version if needed (hasCast=true or SPELL_CAST_START in trackedEvents)
-                has_cast_event = spell.get('hasCast', False) or 'SPELL_CAST_START' in spell.get('trackedEvents', [])
-                if has_cast_event:
-                    cast_file = f"{sound_file}_cast"
-                    if cast_file not in seen_files:
-                        # Extract category name from full_category (e.g., "warrior" from "class_warrior")
-                        full_category = spell.get('full_category', '')
-                        category_parts = full_category.split('_')
-                        category = category_parts[1] if len(category_parts) > 1 else full_category
-
-                        # Use soundText if available, otherwise use spell name
-                        voice_text = sound_text if sound_text else spell_name
-
-                        voice_files.append({
-                            'file_name': cast_file,
-                            'text': f"{voice_text} cast",
-                            'has_fade': False,
-                            'category': category
-                        })
-                        seen_files.add(cast_file)
-
-        # Process avoid spells
         for spell in avoid_spells:
-            sound_file = spell.get('soundFileName')
-            spell_name = spell.get('name')
-            sound_text = spell.get('soundText')
+            sound_file = spell.get("soundFileName")
+            spell_name = spell.get("name")
+            sound_text = spell.get("soundText")
 
-            if sound_file and spell_name:
-                # Use soundText if available, otherwise use spell name
-                voice_text = sound_text if sound_text else spell_name
+            if not (sound_file and spell_name):
+                continue
 
-                # Add enemy avoid version
-                if spell.get('enemy_avoid', False):
-                    enemy_file = f"enemy_avoided_{sound_file}"
-                    if enemy_file not in seen_files:
-                        # Extract category name from full_category (e.g., "warrior" from "class_warrior_avoid")
-                        full_category = spell.get('full_category', '')
-                        category_parts = full_category.split('_')
-                        # Remove '_avoid' suffix if present
-                        category = category_parts[1] if len(category_parts) > 1 else full_category
+            full_category = spell.get("full_category", "")
+            category_parts = full_category.split("_")
+            category = category_parts[1] if len(category_parts) > 1 else full_category
+            voice_text = sound_text if sound_text else spell_name
 
-                        voice_files.append({
-                            'file_name': enemy_file,
-                            'text': f"enemy avoided {voice_text}",
-                            'has_fade': False,
-                            'category': category,
-                            'subcategory': 'enemy_avoid'
-                        })
-                        seen_files.add(enemy_file)
+            if spell.get("enemy_avoid", False):
+                enemy_file = f"enemy_avoided_{sound_file}"
+                if enemy_file not in seen_files:
+                    voice_files.append({
+                        "file_name": enemy_file,
+                        "text": f"enemy avoided {voice_text}",
+                        "has_fade": False,
+                        "category": category,
+                        "subcategory": "enemy_avoid",
+                    })
+                    seen_files.add(enemy_file)
 
-                # Add self avoid version
-                if spell.get('self_avoid', False):
-                    self_file = f"you_avoided_{sound_file}"
-                    if self_file not in seen_files:
-                        # Extract category name from full_category (e.g., "warrior" from "class_warrior_avoid")
-                        full_category = spell.get('full_category', '')
-                        category_parts = full_category.split('_')
-                        # Remove '_avoid' suffix if present
-                        category = category_parts[1] if len(category_parts) > 1 else full_category
-
-                        voice_files.append({
-                            'file_name': self_file,
-                            'text': f"you avoided {voice_text}",
-                            'has_fade': False,
-                            'category': category,
-                            'subcategory': 'self_avoid'
-                        })
-                        seen_files.add(self_file)
+            if spell.get("self_avoid", False):
+                self_file = f"you_avoided_{sound_file}"
+                if self_file not in seen_files:
+                    voice_files.append({
+                        "file_name": self_file,
+                        "text": f"you avoided {voice_text}",
+                        "has_fade": False,
+                        "category": category,
+                        "subcategory": "self_avoid",
+                    })
+                    seen_files.add(self_file)
 
         return voice_files
 
     def get_unique_voice_files_needed(self, categories: Optional[List[str]] = None) -> Set[str]:
-        """Get a set of unique voice files that need to be generated.
-
-        Args:
-            categories: Optional list of categories to filter (e.g., ['warrior', 'priest'])
-
-        Returns:
-            Set of unique sound file names (without extension)
-        """
-        voice_files = set()
-
-        # Get files from get_voice_files_with_text which handles both regular and avoid spells
-        all_voice_data = self.get_voice_files_with_text(categories)
-
-        for voice_data in all_voice_data:
-            file_name = voice_data.get('file_name')
+        """Get a set of unique voice files that need to be generated."""
+        voice_files: Set[str] = set()
+        for voice_data in self.get_voice_files_with_text(categories):
+            file_name = voice_data.get("file_name")
             if file_name:
-                # Remove extension if present
                 base_name = os.path.splitext(file_name)[0]
                 voice_files.add(base_name)
-
         return voice_files

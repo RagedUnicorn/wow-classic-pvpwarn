@@ -19,7 +19,7 @@ class FixtureLoader:
 
     def load_fixture(self, fixture_name: str) -> Dict[str, Any]:
         """
-        Load and parse a Lua fixture file.
+        Load and parse a Lua spellmap fixture file.
 
         Args:
             fixture_name: Name of the fixture file (without .lua extension)
@@ -37,6 +37,23 @@ class FixtureLoader:
         spell_entries = self.lua_parser.parse_spellmap(content)
 
         return spell_entries
+
+    def load_overlay_fixture(self, fixture_name: str) -> Dict[str, Any]:
+        """
+        Load and parse a Lua overlay fixture file (function me.GetOverlay shape).
+
+        Args:
+            fixture_name: Name of the fixture file (without .lua extension)
+
+        Returns:
+            Parsed overlay dictionary (`{category: {add, remove, replace}}`)
+        """
+        fixture_path = self.fixtures_dir / f"{fixture_name}.lua"
+
+        file_reader = SpellMapFileReader(str(fixture_path))
+        content = file_reader.read()
+
+        return self.lua_parser.parse_overlay(content)
 
 
 @pytest.fixture(scope="session")

@@ -21,16 +21,16 @@ from combat_log_parser.constants import (
 class CombatLogParser:
     """Main class that orchestrates the combat log parsing process."""
 
-    def __init__(self, spellmap_path: str, logs_dir: str, output_dir: str):
+    def __init__(self, spellmap_dir: str, logs_dir: str, output_dir: str):
         """
         Initialize the parser with all components.
 
         Args:
-            spellmap_path: Path to SpellMap.lua
+            spellmap_dir: Path to code/SpellMap directory (Base.lua + Overlay/).
             logs_dir: Directory containing combat logs
             output_dir: Directory for output files
         """
-        self.lua_parser = LuaParser(spellmap_path)
+        self.lua_parser = LuaParser(spellmap_dir)
         self.log_reader = CombatLogReader(logs_dir)
         self.spell_tracker = SpellTracker(output_dir)
         self.file_writer = FileWriter(output_dir)
@@ -46,8 +46,8 @@ class CombatLogParser:
         try:
             print("🔍 Starting Combat Log Parser...\n")
 
-            # Step 1: Parse SpellMap
-            print("Parsing SpellMap.lua...")
+            # Step 1: Parse SpellMap directory (Base.lua + overlays)
+            print("Parsing SpellMap (Base.lua + overlays)...")
             spell_entries = self.lua_parser.parse_spellmap()
             spells_by_category = self.lua_parser.get_all_spells_by_category()
             spell_counts = self.lua_parser.get_spell_count_by_category()
@@ -115,10 +115,10 @@ def main():
     default_output = script_dir / OUTPUT_RELATIVE_PATH
 
     parser.add_argument(
-        "--spellmap",
+        "--spellmap-dir",
         type=str,
         default=str(default_spellmap),
-        help="Path to SpellMap.lua file"
+        help="Path to code/SpellMap directory (containing Base.lua and Overlay/)"
     )
 
     parser.add_argument(
@@ -138,14 +138,14 @@ def main():
     args = parser.parse_args()
 
     # Convert relative paths to absolute paths
-    spellmap_path = Path(args.spellmap).resolve()
+    spellmap_dir = Path(args.spellmap_dir).resolve()
     logs_dir = Path(args.logs_dir).resolve()
     output_dir = Path(args.output_dir).resolve()
 
     # Verify paths exist
-    if not spellmap_path.exists():
-        print(f"❌ Error: SpellMap file not found: {args.spellmap}")
-        print(f"  Resolved to: {spellmap_path}")
+    if not spellmap_dir.exists() or not spellmap_dir.is_dir():
+        print(f"❌ Error: SpellMap directory not found: {args.spellmap_dir}")
+        print(f"  Resolved to: {spellmap_dir}")
         print(f"  Current working directory: {Path.cwd()}")
         sys.exit(1)
 
@@ -158,7 +158,7 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Create parser and run
-    combat_log_parser = CombatLogParser(str(spellmap_path), str(logs_dir), str(output_dir))
+    combat_log_parser = CombatLogParser(str(spellmap_dir), str(logs_dir), str(output_dir))
     success = combat_log_parser.run()
 
     # Exit with appropriate code

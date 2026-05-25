@@ -108,20 +108,36 @@ end
   @return {boolean} - True if tests were run successfully
 ]]--
 RunTestForCategory = function(categoryName, moduleName, testType, completionCallback)
-  local testModule = mod[moduleName]
+  local branches = { "Classic", "Sod", "Tbc" }
+  local index = 1
+  local anyRan = false
 
-  if not testModule or not testModule.Test then
-    mod.logger.LogError(
-      me.tag,
-      testType .. " test module for category '" .. categoryName .. "' not found or missing Test() function"
-    )
+  local function runNext()
+    while index <= #branches do
+      local branch = branches[index]
+      index = index + 1
+      local testModule = mod[moduleName .. branch]
 
-    return false
+      if testModule and type(testModule.Test) == "function" then
+        anyRan = true
+        mod.testHelper.SetActiveBranch(string.lower(branch))
+        mod.logger.LogInfo(me.tag,
+          "Running " .. categoryName .. " " .. testType .. " tests (" .. branch .. ")...")
+        testModule.Test(runNext)
+
+        return
+      end
+    end
+
+    if not anyRan then
+      mod.logger.LogError(me.tag,
+        testType .. " test module for category '" .. categoryName .. "' not found in any branch")
+    end
+
+    completionCallback()
   end
 
-  mod.logger.LogInfo(me.tag, "Running " .. categoryName .. " " .. testType .. " tests...")
-  testModule.Test(completionCallback)
-
+  runNext()
   return true
 end
 

@@ -1,0 +1,440 @@
+--[[
+  MIT License
+
+  Copyright (c) 2025 Michael Wiesendanger
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+]]--
+
+local mod = rgpvpw
+local me = {}
+mod.testCombatEventsWarriorClassic = me
+
+me.tag = "TestCombatEventsWarriorClassic"
+
+local testCategory = "warrior"
+
+function me.Test(completionCallback)
+  if not mod.testSessionManager.IsSessionActive() then
+    mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: " ..
+      "/rgpvpw testcombatevent warrior")
+    return
+  end
+
+  me.CollectTestCases()
+
+  mod.testReporter.PlayTestQueueWithDelay(function()
+    if type(completionCallback) == "function" then
+      completionCallback()
+    end
+  end)
+end
+
+function me.CollectTestCases()
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkerRageApplied_18499)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkerRageRemoved_18499)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRecklessnessApplied_1719)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRecklessnessRemoved_1719)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeathWishApplied_12328)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeathWishRemoved_12328)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSweepingStrikesApplied_12292)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSweepingStrikesRemoved_12292)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBattleStanceApplied_2457)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBerserkerStanceApplied_2458)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDefensiveStanceApplied_71)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInterceptSuccess_20252)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInterceptSuccess_20616)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInterceptSuccess_20617)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDisarmSuccess_676)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventConcussionBlowSuccess_12809)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodrageApplied_2687)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodrageRemoved_2687)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPummelSuccess_6552)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPummelSuccess_6554)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChargeSuccess_100)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChargeSuccess_6178)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChargeSuccess_11578)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIntimidatingShoutSuccess_5246)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBlockApplied_2565)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBlockRemoved_2565)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldSlamSuccess_23922)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldSlamSuccess_23923)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldSlamSuccess_23924)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldSlamSuccess_23925)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldWallApplied_871)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldWallRemoved_871)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLastStandApplied_12975)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLastStandRemoved_12975)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBashSuccess_72)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBashSuccess_1671)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBashSuccess_1672)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRetaliationApplied_20230)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventRetaliationRemoved_20230)
+end
+
+function me.TestCombatEventBerserkerRageApplied_18499()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventBerserkerRageApplied_18499",
+    testCategory,
+    "Berserker Rage",
+    18499
+  )
+end
+
+function me.TestCombatEventBerserkerRageRemoved_18499()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventBerserkerRageRemoved_18499",
+    testCategory,
+    "Berserker Rage",
+    18499
+  )
+end
+
+function me.TestCombatEventRecklessnessApplied_1719()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventRecklessnessApplied_1719",
+    testCategory,
+    "Recklessness",
+    1719
+  )
+end
+
+function me.TestCombatEventRecklessnessRemoved_1719()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventRecklessnessRemoved_1719",
+    testCategory,
+    "Recklessness",
+    1719
+  )
+end
+
+function me.TestCombatEventDeathWishApplied_12328()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDeathWishApplied_12328",
+    testCategory,
+    "Death Wish",
+    12328
+  )
+end
+
+function me.TestCombatEventDeathWishRemoved_12328()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventDeathWishRemoved_12328",
+    testCategory,
+    "Death Wish",
+    12328
+  )
+end
+
+function me.TestCombatEventSweepingStrikesApplied_12292()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventSweepingStrikesApplied_12292",
+    testCategory,
+    "Sweeping Strikes",
+    12292
+  )
+end
+
+function me.TestCombatEventSweepingStrikesRemoved_12292()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventSweepingStrikesRemoved_12292",
+    testCategory,
+    "Sweeping Strikes",
+    12292
+  )
+end
+
+function me.TestCombatEventBattleStanceApplied_2457()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventBattleStanceApplied_2457",
+    testCategory,
+    "Battle Stance",
+    2457
+  )
+end
+
+function me.TestCombatEventBerserkerStanceApplied_2458()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventBerserkerStanceApplied_2458",
+    testCategory,
+    "Berserker Stance",
+    2458
+  )
+end
+
+function me.TestCombatEventDefensiveStanceApplied_71()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDefensiveStanceApplied_71",
+    testCategory,
+    "Defensive Stance",
+    71
+  )
+end
+
+function me.TestCombatEventInterceptSuccess_20252()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventInterceptSuccess_20252",
+    testCategory,
+    "Intercept",
+    20252
+  )
+end
+
+function me.TestCombatEventInterceptSuccess_20616()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventInterceptSuccess_20616",
+    testCategory,
+    "Intercept",
+    20616
+  )
+end
+
+function me.TestCombatEventInterceptSuccess_20617()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventInterceptSuccess_20617",
+    testCategory,
+    "Intercept",
+    20617
+  )
+end
+
+function me.TestCombatEventDisarmSuccess_676()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDisarmSuccess_676",
+    testCategory,
+    "Disarm",
+    676
+  )
+end
+
+function me.TestCombatEventConcussionBlowSuccess_12809()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventConcussionBlowSuccess_12809",
+    testCategory,
+    "Concussion Blow",
+    12809
+  )
+end
+
+function me.TestCombatEventBloodrageApplied_2687()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventBloodrageApplied_2687",
+    testCategory,
+    "Bloodrage",
+    2687
+  )
+end
+
+function me.TestCombatEventBloodrageRemoved_2687()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventBloodrageRemoved_2687",
+    testCategory,
+    "Bloodrage",
+    2687
+  )
+end
+
+function me.TestCombatEventPummelSuccess_6552()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventPummelSuccess_6552",
+    testCategory,
+    "Pummel",
+    6552
+  )
+end
+
+function me.TestCombatEventPummelSuccess_6554()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventPummelSuccess_6554",
+    testCategory,
+    "Pummel",
+    6554
+  )
+end
+
+function me.TestCombatEventChargeSuccess_100()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventChargeSuccess_100",
+    testCategory,
+    "Charge",
+    100
+  )
+end
+
+function me.TestCombatEventChargeSuccess_6178()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventChargeSuccess_6178",
+    testCategory,
+    "Charge",
+    6178
+  )
+end
+
+function me.TestCombatEventChargeSuccess_11578()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventChargeSuccess_11578",
+    testCategory,
+    "Charge",
+    11578
+  )
+end
+
+function me.TestCombatEventIntimidatingShoutSuccess_5246()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventIntimidatingShoutSuccess_5246",
+    testCategory,
+    "Intimidating Shout",
+    5246
+  )
+end
+
+function me.TestCombatEventShieldBlockApplied_2565()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventShieldBlockApplied_2565",
+    testCategory,
+    "Shield Block",
+    2565
+  )
+end
+
+function me.TestCombatEventShieldBlockRemoved_2565()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventShieldBlockRemoved_2565",
+    testCategory,
+    "Shield Block",
+    2565
+  )
+end
+
+function me.TestCombatEventShieldSlamSuccess_23922()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShieldSlamSuccess_23922",
+    testCategory,
+    "Shield Slam",
+    23922
+  )
+end
+
+function me.TestCombatEventShieldSlamSuccess_23923()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShieldSlamSuccess_23923",
+    testCategory,
+    "Shield Slam",
+    23923
+  )
+end
+
+function me.TestCombatEventShieldSlamSuccess_23924()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShieldSlamSuccess_23924",
+    testCategory,
+    "Shield Slam",
+    23924
+  )
+end
+
+function me.TestCombatEventShieldSlamSuccess_23925()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShieldSlamSuccess_23925",
+    testCategory,
+    "Shield Slam",
+    23925
+  )
+end
+
+function me.TestCombatEventShieldWallApplied_871()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventShieldWallApplied_871",
+    testCategory,
+    "Shield Wall",
+    871
+  )
+end
+
+function me.TestCombatEventShieldWallRemoved_871()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventShieldWallRemoved_871",
+    testCategory,
+    "Shield Wall",
+    871
+  )
+end
+
+function me.TestCombatEventLastStandApplied_12975()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventLastStandApplied_12975",
+    testCategory,
+    "Last Stand",
+    12975
+  )
+end
+
+function me.TestCombatEventLastStandRemoved_12975()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventLastStandRemoved_12975",
+    testCategory,
+    "Last Stand",
+    12975
+  )
+end
+
+function me.TestCombatEventShieldBashSuccess_72()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShieldBashSuccess_72",
+    testCategory,
+    "Shield Bash",
+    72
+  )
+end
+
+function me.TestCombatEventShieldBashSuccess_1671()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShieldBashSuccess_1671",
+    testCategory,
+    "Shield Bash",
+    1671
+  )
+end
+
+function me.TestCombatEventShieldBashSuccess_1672()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShieldBashSuccess_1672",
+    testCategory,
+    "Shield Bash",
+    1672
+  )
+end
+
+function me.TestCombatEventRetaliationApplied_20230()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventRetaliationApplied_20230",
+    testCategory,
+    "Retaliation",
+    20230
+  )
+end
+
+function me.TestCombatEventRetaliationRemoved_20230()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventRetaliationRemoved_20230",
+    testCategory,
+    "Retaliation",
+    20230
+  )
+end

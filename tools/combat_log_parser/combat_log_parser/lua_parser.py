@@ -1,4 +1,4 @@
-"""Lua parser for reading SpellMap data."""
+"""Lua parser for reading SpellMap data from the base + overlay directory layout."""
 
 import lupa
 from typing import Dict, List, Any, Tuple
@@ -6,69 +6,121 @@ from pathlib import Path
 
 
 class LuaParser:
-    """Parses the SpellMap.lua file to extract spell information."""
+    """Parses the SpellMap directory (Base.lua + Overlay/Sod.lua + Overlay/Tbc.lua) and assembles
+    a union spell map covering every entry across all branches."""
 
-    def __init__(self, spellmap_path: str):
+    def __init__(self, spellmap_dir: str):
         """
         Initialize the Lua parser.
 
         Args:
-            spellmap_path: Path to the SpellMap.lua file
+            spellmap_dir: Path to the code/SpellMap directory (containing Base.lua and Overlay/).
         """
-        self.spellmap_path = Path(spellmap_path)
+        self.spellmap_dir = Path(spellmap_dir)
         self.lua = lupa.LuaRuntime(unpack_returned_tuples=True)
         self.spell_entries: Dict[str, Dict[int, Dict[str, Any]]] = {}
 
     def parse_spellmap(self) -> Dict[str, Dict[int, Dict[str, Any]]]:
-        """
-        Parse the SpellMap.lua file and return spell entries by category.
+        """Load Base.lua, then merge every overlay's adds + replaces (we ignore `remove` ops so
+        the result is a union of every spell across every branch — which is what a combat-log
+        replay wants when scanning historic logs).
 
         Returns:
-            Dictionary with categories as keys and spell dictionaries as values
+            Union spell map keyed by category, then spellId.
         """
-        if not self.spellmap_path.exists():
-            raise FileNotFoundError(f"SpellMap not found: {self.spellmap_path}")
+        base_path = self.spellmap_dir / "Base.lua"
+        if not base_path.exists():
+            raise FileNotFoundError(f"Base.lua not found in: {self.spellmap_dir}")
 
-        # Read the file content
-        with open(self.spellmap_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-
-        # Set up Lua environment
+        # Set up Lua environment once; we'll execute multiple files into the same runtime.
         self._setup_lua_environment()
 
-        # Modify the content to capture the local spellMap variable
-        # Add code at the end to expose the spellMap globally
-        modified_content = content + "\n\n-- Export spellMap for parser\n_G.spellMap = spellMap\n"
+        # 1. Base
+        self.spell_entries = self._parse_base_file(base_path)
 
-        # Execute the modified Lua code
-        self.lua.execute(modified_content)
-
-        # Extract the spellMap from globals
-        spellmap = self.lua.globals().spellMap
-
-        if not spellmap:
-            raise ValueError("No spellMap table found in the file")
-
-        # Convert Lua tables to Python dictionaries
-        # Force dict conversion for the top-level spellMap
-        self.spell_entries = {}
-
-        # Iterate through categories
-        for category in spellmap:
-            category_table = spellmap[category]
-            self.spell_entries[category] = {}
-
-            # Iterate through spells in this category
-            for spell_id in category_table:
-                spell_data = category_table[spell_id]
-
-                # Convert spell data
-                if lupa.lua_type(spell_data) == 'table':
-                    self.spell_entries[category][spell_id] = self._convert_spell_data(spell_data)
-                else:
-                    self.spell_entries[category][spell_id] = spell_data
+        # 2. Overlays (union: apply add + replace, skip remove)
+        for overlay_path in (
+            self.spellmap_dir / "Overlay" / "Sod.lua",
+            self.spellmap_dir / "Overlay" / "Tbc.lua",
+        ):
+            if overlay_path.exists():
+                overlay = self._parse_overlay_file(overlay_path)
+                self._union_merge_overlay(self.spell_entries, overlay)
 
         return self.spell_entries
+
+    def _parse_base_file(self, path: Path) -> Dict[str, Dict[int, Dict[str, Any]]]:
+        """Parse a Base.lua file (top-level ``local spellMap = {...}``) into a Python dict."""
+        with open(path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        modified = content + "\n_G.spellMap = spellMap\n"
+        self.lua.execute(modified)
+
+        spellmap = self.lua.globals().spellMap
+        if not spellmap:
+            raise ValueError(f"No spellMap table found in {path}")
+
+        result: Dict[str, Dict[int, Dict[str, Any]]] = {}
+        for category in spellmap:
+            category_table = spellmap[category]
+            result[category] = {}
+            for spell_id in category_table:
+                spell_data = category_table[spell_id]
+                if lupa.lua_type(spell_data) == "table":
+                    result[category][spell_id] = self._convert_spell_data(spell_data)
+                else:
+                    result[category][spell_id] = spell_data
+        return result
+
+    def _parse_overlay_file(self, path: Path) -> Dict[str, Dict[str, Any]]:
+        """Parse an Overlay/*.lua file (``function me.GetOverlay() return {...} end``)."""
+        with open(path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        if "function me.GetOverlay()" not in content:
+            raise ValueError(f"Overlay file {path} has no `function me.GetOverlay()` entry point")
+
+        # Reset the capture slot first so a previous overlay's result can't leak through.
+        self.lua.execute("_G.__overlay_result = nil")
+        self.lua.execute(content + "\n_G.__overlay_result = me.GetOverlay()\n")
+
+        overlay_table = self.lua.eval("_G.__overlay_result")
+        if overlay_table is None:
+            return {}
+
+        result: Dict[str, Dict[str, Any]] = {}
+        for category_name in overlay_table:
+            category = str(category_name)
+            ops = overlay_table[category_name]
+            entry: Dict[str, Any] = {"add": {}, "replace": {}}
+            if lupa.lua_type(ops) == "table":
+                for op_name in ("add", "replace"):
+                    section = ops[op_name]
+                    if lupa.lua_type(section) == "table":
+                        section_dict: Dict[int, Dict[str, Any]] = {}
+                        for spell_id in section:
+                            spell_data = section[spell_id]
+                            if lupa.lua_type(spell_data) == "table":
+                                section_dict[int(spell_id)] = self._convert_spell_data(spell_data)
+                            else:
+                                section_dict[int(spell_id)] = spell_data
+                        entry[op_name] = section_dict
+            result[category] = entry
+        return result
+
+    @staticmethod
+    def _union_merge_overlay(base: Dict[str, Dict[int, Dict[str, Any]]],
+                             overlay: Dict[str, Dict[str, Any]]) -> None:
+        """Merge an overlay's `add` and `replace` ops into the base in place. Skips `remove`
+        — the union view keeps Classic content visible even when a branch overlay removes it."""
+        for category, ops in overlay.items():
+            if category not in base:
+                base[category] = {}
+            for spell_id, spell_data in (ops.get("add") or {}).items():
+                base[category][int(spell_id)] = spell_data
+            for spell_id, spell_data in (ops.get("replace") or {}).items():
+                base[category][int(spell_id)] = spell_data
 
     def _setup_lua_environment(self):
         """Set up the Lua environment with required constants."""

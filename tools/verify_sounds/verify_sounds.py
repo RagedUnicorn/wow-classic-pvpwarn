@@ -37,15 +37,15 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        '--spell-map', '--spellmap',
+        '--spellmap-dir', '--spell-map-dir', dest='spellmap_dir',
         default=DEFAULT_SPELL_MAP_PATH,
-        help=f'Path to SpellMap.lua (default: {DEFAULT_SPELL_MAP_PATH})'
+        help=f'Path to code/SpellMap directory (default: {DEFAULT_SPELL_MAP_PATH})'
     )
 
     parser.add_argument(
-        '--spell-avoid-map', '--spellavoidmap',
+        '--spellavoidmap-dir', '--spell-avoid-map-dir', dest='spellavoidmap_dir',
         default=DEFAULT_SPELL_AVOID_MAP_PATH,
-        help=f'Path to SpellAvoidMap.lua (default: {DEFAULT_SPELL_AVOID_MAP_PATH})'
+        help=f'Path to code/SpellAvoidMap directory (default: {DEFAULT_SPELL_AVOID_MAP_PATH})'
     )
 
     parser.add_argument(
@@ -83,17 +83,17 @@ def main():
         spell_map_data = {}
         spell_avoid_map_data = {}
 
-        if args.spell_map and os.path.exists(args.spell_map):
-            reporter.log(f"Parsing SpellMap from: {args.spell_map}")
-            spell_map_data = lua_parser.parse_spell_map(args.spell_map)
+        if args.spellmap_dir and os.path.isdir(args.spellmap_dir):
+            reporter.log(f"Parsing SpellMap from: {args.spellmap_dir}")
+            spell_map_data = lua_parser.parse_spell_map(args.spellmap_dir)
             total_spells = sum(len(spells) for spells in spell_map_data.values())
-            reporter.log(f"Parsed {total_spells} spells from SpellMap.lua")
+            reporter.log(f"Parsed {total_spells} spells from SpellMap (Base + overlays)")
 
-        if args.spell_avoid_map and os.path.exists(args.spell_avoid_map):
-            reporter.log(f"Parsing SpellAvoidMap from: {args.spell_avoid_map}")
-            spell_avoid_map_data = lua_parser.parse_spell_avoid_map(args.spell_avoid_map)
+        if args.spellavoidmap_dir and os.path.isdir(args.spellavoidmap_dir):
+            reporter.log(f"Parsing SpellAvoidMap from: {args.spellavoidmap_dir}")
+            spell_avoid_map_data = lua_parser.parse_spell_avoid_map(args.spellavoidmap_dir)
             total_avoid_spells = sum(len(spells) for spells in spell_avoid_map_data.values())
-            reporter.log(f"Parsed {total_avoid_spells} spells from SpellAvoidMap.lua")
+            reporter.log(f"Parsed {total_avoid_spells} spells from SpellAvoidMap (Base + overlays)")
 
         if not spell_map_data and not spell_avoid_map_data:
             reporter.error("No spell data found to verify")

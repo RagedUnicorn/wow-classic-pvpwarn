@@ -16,9 +16,9 @@ from .has_fade_validator import HasFadeValidator
 from .has_cast_validator import HasCastValidator
 from .avoid_properties_validator import AvoidPropertiesValidator
 from .item_id_validator import ItemIdValidator
-from .overwrites_validator import OverwritesValidator
+from .overlay_operations_validator import OverlayOperationsValidator
 
 __all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator",
           "TrackedEventsValidator", "SoundFileNameValidator", "SpellIconValidator",
           "AllRanksValidator", "ActiveValidator", "HasFadeValidator", "HasCastValidator",
-          "AvoidPropertiesValidator", "ItemIdValidator", "OverwritesValidator"]
+          "AvoidPropertiesValidator", "ItemIdValidator", "OverlayOperationsValidator"]
