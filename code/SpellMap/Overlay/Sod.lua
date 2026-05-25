@@ -454,6 +454,36 @@ function me.GetOverlay()
           allRanks = {
             { spellId = 413248, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
           }
+        },
+        [425294] = {
+          name = "Dispersion",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+          soundFileName = "dispersion",
+          spellIcon = "spell_shadow_dispersion",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 425294, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+          }
+        },
+        [402004] = {
+          name = "Pain Suppression",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
+          soundFileName = "pain_suppression",
+          spellIcon = "spell_holy_painsupression",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 402004, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
+          }
         }
       }
     },

@@ -134,10 +134,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowguardApplied_19312)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowguardRemoved_19312)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowguardRefresh_19312)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDispersionApplied_425294)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDispersionRemoved_425294)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPainSuppressionApplied_402004)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPainSuppressionRemoved_402004)
 end
 
 function me.TestCombatEventShadowformApplied_15473()
@@ -932,38 +928,3 @@ function me.TestCombatEventShadowguardRefresh_19312()
   )
 end
 
-function me.TestCombatEventDispersionApplied_425294()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventDispersionApplied_425294",
-    testCategory,
-    "Dispersion",
-    425294
-  )
-end
-
-function me.TestCombatEventDispersionRemoved_425294()
-  mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventDispersionRemoved_425294",
-    testCategory,
-    "Dispersion",
-    425294
-  )
-end
-
-function me.TestCombatEventPainSuppressionApplied_402004()
-  mod.testHelper.TestCombatEventApplied(
-    "TestCombatEventPainSuppressionApplied_402004",
-    testCategory,
-    "Pain Suppression",
-    402004
-  )
-end
-
-function me.TestCombatEventPainSuppressionRemoved_402004()
-  mod.testHelper.TestCombatEventRemoved(
-    "TestCombatEventPainSuppressionRemoved_402004",
-    testCategory,
-    "Pain Suppression",
-    402004
-  )
-end

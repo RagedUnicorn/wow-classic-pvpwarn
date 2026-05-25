@@ -65,6 +65,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSerendipity_413248)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSerendipity_413248)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshSerendipity_413248)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDispersion_425294)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDispersion_425294)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPainSuppression_402004)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownPainSuppression_402004)
 end
 
 function me.TestSoundPenance_402289()
@@ -216,5 +220,37 @@ function me.TestSoundRefreshSerendipity_413248()
     "TestSoundRefreshSerendipity_413248",
     testCategory,
     413248
+  )
+end
+
+function me.TestSoundDispersion_425294()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundDispersion_425294",
+    testCategory,
+    425294
+  )
+end
+
+function me.TestSoundDownDispersion_425294()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownDispersion_425294",
+    testCategory,
+    425294
+  )
+end
+
+function me.TestSoundPainSuppression_402004()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundPainSuppression_402004",
+    testCategory,
+    402004
+  )
+end
+
+function me.TestSoundDownPainSuppression_402004()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownPainSuppression_402004",
+    testCategory,
+    402004
   )
 end

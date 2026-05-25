@@ -65,6 +65,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSerendipityApplied_413248)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSerendipityRemoved_413248)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSerendipityRefresh_413248)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDispersionApplied_425294)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDispersionRemoved_425294)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPainSuppressionApplied_402004)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPainSuppressionRemoved_402004)
 end
 
 function me.TestCombatEventPenanceSuccess_402289()
@@ -235,5 +239,41 @@ function me.TestCombatEventSerendipityRefresh_413248()
     testCategory,
     "Serendipity",
     413248
+  )
+end
+
+function me.TestCombatEventDispersionApplied_425294()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventDispersionApplied_425294",
+    testCategory,
+    "Dispersion",
+    425294
+  )
+end
+
+function me.TestCombatEventDispersionRemoved_425294()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventDispersionRemoved_425294",
+    testCategory,
+    "Dispersion",
+    425294
+  )
+end
+
+function me.TestCombatEventPainSuppressionApplied_402004()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventPainSuppressionApplied_402004",
+    testCategory,
+    "Pain Suppression",
+    402004
+  )
+end
+
+function me.TestCombatEventPainSuppressionRemoved_402004()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventPainSuppressionRemoved_402004",
+    testCategory,
+    "Pain Suppression",
+    402004
   )
 end

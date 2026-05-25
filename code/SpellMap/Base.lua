@@ -595,36 +595,6 @@ local spellMap = {
     [19310] = { refId = 18137 },
     [19311] = { refId = 18137 },
     [19312] = { refId = 18137 },
-    [425294] = {
-      name = "Dispersion",
-      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
-      soundFileName = "dispersion",
-      spellIcon = "spell_shadow_dispersion",
-      hasFade = true,
-      active = true,
-      trackedEvents = {
-        "SPELL_AURA_APPLIED",
-        "SPELL_AURA_REMOVED"
-      },
-      allRanks = {
-        { spellId = 425294, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
-      }
-    },
-    [402004] = {
-      name = "Pain Suppression",
-      type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
-      soundFileName = "pain_suppression",
-      spellIcon = "spell_holy_painsupression",
-      hasFade = true,
-      active = true,
-      trackedEvents = {
-        "SPELL_AURA_APPLIED",
-        "SPELL_AURA_REMOVED"
-      },
-      allRanks = {
-        { spellId = 402004, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
-      }
-    },
   },
   ["rogue"] = {
     [2094] = {

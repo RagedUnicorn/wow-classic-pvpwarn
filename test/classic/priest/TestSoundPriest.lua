@@ -134,10 +134,6 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowguard_19312)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShadowguard_19312)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshShadowguard_19312)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDispersion_425294)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownDispersion_425294)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPainSuppression_402004)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownPainSuppression_402004)
 end
 
 function me.TestSoundShadowform_15473()
@@ -844,34 +840,3 @@ function me.TestSoundRefreshShadowguard_19312()
   )
 end
 
-function me.TestSoundDispersion_425294()
-  mod.testHelper.TestSoundApplied(
-    "TestSoundDispersion_425294",
-    testCategory,
-    425294
-  )
-end
-
-function me.TestSoundDownDispersion_425294()
-  mod.testHelper.TestSoundRemoved(
-    "TestSoundDownDispersion_425294",
-    testCategory,
-    425294
-  )
-end
-
-function me.TestSoundPainSuppression_402004()
-  mod.testHelper.TestSoundApplied(
-    "TestSoundPainSuppression_402004",
-    testCategory,
-    402004
-  )
-end
-
-function me.TestSoundDownPainSuppression_402004()
-  mod.testHelper.TestSoundRemoved(
-    "TestSoundDownPainSuppression_402004",
-    testCategory,
-    402004
-  )
-end
