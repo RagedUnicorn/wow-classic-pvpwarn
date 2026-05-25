@@ -64,11 +64,13 @@ local spellAvoidMap = {
       self_avoid = true,
       enemy_avoid = true,
       allRanks = {
+        { spellId = 1715, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
         { spellId = 7372, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
         { spellId = 7373, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
         { spellId = 25212, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
+    [1715] = { refId = 7373 },
     [7372] = { refId = 7373 },
     [25212] = { refId = 7373 },
     [21553] = {
