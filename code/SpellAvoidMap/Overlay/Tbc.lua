@@ -70,6 +70,34 @@ function me.GetOverlay()
         [25368] = { refId = 10894 },  -- Shadow Word: Pain rank 10
       },
     },
+    rogue = {
+      appendRanks = {
+        [1769] = {  -- Kick
+          { spellId = 38768, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [11286] = {  -- Gouge
+          { spellId = 38764, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [11198] = {  -- Expose Armor
+          { spellId = 26866, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [11290] = {  -- Garrote
+          { spellId = 26839, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 26884, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [11275] = {  -- Rupture
+          { spellId = 26867, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [38768] = { refId = 1769 },   -- Kick rank 5
+        [38764] = { refId = 11286 },  -- Gouge rank 6
+        [26866] = { refId = 11198 },  -- Expose Armor rank 6
+        [26839] = { refId = 11290 },  -- Garrote rank 7
+        [26884] = { refId = 11290 },  -- Garrote rank 8
+        [26867] = { refId = 11275 },  -- Rupture rank 7
+      },
+    },
     shaman = {
       appendRanks = {
         [10414] = {  -- Earth Shock

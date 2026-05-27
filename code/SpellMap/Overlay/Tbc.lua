@@ -103,6 +103,24 @@ function me.GetOverlay()
         [25477] = { refId = 18137 },  -- Shadowguard rank 7
       },
     },
+    rogue = {
+      appendRanks = {
+        [1769] = {  -- Kick
+          { spellId = 38768, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [5277] = {  -- Evasion
+          { spellId = 26669, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [1857] = {  -- Vanish
+          { spellId = 26889, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [38768] = { refId = 1769 },  -- Kick rank 5
+        [26669] = { refId = 5277 },  -- Evasion rank 2
+        [26889] = { refId = 1857 },  -- Vanish rank 3
+      },
+    },
     shaman = {
       appendRanks = {
         [10538] = {  -- Fire Resistance Totem
