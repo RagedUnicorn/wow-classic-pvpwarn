@@ -73,6 +73,36 @@ function me.GetOverlay()
         [12976] = { refId = 12975 },  -- Last Stand rank 2
       },
     },
+    priest = {
+      appendRanks = {
+        [10952] = {  -- Inner Fire
+          { spellId = 25431, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [19280] = {  -- Devouring Plague
+          { spellId = 25467, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [19266] = {  -- Touch of Weakness
+          { spellId = 25460, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [19243] = {  -- Desperate Prayer
+          { spellId = 25437, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [9035] = {  -- Hex of Weakness
+          { spellId = 25470, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [18137] = {  -- Shadowguard
+          { spellId = 25477, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [25431] = { refId = 10952 },  -- Inner Fire rank 7
+        [25467] = { refId = 19280 },  -- Devouring Plague rank 7
+        [25460] = { refId = 19266 },  -- Touch of Weakness rank 7
+        [25437] = { refId = 19243 },  -- Desperate Prayer rank 8
+        [25470] = { refId = 9035 },   -- Hex of Weakness rank 7
+        [25477] = { refId = 18137 },  -- Shadowguard rank 7
+      },
+    },
     shaman = {
       appendRanks = {
         [10538] = {  -- Fire Resistance Totem

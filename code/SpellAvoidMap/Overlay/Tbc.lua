@@ -48,6 +48,28 @@ function me.GetOverlay()
         [30330] = { refId = 21553 },  -- Mortal Strike rank 6
       },
     },
+    priest = {
+      appendRanks = {
+        [19280] = {  -- Devouring Plague
+          { spellId = 25467, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [10876] = {  -- Mana Burn
+          { spellId = 25379, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 25380, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [10894] = {  -- Shadow Word: Pain
+          { spellId = 25367, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 25368, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [25467] = { refId = 19280 },  -- Devouring Plague rank 7
+        [25379] = { refId = 10876 },  -- Mana Burn rank 6
+        [25380] = { refId = 10876 },  -- Mana Burn rank 7
+        [25367] = { refId = 10894 },  -- Shadow Word: Pain rank 9
+        [25368] = { refId = 10894 },  -- Shadow Word: Pain rank 10
+      },
+    },
     shaman = {
       appendRanks = {
         [10414] = {  -- Earth Shock
