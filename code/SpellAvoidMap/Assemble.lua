@@ -92,6 +92,45 @@ function me.ApplyOne(map, overlay)
         end
       end
     end
+
+    if ops.appendRanks ~= nil then
+      for baseSpellId, ranksToAppend in pairs(ops.appendRanks) do
+        local entry = map[category][baseSpellId]
+
+        if entry == nil then
+          mod.logger.LogError(me.tag, string.format(
+            "overlay appendRanks failed: spellId %d not present in category %s",
+            baseSpellId, tostring(category)))
+        else
+          if entry.allRanks == nil then
+            entry.allRanks = {}
+          end
+
+          local existing = {}
+
+          for _, r in ipairs(entry.allRanks) do
+            if type(r) == "table" and type(r.spellId) == "number" then
+              existing[r.spellId] = true
+            end
+          end
+
+          for _, rank in ipairs(ranksToAppend) do
+            if type(rank) ~= "table" or type(rank.spellId) ~= "number" then
+              mod.logger.LogError(me.tag, string.format(
+                "overlay appendRanks failed: malformed rank entry under spellId %d in category %s",
+                baseSpellId, tostring(category)))
+            elseif existing[rank.spellId] then
+              mod.logger.LogError(me.tag, string.format(
+                "overlay appendRanks failed: spellId %d already in allRanks of %d in category %s",
+                rank.spellId, baseSpellId, tostring(category)))
+            else
+              table.insert(entry.allRanks, mod.common.Clone(rank))
+              existing[rank.spellId] = true
+            end
+          end
+        end
+      end
+    end
   end
 end
 
@@ -141,6 +180,45 @@ function me.Validate(base, overlays)
               "overlay #%d %s.replace: spellId %d not present", overlayIndex, tostring(category), spellId))
           else
             working[category][spellId] = spellData
+          end
+        end
+      end
+
+      if ops.appendRanks ~= nil then
+        for baseSpellId, ranksToAppend in pairs(ops.appendRanks) do
+          local entry = working[category][baseSpellId]
+
+          if entry == nil then
+            table.insert(errs, string.format(
+              "overlay #%d %s.appendRanks: spellId %d not present",
+              overlayIndex, tostring(category), baseSpellId))
+          else
+            if entry.allRanks == nil then
+              entry.allRanks = {}
+            end
+
+            local existing = {}
+
+            for _, r in ipairs(entry.allRanks) do
+              if type(r) == "table" and type(r.spellId) == "number" then
+                existing[r.spellId] = true
+              end
+            end
+
+            for _, rank in ipairs(ranksToAppend) do
+              if type(rank) ~= "table" or type(rank.spellId) ~= "number" then
+                table.insert(errs, string.format(
+                  "overlay #%d %s.appendRanks: malformed rank entry under spellId %d",
+                  overlayIndex, tostring(category), baseSpellId))
+              elseif existing[rank.spellId] then
+                table.insert(errs, string.format(
+                  "overlay #%d %s.appendRanks: spellId %d already in allRanks of %d",
+                  overlayIndex, tostring(category), rank.spellId, baseSpellId))
+              else
+                table.insert(entry.allRanks, rank)
+                existing[rank.spellId] = true
+              end
+            end
           end
         end
       end

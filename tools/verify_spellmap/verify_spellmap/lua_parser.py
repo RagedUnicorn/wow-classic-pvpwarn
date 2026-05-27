@@ -180,6 +180,7 @@ class LuaParser:
                 "remove": [],
                 "add": {},
                 "replace": {},
+                "appendRanks": {},
             }
 
             if lupa.lua_type(ops) == "table":
@@ -196,6 +197,18 @@ class LuaParser:
                             spell_dict = self.lua_table_to_dict(spell_data)
                             normalised[int(spell_id)] = spell_dict
                         entry[op_name] = normalised
+
+                append_section = ops["appendRanks"]
+                if lupa.lua_type(append_section) == "table":
+                    append_normalised: Dict[int, list] = {}
+                    for base_spell_id in append_section:
+                        rank_list = append_section[base_spell_id]
+                        # Each value is a Lua array of `{ spellId, type }` rank
+                        # entries; route through list-or-dict so nested tables
+                        # surface as plain Python dicts.
+                        append_normalised[int(base_spell_id)] = \
+                            self.lua_table_to_list_or_dict(rank_list)
+                    entry["appendRanks"] = append_normalised
 
             result[category] = entry
 

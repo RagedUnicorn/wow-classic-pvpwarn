@@ -29,10 +29,30 @@ mod.spellAvoidMapOverlayTbc = me
 me.tag = "SpellAvoidMapOverlayTbc"
 
 --[[
-  Branch overlay applied when the Burning Crusade Anniversary client is active. Empty stub.
+  Branch overlay applied when the Burning Crusade Anniversary client is active. Populated by
+  the per-class TBC migration tasks. See code/SpellMap/Overlay/Tbc.lua for the op semantics.
 
   @return {table}
 ]]--
 function me.GetOverlay()
-  return {}
+  return {
+    shaman = {
+      appendRanks = {
+        [10414] = {  -- Earth Shock
+          { spellId = 25454, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [29228] = {  -- Flame Shock
+          { spellId = 25457, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [10473] = {  -- Frost Shock
+          { spellId = 25464, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [25454] = { refId = 10414 },  -- Earth Shock rank 8
+        [25457] = { refId = 29228 },  -- Flame Shock rank 7
+        [25464] = { refId = 10473 },  -- Frost Shock rank 5
+      },
+    },
+  }
 end
