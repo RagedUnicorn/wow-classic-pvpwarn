@@ -148,6 +148,24 @@ function me.GetOverlay()
         [27180] = { refId = 24239 },  -- Hammer of Wrath rank 4
       },
     },
+    druid = {
+      appendRanks = {
+        [19970] = {  -- Entangling Roots
+          { spellId = 26989, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [9907] = {  -- Faerie Fire
+          { spellId = 26993, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [17392] = {  -- Faerie Fire (Feral)
+          { spellId = 27011, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [26989] = { refId = 19970 },  -- Entangling Roots rank 7
+        [26993] = { refId = 9907 },   -- Faerie Fire rank 5
+        [27011] = { refId = 17392 },  -- Faerie Fire (Feral) rank 5
+      },
+    },
     shaman = {
       appendRanks = {
         [10414] = {  -- Earth Shock

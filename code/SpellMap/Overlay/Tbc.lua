@@ -311,6 +311,28 @@ function me.GetOverlay()
         [27154] = { refId = 10310 },  -- Lay on Hands rank 4
       },
     },
+    druid = {
+      appendRanks = {
+        [17329] = {  -- Nature's Grasp
+          { spellId = 27009, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [22896] = {  -- Frenzied Regeneration
+          { spellId = 26999, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [9907] = {  -- Faerie Fire
+          { spellId = 26993, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [17392] = {  -- Faerie Fire (Feral)
+          { spellId = 27011, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [27009] = { refId = 17329 },  -- Nature's Grasp rank 7
+        [26999] = { refId = 22896 },  -- Frenzied Regeneration rank 4
+        [26993] = { refId = 9907 },   -- Faerie Fire rank 5
+        [27011] = { refId = 17392 },  -- Faerie Fire (Feral) rank 5
+      },
+    },
     shaman = {
       appendRanks = {
         [10538] = {  -- Fire Resistance Totem
