@@ -259,6 +259,22 @@ function me.GetOverlay()
         },
       },
     },
+    warlock = {
+      appendRanks = {
+        [18871] = {  -- Shadowburn
+          { spellId = 27263, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 30546, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [17926] = {  -- Death Coil
+          { spellId = 27223, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [27263] = { refId = 18871 },  -- Shadowburn rank 7
+        [30546] = { refId = 18871 },  -- Shadowburn rank 8
+        [27223] = { refId = 17926 },  -- Death Coil rank 4
+      },
+    },
     shaman = {
       appendRanks = {
         [10538] = {  -- Fire Resistance Totem

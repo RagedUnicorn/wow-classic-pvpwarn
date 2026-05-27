@@ -128,6 +128,16 @@ function me.GetOverlay()
         [27018] = { refId = 14280 },  -- Viper Sting rank 4
       },
     },
+    warlock = {
+      appendRanks = {
+        [17926] = {  -- Death Coil
+          { spellId = 27223, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [27223] = { refId = 17926 },  -- Death Coil rank 4
+      },
+    },
     shaman = {
       appendRanks = {
         [10414] = {  -- Earth Shock
