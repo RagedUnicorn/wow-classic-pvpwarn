@@ -36,6 +36,18 @@ me.tag = "SpellAvoidMapOverlayTbc"
 ]]--
 function me.GetOverlay()
   return {
+    warrior = {
+      appendRanks = {
+        [21553] = {  -- Mortal Strike
+          { spellId = 25248, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 30330, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [25248] = { refId = 21553 },  -- Mortal Strike rank 5
+        [30330] = { refId = 21553 },  -- Mortal Strike rank 6
+      },
+    },
     shaman = {
       appendRanks = {
         [10414] = {  -- Earth Shock

@@ -47,6 +47,32 @@ me.tag = "SpellMapOverlayTbc"
 ]]--
 function me.GetOverlay()
   return {
+    warrior = {
+      appendRanks = {
+        [20252] = {  -- Intercept
+          { spellId = 25272, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 25275, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [23922] = {  -- Shield Slam
+          { spellId = 25258, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 30356, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [72] = {  -- Shield Bash
+          { spellId = 29704, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [12975] = {  -- Last Stand
+          { spellId = 12976, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [25272] = { refId = 20252 },  -- Intercept rank 4
+        [25275] = { refId = 20252 },  -- Intercept rank 5
+        [25258] = { refId = 23922 },  -- Shield Slam rank 5
+        [30356] = { refId = 23922 },  -- Shield Slam rank 6
+        [29704] = { refId = 72 },     -- Shield Bash rank 4
+        [12976] = { refId = 12975 },  -- Last Stand rank 2
+      },
+    },
     shaman = {
       appendRanks = {
         [10538] = {  -- Fire Resistance Totem
