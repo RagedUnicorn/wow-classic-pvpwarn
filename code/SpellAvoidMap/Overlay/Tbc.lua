@@ -112,6 +112,22 @@ function me.GetOverlay()
         [27087] = { refId = 10161 },  -- Cone of Cold rank 6
       },
     },
+    hunter = {
+      appendRanks = {
+        [13555] = {  -- Serpent Sting
+          { spellId = 25295, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 27016, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [14280] = {  -- Viper Sting
+          { spellId = 27018, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [25295] = { refId = 13555 },  -- Serpent Sting rank 9
+        [27016] = { refId = 13555 },  -- Serpent Sting rank 10
+        [27018] = { refId = 14280 },  -- Viper Sting rank 4
+      },
+    },
     shaman = {
       appendRanks = {
         [10414] = {  -- Earth Shock

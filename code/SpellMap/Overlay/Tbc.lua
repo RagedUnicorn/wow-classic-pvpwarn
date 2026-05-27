@@ -214,6 +214,51 @@ function me.GetOverlay()
         },
       },
     },
+    hunter = {
+      appendRanks = {
+        [25296] = {  -- Aspect of the Hawk
+          { spellId = 27044, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [20190] = {  -- Aspect of the Wild
+          { spellId = 27045, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [14317] = {  -- Explosive Trap
+          { spellId = 27025, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [14305] = {  -- Immolation Trap
+          { spellId = 27023, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [14280] = {  -- Viper Sting
+          { spellId = 27018, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [27044] = { refId = 25296 },  -- Aspect of the Hawk rank 8
+        [27045] = { refId = 20190 },  -- Aspect of the Wild rank 3
+        [27025] = { refId = 14317 },  -- Explosive Trap rank 4
+        [27023] = { refId = 14305 },  -- Immolation Trap rank 6
+        [27018] = { refId = 14280 },  -- Viper Sting rank 4
+        -- TBC-only Aspect of the Viper. The Classic SoD entry lives at
+        -- [415423] in Overlay/Sod.lua; SoD and TBC are mutually exclusive
+        -- so the brand-new TBC entry sits at the canonical TBC id 34074
+        -- with the same name, sound, and icon.
+        [34074] = {
+          name = "Aspect of the Viper",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "aspect_of_the_viper",
+          spellIcon = "ability_hunter_aspectoftheviper",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 34074, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+      },
+    },
     shaman = {
       appendRanks = {
         [10538] = {  -- Fire Resistance Totem
