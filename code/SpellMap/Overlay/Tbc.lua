@@ -275,6 +275,42 @@ function me.GetOverlay()
         [27223] = { refId = 17926 },  -- Death Coil rank 4
       },
     },
+    paladin = {
+      appendRanks = {
+        [10293] = {  -- Devotion Aura
+          { spellId = 27149, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [10301] = {  -- Retribution Aura
+          { spellId = 27150, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [19896] = {  -- Shadow Resistance Aura
+          { spellId = 27151, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [19898] = {  -- Frost Resistance Aura
+          { spellId = 27152, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [19900] = {  -- Fire Resistance Aura
+          { spellId = 27153, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [20729] = {  -- Blessing of Sacrifice
+          { spellId = 27147, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 27148, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [10310] = {  -- Lay on Hands
+          { spellId = 27154, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [27149] = { refId = 10293 },  -- Devotion Aura rank 8
+        [27150] = { refId = 10301 },  -- Retribution Aura rank 6
+        [27151] = { refId = 19896 },  -- Shadow Resistance Aura rank 4
+        [27152] = { refId = 19898 },  -- Frost Resistance Aura rank 4
+        [27153] = { refId = 19900 },  -- Fire Resistance Aura rank 4
+        [27147] = { refId = 20729 },  -- Blessing of Sacrifice rank 3
+        [27148] = { refId = 20729 },  -- Blessing of Sacrifice rank 4
+        [27154] = { refId = 10310 },  -- Lay on Hands rank 4
+      },
+    },
     shaman = {
       appendRanks = {
         [10538] = {  -- Fire Resistance Totem

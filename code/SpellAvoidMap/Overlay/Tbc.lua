@@ -138,6 +138,16 @@ function me.GetOverlay()
         [27223] = { refId = 17926 },  -- Death Coil rank 4
       },
     },
+    paladin = {
+      appendRanks = {
+        [24239] = {  -- Hammer of Wrath
+          { spellId = 27180, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [27180] = { refId = 24239 },  -- Hammer of Wrath rank 4
+      },
+    },
     shaman = {
       appendRanks = {
         [10414] = {  -- Earth Shock
