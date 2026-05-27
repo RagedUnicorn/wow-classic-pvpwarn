@@ -401,5 +401,35 @@ function me.GetOverlay()
         [25570] = { refId = 10497 },  -- Mana Spring Totem rank 5
       },
     },
+    racials = {
+      appendRanks = {
+        [20572] = {  -- Blood Fury (orc)
+          -- TBC split Blood Fury into three player-castable variants
+          -- sharing the same name and racial trigger but different
+          -- effects (33697 = AP + spell damage/healing for hybrid orcs,
+          -- 33702 = spell damage/healing only for caster orcs).
+          { spellId = 33697, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 33702, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [33697] = { refId = 20572 },  -- Blood Fury (caster/hybrid)
+        [33702] = { refId = 20572 },  -- Blood Fury (caster spell damage only)
+      },
+    },
+    misc = {
+      appendRanks = {
+        [18610] = {  -- First Aid (Heavy Runecloth Bandage canonical key)
+          { spellId = 27030, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 27031, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 30020, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [27030] = { refId = 18610 },  -- Netherweave Bandage
+        [27031] = { refId = 18610 },  -- Heavy Netherweave Bandage
+        [30020] = { refId = 18610 },  -- Crystal Infused Bandage
+      },
+    },
   }
 end
