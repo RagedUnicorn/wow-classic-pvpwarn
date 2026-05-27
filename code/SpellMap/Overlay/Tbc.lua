@@ -121,6 +121,99 @@ function me.GetOverlay()
         [26889] = { refId = 1857 },  -- Vanish rank 3
       },
     },
+    mage = {
+      appendRanks = {
+        [10225] = {  -- Fire Ward
+          { spellId = 27128, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [28609] = {  -- Frost Ward
+          { spellId = 32796, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [10193] = {  -- Mana Shield
+          { spellId = 27131, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [13033] = {  -- Ice Barrier
+          { spellId = 27134, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 33405, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [10230] = {  -- Frost Nova
+          { spellId = 27088, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [13021] = {  -- Blast Wave
+          { spellId = 27133, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          { spellId = 33933, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      replace = {
+        -- ID-collision: spell ID 11958 means "Ice Block" in Classic Era but
+        -- "Cold Snap" in TBC. Same conceptual Cold Snap as the Classic
+        -- entry at [12472] (sound, name, behavior preserved); only the key
+        -- and the rank's spellId change. Classic Ice Block tracking is
+        -- replaced by the new [45438] add-op below.
+        [11958] = {
+          name = "Cold Snap",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "cold_snap",
+          spellIcon = "spell_frost_wizardmark",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 11958, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        -- ID-collision: spell ID 12472 means "Cold Snap" in Classic Era but
+        -- "Icy Veins" in TBC (a separate spell — Frost talent, 3 min CD,
+        -- +20% spellcasting haste). Sound and icon shared with the SoD
+        -- Icy Veins entry at [425121] (SoD and TBC are mutually exclusive
+        -- at filter time, so the .mp3 / icon are reused with no conflict).
+        [12472] = {
+          name = "Icy Veins",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "icy_veins",
+          spellIcon = "spell_frost_coldhearted",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 12472, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+      },
+      add = {
+        [27128] = { refId = 10225 },  -- Fire Ward rank 6
+        [32796] = { refId = 28609 },  -- Frost Ward rank 6
+        [27131] = { refId = 10193 },  -- Mana Shield rank 7
+        [27134] = { refId = 13033 },  -- Ice Barrier rank 5
+        [33405] = { refId = 13033 },  -- Ice Barrier rank 6
+        [27088] = { refId = 10230 },  -- Frost Nova rank 5
+        [27133] = { refId = 13021 },  -- Blast Wave rank 6
+        [33933] = { refId = 13021 },  -- Blast Wave rank 7
+        -- TBC Ice Block lives at a brand-new key (45438), distinct from
+        -- the Classic-Era Ice Block key (11958, repurposed by the replace
+        -- op above). Sound and icon match the Classic Ice Block entry.
+        [45438] = {
+          name = "Ice Block",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "ice_block",
+          spellIcon = "spell_frost_frost",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 45438, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+      },
+    },
     shaman = {
       appendRanks = {
         [10538] = {  -- Fire Resistance Totem

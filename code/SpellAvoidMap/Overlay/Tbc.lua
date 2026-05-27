@@ -98,6 +98,20 @@ function me.GetOverlay()
         [26867] = { refId = 11275 },  -- Rupture rank 7
       },
     },
+    mage = {
+      appendRanks = {
+        [10230] = {  -- Frost Nova
+          { spellId = 27088, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+        [10161] = {  -- Cone of Cold
+          { spellId = 27087, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+        },
+      },
+      add = {
+        [27088] = { refId = 10230 },  -- Frost Nova rank 5
+        [27087] = { refId = 10161 },  -- Cone of Cold rank 6
+      },
+    },
     shaman = {
       appendRanks = {
         [10414] = {  -- Earth Shock
