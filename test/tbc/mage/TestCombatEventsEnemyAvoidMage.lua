@@ -63,6 +63,22 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidConeOfColdImmune_27087)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidConeOfColdReflect_27087)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidConeOfColdAbsorbIgnored_27087)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDragonsBreathDodge_31661)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDragonsBreathBlock_31661)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDragonsBreathParry_31661)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDragonsBreathMiss_31661)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDragonsBreathResist_31661)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDragonsBreathImmune_31661)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDragonsBreathReflect_31661)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDragonsBreathAbsorbIgnored_31661)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSpellstealDodge_30449)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSpellstealBlock_30449)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSpellstealParry_30449)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSpellstealMiss_30449)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSpellstealResist_30449)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSpellstealImmune_30449)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSpellstealReflect_30449)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSpellstealAbsorbIgnored_30449)
 end
 
 function me.TestCombatEventEnemyAvoidFrostNovaDodge_27088()
@@ -236,6 +252,182 @@ function me.TestCombatEventEnemyAvoidConeOfColdAbsorbIgnored_27087()
     testCategory,
     27087,
     "Cone of Cold",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDragonsBreathDodge_31661()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDragonsBreathDodge_31661",
+    testCategory,
+    31661,
+    "Dragon's Breath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDragonsBreathBlock_31661()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDragonsBreathBlock_31661",
+    testCategory,
+    31661,
+    "Dragon's Breath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDragonsBreathParry_31661()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDragonsBreathParry_31661",
+    testCategory,
+    31661,
+    "Dragon's Breath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDragonsBreathMiss_31661()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDragonsBreathMiss_31661",
+    testCategory,
+    31661,
+    "Dragon's Breath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDragonsBreathResist_31661()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDragonsBreathResist_31661",
+    testCategory,
+    31661,
+    "Dragon's Breath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDragonsBreathImmune_31661()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDragonsBreathImmune_31661",
+    testCategory,
+    31661,
+    "Dragon's Breath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDragonsBreathReflect_31661()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDragonsBreathReflect_31661",
+    testCategory,
+    31661,
+    "Dragon's Breath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDragonsBreathAbsorbIgnored_31661()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventEnemyAvoidDragonsBreathAbsorbIgnored_31661",
+    testCategory,
+    31661,
+    "Dragon's Breath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventEnemyAvoidSpellstealDodge_30449()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidSpellstealDodge_30449",
+    testCategory,
+    30449,
+    "Spellsteal",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidSpellstealBlock_30449()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidSpellstealBlock_30449",
+    testCategory,
+    30449,
+    "Spellsteal",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventEnemyAvoidSpellstealParry_30449()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidSpellstealParry_30449",
+    testCategory,
+    30449,
+    "Spellsteal",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventEnemyAvoidSpellstealMiss_30449()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidSpellstealMiss_30449",
+    testCategory,
+    30449,
+    "Spellsteal",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventEnemyAvoidSpellstealResist_30449()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidSpellstealResist_30449",
+    testCategory,
+    30449,
+    "Spellsteal",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventEnemyAvoidSpellstealImmune_30449()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidSpellstealImmune_30449",
+    testCategory,
+    30449,
+    "Spellsteal",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidSpellstealReflect_30449()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidSpellstealReflect_30449",
+    testCategory,
+    30449,
+    "Spellsteal",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventEnemyAvoidSpellstealAbsorbIgnored_30449()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventEnemyAvoidSpellstealAbsorbIgnored_30449",
+    testCategory,
+    30449,
+    "Spellsteal",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )

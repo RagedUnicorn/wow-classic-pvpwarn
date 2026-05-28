@@ -404,6 +404,76 @@ function me.GetOverlay()
             { spellId = 45438, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
           }
         },
+        [31661] = {
+          name = "Dragon's Breath",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "dragons_breath",
+          spellIcon = "inv_misc_head_dragon_01",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 31661, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [31589] = {
+          name = "Slow",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "slow",
+          spellIcon = "spell_nature_slow",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 31589, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [31687] = {
+          name = "Summon Water Elemental",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "summon_water_elemental",
+          spellIcon = "spell_frost_summonwaterelemental_2",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 31687, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [66] = {
+          name = "Invisibility",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "invisibility",
+          spellIcon = "ability_mage_invisibility",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 66, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [30449] = {
+          name = "Spellsteal",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "spellsteal",
+          spellIcon = "spell_arcane_arcane02",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 30449, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     hunter = {

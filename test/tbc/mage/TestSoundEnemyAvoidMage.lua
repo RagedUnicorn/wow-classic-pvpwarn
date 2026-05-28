@@ -48,6 +48,8 @@ end
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidFrostNova_27088)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidConeOfCold_27087)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidDragonsBreath_31661)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidSpellsteal_30449)
 end
 
 function me.TestSoundEnemyAvoidFrostNova_27088()
@@ -63,5 +65,21 @@ function me.TestSoundEnemyAvoidConeOfCold_27087()
     "TestSoundEnemyAvoidConeOfCold_27087",
     testCategory,
     27087
+  )
+end
+
+function me.TestSoundEnemyAvoidDragonsBreath_31661()
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidDragonsBreath_31661",
+    testCategory,
+    31661
+  )
+end
+
+function me.TestSoundEnemyAvoidSpellsteal_30449()
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidSpellsteal_30449",
+    testCategory,
+    30449
   )
 end

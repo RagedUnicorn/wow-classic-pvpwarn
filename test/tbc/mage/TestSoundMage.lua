@@ -67,6 +67,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownIcyVeins_12472)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundIceBlock_45438)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownIceBlock_45438)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDragonsBreath_31661)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSlow_31589)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSummonWaterElemental_31687)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundInvisibility_66)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpellsteal_30449)
 end
 
 function me.TestSoundFireWard_27128()
@@ -234,5 +239,45 @@ function me.TestSoundDownIceBlock_45438()
     "TestSoundDownIceBlock_45438",
     testCategory,
     45438
+  )
+end
+
+function me.TestSoundDragonsBreath_31661()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundDragonsBreath_31661",
+    testCategory,
+    31661
+  )
+end
+
+function me.TestSoundSlow_31589()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundSlow_31589",
+    testCategory,
+    31589
+  )
+end
+
+function me.TestSoundSummonWaterElemental_31687()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundSummonWaterElemental_31687",
+    testCategory,
+    31687
+  )
+end
+
+function me.TestSoundInvisibility_66()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundInvisibility_66",
+    testCategory,
+    66
+  )
+end
+
+function me.TestSoundSpellsteal_30449()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundSpellsteal_30449",
+    testCategory,
+    30449
   )
 end

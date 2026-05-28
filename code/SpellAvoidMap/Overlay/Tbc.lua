@@ -132,6 +132,28 @@ function me.GetOverlay()
       add = {
         [27088] = { refId = 10230 },  -- Frost Nova rank 5
         [27087] = { refId = 10161 },  -- Cone of Cold rank 6
+        [31661] = {
+          name = "Dragon's Breath",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "dragons_breath",
+          spellIcon = "inv_misc_head_dragon_01",
+          self_avoid = true,
+          enemy_avoid = true,
+          allRanks = {
+            { spellId = 31661, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [30449] = {
+          name = "Spellsteal",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "spellsteal",
+          spellIcon = "spell_arcane_arcane02",
+          self_avoid = true,
+          enemy_avoid = true,
+          allRanks = {
+            { spellId = 30449, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     hunter = {

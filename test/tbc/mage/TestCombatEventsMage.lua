@@ -67,6 +67,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIcyVeinsRemoved_12472)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBlockApplied_45438)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventIceBlockRemoved_45438)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDragonsBreathSuccess_31661)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSlowSuccess_31589)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSummonWaterElementalSuccess_31687)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInvisibilitySuccess_66)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpellstealSuccess_30449)
 end
 
 function me.TestCombatEventFireWardApplied_27128()
@@ -255,5 +260,50 @@ function me.TestCombatEventIceBlockRemoved_45438()
     testCategory,
     "Ice Block",
     45438
+  )
+end
+
+function me.TestCombatEventDragonsBreathSuccess_31661()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDragonsBreathSuccess_31661",
+    testCategory,
+    "Dragon's Breath",
+    31661
+  )
+end
+
+function me.TestCombatEventSlowSuccess_31589()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventSlowSuccess_31589",
+    testCategory,
+    "Slow",
+    31589
+  )
+end
+
+function me.TestCombatEventSummonWaterElementalSuccess_31687()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventSummonWaterElementalSuccess_31687",
+    testCategory,
+    "Summon Water Elemental",
+    31687
+  )
+end
+
+function me.TestCombatEventInvisibilitySuccess_66()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventInvisibilitySuccess_66",
+    testCategory,
+    "Invisibility",
+    66
+  )
+end
+
+function me.TestCombatEventSpellstealSuccess_30449()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventSpellstealSuccess_30449",
+    testCategory,
+    "Spellsteal",
+    30449
   )
 end
