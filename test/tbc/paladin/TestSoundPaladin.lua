@@ -56,6 +56,9 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBlessingOfSacrifice_27148)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBlessingOfSacrifice_27148)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLayOnHands_27154)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAvengersShield_31935)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAvengingWrath_31884)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAvengingWrath_31884)
 end
 
 function me.TestSoundDevotionAura_27149()
@@ -135,5 +138,29 @@ function me.TestSoundLayOnHands_27154()
     "TestSoundLayOnHands_27154",
     testCategory,
     27154
+  )
+end
+
+function me.TestSoundAvengersShield_31935()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundAvengersShield_31935",
+    testCategory,
+    31935
+  )
+end
+
+function me.TestSoundAvengingWrath_31884()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundAvengingWrath_31884",
+    testCategory,
+    31884
+  )
+end
+
+function me.TestSoundDownAvengingWrath_31884()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownAvengingWrath_31884",
+    testCategory,
+    31884
   )
 end

@@ -356,6 +356,38 @@ function me.GetOverlay()
         [27147] = { refId = 20729 },  -- Blessing of Sacrifice rank 3
         [27148] = { refId = 20729 },  -- Blessing of Sacrifice rank 4
         [27154] = { refId = 10310 },  -- Lay on Hands rank 4
+        -- TBC-only paladin spells. Avenger's Shield applies
+        -- a separate silence aura on impact; we track the cast itself
+        -- as the unique per-cast cue.
+        [31935] = {
+          name = "Avenger's Shield",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "avengers_shield",
+          spellIcon = "spell_holy_avengersshield",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 31935, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [31884] = {
+          name = "Avenging Wrath",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "avenging_wrath",
+          spellIcon = "spell_holy_avenginewrath",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 31884, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     druid = {

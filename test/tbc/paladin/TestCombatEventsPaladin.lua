@@ -57,6 +57,9 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBlessingOfSacrificeApplied_27148)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBlessingOfSacrificeRemoved_27148)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLayOnHandsSuccess_27154)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAvengersShieldSuccess_31935)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAvengingWrathApplied_31884)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAvengingWrathRemoved_31884)
 end
 
 function me.TestCombatEventDevotionAuraSuccess_27149()
@@ -146,5 +149,32 @@ function me.TestCombatEventLayOnHandsSuccess_27154()
     testCategory,
     "Lay on Hands",
     27154
+  )
+end
+
+function me.TestCombatEventAvengersShieldSuccess_31935()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventAvengersShieldSuccess_31935",
+    testCategory,
+    "Avenger's Shield",
+    31935
+  )
+end
+
+function me.TestCombatEventAvengingWrathApplied_31884()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventAvengingWrathApplied_31884",
+    testCategory,
+    "Avenging Wrath",
+    31884
+  )
+end
+
+function me.TestCombatEventAvengingWrathRemoved_31884()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventAvengingWrathRemoved_31884",
+    testCategory,
+    "Avenging Wrath",
+    31884
   )
 end
