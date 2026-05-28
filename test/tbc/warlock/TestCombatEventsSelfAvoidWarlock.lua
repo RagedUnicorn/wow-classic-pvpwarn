@@ -85,8 +85,15 @@ function me.TestCombatEventSelfAvoidDeathCoilImmune_27223()
   rel("TestCombatEventSelfAvoidDeathCoilImmune_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
 end
 function me.TestCombatEventSelfAvoidDeathCoilReflect_27223()
-  rel("TestCombatEventSelfAvoidDeathCoilReflect_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventSelfAvoidDeathCoilReflect_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidDeathCoilAbsorbIgnored_27223()
-  irr("TestCombatEventSelfAvoidDeathCoilAbsorbIgnored_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventSelfAvoidDeathCoilAbsorbIgnored_27223",
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end

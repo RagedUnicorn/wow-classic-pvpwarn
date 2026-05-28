@@ -291,7 +291,8 @@ end
 function me.ShowEnemyCombatEventHelp()
   print("|cFF00FFFFTest Enemy Combat Event Commands:|r")
   print("|cFF00FFFF/rgpvpw testenemycombatevent|r - Show this help")
-  print("|cFF00FFFF/rgpvpw testenemycombatevent <category> [branch]|r - Run enemy avoid combat event tests for category")
+  print("|cFF00FFFF/rgpvpw testenemycombatevent <category> [branch]|r" ..
+    " - Run enemy avoid combat event tests for category")
   print("|cFF00FFFF/rgpvpw testenemycombatevent all [branch]|r - Run enemy avoid combat event tests for ALL categories")
   print("")
   print("Runs actual enemy avoid combat event tests with delayed execution for the specified category.")

@@ -126,32 +126,71 @@ function me.TestCombatEventEnemyAvoidGougeReflect_38764()
   rel("TestCombatEventEnemyAvoidGougeReflect_38764", 38764, "Gouge", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
 end
 function me.TestCombatEventEnemyAvoidGougeAbsorbIgnored_38764()
-  irr("TestCombatEventEnemyAvoidGougeAbsorbIgnored_38764", 38764, "Gouge", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidGougeAbsorbIgnored_38764", 38764, "Gouge", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventEnemyAvoidExposeArmorDodge_26866()
-  rel("TestCombatEventEnemyAvoidExposeArmorDodge_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  rel(
+    "TestCombatEventEnemyAvoidExposeArmorDodge_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventEnemyAvoidExposeArmorBlock_26866()
-  rel("TestCombatEventEnemyAvoidExposeArmorBlock_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  rel(
+    "TestCombatEventEnemyAvoidExposeArmorBlock_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventEnemyAvoidExposeArmorParry_26866()
-  rel("TestCombatEventEnemyAvoidExposeArmorParry_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  rel(
+    "TestCombatEventEnemyAvoidExposeArmorParry_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventEnemyAvoidExposeArmorMiss_26866()
-  rel("TestCombatEventEnemyAvoidExposeArmorMiss_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
+  rel(
+    "TestCombatEventEnemyAvoidExposeArmorMiss_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
 end
 function me.TestCombatEventEnemyAvoidExposeArmorResist_26866()
-  rel("TestCombatEventEnemyAvoidExposeArmorResist_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventEnemyAvoidExposeArmorResist_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventEnemyAvoidExposeArmorImmune_26866()
-  rel("TestCombatEventEnemyAvoidExposeArmorImmune_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventEnemyAvoidExposeArmorImmune_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventEnemyAvoidExposeArmorReflect_26866()
-  rel("TestCombatEventEnemyAvoidExposeArmorReflect_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventEnemyAvoidExposeArmorReflect_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventEnemyAvoidExposeArmorAbsorbIgnored_26866()
-  irr("TestCombatEventEnemyAvoidExposeArmorAbsorbIgnored_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidExposeArmorAbsorbIgnored_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventEnemyAvoidGarroteDodge_26839()
@@ -176,7 +215,12 @@ function me.TestCombatEventEnemyAvoidGarroteReflect_26839()
   rel("TestCombatEventEnemyAvoidGarroteReflect_26839", 26839, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
 end
 function me.TestCombatEventEnemyAvoidGarroteAbsorbIgnored_26839()
-  irr("TestCombatEventEnemyAvoidGarroteAbsorbIgnored_26839", 26839, "Garrote", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidGarroteAbsorbIgnored_26839",
+    26839,
+    "Garrote",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventEnemyAvoidGarroteDodge_26884()
@@ -201,7 +245,12 @@ function me.TestCombatEventEnemyAvoidGarroteReflect_26884()
   rel("TestCombatEventEnemyAvoidGarroteReflect_26884", 26884, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
 end
 function me.TestCombatEventEnemyAvoidGarroteAbsorbIgnored_26884()
-  irr("TestCombatEventEnemyAvoidGarroteAbsorbIgnored_26884", 26884, "Garrote", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidGarroteAbsorbIgnored_26884",
+    26884,
+    "Garrote",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventEnemyAvoidRuptureDodge_26867()
@@ -226,5 +275,10 @@ function me.TestCombatEventEnemyAvoidRuptureReflect_26867()
   rel("TestCombatEventEnemyAvoidRuptureReflect_26867", 26867, "Rupture", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
 end
 function me.TestCombatEventEnemyAvoidRuptureAbsorbIgnored_26867()
-  irr("TestCombatEventEnemyAvoidRuptureAbsorbIgnored_26867", 26867, "Rupture", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidRuptureAbsorbIgnored_26867",
+    26867,
+    "Rupture",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end

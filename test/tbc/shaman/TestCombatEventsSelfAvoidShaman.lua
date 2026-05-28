@@ -89,16 +89,30 @@ function me.TestCombatEventSelfAvoidEarthShockMiss_25454()
   rel("TestCombatEventSelfAvoidEarthShockMiss_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
 end
 function me.TestCombatEventSelfAvoidEarthShockResist_25454()
-  rel("TestCombatEventSelfAvoidEarthShockResist_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventSelfAvoidEarthShockResist_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventSelfAvoidEarthShockImmune_25454()
-  rel("TestCombatEventSelfAvoidEarthShockImmune_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventSelfAvoidEarthShockImmune_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventSelfAvoidEarthShockReflect_25454()
-  rel("TestCombatEventSelfAvoidEarthShockReflect_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventSelfAvoidEarthShockReflect_25454",
+    25454,
+    "Earth Shock",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidEarthShockAbsorbIgnored_25454()
-  irr("TestCombatEventSelfAvoidEarthShockAbsorbIgnored_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventSelfAvoidEarthShockAbsorbIgnored_25454",
+    25454,
+    "Earth Shock",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventSelfAvoidFlameShockDodge_25457()
@@ -114,16 +128,30 @@ function me.TestCombatEventSelfAvoidFlameShockMiss_25457()
   rel("TestCombatEventSelfAvoidFlameShockMiss_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
 end
 function me.TestCombatEventSelfAvoidFlameShockResist_25457()
-  rel("TestCombatEventSelfAvoidFlameShockResist_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventSelfAvoidFlameShockResist_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventSelfAvoidFlameShockImmune_25457()
-  rel("TestCombatEventSelfAvoidFlameShockImmune_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventSelfAvoidFlameShockImmune_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventSelfAvoidFlameShockReflect_25457()
-  rel("TestCombatEventSelfAvoidFlameShockReflect_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventSelfAvoidFlameShockReflect_25457",
+    25457,
+    "Flame Shock",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidFlameShockAbsorbIgnored_25457()
-  irr("TestCombatEventSelfAvoidFlameShockAbsorbIgnored_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventSelfAvoidFlameShockAbsorbIgnored_25457",
+    25457,
+    "Flame Shock",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventSelfAvoidFrostShockDodge_25464()
@@ -139,14 +167,28 @@ function me.TestCombatEventSelfAvoidFrostShockMiss_25464()
   rel("TestCombatEventSelfAvoidFrostShockMiss_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
 end
 function me.TestCombatEventSelfAvoidFrostShockResist_25464()
-  rel("TestCombatEventSelfAvoidFrostShockResist_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventSelfAvoidFrostShockResist_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventSelfAvoidFrostShockImmune_25464()
-  rel("TestCombatEventSelfAvoidFrostShockImmune_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventSelfAvoidFrostShockImmune_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventSelfAvoidFrostShockReflect_25464()
-  rel("TestCombatEventSelfAvoidFrostShockReflect_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventSelfAvoidFrostShockReflect_25464",
+    25464,
+    "Frost Shock",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidFrostShockAbsorbIgnored_25464()
-  irr("TestCombatEventSelfAvoidFrostShockAbsorbIgnored_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventSelfAvoidFrostShockAbsorbIgnored_25464",
+    25464,
+    "Frost Shock",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end

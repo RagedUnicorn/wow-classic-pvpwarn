@@ -32,7 +32,8 @@ local testCategory = "racials"
 
 function me.Test(completionCallback)
   if not mod.testSessionManager.IsSessionActive() then
-    mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: /rgpvpw testcombatevent racials")
+    mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: " ..
+      "/rgpvpw testcombatevent racials")
     return
   end
 

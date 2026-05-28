@@ -93,33 +93,66 @@ function me.TestCombatEventSelfAvoidFrostNovaImmune_27088()
   rel("TestCombatEventSelfAvoidFrostNovaImmune_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
 end
 function me.TestCombatEventSelfAvoidFrostNovaReflect_27088()
-  rel("TestCombatEventSelfAvoidFrostNovaReflect_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventSelfAvoidFrostNovaReflect_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidFrostNovaAbsorbIgnored_27088()
-  irr("TestCombatEventSelfAvoidFrostNovaAbsorbIgnored_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventSelfAvoidFrostNovaAbsorbIgnored_27088",
+    27088,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventSelfAvoidConeOfColdDodge_27087()
-  rel("TestCombatEventSelfAvoidConeOfColdDodge_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  rel(
+    "TestCombatEventSelfAvoidConeOfColdDodge_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventSelfAvoidConeOfColdBlock_27087()
-  rel("TestCombatEventSelfAvoidConeOfColdBlock_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  rel(
+    "TestCombatEventSelfAvoidConeOfColdBlock_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventSelfAvoidConeOfColdParry_27087()
-  rel("TestCombatEventSelfAvoidConeOfColdParry_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  rel(
+    "TestCombatEventSelfAvoidConeOfColdParry_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventSelfAvoidConeOfColdMiss_27087()
   rel("TestCombatEventSelfAvoidConeOfColdMiss_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
 end
 function me.TestCombatEventSelfAvoidConeOfColdResist_27087()
-  rel("TestCombatEventSelfAvoidConeOfColdResist_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventSelfAvoidConeOfColdResist_27087",
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventSelfAvoidConeOfColdImmune_27087()
-  rel("TestCombatEventSelfAvoidConeOfColdImmune_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventSelfAvoidConeOfColdImmune_27087",
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventSelfAvoidConeOfColdReflect_27087()
-  rel("TestCombatEventSelfAvoidConeOfColdReflect_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventSelfAvoidConeOfColdReflect_27087",
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidConeOfColdAbsorbIgnored_27087()
-  irr("TestCombatEventSelfAvoidConeOfColdAbsorbIgnored_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventSelfAvoidConeOfColdAbsorbIgnored_27087",
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end

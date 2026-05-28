@@ -79,76 +79,182 @@ function me.CollectTestCases()
 end
 
 function me.TestCombatEventEnemyAvoidSerpentStingDodge_25295()
-  rel("TestCombatEventEnemyAvoidSerpentStingDodge_25295", 25295, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingDodge_25295",
+    25295,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingBlock_25295()
-  rel("TestCombatEventEnemyAvoidSerpentStingBlock_25295", 25295, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingBlock_25295",
+    25295,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingParry_25295()
-  rel("TestCombatEventEnemyAvoidSerpentStingParry_25295", 25295, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingParry_25295",
+    25295,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingMiss_25295()
-  rel("TestCombatEventEnemyAvoidSerpentStingMiss_25295", 25295, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingMiss_25295",
+    25295,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingResist_25295()
-  rel("TestCombatEventEnemyAvoidSerpentStingResist_25295", 25295, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingResist_25295",
+    25295,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingImmune_25295()
-  rel("TestCombatEventEnemyAvoidSerpentStingImmune_25295", 25295, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingImmune_25295",
+    25295,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingReflect_25295()
-  rel("TestCombatEventEnemyAvoidSerpentStingReflect_25295", 25295, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingReflect_25295",
+    25295,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_25295()
-  irr("TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_25295", 25295, "Serpent Sting", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_25295",
+    25295,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventEnemyAvoidSerpentStingDodge_27016()
-  rel("TestCombatEventEnemyAvoidSerpentStingDodge_27016", 27016, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingDodge_27016",
+    27016,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingBlock_27016()
-  rel("TestCombatEventEnemyAvoidSerpentStingBlock_27016", 27016, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingBlock_27016",
+    27016,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingParry_27016()
-  rel("TestCombatEventEnemyAvoidSerpentStingParry_27016", 27016, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingParry_27016",
+    27016,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingMiss_27016()
-  rel("TestCombatEventEnemyAvoidSerpentStingMiss_27016", 27016, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingMiss_27016",
+    27016,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingResist_27016()
-  rel("TestCombatEventEnemyAvoidSerpentStingResist_27016", 27016, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingResist_27016",
+    27016,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingImmune_27016()
-  rel("TestCombatEventEnemyAvoidSerpentStingImmune_27016", 27016, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingImmune_27016",
+    27016,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingReflect_27016()
-  rel("TestCombatEventEnemyAvoidSerpentStingReflect_27016", 27016, "Serpent Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventEnemyAvoidSerpentStingReflect_27016",
+    27016,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_27016()
-  irr("TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_27016", 27016, "Serpent Sting", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_27016",
+    27016,
+    "Serpent Sting",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventEnemyAvoidViperStingDodge_27018()
-  rel("TestCombatEventEnemyAvoidViperStingDodge_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  rel(
+    "TestCombatEventEnemyAvoidViperStingDodge_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventEnemyAvoidViperStingBlock_27018()
-  rel("TestCombatEventEnemyAvoidViperStingBlock_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  rel(
+    "TestCombatEventEnemyAvoidViperStingBlock_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventEnemyAvoidViperStingParry_27018()
-  rel("TestCombatEventEnemyAvoidViperStingParry_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  rel(
+    "TestCombatEventEnemyAvoidViperStingParry_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventEnemyAvoidViperStingMiss_27018()
   rel("TestCombatEventEnemyAvoidViperStingMiss_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
 end
 function me.TestCombatEventEnemyAvoidViperStingResist_27018()
-  rel("TestCombatEventEnemyAvoidViperStingResist_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventEnemyAvoidViperStingResist_27018",
+    27018,
+    "Viper Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventEnemyAvoidViperStingImmune_27018()
-  rel("TestCombatEventEnemyAvoidViperStingImmune_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventEnemyAvoidViperStingImmune_27018",
+    27018,
+    "Viper Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventEnemyAvoidViperStingReflect_27018()
-  rel("TestCombatEventEnemyAvoidViperStingReflect_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventEnemyAvoidViperStingReflect_27018",
+    27018,
+    "Viper Sting",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventEnemyAvoidViperStingAbsorbIgnored_27018()
-  irr("TestCombatEventEnemyAvoidViperStingAbsorbIgnored_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidViperStingAbsorbIgnored_27018",
+    27018,
+    "Viper Sting",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end

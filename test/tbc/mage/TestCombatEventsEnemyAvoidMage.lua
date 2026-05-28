@@ -87,39 +87,79 @@ function me.TestCombatEventEnemyAvoidFrostNovaMiss_27088()
   rel("TestCombatEventEnemyAvoidFrostNovaMiss_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
 end
 function me.TestCombatEventEnemyAvoidFrostNovaResist_27088()
-  rel("TestCombatEventEnemyAvoidFrostNovaResist_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventEnemyAvoidFrostNovaResist_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventEnemyAvoidFrostNovaImmune_27088()
-  rel("TestCombatEventEnemyAvoidFrostNovaImmune_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventEnemyAvoidFrostNovaImmune_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventEnemyAvoidFrostNovaReflect_27088()
-  rel("TestCombatEventEnemyAvoidFrostNovaReflect_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventEnemyAvoidFrostNovaReflect_27088",
+    27088,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventEnemyAvoidFrostNovaAbsorbIgnored_27088()
-  irr("TestCombatEventEnemyAvoidFrostNovaAbsorbIgnored_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidFrostNovaAbsorbIgnored_27088",
+    27088,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventEnemyAvoidConeOfColdDodge_27087()
-  rel("TestCombatEventEnemyAvoidConeOfColdDodge_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  rel(
+    "TestCombatEventEnemyAvoidConeOfColdDodge_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventEnemyAvoidConeOfColdBlock_27087()
-  rel("TestCombatEventEnemyAvoidConeOfColdBlock_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  rel(
+    "TestCombatEventEnemyAvoidConeOfColdBlock_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventEnemyAvoidConeOfColdParry_27087()
-  rel("TestCombatEventEnemyAvoidConeOfColdParry_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  rel(
+    "TestCombatEventEnemyAvoidConeOfColdParry_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventEnemyAvoidConeOfColdMiss_27087()
   rel("TestCombatEventEnemyAvoidConeOfColdMiss_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
 end
 function me.TestCombatEventEnemyAvoidConeOfColdResist_27087()
-  rel("TestCombatEventEnemyAvoidConeOfColdResist_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventEnemyAvoidConeOfColdResist_27087",
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventEnemyAvoidConeOfColdImmune_27087()
-  rel("TestCombatEventEnemyAvoidConeOfColdImmune_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventEnemyAvoidConeOfColdImmune_27087",
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventEnemyAvoidConeOfColdReflect_27087()
-  rel("TestCombatEventEnemyAvoidConeOfColdReflect_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventEnemyAvoidConeOfColdReflect_27087",
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventEnemyAvoidConeOfColdAbsorbIgnored_27087()
-  irr("TestCombatEventEnemyAvoidConeOfColdAbsorbIgnored_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidConeOfColdAbsorbIgnored_27087",
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end

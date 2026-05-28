@@ -67,26 +67,66 @@ function me.CollectTestCases()
 end
 
 function me.TestCombatEventEnemyAvoidHammerOfWrathDodge_27180()
-  rel("TestCombatEventEnemyAvoidHammerOfWrathDodge_27180", 27180, "Hammer of Wrath", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  rel(
+    "TestCombatEventEnemyAvoidHammerOfWrathDodge_27180",
+    27180,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventEnemyAvoidHammerOfWrathBlock_27180()
-  rel("TestCombatEventEnemyAvoidHammerOfWrathBlock_27180", 27180, "Hammer of Wrath", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  rel(
+    "TestCombatEventEnemyAvoidHammerOfWrathBlock_27180",
+    27180,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventEnemyAvoidHammerOfWrathParry_27180()
-  rel("TestCombatEventEnemyAvoidHammerOfWrathParry_27180", 27180, "Hammer of Wrath", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  rel(
+    "TestCombatEventEnemyAvoidHammerOfWrathParry_27180",
+    27180,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventEnemyAvoidHammerOfWrathMiss_27180()
-  rel("TestCombatEventEnemyAvoidHammerOfWrathMiss_27180", 27180, "Hammer of Wrath", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
+  rel(
+    "TestCombatEventEnemyAvoidHammerOfWrathMiss_27180",
+    27180,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
 end
 function me.TestCombatEventEnemyAvoidHammerOfWrathResist_27180()
-  rel("TestCombatEventEnemyAvoidHammerOfWrathResist_27180", 27180, "Hammer of Wrath", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventEnemyAvoidHammerOfWrathResist_27180",
+    27180,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventEnemyAvoidHammerOfWrathImmune_27180()
-  rel("TestCombatEventEnemyAvoidHammerOfWrathImmune_27180", 27180, "Hammer of Wrath", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventEnemyAvoidHammerOfWrathImmune_27180",
+    27180,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventEnemyAvoidHammerOfWrathReflect_27180()
-  rel("TestCombatEventEnemyAvoidHammerOfWrathReflect_27180", 27180, "Hammer of Wrath", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventEnemyAvoidHammerOfWrathReflect_27180",
+    27180,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_27180()
-  irr("TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_27180", 27180, "Hammer of Wrath", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventEnemyAvoidHammerOfWrathAbsorbIgnored_27180",
+    27180,
+    "Hammer of Wrath",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end

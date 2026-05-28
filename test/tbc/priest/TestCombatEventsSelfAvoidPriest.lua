@@ -104,126 +104,284 @@ local function irrelevantSelf(testName, spellId, spellName, missType)
 end
 
 function me.TestCombatEventSelfAvoidDevouringPlagueDodge_25467()
-  relevantSelf("TestCombatEventSelfAvoidDevouringPlagueDodge_25467", 25467, "Devouring Plague", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  relevantSelf(
+    "TestCombatEventSelfAvoidDevouringPlagueDodge_25467",
+    25467,
+    "Devouring Plague",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventSelfAvoidDevouringPlagueBlock_25467()
-  relevantSelf("TestCombatEventSelfAvoidDevouringPlagueBlock_25467", 25467, "Devouring Plague", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  relevantSelf(
+    "TestCombatEventSelfAvoidDevouringPlagueBlock_25467",
+    25467,
+    "Devouring Plague",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventSelfAvoidDevouringPlagueParry_25467()
-  relevantSelf("TestCombatEventSelfAvoidDevouringPlagueParry_25467", 25467, "Devouring Plague", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  relevantSelf(
+    "TestCombatEventSelfAvoidDevouringPlagueParry_25467",
+    25467,
+    "Devouring Plague",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventSelfAvoidDevouringPlagueMiss_25467()
-  relevantSelf("TestCombatEventSelfAvoidDevouringPlagueMiss_25467", 25467, "Devouring Plague", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
+  relevantSelf(
+    "TestCombatEventSelfAvoidDevouringPlagueMiss_25467",
+    25467,
+    "Devouring Plague",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
 end
 function me.TestCombatEventSelfAvoidDevouringPlagueResist_25467()
-  relevantSelf("TestCombatEventSelfAvoidDevouringPlagueResist_25467", 25467, "Devouring Plague", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  relevantSelf(
+    "TestCombatEventSelfAvoidDevouringPlagueResist_25467",
+    25467,
+    "Devouring Plague",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventSelfAvoidDevouringPlagueImmune_25467()
-  relevantSelf("TestCombatEventSelfAvoidDevouringPlagueImmune_25467", 25467, "Devouring Plague", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  relevantSelf(
+    "TestCombatEventSelfAvoidDevouringPlagueImmune_25467",
+    25467,
+    "Devouring Plague",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventSelfAvoidDevouringPlagueReflect_25467()
-  relevantSelf("TestCombatEventSelfAvoidDevouringPlagueReflect_25467", 25467, "Devouring Plague", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  relevantSelf(
+    "TestCombatEventSelfAvoidDevouringPlagueReflect_25467",
+    25467,
+    "Devouring Plague",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidDevouringPlagueAbsorbIgnored_25467()
-  irrelevantSelf("TestCombatEventSelfAvoidDevouringPlagueAbsorbIgnored_25467", 25467, "Devouring Plague", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irrelevantSelf(
+    "TestCombatEventSelfAvoidDevouringPlagueAbsorbIgnored_25467",
+    25467,
+    "Devouring Plague",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventSelfAvoidManaBurnDodge_25379()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnDodge_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnDodge_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnBlock_25379()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnBlock_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnBlock_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnParry_25379()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnParry_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnParry_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnMiss_25379()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnMiss_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnMiss_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnResist_25379()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnResist_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnResist_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnImmune_25379()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnImmune_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnImmune_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnReflect_25379()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnReflect_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnReflect_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnAbsorbIgnored_25379()
-  irrelevantSelf("TestCombatEventSelfAvoidManaBurnAbsorbIgnored_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irrelevantSelf(
+    "TestCombatEventSelfAvoidManaBurnAbsorbIgnored_25379",
+    25379,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventSelfAvoidManaBurnDodge_25380()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnDodge_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnDodge_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnBlock_25380()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnBlock_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnBlock_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnParry_25380()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnParry_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnParry_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnMiss_25380()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnMiss_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnMiss_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnResist_25380()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnResist_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnResist_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnImmune_25380()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnImmune_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnImmune_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnReflect_25380()
-  relevantSelf("TestCombatEventSelfAvoidManaBurnReflect_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  relevantSelf(
+    "TestCombatEventSelfAvoidManaBurnReflect_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidManaBurnAbsorbIgnored_25380()
-  irrelevantSelf("TestCombatEventSelfAvoidManaBurnAbsorbIgnored_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irrelevantSelf(
+    "TestCombatEventSelfAvoidManaBurnAbsorbIgnored_25380",
+    25380,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventSelfAvoidShadowWordPainDodge_25367()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainDodge_25367", 25367, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainDodge_25367",
+    25367,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainBlock_25367()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainBlock_25367", 25367, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainBlock_25367",
+    25367,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainParry_25367()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainParry_25367", 25367, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainParry_25367",
+    25367,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainMiss_25367()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainMiss_25367", 25367, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainMiss_25367",
+    25367,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainResist_25367()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainResist_25367", 25367, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainResist_25367",
+    25367,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainImmune_25367()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainImmune_25367", 25367, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainImmune_25367",
+    25367,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainReflect_25367()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainReflect_25367", 25367, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainReflect_25367",
+    25367,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25367()
-  irrelevantSelf("TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25367", 25367, "Shadow Word: Pain", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irrelevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25367",
+    25367,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventSelfAvoidShadowWordPainDodge_25368()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainDodge_25368", 25368, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainDodge_25368",
+    25368,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainBlock_25368()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainBlock_25368", 25368, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainBlock_25368",
+    25368,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainParry_25368()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainParry_25368", 25368, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainParry_25368",
+    25368,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainMiss_25368()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainMiss_25368", 25368, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainMiss_25368",
+    25368,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainResist_25368()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainResist_25368", 25368, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainResist_25368",
+    25368,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainImmune_25368()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainImmune_25368", 25368, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainImmune_25368",
+    25368,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainReflect_25368()
-  relevantSelf("TestCombatEventSelfAvoidShadowWordPainReflect_25368", 25368, "Shadow Word: Pain", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  relevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainReflect_25368",
+    25368,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25368()
-  irrelevantSelf("TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25368", 25368, "Shadow Word: Pain", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irrelevantSelf(
+    "TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25368",
+    25368,
+    "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end

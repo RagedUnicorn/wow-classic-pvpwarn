@@ -130,28 +130,54 @@ function me.TestCombatEventSelfAvoidGougeAbsorbIgnored_38764()
 end
 
 function me.TestCombatEventSelfAvoidExposeArmorDodge_26866()
-  rel("TestCombatEventSelfAvoidExposeArmorDodge_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  rel(
+    "TestCombatEventSelfAvoidExposeArmorDodge_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
 function me.TestCombatEventSelfAvoidExposeArmorBlock_26866()
-  rel("TestCombatEventSelfAvoidExposeArmorBlock_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  rel(
+    "TestCombatEventSelfAvoidExposeArmorBlock_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
 function me.TestCombatEventSelfAvoidExposeArmorParry_26866()
-  rel("TestCombatEventSelfAvoidExposeArmorParry_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  rel(
+    "TestCombatEventSelfAvoidExposeArmorParry_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
 function me.TestCombatEventSelfAvoidExposeArmorMiss_26866()
   rel("TestCombatEventSelfAvoidExposeArmorMiss_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
 end
 function me.TestCombatEventSelfAvoidExposeArmorResist_26866()
-  rel("TestCombatEventSelfAvoidExposeArmorResist_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
+  rel(
+    "TestCombatEventSelfAvoidExposeArmorResist_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
 end
 function me.TestCombatEventSelfAvoidExposeArmorImmune_26866()
-  rel("TestCombatEventSelfAvoidExposeArmorImmune_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
+  rel(
+    "TestCombatEventSelfAvoidExposeArmorImmune_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
 end
 function me.TestCombatEventSelfAvoidExposeArmorReflect_26866()
-  rel("TestCombatEventSelfAvoidExposeArmorReflect_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
+  rel(
+    "TestCombatEventSelfAvoidExposeArmorReflect_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
 end
 function me.TestCombatEventSelfAvoidExposeArmorAbsorbIgnored_26866()
-  irr("TestCombatEventSelfAvoidExposeArmorAbsorbIgnored_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventSelfAvoidExposeArmorAbsorbIgnored_26866",
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventSelfAvoidGarroteDodge_26839()
@@ -176,7 +202,12 @@ function me.TestCombatEventSelfAvoidGarroteReflect_26839()
   rel("TestCombatEventSelfAvoidGarroteReflect_26839", 26839, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
 end
 function me.TestCombatEventSelfAvoidGarroteAbsorbIgnored_26839()
-  irr("TestCombatEventSelfAvoidGarroteAbsorbIgnored_26839", 26839, "Garrote", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventSelfAvoidGarroteAbsorbIgnored_26839",
+    26839,
+    "Garrote",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventSelfAvoidGarroteDodge_26884()
@@ -201,7 +232,12 @@ function me.TestCombatEventSelfAvoidGarroteReflect_26884()
   rel("TestCombatEventSelfAvoidGarroteReflect_26884", 26884, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
 end
 function me.TestCombatEventSelfAvoidGarroteAbsorbIgnored_26884()
-  irr("TestCombatEventSelfAvoidGarroteAbsorbIgnored_26884", 26884, "Garrote", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventSelfAvoidGarroteAbsorbIgnored_26884",
+    26884,
+    "Garrote",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
 
 function me.TestCombatEventSelfAvoidRuptureDodge_26867()
@@ -226,5 +262,10 @@ function me.TestCombatEventSelfAvoidRuptureReflect_26867()
   rel("TestCombatEventSelfAvoidRuptureReflect_26867", 26867, "Rupture", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
 end
 function me.TestCombatEventSelfAvoidRuptureAbsorbIgnored_26867()
-  irr("TestCombatEventSelfAvoidRuptureAbsorbIgnored_26867", 26867, "Rupture", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
+  irr(
+    "TestCombatEventSelfAvoidRuptureAbsorbIgnored_26867",
+    26867,
+    "Rupture",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
 end
