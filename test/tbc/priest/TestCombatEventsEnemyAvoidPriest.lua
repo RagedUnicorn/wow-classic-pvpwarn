@@ -97,334 +97,442 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidChastiseAbsorbIgnored_44041)
 end
 
-local function relevantEnemy(testName, spellId, spellName, missType)
-  mod.testHelper.TestCombatEventSpellMissed(
-    testName, testCategory, spellId, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY, missType
-  )
-end
-
-local function irrelevantEnemy(testName, spellId, spellName, missType)
-  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
-    testName, testCategory, spellId, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY, missType
-  )
-end
-
 function me.TestCombatEventEnemyAvoidDevouringPlagueDodge_25467()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidDevouringPlagueDodge_25467",
+    testCategory,
     25467,
     "Devouring Plague",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
 
 function me.TestCombatEventEnemyAvoidDevouringPlagueBlock_25467()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidDevouringPlagueBlock_25467",
+    testCategory,
     25467,
     "Devouring Plague",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
 
 function me.TestCombatEventEnemyAvoidDevouringPlagueParry_25467()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidDevouringPlagueParry_25467",
+    testCategory,
     25467,
     "Devouring Plague",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
 
 function me.TestCombatEventEnemyAvoidDevouringPlagueMiss_25467()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidDevouringPlagueMiss_25467",
+    testCategory,
     25467,
     "Devouring Plague",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
 
 function me.TestCombatEventEnemyAvoidDevouringPlagueResist_25467()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidDevouringPlagueResist_25467",
+    testCategory,
     25467,
     "Devouring Plague",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
 
 function me.TestCombatEventEnemyAvoidDevouringPlagueImmune_25467()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidDevouringPlagueImmune_25467",
+    testCategory,
     25467,
     "Devouring Plague",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
 
 function me.TestCombatEventEnemyAvoidDevouringPlagueReflect_25467()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidDevouringPlagueReflect_25467",
+    testCategory,
     25467,
     "Devouring Plague",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
 
 function me.TestCombatEventEnemyAvoidDevouringPlagueAbsorbIgnored_25467()
-  irrelevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventEnemyAvoidDevouringPlagueAbsorbIgnored_25467",
+    testCategory,
     25467,
     "Devouring Plague",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnDodge_25379()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnDodge_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnDodge_25379",
+    testCategory,
+    25379,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnBlock_25379()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnBlock_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnBlock_25379",
+    testCategory,
+    25379,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnParry_25379()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnParry_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnParry_25379",
+    testCategory,
+    25379,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnMiss_25379()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnMiss_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnMiss_25379",
+    testCategory,
+    25379,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnResist_25379()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnResist_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnResist_25379",
+    testCategory,
+    25379,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnImmune_25379()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnImmune_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnImmune_25379",
+    testCategory,
+    25379,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnReflect_25379()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnReflect_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnReflect_25379",
+    testCategory,
+    25379,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnAbsorbIgnored_25379()
-  irrelevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventEnemyAvoidManaBurnAbsorbIgnored_25379",
+    testCategory,
     25379,
     "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnDodge_25380()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnDodge_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnDodge_25380",
+    testCategory,
+    25380,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnBlock_25380()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnBlock_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnBlock_25380",
+    testCategory,
+    25380,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnParry_25380()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnParry_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnParry_25380",
+    testCategory,
+    25380,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnMiss_25380()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnMiss_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnMiss_25380",
+    testCategory,
+    25380,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnResist_25380()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnResist_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnResist_25380",
+    testCategory,
+    25380,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnImmune_25380()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnImmune_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnImmune_25380",
+    testCategory,
+    25380,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnReflect_25380()
-  relevantEnemy(
-    "TestCombatEventEnemyAvoidManaBurnReflect_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidManaBurnReflect_25380",
+    testCategory,
+    25380,
+    "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
 
 function me.TestCombatEventEnemyAvoidManaBurnAbsorbIgnored_25380()
-  irrelevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventEnemyAvoidManaBurnAbsorbIgnored_25380",
+    testCategory,
     25380,
     "Mana Burn",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainDodge_25367()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainDodge_25367",
+    testCategory,
     25367,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainBlock_25367()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainBlock_25367",
+    testCategory,
     25367,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainParry_25367()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainParry_25367",
+    testCategory,
     25367,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainMiss_25367()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainMiss_25367",
+    testCategory,
     25367,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainResist_25367()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainResist_25367",
+    testCategory,
     25367,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainImmune_25367()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainImmune_25367",
+    testCategory,
     25367,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainReflect_25367()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainReflect_25367",
+    testCategory,
     25367,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainAbsorbIgnored_25367()
-  irrelevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventEnemyAvoidShadowWordPainAbsorbIgnored_25367",
+    testCategory,
     25367,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainDodge_25368()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainDodge_25368",
+    testCategory,
     25368,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainBlock_25368()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainBlock_25368",
+    testCategory,
     25368,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainParry_25368()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainParry_25368",
+    testCategory,
     25368,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainMiss_25368()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainMiss_25368",
+    testCategory,
     25368,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainResist_25368()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainResist_25368",
+    testCategory,
     25368,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainImmune_25368()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainImmune_25368",
+    testCategory,
     25368,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainReflect_25368()
-  relevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidShadowWordPainReflect_25368",
+    testCategory,
     25368,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
 
 function me.TestCombatEventEnemyAvoidShadowWordPainAbsorbIgnored_25368()
-  irrelevantEnemy(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventEnemyAvoidShadowWordPainAbsorbIgnored_25368",
+    testCategory,
     25368,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
