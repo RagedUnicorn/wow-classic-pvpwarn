@@ -40,19 +40,23 @@ me.tag = "TestValidationCmd"
 function me.ShowValidationHelp()
   print("|cFF00FFFFTest Validation Commands:|r")
   print("|cFF00FFFF/rgpvpw testvalidation|r - Show this help")
-  print("|cFF00FFFF/rgpvpw testvalidation all|r - Run all validation tests")
-  print("|cFF00FFFF/rgpvpw testvalidation sound|r - Validate sound test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation sounddown|r - Validate sound down test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation soundrefresh|r - Validate sound refresh test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation soundselfavoid|r - Validate self avoid sound test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation soundenemyavoid|r - Validate enemy avoid sound test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation combatevent|r - Validate combat event test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation combateventselfavoid|r - Validate self avoid combat event test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation combateventenemyavoid|r - Validate enemy avoid combat event test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation combateventselfavoidirrelevant|r - " ..
-        "Validate self avoid irrelevant combat event test coverage")
-  print("|cFF00FFFF/rgpvpw testvalidation combateventenemyavoidirrelevant|r - " ..
-        "Validate enemy avoid irrelevant combat event test coverage")
+  print("|cFF00FFFF/rgpvpw testvalidation <suite> [branch]|r - Run a validation suite")
+  print("")
+  print("Suites:")
+  print("  all                                  - Run all validation suites")
+  print("  sound                                - Validate sound test coverage")
+  print("  sounddown                            - Validate sound down test coverage")
+  print("  soundrefresh                         - Validate sound refresh test coverage")
+  print("  soundselfavoid                       - Validate self avoid sound test coverage")
+  print("  soundenemyavoid                      - Validate enemy avoid sound test coverage")
+  print("  combatevent                          - Validate combat event test coverage")
+  print("  combateventselfavoid                 - Validate self avoid combat event test coverage")
+  print("  combateventenemyavoid                - Validate enemy avoid combat event test coverage")
+  print("  combateventselfavoidirrelevant       - Validate self avoid irrelevant combat event test coverage")
+  print("  combateventenemyavoidirrelevant      - Validate enemy avoid irrelevant combat event test coverage")
+  print("")
+  print("Optional [branch] scopes the validation to a single client branch (classic, sod, tbc).")
+  print("Omit it to validate all three branches in sequence.")
   print("")
   print("These commands validate that test cases exist for every spell in the spell maps.")
   print("They do not run the actual tests, but check test coverage completeness.")
@@ -60,7 +64,7 @@ function me.ShowValidationHelp()
   print("Examples:")
   print("  |cFF00FFFF/rgpvpw testvalidation all|r - Run all validation tests")
   print("  |cFF00FFFF/rgpvpw testvalidation sound|r - Check if sound tests exist for all spells")
-  print("  |cFF00FFFF/rgpvpw testvalidation combatevent|r - Check if combat event tests exist for all spells")
+  print("  |cFF00FFFF/rgpvpw testvalidation sound tbc|r - Check sound test coverage for TBC only")
 end
 
 --[[
@@ -75,10 +79,14 @@ local branches = { "classic", "sod", "tbc" }
 
   @param {function} validator
     The validator function to invoke each pass; receives no arguments.
+  @param {table|nil} branchFilter
+    Optional 1-element PascalCase branch list from `testHelper.ResolveBranchFilter`;
+    when nil, the module-level default 3-branch list is used.
 ]]--
-local function forEachBranch(validator)
-  for _, branch in ipairs(branches) do
-    mod.testHelper.SetActiveBranch(branch)
+local function forEachBranch(validator, branchFilter)
+  local list = branchFilter or branches
+  for _, branch in ipairs(list) do
+    mod.testHelper.SetActiveBranch(string.lower(branch))
     validator()
   end
 end
@@ -87,14 +95,23 @@ end
   Handle test validation commands
 
   @param {string} testCommand - The test command to execute
+  @param {string|nil} branchArg - Optional branch arg (classic/sod/tbc)
 ]]--
-function me.HandleValidation(testCommand)
+function me.HandleValidation(testCommand, branchArg)
+  local branchFilter, branchErr = mod.testHelper.ResolveBranchFilter(branchArg)
+  if branchErr then
+    mod.logger.LogError(me.tag, branchErr)
+    me.ShowValidationHelp()
+    return
+  end
+
   local command = string.lower(testCommand)
+  local function each(validator) forEachBranch(validator, branchFilter) end
 
   if command == "all" then
     mod.logger.LogInfo(me.tag, "Starting all validation tests...")
     mod.testSessionManager.StartSession("Validation", "all", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testSound.ShouldHaveSoundTestForAllSpells()
         mod.testSound.ShouldHaveSoundDownTestForAllSpells()
         mod.testSound.ShouldHaveSoundRefreshTestForAllSpells()
@@ -117,7 +134,7 @@ function me.HandleValidation(testCommand)
   elseif command == "sound" then
     mod.logger.LogInfo(me.tag, "Starting sound test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "sound", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testSound.ShouldHaveSoundTestForAllSpells()
       end)
       completionCallback()
@@ -125,7 +142,7 @@ function me.HandleValidation(testCommand)
   elseif command == "sounddown" then
     mod.logger.LogInfo(me.tag, "Starting sound down test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "sounddown", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testSound.ShouldHaveSoundDownTestForAllSpells()
       end)
       completionCallback()
@@ -133,7 +150,7 @@ function me.HandleValidation(testCommand)
   elseif command == "soundrefresh" then
     mod.logger.LogInfo(me.tag, "Starting sound refresh test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "soundrefresh", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testSound.ShouldHaveSoundRefreshTestForAllSpells()
       end)
       completionCallback()
@@ -141,7 +158,7 @@ function me.HandleValidation(testCommand)
   elseif command == "soundselfavoid" then
     mod.logger.LogInfo(me.tag, "Starting self avoid sound test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "soundselfavoid", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
       end)
       completionCallback()
@@ -149,7 +166,7 @@ function me.HandleValidation(testCommand)
   elseif command == "soundenemyavoid" then
     mod.logger.LogInfo(me.tag, "Starting enemy avoid sound test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "soundenemyavoid", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testSound.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
       end)
       completionCallback()
@@ -157,7 +174,7 @@ function me.HandleValidation(testCommand)
   elseif command == "combatevent" then
     mod.logger.LogInfo(me.tag, "Starting combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combatevent", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testCombatEvent.ShouldHaveCombatEventTestForAllTrackedEvents()
       end)
       completionCallback()
@@ -165,7 +182,7 @@ function me.HandleValidation(testCommand)
   elseif command == "combateventselfavoid" then
     mod.logger.LogInfo(me.tag, "Starting self avoid combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combateventselfavoid", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
           RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID
         )
@@ -175,7 +192,7 @@ function me.HandleValidation(testCommand)
   elseif command == "combateventenemyavoid" then
     mod.logger.LogInfo(me.tag, "Starting enemy avoid combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combateventenemyavoid", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testCombatEvent.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
           RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID
         )
@@ -185,7 +202,7 @@ function me.HandleValidation(testCommand)
   elseif command == "combateventselfavoidirrelevant" then
     mod.logger.LogInfo(me.tag, "Starting self avoid irrelevant combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combateventselfavoidirrelevant", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
           RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID)
       end)
@@ -194,7 +211,7 @@ function me.HandleValidation(testCommand)
   elseif command == "combateventenemyavoidirrelevant" then
     mod.logger.LogInfo(me.tag, "Starting enemy avoid irrelevant combat event test coverage validation...")
     mod.testSessionManager.StartSession("Validation", "combateventenemyavoidirrelevant", function(completionCallback)
-      forEachBranch(function()
+      each(function()
         mod.testCombatEvent.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
           RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID)
       end)

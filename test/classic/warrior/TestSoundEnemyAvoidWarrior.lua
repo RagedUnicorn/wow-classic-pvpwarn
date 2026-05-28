@@ -26,6 +26,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidIntercept_20253)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidIntercept_20614)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidIntercept_20615)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHamstring_1715)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHamstring_7372)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHamstring_7373)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidHamstring_25212)
@@ -68,6 +69,14 @@ function me.TestSoundEnemyAvoidIntercept_20615()
     "TestSoundEnemyAvoidIntercept_20615",
     testCategory,
     20615
+  )
+end
+
+function me.TestSoundEnemyAvoidHamstring_1715()
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidHamstring_1715",
+    testCategory,
+    1715
   )
 end
 

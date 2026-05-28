@@ -24,11 +24,13 @@
 
 --[[
   Run all tests:
-    /run rgpvpw.testAll.TestAll()
+    /run rgpvpw.testAll.TestAll()           -- all branches
+    /run rgpvpw.testAll.TestAll("tbc")      -- single branch (classic, sod, or tbc)
 
-  Iterates the three branches in order (Classic, SoD, TBC). For each branch the active branch is
-  set before validators and CollectTestCases run so the assembled spell map and the discovery
-  lookups all target that branch's content.
+  Iterates the three branches in order (Classic, SoD, TBC), or only the requested one when an
+  optional branch arg is provided. For each branch the active branch is set before validators and
+  CollectTestCases run so the assembled spell map and the discovery lookups all target that
+  branch's content.
 ]]--
 
 local mod = rgpvpw
@@ -58,10 +60,16 @@ local function queueIfPresent(modulePrefix, classCap, branchCap)
   end
 end
 
-function me.TestAll()
+function me.TestAll(branchArg)
+  local branchFilter, branchErr = mod.testHelper.ResolveBranchFilter(branchArg)
+  if branchErr then
+    mod.logger.LogError(me.tag, branchErr)
+    return
+  end
+
   mod.testReporter.StartTestGroup(testGroupName)
 
-  for _, branchCap in ipairs(branches) do
+  for _, branchCap in ipairs(branchFilter or branches) do
     mod.testHelper.SetActiveBranch(string.lower(branchCap))
 
     -- Validators (coverage checks) for this branch's assembled map.

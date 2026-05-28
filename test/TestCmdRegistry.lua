@@ -64,7 +64,7 @@ function me.Initialize()
     end
 
     if #args > 0 then
-      mod.testSoundCmd.HandleSound(args[1])
+      mod.testSoundCmd.HandleSound(args[1], args[2])
     else
       mod.testSoundCmd.ShowSoundHelp()
     end
@@ -77,7 +77,7 @@ function me.Initialize()
     end
 
     if #args > 0 then
-      mod.testSoundCmd.HandleSelfSound(args[1])
+      mod.testSoundCmd.HandleSelfSound(args[1], args[2])
     else
       mod.testSoundCmd.ShowSelfSoundHelp()
     end
@@ -90,7 +90,7 @@ function me.Initialize()
     end
 
     if #args > 0 then
-      mod.testSoundCmd.HandleEnemySound(args[1])
+      mod.testSoundCmd.HandleEnemySound(args[1], args[2])
     else
       mod.testSoundCmd.ShowEnemySoundHelp()
     end
@@ -104,7 +104,7 @@ function me.Initialize()
     end
 
     if #args > 0 then
-      mod.testCombatEventCmd.HandleCombatEvent(args[1])
+      mod.testCombatEventCmd.HandleCombatEvent(args[1], args[2])
     else
       mod.testCombatEventCmd.ShowCombatEventHelp()
     end
@@ -117,7 +117,7 @@ function me.Initialize()
     end
 
     if #args > 0 then
-      mod.testCombatEventCmd.HandleSelfCombatEvent(args[1])
+      mod.testCombatEventCmd.HandleSelfCombatEvent(args[1], args[2])
     else
       mod.testCombatEventCmd.ShowSelfCombatEventHelp()
     end
@@ -130,7 +130,7 @@ function me.Initialize()
     end
 
     if #args > 0 then
-      mod.testCombatEventCmd.HandleEnemyCombatEvent(args[1])
+      mod.testCombatEventCmd.HandleEnemyCombatEvent(args[1], args[2])
     else
       mod.testCombatEventCmd.ShowEnemyCombatEventHelp()
     end
@@ -144,7 +144,7 @@ function me.Initialize()
     end
 
     if #args > 0 then
-      mod.testValidationCmd.HandleValidation(args[1])
+      mod.testValidationCmd.HandleValidation(args[1], args[2])
     else
       mod.testValidationCmd.ShowValidationHelp()
     end

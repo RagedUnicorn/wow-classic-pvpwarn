@@ -87,6 +87,14 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringImmune_7373)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringReflect_7373)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringAbsorbIgnored_7373)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringDodge_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringBlock_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringParry_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringMiss_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringResist_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringImmune_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringReflect_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringAbsorbIgnored_1715)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringDodge_7372)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringBlock_7372)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidHamstringParry_7372)
@@ -603,6 +611,94 @@ function me.TestCombatEventEnemyAvoidHamstringAbsorbIgnored_7373()
     "TestCombatEventEnemyAvoidHamstringAbsorbIgnored_7373",
     testCategory,
     7373,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHamstringDodge_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHamstringDodge_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHamstringBlock_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHamstringBlock_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHamstringParry_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHamstringParry_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHamstringMiss_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHamstringMiss_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHamstringResist_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHamstringResist_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHamstringImmune_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHamstringImmune_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHamstringReflect_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidHamstringReflect_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventEnemyAvoidHamstringAbsorbIgnored_1715()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventEnemyAvoidHamstringAbsorbIgnored_1715",
+    testCategory,
+    1715,
     "Hamstring",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB

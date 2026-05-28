@@ -104,11 +104,14 @@ end
   @param {string} categoryName - Name of the category
   @param {string} moduleName - Name of the test module
   @param {string} testType - Type of test (for logging purposes)
+  @param {function} completionCallback - Invoked once all selected branches finish
+  @param {table|nil} branchFilter - Optional 1-element PascalCase branch list from
+    `testHelper.ResolveBranchFilter`; when nil, the default 3-branch list is used.
 
   @return {boolean} - True if tests were run successfully
 ]]--
-RunTestForCategory = function(categoryName, moduleName, testType, completionCallback)
-  local branches = { "Classic", "Sod", "Tbc" }
+RunTestForCategory = function(categoryName, moduleName, testType, completionCallback, branchFilter)
+  local branches = branchFilter or { "Classic", "Sod", "Tbc" }
   local index = 1
   local anyRan = false
 
@@ -130,8 +133,11 @@ RunTestForCategory = function(categoryName, moduleName, testType, completionCall
     end
 
     if not anyRan then
+      local scope = branchFilter
+        and ("on branch " .. string.lower(branchFilter[1]))
+        or "in any branch"
       mod.logger.LogError(me.tag,
-        testType .. " test module for category '" .. categoryName .. "' not found in any branch")
+        testType .. " test module for category '" .. categoryName .. "' not found " .. scope)
     end
 
     completionCallback()
@@ -149,17 +155,20 @@ end
 function me.ShowCombatEventHelp()
   print("|cFF00FFFFTest Combat Event Commands:|r")
   print("|cFF00FFFF/rgpvpw testcombatevent|r - Show this help")
-  print("|cFF00FFFF/rgpvpw testcombatevent <category>|r - Run combat event tests for category")
-  print("|cFF00FFFF/rgpvpw testcombatevent all|r - Run combat event tests for ALL categories")
+  print("|cFF00FFFF/rgpvpw testcombatevent <category> [branch]|r - Run combat event tests for category")
+  print("|cFF00FFFF/rgpvpw testcombatevent all [branch]|r - Run combat event tests for ALL categories")
   print("")
   print("Runs actual combat event tests with delayed execution for the specified category.")
+  print("Optional [branch] scopes the run to a single client branch (classic, sod, tbc).")
+  print("Omit it to run all three branches in sequence.")
   print("")
   print("Available categories:")
   print("  all, druid, hunter, mage, paladin, priest, rogue, shaman, warlock, warrior")
   print("  items, misc, racials")
   print("")
   print("Examples:")
-  print("  |cFF00FFFF/rgpvpw testcombatevent mage|r - Run all mage combat event tests")
+  print("  |cFF00FFFF/rgpvpw testcombatevent mage|r - Run all mage combat event tests (all branches)")
+  print("  |cFF00FFFF/rgpvpw testcombatevent mage tbc|r - Run mage combat event tests for TBC only")
   print("  |cFF00FFFF/rgpvpw testcombatevent all|r - Run combat event tests for all categories")
 end
 
@@ -168,12 +177,20 @@ end
 
   @param {string} commandType - Session command type (e.g., "CombatEvent", "SelfCombatEvent")
   @param {string} testCommand - The test command to execute
+  @param {string|nil} branchArg - Optional branch arg (classic/sod/tbc); nil = all branches
   @param {table} availableCategories - Table of available categories
   @param {string} testTypeName - Display name for test type (e.g., "combat event", "self avoid combat event")
   @param {function} helpFunction - Function to show help on error
   @return {boolean|nil} - Success status or nil if error occurred
 ]]--
-local function HandleTestCommand(commandType, testCommand, availableCategories, testTypeName, helpFunction)
+local function HandleTestCommand(commandType, testCommand, branchArg, availableCategories, testTypeName, helpFunction)
+  local branchFilter, branchErr = mod.testHelper.ResolveBranchFilter(branchArg)
+  if branchErr then
+    mod.logger.LogError(me.tag, branchErr)
+    helpFunction()
+    return
+  end
+
   local category = string.lower(testCommand)
 
   if category == "all" then
@@ -195,7 +212,8 @@ local function HandleTestCommand(commandType, testCommand, availableCategories, 
       end
 
       for _, categoryInfo in ipairs(categoryList) do
-        RunTestForCategory(categoryInfo.categoryName, categoryInfo.moduleName, testTypeName, onCategoryComplete)
+        RunTestForCategory(
+          categoryInfo.categoryName, categoryInfo.moduleName, testTypeName, onCategoryComplete, branchFilter)
       end
     end)
   end
@@ -209,7 +227,7 @@ local function HandleTestCommand(commandType, testCommand, availableCategories, 
 
   mod.logger.LogInfo(me.tag, "Starting " .. category .. " " .. testTypeName .. " tests...")
   return mod.testSessionManager.StartSession(commandType, category, function(completionCallback)
-    RunTestForCategory(category, moduleName, testTypeName, completionCallback)
+    RunTestForCategory(category, moduleName, testTypeName, completionCallback, branchFilter)
   end)
 end
 
@@ -217,9 +235,11 @@ end
   Handle test combat event commands
 
   @param {string} testCommand - The test command to execute
+  @param {string|nil} branchArg - Optional branch arg (classic/sod/tbc)
 ]]--
-function me.HandleCombatEvent(testCommand)
-  HandleTestCommand("CombatEvent", testCommand, GetAvailableCategories(), "combat event", me.ShowCombatEventHelp)
+function me.HandleCombatEvent(testCommand, branchArg)
+  HandleTestCommand(
+    "CombatEvent", testCommand, branchArg, GetAvailableCategories(), "combat event", me.ShowCombatEventHelp)
 end
 
 --[[
@@ -230,16 +250,19 @@ end
 function me.ShowSelfCombatEventHelp()
   print("|cFF00FFFFTest Self Combat Event Commands:|r")
   print("|cFF00FFFF/rgpvpw testselfcombatevent|r - Show this help")
-  print("|cFF00FFFF/rgpvpw testselfcombatevent <category>|r - Run self avoid combat event tests for category")
-  print("|cFF00FFFF/rgpvpw testselfcombatevent all|r - Run self avoid combat event tests for ALL categories")
+  print("|cFF00FFFF/rgpvpw testselfcombatevent <category> [branch]|r - Run self avoid combat event tests for category")
+  print("|cFF00FFFF/rgpvpw testselfcombatevent all [branch]|r - Run self avoid combat event tests for ALL categories")
   print("")
   print("Runs actual self avoid combat event tests with delayed execution for the specified category.")
+  print("Optional [branch] scopes the run to a single client branch (classic, sod, tbc).")
+  print("Omit it to run all three branches in sequence.")
   print("")
   print("Available categories:")
   print("  all, druid, hunter, mage, paladin, priest, rogue, shaman, warlock, warrior")
   print("")
   print("Examples:")
   print("  |cFF00FFFF/rgpvpw testselfcombatevent mage|r - Run all mage self avoid combat event tests")
+  print("  |cFF00FFFF/rgpvpw testselfcombatevent mage tbc|r - Run mage self avoid combat event tests for TBC only")
   print("  |cFF00FFFF/rgpvpw testselfcombatevent all|r - Run self avoid combat event tests for all categories")
 end
 
@@ -247,11 +270,13 @@ end
   Handle test self combat event commands
 
   @param {string} testCommand - The test command to execute
+  @param {string|nil} branchArg - Optional branch arg (classic/sod/tbc)
 ]]--
-function me.HandleSelfCombatEvent(testCommand)
+function me.HandleSelfCombatEvent(testCommand, branchArg)
   HandleTestCommand(
     "SelfCombatEvent",
     testCommand,
+    branchArg,
     GetAvailableSelfAvoidCategories(),
     "self avoid combat event",
     me.ShowSelfCombatEventHelp
@@ -266,16 +291,19 @@ end
 function me.ShowEnemyCombatEventHelp()
   print("|cFF00FFFFTest Enemy Combat Event Commands:|r")
   print("|cFF00FFFF/rgpvpw testenemycombatevent|r - Show this help")
-  print("|cFF00FFFF/rgpvpw testenemycombatevent <category>|r - Run enemy avoid combat event tests for category")
-  print("|cFF00FFFF/rgpvpw testenemycombatevent all|r - Run enemy avoid combat event tests for ALL categories")
+  print("|cFF00FFFF/rgpvpw testenemycombatevent <category> [branch]|r - Run enemy avoid combat event tests for category")
+  print("|cFF00FFFF/rgpvpw testenemycombatevent all [branch]|r - Run enemy avoid combat event tests for ALL categories")
   print("")
   print("Runs actual enemy avoid combat event tests with delayed execution for the specified category.")
+  print("Optional [branch] scopes the run to a single client branch (classic, sod, tbc).")
+  print("Omit it to run all three branches in sequence.")
   print("")
   print("Available categories:")
   print("  all, druid, hunter, mage, paladin, priest, rogue, shaman, warlock, warrior")
   print("")
   print("Examples:")
   print("  |cFF00FFFF/rgpvpw testenemycombatevent mage|r - Run all mage enemy avoid combat event tests")
+  print("  |cFF00FFFF/rgpvpw testenemycombatevent mage tbc|r - Run mage enemy avoid combat event tests for TBC only")
   print("  |cFF00FFFF/rgpvpw testenemycombatevent all|r - Run enemy avoid combat event tests for all categories")
 end
 
@@ -283,11 +311,13 @@ end
   Handle test enemy combat event commands
 
   @param {string} testCommand - The test command to execute
+  @param {string|nil} branchArg - Optional branch arg (classic/sod/tbc)
 ]]--
-function me.HandleEnemyCombatEvent(testCommand)
+function me.HandleEnemyCombatEvent(testCommand, branchArg)
   HandleTestCommand(
     "EnemyCombatEvent",
     testCommand,
+    branchArg,
     GetAvailableEnemyAvoidCategories(),
     "enemy avoid combat event",
     me.ShowEnemyCombatEventHelp

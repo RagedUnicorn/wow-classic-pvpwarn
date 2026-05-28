@@ -87,14 +87,14 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringImmune_7373)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringReflect_7373)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringAbsorbIgnored_7373)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringDodge_7373)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringBlock_7373)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringParry_7373)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringMiss_7373)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringResist_7373)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringImmune_7373)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringReflect_7373)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringAbsorbIgnored_7373)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringDodge_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringBlock_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringParry_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringMiss_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringResist_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringImmune_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringReflect_1715)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringAbsorbIgnored_1715)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringDodge_7372)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringBlock_7372)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHamstringParry_7372)
@@ -611,6 +611,94 @@ function me.TestCombatEventSelfAvoidHamstringAbsorbIgnored_7373()
     "TestCombatEventSelfAvoidHamstringAbsorbIgnored_7373",
     testCategory,
     7373,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventSelfAvoidHamstringDodge_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHamstringDodge_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidHamstringBlock_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHamstringBlock_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidHamstringParry_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHamstringParry_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidHamstringMiss_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHamstringMiss_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidHamstringResist_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHamstringResist_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidHamstringImmune_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHamstringImmune_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidHamstringReflect_1715()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidHamstringReflect_1715",
+    testCategory,
+    1715,
+    "Hamstring",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidHamstringAbsorbIgnored_1715()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidHamstringAbsorbIgnored_1715",
+    testCategory,
+    1715,
     "Hamstring",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB

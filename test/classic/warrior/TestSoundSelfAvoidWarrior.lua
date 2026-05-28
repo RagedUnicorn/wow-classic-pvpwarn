@@ -61,6 +61,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidIntercept_20253)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidIntercept_20614)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidIntercept_20615)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHamstring_1715)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHamstring_7372)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHamstring_7373)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidHamstring_25212)
@@ -103,6 +104,14 @@ function me.TestSoundSelfAvoidIntercept_20615()
     "TestSoundSelfAvoidIntercept_20615",
     testCategory,
     20615
+  )
+end
+
+function me.TestSoundSelfAvoidHamstring_1715()
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidHamstring_1715",
+    testCategory,
+    1715
   )
 end
 

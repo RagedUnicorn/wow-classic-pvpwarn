@@ -220,6 +220,44 @@ function me.GetActiveBranch()
 end
 
 --[[
+  PascalCase form per accepted branch, matching the suffix used when looking up
+  branch-specific modules (e.g. `testCombatEventsDruidTbc`).
+]]--
+local branchPascalByLower = {
+  classic = "Classic",
+  sod = "Sod",
+  tbc = "Tbc"
+}
+
+--[[
+  Parse the optional `<branch>` arg accepted by the slash-command surface into a
+  1-element filter list of PascalCase branch names. Callers fall back to their
+  default 3-branch list when this returns nil with no error.
+
+  @param {string|nil} arg
+    Raw arg as typed by the user; may be nil/empty when no branch was specified.
+
+  @return {table|nil}, {string|nil}
+    list, nil  - valid filter, e.g. { "Tbc" }
+    nil,  nil  - no arg provided; caller uses its default branch list
+    nil,  msg  - arg was provided but unrecognised; `msg` is a user-facing reason
+]]--
+function me.ResolveBranchFilter(arg)
+  if arg == nil or arg == "" then
+    return nil
+  end
+
+  local pascal = branchPascalByLower[string.lower(arg)]
+
+  if not pascal then
+    return nil, string.format(
+      "Invalid branch '%s' (expected classic, sod, or tbc)", tostring(arg))
+  end
+
+  return { pascal }
+end
+
+--[[
   Resolve a test function for the active branch, falling back to the Classic module when the
   branch-specific module doesn't define that specific function. Used by the validator discovery
   so the SoD and TBC passes can borrow Classic test functions for shared base content (Classic
