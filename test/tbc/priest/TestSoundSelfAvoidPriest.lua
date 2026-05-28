@@ -51,6 +51,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidManaBurn_25380)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidShadowWordPain_25367)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidShadowWordPain_25368)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidChastise_44041)
 end
 
 function me.TestSoundSelfAvoidDevouringPlague_25467()
@@ -90,5 +91,13 @@ function me.TestSoundSelfAvoidShadowWordPain_25368()
     "TestSoundSelfAvoidShadowWordPain_25368",
     testCategory,
     25368
+  )
+end
+
+function me.TestSoundSelfAvoidChastise_44041()
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidChastise_44041",
+    testCategory,
+    44041
   )
 end

@@ -58,6 +58,17 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowguardApplied_25477)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowguardRemoved_25477)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowguardRefresh_25477)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMassDispelSuccess_32375)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMassDispelStart_32375)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChastiseApplied_44041)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChastiseRemoved_44041)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChastiseRefresh_44041)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowWordDeathSuccess_32379)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowfiendSuccess_34433)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventConsumeMagicSuccess_32676)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPainSuppressionApplied_33206)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPainSuppressionRemoved_33206)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPainSuppressionRefresh_33206)
 end
 
 function me.TestCombatEventInnerFireApplied_25431()
@@ -165,5 +176,104 @@ function me.TestCombatEventShadowguardRefresh_25477()
     testCategory,
     "Shadowguard",
     25477
+  )
+end
+
+function me.TestCombatEventMassDispelSuccess_32375()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMassDispelSuccess_32375",
+    testCategory,
+    "Mass Dispel",
+    32375
+  )
+end
+
+function me.TestCombatEventMassDispelStart_32375()
+  mod.testHelper.TestCombatEventStart(
+    "TestCombatEventMassDispelStart_32375",
+    testCategory,
+    "Mass Dispel",
+    32375
+  )
+end
+
+function me.TestCombatEventChastiseApplied_44041()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventChastiseApplied_44041",
+    testCategory,
+    "Chastise",
+    44041
+  )
+end
+
+function me.TestCombatEventChastiseRemoved_44041()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventChastiseRemoved_44041",
+    testCategory,
+    "Chastise",
+    44041
+  )
+end
+
+function me.TestCombatEventChastiseRefresh_44041()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventChastiseRefresh_44041",
+    testCategory,
+    "Chastise",
+    44041
+  )
+end
+
+function me.TestCombatEventShadowWordDeathSuccess_32379()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShadowWordDeathSuccess_32379",
+    testCategory,
+    "Shadow Word: Death",
+    32379
+  )
+end
+
+function me.TestCombatEventShadowfiendSuccess_34433()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShadowfiendSuccess_34433",
+    testCategory,
+    "Shadowfiend",
+    34433
+  )
+end
+
+function me.TestCombatEventConsumeMagicSuccess_32676()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventConsumeMagicSuccess_32676",
+    testCategory,
+    "Consume Magic",
+    32676
+  )
+end
+
+function me.TestCombatEventPainSuppressionApplied_33206()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventPainSuppressionApplied_33206",
+    testCategory,
+    "Pain Suppression",
+    33206
+  )
+end
+
+function me.TestCombatEventPainSuppressionRemoved_33206()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventPainSuppressionRemoved_33206",
+    testCategory,
+    "Pain Suppression",
+    33206
+  )
+end
+
+function me.TestCombatEventPainSuppressionRefresh_33206()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventPainSuppressionRefresh_33206",
+    testCategory,
+    "Pain Suppression",
+    33206
   )
 end

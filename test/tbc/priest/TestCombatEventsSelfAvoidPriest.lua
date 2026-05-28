@@ -87,6 +87,14 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowWordPainImmune_25368)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowWordPainReflect_25368)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25368)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChastiseDodge_44041)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChastiseBlock_44041)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChastiseParry_44041)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChastiseMiss_44041)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChastiseResist_44041)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChastiseImmune_44041)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChastiseReflect_44041)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidChastiseAbsorbIgnored_44041)
 end
 
 local function relevantSelf(testName, spellId, spellName, missType)
@@ -417,6 +425,94 @@ function me.TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25368()
     "TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25368",
     25368,
     "Shadow Word: Pain",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventSelfAvoidChastiseDodge_44041()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidChastiseDodge_44041",
+    testCategory,
+    44041,
+    "Chastise",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidChastiseBlock_44041()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidChastiseBlock_44041",
+    testCategory,
+    44041,
+    "Chastise",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidChastiseParry_44041()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidChastiseParry_44041",
+    testCategory,
+    44041,
+    "Chastise",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidChastiseMiss_44041()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidChastiseMiss_44041",
+    testCategory,
+    44041,
+    "Chastise",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidChastiseResist_44041()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidChastiseResist_44041",
+    testCategory,
+    44041,
+    "Chastise",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidChastiseImmune_44041()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidChastiseImmune_44041",
+    testCategory,
+    44041,
+    "Chastise",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidChastiseReflect_44041()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidChastiseReflect_44041",
+    testCategory,
+    44041,
+    "Chastise",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidChastiseAbsorbIgnored_44041()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidChastiseAbsorbIgnored_44041",
+    testCategory,
+    44041,
+    "Chastise",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end

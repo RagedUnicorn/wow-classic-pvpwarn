@@ -68,6 +68,17 @@ function me.GetOverlay()
         [25380] = { refId = 10876 },  -- Mana Burn rank 7
         [25367] = { refId = 10894 },  -- Shadow Word: Pain rank 9
         [25368] = { refId = 10894 },  -- Shadow Word: Pain rank 10
+        [44041] = {
+          name = "Chastise",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "chastise",
+          spellIcon = "spell_holy_chastise",
+          self_avoid = true,
+          enemy_avoid = true,
+          allRanks = {
+            { spellId = 44041, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     rogue = {

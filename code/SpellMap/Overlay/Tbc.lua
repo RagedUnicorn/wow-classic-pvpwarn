@@ -148,6 +148,94 @@ function me.GetOverlay()
         [25437] = { refId = 19243 },  -- Desperate Prayer rank 8
         [25470] = { refId = 9035 },   -- Hex of Weakness rank 7
         [25477] = { refId = 18137 },  -- Shadowguard rank 7
+        [32375] = {
+          name = "Mass Dispel",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "mass_dispel",
+          spellIcon = "spell_arcane_massdispel",
+          hasFade = false,
+          hasCast = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS",
+            "SPELL_CAST_START"
+          },
+          allRanks = {
+            { spellId = 32375, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [44041] = {
+          name = "Chastise",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "chastise",
+          spellIcon = "spell_holy_chastise",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 44041, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [32379] = {
+          name = "Shadow Word: Death",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "shadow_word_death",
+          spellIcon = "spell_shadow_demonicfortitude",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 32379, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [34433] = {
+          name = "Shadowfiend",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "shadowfiend",
+          spellIcon = "spell_shadow_shadowfiend",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 34433, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [32676] = {
+          name = "Consume Magic",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "consume_magic",
+          spellIcon = "spell_arcane_studentofmagic",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 32676, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [33206] = {
+          name = "Pain Suppression",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "pain_suppression",
+          spellIcon = "spell_holy_painsupression",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 33206, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     rogue = {
