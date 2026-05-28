@@ -54,6 +54,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShieldBashSuccess_29704)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLastStandApplied_12976)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLastStandRemoved_12976)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCommandingShoutSuccess_469)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventInterveneSuccess_3411)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpellReflectionApplied_23920)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSpellReflectionRemoved_23920)
 end
 
 function me.TestCombatEventInterceptSuccess_25272()
@@ -116,5 +120,41 @@ function me.TestCombatEventLastStandRemoved_12976()
     testCategory,
     "Last Stand",
     12976
+  )
+end
+
+function me.TestCombatEventCommandingShoutSuccess_469()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventCommandingShoutSuccess_469",
+    testCategory,
+    "Commanding Shout",
+    469
+  )
+end
+
+function me.TestCombatEventInterveneSuccess_3411()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventInterveneSuccess_3411",
+    testCategory,
+    "Intervene",
+    3411
+  )
+end
+
+function me.TestCombatEventSpellReflectionApplied_23920()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventSpellReflectionApplied_23920",
+    testCategory,
+    "Spell Reflection",
+    23920
+  )
+end
+
+function me.TestCombatEventSpellReflectionRemoved_23920()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventSpellReflectionRemoved_23920",
+    testCategory,
+    "Spell Reflection",
+    23920
   )
 end

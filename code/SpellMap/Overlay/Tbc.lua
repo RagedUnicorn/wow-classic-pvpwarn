@@ -71,6 +71,53 @@ function me.GetOverlay()
         [30356] = { refId = 23922 },  -- Shield Slam rank 6
         [29704] = { refId = 72 },     -- Shield Bash rank 4
         [12976] = { refId = 12975 },  -- Last Stand rank 2
+        -- TBC-only warrior spells (PWI-0017). Commanding Shout (469) is
+        -- a 20-yard group buff; tracking SPELL_AURA_APPLIED would fire
+        -- per recipient (5+ events per cast in a BG group), so it is
+        -- intentionally registered for SPELL_CAST_SUCCESS only.
+        [469] = {
+          name = "Commanding Shout",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "commanding_shout",
+          spellIcon = "ability_warrior_rallyingcry",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 469, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [3411] = {
+          name = "Intervene",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "intervene",
+          spellIcon = "ability_warrior_victoryrush",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 3411, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [23920] = {
+          name = "Spell Reflection",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "spell_reflection",
+          spellIcon = "ability_warrior_shieldreflection",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 23920, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     priest = {

@@ -53,6 +53,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShieldBash_29704)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLastStand_12976)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownLastStand_12976)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCommandingShout_469)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundIntervene_3411)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSpellReflection_23920)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownSpellReflection_23920)
 end
 
 function me.TestSoundIntercept_25272()
@@ -108,5 +112,37 @@ function me.TestSoundDownLastStand_12976()
     "TestSoundDownLastStand_12976",
     testCategory,
     12976
+  )
+end
+
+function me.TestSoundCommandingShout_469()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundCommandingShout_469",
+    testCategory,
+    469
+  )
+end
+
+function me.TestSoundIntervene_3411()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundIntervene_3411",
+    testCategory,
+    3411
+  )
+end
+
+function me.TestSoundSpellReflection_23920()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundSpellReflection_23920",
+    testCategory,
+    23920
+  )
+end
+
+function me.TestSoundDownSpellReflection_23920()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownSpellReflection_23920",
+    testCategory,
+    23920
   )
 end
