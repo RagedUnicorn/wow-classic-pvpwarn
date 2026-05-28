@@ -55,6 +55,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundViperSting_27018)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundAspectOfTheViper_34074)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownAspectOfTheViper_34074)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSilencingShot_34490)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTheBeastWithin_34471)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownTheBeastWithin_34471)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSnakeTrap_34600)
 end
 
 function me.TestSoundAspectOfTheHawk_27044()
@@ -126,5 +130,37 @@ function me.TestSoundDownAspectOfTheViper_34074()
     "TestSoundDownAspectOfTheViper_34074",
     testCategory,
     34074
+  )
+end
+
+function me.TestSoundSilencingShot_34490()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundSilencingShot_34490",
+    testCategory,
+    34490
+  )
+end
+
+function me.TestSoundTheBeastWithin_34471()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundTheBeastWithin_34471",
+    testCategory,
+    34471
+  )
+end
+
+function me.TestSoundDownTheBeastWithin_34471()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownTheBeastWithin_34471",
+    testCategory,
+    34471
+  )
+end
+
+function me.TestSoundSnakeTrap_34600()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundSnakeTrap_34600",
+    testCategory,
+    34600
   )
 end

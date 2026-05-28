@@ -49,6 +49,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidSerpentSting_25295)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidSerpentSting_27016)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidViperSting_27018)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidSilencingShot_34490)
 end
 
 function me.TestSoundSelfAvoidSerpentSting_25295()
@@ -59,4 +60,7 @@ function me.TestSoundSelfAvoidSerpentSting_27016()
 end
 function me.TestSoundSelfAvoidViperSting_27018()
   mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidViperSting_27018", testCategory, 27018)
+end
+function me.TestSoundSelfAvoidSilencingShot_34490()
+  mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidSilencingShot_34490", testCategory, 34490)
 end

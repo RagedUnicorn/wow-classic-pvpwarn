@@ -49,6 +49,7 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidSerpentSting_25295)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidSerpentSting_27016)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidViperSting_27018)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidSilencingShot_34490)
 end
 
 function me.TestSoundEnemyAvoidSerpentSting_25295()
@@ -59,4 +60,7 @@ function me.TestSoundEnemyAvoidSerpentSting_27016()
 end
 function me.TestSoundEnemyAvoidViperSting_27018()
   mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidViperSting_27018", testCategory, 27018)
+end
+function me.TestSoundEnemyAvoidSilencingShot_34490()
+  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidSilencingShot_34490", testCategory, 34490)
 end

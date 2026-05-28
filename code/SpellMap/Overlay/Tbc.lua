@@ -304,6 +304,51 @@ function me.GetOverlay()
             { spellId = 34074, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
           }
         },
+        -- Silencing Shot applies a separate silence aura on impact; we
+        -- track the cast itself as the unique per-cast cue.
+        [34490] = {
+          name = "Silencing Shot",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "silencing_shot",
+          spellIcon = "ability_theblackarrow",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 34490, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [34471] = {
+          name = "The Beast Within",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "the_beast_within",
+          spellIcon = "ability_hunter_beastwithin",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 34471, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [34600] = {
+          name = "Snake Trap",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "snake_trap",
+          spellIcon = "ability_hunter_snaketrap",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 34600, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     warlock = {

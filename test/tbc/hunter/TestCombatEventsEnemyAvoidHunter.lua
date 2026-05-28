@@ -76,6 +76,14 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidViperStingImmune_27018)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidViperStingReflect_27018)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidViperStingAbsorbIgnored_27018)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSilencingShotDodge_34490)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSilencingShotBlock_34490)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSilencingShotParry_34490)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSilencingShotMiss_34490)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSilencingShotResist_34490)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSilencingShotImmune_34490)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSilencingShotReflect_34490)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSilencingShotAbsorbIgnored_34490)
 end
 
 function me.TestCombatEventEnemyAvoidSerpentStingDodge_25295()
@@ -255,6 +263,71 @@ function me.TestCombatEventEnemyAvoidViperStingAbsorbIgnored_27018()
     "TestCombatEventEnemyAvoidViperStingAbsorbIgnored_27018",
     27018,
     "Viper Sting",
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventEnemyAvoidSilencingShotDodge_34490()
+  rel(
+    "TestCombatEventEnemyAvoidSilencingShotDodge_34490",
+    34490,
+    "Silencing Shot",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+function me.TestCombatEventEnemyAvoidSilencingShotBlock_34490()
+  rel(
+    "TestCombatEventEnemyAvoidSilencingShotBlock_34490",
+    34490,
+    "Silencing Shot",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+function me.TestCombatEventEnemyAvoidSilencingShotParry_34490()
+  rel(
+    "TestCombatEventEnemyAvoidSilencingShotParry_34490",
+    34490,
+    "Silencing Shot",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+function me.TestCombatEventEnemyAvoidSilencingShotMiss_34490()
+  rel(
+    "TestCombatEventEnemyAvoidSilencingShotMiss_34490",
+    34490,
+    "Silencing Shot",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+function me.TestCombatEventEnemyAvoidSilencingShotResist_34490()
+  rel(
+    "TestCombatEventEnemyAvoidSilencingShotResist_34490",
+    34490,
+    "Silencing Shot",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+function me.TestCombatEventEnemyAvoidSilencingShotImmune_34490()
+  rel(
+    "TestCombatEventEnemyAvoidSilencingShotImmune_34490",
+    34490,
+    "Silencing Shot",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+function me.TestCombatEventEnemyAvoidSilencingShotReflect_34490()
+  rel(
+    "TestCombatEventEnemyAvoidSilencingShotReflect_34490",
+    34490,
+    "Silencing Shot",
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+function me.TestCombatEventEnemyAvoidSilencingShotAbsorbIgnored_34490()
+  irr(
+    "TestCombatEventEnemyAvoidSilencingShotAbsorbIgnored_34490",
+    34490,
+    "Silencing Shot",
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end

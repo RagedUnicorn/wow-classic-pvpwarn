@@ -55,6 +55,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventViperStingSuccess_27018)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAspectOfTheViperApplied_34074)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventAspectOfTheViperRemoved_34074)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSilencingShotSuccess_34490)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTheBeastWithinApplied_34471)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTheBeastWithinRemoved_34471)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSnakeTrapSuccess_34600)
 end
 
 function me.TestCombatEventAspectOfTheHawkApplied_27044()
@@ -135,5 +139,41 @@ function me.TestCombatEventAspectOfTheViperRemoved_34074()
     testCategory,
     "Aspect of the Viper",
     34074
+  )
+end
+
+function me.TestCombatEventSilencingShotSuccess_34490()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventSilencingShotSuccess_34490",
+    testCategory,
+    "Silencing Shot",
+    34490
+  )
+end
+
+function me.TestCombatEventTheBeastWithinApplied_34471()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventTheBeastWithinApplied_34471",
+    testCategory,
+    "The Beast Within",
+    34471
+  )
+end
+
+function me.TestCombatEventTheBeastWithinRemoved_34471()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventTheBeastWithinRemoved_34471",
+    testCategory,
+    "The Beast Within",
+    34471
+  )
+end
+
+function me.TestCombatEventSnakeTrapSuccess_34600()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventSnakeTrapSuccess_34600",
+    testCategory,
+    "Snake Trap",
+    34600
   )
 end

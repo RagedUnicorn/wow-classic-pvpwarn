@@ -126,6 +126,17 @@ function me.GetOverlay()
         [25295] = { refId = 13555 },  -- Serpent Sting rank 9
         [27016] = { refId = 13555 },  -- Serpent Sting rank 10
         [27018] = { refId = 14280 },  -- Viper Sting rank 4
+        [34490] = {
+          name = "Silencing Shot",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "silencing_shot",
+          spellIcon = "ability_theblackarrow",
+          self_avoid = true,
+          enemy_avoid = true,
+          allRanks = {
+            { spellId = 34490, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     warlock = {
