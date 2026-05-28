@@ -63,6 +63,25 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventStoneclawTotemSuccess_25525)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHealingStreamTotemSuccess_25567)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventManaSpringTotemSuccess_25570)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEarthShieldApplied_974)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEarthShieldRemoved_974)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEarthShieldRefresh_974)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWaterShieldApplied_24398)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWaterShieldRemoved_24398)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWaterShieldRefresh_24398)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShamanisticRageApplied_30823)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShamanisticRageRemoved_30823)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShamanisticRageRefresh_30823)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodlustApplied_2825)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodlustRemoved_2825)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodlustRefresh_2825)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHeroismApplied_32182)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHeroismRemoved_32182)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHeroismRefresh_32182)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTotemOfWrathSuccess_30706)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWrathOfAirTotemSuccess_3738)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEarthElementalTotemSuccess_2062)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFireElementalTotemSuccess_2894)
 end
 
 function me.TestCombatEventFireResistanceTotemSuccess_25563()
@@ -162,5 +181,176 @@ end
 function me.TestCombatEventManaSpringTotemSuccess_25570()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventManaSpringTotemSuccess_25570", testCategory, "Mana Spring Totem", 25570
+  )
+end
+
+function me.TestCombatEventEarthShieldApplied_974()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventEarthShieldApplied_974",
+    testCategory,
+    "Earth Shield",
+    974
+  )
+end
+
+function me.TestCombatEventEarthShieldRemoved_974()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventEarthShieldRemoved_974",
+    testCategory,
+    "Earth Shield",
+    974
+  )
+end
+
+function me.TestCombatEventEarthShieldRefresh_974()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventEarthShieldRefresh_974",
+    testCategory,
+    "Earth Shield",
+    974
+  )
+end
+
+function me.TestCombatEventWaterShieldApplied_24398()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventWaterShieldApplied_24398",
+    testCategory,
+    "Water Shield",
+    24398
+  )
+end
+
+function me.TestCombatEventWaterShieldRemoved_24398()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventWaterShieldRemoved_24398",
+    testCategory,
+    "Water Shield",
+    24398
+  )
+end
+
+function me.TestCombatEventWaterShieldRefresh_24398()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventWaterShieldRefresh_24398",
+    testCategory,
+    "Water Shield",
+    24398
+  )
+end
+
+function me.TestCombatEventShamanisticRageApplied_30823()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventShamanisticRageApplied_30823",
+    testCategory,
+    "Shamanistic Rage",
+    30823
+  )
+end
+
+function me.TestCombatEventShamanisticRageRemoved_30823()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventShamanisticRageRemoved_30823",
+    testCategory,
+    "Shamanistic Rage",
+    30823
+  )
+end
+
+function me.TestCombatEventShamanisticRageRefresh_30823()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventShamanisticRageRefresh_30823",
+    testCategory,
+    "Shamanistic Rage",
+    30823
+  )
+end
+
+function me.TestCombatEventBloodlustApplied_2825()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventBloodlustApplied_2825",
+    testCategory,
+    "Bloodlust",
+    2825
+  )
+end
+
+function me.TestCombatEventBloodlustRemoved_2825()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventBloodlustRemoved_2825",
+    testCategory,
+    "Bloodlust",
+    2825
+  )
+end
+
+function me.TestCombatEventBloodlustRefresh_2825()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventBloodlustRefresh_2825",
+    testCategory,
+    "Bloodlust",
+    2825
+  )
+end
+
+function me.TestCombatEventHeroismApplied_32182()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventHeroismApplied_32182",
+    testCategory,
+    "Heroism",
+    32182
+  )
+end
+
+function me.TestCombatEventHeroismRemoved_32182()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventHeroismRemoved_32182",
+    testCategory,
+    "Heroism",
+    32182
+  )
+end
+
+function me.TestCombatEventHeroismRefresh_32182()
+  mod.testHelper.TestCombatEventRefresh(
+    "TestCombatEventHeroismRefresh_32182",
+    testCategory,
+    "Heroism",
+    32182
+  )
+end
+
+function me.TestCombatEventTotemOfWrathSuccess_30706()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventTotemOfWrathSuccess_30706",
+    testCategory,
+    "Totem of Wrath",
+    30706
+  )
+end
+
+function me.TestCombatEventWrathOfAirTotemSuccess_3738()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventWrathOfAirTotemSuccess_3738",
+    testCategory,
+    "Wrath of Air Totem",
+    3738
+  )
+end
+
+function me.TestCombatEventEarthElementalTotemSuccess_2062()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventEarthElementalTotemSuccess_2062",
+    testCategory,
+    "Earth Elemental Totem",
+    2062
+  )
+end
+
+function me.TestCombatEventFireElementalTotemSuccess_2894()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventFireElementalTotemSuccess_2894",
+    testCategory,
+    "Fire Elemental Totem",
+    2894
   )
 end

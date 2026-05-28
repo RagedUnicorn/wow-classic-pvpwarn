@@ -63,6 +63,25 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundStoneclawTotem_25525)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHealingStreamTotem_25567)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundManaSpringTotem_25570)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEarthShield_974)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEarthShield_974)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshEarthShield_974)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWaterShield_24398)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownWaterShield_24398)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshWaterShield_24398)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShamanisticRage_30823)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShamanisticRage_30823)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshShamanisticRage_30823)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBloodlust_2825)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBloodlust_2825)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshBloodlust_2825)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHeroism_32182)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHeroism_32182)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshHeroism_32182)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTotemOfWrath_30706)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWrathOfAirTotem_3738)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEarthElementalTotem_2062)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFireElementalTotem_2894)
 end
 
 function me.TestSoundFireResistanceTotem_25563()
@@ -131,4 +150,156 @@ end
 
 function me.TestSoundManaSpringTotem_25570()
   mod.testHelper.TestSoundSuccess("TestSoundManaSpringTotem_25570", testCategory, 25570)
+end
+
+function me.TestSoundEarthShield_974()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundEarthShield_974",
+    testCategory,
+    974
+  )
+end
+
+function me.TestSoundDownEarthShield_974()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownEarthShield_974",
+    testCategory,
+    974
+  )
+end
+
+function me.TestSoundRefreshEarthShield_974()
+  mod.testHelper.TestSoundRefresh(
+    "TestSoundRefreshEarthShield_974",
+    testCategory,
+    974
+  )
+end
+
+function me.TestSoundWaterShield_24398()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundWaterShield_24398",
+    testCategory,
+    24398
+  )
+end
+
+function me.TestSoundDownWaterShield_24398()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownWaterShield_24398",
+    testCategory,
+    24398
+  )
+end
+
+function me.TestSoundRefreshWaterShield_24398()
+  mod.testHelper.TestSoundRefresh(
+    "TestSoundRefreshWaterShield_24398",
+    testCategory,
+    24398
+  )
+end
+
+function me.TestSoundShamanisticRage_30823()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundShamanisticRage_30823",
+    testCategory,
+    30823
+  )
+end
+
+function me.TestSoundDownShamanisticRage_30823()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownShamanisticRage_30823",
+    testCategory,
+    30823
+  )
+end
+
+function me.TestSoundRefreshShamanisticRage_30823()
+  mod.testHelper.TestSoundRefresh(
+    "TestSoundRefreshShamanisticRage_30823",
+    testCategory,
+    30823
+  )
+end
+
+function me.TestSoundBloodlust_2825()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundBloodlust_2825",
+    testCategory,
+    2825
+  )
+end
+
+function me.TestSoundDownBloodlust_2825()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownBloodlust_2825",
+    testCategory,
+    2825
+  )
+end
+
+function me.TestSoundRefreshBloodlust_2825()
+  mod.testHelper.TestSoundRefresh(
+    "TestSoundRefreshBloodlust_2825",
+    testCategory,
+    2825
+  )
+end
+
+function me.TestSoundHeroism_32182()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundHeroism_32182",
+    testCategory,
+    32182
+  )
+end
+
+function me.TestSoundDownHeroism_32182()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownHeroism_32182",
+    testCategory,
+    32182
+  )
+end
+
+function me.TestSoundRefreshHeroism_32182()
+  mod.testHelper.TestSoundRefresh(
+    "TestSoundRefreshHeroism_32182",
+    testCategory,
+    32182
+  )
+end
+
+function me.TestSoundTotemOfWrath_30706()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundTotemOfWrath_30706",
+    testCategory,
+    30706
+  )
+end
+
+function me.TestSoundWrathOfAirTotem_3738()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundWrathOfAirTotem_3738",
+    testCategory,
+    3738
+  )
+end
+
+function me.TestSoundEarthElementalTotem_2062()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundEarthElementalTotem_2062",
+    testCategory,
+    2062
+  )
+end
+
+function me.TestSoundFireElementalTotem_2894()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFireElementalTotem_2894",
+    testCategory,
+    2894
+  )
 end

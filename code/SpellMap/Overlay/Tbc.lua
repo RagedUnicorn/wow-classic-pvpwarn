@@ -668,6 +668,137 @@ function me.GetOverlay()
         [25525] = { refId = 10428 },  -- Stoneclaw Totem rank 7
         [25567] = { refId = 10463 },  -- Healing Stream Totem rank 6
         [25570] = { refId = 10497 },  -- Mana Spring Totem rank 5
+        [974] = {
+          name = "Earth Shield",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "earth_shield",
+          spellIcon = "spell_nature_skinofearth",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 974, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [24398] = {
+          name = "Water Shield",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "water_shield",
+          spellIcon = "ability_shaman_watershield",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 24398, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [30823] = {
+          name = "Shamanistic Rage",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "shamanistic_rage",
+          spellIcon = "spell_nature_shamanrage",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 30823, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [2825] = {
+          name = "Bloodlust",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "bloodlust",
+          spellIcon = "spell_nature_bloodlust",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 2825, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [32182] = {
+          name = "Heroism",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "heroism",
+          spellIcon = "ability_shaman_heroism",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 32182, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [30706] = {
+          name = "Totem of Wrath",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "totem_of_wrath",
+          spellIcon = "spell_fire_totemofwrath",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 30706, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [3738] = {
+          name = "Wrath of Air Totem",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "wrath_of_air_totem",
+          spellIcon = "spell_nature_slowingtotem",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 3738, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [2062] = {
+          name = "Earth Elemental Totem",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "earth_elemental_totem",
+          spellIcon = "spell_nature_earthelemental_totem",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 2062, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [2894] = {
+          name = "Fire Elemental Totem",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "fire_elemental_totem",
+          spellIcon = "spell_fire_elemental_totem",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 2894, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     racials = {
