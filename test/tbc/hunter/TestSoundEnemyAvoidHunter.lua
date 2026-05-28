@@ -53,14 +53,33 @@ function me.CollectTestCases()
 end
 
 function me.TestSoundEnemyAvoidSerpentSting_25295()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidSerpentSting_25295", testCategory, 25295)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidSerpentSting_25295",
+    testCategory,
+    25295
+  )
 end
+
 function me.TestSoundEnemyAvoidSerpentSting_27016()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidSerpentSting_27016", testCategory, 27016)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidSerpentSting_27016",
+    testCategory,
+    27016
+  )
 end
+
 function me.TestSoundEnemyAvoidViperSting_27018()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidViperSting_27018", testCategory, 27018)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidViperSting_27018",
+    testCategory,
+    27018
+  )
 end
+
 function me.TestSoundEnemyAvoidSilencingShot_34490()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidSilencingShot_34490", testCategory, 34490)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidSilencingShot_34490",
+    testCategory,
+    34490
+  )
 end

@@ -46,15 +46,6 @@ function me.Test(completionCallback)
   end)
 end
 
-local function rel(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissed(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-local function irr(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissedIrrelevant(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathDodge_27180)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidHammerOfWrathBlock_27180)
@@ -67,66 +58,89 @@ function me.CollectTestCases()
 end
 
 function me.TestCombatEventSelfAvoidHammerOfWrathDodge_27180()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidHammerOfWrathDodge_27180",
+    testCategory,
     27180,
     "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventSelfAvoidHammerOfWrathBlock_27180()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidHammerOfWrathBlock_27180",
+    testCategory,
     27180,
     "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventSelfAvoidHammerOfWrathParry_27180()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidHammerOfWrathParry_27180",
+    testCategory,
     27180,
     "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventSelfAvoidHammerOfWrathMiss_27180()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidHammerOfWrathMiss_27180",
+    testCategory,
     27180,
     "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventSelfAvoidHammerOfWrathResist_27180()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidHammerOfWrathResist_27180",
+    testCategory,
     27180,
     "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventSelfAvoidHammerOfWrathImmune_27180()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidHammerOfWrathImmune_27180",
+    testCategory,
     27180,
     "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventSelfAvoidHammerOfWrathReflect_27180()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidHammerOfWrathReflect_27180",
+    testCategory,
     27180,
     "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_27180()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventSelfAvoidHammerOfWrathAbsorbIgnored_27180",
+    testCategory,
     27180,
     "Hammer of Wrath",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end

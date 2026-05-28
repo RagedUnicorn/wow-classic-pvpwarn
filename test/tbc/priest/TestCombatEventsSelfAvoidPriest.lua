@@ -111,6 +111,7 @@ function me.TestCombatEventSelfAvoidDevouringPlagueDodge_25467()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventSelfAvoidDevouringPlagueBlock_25467()
   relevantSelf(
     "TestCombatEventSelfAvoidDevouringPlagueBlock_25467",
@@ -119,6 +120,7 @@ function me.TestCombatEventSelfAvoidDevouringPlagueBlock_25467()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventSelfAvoidDevouringPlagueParry_25467()
   relevantSelf(
     "TestCombatEventSelfAvoidDevouringPlagueParry_25467",
@@ -127,6 +129,7 @@ function me.TestCombatEventSelfAvoidDevouringPlagueParry_25467()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventSelfAvoidDevouringPlagueMiss_25467()
   relevantSelf(
     "TestCombatEventSelfAvoidDevouringPlagueMiss_25467",
@@ -135,6 +138,7 @@ function me.TestCombatEventSelfAvoidDevouringPlagueMiss_25467()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventSelfAvoidDevouringPlagueResist_25467()
   relevantSelf(
     "TestCombatEventSelfAvoidDevouringPlagueResist_25467",
@@ -143,6 +147,7 @@ function me.TestCombatEventSelfAvoidDevouringPlagueResist_25467()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventSelfAvoidDevouringPlagueImmune_25467()
   relevantSelf(
     "TestCombatEventSelfAvoidDevouringPlagueImmune_25467",
@@ -151,6 +156,7 @@ function me.TestCombatEventSelfAvoidDevouringPlagueImmune_25467()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventSelfAvoidDevouringPlagueReflect_25467()
   relevantSelf(
     "TestCombatEventSelfAvoidDevouringPlagueReflect_25467",
@@ -159,6 +165,7 @@ function me.TestCombatEventSelfAvoidDevouringPlagueReflect_25467()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidDevouringPlagueAbsorbIgnored_25467()
   irrelevantSelf(
     "TestCombatEventSelfAvoidDevouringPlagueAbsorbIgnored_25467",
@@ -173,36 +180,43 @@ function me.TestCombatEventSelfAvoidManaBurnDodge_25379()
     "TestCombatEventSelfAvoidManaBurnDodge_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnBlock_25379()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnBlock_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnParry_25379()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnParry_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnMiss_25379()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnMiss_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnResist_25379()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnResist_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnImmune_25379()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnImmune_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnReflect_25379()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnReflect_25379", 25379, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnAbsorbIgnored_25379()
   irrelevantSelf(
     "TestCombatEventSelfAvoidManaBurnAbsorbIgnored_25379",
@@ -217,36 +231,43 @@ function me.TestCombatEventSelfAvoidManaBurnDodge_25380()
     "TestCombatEventSelfAvoidManaBurnDodge_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnBlock_25380()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnBlock_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnParry_25380()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnParry_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnMiss_25380()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnMiss_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnResist_25380()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnResist_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnImmune_25380()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnImmune_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnReflect_25380()
   relevantSelf(
     "TestCombatEventSelfAvoidManaBurnReflect_25380", 25380, "Mana Burn", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidManaBurnAbsorbIgnored_25380()
   irrelevantSelf(
     "TestCombatEventSelfAvoidManaBurnAbsorbIgnored_25380",
@@ -264,6 +285,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainDodge_25367()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainBlock_25367()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainBlock_25367",
@@ -272,6 +294,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainBlock_25367()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainParry_25367()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainParry_25367",
@@ -280,6 +303,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainParry_25367()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainMiss_25367()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainMiss_25367",
@@ -288,6 +312,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainMiss_25367()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainResist_25367()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainResist_25367",
@@ -296,6 +321,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainResist_25367()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainImmune_25367()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainImmune_25367",
@@ -304,6 +330,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainImmune_25367()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainReflect_25367()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainReflect_25367",
@@ -312,6 +339,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainReflect_25367()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25367()
   irrelevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25367",
@@ -329,6 +357,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainDodge_25368()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainBlock_25368()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainBlock_25368",
@@ -337,6 +366,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainBlock_25368()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainParry_25368()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainParry_25368",
@@ -345,6 +375,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainParry_25368()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainMiss_25368()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainMiss_25368",
@@ -353,6 +384,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainMiss_25368()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainResist_25368()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainResist_25368",
@@ -361,6 +393,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainResist_25368()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainImmune_25368()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainImmune_25368",
@@ -369,6 +402,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainImmune_25368()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainReflect_25368()
   relevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainReflect_25368",
@@ -377,6 +411,7 @@ function me.TestCombatEventSelfAvoidShadowWordPainReflect_25368()
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25368()
   irrelevantSelf(
     "TestCombatEventSelfAvoidShadowWordPainAbsorbIgnored_25368",

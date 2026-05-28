@@ -46,149 +46,293 @@ function me.Test(completionCallback)
   end)
 end
 
-local function rel(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissed(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-local function irr(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissedIrrelevant(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-
-local entries = {
-  { id = 25454, fnName = "EarthShock", spellName = "Earth Shock" },
-  { id = 25457, fnName = "FlameShock", spellName = "Flame Shock" },
-  { id = 25464, fnName = "FrostShock", spellName = "Frost Shock" },
-}
-
 function me.CollectTestCases()
-  for _, e in ipairs(entries) do
-    local prefix = "TestCombatEventSelfAvoid" .. e.fnName
-    local suffix = "_" .. e.id
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Dodge" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Block" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Parry" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Miss" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Resist" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Immune" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Reflect" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "AbsorbIgnored" .. suffix])
-  end
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEarthShockDodge_25454)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEarthShockBlock_25454)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEarthShockParry_25454)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEarthShockMiss_25454)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEarthShockResist_25454)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEarthShockImmune_25454)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEarthShockReflect_25454)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEarthShockAbsorbIgnored_25454)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFlameShockDodge_25457)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFlameShockBlock_25457)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFlameShockParry_25457)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFlameShockMiss_25457)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFlameShockResist_25457)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFlameShockImmune_25457)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFlameShockReflect_25457)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFlameShockAbsorbIgnored_25457)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFrostShockDodge_25464)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFrostShockBlock_25464)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFrostShockParry_25464)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFrostShockMiss_25464)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFrostShockResist_25464)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFrostShockImmune_25464)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFrostShockReflect_25464)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFrostShockAbsorbIgnored_25464)
 end
 
 function me.TestCombatEventSelfAvoidEarthShockDodge_25454()
-  rel("TestCombatEventSelfAvoidEarthShockDodge_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventSelfAvoidEarthShockBlock_25454()
-  rel("TestCombatEventSelfAvoidEarthShockBlock_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventSelfAvoidEarthShockParry_25454()
-  rel("TestCombatEventSelfAvoidEarthShockParry_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventSelfAvoidEarthShockMiss_25454()
-  rel("TestCombatEventSelfAvoidEarthShockMiss_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidEarthShockResist_25454()
-  rel(
-    "TestCombatEventSelfAvoidEarthShockResist_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
-  )
-end
-function me.TestCombatEventSelfAvoidEarthShockImmune_25454()
-  rel(
-    "TestCombatEventSelfAvoidEarthShockImmune_25454", 25454, "Earth Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
-  )
-end
-function me.TestCombatEventSelfAvoidEarthShockReflect_25454()
-  rel(
-    "TestCombatEventSelfAvoidEarthShockReflect_25454",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidEarthShockDodge_25454",
+    testCategory,
     25454,
     "Earth Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidEarthShockBlock_25454()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidEarthShockBlock_25454",
+    testCategory,
+    25454,
+    "Earth Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidEarthShockParry_25454()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidEarthShockParry_25454",
+    testCategory,
+    25454,
+    "Earth Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidEarthShockMiss_25454()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidEarthShockMiss_25454",
+    testCategory,
+    25454,
+    "Earth Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidEarthShockResist_25454()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidEarthShockResist_25454",
+    testCategory,
+    25454,
+    "Earth Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidEarthShockImmune_25454()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidEarthShockImmune_25454",
+    testCategory,
+    25454,
+    "Earth Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidEarthShockReflect_25454()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidEarthShockReflect_25454",
+    testCategory,
+    25454,
+    "Earth Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidEarthShockAbsorbIgnored_25454()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventSelfAvoidEarthShockAbsorbIgnored_25454",
+    testCategory,
     25454,
     "Earth Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventSelfAvoidFlameShockDodge_25457()
-  rel("TestCombatEventSelfAvoidFlameShockDodge_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventSelfAvoidFlameShockBlock_25457()
-  rel("TestCombatEventSelfAvoidFlameShockBlock_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventSelfAvoidFlameShockParry_25457()
-  rel("TestCombatEventSelfAvoidFlameShockParry_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventSelfAvoidFlameShockMiss_25457()
-  rel("TestCombatEventSelfAvoidFlameShockMiss_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidFlameShockResist_25457()
-  rel(
-    "TestCombatEventSelfAvoidFlameShockResist_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
-  )
-end
-function me.TestCombatEventSelfAvoidFlameShockImmune_25457()
-  rel(
-    "TestCombatEventSelfAvoidFlameShockImmune_25457", 25457, "Flame Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
-  )
-end
-function me.TestCombatEventSelfAvoidFlameShockReflect_25457()
-  rel(
-    "TestCombatEventSelfAvoidFlameShockReflect_25457",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFlameShockDodge_25457",
+    testCategory,
     25457,
     "Flame Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidFlameShockBlock_25457()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFlameShockBlock_25457",
+    testCategory,
+    25457,
+    "Flame Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidFlameShockParry_25457()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFlameShockParry_25457",
+    testCategory,
+    25457,
+    "Flame Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidFlameShockMiss_25457()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFlameShockMiss_25457",
+    testCategory,
+    25457,
+    "Flame Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidFlameShockResist_25457()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFlameShockResist_25457",
+    testCategory,
+    25457,
+    "Flame Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidFlameShockImmune_25457()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFlameShockImmune_25457",
+    testCategory,
+    25457,
+    "Flame Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidFlameShockReflect_25457()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFlameShockReflect_25457",
+    testCategory,
+    25457,
+    "Flame Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidFlameShockAbsorbIgnored_25457()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventSelfAvoidFlameShockAbsorbIgnored_25457",
+    testCategory,
     25457,
     "Flame Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventSelfAvoidFrostShockDodge_25464()
-  rel("TestCombatEventSelfAvoidFrostShockDodge_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventSelfAvoidFrostShockBlock_25464()
-  rel("TestCombatEventSelfAvoidFrostShockBlock_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventSelfAvoidFrostShockParry_25464()
-  rel("TestCombatEventSelfAvoidFrostShockParry_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventSelfAvoidFrostShockMiss_25464()
-  rel("TestCombatEventSelfAvoidFrostShockMiss_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidFrostShockResist_25464()
-  rel(
-    "TestCombatEventSelfAvoidFrostShockResist_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
-  )
-end
-function me.TestCombatEventSelfAvoidFrostShockImmune_25464()
-  rel(
-    "TestCombatEventSelfAvoidFrostShockImmune_25464", 25464, "Frost Shock", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
-  )
-end
-function me.TestCombatEventSelfAvoidFrostShockReflect_25464()
-  rel(
-    "TestCombatEventSelfAvoidFrostShockReflect_25464",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostShockDodge_25464",
+    testCategory,
     25464,
     "Frost Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostShockBlock_25464()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostShockBlock_25464",
+    testCategory,
+    25464,
+    "Frost Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostShockParry_25464()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostShockParry_25464",
+    testCategory,
+    25464,
+    "Frost Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostShockMiss_25464()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostShockMiss_25464",
+    testCategory,
+    25464,
+    "Frost Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostShockResist_25464()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostShockResist_25464",
+    testCategory,
+    25464,
+    "Frost Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostShockImmune_25464()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostShockImmune_25464",
+    testCategory,
+    25464,
+    "Frost Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostShockReflect_25464()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostShockReflect_25464",
+    testCategory,
+    25464,
+    "Frost Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidFrostShockAbsorbIgnored_25464()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventSelfAvoidFrostShockAbsorbIgnored_25464",
+    testCategory,
     25464,
     "Frost Shock",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end

@@ -166,6 +166,63 @@ function me.GetOverlay()
         [38768] = { refId = 1769 },  -- Kick rank 5
         [26669] = { refId = 5277 },  -- Evasion rank 2
         [26889] = { refId = 1857 },  -- Vanish rank 3
+        [36554] = {
+          name = "Shadowstep",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "shadowstep",
+          spellIcon = "ability_rogue_shadowstep",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 36554, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [26679] = {
+          name = "Deadly Throw",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "deadly_throw",
+          spellIcon = "inv_throwingknife_06",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 26679, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [31224] = {
+          name = "Cloak of Shadows",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "cloak_of_shadows",
+          spellIcon = "spell_shadow_nethercloak",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 31224, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [5938] = {
+          name = "Shiv",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "shiv",
+          spellIcon = "inv_throwingknife_04",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 5938, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     mage = {

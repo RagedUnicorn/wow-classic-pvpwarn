@@ -46,15 +46,6 @@ function me.Test(completionCallback)
   end)
 end
 
-local function rel(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissed(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-local function irr(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissedIrrelevant(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeathCoilDodge_27223)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeathCoilBlock_27223)
@@ -67,33 +58,89 @@ function me.CollectTestCases()
 end
 
 function me.TestCombatEventSelfAvoidDeathCoilDodge_27223()
-  rel("TestCombatEventSelfAvoidDeathCoilDodge_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventSelfAvoidDeathCoilBlock_27223()
-  rel("TestCombatEventSelfAvoidDeathCoilBlock_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventSelfAvoidDeathCoilParry_27223()
-  rel("TestCombatEventSelfAvoidDeathCoilParry_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventSelfAvoidDeathCoilMiss_27223()
-  rel("TestCombatEventSelfAvoidDeathCoilMiss_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidDeathCoilResist_27223()
-  rel("TestCombatEventSelfAvoidDeathCoilResist_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
-end
-function me.TestCombatEventSelfAvoidDeathCoilImmune_27223()
-  rel("TestCombatEventSelfAvoidDeathCoilImmune_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
-end
-function me.TestCombatEventSelfAvoidDeathCoilReflect_27223()
-  rel(
-    "TestCombatEventSelfAvoidDeathCoilReflect_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
-  )
-end
-function me.TestCombatEventSelfAvoidDeathCoilAbsorbIgnored_27223()
-  irr(
-    "TestCombatEventSelfAvoidDeathCoilAbsorbIgnored_27223",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeathCoilDodge_27223",
+    testCategory,
     27223,
     "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeathCoilBlock_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeathCoilBlock_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeathCoilParry_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeathCoilParry_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeathCoilMiss_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeathCoilMiss_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeathCoilResist_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeathCoilResist_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeathCoilImmune_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeathCoilImmune_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeathCoilReflect_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeathCoilReflect_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeathCoilAbsorbIgnored_27223()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidDeathCoilAbsorbIgnored_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end

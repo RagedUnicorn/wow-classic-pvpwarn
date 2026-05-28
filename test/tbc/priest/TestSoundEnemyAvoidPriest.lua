@@ -54,21 +54,41 @@ function me.CollectTestCases()
 end
 
 function me.TestSoundEnemyAvoidDevouringPlague_25467()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidDevouringPlague_25467", testCategory, 25467)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidDevouringPlague_25467",
+    testCategory,
+    25467
+  )
 end
 
 function me.TestSoundEnemyAvoidManaBurn_25379()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidManaBurn_25379", testCategory, 25379)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidManaBurn_25379",
+    testCategory,
+    25379
+  )
 end
 
 function me.TestSoundEnemyAvoidManaBurn_25380()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidManaBurn_25380", testCategory, 25380)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidManaBurn_25380",
+    testCategory,
+    25380
+  )
 end
 
 function me.TestSoundEnemyAvoidShadowWordPain_25367()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidShadowWordPain_25367", testCategory, 25367)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidShadowWordPain_25367",
+    testCategory,
+    25367
+  )
 end
 
 function me.TestSoundEnemyAvoidShadowWordPain_25368()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidShadowWordPain_25368", testCategory, 25368)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidShadowWordPain_25368",
+    testCategory,
+    25368
+  )
 end

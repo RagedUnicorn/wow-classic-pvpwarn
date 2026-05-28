@@ -46,226 +46,677 @@ function me.Test(completionCallback)
   end)
 end
 
-local function rel(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissed(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-local function irr(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissedIrrelevant(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-
-local entries = {
-  { id = 38768, spellName = "Kick", fnName = "Kick" },
-  { id = 38764, spellName = "Gouge", fnName = "Gouge" },
-  { id = 26866, spellName = "Expose Armor", fnName = "ExposeArmor" },
-  { id = 26839, spellName = "Garrote", fnName = "Garrote" },
-  { id = 26884, spellName = "Garrote", fnName = "Garrote" },
-  { id = 26867, spellName = "Rupture", fnName = "Rupture" },
-}
-
 function me.CollectTestCases()
-  for _, entry in ipairs(entries) do
-    local prefix = "TestCombatEventSelfAvoid" .. entry.fnName
-    local suffix = "_" .. entry.id
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Dodge" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Block" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Parry" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Miss" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Resist" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Immune" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Reflect" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "AbsorbIgnored" .. suffix])
-  end
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidKickDodge_38768)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidKickBlock_38768)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidKickParry_38768)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidKickMiss_38768)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidKickResist_38768)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidKickImmune_38768)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidKickReflect_38768)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidKickAbsorbIgnored_38768)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGougeDodge_38764)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGougeBlock_38764)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGougeParry_38764)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGougeMiss_38764)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGougeResist_38764)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGougeImmune_38764)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGougeReflect_38764)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGougeAbsorbIgnored_38764)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidExposeArmorDodge_26866)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidExposeArmorBlock_26866)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidExposeArmorParry_26866)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidExposeArmorMiss_26866)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidExposeArmorResist_26866)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidExposeArmorImmune_26866)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidExposeArmorReflect_26866)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidExposeArmorAbsorbIgnored_26866)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteDodge_26839)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteBlock_26839)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteParry_26839)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteMiss_26839)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteResist_26839)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteImmune_26839)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteReflect_26839)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteAbsorbIgnored_26839)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteDodge_26884)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteBlock_26884)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteParry_26884)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteMiss_26884)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteResist_26884)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteImmune_26884)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteReflect_26884)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidGarroteAbsorbIgnored_26884)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidRuptureDodge_26867)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidRuptureBlock_26867)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidRuptureParry_26867)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidRuptureMiss_26867)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidRuptureResist_26867)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidRuptureImmune_26867)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidRuptureReflect_26867)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidRuptureAbsorbIgnored_26867)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeadlyThrowDodge_26679)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeadlyThrowBlock_26679)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeadlyThrowParry_26679)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeadlyThrowMiss_26679)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeadlyThrowResist_26679)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeadlyThrowImmune_26679)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeadlyThrowReflect_26679)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeadlyThrowAbsorbIgnored_26679)
 end
 
 function me.TestCombatEventSelfAvoidKickDodge_38768()
-  rel("TestCombatEventSelfAvoidKickDodge_38768", 38768, "Kick", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidKickDodge_38768",
+    testCategory,
+    38768,
+    "Kick",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
 end
+
 function me.TestCombatEventSelfAvoidKickBlock_38768()
-  rel("TestCombatEventSelfAvoidKickBlock_38768", 38768, "Kick", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidKickBlock_38768",
+    testCategory,
+    38768,
+    "Kick",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
 end
+
 function me.TestCombatEventSelfAvoidKickParry_38768()
-  rel("TestCombatEventSelfAvoidKickParry_38768", 38768, "Kick", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidKickParry_38768",
+    testCategory,
+    38768,
+    "Kick",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
 end
+
 function me.TestCombatEventSelfAvoidKickMiss_38768()
-  rel("TestCombatEventSelfAvoidKickMiss_38768", 38768, "Kick", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidKickMiss_38768",
+    testCategory,
+    38768,
+    "Kick",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
 end
+
 function me.TestCombatEventSelfAvoidKickResist_38768()
-  rel("TestCombatEventSelfAvoidKickResist_38768", 38768, "Kick", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
-end
-function me.TestCombatEventSelfAvoidKickImmune_38768()
-  rel("TestCombatEventSelfAvoidKickImmune_38768", 38768, "Kick", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
-end
-function me.TestCombatEventSelfAvoidKickReflect_38768()
-  rel("TestCombatEventSelfAvoidKickReflect_38768", 38768, "Kick", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
-end
-function me.TestCombatEventSelfAvoidKickAbsorbIgnored_38768()
-  irr("TestCombatEventSelfAvoidKickAbsorbIgnored_38768", 38768, "Kick", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
-end
-
-function me.TestCombatEventSelfAvoidGougeDodge_38764()
-  rel("TestCombatEventSelfAvoidGougeDodge_38764", 38764, "Gouge", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventSelfAvoidGougeBlock_38764()
-  rel("TestCombatEventSelfAvoidGougeBlock_38764", 38764, "Gouge", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventSelfAvoidGougeParry_38764()
-  rel("TestCombatEventSelfAvoidGougeParry_38764", 38764, "Gouge", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventSelfAvoidGougeMiss_38764()
-  rel("TestCombatEventSelfAvoidGougeMiss_38764", 38764, "Gouge", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidGougeResist_38764()
-  rel("TestCombatEventSelfAvoidGougeResist_38764", 38764, "Gouge", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
-end
-function me.TestCombatEventSelfAvoidGougeImmune_38764()
-  rel("TestCombatEventSelfAvoidGougeImmune_38764", 38764, "Gouge", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
-end
-function me.TestCombatEventSelfAvoidGougeReflect_38764()
-  rel("TestCombatEventSelfAvoidGougeReflect_38764", 38764, "Gouge", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
-end
-function me.TestCombatEventSelfAvoidGougeAbsorbIgnored_38764()
-  irr("TestCombatEventSelfAvoidGougeAbsorbIgnored_38764", 38764, "Gouge", RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB)
-end
-
-function me.TestCombatEventSelfAvoidExposeArmorDodge_26866()
-  rel(
-    "TestCombatEventSelfAvoidExposeArmorDodge_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
-  )
-end
-function me.TestCombatEventSelfAvoidExposeArmorBlock_26866()
-  rel(
-    "TestCombatEventSelfAvoidExposeArmorBlock_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
-  )
-end
-function me.TestCombatEventSelfAvoidExposeArmorParry_26866()
-  rel(
-    "TestCombatEventSelfAvoidExposeArmorParry_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
-  )
-end
-function me.TestCombatEventSelfAvoidExposeArmorMiss_26866()
-  rel("TestCombatEventSelfAvoidExposeArmorMiss_26866", 26866, "Expose Armor", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidExposeArmorResist_26866()
-  rel(
-    "TestCombatEventSelfAvoidExposeArmorResist_26866",
-    26866,
-    "Expose Armor",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidKickResist_38768",
+    testCategory,
+    38768,
+    "Kick",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
-function me.TestCombatEventSelfAvoidExposeArmorImmune_26866()
-  rel(
-    "TestCombatEventSelfAvoidExposeArmorImmune_26866",
-    26866,
-    "Expose Armor",
+
+function me.TestCombatEventSelfAvoidKickImmune_38768()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidKickImmune_38768",
+    testCategory,
+    38768,
+    "Kick",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
-function me.TestCombatEventSelfAvoidExposeArmorReflect_26866()
-  rel(
-    "TestCombatEventSelfAvoidExposeArmorReflect_26866",
-    26866,
-    "Expose Armor",
+
+function me.TestCombatEventSelfAvoidKickReflect_38768()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidKickReflect_38768",
+    testCategory,
+    38768,
+    "Kick",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
-function me.TestCombatEventSelfAvoidExposeArmorAbsorbIgnored_26866()
-  irr(
-    "TestCombatEventSelfAvoidExposeArmorAbsorbIgnored_26866",
+
+function me.TestCombatEventSelfAvoidKickAbsorbIgnored_38768()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidKickAbsorbIgnored_38768",
+    testCategory,
+    38768,
+    "Kick",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventSelfAvoidGougeDodge_38764()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGougeDodge_38764",
+    testCategory,
+    38764,
+    "Gouge",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidGougeBlock_38764()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGougeBlock_38764",
+    testCategory,
+    38764,
+    "Gouge",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidGougeParry_38764()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGougeParry_38764",
+    testCategory,
+    38764,
+    "Gouge",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidGougeMiss_38764()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGougeMiss_38764",
+    testCategory,
+    38764,
+    "Gouge",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidGougeResist_38764()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGougeResist_38764",
+    testCategory,
+    38764,
+    "Gouge",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidGougeImmune_38764()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGougeImmune_38764",
+    testCategory,
+    38764,
+    "Gouge",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidGougeReflect_38764()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGougeReflect_38764",
+    testCategory,
+    38764,
+    "Gouge",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidGougeAbsorbIgnored_38764()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidGougeAbsorbIgnored_38764",
+    testCategory,
+    38764,
+    "Gouge",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventSelfAvoidExposeArmorDodge_26866()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidExposeArmorDodge_26866",
+    testCategory,
     26866,
     "Expose Armor",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidExposeArmorBlock_26866()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidExposeArmorBlock_26866",
+    testCategory,
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidExposeArmorParry_26866()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidExposeArmorParry_26866",
+    testCategory,
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidExposeArmorMiss_26866()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidExposeArmorMiss_26866",
+    testCategory,
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidExposeArmorResist_26866()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidExposeArmorResist_26866",
+    testCategory,
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidExposeArmorImmune_26866()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidExposeArmorImmune_26866",
+    testCategory,
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidExposeArmorReflect_26866()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidExposeArmorReflect_26866",
+    testCategory,
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidExposeArmorAbsorbIgnored_26866()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidExposeArmorAbsorbIgnored_26866",
+    testCategory,
+    26866,
+    "Expose Armor",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventSelfAvoidGarroteDodge_26839()
-  rel("TestCombatEventSelfAvoidGarroteDodge_26839", 26839, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventSelfAvoidGarroteBlock_26839()
-  rel("TestCombatEventSelfAvoidGarroteBlock_26839", 26839, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventSelfAvoidGarroteParry_26839()
-  rel("TestCombatEventSelfAvoidGarroteParry_26839", 26839, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventSelfAvoidGarroteMiss_26839()
-  rel("TestCombatEventSelfAvoidGarroteMiss_26839", 26839, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidGarroteResist_26839()
-  rel("TestCombatEventSelfAvoidGarroteResist_26839", 26839, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
-end
-function me.TestCombatEventSelfAvoidGarroteImmune_26839()
-  rel("TestCombatEventSelfAvoidGarroteImmune_26839", 26839, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
-end
-function me.TestCombatEventSelfAvoidGarroteReflect_26839()
-  rel("TestCombatEventSelfAvoidGarroteReflect_26839", 26839, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
-end
-function me.TestCombatEventSelfAvoidGarroteAbsorbIgnored_26839()
-  irr(
-    "TestCombatEventSelfAvoidGarroteAbsorbIgnored_26839",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteDodge_26839",
+    testCategory,
     26839,
     "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteBlock_26839()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteBlock_26839",
+    testCategory,
+    26839,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteParry_26839()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteParry_26839",
+    testCategory,
+    26839,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteMiss_26839()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteMiss_26839",
+    testCategory,
+    26839,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteResist_26839()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteResist_26839",
+    testCategory,
+    26839,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteImmune_26839()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteImmune_26839",
+    testCategory,
+    26839,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteReflect_26839()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteReflect_26839",
+    testCategory,
+    26839,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteAbsorbIgnored_26839()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidGarroteAbsorbIgnored_26839",
+    testCategory,
+    26839,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventSelfAvoidGarroteDodge_26884()
-  rel("TestCombatEventSelfAvoidGarroteDodge_26884", 26884, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventSelfAvoidGarroteBlock_26884()
-  rel("TestCombatEventSelfAvoidGarroteBlock_26884", 26884, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventSelfAvoidGarroteParry_26884()
-  rel("TestCombatEventSelfAvoidGarroteParry_26884", 26884, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventSelfAvoidGarroteMiss_26884()
-  rel("TestCombatEventSelfAvoidGarroteMiss_26884", 26884, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidGarroteResist_26884()
-  rel("TestCombatEventSelfAvoidGarroteResist_26884", 26884, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
-end
-function me.TestCombatEventSelfAvoidGarroteImmune_26884()
-  rel("TestCombatEventSelfAvoidGarroteImmune_26884", 26884, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
-end
-function me.TestCombatEventSelfAvoidGarroteReflect_26884()
-  rel("TestCombatEventSelfAvoidGarroteReflect_26884", 26884, "Garrote", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
-end
-function me.TestCombatEventSelfAvoidGarroteAbsorbIgnored_26884()
-  irr(
-    "TestCombatEventSelfAvoidGarroteAbsorbIgnored_26884",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteDodge_26884",
+    testCategory,
     26884,
     "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteBlock_26884()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteBlock_26884",
+    testCategory,
+    26884,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteParry_26884()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteParry_26884",
+    testCategory,
+    26884,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteMiss_26884()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteMiss_26884",
+    testCategory,
+    26884,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteResist_26884()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteResist_26884",
+    testCategory,
+    26884,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteImmune_26884()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteImmune_26884",
+    testCategory,
+    26884,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteReflect_26884()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidGarroteReflect_26884",
+    testCategory,
+    26884,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidGarroteAbsorbIgnored_26884()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidGarroteAbsorbIgnored_26884",
+    testCategory,
+    26884,
+    "Garrote",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventSelfAvoidRuptureDodge_26867()
-  rel("TestCombatEventSelfAvoidRuptureDodge_26867", 26867, "Rupture", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventSelfAvoidRuptureBlock_26867()
-  rel("TestCombatEventSelfAvoidRuptureBlock_26867", 26867, "Rupture", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventSelfAvoidRuptureParry_26867()
-  rel("TestCombatEventSelfAvoidRuptureParry_26867", 26867, "Rupture", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventSelfAvoidRuptureMiss_26867()
-  rel("TestCombatEventSelfAvoidRuptureMiss_26867", 26867, "Rupture", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidRuptureResist_26867()
-  rel("TestCombatEventSelfAvoidRuptureResist_26867", 26867, "Rupture", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
-end
-function me.TestCombatEventSelfAvoidRuptureImmune_26867()
-  rel("TestCombatEventSelfAvoidRuptureImmune_26867", 26867, "Rupture", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
-end
-function me.TestCombatEventSelfAvoidRuptureReflect_26867()
-  rel("TestCombatEventSelfAvoidRuptureReflect_26867", 26867, "Rupture", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT)
-end
-function me.TestCombatEventSelfAvoidRuptureAbsorbIgnored_26867()
-  irr(
-    "TestCombatEventSelfAvoidRuptureAbsorbIgnored_26867",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidRuptureDodge_26867",
+    testCategory,
     26867,
     "Rupture",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidRuptureBlock_26867()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidRuptureBlock_26867",
+    testCategory,
+    26867,
+    "Rupture",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidRuptureParry_26867()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidRuptureParry_26867",
+    testCategory,
+    26867,
+    "Rupture",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidRuptureMiss_26867()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidRuptureMiss_26867",
+    testCategory,
+    26867,
+    "Rupture",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidRuptureResist_26867()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidRuptureResist_26867",
+    testCategory,
+    26867,
+    "Rupture",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidRuptureImmune_26867()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidRuptureImmune_26867",
+    testCategory,
+    26867,
+    "Rupture",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidRuptureReflect_26867()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidRuptureReflect_26867",
+    testCategory,
+    26867,
+    "Rupture",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidRuptureAbsorbIgnored_26867()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidRuptureAbsorbIgnored_26867",
+    testCategory,
+    26867,
+    "Rupture",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeadlyThrowDodge_26679()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeadlyThrowDodge_26679",
+    testCategory,
+    26679,
+    "Deadly Throw",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeadlyThrowBlock_26679()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeadlyThrowBlock_26679",
+    testCategory,
+    26679,
+    "Deadly Throw",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeadlyThrowParry_26679()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeadlyThrowParry_26679",
+    testCategory,
+    26679,
+    "Deadly Throw",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeadlyThrowMiss_26679()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeadlyThrowMiss_26679",
+    testCategory,
+    26679,
+    "Deadly Throw",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeadlyThrowResist_26679()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeadlyThrowResist_26679",
+    testCategory,
+    26679,
+    "Deadly Throw",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeadlyThrowImmune_26679()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeadlyThrowImmune_26679",
+    testCategory,
+    26679,
+    "Deadly Throw",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeadlyThrowReflect_26679()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidDeadlyThrowReflect_26679",
+    testCategory,
+    26679,
+    "Deadly Throw",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidDeadlyThrowAbsorbIgnored_26679()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidDeadlyThrowAbsorbIgnored_26679",
+    testCategory,
+    26679,
+    "Deadly Throw",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end

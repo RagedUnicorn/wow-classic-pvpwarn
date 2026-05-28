@@ -28,30 +28,20 @@ mod.testSoundSelfAvoidWarriorClassic = me
 
 me.tag = "TestSoundSelfAvoidWarriorClassic"
 
-local testGroupName = "SoundSelfAvoidWarrior"
 local testCategory = "warrior"
 
 function me.Test(completionCallback)
-  local isUsingSessionManager = false
-
-  -- Check if session manager is handling test group management
-  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
-    -- Session manager is active, just collect tests without managing test group
-    isUsingSessionManager = true
-    me.CollectTestCases()
-  else
-    -- No session manager, handle test group ourselves
-    mod.testReporter.StartTestGroup(testGroupName)
-    me.CollectTestCases()
+  if not mod.testSessionManager.IsSessionActive() then
+    mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: " ..
+      "/rgpvpw testselfsound warrior")
+    return
   end
 
+  me.CollectTestCases()
+
   mod.testReporter.PlayTestQueueWithDelay(function()
-    if not isUsingSessionManager then
-      mod.testReporter.StopTestGroup(completionCallback)
-    else
-      if type(completionCallback) == "function" then
-        completionCallback()
-      end
+    if type(completionCallback) == "function" then
+      completionCallback()
     end
   end)
 end

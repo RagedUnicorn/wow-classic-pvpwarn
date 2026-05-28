@@ -52,23 +52,61 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidGarrote_26839)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidGarrote_26884)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidRupture_26867)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSelfAvoidDeadlyThrow_26679)
 end
 
 function me.TestSoundSelfAvoidKick_38768()
-  mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidKick_38768", testCategory, 38768)
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidKick_38768",
+    testCategory,
+    38768
+  )
 end
+
 function me.TestSoundSelfAvoidGouge_38764()
-  mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidGouge_38764", testCategory, 38764)
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidGouge_38764",
+    testCategory,
+    38764
+  )
 end
+
 function me.TestSoundSelfAvoidExposeArmor_26866()
-  mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidExposeArmor_26866", testCategory, 26866)
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidExposeArmor_26866",
+    testCategory,
+    26866
+  )
 end
+
 function me.TestSoundSelfAvoidGarrote_26839()
-  mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidGarrote_26839", testCategory, 26839)
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidGarrote_26839",
+    testCategory,
+    26839
+  )
 end
+
 function me.TestSoundSelfAvoidGarrote_26884()
-  mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidGarrote_26884", testCategory, 26884)
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidGarrote_26884",
+    testCategory,
+    26884
+  )
 end
+
 function me.TestSoundSelfAvoidRupture_26867()
-  mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidRupture_26867", testCategory, 26867)
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidRupture_26867",
+    testCategory,
+    26867
+  )
+end
+
+function me.TestSoundSelfAvoidDeadlyThrow_26679()
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidDeadlyThrow_26679",
+    testCategory,
+    26679
+  )
 end

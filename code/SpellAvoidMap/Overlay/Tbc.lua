@@ -96,6 +96,17 @@ function me.GetOverlay()
         [26839] = { refId = 11290 },  -- Garrote rank 7
         [26884] = { refId = 11290 },  -- Garrote rank 8
         [26867] = { refId = 11275 },  -- Rupture rank 7
+        [26679] = {
+          name = "Deadly Throw",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "deadly_throw",
+          spellIcon = "inv_throwingknife_06",
+          self_avoid = true,
+          enemy_avoid = true,
+          allRanks = {
+            { spellId = 26679, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     mage = {

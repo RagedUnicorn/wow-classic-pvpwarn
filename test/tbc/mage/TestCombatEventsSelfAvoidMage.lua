@@ -46,15 +46,6 @@ function me.Test(completionCallback)
   end)
 end
 
-local function rel(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissed(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-local function irr(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissedIrrelevant(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFrostNovaDodge_27088)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFrostNovaBlock_27088)
@@ -75,84 +66,177 @@ function me.CollectTestCases()
 end
 
 function me.TestCombatEventSelfAvoidFrostNovaDodge_27088()
-  rel("TestCombatEventSelfAvoidFrostNovaDodge_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventSelfAvoidFrostNovaBlock_27088()
-  rel("TestCombatEventSelfAvoidFrostNovaBlock_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventSelfAvoidFrostNovaParry_27088()
-  rel("TestCombatEventSelfAvoidFrostNovaParry_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventSelfAvoidFrostNovaMiss_27088()
-  rel("TestCombatEventSelfAvoidFrostNovaMiss_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidFrostNovaResist_27088()
-  rel("TestCombatEventSelfAvoidFrostNovaResist_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST)
-end
-function me.TestCombatEventSelfAvoidFrostNovaImmune_27088()
-  rel("TestCombatEventSelfAvoidFrostNovaImmune_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE)
-end
-function me.TestCombatEventSelfAvoidFrostNovaReflect_27088()
-  rel(
-    "TestCombatEventSelfAvoidFrostNovaReflect_27088", 27088, "Frost Nova", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
-  )
-end
-function me.TestCombatEventSelfAvoidFrostNovaAbsorbIgnored_27088()
-  irr(
-    "TestCombatEventSelfAvoidFrostNovaAbsorbIgnored_27088",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostNovaDodge_27088",
+    testCategory,
     27088,
     "Frost Nova",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostNovaBlock_27088()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostNovaBlock_27088",
+    testCategory,
+    27088,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostNovaParry_27088()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostNovaParry_27088",
+    testCategory,
+    27088,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostNovaMiss_27088()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostNovaMiss_27088",
+    testCategory,
+    27088,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostNovaResist_27088()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostNovaResist_27088",
+    testCategory,
+    27088,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostNovaImmune_27088()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostNovaImmune_27088",
+    testCategory,
+    27088,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostNovaReflect_27088()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFrostNovaReflect_27088",
+    testCategory,
+    27088,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidFrostNovaAbsorbIgnored_27088()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidFrostNovaAbsorbIgnored_27088",
+    testCategory,
+    27088,
+    "Frost Nova",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventSelfAvoidConeOfColdDodge_27087()
-  rel(
-    "TestCombatEventSelfAvoidConeOfColdDodge_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
-  )
-end
-function me.TestCombatEventSelfAvoidConeOfColdBlock_27087()
-  rel(
-    "TestCombatEventSelfAvoidConeOfColdBlock_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
-  )
-end
-function me.TestCombatEventSelfAvoidConeOfColdParry_27087()
-  rel(
-    "TestCombatEventSelfAvoidConeOfColdParry_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
-  )
-end
-function me.TestCombatEventSelfAvoidConeOfColdMiss_27087()
-  rel("TestCombatEventSelfAvoidConeOfColdMiss_27087", 27087, "Cone of Cold", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidConeOfColdResist_27087()
-  rel(
-    "TestCombatEventSelfAvoidConeOfColdResist_27087",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidConeOfColdDodge_27087",
+    testCategory,
     27087,
     "Cone of Cold",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidConeOfColdBlock_27087()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidConeOfColdBlock_27087",
+    testCategory,
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidConeOfColdParry_27087()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidConeOfColdParry_27087",
+    testCategory,
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidConeOfColdMiss_27087()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidConeOfColdMiss_27087",
+    testCategory,
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidConeOfColdResist_27087()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidConeOfColdResist_27087",
+    testCategory,
+    27087,
+    "Cone of Cold",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventSelfAvoidConeOfColdImmune_27087()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidConeOfColdImmune_27087",
+    testCategory,
     27087,
     "Cone of Cold",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventSelfAvoidConeOfColdReflect_27087()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidConeOfColdReflect_27087",
+    testCategory,
     27087,
     "Cone of Cold",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidConeOfColdAbsorbIgnored_27087()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventSelfAvoidConeOfColdAbsorbIgnored_27087",
+    testCategory,
     27087,
     "Cone of Cold",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end

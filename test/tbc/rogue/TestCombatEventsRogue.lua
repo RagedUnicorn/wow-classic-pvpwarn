@@ -50,6 +50,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEvasionApplied_26669)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEvasionRemoved_26669)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventVanishSuccess_26889)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowstepSuccess_36554)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventDeadlyThrowSuccess_26679)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCloakOfShadowsApplied_31224)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCloakOfShadowsRemoved_31224)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShivSuccess_5938)
 end
 
 function me.TestCombatEventKickSuccess_38768()
@@ -85,5 +90,50 @@ function me.TestCombatEventVanishSuccess_26889()
     testCategory,
     "Vanish",
     26889
+  )
+end
+
+function me.TestCombatEventShadowstepSuccess_36554()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShadowstepSuccess_36554",
+    testCategory,
+    "Shadowstep",
+    36554
+  )
+end
+
+function me.TestCombatEventDeadlyThrowSuccess_26679()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventDeadlyThrowSuccess_26679",
+    testCategory,
+    "Deadly Throw",
+    26679
+  )
+end
+
+function me.TestCombatEventCloakOfShadowsApplied_31224()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventCloakOfShadowsApplied_31224",
+    testCategory,
+    "Cloak of Shadows",
+    31224
+  )
+end
+
+function me.TestCombatEventCloakOfShadowsRemoved_31224()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventCloakOfShadowsRemoved_31224",
+    testCategory,
+    "Cloak of Shadows",
+    31224
+  )
+end
+
+function me.TestCombatEventShivSuccess_5938()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventShivSuccess_5938",
+    testCategory,
+    "Shiv",
+    5938
   )
 end

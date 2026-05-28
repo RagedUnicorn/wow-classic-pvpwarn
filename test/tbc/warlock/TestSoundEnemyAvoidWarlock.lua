@@ -50,5 +50,9 @@ function me.CollectTestCases()
 end
 
 function me.TestSoundEnemyAvoidDeathCoil_27223()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidDeathCoil_27223", testCategory, 27223)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidDeathCoil_27223",
+    testCategory,
+    27223
+  )
 end

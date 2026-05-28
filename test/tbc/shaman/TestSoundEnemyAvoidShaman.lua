@@ -52,11 +52,25 @@ function me.CollectTestCases()
 end
 
 function me.TestSoundEnemyAvoidEarthShock_25454()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidEarthShock_25454", testCategory, 25454)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidEarthShock_25454",
+    testCategory,
+    25454
+  )
 end
+
 function me.TestSoundEnemyAvoidFlameShock_25457()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidFlameShock_25457", testCategory, 25457)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidFlameShock_25457",
+    testCategory,
+    25457
+  )
 end
+
 function me.TestSoundEnemyAvoidFrostShock_25464()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidFrostShock_25464", testCategory, 25464)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidFrostShock_25464",
+    testCategory,
+    25464
+  )
 end

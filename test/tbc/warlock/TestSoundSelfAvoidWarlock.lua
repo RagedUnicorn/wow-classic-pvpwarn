@@ -50,5 +50,9 @@ function me.CollectTestCases()
 end
 
 function me.TestSoundSelfAvoidDeathCoil_27223()
-  mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidDeathCoil_27223", testCategory, 27223)
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidDeathCoil_27223",
+    testCategory,
+    27223
+  )
 end

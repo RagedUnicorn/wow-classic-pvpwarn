@@ -51,8 +51,17 @@ function me.CollectTestCases()
 end
 
 function me.TestSoundEnemyAvoidFrostNova_27088()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidFrostNova_27088", testCategory, 27088)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidFrostNova_27088",
+    testCategory,
+    27088
+  )
 end
+
 function me.TestSoundEnemyAvoidConeOfCold_27087()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidConeOfCold_27087", testCategory, 27087)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidConeOfCold_27087",
+    testCategory,
+    27087
+  )
 end

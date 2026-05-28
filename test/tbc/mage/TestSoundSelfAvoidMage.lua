@@ -51,8 +51,17 @@ function me.CollectTestCases()
 end
 
 function me.TestSoundSelfAvoidFrostNova_27088()
-  mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidFrostNova_27088", testCategory, 27088)
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidFrostNova_27088",
+    testCategory,
+    27088
+  )
 end
+
 function me.TestSoundSelfAvoidConeOfCold_27087()
-  mod.testHelper.TestSoundSpellMissedSelf("TestSoundSelfAvoidConeOfCold_27087", testCategory, 27087)
+  mod.testHelper.TestSoundSpellMissedSelf(
+    "TestSoundSelfAvoidConeOfCold_27087",
+    testCategory,
+    27087
+  )
 end

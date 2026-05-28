@@ -46,28 +46,23 @@ function me.Test(completionCallback)
   end)
 end
 
-local function rel(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissed(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY, mt)
-end
-local function irr(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissedIrrelevant(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY, mt)
-end
-
 function me.CollectTestCases()
-  for _, id in ipairs({ 25295, 27016 }) do
-    local prefix = "TestCombatEventEnemyAvoidSerpentSting"
-    local suffix = "_" .. id
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Dodge" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Block" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Parry" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Miss" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Resist" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Immune" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Reflect" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "AbsorbIgnored" .. suffix])
-  end
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingDodge_25295)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingBlock_25295)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingParry_25295)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingMiss_25295)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingResist_25295)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingImmune_25295)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingReflect_25295)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_25295)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingDodge_27016)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingBlock_27016)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingParry_27016)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingMiss_27016)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingResist_27016)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingImmune_27016)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingReflect_27016)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_27016)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidViperStingDodge_27018)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidViperStingBlock_27018)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidViperStingParry_27018)
@@ -87,247 +82,353 @@ function me.CollectTestCases()
 end
 
 function me.TestCombatEventEnemyAvoidSerpentStingDodge_25295()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingDodge_25295",
+    testCategory,
     25295,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingBlock_25295()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingBlock_25295",
+    testCategory,
     25295,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingParry_25295()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingParry_25295",
+    testCategory,
     25295,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingMiss_25295()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingMiss_25295",
+    testCategory,
     25295,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingResist_25295()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingResist_25295",
+    testCategory,
     25295,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingImmune_25295()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingImmune_25295",
+    testCategory,
     25295,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingReflect_25295()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingReflect_25295",
+    testCategory,
     25295,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_25295()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_25295",
+    testCategory,
     25295,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventEnemyAvoidSerpentStingDodge_27016()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingDodge_27016",
+    testCategory,
     27016,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingBlock_27016()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingBlock_27016",
+    testCategory,
     27016,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingParry_27016()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingParry_27016",
+    testCategory,
     27016,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingMiss_27016()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingMiss_27016",
+    testCategory,
     27016,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingResist_27016()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingResist_27016",
+    testCategory,
     27016,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingImmune_27016()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingImmune_27016",
+    testCategory,
     27016,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingReflect_27016()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSerpentStingReflect_27016",
+    testCategory,
     27016,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_27016()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventEnemyAvoidSerpentStingAbsorbIgnored_27016",
+    testCategory,
     27016,
     "Serpent Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventEnemyAvoidViperStingDodge_27018()
-  rel(
-    "TestCombatEventEnemyAvoidViperStingDodge_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
-  )
-end
-function me.TestCombatEventEnemyAvoidViperStingBlock_27018()
-  rel(
-    "TestCombatEventEnemyAvoidViperStingBlock_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
-  )
-end
-function me.TestCombatEventEnemyAvoidViperStingParry_27018()
-  rel(
-    "TestCombatEventEnemyAvoidViperStingParry_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
-  )
-end
-function me.TestCombatEventEnemyAvoidViperStingMiss_27018()
-  rel("TestCombatEventEnemyAvoidViperStingMiss_27018", 27018, "Viper Sting", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventEnemyAvoidViperStingResist_27018()
-  rel(
-    "TestCombatEventEnemyAvoidViperStingResist_27018",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidViperStingDodge_27018",
+    testCategory,
     27018,
     "Viper Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidViperStingBlock_27018()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidViperStingBlock_27018",
+    testCategory,
+    27018,
+    "Viper Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventEnemyAvoidViperStingParry_27018()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidViperStingParry_27018",
+    testCategory,
+    27018,
+    "Viper Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventEnemyAvoidViperStingMiss_27018()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidViperStingMiss_27018",
+    testCategory,
+    27018,
+    "Viper Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventEnemyAvoidViperStingResist_27018()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidViperStingResist_27018",
+    testCategory,
+    27018,
+    "Viper Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventEnemyAvoidViperStingImmune_27018()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidViperStingImmune_27018",
+    testCategory,
     27018,
     "Viper Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventEnemyAvoidViperStingReflect_27018()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidViperStingReflect_27018",
+    testCategory,
     27018,
     "Viper Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventEnemyAvoidViperStingAbsorbIgnored_27018()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventEnemyAvoidViperStingAbsorbIgnored_27018",
+    testCategory,
     27018,
     "Viper Sting",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventEnemyAvoidSilencingShotDodge_34490()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSilencingShotDodge_34490",
+    testCategory,
     34490,
     "Silencing Shot",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventEnemyAvoidSilencingShotBlock_34490()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSilencingShotBlock_34490",
+    testCategory,
     34490,
     "Silencing Shot",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventEnemyAvoidSilencingShotParry_34490()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSilencingShotParry_34490",
+    testCategory,
     34490,
     "Silencing Shot",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventEnemyAvoidSilencingShotMiss_34490()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSilencingShotMiss_34490",
+    testCategory,
     34490,
     "Silencing Shot",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventEnemyAvoidSilencingShotResist_34490()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSilencingShotResist_34490",
+    testCategory,
     34490,
     "Silencing Shot",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventEnemyAvoidSilencingShotImmune_34490()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSilencingShotImmune_34490",
+    testCategory,
     34490,
     "Silencing Shot",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventEnemyAvoidSilencingShotReflect_34490()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventEnemyAvoidSilencingShotReflect_34490",
+    testCategory,
     34490,
     "Silencing Shot",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventEnemyAvoidSilencingShotAbsorbIgnored_34490()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventEnemyAvoidSilencingShotAbsorbIgnored_34490",
+    testCategory,
     34490,
     "Silencing Shot",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end

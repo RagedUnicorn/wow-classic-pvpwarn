@@ -50,6 +50,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEvasion_26669)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownEvasion_26669)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundVanish_26889)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowstep_36554)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDeadlyThrow_26679)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCloakOfShadows_31224)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownCloakOfShadows_31224)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShiv_5938)
 end
 
 function me.TestSoundKick_38768()
@@ -81,5 +86,45 @@ function me.TestSoundVanish_26889()
     "TestSoundVanish_26889",
     testCategory,
     26889
+  )
+end
+
+function me.TestSoundShadowstep_36554()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShadowstep_36554",
+    testCategory,
+    36554
+  )
+end
+
+function me.TestSoundDeadlyThrow_26679()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundDeadlyThrow_26679",
+    testCategory,
+    26679
+  )
+end
+
+function me.TestSoundCloakOfShadows_31224()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundCloakOfShadows_31224",
+    testCategory,
+    31224
+  )
+end
+
+function me.TestSoundDownCloakOfShadows_31224()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownCloakOfShadows_31224",
+    testCategory,
+    31224
+  )
+end
+
+function me.TestSoundShiv_5938()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShiv_5938",
+    testCategory,
+    5938
   )
 end

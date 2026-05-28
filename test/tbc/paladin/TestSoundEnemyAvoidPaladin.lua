@@ -50,5 +50,9 @@ function me.CollectTestCases()
 end
 
 function me.TestSoundEnemyAvoidHammerOfWrath_27180()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidHammerOfWrath_27180", testCategory, 27180)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidHammerOfWrath_27180",
+    testCategory,
+    27180
+  )
 end

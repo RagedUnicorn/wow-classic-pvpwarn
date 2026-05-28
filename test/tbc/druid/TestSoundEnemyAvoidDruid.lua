@@ -52,11 +52,25 @@ function me.CollectTestCases()
 end
 
 function me.TestSoundEnemyAvoidEntanglingRoots_26989()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidEntanglingRoots_26989", testCategory, 26989)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidEntanglingRoots_26989",
+    testCategory,
+    26989
+  )
 end
+
 function me.TestSoundEnemyAvoidFaerieFire_26993()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidFaerieFire_26993", testCategory, 26993)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidFaerieFire_26993",
+    testCategory,
+    26993
+  )
 end
+
 function me.TestSoundEnemyAvoidFaerieFireFeral_27011()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidFaerieFireFeral_27011", testCategory, 27011)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidFaerieFireFeral_27011",
+    testCategory,
+    27011
+  )
 end

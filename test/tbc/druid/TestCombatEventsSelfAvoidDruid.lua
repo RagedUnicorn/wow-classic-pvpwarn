@@ -46,201 +46,293 @@ function me.Test(completionCallback)
   end)
 end
 
-local function rel(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissed(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-local function irr(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissedIrrelevant(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF, mt)
-end
-
-local entries = {
-  { id = 26989, fnName = "EntanglingRoots", spellName = "Entangling Roots" },
-  { id = 26993, fnName = "FaerieFire", spellName = "Faerie Fire" },
-  { id = 27011, fnName = "FaerieFireFeral", spellName = "Faerie Fire (Feral)" },
-}
-
 function me.CollectTestCases()
-  for _, e in ipairs(entries) do
-    local prefix = "TestCombatEventSelfAvoid" .. e.fnName
-    local suffix = "_" .. e.id
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Dodge" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Block" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Parry" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Miss" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Resist" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Immune" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "Reflect" .. suffix])
-    mod.testReporter.AddToTestQueueImmediate(me[prefix .. "AbsorbIgnored" .. suffix])
-  end
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEntanglingRootsDodge_26989)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEntanglingRootsBlock_26989)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEntanglingRootsParry_26989)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEntanglingRootsMiss_26989)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEntanglingRootsResist_26989)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEntanglingRootsImmune_26989)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEntanglingRootsReflect_26989)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidEntanglingRootsAbsorbIgnored_26989)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireDodge_26993)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireBlock_26993)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireParry_26993)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireMiss_26993)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireResist_26993)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireImmune_26993)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireReflect_26993)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireAbsorbIgnored_26993)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralDodge_27011)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralBlock_27011)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralParry_27011)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralMiss_27011)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralResist_27011)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralImmune_27011)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralReflect_27011)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralAbsorbIgnored_27011)
 end
 
 function me.TestCombatEventSelfAvoidEntanglingRootsDodge_26989()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidEntanglingRootsDodge_26989",
+    testCategory,
     26989,
     "Entangling Roots",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventSelfAvoidEntanglingRootsBlock_26989()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidEntanglingRootsBlock_26989",
+    testCategory,
     26989,
     "Entangling Roots",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventSelfAvoidEntanglingRootsParry_26989()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidEntanglingRootsParry_26989",
+    testCategory,
     26989,
     "Entangling Roots",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventSelfAvoidEntanglingRootsMiss_26989()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidEntanglingRootsMiss_26989",
+    testCategory,
     26989,
     "Entangling Roots",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventSelfAvoidEntanglingRootsResist_26989()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidEntanglingRootsResist_26989",
+    testCategory,
     26989,
     "Entangling Roots",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventSelfAvoidEntanglingRootsImmune_26989()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidEntanglingRootsImmune_26989",
+    testCategory,
     26989,
     "Entangling Roots",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventSelfAvoidEntanglingRootsReflect_26989()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidEntanglingRootsReflect_26989",
+    testCategory,
     26989,
     "Entangling Roots",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidEntanglingRootsAbsorbIgnored_26989()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventSelfAvoidEntanglingRootsAbsorbIgnored_26989",
+    testCategory,
     26989,
     "Entangling Roots",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventSelfAvoidFaerieFireDodge_26993()
-  rel("TestCombatEventSelfAvoidFaerieFireDodge_26993", 26993, "Faerie Fire", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventSelfAvoidFaerieFireBlock_26993()
-  rel("TestCombatEventSelfAvoidFaerieFireBlock_26993", 26993, "Faerie Fire", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventSelfAvoidFaerieFireParry_26993()
-  rel("TestCombatEventSelfAvoidFaerieFireParry_26993", 26993, "Faerie Fire", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventSelfAvoidFaerieFireMiss_26993()
-  rel("TestCombatEventSelfAvoidFaerieFireMiss_26993", 26993, "Faerie Fire", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventSelfAvoidFaerieFireResist_26993()
-  rel(
-    "TestCombatEventSelfAvoidFaerieFireResist_26993", 26993, "Faerie Fire", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
-  )
-end
-function me.TestCombatEventSelfAvoidFaerieFireImmune_26993()
-  rel(
-    "TestCombatEventSelfAvoidFaerieFireImmune_26993", 26993, "Faerie Fire", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
-  )
-end
-function me.TestCombatEventSelfAvoidFaerieFireReflect_26993()
-  rel(
-    "TestCombatEventSelfAvoidFaerieFireReflect_26993",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFaerieFireDodge_26993",
+    testCategory,
     26993,
     "Faerie Fire",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidFaerieFireBlock_26993()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFaerieFireBlock_26993",
+    testCategory,
+    26993,
+    "Faerie Fire",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidFaerieFireParry_26993()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFaerieFireParry_26993",
+    testCategory,
+    26993,
+    "Faerie Fire",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidFaerieFireMiss_26993()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFaerieFireMiss_26993",
+    testCategory,
+    26993,
+    "Faerie Fire",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidFaerieFireResist_26993()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFaerieFireResist_26993",
+    testCategory,
+    26993,
+    "Faerie Fire",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidFaerieFireImmune_26993()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFaerieFireImmune_26993",
+    testCategory,
+    26993,
+    "Faerie Fire",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidFaerieFireReflect_26993()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidFaerieFireReflect_26993",
+    testCategory,
+    26993,
+    "Faerie Fire",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidFaerieFireAbsorbIgnored_26993()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventSelfAvoidFaerieFireAbsorbIgnored_26993",
+    testCategory,
     26993,
     "Faerie Fire",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end
 
 function me.TestCombatEventSelfAvoidFaerieFireFeralDodge_27011()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidFaerieFireFeralDodge_27011",
+    testCategory,
     27011,
     "Faerie Fire (Feral)",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
+
 function me.TestCombatEventSelfAvoidFaerieFireFeralBlock_27011()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidFaerieFireFeralBlock_27011",
+    testCategory,
     27011,
     "Faerie Fire (Feral)",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
   )
 end
+
 function me.TestCombatEventSelfAvoidFaerieFireFeralParry_27011()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidFaerieFireFeralParry_27011",
+    testCategory,
     27011,
     "Faerie Fire (Feral)",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
+
 function me.TestCombatEventSelfAvoidFaerieFireFeralMiss_27011()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidFaerieFireFeralMiss_27011",
+    testCategory,
     27011,
     "Faerie Fire (Feral)",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
   )
 end
+
 function me.TestCombatEventSelfAvoidFaerieFireFeralResist_27011()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidFaerieFireFeralResist_27011",
+    testCategory,
     27011,
     "Faerie Fire (Feral)",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
   )
 end
+
 function me.TestCombatEventSelfAvoidFaerieFireFeralImmune_27011()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidFaerieFireFeralImmune_27011",
+    testCategory,
     27011,
     "Faerie Fire (Feral)",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
   )
 end
+
 function me.TestCombatEventSelfAvoidFaerieFireFeralReflect_27011()
-  rel(
+  mod.testHelper.TestCombatEventSpellMissed(
     "TestCombatEventSelfAvoidFaerieFireFeralReflect_27011",
+    testCategory,
     27011,
     "Faerie Fire (Feral)",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventSelfAvoidFaerieFireFeralAbsorbIgnored_27011()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventSelfAvoidFaerieFireFeralAbsorbIgnored_27011",
+    testCategory,
     27011,
     "Faerie Fire (Feral)",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end

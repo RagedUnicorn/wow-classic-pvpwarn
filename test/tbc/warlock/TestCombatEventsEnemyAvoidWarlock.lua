@@ -46,15 +46,6 @@ function me.Test(completionCallback)
   end)
 end
 
-local function rel(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissed(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY, mt)
-end
-local function irr(name, id, spellName, mt)
-  mod.testHelper.TestCombatEventSpellMissedIrrelevant(name, testCategory, id, spellName,
-    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY, mt)
-end
-
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDeathCoilDodge_27223)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEnemyAvoidDeathCoilBlock_27223)
@@ -67,40 +58,89 @@ function me.CollectTestCases()
 end
 
 function me.TestCombatEventEnemyAvoidDeathCoilDodge_27223()
-  rel("TestCombatEventEnemyAvoidDeathCoilDodge_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE)
-end
-function me.TestCombatEventEnemyAvoidDeathCoilBlock_27223()
-  rel("TestCombatEventEnemyAvoidDeathCoilBlock_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK)
-end
-function me.TestCombatEventEnemyAvoidDeathCoilParry_27223()
-  rel("TestCombatEventEnemyAvoidDeathCoilParry_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY)
-end
-function me.TestCombatEventEnemyAvoidDeathCoilMiss_27223()
-  rel("TestCombatEventEnemyAvoidDeathCoilMiss_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS)
-end
-function me.TestCombatEventEnemyAvoidDeathCoilResist_27223()
-  rel(
-    "TestCombatEventEnemyAvoidDeathCoilResist_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
-  )
-end
-function me.TestCombatEventEnemyAvoidDeathCoilImmune_27223()
-  rel(
-    "TestCombatEventEnemyAvoidDeathCoilImmune_27223", 27223, "Death Coil", RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
-  )
-end
-function me.TestCombatEventEnemyAvoidDeathCoilReflect_27223()
-  rel(
-    "TestCombatEventEnemyAvoidDeathCoilReflect_27223",
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDeathCoilDodge_27223",
+    testCategory,
     27223,
     "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDeathCoilBlock_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDeathCoilBlock_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDeathCoilParry_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDeathCoilParry_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDeathCoilMiss_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDeathCoilMiss_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDeathCoilResist_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDeathCoilResist_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDeathCoilImmune_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDeathCoilImmune_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventEnemyAvoidDeathCoilReflect_27223()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventEnemyAvoidDeathCoilReflect_27223",
+    testCategory,
+    27223,
+    "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
   )
 end
+
 function me.TestCombatEventEnemyAvoidDeathCoilAbsorbIgnored_27223()
-  irr(
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
     "TestCombatEventEnemyAvoidDeathCoilAbsorbIgnored_27223",
+    testCategory,
     27223,
     "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )
 end

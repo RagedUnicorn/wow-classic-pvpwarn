@@ -52,23 +52,61 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidGarrote_26839)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidGarrote_26884)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidRupture_26867)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidDeadlyThrow_26679)
 end
 
 function me.TestSoundEnemyAvoidKick_38768()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidKick_38768", testCategory, 38768)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidKick_38768",
+    testCategory,
+    38768
+  )
 end
+
 function me.TestSoundEnemyAvoidGouge_38764()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidGouge_38764", testCategory, 38764)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidGouge_38764",
+    testCategory,
+    38764
+  )
 end
+
 function me.TestSoundEnemyAvoidExposeArmor_26866()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidExposeArmor_26866", testCategory, 26866)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidExposeArmor_26866",
+    testCategory,
+    26866
+  )
 end
+
 function me.TestSoundEnemyAvoidGarrote_26839()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidGarrote_26839", testCategory, 26839)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidGarrote_26839",
+    testCategory,
+    26839
+  )
 end
+
 function me.TestSoundEnemyAvoidGarrote_26884()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidGarrote_26884", testCategory, 26884)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidGarrote_26884",
+    testCategory,
+    26884
+  )
 end
+
 function me.TestSoundEnemyAvoidRupture_26867()
-  mod.testHelper.TestSoundSpellMissedEnemy("TestSoundEnemyAvoidRupture_26867", testCategory, 26867)
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidRupture_26867",
+    testCategory,
+    26867
+  )
+end
+
+function me.TestSoundEnemyAvoidDeadlyThrow_26679()
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidDeadlyThrow_26679",
+    testCategory,
+    26679
+  )
 end
