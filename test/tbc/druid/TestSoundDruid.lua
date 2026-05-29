@@ -52,6 +52,12 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFrenziedRegeneration_26999)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFaerieFire_26993)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFaerieFireFeral_27011)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundCyclone_33786)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMaim_22570)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundForceOfNature_33831)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMangleBear_33878)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMangleCat_33876)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundLacerate_33745)
 end
 
 function me.TestSoundNaturesGrasp_27009()
@@ -99,5 +105,53 @@ function me.TestSoundFaerieFireFeral_27011()
     "TestSoundFaerieFireFeral_27011",
     testCategory,
     27011
+  )
+end
+
+function me.TestSoundCyclone_33786()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundCyclone_33786",
+    testCategory,
+    33786
+  )
+end
+
+function me.TestSoundMaim_22570()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMaim_22570",
+    testCategory,
+    22570
+  )
+end
+
+function me.TestSoundForceOfNature_33831()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundForceOfNature_33831",
+    testCategory,
+    33831
+  )
+end
+
+function me.TestSoundMangleBear_33878()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMangleBear_33878",
+    testCategory,
+    33878
+  )
+end
+
+function me.TestSoundMangleCat_33876()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundMangleCat_33876",
+    testCategory,
+    33876
+  )
+end
+
+function me.TestSoundLacerate_33745()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundLacerate_33745",
+    testCategory,
+    33745
   )
 end

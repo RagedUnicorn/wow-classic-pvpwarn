@@ -230,6 +230,28 @@ function me.GetOverlay()
         [26989] = { refId = 19970 },  -- Entangling Roots rank 7
         [26993] = { refId = 9907 },   -- Faerie Fire rank 5
         [27011] = { refId = 17392 },  -- Faerie Fire (Feral) rank 5
+        [33786] = {
+          name = "Cyclone",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "cyclone",
+          spellIcon = "spell_nature_earthbind",
+          self_avoid = true,
+          enemy_avoid = true,
+          allRanks = {
+            { spellId = 33786, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [22570] = {
+          name = "Maim",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "maim",
+          spellIcon = "ability_druid_mangle",
+          self_avoid = true,
+          enemy_avoid = true,
+          allRanks = {
+            { spellId = 22570, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     shaman = {

@@ -71,6 +71,22 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralImmune_27011)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralReflect_27011)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidFaerieFireFeralAbsorbIgnored_27011)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidCycloneDodge_33786)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidCycloneBlock_33786)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidCycloneParry_33786)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidCycloneMiss_33786)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidCycloneResist_33786)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidCycloneImmune_33786)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidCycloneReflect_33786)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidCycloneAbsorbIgnored_33786)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidMaimDodge_22570)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidMaimBlock_22570)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidMaimParry_22570)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidMaimMiss_22570)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidMaimResist_22570)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidMaimImmune_22570)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidMaimReflect_22570)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidMaimAbsorbIgnored_22570)
 end
 
 function me.TestCombatEventSelfAvoidEntanglingRootsDodge_26989()
@@ -332,6 +348,182 @@ function me.TestCombatEventSelfAvoidFaerieFireFeralAbsorbIgnored_27011()
     testCategory,
     27011,
     "Faerie Fire (Feral)",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventSelfAvoidCycloneDodge_33786()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidCycloneDodge_33786",
+    testCategory,
+    33786,
+    "Cyclone",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidCycloneBlock_33786()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidCycloneBlock_33786",
+    testCategory,
+    33786,
+    "Cyclone",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidCycloneParry_33786()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidCycloneParry_33786",
+    testCategory,
+    33786,
+    "Cyclone",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidCycloneMiss_33786()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidCycloneMiss_33786",
+    testCategory,
+    33786,
+    "Cyclone",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidCycloneResist_33786()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidCycloneResist_33786",
+    testCategory,
+    33786,
+    "Cyclone",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidCycloneImmune_33786()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidCycloneImmune_33786",
+    testCategory,
+    33786,
+    "Cyclone",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidCycloneReflect_33786()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidCycloneReflect_33786",
+    testCategory,
+    33786,
+    "Cyclone",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidCycloneAbsorbIgnored_33786()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidCycloneAbsorbIgnored_33786",
+    testCategory,
+    33786,
+    "Cyclone",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventSelfAvoidMaimDodge_22570()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidMaimDodge_22570",
+    testCategory,
+    22570,
+    "Maim",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidMaimBlock_22570()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidMaimBlock_22570",
+    testCategory,
+    22570,
+    "Maim",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidMaimParry_22570()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidMaimParry_22570",
+    testCategory,
+    22570,
+    "Maim",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidMaimMiss_22570()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidMaimMiss_22570",
+    testCategory,
+    22570,
+    "Maim",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidMaimResist_22570()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidMaimResist_22570",
+    testCategory,
+    22570,
+    "Maim",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidMaimImmune_22570()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidMaimImmune_22570",
+    testCategory,
+    22570,
+    "Maim",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidMaimReflect_22570()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidMaimReflect_22570",
+    testCategory,
+    22570,
+    "Maim",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidMaimAbsorbIgnored_22570()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidMaimAbsorbIgnored_22570",
+    testCategory,
+    22570,
+    "Maim",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )

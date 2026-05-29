@@ -731,6 +731,92 @@ function me.GetOverlay()
         [26999] = { refId = 22896 },  -- Frenzied Regeneration rank 4
         [26993] = { refId = 9907 },   -- Faerie Fire rank 5
         [27011] = { refId = 17392 },  -- Faerie Fire (Feral) rank 5
+        [33786] = {
+          name = "Cyclone",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "cyclone",
+          spellIcon = "spell_nature_earthbind",
+          hasFade = false,
+          hasCast = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS",
+            "SPELL_CAST_START"
+          },
+          allRanks = {
+            { spellId = 33786, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [22570] = {
+          name = "Maim",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "maim",
+          spellIcon = "ability_druid_mangle",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 22570, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [33831] = {
+          name = "Force of Nature",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "force_of_nature",
+          spellIcon = "ability_druid_forceofnature",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 33831, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [33878] = {
+          name = "Mangle (Bear)",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "mangle_bear",
+          spellIcon = "ability_druid_mangle2",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 33878, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [33876] = {
+          name = "Mangle (Cat)",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "mangle_cat",
+          spellIcon = "ability_druid_mangle2",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 33876, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [33745] = {
+          name = "Lacerate",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "lacerate",
+          spellIcon = "ability_druid_lacerate",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 33745, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     shaman = {

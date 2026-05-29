@@ -52,6 +52,13 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFrenziedRegenerationRemoved_26999)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFaerieFireSuccess_26993)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventFaerieFireFeralSuccess_27011)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCycloneSuccess_33786)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventCycloneStart_33786)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMaimSuccess_22570)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventForceOfNatureSuccess_33831)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMangleBearSuccess_33878)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMangleCatSuccess_33876)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventLacerateSuccess_33745)
 end
 
 function me.TestCombatEventNaturesGraspApplied_27009()
@@ -105,5 +112,68 @@ function me.TestCombatEventFaerieFireFeralSuccess_27011()
     testCategory,
     "Faerie Fire (Feral)",
     27011
+  )
+end
+
+function me.TestCombatEventCycloneSuccess_33786()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventCycloneSuccess_33786",
+    testCategory,
+    "Cyclone",
+    33786
+  )
+end
+
+function me.TestCombatEventCycloneStart_33786()
+  mod.testHelper.TestCombatEventStart(
+    "TestCombatEventCycloneStart_33786",
+    testCategory,
+    "Cyclone",
+    33786
+  )
+end
+
+function me.TestCombatEventMaimSuccess_22570()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMaimSuccess_22570",
+    testCategory,
+    "Maim",
+    22570
+  )
+end
+
+function me.TestCombatEventForceOfNatureSuccess_33831()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventForceOfNatureSuccess_33831",
+    testCategory,
+    "Force of Nature",
+    33831
+  )
+end
+
+function me.TestCombatEventMangleBearSuccess_33878()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMangleBearSuccess_33878",
+    testCategory,
+    "Mangle (Bear)",
+    33878
+  )
+end
+
+function me.TestCombatEventMangleCatSuccess_33876()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventMangleCatSuccess_33876",
+    testCategory,
+    "Mangle (Cat)",
+    33876
+  )
+end
+
+function me.TestCombatEventLacerateSuccess_33745()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventLacerateSuccess_33745",
+    testCategory,
+    "Lacerate",
+    33745
   )
 end

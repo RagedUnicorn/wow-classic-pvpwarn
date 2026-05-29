@@ -49,6 +49,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidEntanglingRoots_26989)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidFaerieFire_26993)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidFaerieFireFeral_27011)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidCyclone_33786)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidMaim_22570)
 end
 
 function me.TestSoundEnemyAvoidEntanglingRoots_26989()
@@ -72,5 +74,21 @@ function me.TestSoundEnemyAvoidFaerieFireFeral_27011()
     "TestSoundEnemyAvoidFaerieFireFeral_27011",
     testCategory,
     27011
+  )
+end
+
+function me.TestSoundEnemyAvoidCyclone_33786()
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidCyclone_33786",
+    testCategory,
+    33786
+  )
+end
+
+function me.TestSoundEnemyAvoidMaim_22570()
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidMaim_22570",
+    testCategory,
+    22570
   )
 end
