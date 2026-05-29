@@ -580,6 +580,67 @@ function me.GetOverlay()
         [27263] = { refId = 18871 },  -- Shadowburn rank 7
         [30546] = { refId = 18871 },  -- Shadowburn rank 8
         [27223] = { refId = 17926 },  -- Death Coil rank 4
+        [30283] = {
+          name = "Shadowfury",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "shadowfury",
+          spellIcon = "spell_shadow_shadowfury",
+          hasFade = false,
+          hasCast = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS",
+            "SPELL_CAST_START"
+          },
+          allRanks = {
+            { spellId = 30283, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [30146] = {
+          name = "Summon Felguard",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "summon_felguard",
+          spellIcon = "spell_shadow_summonfelguard",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 30146, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [30108] = {
+          name = "Unstable Affliction",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "unstable_affliction",
+          spellIcon = "spell_shadow_unstableaffliction_3",
+          hasFade = false,
+          hasCast = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS",
+            "SPELL_CAST_START"
+          },
+          allRanks = {
+            { spellId = 30108, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [28176] = {
+          name = "Fel Armor",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "fel_armor",
+          spellIcon = "spell_shadow_felarmour",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 28176, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     paladin = {

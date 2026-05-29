@@ -191,6 +191,17 @@ function me.GetOverlay()
       },
       add = {
         [27223] = { refId = 17926 },  -- Death Coil rank 4
+        [30283] = {
+          name = "Shadowfury",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "shadowfury",
+          spellIcon = "spell_shadow_shadowfury",
+          self_avoid = true,
+          enemy_avoid = true,
+          allRanks = {
+            { spellId = 30283, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     paladin = {

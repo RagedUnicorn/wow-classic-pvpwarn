@@ -47,6 +47,7 @@ end
 
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidDeathCoil_27223)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEnemyAvoidShadowfury_30283)
 end
 
 function me.TestSoundEnemyAvoidDeathCoil_27223()
@@ -54,5 +55,13 @@ function me.TestSoundEnemyAvoidDeathCoil_27223()
     "TestSoundEnemyAvoidDeathCoil_27223",
     testCategory,
     27223
+  )
+end
+
+function me.TestSoundEnemyAvoidShadowfury_30283()
+  mod.testHelper.TestSoundSpellMissedEnemy(
+    "TestSoundEnemyAvoidShadowfury_30283",
+    testCategory,
+    30283
   )
 end

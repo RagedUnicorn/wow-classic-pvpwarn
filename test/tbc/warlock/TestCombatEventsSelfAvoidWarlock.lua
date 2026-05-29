@@ -55,6 +55,14 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeathCoilImmune_27223)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeathCoilReflect_27223)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidDeathCoilAbsorbIgnored_27223)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowfuryDodge_30283)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowfuryBlock_30283)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowfuryParry_30283)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowfuryMiss_30283)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowfuryResist_30283)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowfuryImmune_30283)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowfuryReflect_30283)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventSelfAvoidShadowfuryAbsorbIgnored_30283)
 end
 
 function me.TestCombatEventSelfAvoidDeathCoilDodge_27223()
@@ -140,6 +148,94 @@ function me.TestCombatEventSelfAvoidDeathCoilAbsorbIgnored_27223()
     testCategory,
     27223,
     "Death Coil",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
+  )
+end
+
+function me.TestCombatEventSelfAvoidShadowfuryDodge_30283()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidShadowfuryDodge_30283",
+    testCategory,
+    30283,
+    "Shadowfury",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
+  )
+end
+
+function me.TestCombatEventSelfAvoidShadowfuryBlock_30283()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidShadowfuryBlock_30283",
+    testCategory,
+    30283,
+    "Shadowfury",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.BLOCK
+  )
+end
+
+function me.TestCombatEventSelfAvoidShadowfuryParry_30283()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidShadowfuryParry_30283",
+    testCategory,
+    30283,
+    "Shadowfury",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
+  )
+end
+
+function me.TestCombatEventSelfAvoidShadowfuryMiss_30283()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidShadowfuryMiss_30283",
+    testCategory,
+    30283,
+    "Shadowfury",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.MISS
+  )
+end
+
+function me.TestCombatEventSelfAvoidShadowfuryResist_30283()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidShadowfuryResist_30283",
+    testCategory,
+    30283,
+    "Shadowfury",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.RESIST
+  )
+end
+
+function me.TestCombatEventSelfAvoidShadowfuryImmune_30283()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidShadowfuryImmune_30283",
+    testCategory,
+    30283,
+    "Shadowfury",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.IMMUNE
+  )
+end
+
+function me.TestCombatEventSelfAvoidShadowfuryReflect_30283()
+  mod.testHelper.TestCombatEventSpellMissed(
+    "TestCombatEventSelfAvoidShadowfuryReflect_30283",
+    testCategory,
+    30283,
+    "Shadowfury",
+    RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.REFLECT
+  )
+end
+
+function me.TestCombatEventSelfAvoidShadowfuryAbsorbIgnored_30283()
+  mod.testHelper.TestCombatEventSpellMissedIrrelevant(
+    "TestCombatEventSelfAvoidShadowfuryAbsorbIgnored_30283",
+    testCategory,
+    30283,
+    "Shadowfury",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
     RGPVPW_CONSTANTS.IRRELEVANT_MISS_TYPES.ABSORB
   )

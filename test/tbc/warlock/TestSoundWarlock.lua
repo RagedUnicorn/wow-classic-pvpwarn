@@ -49,6 +49,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowburn_27263)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowburn_30546)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDeathCoil_27223)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowfury_30283)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSummonFelguard_30146)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundUnstableAffliction_30108)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFelArmor_28176)
 end
 
 function me.TestSoundShadowburn_27263()
@@ -72,5 +76,37 @@ function me.TestSoundDeathCoil_27223()
     "TestSoundDeathCoil_27223",
     testCategory,
     27223
+  )
+end
+
+function me.TestSoundShadowfury_30283()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundShadowfury_30283",
+    testCategory,
+    30283
+  )
+end
+
+function me.TestSoundSummonFelguard_30146()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundSummonFelguard_30146",
+    testCategory,
+    30146
+  )
+end
+
+function me.TestSoundUnstableAffliction_30108()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundUnstableAffliction_30108",
+    testCategory,
+    30108
+  )
+end
+
+function me.TestSoundFelArmor_28176()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundFelArmor_28176",
+    testCategory,
+    28176
   )
 end
