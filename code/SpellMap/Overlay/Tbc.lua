@@ -1032,6 +1032,35 @@ function me.GetOverlay()
       add = {
         [33697] = { refId = 20572 },  -- Blood Fury (caster/hybrid)
         [33702] = { refId = 20572 },  -- Blood Fury (caster spell damage only)
+        [25046] = {
+          name = "Arcane Torrent",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "arcane_torrent",
+          spellIcon = "spell_shadow_teleport",
+          hasFade = false,
+          active = true,
+          trackedEvents = {
+            "SPELL_CAST_SUCCESS"
+          },
+          allRanks = {
+            { spellId = 25046, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
+        [28880] = {
+          name = "Gift of the Naaru",
+          type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
+          soundFileName = "gift_of_the_naaru",
+          spellIcon = "spell_holy_holyprotection",
+          hasFade = true,
+          active = true,
+          trackedEvents = {
+            "SPELL_AURA_APPLIED",
+            "SPELL_AURA_REMOVED"
+          },
+          allRanks = {
+            { spellId = 28880, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
+          }
+        },
       },
     },
     misc = {

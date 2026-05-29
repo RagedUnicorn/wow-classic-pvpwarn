@@ -48,6 +48,9 @@ end
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBloodFury_33697)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBloodFury_33702)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundArcaneTorrent_25046)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundGiftOfTheNaaru_28880)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownGiftOfTheNaaru_28880)
 end
 
 function me.TestSoundBloodFury_33697()
@@ -63,5 +66,29 @@ function me.TestSoundBloodFury_33702()
     "TestSoundBloodFury_33702",
     testCategory,
     33702
+  )
+end
+
+function me.TestSoundArcaneTorrent_25046()
+  mod.testHelper.TestSoundSuccess(
+    "TestSoundArcaneTorrent_25046",
+    testCategory,
+    25046
+  )
+end
+
+function me.TestSoundGiftOfTheNaaru_28880()
+  mod.testHelper.TestSoundApplied(
+    "TestSoundGiftOfTheNaaru_28880",
+    testCategory,
+    28880
+  )
+end
+
+function me.TestSoundDownGiftOfTheNaaru_28880()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownGiftOfTheNaaru_28880",
+    testCategory,
+    28880
   )
 end

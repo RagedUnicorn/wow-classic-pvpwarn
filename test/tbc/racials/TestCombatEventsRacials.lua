@@ -49,6 +49,9 @@ end
 function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodFurySuccess_33697)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodFurySuccess_33702)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventArcaneTorrentSuccess_25046)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGiftOfTheNaaruApplied_28880)
+  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventGiftOfTheNaaruRemoved_28880)
 end
 
 function me.TestCombatEventBloodFurySuccess_33697()
@@ -66,5 +69,32 @@ function me.TestCombatEventBloodFurySuccess_33702()
     testCategory,
     "Blood Fury",
     33702
+  )
+end
+
+function me.TestCombatEventArcaneTorrentSuccess_25046()
+  mod.testHelper.TestCombatEventSuccess(
+    "TestCombatEventArcaneTorrentSuccess_25046",
+    testCategory,
+    "Arcane Torrent",
+    25046
+  )
+end
+
+function me.TestCombatEventGiftOfTheNaaruApplied_28880()
+  mod.testHelper.TestCombatEventApplied(
+    "TestCombatEventGiftOfTheNaaruApplied_28880",
+    testCategory,
+    "Gift of the Naaru",
+    28880
+  )
+end
+
+function me.TestCombatEventGiftOfTheNaaruRemoved_28880()
+  mod.testHelper.TestCombatEventRemoved(
+    "TestCombatEventGiftOfTheNaaruRemoved_28880",
+    testCategory,
+    "Gift of the Naaru",
+    28880
   )
 end
