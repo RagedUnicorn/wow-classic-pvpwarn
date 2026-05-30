@@ -69,7 +69,23 @@ function me.TestAll(branchArg)
 
   mod.testReporter.StartTestGroup(testGroupName)
 
-  for _, branchCap in ipairs(branchFilter or branches) do
+  local branchList = branchFilter or branches
+  local index = 1
+
+  --[[
+    Process one branch at a time, playing that branch's queue to completion before advancing.
+    The active branch determines which assembled spell map lookups target, so each branch's tests
+    must execute (not just enqueue) while that branch is active.
+  ]]--
+  local function processNextBranch()
+    if index > #branchList then
+      mod.testReporter.StopTestGroup() -- async finish of test group
+      return
+    end
+
+    local branchCap = branchList[index]
+    index = index + 1
+
     mod.testHelper.SetActiveBranch(string.lower(branchCap))
 
     -- Validators (coverage checks) for this branch's assembled map.
@@ -111,9 +127,10 @@ function me.TestAll(branchArg)
       queueIfPresent("testCombatEventsSelfAvoid", classCap, branchCap)
       queueIfPresent("testCombatEventsEnemyAvoid", classCap, branchCap)
     end
+
+    -- Play this branch's queue to completion (under this active branch), then advance.
+    mod.testReporter.PlayTestQueueWithDelay(processNextBranch)
   end
 
-  mod.testReporter.PlayTestQueueWithDelay(function()
-    mod.testReporter.StopTestGroup() -- async finish of test group
-  end)
+  processNextBranch()
 end
