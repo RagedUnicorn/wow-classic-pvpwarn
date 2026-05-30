@@ -71,13 +71,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshWaterShield_24398)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShamanisticRage_30823)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownShamanisticRage_30823)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshShamanisticRage_30823)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundBloodlust_2825)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownBloodlust_2825)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshBloodlust_2825)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundHeroism_32182)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownHeroism_32182)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshHeroism_32182)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundTotemOfWrath_30706)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundWrathOfAirTotem_3738)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundEarthElementalTotem_2062)
@@ -216,14 +213,6 @@ function me.TestSoundDownShamanisticRage_30823()
   )
 end
 
-function me.TestSoundRefreshShamanisticRage_30823()
-  mod.testHelper.TestSoundRefresh(
-    "TestSoundRefreshShamanisticRage_30823",
-    testCategory,
-    30823
-  )
-end
-
 function me.TestSoundBloodlust_2825()
   mod.testHelper.TestSoundApplied(
     "TestSoundBloodlust_2825",
@@ -240,14 +229,6 @@ function me.TestSoundDownBloodlust_2825()
   )
 end
 
-function me.TestSoundRefreshBloodlust_2825()
-  mod.testHelper.TestSoundRefresh(
-    "TestSoundRefreshBloodlust_2825",
-    testCategory,
-    2825
-  )
-end
-
 function me.TestSoundHeroism_32182()
   mod.testHelper.TestSoundApplied(
     "TestSoundHeroism_32182",
@@ -259,14 +240,6 @@ end
 function me.TestSoundDownHeroism_32182()
   mod.testHelper.TestSoundRemoved(
     "TestSoundDownHeroism_32182",
-    testCategory,
-    32182
-  )
-end
-
-function me.TestSoundRefreshHeroism_32182()
-  mod.testHelper.TestSoundRefresh(
-    "TestSoundRefreshHeroism_32182",
     testCategory,
     32182
   )

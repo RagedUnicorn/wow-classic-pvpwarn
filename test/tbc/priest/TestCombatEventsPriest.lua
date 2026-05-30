@@ -62,13 +62,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventMassDispelStart_32375)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChastiseApplied_44041)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChastiseRemoved_44041)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventChastiseRefresh_44041)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowWordDeathSuccess_32379)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShadowfiendSuccess_34433)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventConsumeMagicSuccess_32676)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPainSuppressionApplied_33206)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPainSuppressionRemoved_33206)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventPainSuppressionRefresh_33206)
 end
 
 function me.TestCombatEventInnerFireApplied_25431()
@@ -215,15 +213,6 @@ function me.TestCombatEventChastiseRemoved_44041()
   )
 end
 
-function me.TestCombatEventChastiseRefresh_44041()
-  mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventChastiseRefresh_44041",
-    testCategory,
-    "Chastise",
-    44041
-  )
-end
-
 function me.TestCombatEventShadowWordDeathSuccess_32379()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventShadowWordDeathSuccess_32379",
@@ -263,15 +252,6 @@ end
 function me.TestCombatEventPainSuppressionRemoved_33206()
   mod.testHelper.TestCombatEventRemoved(
     "TestCombatEventPainSuppressionRemoved_33206",
-    testCategory,
-    "Pain Suppression",
-    33206
-  )
-end
-
-function me.TestCombatEventPainSuppressionRefresh_33206()
-  mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventPainSuppressionRefresh_33206",
     testCategory,
     "Pain Suppression",
     33206

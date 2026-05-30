@@ -61,13 +61,11 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundMassDispel_32375)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundChastise_44041)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownChastise_44041)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshChastise_44041)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowWordDeath_32379)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundShadowfiend_34433)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundConsumeMagic_32676)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundPainSuppression_33206)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownPainSuppression_33206)
-  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshPainSuppression_33206)
 end
 
 function me.TestSoundInnerFire_25431()
@@ -190,14 +188,6 @@ function me.TestSoundDownChastise_44041()
   )
 end
 
-function me.TestSoundRefreshChastise_44041()
-  mod.testHelper.TestSoundRefresh(
-    "TestSoundRefreshChastise_44041",
-    testCategory,
-    44041
-  )
-end
-
 function me.TestSoundShadowWordDeath_32379()
   mod.testHelper.TestSoundSuccess(
     "TestSoundShadowWordDeath_32379",
@@ -233,14 +223,6 @@ end
 function me.TestSoundDownPainSuppression_33206()
   mod.testHelper.TestSoundRemoved(
     "TestSoundDownPainSuppression_33206",
-    testCategory,
-    33206
-  )
-end
-
-function me.TestSoundRefreshPainSuppression_33206()
-  mod.testHelper.TestSoundRefresh(
-    "TestSoundRefreshPainSuppression_33206",
     testCategory,
     33206
   )

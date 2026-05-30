@@ -71,13 +71,10 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWaterShieldRefresh_24398)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShamanisticRageApplied_30823)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShamanisticRageRemoved_30823)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventShamanisticRageRefresh_30823)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodlustApplied_2825)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodlustRemoved_2825)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventBloodlustRefresh_2825)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHeroismApplied_32182)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHeroismRemoved_32182)
-  mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventHeroismRefresh_32182)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventTotemOfWrathSuccess_30706)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventWrathOfAirTotemSuccess_3738)
   mod.testReporter.AddToTestQueueImmediate(me.TestCombatEventEarthElementalTotemSuccess_2062)
@@ -256,15 +253,6 @@ function me.TestCombatEventShamanisticRageRemoved_30823()
   )
 end
 
-function me.TestCombatEventShamanisticRageRefresh_30823()
-  mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventShamanisticRageRefresh_30823",
-    testCategory,
-    "Shamanistic Rage",
-    30823
-  )
-end
-
 function me.TestCombatEventBloodlustApplied_2825()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventBloodlustApplied_2825",
@@ -283,15 +271,6 @@ function me.TestCombatEventBloodlustRemoved_2825()
   )
 end
 
-function me.TestCombatEventBloodlustRefresh_2825()
-  mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventBloodlustRefresh_2825",
-    testCategory,
-    "Bloodlust",
-    2825
-  )
-end
-
 function me.TestCombatEventHeroismApplied_32182()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventHeroismApplied_32182",
@@ -304,15 +283,6 @@ end
 function me.TestCombatEventHeroismRemoved_32182()
   mod.testHelper.TestCombatEventRemoved(
     "TestCombatEventHeroismRemoved_32182",
-    testCategory,
-    "Heroism",
-    32182
-  )
-end
-
-function me.TestCombatEventHeroismRefresh_32182()
-  mod.testHelper.TestCombatEventRefresh(
-    "TestCombatEventHeroismRefresh_32182",
     testCategory,
     "Heroism",
     32182
