@@ -53,6 +53,8 @@ function me.CollectTestCases()
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundSummonFelguard_30146)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundUnstableAffliction_30108)
   mod.testReporter.AddToTestQueueWithDelay(me.TestSoundFelArmor_28176)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundDownFelArmor_28176)
+  mod.testReporter.AddToTestQueueWithDelay(me.TestSoundRefreshFelArmor_28176)
 end
 
 function me.TestSoundShadowburn_27263()
@@ -104,8 +106,24 @@ function me.TestSoundUnstableAffliction_30108()
 end
 
 function me.TestSoundFelArmor_28176()
-  mod.testHelper.TestSoundSuccess(
+  mod.testHelper.TestSoundApplied(
     "TestSoundFelArmor_28176",
+    testCategory,
+    28176
+  )
+end
+
+function me.TestSoundDownFelArmor_28176()
+  mod.testHelper.TestSoundRemoved(
+    "TestSoundDownFelArmor_28176",
+    testCategory,
+    28176
+  )
+end
+
+function me.TestSoundRefreshFelArmor_28176()
+  mod.testHelper.TestSoundRefresh(
+    "TestSoundRefreshFelArmor_28176",
     testCategory,
     28176
   )

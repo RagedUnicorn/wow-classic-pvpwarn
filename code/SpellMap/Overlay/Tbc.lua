@@ -635,7 +635,8 @@ function me.GetOverlay()
           active = true,
           trackedEvents = {
             "SPELL_AURA_APPLIED",
-            "SPELL_AURA_REMOVED"
+            "SPELL_AURA_REMOVED",
+            "SPELL_AURA_REFRESH"
           },
           allRanks = {
             { spellId = 28176, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
@@ -894,7 +895,8 @@ function me.GetOverlay()
           active = true,
           trackedEvents = {
             "SPELL_AURA_APPLIED",
-            "SPELL_AURA_REMOVED"
+            "SPELL_AURA_REMOVED",
+            "SPELL_AURA_REFRESH"
           },
           allRanks = {
             { spellId = 974, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
@@ -909,7 +911,8 @@ function me.GetOverlay()
           active = true,
           trackedEvents = {
             "SPELL_AURA_APPLIED",
-            "SPELL_AURA_REMOVED"
+            "SPELL_AURA_REMOVED",
+            "SPELL_AURA_REFRESH"
           },
           allRanks = {
             { spellId = 24398, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
