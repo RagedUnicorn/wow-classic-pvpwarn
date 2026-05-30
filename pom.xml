@@ -14,26 +14,37 @@
     <addon.displayName>pvpwarn</addon.displayName>
     <addon.curseforge.projectId>475326</addon.curseforge.projectId>
     <!--
-      Classic (Interface: 11508) - covers: Classic Era, Hardcore, Season of Discovery
+      CurseForge game version IDs (not WoW interface numbers)
+
+      Classic - covers: Classic Era, Hardcore, Season of Discovery
+      Anniversary TBC - covers: TBC Anniversary Edition
     -->
     <!-- renovate: datasource=custom.wow-game-versions-classic depName=wow-gameversion-classic versioning=loose -->
     <addon.curseforge.gameVersionClassic>14029</addon.curseforge.gameVersionClassic>
+    <!-- renovate: datasource=custom.wow-game-versions-tbcc depName=wow-gameversion-tbcc versioning=loose -->
+    <addon.curseforge.gameVersionTbcc>14300</addon.curseforge.gameVersionTbcc>
     <addon.wago.projectId>0mNwP46o</addon.wago.projectId>
     <addon.name.short>PVPW</addon.name.short>
     <addon.tag.version>v${project.version}</addon.tag.version>
     <!--
-      Classic (Interface: 11508) - covers: Classic Era, Hardcore, Season of Discovery
+      Classic - covers: Classic Era, Hardcore, Season of Discovery
+      TBC - covers: TBC Anniversary (Burning Crusade Classic)
     -->
     <!-- renovate: datasource=custom.wow-versions-classic depName=wow-interface-classic versioning=loose -->
     <addon.interface.classic>11508</addon.interface.classic>
+    <!-- renovate: datasource=custom.wow-versions-tbcc depName=wow-interface-tbcc versioning=loose -->
+    <addon.interface.tbcc>20505</addon.interface.tbcc>
     <!-- Aggregated interface line consumed by the .toc template. When additional WoW variants are supported, list them here as a comma-separated string. -->
-    <addon.interface>${addon.interface.classic}</addon.interface>
+    <addon.interface>${addon.interface.classic}, ${addon.interface.tbcc}</addon.interface>
     <!--
       Wago patch versions.
-      Classic (1.15.8) - covers: Classic Era, Hardcore, Season of Discovery
+      Classic - covers: Classic Era, Hardcore, Season of Discovery
+      TBC - covers: TBC Anniversary (Burning Crusade Classic)
     -->
     <!-- renovate: datasource=custom.wow-patch-versions-classic depName=wow-patch-classic versioning=loose -->
     <addon.supported.patch.classic>1.15.8</addon.supported.patch.classic>
+    <!-- renovate: datasource=custom.wow-patch-versions-tbcc depName=wow-patch-tbcc versioning=loose -->
+    <addon.supported.patch.tbcc>2.5.5</addon.supported.patch.tbcc>
     <addon.identifier>${project.groupId}.${project.artifactId}</addon.identifier>
     <addon.project.categories>PvP Combat</addon.project.categories>
   </properties>
@@ -137,11 +148,12 @@
                 <configuration>
                   <game>wow</game>
                   <projectId>${addon.curseforge.projectId}</projectId>
-                  <displayName>${addon.displayName}-${addon.tag.version}-classic.zip</displayName>
+                  <displayName>${addon.displayName}-${addon.tag.version}.zip</displayName>
                   <changelogFile>${project.basedir}/build-resources/release-notes.md</changelogFile>
                   <changelogType>markdown</changelogType>
                   <gameVersions>
                     <gameVersion>${addon.curseforge.gameVersionClassic}</gameVersion>
+                    <gameVersion>${addon.curseforge.gameVersionTbcc}</gameVersion>
                   </gameVersions>
                   <releaseType>release</releaseType>
                   <file>${project.basedir}/target/${addon.name}.zip</file>
@@ -180,9 +192,10 @@
                 </goals>
                 <configuration>
                   <projectId>${addon.wago.projectId}</projectId>
-                  <label>${addon.displayName}-${addon.tag.version}-classic.zip</label>
+                  <label>${addon.displayName}-${addon.tag.version}.zip</label>
                   <changelogFile>${project.basedir}/build-resources/release-notes.md</changelogFile>
                   <supportedClassicPatch>${addon.supported.patch.classic}</supportedClassicPatch>
+                  <supportedBccPatch>${addon.supported.patch.tbcc}</supportedBccPatch>
                   <stability>stable</stability>
                   <file>${project.basedir}/target/${addon.name}.zip</file>
                   <!--suppress UnresolvedMavenProperty -->
