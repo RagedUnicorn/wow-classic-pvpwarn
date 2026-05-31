@@ -1,0 +1,141 @@
+name: SpellMap Export
+
+on:
+  push:
+    paths:
+      - code/SpellMap.lua
+      - code/SpellMap/**
+      - code/SpellAvoidMap.lua
+      - code/SpellAvoidMap/**
+      - tools/export_spellmap/**
+      - tools/verify_spellmap/**
+      - .github/workflows/export_spellmap.yaml
+  pull_request:
+    paths:
+      - code/SpellMap.lua
+      - code/SpellMap/**
+      - code/SpellAvoidMap.lua
+      - code/SpellAvoidMap/**
+      - tools/export_spellmap/**
+      - tools/verify_spellmap/**
+      - .github/workflows/export_spellmap.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  export-spellmap:
+    runs-on: ubuntu-latest
+    name: Export SpellMap and SpellAvoidMap
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+
+      - name: Install dependencies
+        run: |
+          cd tools/export_spellmap
+          pip install -r requirements.txt
+
+      - name: Run SpellMap export
+        id: export
+        run: |
+          # The exporter defaults its output here (repo-root target/, gitignored). Created up front
+          # so the tee below can write into it before the exporter populates the branch subdirs.
+          OUT=target/spellmap-export
+          mkdir -p "$OUT"
+
+          echo "## 🗺️ SpellMap & SpellAvoidMap Export" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Run the exporter and capture output. Exit code is non-zero only on hard failures
+          # (Lua load errors, overlay validation errors), never on a mere data change.
+          if python tools/export_spellmap/export_spellmap.py 2>&1 | tee "$OUT/export_output.txt"; then
+            echo "export_passed=true" >> $GITHUB_OUTPUT
+            echo "✅ **Export Status:** SUCCEEDED" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "export_passed=false" >> $GITHUB_OUTPUT
+            echo "❌ **Export Status:** FAILED (overlay validation or Lua load error)" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Overview" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          cat "$OUT/export_output.txt" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+          # Render each branch's summaries and the cross-branch diff into the step summary.
+          for branch in classic sod tbc; do
+            for summary in "$OUT"/$branch/*.summary.md; do
+              if [ -f "$summary" ]; then
+                echo "" >> $GITHUB_STEP_SUMMARY
+                cat "$summary" >> $GITHUB_STEP_SUMMARY
+              fi
+            done
+          done
+
+          if [ -f "$OUT/diff.md" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            cat "$OUT/diff.md" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload export artifact
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: spellmap-export-${{ github.sha }}
+          path: target/spellmap-export/
+          retention-days: 30
+
+      - name: Comment cross-branch diff on PR
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- spellmap-export -->';
+
+            let diff = '_diff.md was not produced (export failed before the diff step)._';
+            try {
+              diff = fs.readFileSync('target/spellmap-export/diff.md', 'utf8');
+            } catch (e) {}
+
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}` +
+              `/actions/runs/${context.runId}`;
+            const status = '${{ steps.export.outputs.export_passed }}' === 'true'
+              ? '✅ Export succeeded'
+              : '❌ Export failed (overlay validation or Lua load error)';
+
+            const body = `${marker}\n## 🗺️ SpellMap Export — cross-branch diff\n\n` +
+              `${status}\n\n` +
+              `${diff}\n\n` +
+              `📦 Full per-branch JSON dumps and summaries: ` +
+              `[\`spellmap-export-${{ github.sha }}\` artifact](${runUrl}).`;
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner, repo, issue_number,
+            });
+            const existing = comments.find(c => c.body && c.body.includes(marker));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner, repo, comment_id: existing.id, body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number, body,
+              });
+            }
+
+      - name: Fail if export failed
+        if: steps.export.outputs.export_passed == 'false'
+        run: exit 1

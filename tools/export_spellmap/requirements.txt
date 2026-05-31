@@ -1,0 +1,9 @@
+# SpellMap Export Tool Requirements
+
+# Lua parser for loading the SpellMap / SpellAvoidMap source.
+# The exporter reuses the loader + assembler from ../verify_spellmap, which depend on lupa.
+lupa==2.8
+
+# Testing framework
+pytest==9.0.3
+pytest-cov==7.1.0
