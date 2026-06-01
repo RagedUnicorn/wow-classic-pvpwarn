@@ -89,6 +89,13 @@ function me.SetupAddonConfiguration()
   )
 
   me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_FLASH_SUB_OPTION_FRAME,
+    category,
+    rgpvpw.L["configuration_menu_flash"],
+    mod.flashMenu.BuildUi
+  )
+
+  me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_profiles"],

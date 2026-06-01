@@ -162,10 +162,10 @@ RGPVPW_CONSTANTS = {
   ]]--
   MAX_WARN_AGE = 5,
   --[[
-    Alert UI
+    Vignette flash overlay (see gui/Flash.lua)
   ]]--
-  ELEMENT_ALERT_FRAME = "PVPW_AlertFrame",
-  ELEMENT_ALERT_TEXTURE = "PVPW_AlertTexture",
+  ELEMENT_FLASH_FRAME = "PVPW_FlashFrame",
+  ELEMENT_FLASH_TEXTURE = "PVPW_FlashTexture",
   --[[
 
   ]]--
@@ -238,6 +238,16 @@ RGPVPW_CONSTANTS = {
   ELEMENT_DETECTION_BAR_MAX_BARS_SLIDER = "PVPW_DetectionBarMaxBarsSlider",
   ELEMENT_DETECTION_BAR_SCALE_SLIDER = "PVPW_DetectionBarScaleSlider",
   ELEMENT_DETECTION_BAR_RESET_ANCHOR_BUTTON = "PVPW_DetectionBarResetAnchorButton",
+  --[[
+    Flash menu (vignette flash options sub-panel)
+  ]]--
+  ELEMENT_FLASH_SUB_OPTION_FRAME = "PVPW_FlashMenuOptionsFrame",
+  ELEMENT_FLASH_MENU_TITLE = "PVPW_FlashMenuTitle",
+  ELEMENT_FLASH_OPT_ENABLE = "PVPW_FlashOptEnable",
+  ELEMENT_FLASH_OPT_MAX_OPACITY_SLIDER = "PVPW_FlashOptMaxOpacitySlider",
+  ELEMENT_FLASH_OPT_PULSE = "PVPW_FlashOptPulse",
+  ELEMENT_FLASH_OPT_ADDITIVE_BLEND = "PVPW_FlashOptAdditiveBlend",
+  ELEMENT_FLASH_OPT_TEST_BUTTON = "PVPW_FlashOptTestButton",
   --[[
     Fallback event-text color for a detection bar when the detected spell has no visual
     warning color configured (colorValue "none"). #FF4FA8

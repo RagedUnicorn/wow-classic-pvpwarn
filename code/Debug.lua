@@ -37,8 +37,7 @@ _G["__PVPW__DEBUG__PLAYEXAMPLESOUND"] = function()
 end
 
 _G["__PVPW__DEBUG__SHOWEXAMPLEALERT"] = function()
-  mod.visual.CreateVisualAlertFrame()
-  mod.visual.ShowVisualAlert(RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue)
+  mod.flash.Show(RGPVPW_CONSTANTS.TEXTURES.yellow.colorValue)
 end
 
 --[[

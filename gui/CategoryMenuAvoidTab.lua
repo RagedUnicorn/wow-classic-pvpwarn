@@ -320,7 +320,7 @@ function me.ToggleAvoidVisualWarningOnClick(self)
     return
   end
 
-  mod.visual.ShowVisualAlert(color)
+  mod.flash.Show(color)
 end
 
 --[[
