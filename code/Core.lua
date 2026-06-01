@@ -123,6 +123,8 @@ function me.Initialize()
   me.stanceFrame.BuildStanceStateUi()
   -- setup detection bar ui
   me.detectionBarManager.Init(me.detectionBarAnchor.BuildAnchor())
+  -- suppress the vignette flash during loading screens
+  me.flash.RegisterSuppressionEvents()
   -- start ticker intervals
   me.ticker.StartTickerWarnQueue()
 

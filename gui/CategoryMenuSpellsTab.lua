@@ -417,7 +417,7 @@ function me.ToggleVisualWarningOnClick(self)
     return
   end
 
-  mod.visual.ShowVisualAlert(color)
+  mod.flash.Show(color)
 end
 
 --[[
@@ -459,7 +459,6 @@ function me.FauxScrollFrameOnUpdate(scrollFrame, categoryName)
 
       if cachedCategoryData[value] ~= nil then
         local spell = cachedCategoryData[value]
-        -- TODO DevTools_Dump({spell})
 
         row.spellId = spell.spellId
         row.normalizedSpellName = spell.normalizedSpellName

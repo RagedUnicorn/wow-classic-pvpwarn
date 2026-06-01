@@ -98,6 +98,24 @@ PVPWarnConfiguration = {
     ["scale"] = 1.0,
     ["dedupWindow"] = 1.0,
     ["hintShown"] = false
+  },
+  --[[
+    Vignette flash settings. The flash is the modern replacement for the cloudy screen
+    flash - a soft full-screen vignette that fires on the same per-spell visual warning
+    opt-in (visualWarningColor) as before.
+
+    flash = {
+      enabled = {boolean},      -- global on/off switch for the channel
+      maxOpacity = {number},    -- peak opacity of the flash (0.1 - 1.0)
+      pulse = {boolean},        -- whether the lifecycle includes the extra pulse step
+      blendMode = {string}      -- texture blend mode, "BLEND" or "ADD"
+    }
+  ]]--
+  ["flash"] = {
+    ["enabled"] = true,
+    ["maxOpacity"] = 0.85,
+    ["pulse"] = true,
+    ["blendMode"] = "BLEND"
   }
 }
 
@@ -142,6 +160,7 @@ function me.SetupConfiguration()
   end
 
   me.SetupDetectionBarConfiguration()
+  me.SetupFlashConfiguration()
 
   --[[
     Set saved variables with addon version. This can be used later to determine whether
@@ -174,6 +193,33 @@ function me.SetupDetectionBarConfiguration()
   for key, value in pairs(defaults) do
     if detectionBar[key] == nil then
       detectionBar[key] = value
+    end
+  end
+end
+
+--[[
+  Backfill the flash configuration block. Mirrors SetupDetectionBarConfiguration - new
+  SavedVariables keys are added with a nil-check that runs after an addon upgrade, so
+  existing players gain the flash settings without a dedicated migration path. Each sub-key
+  is backfilled individually so a partial upgrade self-heals.
+]]--
+function me.SetupFlashConfiguration()
+  if PVPWarnConfiguration.flash == nil then
+    mod.logger.LogInfo(me.tag, "flash has unexpected nil value")
+    PVPWarnConfiguration.flash = {}
+  end
+
+  local flash = PVPWarnConfiguration.flash
+  local defaults = {
+    ["enabled"] = true,
+    ["maxOpacity"] = 0.85,
+    ["pulse"] = true,
+    ["blendMode"] = "BLEND"
+  }
+
+  for key, value in pairs(defaults) do
+    if flash[key] == nil then
+      flash[key] = value
     end
   end
 end
@@ -639,5 +685,92 @@ end
 ]]--
 function me.GetDetectionBarDedupWindow()
   return PVPWarnConfiguration.detectionBar.dedupWindow
+end
+
+--[[
+  Enable the vignette flash warning channel
+]]--
+function me.EnableFlash()
+  PVPWarnConfiguration.flash.enabled = true
+end
+
+--[[
+  Disable the vignette flash warning channel
+]]--
+function me.DisableFlash()
+  PVPWarnConfiguration.flash.enabled = false
+end
+
+--[[
+  @return {boolean}
+    true - if the vignette flash warning channel is enabled
+    false - if the vignette flash warning channel is disabled
+]]--
+function me.IsFlashEnabled()
+  return PVPWarnConfiguration.flash.enabled
+end
+
+--[[
+  @return {number}
+    The peak opacity of the flash (0.1 - 1.0)
+]]--
+function me.GetFlashMaxOpacity()
+  return PVPWarnConfiguration.flash.maxOpacity
+end
+
+--[[
+  @param {number} maxOpacity
+    The peak opacity of the flash (clamped to 0.1 - 1.0)
+]]--
+function me.SetFlashMaxOpacity(maxOpacity)
+  if type(maxOpacity) ~= "number" then return end
+
+  if maxOpacity < 0.1 then maxOpacity = 0.1 end
+  if maxOpacity > 1.0 then maxOpacity = 1.0 end
+
+  PVPWarnConfiguration.flash.maxOpacity = maxOpacity
+end
+
+--[[
+  Enable the extra pulse step in the flash lifecycle animation
+]]--
+function me.EnableFlashPulse()
+  PVPWarnConfiguration.flash.pulse = true
+end
+
+--[[
+  Disable the extra pulse step in the flash lifecycle animation
+]]--
+function me.DisableFlashPulse()
+  PVPWarnConfiguration.flash.pulse = false
+end
+
+--[[
+  @return {boolean}
+    true - if the flash lifecycle includes the extra pulse step
+    false - if the flash lifecycle skips the pulse step
+]]--
+function me.IsFlashPulseEnabled()
+  return PVPWarnConfiguration.flash.pulse
+end
+
+--[[
+  @return {string}
+    The flash texture blend mode ("BLEND" or "ADD")
+]]--
+function me.GetFlashBlendMode()
+  return PVPWarnConfiguration.flash.blendMode
+end
+
+--[[
+  @param {string} blendMode
+    The flash texture blend mode - anything other than "ADD" falls back to "BLEND"
+]]--
+function me.SetFlashBlendMode(blendMode)
+  if blendMode == "ADD" then
+    PVPWarnConfiguration.flash.blendMode = "ADD"
+  else
+    PVPWarnConfiguration.flash.blendMode = "BLEND"
+  end
 end
 

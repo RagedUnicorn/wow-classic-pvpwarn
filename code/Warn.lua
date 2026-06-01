@@ -207,14 +207,21 @@ end
     false - if no visual warning was played
 ]]--
 PlayVisual = function(warning)
-  if warning.playVisual then
-    mod.visual.ShowVisualAlert(warning.spell.visualWarningColor)
-
-    return true
-  else
+  if not warning.playVisual then
     mod.logger.LogDebug(me.tag, "Skipping playing visual for spell - " .. warning.spell.name
       .. " because visual is disabled for this spell")
 
     return false
   end
+
+  if not mod.configuration.IsFlashEnabled() then
+    mod.logger.LogDebug(me.tag, "Skipping playing visual for spell - " .. warning.spell.name
+      .. " because the flash channel is disabled")
+
+    return false
+  end
+
+  mod.flash.Show(warning.spell.visualWarningColor)
+
+  return true
 end

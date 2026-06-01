@@ -28,7 +28,6 @@ code/Filter.lua
 code/Ticker.lua
 code/Warn.lua
 code/Sound.lua
-code/Visual.lua
 code/CombatLog.lua
 code/SpellMapHelper.lua
 code/SpellMap/Base.lua
@@ -50,6 +49,7 @@ code/Configuration.lua
 code/SpellConfiguration.lua
 code/Cmd.lua
 code/DetectionBarCmd.lua
+code/CmdFlash.lua
 code/Tooltip.lua
 code/Macro.lua
 code/Zone.lua
@@ -89,7 +89,9 @@ gui/EnemyAvoidMenu.lua
 gui/CombatFrame.lua
 gui/StanceFrame.lua
 gui/GuiHelper.lua
+gui/Flash.lua
 gui/DetectionBar.lua
 gui/DetectionBarManager.lua
 gui/DetectionBarAnchor.lua
 gui/DetectionBarMenu.lua
+gui/FlashMenu.lua
