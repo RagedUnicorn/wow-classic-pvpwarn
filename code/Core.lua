@@ -121,6 +121,8 @@ function me.Initialize()
   me.combatFrame.BuildCombatStateUi()
   -- setup stance state ui
   me.stanceFrame.BuildStanceStateUi()
+  -- setup detection bar ui
+  me.detectionBarManager.Init(me.detectionBarAnchor.BuildAnchor())
   -- start ticker intervals
   me.ticker.StartTickerWarnQueue()
 
@@ -129,6 +131,7 @@ function me.Initialize()
   end
 
   me.ShowWelcomeMessage()
+  me.ShowDetectionBarHint()
 
   isInitialized = true
   me.logger.LogInfo(me.tag, "Addon initialization complete")
@@ -142,4 +145,15 @@ function me.ShowWelcomeMessage()
     string.format("|cFF00FFB0" .. RGPVPW_CONSTANTS.ADDON_NAME .. rgpvpw.L["help"],
     C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"))
   )
+end
+
+--[[
+  Show a one-time hint pointing new users at the detection bar feature, then remember it was
+  shown so it never repeats.
+]]--
+function me.ShowDetectionBarHint()
+  if me.configuration.IsDetectionBarHintShown() then return end
+
+  print("|cFF00FFB0" .. RGPVPW_CONSTANTS.ADDON_NAME .. ":|r " .. rgpvpw.L["detection_bar_hint"])
+  me.configuration.SetDetectionBarHintShown()
 end

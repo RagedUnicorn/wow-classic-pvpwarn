@@ -24,6 +24,7 @@
 ]]--
 
 -- luacheck: globals CombatLog_Object_IsA COMBATLOG_FILTER_HOSTILE_PLAYERS COMBATLOG_FILTER_MINE
+-- luacheck: globals GetPlayerInfoByGUID
 
 local mod = rgpvpw
 local me = {}
@@ -130,7 +131,9 @@ function me.ProcessStart(event, callback, ...)
     spell.visualWarningColor = visualWarningColor
   end
 
-  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
+  local detectionBarPayload = me.ResolveDetectionBarPayload(spellMap, category, realSpellId, spellName, ...)
+
+  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual, detectionBarPayload)
 end
 
 --[[
@@ -180,7 +183,9 @@ function me.ProcessNormal(event, callback, ...)
     spell.visualWarningColor = visualWarningColor
   end
 
-  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
+  local detectionBarPayload = me.ResolveDetectionBarPayload(spellMap, category, realSpellId, spellName, ...)
+
+  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual, detectionBarPayload)
 end
 
 --[[
@@ -239,7 +244,9 @@ function me.ProcessMissed(event, spellMissedTarget, callback, ...)
     spell.visualWarningColor = visualWarningColor
   end
 
-  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
+  local detectionBarPayload = me.ResolveDetectionBarPayload(spellMap, category, realSpellId, spellName, ...)
+
+  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual, detectionBarPayload)
 end
 
 --[[
@@ -419,4 +426,83 @@ function me.IsVisualWarningActive(spellList, category, spellId, normalizedSpellN
   ))
 
   return false
+end
+
+--[[
+  Resolve the detection-bar payload for the current combat-log event, or nil when the
+  detection bar is globally disabled.
+
+  @param {string} spellMap
+    The spellList the spell was found in (used to read its visual warning color)
+  @param {string} category
+  @param {number} spellId
+  @param {string} spellName
+  @param {vararg} ...
+    The raw combat-log event args, forwarded for source GUID/name extraction
+
+  @return {table | nil}
+    A payload table for mod.detectionBarManager.Push, or nil
+]]--
+function me.ResolveDetectionBarPayload(spellMap, category, spellId, spellName, ...)
+  if not mod.configuration.IsDetectionBarEnabled() then return nil end
+
+  local srcGUID, srcName = mod.common.SelectMultiple({4, 5}, ...)
+  local colorValue = mod.spellConfiguration.GetVisualWarningColor(spellMap, category, spellId)
+
+  return me.BuildDetectionBarPayload(srcGUID, srcName, spellId, spellName, colorValue)
+end
+
+--[[
+  Convert a spell's visual warning colorValue into a keyed {r, g, b} event-text color,
+  falling back to the default when the spell has no color configured (colorValue "none").
+
+  @param {number} colorValue
+    A RGPVPW_CONSTANTS.TEXTURES colorValue
+
+  @return {table}
+    A keyed { r, g, b } color table
+]]--
+function me.ResolveDetectionBarEventColor(colorValue)
+  if not colorValue or colorValue == RGPVPW_CONSTANTS.DEFAULT_COLOR then
+    return RGPVPW_CONSTANTS.DETECTION_BAR_DEFAULT_EVENT_COLOR
+  end
+
+  local meta = RGPVPW_COLORS.GetColorMetadata(colorValue)
+  local rgb = meta and meta.rgb
+
+  if not rgb then return RGPVPW_CONSTANTS.DETECTION_BAR_DEFAULT_EVENT_COLOR end
+
+  return { r = rgb[1], g = rgb[2], b = rgb[3] }
+end
+
+--[[
+  Build the payload the detection bar manager needs from a combat-log source.
+
+  @param {string} srcGUID
+    The combat-log source GUID, used to derive the enemy class color
+  @param {string} srcName
+    The combat-log source name (may include a "-Realm" suffix)
+  @param {number} spellId
+  @param {string} spellName
+    The localized spell name to display as the event text
+  @param {number} colorValue
+    The detected spell's visual warning colorValue, used for the event-text color
+
+  @return {table}
+    A payload table for mod.detectionBarManager.Push
+]]--
+function me.BuildDetectionBarPayload(srcGUID, srcName, spellId, spellName, colorValue)
+  local classToken
+
+  if srcGUID then
+    classToken = select(2, GetPlayerInfoByGUID(srcGUID)) -- englishClass e.g. "ROGUE"
+  end
+
+  return {
+    spellID = spellId,
+    classToken = classToken,
+    playerName = srcName or "",
+    eventText = spellName,
+    eventColor = me.ResolveDetectionBarEventColor(colorValue)
+  }
 end

@@ -44,6 +44,7 @@ local function ShowInfoMessage()
   print(rgpvpw.L["opt"])
   print(rgpvpw.L["combatstate"])
   print(rgpvpw.L["stancestate"])
+  print(rgpvpw.L["bar"])
   print(rgpvpw.L["reload"])
 end
 

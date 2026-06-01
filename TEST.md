@@ -129,6 +129,44 @@ combateventenemyavoidirrelevant   - Enemy-avoid irrelevant combat event test cov
 /rgpvpw testlog show                  - Show the test log window
 ```
 
+### Detection Bar Visual Test
+
+The detection bar is a visual warning channel (a stacked horizontal alert bar), so it is
+verified by eye rather than through the session-based suite above. The `bar` subcommand drives
+this manual check:
+
+```
+/rgpvpw bar test      - Push four staggered fake bars to demo the stack
+/rgpvpw bar unlock    - Enter positioning mode: show the anchor's drag handle and a sample bar
+/rgpvpw bar lock      - Leave positioning mode (default; mouse disabled, never blocks clicks)
+```
+
+Positioning mode is **transient** — it shows a drag handle plus a non-fading sample bar (so the
+size, look and position are obvious) and reverts to locked on `/reload` or when combat starts, so
+the anchor can never be left intercepting world clicks. Only the dragged position is persisted.
+Opening **Settings → PVPWarn → Detection Bar** enters this mode automatically (Edit-Mode style)
+and leaves it when you navigate away, so `bar unlock` is mostly for positioning without opening
+Settings.
+
+`bar test` pushes four bars (~0.5 s apart) across mixed class / spell / player-name payloads so
+the full lifecycle is exercised in one shot:
+
+- newest bar on top, older bars stacking below with the stack-position alpha `{1.0, 0.7, 0.45, 0.30}`,
+- each bar's fade-in (180 ms) → hold (4 s) → fade-out (700 ms),
+- the 200 ms slide-up when a bar dies,
+- a 5th push dropping the oldest immediately (cap is the `maxBars` setting, default 4).
+
+Run `bar test` **twice in quick succession** (within the dedup window, default 1 s) to verify
+dedup: the repeated `(playerName, spellID)` payloads refresh the live bars' hold timers instead
+of stacking duplicates.
+
+Unlike the automated commands, `bar` needs no test session, takes no `[branch]` argument, and is
+**available in every build** — it lives in `code/DetectionBarCmd.lua` (the always-loaded code
+section), not the development-only `test/` tree. It exercises the visual surface directly and
+does not touch the combat log, so it works without an enemy target. To verify the combat-log
+path instead, enable a spell's per-spell *Detection Bar* checkbox in the Spells tab and have that
+spell cast on you.
+
 ### Test Log Window
 
 The test log window provides a comprehensive interface for viewing test results and managing

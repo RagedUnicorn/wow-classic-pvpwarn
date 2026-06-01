@@ -36,6 +36,7 @@ rgpvpw.L["opt"] = "|cFFFFC300opt|r - display Optionsmenu"
 rgpvpw.L["combatstate"] = "|cFFFFC300combatstate enable/disable|r - configure the position of the combatstate icon"
 rgpvpw.L["stancestate"] = "|cFFFFC300stancestate enable/disable|r - configure the position of the stancestate icon"
 rgpvpw.L["reload"] = "|cFFFFC300reload|r - reload UI"
+rgpvpw.L["bar"] = "|cFFFFC300bar lock/unlock/test|r - lock, unlock or test the detection bar"
 rgpvpw.L["invalid_argument"] = "Invalid argument passed"
 
 -- about
@@ -64,6 +65,22 @@ rgpvpw.L["voice_pack_title"] = "Voice Pack Configuration"
 rgpvpw.L["voice_pack_dropdown_label"] = "Select Voice Pack:"
 rgpvpw.L["voice_pack_default"] = "Default"
 rgpvpw.L["voice_pack_play_sound_button"] = "Test Voice Pack"
+
+-- detection bar
+rgpvpw.L["configuration_menu_detection_bar"] = "Detection Bar"
+rgpvpw.L["detection_bar_title"] = "Detection Bar Configuration"
+rgpvpw.L["detection_bar_enable"] = "Enable detection bar"
+rgpvpw.L["detection_bar_enable_tooltip"] = "Shows a horizontal alert bar when a tracked enemy spell fires"
+rgpvpw.L["detection_bar_position"] = "Position detection bar"
+rgpvpw.L["detection_bar_done"] = "Done"
+rgpvpw.L["detection_bar_max_bars_label"] = "Maximum visible bars:"
+rgpvpw.L["detection_bar_size_label"] = "Bar size:"
+rgpvpw.L["detection_bar_reset_anchor_button"] = "Reset position"
+rgpvpw.L["detection_bar_drag_handle"] = "PVPWarn Detection Bar - drag to move"
+rgpvpw.L["detection_bar_locked_message"] = "Detection bar positioning disabled"
+rgpvpw.L["detection_bar_unlocked_message"] = "Detection bar positioning enabled - drag the bar to move it"
+rgpvpw.L["detection_bar_hint"] = "Tip: enable the Detection Bar under Options to surface tracked enemy spells "
+  .. "as stacked alert bars. Open Options > Detection Bar to position it, or type /rgpvpw bar test."
 
 -- zones
 rgpvpw.L["configuration_menu_zone"] = "Zones"

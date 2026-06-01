@@ -79,7 +79,26 @@ PVPWarnConfiguration = {
       ...
     }
   ]]--
-  ["frames"] = {}
+  ["frames"] = {},
+  --[[
+    Detection bar settings. The detection bar is a third warning channel (next to sound and
+    visual) that surfaces a horizontal alert bar when a tracked enemy spell fires.
+
+    detectionBar = {
+      enabled = {boolean},                  -- global on/off switch for the channel
+      maxBars = {number},                   -- maximum amount of visible stacked bars (1-4)
+      scale = {number},                     -- overall bar size factor (1.0 = 100%)
+      dedupWindow = {number},               -- seconds within which a repeated (player, spell) is deduped
+      hintShown = {boolean}                 -- whether the one-time discovery hint has been shown
+    }
+  ]]--
+  ["detectionBar"] = {
+    ["enabled"] = true,
+    ["maxBars"] = 4,
+    ["scale"] = 1.0,
+    ["dedupWindow"] = 1.0,
+    ["hintShown"] = false
+  }
 }
 
 --[[
@@ -122,11 +141,41 @@ function me.SetupConfiguration()
     PVPWarnConfiguration.activeVoicePack = RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME
   end
 
+  me.SetupDetectionBarConfiguration()
+
   --[[
     Set saved variables with addon version. This can be used later to determine whether
     a migration path applies to the current saved variables or not
   ]]--
   me.SetAddonVersion()
+end
+
+--[[
+  Backfill the detectionBar configuration block. New SavedVariables keys are added the
+  idiomatic way - a nil-check that runs after an addon upgrade - so existing players gain
+  the detection bar settings without a dedicated migration path. Each sub-key is backfilled
+  individually so a partial upgrade (block present but missing a newer field) self-heals.
+]]--
+function me.SetupDetectionBarConfiguration()
+  if PVPWarnConfiguration.detectionBar == nil then
+    mod.logger.LogInfo(me.tag, "detectionBar has unexpected nil value")
+    PVPWarnConfiguration.detectionBar = {}
+  end
+
+  local detectionBar = PVPWarnConfiguration.detectionBar
+  local defaults = {
+    ["enabled"] = true,
+    ["maxBars"] = 4,
+    ["scale"] = 1.0,
+    ["dedupWindow"] = 1.0,
+    ["hintShown"] = false
+  }
+
+  for key, value in pairs(defaults) do
+    if detectionBar[key] == nil then
+      detectionBar[key] = value
+    end
+  end
 end
 
 --[[
@@ -503,3 +552,92 @@ end
 function me.SetActiveVoicePack(voicePackName)
   PVPWarnConfiguration.activeVoicePack = voicePackName
 end
+
+--[[
+  Enable the detection bar warning channel
+]]--
+function me.EnableDetectionBar()
+  PVPWarnConfiguration.detectionBar.enabled = true
+end
+
+--[[
+  Disable the detection bar warning channel
+]]--
+function me.DisableDetectionBar()
+  PVPWarnConfiguration.detectionBar.enabled = false
+end
+
+--[[
+  @return {boolean}
+    true - if the detection bar warning channel is enabled
+    false - if the detection bar warning channel is disabled
+]]--
+function me.IsDetectionBarEnabled()
+  return PVPWarnConfiguration.detectionBar.enabled
+end
+
+--[[
+  @return {boolean}
+    true - if the one-time detection bar discovery hint has already been shown
+]]--
+function me.IsDetectionBarHintShown()
+  return PVPWarnConfiguration.detectionBar.hintShown
+end
+
+--[[
+  Mark the one-time detection bar discovery hint as shown
+]]--
+function me.SetDetectionBarHintShown()
+  PVPWarnConfiguration.detectionBar.hintShown = true
+end
+
+--[[
+  @return {number}
+    The maximum amount of visible stacked detection bars
+]]--
+function me.GetDetectionBarMaxBars()
+  return PVPWarnConfiguration.detectionBar.maxBars
+end
+
+--[[
+  @param {number} maxBars
+    The maximum amount of visible stacked detection bars (clamped to 1-4)
+]]--
+function me.SetDetectionBarMaxBars(maxBars)
+  if type(maxBars) ~= "number" then return end
+
+  if maxBars < 1 then maxBars = 1 end
+  if maxBars > 4 then maxBars = 4 end
+
+  PVPWarnConfiguration.detectionBar.maxBars = maxBars
+end
+
+--[[
+  @return {number}
+    The detection bar scale factor (1.0 = 100%)
+]]--
+function me.GetDetectionBarScale()
+  return PVPWarnConfiguration.detectionBar.scale
+end
+
+--[[
+  @param {number} scale
+    The detection bar scale factor (clamped to 0.5 - 2.0)
+]]--
+function me.SetDetectionBarScale(scale)
+  if type(scale) ~= "number" then return end
+
+  if scale < 0.5 then scale = 0.5 end
+  if scale > 2.0 then scale = 2.0 end
+
+  PVPWarnConfiguration.detectionBar.scale = scale
+end
+
+--[[
+  @return {number}
+    The detection bar dedup window in seconds
+]]--
+function me.GetDetectionBarDedupWindow()
+  return PVPWarnConfiguration.detectionBar.dedupWindow
+end
+
