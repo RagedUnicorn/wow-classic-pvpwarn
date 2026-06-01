@@ -228,6 +228,33 @@ RGPVPW_CONSTANTS = {
   ELEMENT_VOICE_PACK_DROPDOWN_MIN_WIDTH = 120,
   ELEMENT_VOICE_PACK_PLAY_SOUND_BUTTON = "PVPW_VoicePackPlaySoundButton",
   --[[
+    Detection bar
+  ]]--
+  ELEMENT_DETECTION_BAR_ANCHOR_FRAME = "PVPW_DetectionBarAnchor",
+  ELEMENT_DETECTION_BAR_SUB_OPTION_FRAME = "PVPW_DetectionBarMenuOptionsFrame",
+  ELEMENT_DETECTION_BAR_TITLE = "PVPW_DetectionBarTitle",
+  ELEMENT_DETECTION_BAR_ENABLE = "PVPW_DetectionBarEnable",
+  ELEMENT_DETECTION_BAR_POSITION_BUTTON = "PVPW_DetectionBarPositionButton",
+  ELEMENT_DETECTION_BAR_MAX_BARS_SLIDER = "PVPW_DetectionBarMaxBarsSlider",
+  ELEMENT_DETECTION_BAR_SCALE_SLIDER = "PVPW_DetectionBarScaleSlider",
+  ELEMENT_DETECTION_BAR_RESET_ANCHOR_BUTTON = "PVPW_DetectionBarResetAnchorButton",
+  --[[
+    Fallback event-text color for a detection bar when the detected spell has no visual
+    warning color configured (colorValue "none"). #FF4FA8
+  ]]--
+  DETECTION_BAR_DEFAULT_EVENT_COLOR = { r = 1.00, g = 0.31, b = 0.66 },
+  --[[
+    Detection bar visual tokens
+  ]]--
+  DETECTION_BAR_WIDTH = 760,
+  DETECTION_BAR_HEIGHT = 56,
+  DETECTION_BAR_GAP = 6,
+  DETECTION_BAR_FONT = "Interface\\AddOns\\PVPWarn\\assets\\fonts\\FiraSans-Heavy.ttf",
+  DETECTION_BAR_FONT_FALLBACK = "Fonts\\FRIZQT__.TTF",
+  DETECTION_BAR_ICON_GLOW_TEXTURE = "Interface\\AddOns\\PVPWarn\\assets\\detection_bar\\icon_glow",
+  DETECTION_BAR_GRADIENT_CLASS_TEXTURE = "Interface\\AddOns\\PVPWarn\\assets\\detection_bar\\bar_gradient_class",
+  DETECTION_BAR_GRADIENT_DARK_TEXTURE = "Interface\\AddOns\\PVPWarn\\assets\\detection_bar\\bar_gradient_dark",
+  --[[
     A list of available categories consisting of all classes, racials, items and a
     misc category
 

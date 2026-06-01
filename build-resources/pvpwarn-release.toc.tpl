@@ -49,6 +49,7 @@ code/StanceState.lua
 code/Configuration.lua
 code/SpellConfiguration.lua
 code/Cmd.lua
+code/DetectionBarCmd.lua
 code/Tooltip.lua
 code/Macro.lua
 code/Zone.lua
@@ -88,3 +89,7 @@ gui/EnemyAvoidMenu.lua
 gui/CombatFrame.lua
 gui/StanceFrame.lua
 gui/GuiHelper.lua
+gui/DetectionBar.lua
+gui/DetectionBarManager.lua
+gui/DetectionBarAnchor.lua
+gui/DetectionBarMenu.lua

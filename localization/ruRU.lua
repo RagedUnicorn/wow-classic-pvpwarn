@@ -37,6 +37,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["combatstate"] = "|cFFFFC300combatstate enable/disable|r — настроить положение иконки состояния боя"
   rgpvpw.L["stancestate"] = "|cFFFFC300stancestate enable/disable|r — настроить положение иконки стойки"
   rgpvpw.L["reload"] = "|cFFFFC300reload|r — перезагрузить интерфейс"
+  rgpvpw.L["bar"] = "|cFFFFC300bar lock/unlock/test|r — заблокировать, разблокировать или проверить панель обнаружения"
   rgpvpw.L["invalid_argument"] = "Недопустимый аргумент"
 
   -- about
@@ -65,6 +66,25 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["voice_pack_dropdown_label"] = "Выберите голосовой пакет:"
   rgpvpw.L["voice_pack_default"] = "По умолчанию"
   rgpvpw.L["voice_pack_play_sound_button"] = "Проверить голосовой пакет"
+
+  -- detection bar
+  rgpvpw.L["configuration_menu_detection_bar"] = "Панель обнаружения"
+  rgpvpw.L["detection_bar_title"] = "Настройка панели обнаружения"
+  rgpvpw.L["detection_bar_enable"] = "Включить панель обнаружения"
+  rgpvpw.L["detection_bar_enable_tooltip"] = "Показывает горизонтальную панель оповещения при срабатывании "
+    .. "отслеживаемого вражеского заклинания"
+  rgpvpw.L["detection_bar_position"] = "Разместить панель обнаружения"
+  rgpvpw.L["detection_bar_done"] = "Готово"
+  rgpvpw.L["detection_bar_max_bars_label"] = "Максимум видимых панелей:"
+  rgpvpw.L["detection_bar_size_label"] = "Размер панели:"
+  rgpvpw.L["detection_bar_reset_anchor_button"] = "Сбросить положение"
+  rgpvpw.L["detection_bar_drag_handle"] = "PVPWarn Панель обнаружения - перетащите для перемещения"
+  rgpvpw.L["detection_bar_locked_message"] = "Размещение панели обнаружения отключено"
+  rgpvpw.L["detection_bar_unlocked_message"] = "Размещение панели обнаружения включено - "
+    .. "перетащите панель для перемещения"
+  rgpvpw.L["detection_bar_hint"] = "Совет: включите панель обнаружения в настройках, чтобы показывать "
+    .. "отслеживаемые вражеские заклинания в виде панелей оповещения. Откройте Настройки > Панель "
+    .. "обнаружения для размещения или введите /rgpvpw bar test."
 
   -- zones
   rgpvpw.L["configuration_menu_zone"] = "Зоны"

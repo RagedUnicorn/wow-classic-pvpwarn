@@ -22,6 +22,8 @@
         <include>assets/**/*.blp</include>
         <include>assets/**/*.tga</include>
         <include>assets/sounds/**/*.mp3</include>
+        <include>assets/**/*.ttf</include>
+        <include>assets/**/*.txt</include>
         <include>localization/*.lua</include>
       </includes>
     </fileSet>

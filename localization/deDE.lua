@@ -39,6 +39,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["stancestate"] = "|cFFFFC300stancestate enable/disable|r - "
     .. "Konfiguriere die Position des Haltungszustand Symbol"
   rgpvpw.L["reload"] = "|cFFFFC300reload|r - UI neu laden"
+  rgpvpw.L["bar"] = "|cFFFFC300bar lock/unlock/test|r - die Erkennungsleiste sperren, entsperren oder testen"
   rgpvpw.L["invalid_argument"] = "Ungültiges Argument übergeben"
 
   -- about
@@ -67,6 +68,25 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["voice_pack_dropdown_label"] = "Sprachpaket auswählen:"
   rgpvpw.L["voice_pack_default"] = "Standard"
   rgpvpw.L["voice_pack_play_sound_button"] = "Sprachpaket testen"
+
+  -- detection bar
+  rgpvpw.L["configuration_menu_detection_bar"] = "Erkennungsleiste"
+  rgpvpw.L["detection_bar_title"] = "Erkennungsleiste Konfiguration"
+  rgpvpw.L["detection_bar_enable"] = "Erkennungsleiste aktivieren"
+  rgpvpw.L["detection_bar_enable_tooltip"] = "Zeigt eine horizontale Warnleiste, wenn ein verfolgter gegnerischer "
+    .. "Zauber ausgelöst wird"
+  rgpvpw.L["detection_bar_position"] = "Erkennungsleiste positionieren"
+  rgpvpw.L["detection_bar_done"] = "Fertig"
+  rgpvpw.L["detection_bar_max_bars_label"] = "Maximal sichtbare Leisten:"
+  rgpvpw.L["detection_bar_size_label"] = "Leistengrösse:"
+  rgpvpw.L["detection_bar_reset_anchor_button"] = "Position zurücksetzen"
+  rgpvpw.L["detection_bar_drag_handle"] = "PVPWarn Erkennungsleiste - zum Verschieben ziehen"
+  rgpvpw.L["detection_bar_locked_message"] = "Positionierung der Erkennungsleiste deaktiviert"
+  rgpvpw.L["detection_bar_unlocked_message"] = "Positionierung der Erkennungsleiste aktiviert - "
+    .. "ziehe die Leiste zum Verschieben"
+  rgpvpw.L["detection_bar_hint"] = "Tipp: Aktiviere die Erkennungsleiste unter Optionen, um verfolgte "
+    .. "gegnerische Zauber als gestapelte Warnleisten anzuzeigen. Öffne Optionen > Erkennungsleiste zum "
+    .. "Positionieren, oder tippe /rgpvpw bar test."
 
   -- zones
   rgpvpw.L["configuration_menu_zone"] = "Zonen"

@@ -142,14 +142,26 @@ end
     Optional function that is invoked with status infos. Currently only used for testing
   @param {boolean} playSound
   @param {boolean} playVisual
+  @param {table | nil} detectionBarPayload
+    When present, a payload for mod.detectionBarManager.Push. The detection bar is a purely
+    visual channel with its own stack semantics, so it is dispatched directly here and bypasses
+    the sound/visual warn-queue and its 0.8s busy gate.
 ]]--
-function me.PlayWarning(category, spellType, spell, callback, playSound, playVisual)
+function me.PlayWarning(category, spellType, spell, callback, playSound, playVisual, detectionBarPayload)
   if category == nil or spellType == nil or spell == nil then
     return
   end
 
   -- queue spell into warnqueue
   me.AddToQueue(tostring(math.floor(math.random() * 100000)), category, spellType, spell, playSound, playVisual)
+
+  --[[
+    The detection bar bypasses the warn-queue. Push it directly so it is not throttled by the
+    audio busy gate; the manager handles dedup and stack concurrency itself.
+  ]]--
+  if detectionBarPayload ~= nil then
+    mod.detectionBarManager.Push(detectionBarPayload)
+  end
 
   if callback ~= nil then
     assert(type(callback) == "function",

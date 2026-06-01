@@ -82,6 +82,13 @@ function me.SetupAddonConfiguration()
   )
 
   me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_SUB_OPTION_FRAME,
+    category,
+    rgpvpw.L["configuration_menu_detection_bar"],
+    mod.detectionBarMenu.OnPanelShow
+  )
+
+  me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_profiles"],
