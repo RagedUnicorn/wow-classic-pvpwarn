@@ -1,0 +1,61 @@
+name: 🪵 Combat Log Submission
+description: Submit a World of Warcraft combat log to help verify PVPWarn's spell data.
+title: "[Combat Log] "
+labels: ["combat-log"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing a combat log! These logs are used to verify that PVPWarn's
+        spell IDs and tracked events are correct.
+
+        Before submitting, please read the short guide in
+        [CONTRIBUTING.md](https://github.com/RagedUnicorn/wow-classic-pvpwarn/blob/master/CONTRIBUTING.md).
+
+        ⚠️ **Don't forget to attach your log file.** Combat logs are large and `.txt` files are
+        sometimes rejected - **zip the file first** (`WoWCombatLog.txt` → `WoWCombatLog.zip`) and
+        drag the `.zip` into the box below. The per-attachment limit is about 25 MB; for larger
+        logs, split them or share a download link.
+
+        You do **not** need to run any tool or analyze the log yourself - just attach it.
+  - type: dropdown
+    id: game-version
+    attributes:
+      label: Game version
+      description: Which client did you record this log on?
+      options:
+        - WoW Classic Era
+        - Burning Crusade Anniversary
+        - Season of Discovery
+        - Other / not sure
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: What did you do during the recorded log?
+      description: >
+        Roughly what content does this log cover? For example PvE (dungeons/raids),
+        PvP arena, battlegrounds, world PvP, etc.
+      placeholder: |
+        e.g. ~30 min of Warsong Gulch and some arena.
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I started logging with `/combatlog` and stopped it before grabbing the file.
+          required: true
+        - label: I attached the (preferably zipped) combat log file to this issue.
+          required: true
+        - label: Advanced Combat Logging was enabled (System → Network) - recommended.
+          required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: Anything else? (optional)
+      description: Any other notes about this log.
+    validations:
+      required: false

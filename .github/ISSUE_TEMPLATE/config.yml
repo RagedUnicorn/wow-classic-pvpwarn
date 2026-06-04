@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Combat Log Contribution Guide
+    url: https://github.com/RagedUnicorn/wow-classic-pvpwarn/blob/master/CONTRIBUTING.md
+    about: How to record and submit a combat log for spell-data verification.
+  - name: 📦 Releases
+    url: https://github.com/RagedUnicorn/wow-classic-pvpwarn/releases
+    about: Download the latest release of PVPWarn.

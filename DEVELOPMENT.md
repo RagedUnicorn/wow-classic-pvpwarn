@@ -183,6 +183,7 @@ docker compose run --rm luacheck-report             # Generate lua lint report
 # Combat Log Analysis
 docker compose run --rm combat-log-parser           # Parse combat logs 
 docker compose run --rm combat-log-parser-report    # Parse combat logs with report output
+# To collect combat logs from players, point them to CONTRIBUTING.md
 
 # Sound Verification
 docker compose run --rm verify-sounds               # Verify sound files exist

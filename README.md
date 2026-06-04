@@ -140,13 +140,24 @@ This can have multiple errors. It might be an actual bug where the addon did not
 
 #### PVPWarn does not support my Spell. What can I do?
 
-PVPWarn is not complete and certain spells might have simply forgotten. If you have a certain spell that you would like to see supported in a future version of the addon make sure to create a ticket for it, and I will have a  look at it.
+PVPWarn is not complete and certain spells might have simply forgotten. If you have a certain spell that you would like to see supported in a future version of the addon make sure to create a ticket for it, and I will have a  look at it. Attaching a combat log that contains the spell speeds up verification a lot - see [Contributing Combat Logs](CONTRIBUTING.md).
 
 #### PVPWarn shows me a question mark instead of the stance of the player
 
 This is a limitation of the WoW Api. Stances can only be observed when a warrior is switching from one stance to
 another. It is not possible to get infos about the current stance. PVPWarn will however display the stance as soon
 as it is able to observe it.
+
+## Contributing Combat Logs
+
+You can help make PVPWarn more accurate without writing any code. PVPWarn matches spells by their
+spell ID and combat-log events, and these are verified against real in-game combat logs. By
+recording a combat log and attaching it to a GitHub issue you help confirm that spells are tracked
+correctly across Classic Era, Burning Crusade Anniversary and Season of Discovery.
+
+No tools or analysis are required on your end - just record a log and attach it. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for a step-by-step guide on enabling combat logging, where the
+file is saved, and how to submit it.
 
 ## Development
 
