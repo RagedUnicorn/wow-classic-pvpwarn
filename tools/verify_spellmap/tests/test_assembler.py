@@ -131,8 +131,8 @@ class TestValidate:
 
     def test_overlay_index_in_error_message(self, base):
         overlays = [
-            {},  # overlay #1 — valid (empty)
-            {"warrior": {"remove": [99999]}},  # overlay #2 — bad
+            {},  # overlay #1 - valid (empty)
+            {"warrior": {"remove": [99999]}},  # overlay #2 - bad
         ]
         errors = validate(base, overlays)
         assert any("overlay #2" in err for err in errors)

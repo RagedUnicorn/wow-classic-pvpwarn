@@ -1,5 +1,5 @@
 --[[
-  Test SpellAvoidMap/Base.lua for verify_sounds tool testing — base + overlay layout.
+  Test SpellAvoidMap/Base.lua for verify_sounds tool testing - base + overlay layout.
 ]]--
 
 local mod = rgpvpw

@@ -72,7 +72,7 @@ class LuaParser:
 
     def _setup_environment(self):
         """Inject the mocks the addon source files expect. Idempotent within one parser
-        instance — the overlay files reference the same rgpvpw / RGPVPW_CONSTANTS namespace as
+        instance - the overlay files reference the same rgpvpw / RGPVPW_CONSTANTS namespace as
         the base file."""
         if self._env_initialized:
             return

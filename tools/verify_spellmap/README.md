@@ -66,7 +66,7 @@ The verifier mirrors the in-game test framework's three-pass model. For each map
 - **Sound File Name Validation**: Ensures soundFileName property exists and is non-empty
 - **Spell Icon Validation**: Validates spellIcon property exists and is non-empty
 - **All Ranks Validation**: Verifies allRanks property is a valid array of integers
-- **Overlay Operations Validation**: Mirrors `mod.spellMapAssembler.Validate` — checks remove/add/replace ops are coherent against the base
+- **Overlay Operations Validation**: Mirrors `mod.spellMapAssembler.Validate` - checks remove/add/replace ops are coherent against the base
 
 ### SpellMap-Specific Validators
 - **Tracked Events Validation**: Ensures trackedEvents array exists with valid event types

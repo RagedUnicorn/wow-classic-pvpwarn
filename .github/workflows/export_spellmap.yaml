@@ -112,7 +112,7 @@ jobs:
               ? '✅ Export succeeded'
               : '❌ Export failed (overlay validation or Lua load error)';
 
-            const body = `${marker}\n## 🗺️ SpellMap Export — cross-branch diff\n\n` +
+            const body = `${marker}\n## 🗺️ SpellMap Export - cross-branch diff\n\n` +
               `${status}\n\n` +
               `${diff}\n\n` +
               `📦 Full per-branch JSON dumps and summaries: ` +

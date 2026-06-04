@@ -22,7 +22,7 @@ class LuaParser:
 
     def parse_spellmap(self) -> Dict[str, Dict[int, Dict[str, Any]]]:
         """Load Base.lua, then merge every overlay's adds + replaces (we ignore `remove` ops so
-        the result is a union of every spell across every branch — which is what a combat-log
+        the result is a union of every spell across every branch - which is what a combat-log
         replay wants when scanning historic logs).
 
         Returns:
@@ -113,7 +113,7 @@ class LuaParser:
     def _union_merge_overlay(base: Dict[str, Dict[int, Dict[str, Any]]],
                              overlay: Dict[str, Dict[str, Any]]) -> None:
         """Merge an overlay's `add` and `replace` ops into the base in place. Skips `remove`
-        — the union view keeps Classic content visible even when a branch overlay removes it."""
+        - the union view keeps Classic content visible even when a branch overlay removes it."""
         for category, ops in overlay.items():
             if category not in base:
                 base[category] = {}

@@ -108,7 +108,7 @@ def test_render_functions_produce_markdown():
     summary_md = ex.render_summary_md("SpellMap", "classic", summary)
     diff_md = ex.render_diff_md([ex.build_diff("SpellMap", maps)])
 
-    assert "# SpellMap — `classic` branch" in summary_md
+    assert "# SpellMap - `classic` branch" in summary_md
     assert "Entries per class" in summary_md
     assert "Missing sound files" in summary_md
     assert "# Cross-branch SpellMap diff" in diff_md
@@ -129,7 +129,7 @@ class TestUrlBuilders:
         assert ex.build_icon_url("spell_nature_ancestralguardian") == (
             "https://wow.zamimg.com/images/wow/icons/large/spell_nature_ancestralguardian.jpg"
         )
-        # Defensive lowercasing — texture names are already lowercase in the data.
+        # Defensive lowercasing - texture names are already lowercase in the data.
         assert ex.build_icon_url("Spell_Nature_X") == (
             "https://wow.zamimg.com/images/wow/icons/large/spell_nature_x.jpg"
         )

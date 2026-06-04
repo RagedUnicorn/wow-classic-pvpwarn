@@ -43,7 +43,7 @@ def apply(base: Dict[str, Dict[int, Dict]],
         overlays: Ordered list of overlay tables to apply. May be None or empty.
 
     Returns:
-        A new dict — base is not mutated, overlays are not mutated.
+        A new dict - base is not mutated, overlays are not mutated.
     """
     result = copy.deepcopy(base)
 
@@ -58,7 +58,7 @@ def apply(base: Dict[str, Dict[int, Dict]],
 
 def _apply_one(working: Dict[str, Dict[int, Dict]], overlay: Dict[str, Dict]) -> None:
     """Apply a single overlay to ``working`` in place. Operations within a category run in the
-    order remove, add, replace, appendRanks — matching Assemble.lua's ApplyOne."""
+    order remove, add, replace, appendRanks - matching Assemble.lua's ApplyOne."""
     for category, ops in overlay.items():
         if category not in working:
             working[category] = {}

@@ -357,7 +357,7 @@ function me.GetOverlay()
           }
         },
         -- ID-collision: spell ID 12472 means "Cold Snap" in Classic Era but
-        -- "Icy Veins" in TBC (a separate spell — Frost talent, 3 min CD,
+        -- "Icy Veins" in TBC (a separate spell - Frost talent, 3 min CD,
         -- +20% spellcasting haste). Sound and icon shared with the SoD
         -- Icy Veins entry at [425121] (SoD and TBC are mutually exclusive
         -- at filter time, so the .mp3 / icon are reused with no conflict).

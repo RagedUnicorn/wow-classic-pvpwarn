@@ -58,7 +58,7 @@ plays.
 ### Command Line Interface
 
 Individual categories are run through `/rgpvpw` slash commands. **Do not call a per-category
-test module's `Test()` function directly with `/run`** — those modules check for an active test
+test module's `Test()` function directly with `/run`** - those modules check for an active test
 session and abort with an error pointing you back to the slash command. `TestAll` (above) is the
 only supported `/run` entry point because it sets up its own session group.
 
@@ -86,7 +86,7 @@ all, druid, hunter, mage, paladin, priest, rogue, shaman, warlock, warrior, item
 ```
 
 Self-avoid and enemy-avoid tests (`testselfsound`, `testenemysound`, `testselfcombatevent`,
-`testenemycombatevent`) — class categories only:
+`testenemycombatevent`) - class categories only:
 
 ```
 all, druid, hunter, mage, paladin, priest, rogue, shaman, warlock, warrior
@@ -98,7 +98,7 @@ no avoid coverage for some classes) are skipped silently rather than reported as
 #### Validation Suites
 
 `testvalidation <suite> [branch]` checks that a test case **exists** for every spell in the spell
-maps — it does not run the tests, only verifies coverage completeness.
+maps - it does not run the tests, only verifies coverage completeness.
 
 ```
 all                               - Run all validation suites
@@ -141,7 +141,7 @@ this manual check:
 /rgpvpw bar lock      - Leave positioning mode (default; mouse disabled, never blocks clicks)
 ```
 
-Positioning mode is **transient** — it shows a drag handle plus a non-fading sample bar (so the
+Positioning mode is **transient** - it shows a drag handle plus a non-fading sample bar (so the
 size, look and position are obvious) and reverts to locked on `/reload` or when combat starts, so
 the anchor can never be left intercepting world clicks. Only the dragged position is persisted.
 Opening **Settings → PVPWarn → Detection Bar** enters this mode automatically (Edit-Mode style)
@@ -161,7 +161,7 @@ dedup: the repeated `(playerName, spellID)` payloads refresh the live bars' hold
 of stacking duplicates.
 
 Unlike the automated commands, `bar` needs no test session, takes no `[branch]` argument, and is
-**available in every build** — it lives in `code/DetectionBarCmd.lua` (the always-loaded code
+**available in every build** - it lives in `code/DetectionBarCmd.lua` (the always-loaded code
 section), not the development-only `test/` tree. It exercises the visual surface directly and
 does not touch the combat log, so it works without an enemy target. To verify the combat-log
 path instead, enable a spell's per-spell *Detection Bar* checkbox in the Spells tab and have that
@@ -229,7 +229,7 @@ end
 - `me.Test(completionCallback)` chains into the next branch/category via its callback, which is
   how the runner sequences multiple branches and the `all` category.
 - Direct `/run` calls to a per-category module's `Test()` bypass session management and abort.
-- `rgpvpw.testAll.TestAll()` is the exception — it sets up its own session group and is the
+- `rgpvpw.testAll.TestAll()` is the exception - it sets up its own session group and is the
   supported way to run everything via `/run`.
 
 ### Test Case Collection
@@ -452,5 +452,5 @@ docker compose -f docker-compose.test.yml run --rm verify-spellmap-tests
 ```
 
 Results are written under `target/test_results/`. These validate the tooling, not the addon's
-runtime behavior — the spell, sound, and combat-event tests above remain the authoritative
+runtime behavior - the spell, sound, and combat-event tests above remain the authoritative
 addon testsuite.

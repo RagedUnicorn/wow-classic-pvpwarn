@@ -1,7 +1,7 @@
 """
 Report generation for SpellMap verification results.
 
-Reports are organised into "sections" — typically one per (map, branch) combination plus an
+Reports are organised into "sections" - typically one per (map, branch) combination plus an
 optional overlay-operations section. Each section keeps its own summary, validator results, and
 errors, so the same Reporter can drive a clean per-branch view of the new base+overlay layout.
 """
@@ -17,7 +17,7 @@ from .constants import (
 
 
 class ReportSection:
-    """A single titled block in the report — typically one map+branch combination."""
+    """A single titled block in the report - typically one map+branch combination."""
 
     def __init__(self, title: str):
         self.title = title
@@ -34,7 +34,7 @@ class Reporter:
     def __init__(self, root_path):
         """
         Args:
-            root_path: Path of the input being verified — only used in the report header.
+            root_path: Path of the input being verified - only used in the report header.
         """
         self.root_path = root_path
         self.sections: List[ReportSection] = []

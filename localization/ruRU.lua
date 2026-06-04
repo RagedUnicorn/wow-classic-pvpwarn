@@ -33,11 +33,11 @@ if (GetLocale() == "ruRU") then
   -- console
   rgpvpw.L["info_title"] = "|cFF00FFB0PVPWarn:|r"
   rgpvpw.L["help"] = "|cFFFFC300(%s)|r: Используйте |cFFFFC300/rgpvpw|r или |cFFFFC300/pvpwarn|r для списка опций"
-  rgpvpw.L["opt"] = "|cFFFFC300opt|r — открыть меню настроек"
-  rgpvpw.L["combatstate"] = "|cFFFFC300combatstate enable/disable|r — настроить положение иконки состояния боя"
-  rgpvpw.L["stancestate"] = "|cFFFFC300stancestate enable/disable|r — настроить положение иконки стойки"
-  rgpvpw.L["reload"] = "|cFFFFC300reload|r — перезагрузить интерфейс"
-  rgpvpw.L["bar"] = "|cFFFFC300bar lock/unlock/test|r — заблокировать, разблокировать или проверить панель обнаружения"
+  rgpvpw.L["opt"] = "|cFFFFC300opt|r - открыть меню настроек"
+  rgpvpw.L["combatstate"] = "|cFFFFC300combatstate enable/disable|r - настроить положение иконки состояния боя"
+  rgpvpw.L["stancestate"] = "|cFFFFC300stancestate enable/disable|r - настроить положение иконки стойки"
+  rgpvpw.L["reload"] = "|cFFFFC300reload|r - перезагрузить интерфейс"
+  rgpvpw.L["bar"] = "|cFFFFC300bar lock/unlock/test|r - заблокировать, разблокировать или проверить панель обнаружения"
   rgpvpw.L["invalid_argument"] = "Недопустимый аргумент"
 
   -- about
@@ -131,7 +131,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["user_message_select_profile_before_delete"] = "Выберите профиль для удаления"
   rgpvpw.L["user_message_select_profile_before_load"] = "Выберите профиль для загрузки"
   rgpvpw.L["user_message_select_profile_before_update"] = "Выберите профиль для обновления"
-  rgpvpw.L["user_message_select_profile_already_exists"] = "Профиль уже существует — выберите другое имя"
+  rgpvpw.L["user_message_select_profile_already_exists"] = "Профиль уже существует - выберите другое имя"
   rgpvpw.L["user_message_add_new_profile_max_reached"] = "Достигнут максимум из %s профилей"
   rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "Профиль по умолчанию нельзя удалить"
   rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "Профиль по умолчанию нельзя изменить"
@@ -165,7 +165,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["label_play_sound_special"] = "Воспроизвести"
   rgpvpw.L["label_visual_warning"] = "Визуальное предупреждение:"
   rgpvpw.L["label_play_visual"] = "Воспроизвести"
-  rgpvpw.L["user_message_choose_color"] = "Невозможно воспроизвести визуальное предупреждение — цвет не выбран"
+  rgpvpw.L["user_message_choose_color"] = "Невозможно воспроизвести визуальное предупреждение - цвет не выбран"
 
   -- spell avoid tab
   rgpvpw.L["label_enable_avoid_sound"] = "Включить звук"

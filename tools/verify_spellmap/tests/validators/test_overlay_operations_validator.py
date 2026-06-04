@@ -1,5 +1,5 @@
 """
-Tests for OverlayOperationsValidator — wraps the Python assembler's validate() and surfaces
+Tests for OverlayOperationsValidator - wraps the Python assembler's validate() and surfaces
 its errors as validator errors with optional branch labelling.
 """
 

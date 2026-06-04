@@ -13,7 +13,7 @@ Same shape for code/SpellAvoidMap/. The verifier:
 
 1. Reads Base.lua + both overlays per map.
 2. Validates each overlay's structural ops (remove of missing, add of existing, ...) against
-   the base — using the Python port of mod.spellMapAssembler.Validate.
+   the base - using the Python port of mod.spellMapAssembler.Validate.
 3. For each branch (classic, sod, tbc), assembles that branch's view of the map and runs every
    per-entry validator against it.
 4. Reports per-branch + an overall pass/fail.

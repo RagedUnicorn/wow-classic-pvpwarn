@@ -7,7 +7,7 @@ The source is a base + overlay split:
     <map_dir>/Overlay/Tbc.lua          -- TBC ops (empty stub today)
 
 For voice generation we want a union view: every spell in any branch needs its voice file
-generated. We load Base, then merge each overlay's `add` and `replace` (skipping `remove` —
+generated. We load Base, then merge each overlay's `add` and `replace` (skipping `remove` -
 Classic content shouldn't disappear just because SoD reworked a hunter trap).
 """
 

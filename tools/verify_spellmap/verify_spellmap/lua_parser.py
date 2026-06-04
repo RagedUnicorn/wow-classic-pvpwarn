@@ -257,7 +257,7 @@ class LuaParser:
         if all(isinstance(k, int) for k in keys):
             sorted_keys = sorted(keys)
             if sorted_keys == list(range(1, len(keys) + 1)):
-                # It's a proper Lua array — recurse into nested tables so
+                # It's a proper Lua array - recurse into nested tables so
                 # entries like `allRanks = { { spellId = X, type = Y }, ... }`
                 # surface as a list of dicts rather than raw Lua handles.
                 return [self.lua_table_to_list_or_dict(lua_table[i]) for i in sorted_keys]

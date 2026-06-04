@@ -56,7 +56,7 @@ KNOWN_TYPES = (TYPE_BASE, TYPE_SOD, TYPE_TBC)
 # scheme; sound paths mirror code/Sound.lua's path building exactly. This keeps the export
 # self-contained for review (clickable spell pages, icon images, the concrete .mp3 files played).
 
-# wowhead has no distinct /sod/ path — Season of Discovery spells live under the classic domain.
+# wowhead has no distinct /sod/ path - Season of Discovery spells live under the classic domain.
 WOWHEAD_SPELL_BASE = {
     "classic": "https://www.wowhead.com/classic/spell=",
     "sod": "https://www.wowhead.com/classic/spell=",
@@ -69,7 +69,7 @@ WOWHEAD_ITEM_BASE = {
 }
 ZAMIMG_ICON_BASE = "https://wow.zamimg.com/images/wow/icons/large/"
 
-# Sound path pieces — mirror code/Sound.lua:36-43 exactly. SOUND_ROOT is the addon-relative root
+# Sound path pieces - mirror code/Sound.lua:36-43 exactly. SOUND_ROOT is the addon-relative root
 # the JSON display paths are anchored to; the on-disk existence check resolves the per-entry
 # sub-path against --assets-dir (which defaults to <addon_root>/SOUND_ROOT).
 SOUND_ROOT = "assets/sounds/en"
@@ -271,7 +271,7 @@ def summarize(assembled: Dict[str, Dict[int, Dict]], is_avoid_map: bool) -> Dict
 def render_summary_md(map_label: str, branch: str, summary: Dict[str, Any]) -> str:
     """Render one branch's summary as Markdown."""
     lines: List[str] = []
-    lines.append(f"# {map_label} — `{branch}` branch")
+    lines.append(f"# {map_label} - `{branch}` branch")
     lines.append("")
     lines.append(f"- **Real entries:** {summary['total_real']}")
     lines.append(f"- **Ref aliases:** {summary['total_alias']}")
@@ -509,7 +509,7 @@ class MapExporter:
         sod_overlay = parser.parse_overlay(SpellMapFileReader(str(self.sod_path)).read())
         tbc_overlay = parser.parse_overlay(SpellMapFileReader(str(self.tbc_path)).read())
 
-        # Structural overlay validation — a hard failure (overlay describes an impossible op).
+        # Structural overlay validation - a hard failure (overlay describes an impossible op).
         hard_errors: List[str] = []
         for branch_name, overlay in (("sod", sod_overlay), ("tbc", tbc_overlay)):
             for err in assemble_validate(base, [overlay]):

@@ -30,7 +30,7 @@ me.tag = "SpellAvoidMapAssembler"
 
 --[[
   Apply a list of branch overlays to a base spell-avoid map. See mod.spellMapAssembler.Apply for
-  the full overlay shape — semantics are identical.
+  the full overlay shape - semantics are identical.
 
   @param {table} base
   @param {table | nil} overlays

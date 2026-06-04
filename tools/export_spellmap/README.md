@@ -29,7 +29,7 @@ The JSON dumps are pretty-printed with sorted keys so they diff cleanly between 
 ## Derived fields
 
 On top of the verbatim Lua source fields (`name`, `type`, `soundFileName`, `spellIcon`,
-`allRanks`, flags, …), every **real** entry is enriched inline with data computed offline — no
+`allRanks`, flags, …), every **real** entry is enriched inline with data computed offline - no
 network, nothing fetched. Ref-aliases (`{ "refId": ... }`) are left untouched.
 
 | Field            | Example                                                                                                      | How it's built                                                                                                                   |
@@ -47,7 +47,7 @@ network, nothing fetched. Ref-aliases (`{ "refId": ... }`) are left untouched.
 `soundFileName` get an empty `soundFiles` map.
 
 Every sound file whose `exists` is `false` is also listed in a **Missing sound files** section of
-the branch's `*.summary.md`. This is reporting only — a missing file never fails the build.
+the branch's `*.summary.md`. This is reporting only - a missing file never fails the build.
 
 ## Running locally
 
@@ -69,9 +69,9 @@ workflow step summary).
 
 ## Exit codes
 
-- `0` — success, **including when the data set has simply changed**. The exporter never fails a
+- `0` - success, **including when the data set has simply changed**. The exporter never fails a
   build just because spells were added or edited.
-- `1` — hard failure only: a Lua load/parse error, or an overlay describing a structurally
+- `1` - hard failure only: a Lua load/parse error, or an overlay describing a structurally
   impossible operation (e.g. `remove` of a spellId that isn't in the base). These are surfaced by
   the same validator `verify_spellmap` uses.
 
@@ -79,7 +79,7 @@ workflow step summary).
 
 The exporter imports the Lua loader (`LuaParser`, `SpellMapFileReader`) and the Python port of the
 assembler (`assembler.apply` / `assembler.validate`) directly from `../verify_spellmap`. This keeps
-a **single implementation** of the assembly rules — the two tools cannot drift. As a result the
+a **single implementation** of the assembly rules - the two tools cannot drift. As a result the
 two tool directories must stay co-located under `tools/`.
 
 ## GitHub Action
