@@ -8,9 +8,9 @@ DEFAULT_LANGUAGE = "en"
 # Allowed Eleven Labs models
 ALLOWED_LANGUAGE_MODELS = [
     "eleven_multilingual_v2",
-    "eleven_monolingual_v1",
     "eleven_turbo_v2_5",
-    "eleven_flash_v2_5"
+    "eleven_flash_v2_5",
+    "eleven_v3"
 ]
 
 # Voice settings defaults
