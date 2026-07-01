@@ -1,6 +1,6 @@
 # PVPWarn
 
-![](docs/pvpwarn_ragedunicorn_love_classic.png)
+![](docs/ragedunicorn_wow_banner.png)
 
 > PVPWarn aims to help the player to hear and see enemy spells cast on himself and also spells that an enemy player resisted or spells that the player himself resisted
 
@@ -15,12 +15,6 @@ PVPWarn uses both visual and acoustic effects to make the player aware of certai
 
 [![](docs/curseforge.svg)](https://www.curseforge.com/wow/addons/pvpwarn)
 [![](docs/wago.svg)](https://addons.wago.io/addons/pvpwarn)
-
-**WoW Classic Support**
-
-> This Addon supports WoW Burning Crusade Anniversary
-
-<img src="/docs/the_burning_crusade_anniversary_logo.png" width="40%"></img>
 
 ## Installation
 
