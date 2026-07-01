@@ -2,7 +2,7 @@
 
 ![](docs/ragedunicorn_wow_banner.png)
 
-> PVPWarn aims to help the player to hear and see enemy spells cast on himself and also spells that an enemy player resisted or spells that the player himself resisted
+> PVPWarn aims to help players hear and see enemy spells cast on them, as well as spells that an enemy player resisted or that the player themselves resisted
 
 ![](docs/wow_badge_classic.svg)
 ![](docs/wow_badge_tbc.svg)
@@ -30,7 +30,7 @@ Make sure to get the newest version of the Addon from the releases tab:
 
 ## What is PVPWarn?
 
-PVPWarns goal is to help the player recognizing combat log events in a more visual and acoustical way. PVPWarn can display visual and acoustical cues when a certain event is found in the combat log. As an example PVPWarn might play a sound both when an enemy warrior activates recklessness and when it runs out.
+PVPWarn's goal is to help the player recognize combat log events in a more visual and acoustic way. PVPWarn can display visual and acoustic cues when a certain event is found in the combat log. As an example, PVPWarn might play a sound both when an enemy warrior activates Recklessness and when it runs out.
 
 ## Features of PVPWarn
 
@@ -42,27 +42,27 @@ The basic feature of warning the player can be configured for each class and som
 
 ### Avoiding Spells
 
-PVPWarn can also detect when certain spells where either resisted by the player itself or an enemy player.
+PVPWarn can also detect when certain spells were resisted, either by the player or by an enemy player.
 
 #### Self Avoid
 
-The avoid tab allows the configuration of warnings for all spells of a certain category. If you're interested in knowing when you resist a certain spells such as the silence of a shadow priest you will configure this in the priest category.
+The avoid tab allows you to configure warnings for all spells of a certain category. If you're interested in knowing when you resist a certain spell, such as the silence of a shadow priest, you configure this in the priest category.
 
 ![](docs/pvpwarn_configure_self_avoid.gif)
 
 #### Enemy Avoid
 
-To configure the resist warning for your own class use the `Enemy Avoid` navigation point. This menu contains all spells for your class that can be resisted and are supported by PVPWarn. If you use a different class the content of that menu is different.
+To configure the resist warning for your own class, use the `Enemy Avoid` navigation point. This menu contains all spells for your class that can be resisted and are supported by PVPWarn. If you play a different class, the content of that menu will differ.
 
 ![](docs/pvpwarn_configure_enemy_avoid.gif)
 
 ### Profiles
 
-PVPWarn loads a default profile based on your class when the addon loads for the first time. The default profile can be loaded again at any point. If you however start modifying what spells are tracked you can create a new profile, or you can even have multiple different profiles that you can then load based on your situation.
+PVPWarn loads a default profile based on your class when the addon loads for the first time. The default profile can be loaded again at any point. If you start modifying which spells are tracked, however, you can create a new profile, or even keep multiple different profiles that you can load depending on your situation.
 
 #### Loading Profiles with Macros
 
-Once a profile is created in can be loaded manually or with a macro.
+Once a profile is created, it can be loaded manually or with a macro.
 
 ```lua
 /run _G["RGPVPW_MACRO_LOADPROFILE"]("[profileName")
@@ -72,21 +72,21 @@ Once a profile is created in can be loaded manually or with a macro.
 
 ### Enable/Disable Addon in Zones
 
-The addon can be configured to automatically enable or disable in certain zones. This might be useful in Zones such as Alterac Valley where a lot of events are getting generated.
+The addon can be configured to automatically enable or disable itself in certain zones. This might be useful in zones such as Alterac Valley, where a lot of events are generated.
 
 ![](docs/pvpwarn_configure_zones.png)
 
 ### Combat State
 
-PVPWarn can track a targets combat state and will display this next to the targetframe. The combat icon can be moved to another place if required.
+PVPWarn can track a target's combat state and will display it next to the target frame. The combat icon can be moved to another place if required.
 
 ![](docs/pvpwarn_combat.gif)
 
 ### Stance State
 
-PVPWarn can track a targets stance state and will display this next to the targetframe.The stance icon can be
-moved to another place if required. Tracking the stance is limited to certain classes and can only be tracked if
-PVPWarn was able to observe the stance in the combatlog.
+PVPWarn can track a target's stance state and will display it next to the target frame. The stance icon can be
+moved to another place if required. Tracking the stance is limited to certain classes and is only possible if
+PVPWarn was able to observe the stance in the combat log.
 
 ![](docs/pvpwarn_switching_stance.gif)
 
@@ -122,7 +122,7 @@ Make sure to recheck the installation part of this Readme and check that the Add
 
 #### I get a red error (Lua Error) on my screen. What is this?
 
-This is what we call a Lua error, and it usually happens because of an oversight or error by the developer (in this case me). Take a screenshot off the error and create a GitHub Issue with it, and I will see if I can resolve it. It also helps if you can add any additional information of what you were doing at the time and what other addons you have active. Additionally, if you are able to reproduce the error make sure to check if it still happens if you disable all others addons.
+This is what we call a Lua error, and it usually happens because of an oversight or mistake by the developer (in this case, me). Take a screenshot of the error and create a GitHub issue with it, and I will see if I can resolve it. It also helps if you can add any additional information about what you were doing at the time and which other addons you have active. Additionally, if you are able to reproduce the error, make sure to check whether it still happens when you disable all other addons.
 
 #### PVPWarn spams my chat with messages. How can I deactivate this?
 
@@ -130,16 +130,16 @@ Those obnoxious messages are intended for the development of this addon and mean
 
 #### PVPWarn did not warn me about a certain spell. Why?
 
-This can have multiple errors. It might be an actual bug where the addon did not recognize the spell. Before creating a ticket however please make sure to check that the spell is actually configured to show a visual or acoustical warning.
+This can have multiple causes. It might be an actual bug where the addon did not recognize the spell. Before creating a ticket, however, please make sure to check that the spell is actually configured to show a visual or acoustic warning.
 
 #### PVPWarn does not support my Spell. What can I do?
 
-PVPWarn is not complete and certain spells might have simply forgotten. If you have a certain spell that you would like to see supported in a future version of the addon make sure to create a ticket for it, and I will have a  look at it. Attaching a combat log that contains the spell speeds up verification a lot - see [Contributing Combat Logs](CONTRIBUTING.md).
+PVPWarn is not complete, and certain spells might have simply been forgotten. If there is a spell that you would like to see supported in a future version of the addon, make sure to create a ticket for it, and I will have a look at it. Attaching a combat log that contains the spell speeds up verification a lot - see [Contributing Combat Logs](CONTRIBUTING.md).
 
 #### PVPWarn shows me a question mark instead of the stance of the player
 
-This is a limitation of the WoW Api. Stances can only be observed when a warrior is switching from one stance to
-another. It is not possible to get infos about the current stance. PVPWarn will however display the stance as soon
+This is a limitation of the WoW API. Stances can only be observed when a warrior is switching from one stance to
+another. It is not possible to query the current stance directly. PVPWarn will, however, display the stance as soon
 as it is able to observe it.
 
 ## Contributing Combat Logs
