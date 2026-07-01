@@ -1,6 +1,6 @@
 services:
   verify-sounds-tests:
-    image: ragedunicorn/python:3-alpine3.22.2-1
+    image: ragedunicorn/python:3-alpine3.24.1-1
     volumes:
       - ./tools/verify_sounds:/app
       - ./target:/target
@@ -18,7 +18,7 @@ services:
           --junit-xml=/target/test_results/verify_sounds/junit.xml
 
   verify-spellmap-tests:
-    image: ragedunicorn/python:3-alpine3.22.2-1
+    image: ragedunicorn/python:3-alpine3.24.1-1
     volumes:
       - ./tools/verify_spellmap:/app
       - ./target:/target
