@@ -25,7 +25,7 @@ TRACKED_EVENTS = {
 }
 
 # File paths
-SPELLMAP_RELATIVE_PATH = "../../code/SpellMap"
+SPELLMAP_RELATIVE_PATH = "../../code/spellmap"
 COMBAT_LOGS_RELATIVE_PATH = "combat_logs"
 OUTPUT_RELATIVE_PATH = "output"
 

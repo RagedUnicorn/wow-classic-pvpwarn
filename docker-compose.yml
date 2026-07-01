@@ -45,7 +45,7 @@ services:
         pip install -r requirements.txt &&
         python parse_combat_logs.py \
           --logs-dir /combat-logs \
-          --spellmap-dir /code/SpellMap
+          --spellmap-dir /code/spellmap
   combat-log-parser-report:
     image: ragedunicorn/python:3-alpine3.24.1-1
     volumes:
@@ -61,7 +61,7 @@ services:
       - |
         pip install -r requirements.txt &&
         python parse_combat_logs.py \
-          --spellmap-dir /code/SpellMap \
+          --spellmap-dir /code/spellmap \
           --logs-dir /combat-logs \
           --output-dir /target/combat_log_parser_output
   verify-sounds:
@@ -79,8 +79,8 @@ services:
         pip install -r requirements.txt &&
         python verify_sounds.py \
           --sound-path /assets \
-          --spellmap-dir /code/SpellMap \
-          --spellavoidmap-dir /code/SpellAvoidMap
+          --spellmap-dir /code/spellmap \
+          --spellavoidmap-dir /code/spellavoidmap
   verify-sounds-report:
     image: ragedunicorn/python:3-alpine3.24.1-1
     volumes:
@@ -98,8 +98,8 @@ services:
         mkdir -p /target/verify_sounds_output &&
         python verify_sounds.py \
           --sound-path /assets \
-          --spellmap-dir /code/SpellMap \
-          --spellavoidmap-dir /code/SpellAvoidMap \
+          --spellmap-dir /code/spellmap \
+          --spellavoidmap-dir /code/spellavoidmap \
           --output-format detailed > /target/verify_sounds_output/verification_report.txt
   verify-spellmap:
     image: ragedunicorn/python:3-alpine3.24.1-1
@@ -114,8 +114,8 @@ services:
       - |
         pip install -r requirements.txt &&
         python verify_spellmap.py \
-          --spellmap-dir /code/SpellMap \
-          --spellavoidmap-dir /code/SpellAvoidMap
+          --spellmap-dir /code/spellmap \
+          --spellavoidmap-dir /code/spellavoidmap
   verify-spellmap-report:
     image: ragedunicorn/python:3-alpine3.24.1-1
     volumes:
@@ -131,8 +131,8 @@ services:
         pip install -r requirements.txt &&
         mkdir -p /target/verify_spellmap_output &&
         python verify_spellmap.py \
-          --spellmap-dir /code/SpellMap \
-          --spellavoidmap-dir /code/SpellAvoidMap > /target/verify_spellmap_output/verification_report.txt
+          --spellmap-dir /code/spellmap \
+          --spellavoidmap-dir /code/spellavoidmap > /target/verify_spellmap_output/verification_report.txt
   voice-generator:
     image: ragedunicorn/python:3-alpine3.24.1-1
     volumes:
@@ -149,6 +149,6 @@ services:
       - |
         pip install -r requirements.txt &&
         python generate_voices.py all \
-          --spellmap-dir /code/SpellMap \
-          --spellavoidmap-dir /code/SpellAvoidMap \
+          --spellmap-dir /code/spellmap \
+          --spellavoidmap-dir /code/spellavoidmap \
           --output /target/voice_output

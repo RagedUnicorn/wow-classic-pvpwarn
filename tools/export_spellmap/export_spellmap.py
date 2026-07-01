@@ -7,12 +7,12 @@ SpellAvoidMap for every branch (classic, sod, tbc) can be inspected without laun
 
 The Lua source lives in a base + overlay layout (mirrors code/SpellMap.lua's buildAssembledMap):
 
-    code/SpellMap/
+    code/spellmap/
       Base.lua                      -- Classic Era content
-      Overlay/Sod.lua               -- SoD add/remove/replace ops
-      Overlay/Tbc.lua               -- TBC add/remove/replace ops
+      overlay/Sod.lua               -- SoD add/remove/replace ops
+      overlay/Tbc.lua               -- TBC add/remove/replace ops
 
-Same shape for code/SpellAvoidMap/. For each map the exporter:
+Same shape for code/spellavoidmap/. For each map the exporter:
 
 1. Reads Base.lua + both overlays.
 2. For each branch (classic, sod, tbc) assembles that branch's view of the map.
@@ -544,8 +544,8 @@ def parse_arguments():
 
     script_dir = Path(__file__).resolve().parent
     addon_root = script_dir.parent.parent
-    default_spellmap_dir = addon_root / "code" / "SpellMap"
-    default_spellavoidmap_dir = addon_root / "code" / "SpellAvoidMap"
+    default_spellmap_dir = addon_root / "code" / "spellmap"
+    default_spellavoidmap_dir = addon_root / "code" / "spellavoidmap"
     default_assets_dir = addon_root / "assets" / "sounds" / "en"
     # Write into the repo-root target/ build dir (already covered by the root .gitignore), so the
     # tool needs no .gitignore of its own. Namespaced so it doesn't mingle with Maven artifacts.
@@ -554,12 +554,12 @@ def parse_arguments():
     parser.add_argument(
         "--spellmap-dir",
         default=str(default_spellmap_dir),
-        help=f"Path to code/SpellMap/ (default: {default_spellmap_dir})",
+        help=f"Path to code/spellmap/ (default: {default_spellmap_dir})",
     )
     parser.add_argument(
         "--spellavoidmap-dir",
         default=str(default_spellavoidmap_dir),
-        help=f"Path to code/SpellAvoidMap/ (default: {default_spellavoidmap_dir})",
+        help=f"Path to code/spellavoidmap/ (default: {default_spellavoidmap_dir})",
     )
     parser.add_argument(
         "--assets-dir",
@@ -578,8 +578,8 @@ def parse_arguments():
 
 def _resolve_map_paths(directory: Path, label: str) -> Tuple[Path, Path, Path]:
     base = directory / "Base.lua"
-    sod = directory / "Overlay" / "Sod.lua"
-    tbc = directory / "Overlay" / "Tbc.lua"
+    sod = directory / "overlay" / "Sod.lua"
+    tbc = directory / "overlay" / "Tbc.lua"
     for path in (base, sod, tbc):
         if not path.exists():
             print(f"Error: missing {label} file: {path}")

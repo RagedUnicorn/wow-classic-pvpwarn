@@ -1,5 +1,5 @@
 -- Valid SoD overlay aligned with tests/fixtures/valid_spellmap.lua's base content.
--- Mirrors the shape produced by `function me.GetOverlay()` in code/SpellMap/Overlay/Sod.lua.
+-- Mirrors the shape produced by `function me.GetOverlay()` in code/spellmap/overlay/Sod.lua.
 
 local mod = rgpvpw
 local me = {}

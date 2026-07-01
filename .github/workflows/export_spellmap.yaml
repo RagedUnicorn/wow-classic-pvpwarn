@@ -4,18 +4,18 @@ on:
   push:
     paths:
       - code/SpellMap.lua
-      - code/SpellMap/**
+      - code/spellmap/**
       - code/SpellAvoidMap.lua
-      - code/SpellAvoidMap/**
+      - code/spellavoidmap/**
       - tools/export_spellmap/**
       - tools/verify_spellmap/**
       - .github/workflows/export_spellmap.yaml
   pull_request:
     paths:
       - code/SpellMap.lua
-      - code/SpellMap/**
+      - code/spellmap/**
       - code/SpellAvoidMap.lua
-      - code/SpellAvoidMap/**
+      - code/spellavoidmap/**
       - tools/export_spellmap/**
       - tools/verify_spellmap/**
       - .github/workflows/export_spellmap.yaml

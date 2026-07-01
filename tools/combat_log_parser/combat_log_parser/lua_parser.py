@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 class LuaParser:
-    """Parses the SpellMap directory (Base.lua + Overlay/Sod.lua + Overlay/Tbc.lua) and assembles
+    """Parses the SpellMap directory (Base.lua + overlay/Sod.lua + overlay/Tbc.lua) and assembles
     a union spell map covering every entry across all branches."""
 
     def __init__(self, spellmap_dir: str):
@@ -14,7 +14,7 @@ class LuaParser:
         Initialize the Lua parser.
 
         Args:
-            spellmap_dir: Path to the code/SpellMap directory (containing Base.lua and Overlay/).
+            spellmap_dir: Path to the code/spellmap directory (containing Base.lua and overlay/).
         """
         self.spellmap_dir = Path(spellmap_dir)
         self.lua = lupa.LuaRuntime(unpack_returned_tuples=True)
@@ -40,8 +40,8 @@ class LuaParser:
 
         # 2. Overlays (union: apply add + replace, skip remove)
         for overlay_path in (
-            self.spellmap_dir / "Overlay" / "Sod.lua",
-            self.spellmap_dir / "Overlay" / "Tbc.lua",
+            self.spellmap_dir / "overlay" / "Sod.lua",
+            self.spellmap_dir / "overlay" / "Tbc.lua",
         ):
             if overlay_path.exists():
                 overlay = self._parse_overlay_file(overlay_path)
@@ -74,7 +74,7 @@ class LuaParser:
         return result
 
     def _parse_overlay_file(self, path: Path) -> Dict[str, Dict[str, Any]]:
-        """Parse an Overlay/*.lua file (``function me.GetOverlay() return {...} end``)."""
+        """Parse an overlay/*.lua file (``function me.GetOverlay() return {...} end``)."""
         with open(path, "r", encoding="utf-8") as f:
             content = f.read()
 

@@ -3,8 +3,8 @@ Lua parser for extracting spell data from the SpellMap / SpellAvoidMap directory
 
 The source is a base + overlay split:
     <map_dir>/Base.lua                 -- Classic content (`local spellMap = {...}`)
-    <map_dir>/Overlay/Sod.lua          -- SoD add/remove/replace ops
-    <map_dir>/Overlay/Tbc.lua          -- TBC add/remove/replace ops (empty today)
+    <map_dir>/overlay/Sod.lua          -- SoD add/remove/replace ops
+    <map_dir>/overlay/Tbc.lua          -- TBC add/remove/replace ops (empty today)
 
 For sound-file verification we want a union view: every spell defined in any branch needs its
 sound file on disk. We load Base, then merge each overlay's `add` and `replace` entries on top
@@ -26,7 +26,7 @@ class LuaParser:
         self._env_initialized = False
 
     def parse_spell_map(self, spellmap_dir):
-        """Parse code/SpellMap/ (Base.lua + Overlay/) and return spell data keyed by category.
+        """Parse code/spellmap/ (Base.lua + overlay/) and return spell data keyed by category.
 
         Returns:
             ``{category: {spell_id_str: {name, soundFileName, hasFade, hasCast}}}``
@@ -35,7 +35,7 @@ class LuaParser:
         return self._extract_sound_entries(assembled, is_avoid=False)
 
     def parse_spell_avoid_map(self, spellavoidmap_dir):
-        """Parse code/SpellAvoidMap/ (Base.lua + Overlay/) and return spell data keyed by category.
+        """Parse code/spellavoidmap/ (Base.lua + overlay/) and return spell data keyed by category.
 
         Returns:
             ``{category: {spell_id_str: {name, soundFileName, self_avoid, enemy_avoid}}}``
@@ -48,7 +48,7 @@ class LuaParser:
     # ------------------------------------------------------------------
 
     def _load_dir(self, map_dir, base_global_name):
-        """Load Base.lua + each Overlay/*.lua and return the union assembled map (no filtering)."""
+        """Load Base.lua + each overlay/*.lua and return the union assembled map (no filtering)."""
         if not os.path.isdir(map_dir):
             raise FileNotFoundError(f"SpellMap directory not found: {map_dir}")
 
@@ -61,8 +61,8 @@ class LuaParser:
         assembled = self._parse_base_file(base_path, base_global_name)
 
         for overlay_path in (
-            Path(map_dir) / "Overlay" / "Sod.lua",
-            Path(map_dir) / "Overlay" / "Tbc.lua",
+            Path(map_dir) / "overlay" / "Sod.lua",
+            Path(map_dir) / "overlay" / "Tbc.lua",
         ):
             if overlay_path.exists():
                 overlay = self._parse_overlay_file(overlay_path)
@@ -114,7 +114,7 @@ class LuaParser:
         return self._lua_table_to_python(table)
 
     def _parse_overlay_file(self, path):
-        """Parse an Overlay/*.lua file (``function me.GetOverlay() return {...} end``)."""
+        """Parse an overlay/*.lua file (``function me.GetOverlay() return {...} end``)."""
         with open(path, "r", encoding="utf-8") as f:
             content = f.read()
 

@@ -32,16 +32,16 @@ python verify_spellmap.py
 
 # With custom directories
 python verify_spellmap.py \
-  --spellmap-dir /path/to/code/SpellMap \
-  --spellavoidmap-dir /path/to/code/SpellAvoidMap
+  --spellmap-dir /path/to/code/spellmap \
+  --spellavoidmap-dir /path/to/code/spellavoidmap
 ```
 
 ### Command Line Arguments
 
-- `--spellmap-dir`: Path to `code/SpellMap/` (default: `../../code/SpellMap`)
-- `--spellavoidmap-dir`: Path to `code/SpellAvoidMap/` (default: `../../code/SpellAvoidMap`)
+- `--spellmap-dir`: Path to `code/spellmap/` (default: `../../code/spellmap`)
+- `--spellavoidmap-dir`: Path to `code/spellavoidmap/` (default: `../../code/spellavoidmap`)
 
-Each directory must contain `Base.lua` + `Overlay/Sod.lua` + `Overlay/Tbc.lua`.
+Each directory must contain `Base.lua` + `overlay/Sod.lua` + `overlay/Tbc.lua`.
 
 The tool uses the `lupa` library to properly parse Lua code, including:
 - Function-based dynamic properties

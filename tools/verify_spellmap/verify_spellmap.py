@@ -4,12 +4,12 @@ SpellMap Verification Tool for PVPWarn.
 
 The Lua source lives in a base + overlay layout (post-refactor):
 
-    code/SpellMap/
+    code/spellmap/
       Base.lua                      -- Classic Era content
-      Overlay/Sod.lua               -- SoD add/remove/replace ops
-      Overlay/Tbc.lua               -- TBC add/remove/replace ops (empty stub today)
+      overlay/Sod.lua               -- SoD add/remove/replace ops
+      overlay/Tbc.lua               -- TBC add/remove/replace ops (empty stub today)
 
-Same shape for code/SpellAvoidMap/. The verifier:
+Same shape for code/spellavoidmap/. The verifier:
 
 1. Reads Base.lua + both overlays per map.
 2. Validates each overlay's structural ops (remove of missing, add of existing, ...) against
@@ -137,8 +137,8 @@ class MapVerifier:
 
 def _resolve_map_paths(directory: Path, label: str) -> Tuple[Path, Path, Path]:
     base = directory / "Base.lua"
-    sod = directory / "Overlay" / "Sod.lua"
-    tbc = directory / "Overlay" / "Tbc.lua"
+    sod = directory / "overlay" / "Sod.lua"
+    tbc = directory / "overlay" / "Tbc.lua"
     for path in (base, sod, tbc):
         if not path.exists():
             print(f"Error: missing {label} file: {path}")
@@ -153,18 +153,18 @@ def parse_arguments():
 
     script_dir = Path(__file__).parent
     addon_root = script_dir.parent.parent
-    default_spellmap_dir = addon_root / "code" / "SpellMap"
-    default_spellavoidmap_dir = addon_root / "code" / "SpellAvoidMap"
+    default_spellmap_dir = addon_root / "code" / "spellmap"
+    default_spellavoidmap_dir = addon_root / "code" / "spellavoidmap"
 
     parser.add_argument(
         "--spellmap-dir",
         default=str(default_spellmap_dir),
-        help=f"Path to code/SpellMap/ (default: {default_spellmap_dir})",
+        help=f"Path to code/spellmap/ (default: {default_spellmap_dir})",
     )
     parser.add_argument(
         "--spellavoidmap-dir",
         default=str(default_spellavoidmap_dir),
-        help=f"Path to code/SpellAvoidMap/ (default: {default_spellavoidmap_dir})",
+        help=f"Path to code/spellavoidmap/ (default: {default_spellavoidmap_dir})",
     )
 
     return parser.parse_args()

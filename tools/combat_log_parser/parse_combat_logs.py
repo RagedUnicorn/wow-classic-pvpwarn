@@ -26,7 +26,7 @@ class CombatLogParser:
         Initialize the parser with all components.
 
         Args:
-            spellmap_dir: Path to code/SpellMap directory (Base.lua + Overlay/).
+            spellmap_dir: Path to code/spellmap directory (Base.lua + overlay/).
             logs_dir: Directory containing combat logs
             output_dir: Directory for output files
         """
@@ -118,7 +118,7 @@ def main():
         "--spellmap-dir",
         type=str,
         default=str(default_spellmap),
-        help="Path to code/SpellMap directory (containing Base.lua and Overlay/)"
+        help="Path to code/spellmap directory (containing Base.lua and overlay/)"
     )
 
     parser.add_argument(

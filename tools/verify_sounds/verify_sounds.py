@@ -39,13 +39,13 @@ def parse_arguments():
     parser.add_argument(
         '--spellmap-dir', '--spell-map-dir', dest='spellmap_dir',
         default=DEFAULT_SPELL_MAP_PATH,
-        help=f'Path to code/SpellMap directory (default: {DEFAULT_SPELL_MAP_PATH})'
+        help=f'Path to code/spellmap directory (default: {DEFAULT_SPELL_MAP_PATH})'
     )
 
     parser.add_argument(
         '--spellavoidmap-dir', '--spell-avoid-map-dir', dest='spellavoidmap_dir',
         default=DEFAULT_SPELL_AVOID_MAP_PATH,
-        help=f'Path to code/SpellAvoidMap directory (default: {DEFAULT_SPELL_AVOID_MAP_PATH})'
+        help=f'Path to code/spellavoidmap directory (default: {DEFAULT_SPELL_AVOID_MAP_PATH})'
     )
 
     parser.add_argument(

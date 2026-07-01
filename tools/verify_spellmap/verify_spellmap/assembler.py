@@ -1,5 +1,5 @@
 """
-Python port of code/SpellMap/Assemble.lua (and code/SpellAvoidMap/Assemble.lua).
+Python port of code/spellmap/Assemble.lua (and code/spellavoidmap/Assemble.lua).
 
 Mirrors mod.spellMapAssembler.Apply and Validate exactly:
   - Apply deep-copies the base map and applies each overlay's remove, then add, then replace,
@@ -21,7 +21,7 @@ def _rank_spell_id(rank: Any) -> Optional[int]:
 
     Used by apply() to skip malformed ranks silently and by validate() to report a clear
     error. Mirrors the type-guards on the Lua side
-    (code/SpellMap/Assemble.lua / code/SpellAvoidMap/Assemble.lua).
+    (code/spellmap/Assemble.lua / code/spellavoidmap/Assemble.lua).
     """
     if not isinstance(rank, dict):
         return None

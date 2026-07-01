@@ -25,6 +25,6 @@ MAX_RETRIES = 3
 RETRY_DELAY = 2.0  # seconds
 
 # File paths
-SPELLMAP_RELATIVE_PATH = "../../../code/SpellMap"
-SPELLAVOIDMAP_RELATIVE_PATH = "../../../code/SpellAvoidMap"
+SPELLMAP_RELATIVE_PATH = "../../../code/spellmap"
+SPELLAVOIDMAP_RELATIVE_PATH = "../../../code/spellavoidmap"
 OUTPUT_RELATIVE_PATH = "output"

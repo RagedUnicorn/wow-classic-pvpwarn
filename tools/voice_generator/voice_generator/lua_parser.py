@@ -3,8 +3,8 @@ Lua parser for extracting spell data from the SpellMap / SpellAvoidMap directory
 
 The source is a base + overlay split:
     <map_dir>/Base.lua                 -- Classic content (`local spellMap = {...}`)
-    <map_dir>/Overlay/Sod.lua          -- SoD ops
-    <map_dir>/Overlay/Tbc.lua          -- TBC ops (empty stub today)
+    <map_dir>/overlay/Sod.lua          -- SoD ops
+    <map_dir>/overlay/Tbc.lua          -- TBC ops (empty stub today)
 
 For voice generation we want a union view: every spell in any branch needs its voice file
 generated. We load Base, then merge each overlay's `add` and `replace` (skipping `remove` -
@@ -28,8 +28,8 @@ class LuaParser:
         """Initialize the parser.
 
         Args:
-            spellmap_path: Path to the code/SpellMap directory. None uses the default relative path.
-            spellavoidmap_path: Path to the code/SpellAvoidMap directory. None uses the default.
+            spellmap_path: Path to the code/spellmap directory. None uses the default relative path.
+            spellavoidmap_path: Path to the code/spellavoidmap directory. None uses the default.
         """
         current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -79,8 +79,8 @@ class LuaParser:
         assembled = self._parse_base_file(base_path, base_global_name)
 
         for overlay_path in (
-            Path(map_dir) / "Overlay" / "Sod.lua",
-            Path(map_dir) / "Overlay" / "Tbc.lua",
+            Path(map_dir) / "overlay" / "Sod.lua",
+            Path(map_dir) / "overlay" / "Tbc.lua",
         ):
             if overlay_path.exists():
                 overlay = self._parse_overlay_file(overlay_path)
@@ -156,7 +156,7 @@ class LuaParser:
         return result
 
     def _parse_overlay_file(self, path: Path) -> Dict[str, Dict[str, Any]]:
-        """Parse an Overlay/*.lua file (``function me.GetOverlay() return {...} end``)."""
+        """Parse an overlay/*.lua file (``function me.GetOverlay() return {...} end``)."""
         with open(path, "r", encoding="utf-8") as f:
             content = f.read()
 

@@ -226,12 +226,12 @@ def main():
 
     parser.add_argument(
         '--spellmap-dir', dest='spellmap',
-        help="Path to code/SpellMap directory (default: uses relative path from voice_generator)"
+        help="Path to code/spellmap directory (default: uses relative path from voice_generator)"
     )
 
     parser.add_argument(
         '--spellavoidmap-dir', dest='spellavoidmap',
-        help="Path to code/SpellAvoidMap directory (default: uses relative path from voice_generator)"
+        help="Path to code/spellavoidmap directory (default: uses relative path from voice_generator)"
     )
 
     args = parser.parse_args()

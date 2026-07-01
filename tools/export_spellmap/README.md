@@ -59,8 +59,8 @@ python export_spellmap.py
 
 Options:
 
-- `--spellmap-dir`        path to `code/SpellMap/` (default: repo `code/SpellMap`)
-- `--spellavoidmap-dir`   path to `code/SpellAvoidMap/` (default: repo `code/SpellAvoidMap`)
+- `--spellmap-dir`        path to `code/spellmap/` (default: repo `code/spellmap`)
+- `--spellavoidmap-dir`   path to `code/spellavoidmap/` (default: repo `code/spellavoidmap`)
 - `--assets-dir`          path to `assets/sounds/en/` for the sound-file existence check (default: repo `assets/sounds/en`)
 - `--output-dir`          where to write the export (default: repo-root `target/spellmap-export`)
 

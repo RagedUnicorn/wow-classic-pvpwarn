@@ -30,7 +30,7 @@ me.tag = "SpellAvoidMapOverlayTbc"
 
 --[[
   Branch overlay applied when the Burning Crusade Anniversary client is active. Populated by
-  the per-class TBC migration tasks. See code/SpellMap/Overlay/Tbc.lua for the op semantics.
+  the per-class TBC migration tasks. See code/spellmap/overlay/Tbc.lua for the op semantics.
 
   @return {table}
 ]]--
