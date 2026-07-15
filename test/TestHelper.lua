@@ -174,7 +174,7 @@ end
   Restores the MAX_WARN_AGE constant to its normal state
 ]]--
 function me.RestoreMaxWarnAge()
-  mod.logger.LogInfo(me.tag, "Restoring 'CombatLogGetCurrentEventInfo'")
+  mod.logger.LogInfo(me.tag, "Restoring 'MAX_WARN_AGE'")
   RGPVPW_CONSTANTS.MAX_WARN_AGE = origMaxWarnAge
 end
 
