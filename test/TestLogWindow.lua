@@ -428,7 +428,8 @@ function me.ClearLog()
 
   me.logMessages = {}
 
-  local scrollChild = _G["PVPW_TestLogWindowScrollChild"]
+  local scrollFrame = _G["PVPW_TestLogWindowScrollFrame"]
+  local scrollChild = scrollFrame and scrollFrame:GetScrollChild()
 
   if scrollChild then
     scrollChild:SetHeight(1)
