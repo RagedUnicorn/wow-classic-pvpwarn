@@ -33,7 +33,7 @@ local testCategory = "paladin"
 function me.Test(completionCallback)
   if not mod.testSessionManager.IsSessionActive() then
     mod.logger.LogError(me.tag, "Cannot run tests directly. Use command line interface: " ..
-      "/rgpvpw testselfavoidcombatevent paladin")
+      "/rgpvpw testselfcombatevent paladin")
     return
   end
 
