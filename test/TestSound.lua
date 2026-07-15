@@ -307,7 +307,7 @@ function me.SoundRefreshTest(categoryName, categoryData)
         mod.testReporter.ReportFailureTestRun(
           categoryName,
           testName,
-          string.format(mod.testHelper.missingSoundDownTest, categoryName, spellName)
+          string.format(mod.testHelper.missingSoundRefreshTest, categoryName, spellName)
         )
       else
         mod.testReporter.ReportSuccessTestRun()
