@@ -93,7 +93,7 @@ end
 function me.SearchBySpellId(spellId, event)
   if not spellId then return nil end
 
-  mod.logger.LogDebug(me.tag, string.format("Searching for spellId %s in spellMap", spellId))
+  mod.logger.LogDebug(me.tag, "Searching for spellId %s in spellMap", spellId)
 
   local category = mod.spellMap.GetCategoryBySpellId(spellId)
 
@@ -117,8 +117,7 @@ function me.SearchBySpellId(spellId, event)
 
   for _, trackedEvent in pairs(baseSpell.trackedEvents) do
     if trackedEvent == event then
-      mod.logger.LogDebug(me.tag, string.format(
-        "Found matching tracked event %s for spellId %s", event, spellId))
+      mod.logger.LogDebug(me.tag, "Found matching tracked event %s for spellId %s", event, spellId)
 
       local clonedSpell = mod.common.Clone(baseSpell)
       clonedSpell.spellId = spellId

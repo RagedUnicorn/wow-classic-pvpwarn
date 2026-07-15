@@ -90,7 +90,7 @@ end
 function me.SearchBySpellId(spellId)
   if not spellId then return nil end
 
-  mod.logger.LogDebug(me.tag, string.format("Searching for spellId %s in spellAvoidMap", spellId))
+  mod.logger.LogDebug(me.tag, "Searching for spellId %s in spellAvoidMap", spellId)
 
   local category = mod.spellAvoidMap.GetCategoryBySpellId(spellId)
 

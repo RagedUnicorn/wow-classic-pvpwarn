@@ -77,7 +77,7 @@ function me.ProcessEventHostilePlayers(event, callback, ...)
   elseif event == "SPELL_MISSED" then
     me.ProcessMissed(event, RGPVPW_CONSTANTS.TARGET_SELF, callback, ...)
   else
-    mod.logger.LogDebug(me.tag, "Ignore unsupported event: " .. event)
+    mod.logger.LogDebug(me.tag, "Ignore unsupported event: %s", event)
 
     if callback then
       callback()
@@ -217,10 +217,7 @@ function me.ProcessMissed(event, spellMissedTarget, callback, ...)
   local spellId, spellName, missType = mod.common.SelectMultiple({12, 13, 15}, ...)
 
   -- Filter out irrelevant miss types
-  if not me.IsRelevantMissType(missType) then
-    mod.logger.LogDebug(me.tag, "Ignoring missType: " .. tostring(missType))
-    return
-  end
+  if not me.IsRelevantMissType(missType) then return end
 
   local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
   local category, realSpellId, spell = mod.spellAvoidMapHelper.SearchBySpellId(spellId)
@@ -277,7 +274,7 @@ function me.IsRelevantMissType(missType)
   local isRelevant = RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES[missType] ~= nil
 
   if not isRelevant then
-    mod.logger.LogDebug(me.tag, "Ignoring missType: " .. tostring(missType))
+    mod.logger.LogDebug(me.tag, "Ignoring missType: %s", tostring(missType))
   end
 
   return isRelevant
@@ -298,9 +295,8 @@ function me.HasFoundSpell(category, spell, spellName)
       This doesn't necessarily means that the spell does not exist in the spellMap but
       it might not match to the event that happened
     ]]--
-    mod.logger.LogInfo(me.tag, string.format(
-      "Ignore spell %s because search in spellMap resulted in not found", spellName
-    ))
+    mod.logger.LogInfo(me.tag,
+      "Ignore spell %s because search in spellMap resulted in not found", spellName)
     return false
   end
 
@@ -319,7 +315,7 @@ function me.ShouldFilterDebuff(buffType)
     Filter events with buff type "DEBUFF" they cause duplicates
   ]]--
   if buffType ~= nil and buffType == RGPVPW_CONSTANTS.BUFF_TYPE_DEBUFF then
-    mod.logger.LogDebug(me.tag, "Ignoring event because buffType is " .. RGPVPW_CONSTANTS.BUFF_TYPE_DEBUFF)
+    mod.logger.LogDebug(me.tag, "Ignoring event because buffType is %s", RGPVPW_CONSTANTS.BUFF_TYPE_DEBUFF)
     return true
   end
 
@@ -338,7 +334,7 @@ end
 ]]--
 function me.ShouldIgnorePet(spell, target)
   if spell.ignorePet and target ~= nil and target:find("^Pet") ~= nil then
-    mod.logger.LogDebug(me.tag, "Ignoring event because it was detected on a pet {" .. target .. "}")
+    mod.logger.LogDebug(me.tag, "Ignoring event because it was detected on a pet {%s}", target)
     return true
   end
 
@@ -364,12 +360,12 @@ function me.IsSpellActive(spellList, category, spellId, normalizedSpellName)
     return true
   end
 
-  mod.logger.LogDebug(me.tag, string.format(
+  mod.logger.LogDebug(me.tag,
     "Ignore spell %s - %s (%s) because it is not active",
     category,
     spellId,
     normalizedSpellName
-  ))
+  )
 
   return false
 end
@@ -394,12 +390,12 @@ function me.IsSoundWarningActive(spellList, category, spellId, normalizedSpellNa
     return true
   end
 
-  mod.logger.LogDebug(me.tag, string.format(
+  mod.logger.LogDebug(me.tag,
     "Ignore playing sound/soundFade for %s - %s - %s because it is not active",
     category,
     spellId,
     normalizedSpellName
-  ))
+  )
 
   return false
 end
@@ -421,9 +417,9 @@ end
 function me.IsVisualWarningActive(spellList, category, spellId, normalizedSpellName)
   if mod.spellConfiguration.IsVisualWarningActive(spellList, category, spellId) then return true end
 
-  mod.logger.LogDebug(me.tag, string.format(
+  mod.logger.LogDebug(me.tag,
     "Ignore playing visual warning for %s - %s because it is not active", category, normalizedSpellName
-  ))
+  )
 
   return false
 end

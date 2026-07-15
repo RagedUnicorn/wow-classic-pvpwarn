@@ -28,6 +28,9 @@ mod.spellConfiguration = me
 
 me.tag = "SpellConfiguration"
 
+-- forward declaration
+local AssertArgumentType
+
 --[[
   @param {string} spellList
     See constants RGPVPW_CONSTANTS.SPELL_TYPE
@@ -162,15 +165,9 @@ end
     A number representing the current color. If none can be found the default color is returned
 ]]--
 function me.GetVisualWarningColor(spellList, categoryName, spellId)
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `GetVisualWarningColor` (expected string, got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `GetVisualWarningColor` (expected string, got %s)", type(categoryName)))
-
-  assert(type(spellId) == "number", string.format(
-    "bad argument #3 to `GetVisualWarningColor` (expected number, got %s)", type(spellId)))
-
+  AssertArgumentType(spellList, "string", 1, "GetVisualWarningColor")
+  AssertArgumentType(categoryName, "string", 2, "GetVisualWarningColor")
+  AssertArgumentType(spellId, "number", 3, "GetVisualWarningColor")
 
   local category = PVPWarnConfiguration[spellList] and PVPWarnConfiguration[spellList][categoryName]
   local spell = category and category[spellId]
@@ -226,14 +223,9 @@ end
   @return {boolean}
 ]]--
 function me.IsVisualWarningActive(spellList, categoryName, spellId)
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `IsVisualWarningActive` (expected string, got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `IsVisualWarningActive` (expected string, got %s)", type(categoryName)))
-
-  assert(type(spellId) == "number", string.format(
-    "bad argument #3 to `IsVisualWarningActive` (expected number, got %s)", type(spellId)))
+  AssertArgumentType(spellList, "string", 1, "IsVisualWarningActive")
+  AssertArgumentType(categoryName, "string", 2, "IsVisualWarningActive")
+  AssertArgumentType(spellId, "number", 3, "IsVisualWarningActive")
 
   local category = PVPWarnConfiguration[spellList] and PVPWarnConfiguration[spellList][categoryName]
   local spell = category and category[spellId]
@@ -310,14 +302,9 @@ end
   @return {table|nil}
 ]]--
 function me.GetSpellEntry(spellList, categoryName, spellId)
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `GetSpellEntry` (expected string, got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `GetSpellEntry` (expected string, got %s)", type(categoryName)))
-
-  assert(type(spellId) == "number", string.format(
-    "bad argument #3 to `GetSpellEntry` (expected number, got %s)", type(spellId)))
+  AssertArgumentType(spellList, "string", 1, "GetSpellEntry")
+  AssertArgumentType(categoryName, "string", 2, "GetSpellEntry")
+  AssertArgumentType(spellId, "number", 3, "GetSpellEntry")
 
   local category = PVPWarnConfiguration[spellList] and PVPWarnConfiguration[spellList][categoryName]
   local spell = category and category[spellId]
@@ -382,19 +369,30 @@ end
 function me.IsOptionActive(spellList, categoryName, spellId, optionName)
   if RGPVPW_ENVIRONMENT.TEST then return true end
 
-  assert(type(spellList) == "string", string.format(
-    "bad argument #1 to `IsOptionActive` (expected string, got %s)", type(spellList)))
-
-  assert(type(categoryName) == "string", string.format(
-    "bad argument #2 to `IsOptionActive` (expected string, got %s)", type(categoryName)))
-
-  assert(type(spellId) == "number", string.format(
-    "bad argument #3 to `IsOptionActive` (expected number, got %s)", type(spellId)))
-
-  assert(type(optionName) == "string", string.format(
-    "bad argument #4 to `IsOptionActive` (expected string, got %s)", type(optionName)))
+  AssertArgumentType(spellList, "string", 1, "IsOptionActive")
+  AssertArgumentType(categoryName, "string", 2, "IsOptionActive")
+  AssertArgumentType(spellId, "number", 3, "IsOptionActive")
+  AssertArgumentType(optionName, "string", 4, "IsOptionActive")
 
   local spell = me.GetSpellEntry(spellList, categoryName, spellId)
 
   return spell and spell[optionName] or false
+end
+
+--[[
+  Validates the type of an argument, building the error message only on failure. Used
+  instead of assert(cond, string.format(...)) on the combat-log hot path because Lua
+  evaluates the assert message eagerly even when the assertion passes.
+
+  @param {any} value
+  @param {string} expectedType
+  @param {number} argumentIndex
+  @param {string} functionName
+]]--
+AssertArgumentType = function(value, expectedType, argumentIndex, functionName)
+  if type(value) ~= expectedType then
+    error(string.format(
+      "bad argument #%d to `%s` (expected %s, got %s)",
+      argumentIndex, functionName, expectedType, type(value)), 3)
+  end
 end
