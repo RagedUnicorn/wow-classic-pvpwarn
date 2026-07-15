@@ -35,6 +35,8 @@ local builtMenu = false
 
 -- reference to the dropdown frame
 local voicePackDropdown
+-- cached font string for measuring text width (ui regions cannot be destroyed)
+local measureFontString
 
 -- sample sounds to play for testing voice packs
 local sampleSounds = {
@@ -175,23 +177,23 @@ end
 function me.UpdateDropdownWidth()
   if not voicePackDropdown then return end
 
-  -- create a temporary font string to measure text width
-  local tempFontString = voicePackDropdown:CreateFontString(nil, "ARTWORK")
-  tempFontString:SetFont(STANDARD_TEXT_FONT, 12) -- standard dropdown font size
+  if not measureFontString then
+    measureFontString = voicePackDropdown:CreateFontString(nil, "ARTWORK")
+    measureFontString:SetFont(STANDARD_TEXT_FONT, 12) -- standard dropdown font size
+    measureFontString:Hide()
+  end
 
   local maxWidth = 0
   local voicePacks = mod.voicePack.GetRegisteredVoicePacks()
 
   -- measure all voice pack display names
   for _, voicePack in pairs(voicePacks) do
-    tempFontString:SetText(voicePack.displayName)
-    local textWidth = tempFontString:GetStringWidth()
+    measureFontString:SetText(voicePack.displayName)
+    local textWidth = measureFontString:GetStringWidth()
     if textWidth > maxWidth then
       maxWidth = textWidth
     end
   end
-
-  tempFontString:Hide()
 
   -- add padding for dropdown arrow and margins (typically 40-50 pixels)
   local dropdownWidth = maxWidth + 50
