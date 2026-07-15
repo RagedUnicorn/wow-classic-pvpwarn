@@ -68,7 +68,7 @@ function me.SetupAddonConfiguration()
   )
 
   me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_ZONE_SUB_OPTION_FRAME,
+    RGPVPW_CONSTANTS.ELEMENT_ZONE_MENU_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_zone"],
     mod.zoneMenu.BuildUi
@@ -96,7 +96,7 @@ function me.SetupAddonConfiguration()
   )
 
   me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
+    RGPVPW_CONSTANTS.ELEMENT_PROFILE_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_profiles"],
     mod.profileMenu.Init
@@ -105,7 +105,7 @@ function me.SetupAddonConfiguration()
   me.BuildSpellCategories(category)
 
   me.BuildCategory(
-    RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
+    RGPVPW_CONSTANTS.ELEMENT_ENEMY_AVOID_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_enemy_avoid"],
     mod.enemyAvoidMenu.Init

@@ -345,7 +345,7 @@ RGPVPW_CONSTANTS = {
     [12] = {
       ["categoryName"] = "misc",
       ["localizationKey"] = "category_misc",
-      ["name"] = "PVPW_ItemsOptionsFrame",
+      ["name"] = "PVPW_MiscOptionsFrame",
       ["enemyAvoidEnabled"] = false
     }
   },
@@ -358,6 +358,7 @@ RGPVPW_CONSTANTS = {
   --[[
     Profilemenu
   ]]--
+  ELEMENT_PROFILE_SUB_OPTION_FRAME = "PVPW_ProfileMenuOptionsFrame",
   ELEMENT_PROFILE_LIST_SCROLL_FRAME = "PVPW_ProfileListScrollFrame",
   PROFILE_LIST_CONTENT_FRAME_WIDTH = 580,
   PROFILE_LIST_MAX_ROWS = 6,
@@ -424,6 +425,10 @@ RGPVPW_CONSTANTS = {
   ELEMENT_CATEGORY_SELF_AVOID_VISUAL_WARNING_LABEL = "$parentSelfAvoidVisualLabel",
   ELEMENT_CATEGORY_SELF_AVOID_VISUAL_WARNING_DROPDOWN = "ChooseSelfAvoidVisual_",
   ELEMENT_CATEGORY_PLAY_SELF_AVOID_VISUAL_ALERT_BUTTON = "$parentPlaySelfAvoidVisualAlert",
+  --[[
+    EnemyAvoidMenu
+  ]]--
+  ELEMENT_ENEMY_AVOID_SUB_OPTION_FRAME = "PVPW_EnemyAvoidMenuOptionsFrame",
   --[[
     SpellEnemyAvoid
   ]]--
