@@ -200,21 +200,30 @@ local function HandleTestCommand(commandType, testCommand, branchArg, availableC
       for categoryName, moduleName in pairs(availableCategories) do
         table.insert(categoryList, {categoryName = categoryName, moduleName = moduleName})
       end
+      table.sort(categoryList, function(left, right)
+        return left.categoryName < right.categoryName
+      end)
 
-      local completedCount = 0
-      local totalCount = #categoryList
+      local index = 1
 
-      local function onCategoryComplete()
-        completedCount = completedCount + 1
-        if completedCount >= totalCount then
+      --[[
+        Categories must run one at a time — the delayed test queue, active branch and
+        session state are shared singletons; concurrent categories would drain each
+        other's queue and attribute results to the wrong branch.
+      ]]--
+      local function runNextCategory()
+        if index > #categoryList then
           completionCallback()
+          return
         end
+
+        local categoryInfo = categoryList[index]
+        index = index + 1
+        RunTestForCategory(
+          categoryInfo.categoryName, categoryInfo.moduleName, testTypeName, runNextCategory, branchFilter)
       end
 
-      for _, categoryInfo in ipairs(categoryList) do
-        RunTestForCategory(
-          categoryInfo.categoryName, categoryInfo.moduleName, testTypeName, onCategoryComplete, branchFilter)
-      end
+      runNextCategory()
     end)
   end
 
