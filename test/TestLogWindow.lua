@@ -86,10 +86,12 @@ function me.SessionDropdown_Initialize()
     mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
   end
 
-  -- Add all test session entries from PVPWarnTestLog
+  -- Add all test group entries from PVPWarnTestLog. Groups are identified by the counter
+  -- fields StartTestGroup seeds rather than by name shape, so free-form group names
+  -- (e.g. "TestAll", direct validator runs) are listed alongside session-named groups.
   if PVPWarnTestLog then
     for groupName, groupData in pairs(PVPWarnTestLog) do
-      if type(groupData) == "table" and groupName:match("^%w+_%w+_%d+_%d+$") then
+      if type(groupData) == "table" and type(groupData.testCount) == "number" then
         info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
         info.text = groupName
         info.value = "session_" .. groupName
