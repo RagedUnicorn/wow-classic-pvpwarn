@@ -162,6 +162,11 @@ RGPVPW_CONSTANTS = {
   ]]--
   MAX_WARN_AGE = 5,
   --[[
+    Duration in seconds the warn queue stays busy after playing a warning. Prevents
+    multiple sounds and visual warnings from playing at the same time.
+  ]]--
+  WARN_QUEUE_BUSY_GATE = 0.8,
+  --[[
     Vignette flash overlay (see gui/Flash.lua)
   ]]--
   ELEMENT_FLASH_FRAME = "PVPW_FlashFrame",

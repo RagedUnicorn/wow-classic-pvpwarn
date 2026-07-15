@@ -81,8 +81,8 @@ RemoveFromQueue = function(position)
 end
 
 --[[
-  Called in an interval if the warning is to old we remove it and go to the next
-  loop until an item is found that is not to old or the queue is empty
+  Called in an interval. Warnings that are to old are pruned from the queue first,
+  then the warning at the head of the queue is processed
 ]]--
 function me.ProcessQueue()
   -- if queue is already busy abort
@@ -90,48 +90,53 @@ function me.ProcessQueue()
     return
   end
 
-  for key, warning in pairs(warnQueue) do
-    local age = GetTime() - warning.startTime
+  -- iterate backwards so removing entries does not shift unvisited elements
+  for position = #warnQueue, 1, -1 do
+    local age = GetTime() - warnQueue[position].startTime
 
     if age > RGPVPW_CONSTANTS.MAX_WARN_AGE then
       mod.logger.LogWarn(me.tag, "Skipping warn message because max age was reached")
-      RemoveFromQueue(key)
-    else
-      local playedSound = false
-      local playedVisual = false
-      local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
-
-      if warning.spellType == spellTypes.NORMAL or
-        warning.spellType == spellTypes.APPLIED or
-        warning.spellType == spellTypes.REFRESH then
-        playedSound = PlaySound(warning, spellTypes.NORMAL)
-        playedVisual = PlayVisual(warning)
-      elseif warning.spellType == spellTypes.REMOVED then
-        playedSound = PlaySound(warning, spellTypes.REMOVED)
-      elseif warning.spellType == spellTypes.MISSED_SELF then
-        playedSound = PlaySound(warning, spellTypes.MISSED_SELF)
-        playedVisual = PlayVisual(warning)
-      elseif warning.spellType == spellTypes.MISSED_ENEMY then
-        playedSound = PlaySound(warning, spellTypes.MISSED_ENEMY)
-        playedVisual = PlayVisual(warning)
-      elseif warning.spellType == spellTypes.START then
-        playedSound = PlaySound(warning, spellTypes.START)
-      else
-        mod.logger.LogError(me.tag, "Found invalid spelltype: " .. warning.spellType)
-      end
-
-      if playedSound or playedVisual then
-        isQueueBusy = true
-        C_Timer.After(.8 or 0, function()
-          isQueueBusy = false
-        end)
-      end
-
-      RemoveFromQueue(key)
-
-      return -- abort
+      RemoveFromQueue(position)
     end
   end
+
+  local warning = warnQueue[1]
+
+  if warning == nil then
+    return
+  end
+
+  local playedSound = false
+  local playedVisual = false
+  local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
+
+  if warning.spellType == spellTypes.NORMAL or
+    warning.spellType == spellTypes.APPLIED or
+    warning.spellType == spellTypes.REFRESH then
+    playedSound = PlaySound(warning, spellTypes.NORMAL)
+    playedVisual = PlayVisual(warning)
+  elseif warning.spellType == spellTypes.REMOVED then
+    playedSound = PlaySound(warning, spellTypes.REMOVED)
+  elseif warning.spellType == spellTypes.MISSED_SELF then
+    playedSound = PlaySound(warning, spellTypes.MISSED_SELF)
+    playedVisual = PlayVisual(warning)
+  elseif warning.spellType == spellTypes.MISSED_ENEMY then
+    playedSound = PlaySound(warning, spellTypes.MISSED_ENEMY)
+    playedVisual = PlayVisual(warning)
+  elseif warning.spellType == spellTypes.START then
+    playedSound = PlaySound(warning, spellTypes.START)
+  else
+    mod.logger.LogError(me.tag, "Found invalid spelltype: " .. warning.spellType)
+  end
+
+  if playedSound or playedVisual then
+    isQueueBusy = true
+    C_Timer.After(RGPVPW_CONSTANTS.WARN_QUEUE_BUSY_GATE, function()
+      isQueueBusy = false
+    end)
+  end
+
+  RemoveFromQueue(1)
 end
 
 --[[
