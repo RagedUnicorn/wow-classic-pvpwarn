@@ -152,7 +152,7 @@ function me.GetSpellMetadata(category, spellId)
 
   if spell then
     if spell.refId then
-      spell = map[spell.refId]
+      spell = map[category][spell.refId]
     end
     return spell
   end
