@@ -4,13 +4,17 @@ on:
   push:
     paths:
       - code/SpellMap.lua
+      - code/spellmap/**
       - code/SpellAvoidMap.lua
+      - code/spellavoidmap/**
       - tools/verify_spellmap/**
       - .github/workflows/verify_spellmap.yaml
   pull_request:
     paths:
       - code/SpellMap.lua
+      - code/spellmap/**
       - code/SpellAvoidMap.lua
+      - code/spellavoidmap/**
       - tools/verify_spellmap/**
       - .github/workflows/verify_spellmap.yaml
   workflow_dispatch:

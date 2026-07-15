@@ -5,14 +5,18 @@ on:
     paths:
       - assets/**
       - code/SpellMap.lua
+      - code/spellmap/**
       - code/SpellAvoidMap.lua
+      - code/spellavoidmap/**
       - tools/verify_sounds/**
       - .github/workflows/verify_sounds.yaml
   pull_request:
     paths:
       - assets/**
       - code/SpellMap.lua
+      - code/spellmap/**
       - code/SpellAvoidMap.lua
+      - code/spellavoidmap/**
       - tools/verify_sounds/**
       - .github/workflows/verify_sounds.yaml
   workflow_dispatch:
@@ -144,8 +148,8 @@ jobs:
           # Run verification with external pack path
           if python verify_sounds.py \
             --sound-path "../../../external_pack/${{ matrix.voice_pack.assets_path }}" \
-            --spell-map "../../code/SpellMap.lua" \
-            --spell-avoid-map "../../code/SpellAvoidMap.lua" \
+            --spellmap-dir "../../code/spellmap" \
+            --spellavoidmap-dir "../../code/spellavoidmap" \
             --output-format summary 2>&1 | tee "${SAFE_PACK_NAME}_verification.txt"; then
 
             echo "external_passed=true" >> $GITHUB_OUTPUT
@@ -191,8 +195,8 @@ jobs:
 
           python verify_sounds.py \
             --sound-path "../../../external_pack/${{ matrix.voice_pack.assets_path }}" \
-            --spell-map "../../code/SpellMap.lua" \
-            --spell-avoid-map "../../code/SpellAvoidMap.lua" \
+            --spellmap-dir "../../code/spellmap" \
+            --spellavoidmap-dir "../../code/spellavoidmap" \
             --output-format detailed > "${SAFE_PACK_NAME}_detailed_report.txt" 2>&1 || true
 
       - name: Upload external verification results
