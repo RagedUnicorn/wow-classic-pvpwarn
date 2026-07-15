@@ -163,7 +163,7 @@ function me.CreateRowFrame(frame, position)
     rgpvpw.L["label_visual_warning"]
   )
   row.playVisual = mod.guiHelper.CreatePlayButton(
-    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_VISUAL_WARNING_BUTTON,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_PLAY_VISUAL_ALERT_BUTTON,
     row,
     {"LEFT", row.chooseVisual, "RIGHT", 140, 0},
     me.ToggleVisualWarningOnClick,
