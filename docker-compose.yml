@@ -142,7 +142,8 @@ services:
     working_dir: /app
     entrypoint: [ ]
     env_file:
-      - ./tools/voice_generator/.env
+      - path: ./tools/voice_generator/.env
+        required: false
     command:
       - sh
       - -c

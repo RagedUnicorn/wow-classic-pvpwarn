@@ -194,6 +194,8 @@ docker compose run --rm verify-spellmap             # Verify SpellMap and SpellA
 docker compose run --rm verify-spellmap-report      # Verify SpellMap with report output
 
 # Voice Generation
+# Requires an ElevenLabs API key: cp tools/voice_generator/.env.example tools/voice_generator/.env
+# and fill in the key. See tools/voice_generator/README.md for details.
 docker compose run --rm voice-generator             # Generate voice files using ElevenLabs API
 ```
 
