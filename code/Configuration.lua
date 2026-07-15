@@ -55,6 +55,14 @@ PVPWarnConfiguration = {
   ]]--
   ["lockCombatStateFrame"] = true,
   --[[
+    Whether stance state tracking is enabled or not
+  ]]--
+  ["enableStanceStateTracking"] = true,
+  --[[
+    Whether the frame to track an enemies stance state is locked or not
+  ]]--
+  ["lockStanceStateFrame"] = true,
+  --[[
     Whether to hide the stance icon when the stance is unknown
   ]]--
   ["hideUnknownStance"] = false,
@@ -137,6 +145,16 @@ function me.SetupConfiguration()
   if PVPWarnConfiguration.lockCombatStateFrame == nil then
     mod.logger.LogInfo(me.tag, "lockCombatStateFrame has unexpected nil value")
     PVPWarnConfiguration.lockCombatStateFrame = true
+  end
+
+  if PVPWarnConfiguration.enableStanceStateTracking == nil then
+    mod.logger.LogInfo(me.tag, "enableStanceStateTracking has unexpected nil value")
+    PVPWarnConfiguration.enableStanceStateTracking = true
+  end
+
+  if PVPWarnConfiguration.lockStanceStateFrame == nil then
+    mod.logger.LogInfo(me.tag, "lockStanceStateFrame has unexpected nil value")
+    PVPWarnConfiguration.lockStanceStateFrame = true
   end
 
   if PVPWarnConfiguration.hideUnknownStance == nil then
