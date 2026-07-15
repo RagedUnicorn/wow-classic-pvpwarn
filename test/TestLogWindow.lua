@@ -32,12 +32,17 @@ me.tag = "TestLogWindow"
 
 -- UI elements
 me.logMessages = {}
+-- Recycled message frames ready for reuse
+me.messageFramePool = {}
 me.maxMessages = 1000
 me.messageHeight = 14
 me.messagePadding = 2
 me.selectedSession = nil
 
 local sessionDropdown
+
+-- forward declaration
+local ReleaseMessageFrame
 
 -- Color codes for different message types
 me.messageColors = {
@@ -348,8 +353,7 @@ function me.AddLogMessage(message, messageType, storedTimestamp)
 
   if #me.logMessages > me.maxMessages then
     local oldMessage = table.remove(me.logMessages, 1)
-    oldMessage:Hide()
-    oldMessage:SetParent(nil)
+    ReleaseMessageFrame(oldMessage)
 
     if #me.logMessages > 0 then
       local newHead = me.logMessages[1]
@@ -375,7 +379,7 @@ function me.AddLogMessage(message, messageType, storedTimestamp)
 end
 
 --[[
-  Create a message frame
+  Create a message frame, reusing a recycled one from the pool when available
 
   @param {Frame} parent - Parent frame
   @param {string} message - The message to display
@@ -385,12 +389,28 @@ end
   @return {Frame} - Created message frame
 ]]--
 function me.CreateMessageFrame(parent, message, messageType, storedTimestamp)
-  local frame = CreateFrame("Frame", nil, parent)
-  frame:SetHeight(me.messageHeight)
-  frame:SetWidth(parent:GetWidth())
+  local frame = table.remove(me.messageFramePool)
 
-  local timestamp = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-  timestamp:SetPoint("LEFT", frame, "LEFT", 0, 0)
+  if frame then
+    frame:SetParent(parent)
+    frame:SetWidth(parent:GetWidth())
+    frame:Show()
+  else
+    frame = CreateFrame("Frame", nil, parent)
+    frame:SetHeight(me.messageHeight)
+    frame:SetWidth(parent:GetWidth())
+
+    frame.timestamp = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    frame.timestamp:SetPoint("LEFT", frame, "LEFT", 0, 0)
+    frame.timestamp:SetTextColor(unpack(me.messageColors.TIMESTAMP))
+    frame.timestamp:SetWidth(60)
+    frame.timestamp:SetJustifyH("LEFT")
+
+    frame.messageText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    frame.messageText:SetPoint("LEFT", frame.timestamp, "RIGHT", 5, 0)
+    frame.messageText:SetPoint("RIGHT", frame, "RIGHT", -5, 0)
+    frame.messageText:SetJustifyH("LEFT")
+  end
 
   local timestampText
   if storedTimestamp and storedTimestamp > 0 then
@@ -399,20 +419,12 @@ function me.CreateMessageFrame(parent, message, messageType, storedTimestamp)
   else
     timestampText = date("%H:%M:%S")
   end
-  timestamp:SetText(timestampText)
+  frame.timestamp:SetText(timestampText)
 
-  timestamp:SetTextColor(unpack(me.messageColors.TIMESTAMP))
-  timestamp:SetWidth(60)
-  timestamp:SetJustifyH("LEFT")
-
-  local messageText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-  messageText:SetPoint("LEFT", timestamp, "RIGHT", 5, 0)
-  messageText:SetPoint("RIGHT", frame, "RIGHT", -5, 0)
-  messageText:SetText(message)
-  messageText:SetJustifyH("LEFT")
+  frame.messageText:SetText(message)
 
   local color = me.messageColors[messageType] or me.messageColors.INFO
-  messageText:SetTextColor(unpack(color))
+  frame.messageText:SetTextColor(unpack(color))
 
   return frame
 end
@@ -422,8 +434,7 @@ end
 ]]--
 function me.ClearLog()
   for _, messageFrame in ipairs(me.logMessages) do
-    messageFrame:Hide()
-    messageFrame:SetParent(nil)
+    ReleaseMessageFrame(messageFrame)
   end
 
   me.logMessages = {}
@@ -635,6 +646,19 @@ function me.OnSessionEnd(completedSessionName)
       me.ShowEmptyState()
     end
   end)
+end
+
+--[[
+  Return a message frame to the pool so it can be reused instead of stranding the
+  underlying UI regions (WoW never garbage-collects frames or font strings)
+
+  @param {Frame} messageFrame - The message frame to recycle
+]]--
+ReleaseMessageFrame = function(messageFrame)
+  messageFrame:Hide()
+  messageFrame:ClearAllPoints()
+  messageFrame:SetParent(nil)
+  table.insert(me.messageFramePool, messageFrame)
 end
 
 -- StaticPopup for confirming clear all logs action
