@@ -124,10 +124,36 @@ function me.StartSession(commandType, category, testFunction)
 
   if type(testFunction) == "function" then
     local completionCallback = me.CreateCompletionCallback()
-    testFunction(completionCallback)
+    local status, err = pcall(testFunction, completionCallback)
+
+    if not status then
+      mod.logger.LogError(me.tag, "Test session '" .. sessionName .. "' failed with error: " .. tostring(err))
+      completionCallback()
+    end
   end
 
   return true
+end
+
+--[[
+  Force reset the session state without running the normal completion flow.
+  Recovery path for a stranded session where the completion callback can no
+  longer be reached (e.g. a test errored inside an async timer callback).
+]]--
+function me.ForceResetSession()
+  if not currentSession.isActive then
+    mod.logger.LogInfo(me.tag, "No active test session to reset")
+    return
+  end
+
+  mod.logger.LogWarn(me.tag, "Forcibly resetting test session: " .. currentSession.sessionName)
+
+  currentSession.isActive = false
+  currentSession.sessionName = nil
+  currentSession.sessionId = nil
+  currentSession.commandType = nil
+  currentSession.commandCategory = nil
+  currentSession.startTime = nil
 end
 
 --[[

@@ -30,6 +30,9 @@ mod.testReporter = me
 
 me.tag = "TestReporter"
 
+-- forward declaration
+local executeTestFunction
+
 local testManager = {
   ["currentTestGroup"] = nil,
   ["currentTest"] = nil,
@@ -121,12 +124,21 @@ function me.StartTestGroup(groupName)
 end
 
 --[[
-  Force clear test manager state (for cleanup between sessions)
+  Force clear test manager state (recovery path for a stranded session).
+  Restores test mode only if a test group was active - RestoreMaxWarnAge
+  must not run without a prior HookMaxWarnAge.
 ]]--
 function me.ForceResetTestManager()
+  if testManager.currentTestGroup ~= nil then
+    mod.testHelper.RestoreMaxWarnAge()
+    mod.testHelper.DisableTestMode()
+  end
+
   testManager.currentTestGroup = nil
   testManager.currentTest = nil
   testManager.currentFailedTests = {}
+  testQueueWithDelay = {}
+  testQueueImmediate = {}
   mod.logger.LogInfo(me.tag, "TestReporter state forcibly reset")
 end
 
@@ -420,7 +432,7 @@ end
 ]]--
 function me.PlayTestQueueImmediate(callback)
   while testQueueImmediate[1] ~= nil do
-    testQueueImmediate[1]()
+    executeTestFunction(testQueueImmediate[1])
     table.remove(testQueueImmediate, 1)
   end
   callback()
@@ -433,7 +445,7 @@ end
 ]]--
 function me.PlayDelayedTests(callback)
   if testQueueWithDelay[1] ~= nil then
-    testQueueWithDelay[1]()
+    executeTestFunction(testQueueWithDelay[1])
     table.remove(testQueueWithDelay, 1)
   else
     callback()
@@ -463,4 +475,23 @@ function me.NotifyTestLogWindow(message, messageType)
   end
 
   mod.testLogWindow.AppendMessage(message, messageType)
+end
+
+--[[
+  Execute a queued test function with error isolation. A thrown error must not
+  abort the queue - it would strand the session with no way to recover short
+  of a reload. An error in a started test is reported as its failure.
+
+  @param {function} testFunction
+]]--
+executeTestFunction = function(testFunction)
+  local status, err = pcall(testFunction)
+
+  if not status then
+    mod.logger.LogError(me.tag, "Test function failed with error: " .. tostring(err))
+
+    if testManager.currentTest ~= nil then
+      me.ReportFailureTestRun("LuaError", testManager.currentTest, tostring(err))
+    end
+  end
 end

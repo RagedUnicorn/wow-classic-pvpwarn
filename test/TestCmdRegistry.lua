@@ -136,6 +136,12 @@ function me.Initialize()
     end
   end)
 
+  -- Register test session recovery command - resets a stranded test session
+  mod.cmd.RegisterCommand("testreset", function()
+    mod.testReporter.ForceResetTestManager()
+    mod.testSessionManager.ForceResetSession()
+  end)
+
   -- Register test validation commands
   mod.cmd.RegisterCommand("testvalidation", function(args)
     if not mod.testValidationCmd then
