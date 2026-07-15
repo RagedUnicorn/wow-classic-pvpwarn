@@ -151,22 +151,20 @@ function me.CombatEventTest(categoryName, categoryData)
           testName,
           string.format(mod.testHelper.invalidEvent, spellName, trackedEvent)
         )
-
-        return
-      end
-
-      local func = mod.testHelper.ResolveTestFunction(
-        "testCombatEvents", categoryName, "TestCombatEvent" .. spellName .. eventName .. "_" .. spellId
-      )
-
-      if type(func) ~= "function" then
-        mod.testReporter.ReportFailureTestRun(
-          categoryName,
-          testName,
-          string.format(mod.testHelper.missingCombatEventTest, spellName, trackedEvent)
-        )
       else
-        mod.testReporter.ReportSuccessTestRun()
+        local func = mod.testHelper.ResolveTestFunction(
+          "testCombatEvents", categoryName, "TestCombatEvent" .. spellName .. eventName .. "_" .. spellId
+        )
+
+        if type(func) ~= "function" then
+          mod.testReporter.ReportFailureTestRun(
+            categoryName,
+            testName,
+            string.format(mod.testHelper.missingCombatEventTest, spellName, trackedEvent)
+          )
+        else
+          mod.testReporter.ReportSuccessTestRun()
+        end
       end
     end
   end
