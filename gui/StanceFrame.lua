@@ -93,9 +93,8 @@ end
   @param {number} iconId
 ]]--
 function me.UpdateStanceStateUi(iconId)
-  mod.logger.LogDebug(me.tag, "Updating stance state ui with id: " .. iconId)
-
   if iconId ~= nil then
+    mod.logger.LogDebug(me.tag, "Updating stance state ui with id: " .. iconId)
     stanceStateFrame:SetTexture(iconId)
     UpdateStanceBorderColor()
     me.ShowStanceState()
