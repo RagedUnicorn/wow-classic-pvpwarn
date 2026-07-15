@@ -323,8 +323,8 @@ function me.BuildCheckButtonOption(parentFrame, optionFrameName, posX, posY, onS
     optionFrameName,
     parentFrame,
     {"TOPLEFT", posX, posY},
-    onShowCallback,
     onClickCallback,
+    onShowCallback,
     me.GetLabelText(optionFrameName)
   )
 
@@ -337,8 +337,6 @@ function me.BuildCheckButtonOption(parentFrame, optionFrameName, posX, posY, onS
 
   checkButtonOptionFrame:SetScript("OnEnter", me.OptTooltipOnEnter)
   checkButtonOptionFrame:SetScript("OnLeave", me.OptTooltipOnLeave)
-  checkButtonOptionFrame:SetScript("OnShow", onShowCallback)
-  checkButtonOptionFrame:SetScript("OnClick", onClickCallback)
   -- load initial state
   onShowCallback(checkButtonOptionFrame)
 end
