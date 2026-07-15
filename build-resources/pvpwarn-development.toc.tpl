@@ -101,6 +101,7 @@ test/TestSessionManager.lua
 test/TestReporter.lua
 test/TestHelper.lua
 test/TestCmdRegistry.lua
+test/TestCmdRunner.lua
 test/TestLogCmd.lua
 test/TestSoundCmd.lua
 test/TestCombatEventCmd.lua

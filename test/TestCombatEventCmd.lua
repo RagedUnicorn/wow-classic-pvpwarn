@@ -36,7 +36,6 @@ me.tag = "TestCombatEventCmd"
 local GetAvailableCategories
 local GetAvailableSelfAvoidCategories
 local GetAvailableEnemyAvoidCategories
-local RunTestForCategory
 
 --[[
   Get available test combat event categories mapping
@@ -99,55 +98,6 @@ GetAvailableEnemyAvoidCategories = function()
 end
 
 --[[
-  Run tests for a single category (unified logic for all test types)
-
-  @param {string} categoryName - Name of the category
-  @param {string} moduleName - Name of the test module
-  @param {string} testType - Type of test (for logging purposes)
-  @param {function} completionCallback - Invoked once all selected branches finish
-  @param {table|nil} branchFilter - Optional 1-element PascalCase branch list from
-    `testHelper.ResolveBranchFilter`; when nil, the default 3-branch list is used.
-
-  @return {boolean} - True if tests were run successfully
-]]--
-RunTestForCategory = function(categoryName, moduleName, testType, completionCallback, branchFilter)
-  local branches = branchFilter or { "Classic", "Sod", "Tbc" }
-  local index = 1
-  local anyRan = false
-
-  local function runNext()
-    while index <= #branches do
-      local branch = branches[index]
-      index = index + 1
-      local testModule = mod[moduleName .. branch]
-
-      if testModule and type(testModule.Test) == "function" then
-        anyRan = true
-        mod.testHelper.SetActiveBranch(string.lower(branch))
-        mod.logger.LogInfo(me.tag,
-          "Running " .. categoryName .. " " .. testType .. " tests (" .. branch .. ")...")
-        testModule.Test(runNext)
-
-        return
-      end
-    end
-
-    if not anyRan then
-      local scope = branchFilter
-        and ("on branch " .. string.lower(branchFilter[1]))
-        or "in any branch"
-      mod.logger.LogError(me.tag,
-        testType .. " test module for category '" .. categoryName .. "' not found " .. scope)
-    end
-
-    completionCallback()
-  end
-
-  runNext()
-  return true
-end
-
---[[
   Show test combat event command help
 
   Note: Will not be translated as this is a development-only feature
@@ -173,81 +123,13 @@ function me.ShowCombatEventHelp()
 end
 
 --[[
-  Generic handler for test commands - handles both "all" and single category cases
-
-  @param {string} commandType - Session command type (e.g., "CombatEvent", "SelfCombatEvent")
-  @param {string} testCommand - The test command to execute
-  @param {string|nil} branchArg - Optional branch arg (classic/sod/tbc); nil = all branches
-  @param {table} availableCategories - Table of available categories
-  @param {string} testTypeName - Display name for test type (e.g., "combat event", "self avoid combat event")
-  @param {function} helpFunction - Function to show help on error
-  @return {boolean|nil} - Success status or nil if error occurred
-]]--
-local function HandleTestCommand(commandType, testCommand, branchArg, availableCategories, testTypeName, helpFunction)
-  local branchFilter, branchErr = mod.testHelper.ResolveBranchFilter(branchArg)
-  if branchErr then
-    mod.logger.LogError(me.tag, branchErr)
-    helpFunction()
-    return
-  end
-
-  local category = string.lower(testCommand)
-
-  if category == "all" then
-    mod.logger.LogInfo(me.tag, "Starting " .. testTypeName .. " tests for ALL categories...")
-    return mod.testSessionManager.StartSession(commandType, "all", function(completionCallback)
-      local categoryList = {}
-      for categoryName, moduleName in pairs(availableCategories) do
-        table.insert(categoryList, {categoryName = categoryName, moduleName = moduleName})
-      end
-      table.sort(categoryList, function(left, right)
-        return left.categoryName < right.categoryName
-      end)
-
-      local index = 1
-
-      --[[
-        Categories must run one at a time — the delayed test queue, active branch and
-        session state are shared singletons; concurrent categories would drain each
-        other's queue and attribute results to the wrong branch.
-      ]]--
-      local function runNextCategory()
-        if index > #categoryList then
-          completionCallback()
-          return
-        end
-
-        local categoryInfo = categoryList[index]
-        index = index + 1
-        RunTestForCategory(
-          categoryInfo.categoryName, categoryInfo.moduleName, testTypeName, runNextCategory, branchFilter)
-      end
-
-      runNextCategory()
-    end)
-  end
-
-  local moduleName = availableCategories[category]
-  if not moduleName then
-    mod.logger.LogError(me.tag, "Unknown " .. testTypeName .. " category: " .. testCommand)
-    helpFunction()
-    return
-  end
-
-  mod.logger.LogInfo(me.tag, "Starting " .. category .. " " .. testTypeName .. " tests...")
-  return mod.testSessionManager.StartSession(commandType, category, function(completionCallback)
-    RunTestForCategory(category, moduleName, testTypeName, completionCallback, branchFilter)
-  end)
-end
-
---[[
   Handle test combat event commands
 
   @param {string} testCommand - The test command to execute
   @param {string|nil} branchArg - Optional branch arg (classic/sod/tbc)
 ]]--
 function me.HandleCombatEvent(testCommand, branchArg)
-  HandleTestCommand(
+  mod.testCmdRunner.HandleTestCommand(
     "CombatEvent", testCommand, branchArg, GetAvailableCategories(), "combat event", me.ShowCombatEventHelp)
 end
 
@@ -282,7 +164,7 @@ end
   @param {string|nil} branchArg - Optional branch arg (classic/sod/tbc)
 ]]--
 function me.HandleSelfCombatEvent(testCommand, branchArg)
-  HandleTestCommand(
+  mod.testCmdRunner.HandleTestCommand(
     "SelfCombatEvent",
     testCommand,
     branchArg,
@@ -324,7 +206,7 @@ end
   @param {string|nil} branchArg - Optional branch arg (classic/sod/tbc)
 ]]--
 function me.HandleEnemyCombatEvent(testCommand, branchArg)
-  HandleTestCommand(
+  mod.testCmdRunner.HandleTestCommand(
     "EnemyCombatEvent",
     testCommand,
     branchArg,
