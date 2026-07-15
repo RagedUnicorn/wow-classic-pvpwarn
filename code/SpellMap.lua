@@ -75,6 +75,13 @@ local function ensureAssembled()
   return assembledByBranch[branch]
 end
 
+-- flat spellId → category index per assembled branch, built lazily from the assembled
+-- map so combat-log searches resolve with a single lookup instead of a category scan
+local categoryIndexByBranch = {}
+
+-- forward declaration
+local ensureCategoryIndex
+
 --[[
   Get the spellMap
 
@@ -83,6 +90,30 @@ end
 ]]--
 function me.GetSpellMap()
   return mod.common.Clone(ensureAssembled())
+end
+
+--[[
+  Get the assembled spellMap without cloning it. Intended for read-only lookups on the
+  combat-log hot path — callers must not mutate the returned table. Consumers that need
+  a mutable copy use GetSpellMap instead.
+
+  @return {table}
+    The assembled spellMap
+]]--
+function me.GetRawSpellMap()
+  return ensureAssembled()
+end
+
+--[[
+  Find the category that contains the passed spellId
+
+  @param {number} spellId
+
+  @return {string | nil}
+    The category name or nil if the spellId is not present in the spellMap
+]]--
+function me.GetCategoryBySpellId(spellId)
+  return ensureCategoryIndex()[spellId]
 end
 
 --[[
@@ -127,4 +158,28 @@ function me.GetSpellMetadata(category, spellId)
   end
 
   return nil
+end
+
+--[[
+  Build (once per branch) and return the flat spellId → category index for the active branch
+
+  @return {table}
+    The spellId → category index
+]]--
+ensureCategoryIndex = function()
+  local branch = determineActiveBranch()
+
+  if categoryIndexByBranch[branch] == nil then
+    local index = {}
+
+    for category, spells in pairs(ensureAssembled()) do
+      for spellId in pairs(spells) do
+        index[spellId] = category
+      end
+    end
+
+    categoryIndexByBranch[branch] = index
+  end
+
+  return categoryIndexByBranch[branch]
 end

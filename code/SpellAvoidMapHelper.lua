@@ -90,33 +90,31 @@ end
 function me.SearchBySpellId(spellId)
   if not spellId then return nil end
 
-  local baseSpellMap = mod.spellAvoidMap.GetSpellAvoidMap()
-
   mod.logger.LogDebug(me.tag, string.format("Searching for spellId %s in spellAvoidMap", spellId))
 
-  for category, spells in pairs(baseSpellMap) do
-    local spellData = spells[spellId]
-    local baseSpell
-    local realSpellId
+  local category = mod.spellAvoidMap.GetCategoryBySpellId(spellId)
 
-    if spellData then
-      if type(spellData.name) == "string" then
-        baseSpell = spellData
-        realSpellId = spellId
-      elseif type(spellData.refId) == "number" then
-        baseSpell = spells[spellData.refId]
-        realSpellId = spellData.refId
-      end
-    end
+  if not category then return nil end
 
-    if baseSpell then
-      local clonedSpell = mod.common.Clone(baseSpell)
-      clonedSpell.spellId = spellId
-      clonedSpell.normalizedSpellName = mod.common.NormalizeSpellName(baseSpell.name)
+  -- read-only lookup on the raw map; only the matched entry is cloned before returning
+  local spells = mod.spellAvoidMap.GetRawSpellAvoidMap()[category]
+  local spellData = spells[spellId]
+  local baseSpell
+  local realSpellId
 
-      return category, realSpellId, clonedSpell
-    end
+  if type(spellData.name) == "string" then
+    baseSpell = spellData
+    realSpellId = spellId
+  elseif type(spellData.refId) == "number" then
+    baseSpell = spells[spellData.refId]
+    realSpellId = spellData.refId
   end
 
-  return nil
+  if not baseSpell then return nil end
+
+  local clonedSpell = mod.common.Clone(baseSpell)
+  clonedSpell.spellId = spellId
+  clonedSpell.normalizedSpellName = mod.common.NormalizeSpellName(baseSpell.name)
+
+  return category, realSpellId, clonedSpell
 end

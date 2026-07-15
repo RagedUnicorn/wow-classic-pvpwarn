@@ -93,40 +93,38 @@ end
 function me.SearchBySpellId(spellId, event)
   if not spellId then return nil end
 
-  local baseSpellMap = mod.spellMap.GetSpellMap()
-
   mod.logger.LogDebug(me.tag, string.format("Searching for spellId %s in spellMap", spellId))
 
-  for category, spells in pairs(baseSpellMap) do
-    local spellData = spells[spellId]
-    local baseSpell
-    local realSpellId
+  local category = mod.spellMap.GetCategoryBySpellId(spellId)
 
-    if spellData then
-      if type(spellData.name) == "string" then
-        baseSpell = spellData
-        realSpellId = spellId
-      elseif type(spellData.refId) == "number" then
-        baseSpell = spells[spellData.refId]
-        realSpellId = spellData.refId
-      end
-    end
+  if not category then return nil end
 
-    if baseSpell then
-      for _, trackedEvent in pairs(baseSpell.trackedEvents) do
-        if trackedEvent == event then
-          mod.logger.LogDebug(me.tag, string.format(
-            "Found matching tracked event %s for spellId %s", event, spellId))
+  -- read-only lookup on the raw map; only the matched entry is cloned before returning
+  local spells = mod.spellMap.GetRawSpellMap()[category]
+  local spellData = spells[spellId]
+  local baseSpell
+  local realSpellId
 
-          local clonedSpell = mod.common.Clone(baseSpell)
-          clonedSpell.spellId = spellId
-          clonedSpell.normalizedSpellName = mod.common.NormalizeSpellName(baseSpell.name)
+  if type(spellData.name) == "string" then
+    baseSpell = spellData
+    realSpellId = spellId
+  elseif type(spellData.refId) == "number" then
+    baseSpell = spells[spellData.refId]
+    realSpellId = spellData.refId
+  end
 
-          return category, realSpellId, clonedSpell
-        end
-      end
+  if not baseSpell then return nil end
 
-      return nil
+  for _, trackedEvent in pairs(baseSpell.trackedEvents) do
+    if trackedEvent == event then
+      mod.logger.LogDebug(me.tag, string.format(
+        "Found matching tracked event %s for spellId %s", event, spellId))
+
+      local clonedSpell = mod.common.Clone(baseSpell)
+      clonedSpell.spellId = spellId
+      clonedSpell.normalizedSpellName = mod.common.NormalizeSpellName(baseSpell.name)
+
+      return category, realSpellId, clonedSpell
     end
   end
 
