@@ -44,6 +44,9 @@ RGPVPW_ZONE = {
 
 local zoneType = {
   ["battleGround"] = "pvp",
+  ["arena"] = "arena",
+  ["dungeon"] = "party",
+  ["raid"] = "raid",
   ["none"] = "none"
 }
 --[[
@@ -85,20 +88,35 @@ end
 
 --[[
   Zone is updated as a response of ZONE_CHANGED_NEW_AREA event
+
+  Battlegrounds and the open world consult the zone configuration. Arenas are
+  always enabled (pvp content), dungeon and raid instances are always disabled
+  (enemy players cannot enter a pve instance). Every branch sets isZoneEnabled
+  deliberately so no zone can inherit the state of the previous zone.
 ]]--
 function me.UpdateZone()
-  local _, type = IsInInstance()
+  local _, instanceType = IsInInstance()
 
-  if type == zoneType.battleGround then
+  if instanceType == zoneType.battleGround then
     zoneIdentifier = select(8, GetInstanceInfo())
     mod.logger.LogInfo(me.tag, "Updated instance id to: " .. zoneIdentifier)
     UpdateZoneStatus(zoneIdentifier)
-  elseif type == zoneType.none then
+  elseif instanceType == zoneType.arena then
+    zoneIdentifier = select(8, GetInstanceInfo())
+    isZoneEnabled = true
+    mod.logger.LogInfo(me.tag, "Enabled addon for arena with id {" .. zoneIdentifier .. "}")
+  elseif instanceType == zoneType.dungeon or instanceType == zoneType.raid then
+    zoneIdentifier = select(8, GetInstanceInfo())
+    isZoneEnabled = false
+    mod.logger.LogInfo(me.tag, "Disabled addon for pve instance with id {" .. zoneIdentifier .. "}")
+  elseif instanceType == zoneType.none then
     zoneIdentifier = C_Map.GetBestMapForUnit(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) or "unknown"
     mod.logger.LogInfo(me.tag, "Updated map id to: " .. zoneIdentifier)
     UpdateZoneStatus(zoneIdentifier)
   else
-    mod.logger.LogInfo(me.tag, "Ignore non-tracked zone type: " .. type)
+    zoneIdentifier = select(8, GetInstanceInfo()) or "unknown"
+    isZoneEnabled = false
+    mod.logger.LogInfo(me.tag, "Disabled addon for unknown zone type: " .. instanceType)
   end
 end
 
