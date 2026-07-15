@@ -1,6 +1,6 @@
 services:
   verify-sounds-tests:
-    image: ragedunicorn/python:3-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
       - ./tools/verify_sounds:/app
       - ./target:/target
@@ -17,8 +17,26 @@ services:
           --tb=short \
           --junit-xml=/target/test_results/verify_sounds/junit.xml
 
+  voice-generator-tests:
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
+    volumes:
+      - ./tools/voice_generator:/app
+      - ./target:/target
+    working_dir: /app
+    entrypoint: [ ]
+    command:
+      - sh
+      - -c
+      - |
+        pip install -r requirements.txt &&
+        mkdir -p /target/test_results/voice_generator &&
+        python -m pytest tests/ \
+          --verbose \
+          --tb=short \
+          --junit-xml=/target/test_results/voice_generator/junit.xml
+
   verify-spellmap-tests:
-    image: ragedunicorn/python:3-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
       - ./tools/verify_spellmap:/app
       - ./target:/target

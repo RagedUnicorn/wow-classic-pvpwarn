@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="combat-log-parser[run]" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="docker compose run --rm combat-log-parser" />
+  <configuration default="false" name="voice-generator[test]" type="ShConfigurationType">
+    <option name="SCRIPT_TEXT" value="docker compose -f docker-compose.test.yml run --rm voice-generator-tests" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
-    <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+    <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="false" />
     <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
     <option name="INTERPRETER_PATH" value="powershell.exe" />

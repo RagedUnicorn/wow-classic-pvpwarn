@@ -31,12 +31,16 @@ class VoiceClient:
         self.client = ElevenLabs(api_key=api_key)
 
         # Get voice model from parameter, environment, or use default
-        if model:
-            if model not in ALLOWED_LANGUAGE_MODELS:
-                raise ValueError(f"Model '{model}' not allowed. Must be one of: {', '.join(ALLOWED_LANGUAGE_MODELS)}")
-            self.model = model
-        else:
-            self.model = os.getenv('ELEVENLABS_MODEL', DEFAULT_VOICE_MODEL)
+        env_model = os.getenv('ELEVENLABS_MODEL')
+        resolved_model = model or env_model or DEFAULT_VOICE_MODEL
+
+        if resolved_model not in ALLOWED_LANGUAGE_MODELS:
+            error_message = f"Model '{resolved_model}' not allowed. Must be one of: {', '.join(ALLOWED_LANGUAGE_MODELS)}"
+            if not model and env_model:
+                error_message += " (set via ELEVENLABS_MODEL environment variable)"
+            raise ValueError(error_message)
+
+        self.model = resolved_model
 
         self.output_format = os.getenv('ELEVENLABS_OUTPUT_FORMAT', DEFAULT_OUTPUT_FORMAT)
 

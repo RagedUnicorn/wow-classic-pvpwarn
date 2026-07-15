@@ -1,3 +1,4 @@
 elevenlabs>=1.9.0
 python-dotenv==1.2.2
 lupa==2.8
+pytest==9.1.1
