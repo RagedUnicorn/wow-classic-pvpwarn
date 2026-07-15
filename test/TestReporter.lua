@@ -384,8 +384,6 @@ function me.ReportFailureTestRun(category, testName, reason)
   )
   table.insert(testManager.currentFailedTests, category .. " - " .. testName)
 
-  me.NotifyTestLogWindow(logMessage, "FAILURE")
-
   testManager.currentTest = nil
 end
 
