@@ -161,7 +161,7 @@ function me.LoadFramePosition(frame, frameName)
       framePosition.posX,
       framePosition.posY
     )
-  else
+  elseif frame:GetNumPoints() == 0 then
     -- initial position for first time use
     frame:SetPoint("CENTER", 0, 0)
   end
