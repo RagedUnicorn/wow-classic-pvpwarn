@@ -42,7 +42,7 @@ graph TD
     PlayerChangesTarget[Player Changes Target] --> UpdateState
 
     PeriodicCleanup[Periodic Cleanup] --> CleanExpired[CleanExpiredTrackedStances]
-    CleanExpired --> RemoveOld[Remove entries > 5 min old]
+    CleanExpired --> RemoveOld[Remove entries > 2 min old]
 
     style CombatLogEvent fill:#4a90e2,stroke:#333,stroke-width:2px,color:#fff
     style TrackApplied fill:#5cb85c,stroke:#333,stroke-width:2px,color:#fff
@@ -62,7 +62,7 @@ graph TD
 ### Stance Detection
 
 - Spells with `isStanceSpell = true` are tracked
-- Events are filtered in `ProcessNormal` (CombatLog.lua:142)
+- Events are filtered in `ProcessNormal` in CombatLog.lua
 
 ### Class-Specific Behavior
 
@@ -107,5 +107,5 @@ As of the latest update, `TrackStanceRemoved` no longer checks the class categor
 
 ### Cleanup
 - Periodic ticker runs `CleanExpiredTrackedStances`
-- Removes entries older than 5 minutes
+- Removes entries older than 2 minutes (`stanceExpiredTimeout` in StanceState.lua)
 - Prevents memory bloat from accumulated data
