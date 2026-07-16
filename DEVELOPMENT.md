@@ -4,25 +4,33 @@
 
 #### Spell
 
-- [ ] Create an entry for the spell in /code/SpellMap.lua and the matching category
-- [ ] Create an entry in /example-events/[category] and gather a mtaching event
-- [ ] Create a sound file /assets/sounds/[language]/[category]/[spellName].mp3
-- [ ] Add sound test /test/TestSound[category][language].lua
-- [ ] Add combat test /test/TestCombatEvents[category][language].lua
+- [ ] Create an entry for the spell in `code/spellmap/Base.lua` in the matching category. Spells that
+      only exist on a specific branch go into the branch overlay instead
+      (`code/spellmap/overlay/Sod.lua` or `code/spellmap/overlay/Tbc.lua`)
+- [ ] Create a sound file `assets/sounds/en/[category]/[spell_name].mp3`
+      (see `docker compose run --rm voice-generator`)
+- [ ] Add sound test cases to `test/[branch]/[category]/TestSound[Category].lua`
+- [ ] Add combat test cases to `test/[branch]/[category]/TestCombatEvents[Category].lua`
+- [ ] Run `docker compose run --rm verify-spellmap` and `docker compose run --rm verify-sounds`
 
 #### Avoid Spell
 
-- [ ] Create an entry for the spell in /code/SpellAvoidMap.lua and the matching category
-- [ ] Create an entry in /example-events/[category] and gather events such as dodge, miss etc.
-- [ ] Create enemy avoid sound file /assets/sounds/[language]/[category]/enemy_avoid/[spellName].mp3
-- [ ] Create self avoid sound file /assets/sounds/[language]/[category]/self_avoid/[spellName].mp3
-- [ ] Add enemy avoid sound test /test/TestSoundEnemyAvoid[category][language].lua
-- [ ] Add self avoid sound test /test/TestSoundSelfAvoid[category][language].lua
-- [ ] Add enemy avoid combat test /test/TestCombatEventsEnemyAvoid[category][language].lua
+- [ ] Create an entry for the spell in `code/spellavoidmap/Base.lua` in the matching category. Spells
+      that only exist on a specific branch go into the branch overlay instead
+      (`code/spellavoidmap/overlay/Sod.lua` or `code/spellavoidmap/overlay/Tbc.lua`)
+- [ ] Create enemy avoid sound file `assets/sounds/en/[category]/enemy_avoid/enemy_avoided_[spell_name].mp3`
+- [ ] Create self avoid sound file `assets/sounds/en/[category]/self_avoid/you_avoided_[spell_name].mp3`
+- [ ] Add enemy avoid sound test cases to `test/[branch]/[category]/TestSoundEnemyAvoid[Category].lua`
+- [ ] Add self avoid sound test cases to `test/[branch]/[category]/TestSoundSelfAvoid[Category].lua`
+- [ ] Add enemy avoid combat test cases to `test/[branch]/[category]/TestCombatEventsEnemyAvoid[Category].lua`
   - Depending on what possible avoids the spell supports different testcases need to be created
-- [ ] Add self avoid combat test /test/TestCombatEventsSelfAvoid[category][language].lua
+- [ ] Add self avoid combat test cases to `test/[branch]/[category]/TestCombatEventsSelfAvoid[Category].lua`
   - Depending on what possible avoids the spell supports different testcases need to be created
-- [ ] Add tests to /test/TestAll[language].lua
+- [ ] Run `docker compose run --rm verify-spellmap` and `docker compose run --rm verify-sounds`
+
+New test files (as opposed to new test cases in existing files) additionally need to be registered in
+`build-resources/pvpwarn-development.toc.tpl`. See [TEST.md](TEST.md) for the test layout and naming
+conventions.
 
 ### Avoid and How it Works
 
@@ -32,11 +40,12 @@ The name spell missed might be a bit misleading. It is important to know that ev
 
 ##### SPELL_MISSED Event Parameters
 
-The SPELL_MISSED event follows this parameter structure:
+The SPELL_MISSED event as received through `CombatLogGetCurrentEventInfo()` follows this parameter
+structure:
 
 ```
-timestamp, subevent, sourceGUID, sourceName, sourceFlags, sourceRaidFlags,
-destGUID, destName, destFlags, destRaidFlags, spellID, spellName, spellSchool,
+timestamp, subevent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags,
+destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool,
 missType, isOffHand, amountMissed
 ```
 
@@ -45,22 +54,27 @@ m/dd/yyyy hh:mm:ss.SSSS  SPELL_MISSED,[sourceGUID],"[sourceName]",0x511,0x0,[des
 ```
 
 Parameter breakdown:
-- **timestamp**: Event time (e.g., "4/21/2025 18:08:37.4702")
-- **subevent**: Always "SPELL_MISSED" for this event type
-- **sourceGUID**: GUID of the caster (e.g., "Player-1234-ABCDEF01")
-- **sourceName**: Name of the caster (e.g., "Player1-ServerName-EU")
-- **sourceFlags**: Bit flags for source unit (e.g., 0x511 for player)
-- **sourceRaidFlags**: Raid-specific flags
-- **destGUID**: GUID of the target
-- **destName**: Name of the target
-- **destFlags**: Bit flags for destination unit
-- **destRaidFlags**: Raid-specific flags for destination
-- **spellID**: Numerical ID of the spell (e.g., 462717)
-- **spellName**: Name of the spell (e.g., "Backstab")
-- **spellSchool**: School of magic (0x1 = Physical, 0x2 = Holy, etc.)
-- **missType**: Type of miss (DODGE, PARRY, MISS, etc.)
-- **isOffHand**: Boolean for offhand attacks (often nil)
-- **amountMissed**: Amount that would have been dealt (often nil)
+- **timestamp** (1): Event time (e.g., "4/21/2025 18:08:37.4702")
+- **subevent** (2): Always "SPELL_MISSED" for this event type
+- **hideCaster** (3): Boolean whether the source unit is hidden (not written to WoWCombatLog.txt,
+  which is why it does not show up in the raw log example below)
+- **sourceGUID** (4): GUID of the caster (e.g., "Player-1234-ABCDEF01")
+- **sourceName** (5): Name of the caster (e.g., "Player1-ServerName-EU")
+- **sourceFlags** (6): Bit flags for source unit (e.g., 0x511 for player)
+- **sourceRaidFlags** (7): Raid-specific flags
+- **destGUID** (8): GUID of the target
+- **destName** (9): Name of the target
+- **destFlags** (10): Bit flags for destination unit
+- **destRaidFlags** (11): Raid-specific flags for destination
+- **spellId** (12): Numerical ID of the spell (e.g., 462717)
+- **spellName** (13): Name of the spell (e.g., "Backstab")
+- **spellSchool** (14): School of magic (0x1 = Physical, 0x2 = Holy, etc.)
+- **missType** (15): Type of miss (DODGE, PARRY, MISS, etc.)
+- **isOffHand** (16): Boolean for offhand attacks (often nil)
+- **amountMissed** (17): Amount that would have been dealt (often nil)
+
+The positions match the indices used in `code/CombatLog.lua`
+(`mod.common.SelectMultiple({12, 13, 15}, ...)` for spellId, spellName, and missType).
 
 ##### Real Example
 
@@ -117,51 +131,52 @@ PVPWarn tracks stance states for Warriors, Druids, Priests, Hunters, and Warlock
 1. **Event Detection**: Listens for `SPELL_AURA_APPLIED` and `SPELL_AURA_REMOVED` events
 2. **Stance Storage**: Maintains a tracker table with target GUIDs as keys
 3. **UI Updates**: Shows stance icons when targeting tracked enemies
-4. **Cleanup**: Removes stale entries older than 5 minutes
+4. **Cleanup**: Removes stale entries older than 2 minutes (`stanceExpiredTimeout` in code/StanceState.lua)
 
 #### Key Files
 
-- **StanceState.lua**: Core stance tracking logic
-- **SpellMap.lua**: Defines which spells are stance spells (`isStanceSpell = true`)
-- **CombatLog.lua**: Processes combat events and triggers stance tracking
+- **code/StanceState.lua**: Core stance tracking logic
+- **code/spellmap/Base.lua**: Defines which spells are stance spells (`isStanceSpell = true`)
+- **code/CombatLog.lua**: Processes combat events and triggers stance tracking
 
 #### Adding Stance Support
 
 To add stance tracking for a new spell:
 
-1. Add `isStanceSpell = true` to the spell entry in SpellMap.lua
+1. Add `isStanceSpell = true` to the spell entry in code/spellmap/Base.lua
 2. Include both `SPELL_AURA_APPLIED` and `SPELL_AURA_REMOVED` in `trackedEvents`
 3. Add the class to `supportedClasses` in StanceState.lua if needed
 
 For a detailed flow diagram and more information, see [docs/stance-tracking-flow.md](docs/stance_tracking_flow.md).
 
-### Season of Discovery Spells
+### Branch-specific Spells (Season of Discovery / TBC)
 
-Spell entries in `SpellMap.lua` and `SpellAvoidMap.lua` carry a `type`:
+The spell maps are assembled per branch (`classic`, `sod`, `tbc`) from a base map plus branch
+overlays:
 
-- `RGPVPW_CONSTANTS.SPELL_TYPE_BASE` - available in every game version, always shown.
-- `RGPVPW_CONSTANTS.SPELL_TYPE_SOD` - only available in Season of Discovery. The
-  filter (`SpellMapHelper.GetFilteredSpellMap`) includes these only while a SoD
-  season is active, or while the test framework runs.
+- `code/spellmap/Base.lua` / `code/spellavoidmap/Base.lua` - the Classic Era base map.
+- `code/spellmap/overlay/Sod.lua`, `code/spellmap/overlay/Tbc.lua` (and their
+  `code/spellavoidmap/overlay/` counterparts) - branch overlays applied on top of the base map by
+  `code/spellmap/Assemble.lua` (`mod.spellMapAssembler`).
 
-#### The `overwrites` property
+Spell entries additionally carry a `type` (`RGPVPW_CONSTANTS.SPELL_TYPE_BASE`, `SPELL_TYPE_SOD`, or
+`SPELL_TYPE_TBC`) that `SpellMapHelper.GetFilteredSpellMap` uses to filter what is shown.
 
-Some base game spells were reworked in Season of Discovery and given new spell
-IDs. Rather than carrying both the base entry and the SoD entry as two separate
-enable/disable options (which would show twice for SoD players), the SoD entry
-declares which base spell it replaces:
+#### Overlay operations
 
-```lua
-overwrites = <baseSpellId>
-```
+Each overlay maps a category to a set of operations, applied in this order:
 
-`overwrites` is optional and only valid on a `SPELL_TYPE_SOD` entry; it must
-reference a `SPELL_TYPE_BASE` entry in the same category. While a SoD season is
-active the filter hides the overwritten base spell, so each client shows exactly
-one enable/disable entry for the spell. Combat detection is unaffected - both the
-base and SoD spell IDs still resolve through `SearchBySpellId`. The hunter traps
-(Explosive/Freezing/Immolation/Frost Trap) are the worked example. The
-`overwrites` property is validated by the `verify-spellmap` tool.
+- `remove` - drop a base spellId that does not exist (or was replaced) on the branch.
+- `add` - add a branch-only spell; the spellId must not exist in the base map.
+- `replace` - replace an existing base entry with branch-specific data.
+- `appendRanks` - append additional ranks to an existing base entry's `allRanks` (e.g. a new TBC
+  rank of a Classic spell) without duplicating the whole entry.
+
+Spells that were reworked on a branch and given new spell IDs are modeled as a `remove` of the base
+entry plus an `add` of the new entry, so each client shows exactly one enable/disable option for the
+spell. The SoD hunter traps (Explosive/Freezing/Immolation/Frost Trap) are the worked example in
+`code/spellmap/overlay/Sod.lua`. Overlays are validated on assembly (`spellMapAssembler.Validate`
+logs every rule violation) and by the `verify-spellmap` tool.
 
 ### Voice Pack Integration
 
@@ -237,7 +252,7 @@ docker compose run --rm luacheck-report
 
 Before committing changes:
 
-1. Run Luacheck to ensure code quality: `docker compose up`
+1. Run Luacheck to ensure code quality: `docker compose run --rm luacheck`
 2. Test the addon with `/reload` to ensure saved variables work correctly
 3. Verify functionality in-game (spell warnings, stance tracking, etc.)
 4. Run any relevant tests from the test suite
@@ -263,7 +278,7 @@ Switching between development and release can be achieved with maven.
 mvn generate-resources -D generate.sources.overwrite=true -P development
 ```
 
-This generates and overwrites `GM_Environment.lua` and `GearMenu.toc`. You need to specifically specify that you want to overwrite the files to prevent data loss. It is also possible to omit the profile because development is the default profile that will be used.
+This generates and overwrites `code/Environment.lua` and `PVPWarn.toc`. You need to specifically specify that you want to overwrite the files to prevent data loss. It is also possible to omit the profile because development is the default profile that will be used.
 
 Switching to release can be done as such:
 
@@ -275,7 +290,7 @@ In this case it is mandatory to add the release profile.
 
 **Note:** Switching environments has the effect changing certain files to match an expected value depending on the environment. To be more specific this means that as an example test and debug files are not included when switching to release. It also means that variables such as loglevel change to match the environment.
 
-As to not change those files all the time the repository should always stay in the development environment. Do not commit `GearMenu.toc` and `GM_Environment.lua` in their release state. Changes to those files should always be done inside `build-resources` and their respective template files marked with `.tpl`.
+As to not change those files all the time the repository should always stay in the development environment. Do not commit `PVPWarn.toc` and `code/Environment.lua` in their release state. Changes to those files should always be done inside `build-resources` and their respective template files marked with `.tpl`.
 
 ## Packaging the Addon
 
