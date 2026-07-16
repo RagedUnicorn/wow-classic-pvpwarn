@@ -160,7 +160,7 @@ voice_generator/
 ├── voice_generator/       # Package modules
 │   ├── __init__.py
 │   ├── constants.py       # Configuration constants
-│   ├── lua_parser.py      # SpellMap parser
+│   ├── lua_parser.py      # Voice projection over the shared parser in tools/spellmap_core
 │   ├── voice_client.py    # Eleven Labs API client
 │   ├── file_manager.py    # File organization
 │   └── reporter.py        # Progress reporting

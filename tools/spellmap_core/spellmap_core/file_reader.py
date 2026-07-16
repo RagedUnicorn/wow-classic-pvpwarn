@@ -1,5 +1,5 @@
 """
-File reading functionality for SpellMap verification.
+File reading functionality for the SpellMap / SpellAvoidMap source.
 """
 
 import sys

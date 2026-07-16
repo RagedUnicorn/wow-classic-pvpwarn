@@ -452,12 +452,15 @@ end
 
 ## Tooling Tests (out of client)
 
-Separate from the in-client suite, the Python helper tools under `tools/` (`verify_sounds`,
-`verify_spellmap`) have their own pytest suites, run via Docker:
+Separate from the in-client suite, the Python helper tools under `tools/` (`spellmap_core`,
+`verify_sounds`, `verify_spellmap`, `voice_generator`) have their own pytest suites, run via
+Docker:
 
 ```
+docker compose -f docker-compose.test.yml run --rm spellmap-core-tests
 docker compose -f docker-compose.test.yml run --rm verify-sounds-tests
 docker compose -f docker-compose.test.yml run --rm verify-spellmap-tests
+docker compose -f docker-compose.test.yml run --rm voice-generator-tests
 ```
 
 Results are written under `target/test_results/`. These validate the tooling, not the addon's

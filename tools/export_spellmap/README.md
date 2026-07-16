@@ -75,12 +75,13 @@ workflow step summary).
   impossible operation (e.g. `remove` of a spellId that isn't in the base). These are surfaced by
   the same validator `verify_spellmap` uses.
 
-## Relationship to `verify_spellmap`
+## Relationship to `spellmap_core`
 
 The exporter imports the Lua loader (`LuaParser`, `SpellMapFileReader`) and the Python port of the
-assembler (`assembler.apply` / `assembler.validate`) directly from `../verify_spellmap`. This keeps
-a **single implementation** of the assembly rules - the two tools cannot drift. As a result the
-two tool directories must stay co-located under `tools/`.
+assembler (`assembler.apply` / `assembler.validate`) directly from the shared
+[`../spellmap_core`](../spellmap_core) library. This keeps a **single implementation** of the
+assembly rules - the tools cannot drift. As a result the tool directories must stay co-located
+under `tools/`.
 
 ## GitHub Action
 

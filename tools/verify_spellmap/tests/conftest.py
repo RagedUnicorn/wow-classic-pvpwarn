@@ -2,11 +2,15 @@
 Pytest configuration and fixtures for SpellMap tests.
 """
 
+import sys
 import pytest
 from pathlib import Path
 from typing import Dict, Any
 
-from verify_spellmap import LuaParser, SpellMapFileReader
+# The Lua parsing implementation lives in the sibling tools/spellmap_core package.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "spellmap_core"))
+
+from spellmap_core import LuaParser, SpellMapFileReader  # noqa: E402
 
 
 class FixtureLoader:

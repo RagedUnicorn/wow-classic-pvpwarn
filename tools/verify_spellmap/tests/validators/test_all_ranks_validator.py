@@ -6,7 +6,7 @@ import os
 import pytest
 from pathlib import Path
 from verify_spellmap.validators.all_ranks_validator import AllRanksValidator
-from verify_spellmap.lua_parser import LuaParser
+from spellmap_core import LuaParser
 
 
 @pytest.fixture

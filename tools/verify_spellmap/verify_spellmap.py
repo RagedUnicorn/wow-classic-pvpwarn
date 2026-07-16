@@ -24,10 +24,11 @@ import argparse
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-from verify_spellmap import LuaParser, Reporter
-from verify_spellmap.assembler import apply as assemble_apply
-from verify_spellmap.file_reader import SpellMapFileReader
+from verify_spellmap import Reporter
 from verify_spellmap.reporter import ReportSection
+# verify_spellmap/__init__.py wires the sibling tools/spellmap_core package onto sys.path.
+from spellmap_core import LuaParser, SpellMapFileReader
+from spellmap_core.assembler import apply as assemble_apply
 from verify_spellmap.validators import (
     NameValidator, DuplicateValidator, TypeValidator,
     TrackedEventsValidator, SoundFileNameValidator, SpellIconValidator,

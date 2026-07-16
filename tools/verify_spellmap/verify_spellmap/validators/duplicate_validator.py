@@ -6,9 +6,8 @@ import re
 from typing import Dict, List
 
 from .base_validator import BaseValidator
+from spellmap_core.constants import SPELLMAP_DEFINITION, CATEGORY_PATTERN
 from ..constants import (
-    SPELLMAP_DEFINITION,
-    CATEGORY_PATTERN,
     SPELL_ID_PATTERN,
     NAME_VALUE_PATTERN
 )

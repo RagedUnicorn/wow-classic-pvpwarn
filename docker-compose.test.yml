@@ -1,10 +1,34 @@
 services:
+  # All tool packages import the shared Lua parsing library from the sibling
+  # tools/spellmap_core package, so every service mounts all of tools/ to keep the
+  # repo's relative layout intact inside the container.
+  spellmap-core-tests:
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
+    volumes:
+      - ./tools:/app
+      - ./target:/target
+    working_dir: /app/spellmap_core
+    entrypoint: [ ]
+    command:
+      - sh
+      - -c
+      - |
+        pip install -r requirements.txt &&
+        mkdir -p /target/test_results/spellmap_core &&
+        python -m pytest tests/ \
+          --verbose \
+          --tb=short \
+          --cov=spellmap_core \
+          --cov-report=html:/target/test_results/spellmap_core/coverage_html \
+          --cov-report=xml:/target/test_results/spellmap_core/coverage.xml \
+          --junit-xml=/target/test_results/spellmap_core/junit.xml
+
   verify-sounds-tests:
     image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
-      - ./tools/verify_sounds:/app
+      - ./tools:/app
       - ./target:/target
-    working_dir: /app
+    working_dir: /app/verify_sounds
     entrypoint: [ ]
     command:
       - sh
@@ -20,9 +44,9 @@ services:
   voice-generator-tests:
     image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
-      - ./tools/voice_generator:/app
+      - ./tools:/app
       - ./target:/target
-    working_dir: /app
+    working_dir: /app/voice_generator
     entrypoint: [ ]
     command:
       - sh
@@ -38,9 +62,9 @@ services:
   verify-spellmap-tests:
     image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
-      - ./tools/verify_spellmap:/app
+      - ./tools:/app
       - ./target:/target
-    working_dir: /app
+    working_dir: /app/verify_spellmap
     entrypoint: [ ]
     command:
       - sh

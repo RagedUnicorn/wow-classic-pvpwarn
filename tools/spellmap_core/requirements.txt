@@ -1,0 +1,8 @@
+# SpellMap Core Requirements
+
+# Lua parser for loading the SpellMap / SpellAvoidMap source
+lupa==2.8
+
+# Testing framework
+pytest==9.1.1
+pytest-cov==7.1.0

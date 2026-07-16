@@ -148,7 +148,7 @@ verify_sounds/
 ├── verify_sounds/
 │   ├── __init__.py
 │   ├── constants.py          # Configuration constants
-│   ├── lua_parser.py         # Lua file parsing
+│   ├── lua_parser.py         # Sound projection over the shared parser in tools/spellmap_core
 │   ├── sound_verifier.py     # Sound verification logic
 │   └── reporter.py           # Output formatting
 └── tests/

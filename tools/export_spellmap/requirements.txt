@@ -1,7 +1,7 @@
 # SpellMap Export Tool Requirements
 
 # Lua parser for loading the SpellMap / SpellAvoidMap source.
-# The exporter reuses the loader + assembler from ../verify_spellmap, which depend on lupa.
+# The exporter reuses the loader + assembler from ../spellmap_core, which depend on lupa.
 lupa==2.8
 
 # Testing framework

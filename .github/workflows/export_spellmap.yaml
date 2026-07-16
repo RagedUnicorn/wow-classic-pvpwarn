@@ -8,7 +8,7 @@ on:
       - code/SpellAvoidMap.lua
       - code/spellavoidmap/**
       - tools/export_spellmap/**
-      - tools/verify_spellmap/**
+      - tools/spellmap_core/**
       - .github/workflows/export_spellmap.yaml
   pull_request:
     paths:
@@ -17,7 +17,7 @@ on:
       - code/SpellAvoidMap.lua
       - code/spellavoidmap/**
       - tools/export_spellmap/**
-      - tools/verify_spellmap/**
+      - tools/spellmap_core/**
       - .github/workflows/export_spellmap.yaml
   workflow_dispatch:
 

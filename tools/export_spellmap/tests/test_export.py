@@ -1,7 +1,7 @@
 """
 Unit tests for the export-specific pure functions.
 
-The Lua loader and the assembler are already covered by tools/verify_spellmap/tests; here we only
+The Lua loader and the assembler are already covered by tools/spellmap_core/tests; here we only
 exercise the new reporting logic (summarize + build_diff) against hand-built assembled maps.
 """
 

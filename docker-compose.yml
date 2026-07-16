@@ -12,6 +12,9 @@
 #   docker compose run --rm voice-generator             # Generate voice files using ElevenLabs API
 #
 # Note: Services with "-report" suffix generate output files in ./target/ directory
+#
+# The Python tool services mount all of ./tools (not just their own directory) so the
+# shared tools/spellmap_core library resolves inside the container.
 
 services:
   luacheck:
@@ -31,12 +34,12 @@ services:
     entrypoint: /bin/sh
     command: ["-c", "luacheck --formatter JUnit . > /reports/luacheck-junit.xml"]
   combat-log-parser:
-    image: ragedunicorn/python:3-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
-      - ./tools/combat_log_parser:/app
+      - ./tools:/app
       - ./code:/code
       - ./combat-logs:/combat-logs
-    working_dir: /app
+    working_dir: /app/combat_log_parser
     entrypoint: [ ]
     command:
       - sh
@@ -47,13 +50,13 @@ services:
           --logs-dir /combat-logs \
           --spellmap-dir /code/spellmap
   combat-log-parser-report:
-    image: ragedunicorn/python:3-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
-      - ./tools/combat_log_parser:/app
+      - ./tools:/app
       - ./code:/code
       - ./combat-logs:/combat-logs
       - ./target:/target
-    working_dir: /app
+    working_dir: /app/combat_log_parser
     entrypoint: [ ]
     command:
       - sh
@@ -65,12 +68,12 @@ services:
           --logs-dir /combat-logs \
           --output-dir /target/combat_log_parser_output
   verify-sounds:
-    image: ragedunicorn/python:3-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
-      - ./tools/verify_sounds:/app
+      - ./tools:/app
       - ./assets/sounds/en:/assets
       - ./code:/code
-    working_dir: /app
+    working_dir: /app/verify_sounds
     entrypoint: [ ]
     command:
       - sh
@@ -82,13 +85,13 @@ services:
           --spellmap-dir /code/spellmap \
           --spellavoidmap-dir /code/spellavoidmap
   verify-sounds-report:
-    image: ragedunicorn/python:3-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
-      - ./tools/verify_sounds:/app
+      - ./tools:/app
       - ./assets/sounds/en:/assets
       - ./code:/code
       - ./target:/target
-    working_dir: /app
+    working_dir: /app/verify_sounds
     entrypoint: []
     command:
       - sh
@@ -102,11 +105,11 @@ services:
           --spellavoidmap-dir /code/spellavoidmap \
           --output-format detailed > /target/verify_sounds_output/verification_report.txt
   verify-spellmap:
-    image: ragedunicorn/python:3-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
-      - ./tools/verify_spellmap:/app
+      - ./tools:/app
       - ./code:/code
-    working_dir: /app
+    working_dir: /app/verify_spellmap
     entrypoint: [ ]
     command:
       - sh
@@ -117,12 +120,12 @@ services:
           --spellmap-dir /code/spellmap \
           --spellavoidmap-dir /code/spellavoidmap
   verify-spellmap-report:
-    image: ragedunicorn/python:3-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
-      - ./tools/verify_spellmap:/app
+      - ./tools:/app
       - ./code:/code
       - ./target:/target
-    working_dir: /app
+    working_dir: /app/verify_spellmap
     entrypoint: [ ]
     command:
       - sh
@@ -134,12 +137,12 @@ services:
           --spellmap-dir /code/spellmap \
           --spellavoidmap-dir /code/spellavoidmap > /target/verify_spellmap_output/verification_report.txt
   voice-generator:
-    image: ragedunicorn/python:3-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
-      - ./tools/voice_generator:/app
+      - ./tools:/app
       - ./code:/code
       - ./target:/target
-    working_dir: /app
+    working_dir: /app/voice_generator
     entrypoint: [ ]
     env_file:
       - path: ./tools/voice_generator/.env

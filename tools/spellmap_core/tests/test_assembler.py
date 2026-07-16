@@ -1,11 +1,11 @@
 """
-Tests for the Python port of mod.spellMapAssembler (verify_spellmap/assembler.py).
+Tests for the Python port of mod.spellMapAssembler (spellmap_core/assembler.py).
 """
 
 import copy
 import pytest
 
-from verify_spellmap.assembler import apply, validate
+from spellmap_core.assembler import apply, validate
 
 
 @pytest.fixture

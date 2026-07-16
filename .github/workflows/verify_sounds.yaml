@@ -9,6 +9,7 @@ on:
       - code/SpellAvoidMap.lua
       - code/spellavoidmap/**
       - tools/verify_sounds/**
+      - tools/spellmap_core/**
       - .github/workflows/verify_sounds.yaml
   pull_request:
     paths:
@@ -18,6 +19,7 @@ on:
       - code/SpellAvoidMap.lua
       - code/spellavoidmap/**
       - tools/verify_sounds/**
+      - tools/spellmap_core/**
       - .github/workflows/verify_sounds.yaml
   workflow_dispatch:
 

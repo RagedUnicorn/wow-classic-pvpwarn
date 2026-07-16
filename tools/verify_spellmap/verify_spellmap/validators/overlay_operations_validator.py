@@ -10,7 +10,7 @@ mistakes that would silently break the in-game assembled map:
 
 from typing import Dict, List
 from .base_validator import BaseValidator
-from .. import assembler
+from spellmap_core import assembler
 
 
 class OverlayOperationsValidator(BaseValidator):

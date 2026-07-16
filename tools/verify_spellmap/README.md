@@ -201,12 +201,10 @@ spellmap_verify/
 ├── requirements.txt        # Python dependencies
 ├── pytest.ini              # pytest configuration
 ├── README.md               # This file
-├── verify_spellmap/        # Verification modules
-│   ├── __init__.py         # Package initialization
-│   ├── file_reader.py      # File I/O operations
-│   ├── lua_parser.py       # Lua parsing and environment
+├── verify_spellmap/        # Verification modules (Lua parsing + assembly live in ../spellmap_core)
+│   ├── __init__.py         # Package initialization (wires up ../spellmap_core)
 │   ├── reporter.py         # Report generation
-│   ├── constants.py        # Shared constants
+│   ├── constants.py        # Verifier-specific constants
 │   └── validators/         # Validation modules
 │       ├── __init__.py
 │       ├── base_validator.py           # Abstract base class

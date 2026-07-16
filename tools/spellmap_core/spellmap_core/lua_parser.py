@@ -1,5 +1,5 @@
 """
-Lua parsing functionality for SpellMap verification.
+Lua parsing functionality for the SpellMap / SpellAvoidMap source.
 """
 
 import re

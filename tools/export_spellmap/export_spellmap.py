@@ -23,8 +23,8 @@ Same shape for code/spellavoidmap/. For each map the exporter:
 This is a *reporting* tool: it exits non-zero only on hard failures (Lua load errors, overlay
 structural validation errors). A changed data set is never a failure.
 
-It reuses the Lua loader and the Python port of the assembler from the sibling tool
-tools/verify_spellmap/, so the two tools can never drift. The verify tool must stay co-located.
+It reuses the Lua loader and the Python port of the assembler from the shared library
+tools/spellmap_core/, so the tools can never drift. The library must stay co-located.
 """
 
 import sys
@@ -33,13 +33,12 @@ import argparse
 from pathlib import Path
 from typing import Dict, List, Tuple, Any
 
-# Reuse the battle-tested loader + assembler from the sibling verify_spellmap tool so the two
-# tools share one implementation of the assembly rules. Mirrors how verify_spellmap.py imports
-# its own package (see tools/verify_spellmap/verify_spellmap.py).
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "verify_spellmap"))
+# Reuse the battle-tested loader + assembler from the shared spellmap_core library so all
+# tools share one implementation of the assembly rules.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "spellmap_core"))
 
-from verify_spellmap import LuaParser, SpellMapFileReader  # noqa: E402
-from verify_spellmap.assembler import apply as assemble_apply, validate as assemble_validate  # noqa: E402
+from spellmap_core import LuaParser, SpellMapFileReader  # noqa: E402
+from spellmap_core.assembler import apply as assemble_apply, validate as assemble_validate  # noqa: E402
 
 
 BRANCHES = ("classic", "sod", "tbc")

@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="all-tests[test]" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="docker compose -f docker-compose.test.yml run --rm spellmap-core-tests; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; docker compose -f docker-compose.test.yml run --rm verify-spellmap-tests; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; docker compose -f docker-compose.test.yml run --rm verify-sounds-tests" />
+  <configuration default="false" name="spellmap-core-tests[test]" type="ShConfigurationType">
+    <option name="SCRIPT_TEXT" value="docker compose -f docker-compose.test.yml run --rm spellmap-core-tests " />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
