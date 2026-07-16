@@ -108,6 +108,13 @@ function me.RestorePosition()
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ANCHOR_FRAME
   )
 
+  -- discard positions saved by versions that persisted the relativeTo frame object itself
+  if framePosition ~= nil and type(framePosition.relativeTo) == "table" then
+    mod.logger.LogWarn(me.tag, "Discarding corrupted saved frame position for - "
+      .. RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ANCHOR_FRAME)
+    framePosition = nil
+  end
+
   anchorFrame:ClearAllPoints()
 
   if framePosition ~= nil then
@@ -163,7 +170,7 @@ function me.StopDrag(self)
   mod.configuration.SaveUserPlacedFramePosition(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ANCHOR_FRAME,
     point,
-    relativeTo,
+    relativeTo and relativeTo:GetName() or nil, -- persist the name, frames cannot round-trip SavedVariables
     relativePoint,
     posX,
     posY
@@ -231,7 +238,7 @@ function me.ResetPosition()
   mod.configuration.SaveUserPlacedFramePosition(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ANCHOR_FRAME,
     "CENTER",
-    UIParent,
+    "UIParent",
     "CENTER",
     0,
     DEFAULT_OFFSET_Y

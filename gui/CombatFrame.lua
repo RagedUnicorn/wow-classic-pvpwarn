@@ -77,7 +77,7 @@ function me.StopCombatStateDragFrame(self)
   mod.configuration.SaveUserPlacedFramePosition(
     RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME,
     point,
-    relativeTo,
+    relativeTo and relativeTo:GetName() or nil, -- persist the name, frames cannot round-trip SavedVariables
     relativePoint,
     posX,
     posY

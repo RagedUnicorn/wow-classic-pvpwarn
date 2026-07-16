@@ -80,7 +80,7 @@ function me.StopStanceStateDragFrame(self)
   mod.configuration.SaveUserPlacedFramePosition(
     RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_FRAME,
     point,
-    relativeTo,
+    relativeTo and relativeTo:GetName() or nil, -- persist the name, frames cannot round-trip SavedVariables
     relativePoint,
     posX,
     posY

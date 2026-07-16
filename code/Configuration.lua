@@ -493,7 +493,9 @@ end
 
   @param {string} frameName
   @param {string} point
-  @param {string} relativeTo
+  @param {string | nil} relativeTo
+    Name of the region the frame is anchored to. Never a frame reference -
+    SavedVariables cannot round-trip frame objects
   @param {string} relativePoint
   @param {number} posX
   @param {number} posY

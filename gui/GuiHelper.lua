@@ -149,6 +149,12 @@ end
 ]]--
 function me.LoadFramePosition(frame, frameName)
   local framePosition = mod.configuration.GetUserPlacedFramePosition(frameName)
+
+  -- discard positions saved by versions that persisted the relativeTo frame object itself
+  if framePosition ~= nil and type(framePosition.relativeTo) == "table" then
+    mod.logger.LogWarn(me.tag, "Discarding corrupted saved frame position for - " .. frameName)
+    framePosition = nil
+  end
   --[[
     Set user frame position if there is one saved
   ]]--
