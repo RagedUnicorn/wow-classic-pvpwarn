@@ -18,6 +18,8 @@ The events PVPWarn relies on are:
 - `SPELL_AURA_APPLIED`
 - `SPELL_AURA_REMOVED`
 - `SPELL_AURA_REFRESH`
+- `SPELL_MISSED` - avoided casts (dodge, parry, miss, resist, block, immune, reflect) are what
+  confirm the avoid-spell entries
 
 The more logs the project has - especially from busy PvP situations against many different
 classes - the more spells can be confirmed and the fewer remain unverified.
