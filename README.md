@@ -65,7 +65,7 @@ PVPWarn loads a default profile based on your class when the addon loads for the
 Once a profile is created, it can be loaded manually or with a macro.
 
 ```lua
-/run _G["RGPVPW_MACRO_LOADPROFILE"]("[profileName")
+/run _G["RGPVPW_MACRO_LOADPROFILE"]("[profileName]")
 -- e.g.
 /run _G["RGPVPW_MACRO_LOADPROFILE"]("Warriorprofile")
 ```
@@ -91,6 +91,14 @@ PVPWarn was able to observe the stance in the combat log.
 ![](docs/pvpwarn_switching_stance.gif)
 
 If PVPWarn is unable to determine the stance it will display a question mark for an icon.
+
+### Detection Bar
+
+PVPWarn can display detected enemy spells as a stack of bars on the screen. Each bar shows the spell icon with a class-colored border, the detected event and the name of the enemy player. The detection bar is a global feature that can be enabled in the settings, where the scale and the maximum amount of bars shown at once can be configured as well. The bar can also be repositioned, locked, unlocked or tested with `/rgpvpw bar lock/unlock/test`.
+
+### Flash
+
+PVPWarn can flash the edges of the screen with a soft vignette when a spell with a configured visual warning is detected. The flash uses the same color that was chosen for the spell's visual warning. The feature can be enabled in the settings, where the maximum opacity, an additional pulse effect and additive blending can be configured and tested.
 
 ### Voice Packs
 
