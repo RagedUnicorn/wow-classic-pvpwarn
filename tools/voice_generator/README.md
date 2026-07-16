@@ -109,13 +109,16 @@ python generate_voices.py single --file you_avoided_kidney_shot --text "you avoi
 - `mode`: Generation mode (`single` or `all`)
 - `--file`: Sound file name to generate (required for single mode)
 - `--text`: Text to speak (required for single mode)
+- `--category`: Category for organizing the file in single mode (e.g., `rogue`, `warrior`)
 - `--voice`: Voice name to use
 - `--voice-id`: Voice ID to use (overrides --voice)
 - `--force`: Force regeneration of existing files
-- `--no-cache`: Disable caching
 - `--output`: Custom output directory
 - `--clean`: Clean output directory before generation
 - `--categories`: Generate only specific categories (e.g., warrior priest druid items racials)
+- `--model`: Eleven Labs model to use (`eleven_multilingual_v2`, `eleven_turbo_v2_5`, `eleven_flash_v2_5`, `eleven_v3`)
+- `--spellmap-dir`: Path to the spellmap directory (default: relative path from voice_generator)
+- `--spellavoidmap-dir`: Path to the spellavoidmap directory (default: relative path from voice_generator)
 
 ### Available Categories
 
@@ -131,7 +134,7 @@ The following categories can be used with the `--categories` parameter:
 
 ## How It Works
 
-1. **Parsing**: The tool reads both `SpellMap.lua` and `SpellAvoidMap.lua`
+1. **Parsing**: The tool reads both the spellmap and spellavoidmap directories (`Base.lua` plus overlays)
    - Regular spells from SpellMap:
      - Uses spell `name` property for text-to-speech (e.g., "Berserker Rage")
      - Uses spell `soundFileName` property for output file name (e.g., "berserker_rage.mp3")

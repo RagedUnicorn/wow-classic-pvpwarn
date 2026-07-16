@@ -1,16 +1,16 @@
 # Verify Sounds Tool
 
-A Python tool for verifying that voice packs have complete sound file coverage for all spells defined in PVPWarn's SpellMap.lua and SpellAvoidMap.lua.
+A Python tool for verifying that voice packs have complete sound file coverage for all spells defined in PVPWarn's spellmap and spellavoidmap directories (`code/spellmap` and `code/spellavoidmap`, each containing `Base.lua` plus overlays).
 
 ## Overview
 
 This tool parses the spell configuration files and checks that all required sound files exist in the specified voice pack directory. It ensures that:
 
-1. Every spell in SpellMap.lua has a corresponding sound file
+1. Every spell in the SpellMap has a corresponding sound file
 2. Spells with `hasFade = true` have both normal and `_down` sound files
 3. Spells with `hasCast = true` have a `_cast` sound file
-4. Spells in SpellAvoidMap.lua with `self_avoid = true` have sound files in the `self_avoid` folder
-5. Spells in SpellAvoidMap.lua with `enemy_avoid = true` have sound files in the `enemy_avoid` folder
+4. Spells in the SpellAvoidMap with `self_avoid = true` have sound files in the `self_avoid` folder
+5. Spells in the SpellAvoidMap with `enemy_avoid = true` have sound files in the `enemy_avoid` folder
 
 ## Installation
 
@@ -49,7 +49,7 @@ python verify_sounds.py --sound-path /path/to/voice/pack/assets
 ### Specify Custom Spell Map Locations
 
 ```bash
-python verify_sounds.py --spell-map /path/to/SpellMap.lua --spell-avoid-map /path/to/SpellAvoidMap.lua
+python verify_sounds.py --spellmap-dir /path/to/code/spellmap --spellavoidmap-dir /path/to/code/spellavoidmap
 ```
 
 ### Generate Detailed Report
@@ -61,15 +61,15 @@ python verify_sounds.py --output-format detailed > verification_report.txt
 ### Command Line Arguments
 
 - `--sound-path`: Path to the sound files directory (default: `../../assets`)
-- `--spell-map`: Path to SpellMap.lua (default: `../../code/SpellMap.lua`)
-- `--spell-avoid-map`: Path to SpellAvoidMap.lua (default: `../../code/SpellAvoidMap.lua`)
+- `--spellmap-dir`: Path to the spellmap directory containing Base.lua and overlays (default: `../../code/spellmap`)
+- `--spellavoidmap-dir`: Path to the spellavoidmap directory containing Base.lua and overlays (default: `../../code/spellavoidmap`)
 - `--output-format`: Output format: `summary` or `detailed` (default: `summary`)
 - `--file-extension`: Expected sound file extension (default: `.mp3`)
 - `--verbose`: Enable verbose logging
 
 ## Sound File Naming Conventions
 
-### SpellMap.lua Sound Files
+### SpellMap Sound Files
 
 Based on the `soundFileName` property:
 
@@ -77,7 +77,7 @@ Based on the `soundFileName` property:
 - **Fade sound** (when `hasFade = true`): `{soundFileName}_down.mp3`
 - **Cast sound** (when `hasCast = true`): `{soundFileName}_cast.mp3`
 
-### SpellAvoidMap.lua Sound Files
+### SpellAvoidMap Sound Files
 
 - **Self avoid** (when `self_avoid = true`): `self_avoid/you_avoided_{soundFileName}.mp3`
 - **Enemy avoid** (when `enemy_avoid = true`): `enemy_avoid/enemy_avoided_{soundFileName}.mp3`
@@ -93,8 +93,8 @@ python verify_sounds.py
 Output:
 ```
 Verifying sound files...
-Parsed 245 spells from SpellMap.lua
-Parsed 189 spells from SpellAvoidMap.lua
+Parsed 245 spells from SpellMap (Base + overlays)
+Parsed 189 spells from SpellAvoidMap (Base + overlays)
 
 Missing files:
 - warrior/battle_shout.mp3
@@ -110,10 +110,10 @@ Summary: 3 missing files out of 523 required files
 python verify_sounds.py --sound-path ../../../PVPWarn_VoicePack_Custom/assets --output-format detailed
 ```
 
-### Example 3: Check Only SpellMap.lua
+### Example 3: Check Only the SpellMap
 
 ```bash
-python verify_sounds.py --spell-avoid-map ""
+python verify_sounds.py --spellavoidmap-dir ""
 ```
 
 ## Output Format

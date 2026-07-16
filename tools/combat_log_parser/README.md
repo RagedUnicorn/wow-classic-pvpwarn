@@ -40,7 +40,7 @@ python parse_combat_logs.py
 
 With custom paths:
 ```bash
-python parse_combat_logs.py --spellmap /path/to/SpellMap.lua --logs-dir /path/to/combat/logs --output-dir /path/to/output
+python parse_combat_logs.py --spellmap-dir /path/to/code/spellmap --logs-dir /path/to/combat/logs --output-dir /path/to/output
 ```
 
 ### GitHub Actions Usage (AWS S3 with OIDC)
@@ -88,7 +88,7 @@ wow_pvpwarn/combat_log_coverage/
 
 ## How it Works
 
-1. **Reads SpellMap.lua** - Extracts all spell definitions and their tracked events
+1. **Reads the spellmap directory** - Extracts all spell definitions and their tracked events from `Base.lua` and its overlays
 2. **Loads existing hits** - Reads previously found spells from .hit.md files
 3. **Parses combat logs** - Processes all .txt files in the logs directory
 4. **Matches spells** - Looks for spell ID + event type combinations
