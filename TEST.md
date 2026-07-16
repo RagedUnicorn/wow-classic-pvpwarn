@@ -52,8 +52,8 @@ the aggregate entry point in `test/TestAll.lua`:
 `TestAll` first runs the coverage validators for each branch, then enqueues and plays every
 sound and combat-event test (including self-avoid and enemy-avoid variants) for that branch.
 It manages its own test session group, so unlike the per-category modules it can be invoked
-directly via `/run`. The test log window opens automatically and results stream in as the queue
-plays.
+directly via `/run`. The test log window does not open automatically for `TestAll` - open it
+first with `/rgpvpw testlog show` to watch results stream in as the queue plays.
 
 ### Command Line Interface
 
@@ -334,6 +334,7 @@ function me.TestCombatEventSpellNameApplied_12345()
   mod.testHelper.TestCombatEventApplied(
     "TestCombatEventSpellNameApplied_12345",
     testCategory,
+    "SpellName",
     12345  -- spell ID
   )
 end
@@ -348,6 +349,7 @@ function me.TestCombatEventSpellNameRemoved_12345()
   mod.testHelper.TestCombatEventRemoved(
     "TestCombatEventSpellNameRemoved_12345",
     testCategory,
+    "SpellName",
     12345  -- spell ID
   )
 end
@@ -362,6 +364,7 @@ function me.TestCombatEventSpellNameRefresh_12345()
   mod.testHelper.TestCombatEventRefresh(
     "TestCombatEventSpellNameRefresh_12345",
     testCategory,
+    "SpellName",
     12345  -- spell ID
   )
 end
@@ -376,6 +379,7 @@ function me.TestCombatEventSpellNameSuccess_12345()
   mod.testHelper.TestCombatEventSuccess(
     "TestCombatEventSpellNameSuccess_12345",
     testCategory,
+    "SpellName",
     12345  -- spell ID
   )
 end
@@ -385,7 +389,7 @@ end
 
 Combat event: `SPELL_MISSED`
 
-Available miss types: `DODGE`, `PARRY`, `IMMUNE`, `MISS`, `BLOCK`, `RESIST`
+Available miss types: `DODGE`, `PARRY`, `IMMUNE`, `MISS`, `BLOCK`, `RESIST`, `REFLECT`
 
 ```lua
 function me.TestCombatEventSelfAvoidSpellNameDodge_12345()
@@ -393,8 +397,9 @@ function me.TestCombatEventSelfAvoidSpellNameDodge_12345()
     "TestCombatEventSelfAvoidSpellNameDodge_12345",
     testCategory,
     12345,  -- spell ID
+    "SpellName",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_SELF,
-    RGPVPW_CONSTANTS.MISS_TYPES.DODGE
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.DODGE
   )
 end
 
@@ -403,8 +408,9 @@ function me.TestCombatEventEnemyAvoidSpellNameParry_12345()
     "TestCombatEventEnemyAvoidSpellNameParry_12345",
     testCategory,
     12345,  -- spell ID
+    "SpellName",
     RGPVPW_CONSTANTS.SPELL_TYPES.MISSED_ENEMY,
-    RGPVPW_CONSTANTS.MISS_TYPES.PARRY
+    RGPVPW_CONSTANTS.RELEVANT_MISS_TYPES.PARRY
   )
 end
 ```
@@ -416,7 +422,10 @@ end
 1. **Place by branch and category**: Add the test file under `test/<branch>/<category>/`.
 2. **Register the branch-suffixed module**: `mod.testSound<Category><Branch> = me`
    (e.g. `mod.testSoundMageTbc`).
-3. **Add the file to `PVPWarn.toc`**: It must be listed in the test section to load.
+3. **Register the file in the TOC template**: Add it to the test section of
+   `build-resources/pvpwarn-development.toc.tpl` (never `PVPWarn.toc` directly - that file is
+   auto-generated and overwritten), then regenerate with
+   `mvn generate-resources -D generate.sources.overwrite=true`.
 4. **Follow naming conventions**: Use consistent file and function naming patterns.
 5. **Use spell IDs**: Reference spells by their numeric ID, not name.
 6. **Include session checks**: Per-category `Test()` functions must check for an active session
