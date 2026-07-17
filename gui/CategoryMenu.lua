@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame PanelTemplates_TabResize
+-- luacheck: globals CreateFrame PanelTemplates_TabResize PanelTemplates_SelectTab PanelTemplates_DeselectTab
 
 local mod = rgpvpw
 local me = {}
@@ -144,7 +144,7 @@ function me.CreateCategoryMenu(self)
   local avoidTabButton = me.CreateTabButton(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. resistTab,
-    {"TOPLEFT", 70, 30},
+    {"LEFT", spellTabButton, "RIGHT", 5, 0},
     rgpvpw.L["tab_button_resist"],
     resistTab
   )
@@ -190,6 +190,7 @@ function me.CreateTabButton(parentFrame, tabButtonName, position, text, id)
   tabButton:SetPoint(unpack(position))
   tabButton:SetText(text)
   PanelTemplates_TabResize(tabButton, 0)
+  PanelTemplates_DeselectTab(tabButton)
   tabButton:SetScript("OnClick", function(self)
     me.TabNavigationButtonOnClick(self)
   end)
@@ -239,8 +240,8 @@ function me.ResetNavigation()
 
   category.spellContentFrame:Hide()
   category.avoidContentFrame:Hide()
-  category.spellTabButton:UnlockHighlight()
-  category.avoidTabButton:UnlockHighlight()
+  PanelTemplates_DeselectTab(category.spellTabButton)
+  PanelTemplates_DeselectTab(category.avoidTabButton)
 
   activeTab = nil
 end
@@ -258,18 +259,18 @@ function me.ActivateTab(position)
 
   if position == spellTab then
     category.spellContentFrame:Show()
-    category.spellTabButton:LockHighlight()
+    PanelTemplates_SelectTab(category.spellTabButton)
     category.avoidContentFrame:Hide()
-    category.avoidTabButton:UnlockHighlight()
+    PanelTemplates_DeselectTab(category.avoidTabButton)
 
     activeTab = spellTab
 
     category.spellInitFunc(category.spellContentFrame, categoryName)
   elseif position == resistTab then
     category.avoidContentFrame:Show()
-    category.avoidTabButton:LockHighlight()
+    PanelTemplates_SelectTab(category.avoidTabButton)
     category.spellContentFrame:Hide()
-    category.spellTabButton:UnlockHighlight()
+    PanelTemplates_DeselectTab(category.spellTabButton)
 
     activeTab = resistTab
 
