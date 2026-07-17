@@ -35,6 +35,32 @@ local maxProfiles = 10
 local maxProfileNameLength = 25
 
 --[[
+  Bumped when the on-the-wire profile payload changes shape. Import refuses any
+  string whose schemaVersion is newer than this build understands.
+]]--
+local SCHEMA_VERSION = 1
+--[[
+  Identifies a PVPWarn profile string and lets import fast-reject foreign
+  strings before any decoding. The authoritative provenance check is the
+  envelope's addon/schemaVersion fields.
+]]--
+local EXPORT_PREFIX = "PVPWarn1:"
+local ADDON_TAG = "PVPWarn"
+
+--[[
+  The profile fields that make up a portable profile payload - exactly the
+  spell configurations the PVPWarnProfiles store already keeps per profile.
+]]--
+local PROFILE_PAYLOAD_FIELDS = {
+  "spellConfiguration",
+  "spellSelfAvoidConfiguration",
+  "spellEnemyAvoidConfiguration"
+}
+
+-- forward declaration
+local FindProfile
+
+--[[
   Default profiles consider the class from the player that uses the addon. As an
   example lets assume the player is a warrior. What are the spells a warrior absolutely
   needs to know of. Depending on the class a spells importance might greatly differ
@@ -262,4 +288,166 @@ end
 ]]--
 function me.SetModified()
   PVPWarnProfiles.modified = true
+end
+
+--[[
+  Encode a stored profile into a portable, copy-pasteable string.
+
+  @param {string} profileName
+    name of a profile in the PVPWarnProfiles store
+
+  @return {string | nil}
+    the export string, or nil if no profile with that name exists
+]]--
+function me.ExportString(profileName)
+  local profile = FindProfile(profileName)
+
+  if profile == nil then
+    mod.logger.LogWarn(me.tag, "ExportString unable to find profile with name: " .. tostring(profileName))
+    return nil
+  end
+
+  local payload = {}
+
+  for _, field in ipairs(PROFILE_PAYLOAD_FIELDS) do
+    payload[field] = profile[field]
+  end
+
+  local envelope = {
+    addon = ADDON_TAG,
+    schemaVersion = SCHEMA_VERSION,
+    addonVersion = C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"),
+    name = profile.name,
+    payload = payload
+  }
+
+  return EXPORT_PREFIX .. mod.encoder.Encode(mod.serializer.Serialize(envelope))
+end
+
+--[[
+  Decode and validate a profile string. Never raises - returns a localization
+  error key on any failure and leaves all state untouched.
+
+  @param {string} encoded
+
+  @return {table | nil}, {string | nil}
+    the decoded envelope { addon, schemaVersion, addonVersion, name, payload },
+    or nil plus a localization key describing the failure
+]]--
+function me.ImportString(encoded)
+  if type(encoded) ~= "string" then
+    return nil, "profile_error_invalid"
+  end
+
+  -- strip any whitespace a paste may have wrapped around / into the string
+  encoded = string.gsub(encoded, "%s+", "")
+
+  if encoded == "" then
+    return nil, "profile_error_empty"
+  end
+
+  if string.sub(encoded, 1, #EXPORT_PREFIX) ~= EXPORT_PREFIX then
+    return nil, "profile_error_invalid"
+  end
+
+  local serialized, decodeErr = mod.encoder.Decode(string.sub(encoded, #EXPORT_PREFIX + 1))
+
+  if not serialized then
+    if decodeErr == "checksum" then
+      return nil, "profile_error_checksum"
+    end
+
+    return nil, "profile_error_invalid"
+  end
+
+  local envelope = mod.serializer.Deserialize(serialized)
+
+  if type(envelope) ~= "table" then
+    return nil, "profile_error_invalid"
+  end
+
+  if envelope.addon ~= ADDON_TAG then
+    return nil, "profile_error_wrong_addon"
+  end
+
+  if type(envelope.schemaVersion) ~= "number" or envelope.schemaVersion > SCHEMA_VERSION then
+    return nil, "profile_error_version"
+  end
+
+  if type(envelope.payload) ~= "table" then
+    return nil, "profile_error_invalid"
+  end
+
+  for _, field in ipairs(PROFILE_PAYLOAD_FIELDS) do
+    if type(envelope.payload[field]) ~= "table" then
+      return nil, "profile_error_invalid"
+    end
+  end
+
+  return envelope
+end
+
+--[[
+  Add an imported profile payload to the PVPWarnProfiles store under the passed
+  name. Enforces the same limits as me.CreateProfile but does NOT activate the
+  new profile - an imported profile does not match the live configuration until
+  the user explicitly loads it.
+
+  @param {string} profileName
+  @param {table} payload
+    a validated payload as returned inside a me.ImportString envelope
+
+  @return {boolean}
+    true - if the profile was added
+    false - if the name was invalid, taken, or the profile limit is reached
+]]--
+function me.AddImportedProfile(profileName, payload)
+  if not profileName or profileName == "" then
+    mod.logger.LogWarn(me.tag, "AddImportedProfile called with invalid profile name")
+    return false
+  end
+
+  if #PVPWarnProfiles >= maxProfiles then
+    mod.logger.PrintUserError(
+      string.format(rgpvpw.L["user_message_add_new_profile_max_reached"], maxProfiles)
+    )
+    return false
+  end
+
+  if FindProfile(profileName) ~= nil then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_already_exists"])
+    return false
+  end
+
+  local profile = {
+    name = profileName,
+    version = C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
+  }
+
+  for _, field in ipairs(PROFILE_PAYLOAD_FIELDS) do
+    profile[field] = mod.common.Clone(payload[field])
+  end
+
+  table.insert(PVPWarnProfiles, profile)
+  mod.logger.LogInfo(me.tag, "Added imported profile with name - " .. profileName)
+
+  return true
+end
+
+--[[
+  Search for the profile with the passed name in the PVPWarnProfiles store.
+
+  @param {string} profileName
+
+  @return {table | nil}
+    the stored profile, or nil if no such profile exists
+]]--
+FindProfile = function(profileName)
+  for i = 1, #PVPWarnProfiles do
+    if PVPWarnProfiles[i].name == profileName then
+      return PVPWarnProfiles[i]
+    end
+  end
+
+  return nil
 end
