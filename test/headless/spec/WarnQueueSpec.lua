@@ -26,9 +26,11 @@
   Headless spec for code/Warn.lua (rgpvpw.warn). Warn.lua keeps file-local state (warnQueue,
   isQueueBusy), so the module is re-dofile'd in before_each for a fresh queue. GetTime is a
   controllable clock and C_Timer captures its callbacks (both from the WowStubs registry) so the
-  0.8s busy gate is fired deterministically. mod.sound, mod.flash, mod.detectionBarManager and
-  mod.configuration are recording stubs; the logger methods are stubbed because the real print
-  path reaches mod.filter and C_AddOns which do not exist headlessly.
+  0.8s busy gate is fired deterministically. mod.sound and mod.configuration are recording
+  stubs; the visual and detection bar channels are registered as recording functions through
+  the warn module's registration seam (no gui module tables needed); the logger methods are
+  stubbed because the real print path reaches mod.filter and C_AddOns which do not exist
+  headlessly.
 ]]--
 
 -- busted extends `assert` with .same / .equal / etc. at runtime; luacheck
@@ -112,18 +114,14 @@ describe("warn queue", function()
     }
 
     flashes = {}
-    rgpvpw.flash = {
-      Show = function(color)
-        table.insert(flashes, color)
-      end
-    }
+    warn.RegisterVisualChannel(function(color)
+      table.insert(flashes, color)
+    end)
 
     pushes = {}
-    rgpvpw.detectionBarManager = {
-      Push = function(payload)
-        table.insert(pushes, payload)
-      end
-    }
+    warn.RegisterDetectionBarChannel(function(payload)
+      table.insert(pushes, payload)
+    end)
 
     flashEnabled = true
     rgpvpw.configuration = {
@@ -139,8 +137,6 @@ describe("warn queue", function()
     rgpvpw.logger.LogWarn = originalLogWarn
     rgpvpw.logger.LogDebug = originalLogDebug
     rgpvpw.sound = nil
-    rgpvpw.flash = nil
-    rgpvpw.detectionBarManager = nil
     rgpvpw.configuration = nil
   end)
 
@@ -347,6 +343,47 @@ describe("warn queue", function()
 
       assert.are.equal(1, #playedSounds)
       assert.are.equal(0, #flashes)
+    end)
+  end)
+
+  describe("channel registration", function()
+    --[[
+      Re-dofile Warn.lua inside the test to get a module with no registered channels,
+      mirroring a headless context where no gui module is loaded.
+    ]]--
+    local function FreshWarnWithoutChannels()
+      dofile("code/Warn.lua")
+      return rgpvpw.warn
+    end
+
+    it("plays the sound but skips the visual when no visual channel is registered", function()
+      local freshWarn = FreshWarnWithoutChannels()
+
+      freshWarn.AddToQueue("test-warning", "priest", spellTypes.NORMAL, BuildSpell(), true, true)
+      freshWarn.ProcessQueue()
+
+      assert.are.equal(1, #playedSounds)
+      assert.are.equal(0, #flashes)
+    end)
+
+    it("drops the detection bar payload when no detection bar channel is registered", function()
+      local freshWarn = FreshWarnWithoutChannels()
+
+      freshWarn.PlayWarning("priest", spellTypes.NORMAL, BuildSpell(), nil, true, true, { spellId = 8122 })
+
+      assert.are.equal(0, #pushes)
+    end)
+
+    it("rejects a non-function visual channel", function()
+      assert.has_error(function()
+        warn.RegisterVisualChannel("not-a-function")
+      end)
+    end)
+
+    it("rejects a non-function detection bar channel", function()
+      assert.has_error(function()
+        warn.RegisterDetectionBarChannel("not-a-function")
+      end)
     end)
   end)
 

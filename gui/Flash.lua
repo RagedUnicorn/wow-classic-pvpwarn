@@ -258,3 +258,11 @@ function me.Test(colorName)
 
   return true
 end
+
+--[[
+  Register the flash as the warn module's visual output channel. gui/ loads after code/ in
+  toc order, so registering at load time is safe (see code/Warn.lua).
+]]--
+mod.warn.RegisterVisualChannel(function(colorValue)
+  me.Show(colorValue)
+end)

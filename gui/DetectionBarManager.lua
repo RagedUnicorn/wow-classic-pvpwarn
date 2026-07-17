@@ -395,3 +395,11 @@ function me.RefreshPreview()
     end
   end
 end
+
+--[[
+  Register the detection bar as the warn module's detection bar output channel. gui/ loads
+  after code/ in toc order, so registering at load time is safe (see code/Warn.lua).
+]]--
+mod.warn.RegisterDetectionBarChannel(function(payload)
+  me.Push(payload)
+end)

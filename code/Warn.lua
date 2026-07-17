@@ -32,6 +32,15 @@ me.tag = "Warn"
 
 local warnQueue = {}
 
+--[[
+  Registered output channels. gui/Flash.lua and gui/DetectionBarManager.lua register
+  themselves at load time (gui/ loads after code/ in toc order). Keeping the channels
+  behind a registration seam means Warn has no gui references - the pipeline runs
+  headlessly with no gui module present; a missing channel is skipped with a debug log.
+]]--
+local visualChannel
+local detectionBarChannel
+
 -- forward declaration
 local RemoveFromQueue
 local PlaySound
@@ -42,6 +51,34 @@ local PlayVisual
  warnings playing at the same time. Queue is first in first served.
 ]]--
 local isQueueBusy = false
+
+--[[
+  Register the visual warning output channel (see gui/Flash.lua). Invoked by PlayVisual
+  with the spell's visualWarningColor colorValue.
+
+  @param {function} channel
+]]--
+function me.RegisterVisualChannel(channel)
+  assert(type(channel) == "function",
+    string.format("bad argument #1 to `RegisterVisualChannel` (expected function got %s)", type(channel))
+  )
+
+  visualChannel = channel
+end
+
+--[[
+  Register the detection bar output channel (see gui/DetectionBarManager.lua). Invoked by
+  PlayWarning with a detection bar payload table.
+
+  @param {function} channel
+]]--
+function me.RegisterDetectionBarChannel(channel)
+  assert(type(channel) == "function",
+    string.format("bad argument #1 to `RegisterDetectionBarChannel` (expected function got %s)", type(channel))
+  )
+
+  detectionBarChannel = channel
+end
 
 --[[
   @param {string} warnName
@@ -148,9 +185,9 @@ end
   @param {boolean} playSound
   @param {boolean} playVisual
   @param {table | nil} detectionBarPayload
-    When present, a payload for mod.detectionBarManager.Push. The detection bar is a purely
-    visual channel with its own stack semantics, so it is dispatched directly here and bypasses
-    the sound/visual warn-queue and its 0.8s busy gate.
+    When present, a payload for the registered detection bar channel. The detection bar is a
+    purely visual channel with its own stack semantics, so it is dispatched directly here and
+    bypasses the sound/visual warn-queue and its 0.8s busy gate.
 ]]--
 function me.PlayWarning(category, spellType, spell, callback, playSound, playVisual, detectionBarPayload)
   if category == nil or spellType == nil or spell == nil then
@@ -165,7 +202,11 @@ function me.PlayWarning(category, spellType, spell, callback, playSound, playVis
     audio busy gate; the manager handles dedup and stack concurrency itself.
   ]]--
   if detectionBarPayload ~= nil then
-    mod.detectionBarManager.Push(detectionBarPayload)
+    if detectionBarChannel ~= nil then
+      detectionBarChannel(detectionBarPayload)
+    else
+      mod.logger.LogDebug(me.tag, "Skipping detection bar payload because no detection bar channel is registered")
+    end
   end
 
   if callback ~= nil then
@@ -226,7 +267,14 @@ PlayVisual = function(warning)
     return false
   end
 
-  mod.flash.Show(warning.spell.visualWarningColor)
+  if visualChannel == nil then
+    mod.logger.LogDebug(me.tag, "Skipping playing visual for spell - " .. warning.spell.name
+      .. " because no visual channel is registered")
+
+    return false
+  end
+
+  visualChannel(warning.spell.visualWarningColor)
 
   return true
 end
