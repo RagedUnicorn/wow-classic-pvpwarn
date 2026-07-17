@@ -29,8 +29,11 @@ local me = rgpvpw
 
 me.tag = "Core"
 
--- Track whether addon initialization is complete
-local isInitialized = false
+-- forward declarations
+local OnEnteringWorld
+local OnCombatLog
+local OnTargetChanged
+local OnZoneChanged
 
 --[[
   Addon load
@@ -42,61 +45,37 @@ function me.OnLoad(self)
 end
 
 --[[
-  Register addon events
+  Register addon event handlers with the event bus and subscribe the main frame
 
   @param {table} self
 ]]--
 function me.RegisterEvents(self)
   -- Fired when the player logs in, /reloads the UI, or zones between map instances
-  self:RegisterEvent("PLAYER_ENTERING_WORLD")
+  me.event.Register("PLAYER_ENTERING_WORLD", OnEnteringWorld)
   --[[
-    Register to combat event unfiltered
+    Register to combat event unfiltered. Gated so combat log events are ignored
+    until initialization completes.
 
     COMBAT_LOG_EVENT_UNFILTERED - show all logs independent of what the player has configured
     COMBAT_LOG_EVENT - shows only the logs that the player has configured
   ]]--
-  self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-  -- Register to the event that fires when the players target changes
-  self:RegisterEvent("PLAYER_TARGET_CHANGED")
+  me.event.Register("COMBAT_LOG_EVENT_UNFILTERED", OnCombatLog, { gated = true })
+  -- Register to the event that fires when the players target changes. Gated until initialization completes.
+  me.event.Register("PLAYER_TARGET_CHANGED", OnTargetChanged, { gated = true })
   -- Fired when the user enters a new zone or city
-  self:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+  me.event.Register("ZONE_CHANGED_NEW_AREA", OnZoneChanged)
+
+  me.event.Setup(self)
 end
 
 --[[
-  MainFrame OnEvent handler
+  MainFrame OnEvent handler. Delegates to the event bus for dispatch.
 
   @param {string} event
+  @param {vararg} ...
 ]]--
 function me.OnEvent(event, ...)
-  if event == "PLAYER_ENTERING_WORLD" then
-    me.logger.LogEvent(me.tag, "PLAYER_ENTERING_WORLD")
-
-    local isInitialLogin, isReloadingUi = ...
-
-    if isInitialLogin or isReloadingUi then
-      me.Initialize()
-      me.zone.UpdateZone()
-    end
-  elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
-    if not isInitialized then
-      me.logger.LogDebug(me.tag, "Ignoring COMBAT_LOG_EVENT_UNFILTERED - addon not yet initialized")
-
-      return
-    end
-    me.logger.LogEvent(me.tag, "COMBAT_LOG_EVENT_UNFILTERED")
-    me.combatLog.ProcessUnfilteredCombatLogEvent(nil, CombatLogGetCurrentEventInfo())
-  elseif event == "PLAYER_TARGET_CHANGED" then
-    if not isInitialized then
-      me.logger.LogDebug(me.tag, "Ignoring PLAYER_TARGET_CHANGED - addon not yet initialized")
-
-      return
-    end
-    me.logger.LogEvent(me.tag, "PLAYER_TARGET_CHANGED")
-    me.target.UpdateCurrentTarget()
-  elseif event == "ZONE_CHANGED_NEW_AREA" then
-    me.logger.LogEvent(me.tag, "ZONE_CHANGED_NEW_AREA")
-    me.zone.UpdateZone()
-  end
+  me.event.Dispatch(event, ...)
 end
 
 --[[
@@ -135,7 +114,6 @@ function me.Initialize()
   me.ShowWelcomeMessage()
   me.ShowDetectionBarHint()
 
-  isInitialized = true
   me.logger.LogInfo(me.tag, "Addon initialization complete")
 end
 
@@ -158,4 +136,42 @@ function me.ShowDetectionBarHint()
 
   print("|cFF00FFB0" .. RGPVPW_CONSTANTS.ADDON_NAME .. ":|r " .. rgpvpw.L["detection_bar_hint"])
   me.configuration.SetDetectionBarHintShown()
+end
+
+--[[
+  Run the bootstrap sequence on login or /reload, then open the readiness gate
+  so gated handlers (combat log, target changes) begin processing.
+
+  @param {boolean} isInitialLogin
+  @param {boolean} isReloadingUi
+]]--
+OnEnteringWorld = function(isInitialLogin, isReloadingUi)
+  if isInitialLogin or isReloadingUi then
+    me.Initialize()
+    me.event.SetReady()
+    me.zone.UpdateZone()
+  end
+end
+
+--[[
+  Process the current unfiltered combat log event. Gated until initialization
+  is complete (see RegisterEvents).
+]]--
+OnCombatLog = function()
+  me.combatLog.ProcessUnfilteredCombatLogEvent(nil, CombatLogGetCurrentEventInfo())
+end
+
+--[[
+  Update the tracked target when the player's target changes. Gated until
+  initialization is complete (see RegisterEvents).
+]]--
+OnTargetChanged = function()
+  me.target.UpdateCurrentTarget()
+end
+
+--[[
+  Update the zone state when the player enters a new zone or city
+]]--
+OnZoneChanged = function()
+  me.zone.UpdateZone()
 end

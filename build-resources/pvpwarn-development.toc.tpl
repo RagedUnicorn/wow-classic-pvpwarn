@@ -18,6 +18,7 @@ localization/deDE.lua
 localization/ruRU.lua
 
 # code
+code/Event.lua
 code/Core.lua
 code/VoicePack.lua
 code/Logger.lua
