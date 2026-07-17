@@ -47,8 +47,8 @@ rgpvpw.L["version"] = "Version: " .. C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.
 rgpvpw.L["issues"] = "Issues: https://github.com/RagedUnicorn/wow-classic-pvpwarn/issues"
 
 -- general
-rgpvpw.L["configuration_menu_general"] = "PVPWarn Options"
-rgpvpw.L["general_title"] = "General Configuration"
+rgpvpw.L["configuration_menu_general"] = "Options"
+rgpvpw.L["general_title"] = "Options"
 rgpvpw.L["enable_combat_state_tracking"] = "Enable combatstate tracking"
 rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Tracks the combatstate of an enemy target"
 rgpvpw.L["lock_frame_combat_state"] = "Lock combatstate frame"

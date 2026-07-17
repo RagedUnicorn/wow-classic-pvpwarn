@@ -48,8 +48,8 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["issues"] = "Проблемы: https://github.com/RagedUnicorn/wow-classic-pvpwarn/issues"
 
   -- general
-  rgpvpw.L["configuration_menu_general"] = "Настройки PVPWarn"
-  rgpvpw.L["general_title"] = "Общая конфигурация"
+  rgpvpw.L["configuration_menu_general"] = "Настройки"
+  rgpvpw.L["general_title"] = "Настройки"
   rgpvpw.L["enable_combat_state_tracking"] = "Отслеживать состояние боя"
   rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Отслеживает состояние боя вражеской цели"
   rgpvpw.L["lock_frame_combat_state"] = "Заблокировать рамку состояния боя"

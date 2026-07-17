@@ -50,8 +50,8 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["issues"] = "Probleme: https://github.com/RagedUnicorn/wow-classic-pvpwarn/issues"
 
   -- general
-  rgpvpw.L["configuration_menu_general"] = "PVPWarn Optionen"
-  rgpvpw.L["general_title"] = "Allgemeine Konfiguration"
+  rgpvpw.L["configuration_menu_general"] = "Optionen"
+  rgpvpw.L["general_title"] = "Optionen"
   rgpvpw.L["enable_combat_state_tracking"] = "Aktiviere Kampfstatus Überwachung"
   rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Überwacht den Kampfstatus eines gegnerischen Zieles"
   rgpvpw.L["lock_frame_combat_state"] = "Blockiere das Kampfzustand Fenster"
