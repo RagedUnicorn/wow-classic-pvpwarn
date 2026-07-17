@@ -86,6 +86,7 @@ gui/ZoneMenu.lua
 gui/VoicePackMenu.lua
 gui/ProfileMenu.lua
 gui/CategoryMenu.lua
+gui/SpellListHelper.lua
 gui/CategoryMenuSpellsTab.lua
 gui/CategoryMenuAvoidTab.lua
 gui/EnemyAvoidMenu.lua
