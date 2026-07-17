@@ -41,6 +41,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["reload"] = "|cFFFFC300reload|r - UI neu laden"
   rgpvpw.L["bar"] = "|cFFFFC300bar lock/unlock/test|r - die Erkennungsleiste sperren, entsperren oder testen"
   rgpvpw.L["invalid_argument"] = "Ungültiges Argument übergeben"
+  rgpvpw.L["update_available"] = "Neue Version |cFFFFC300%s|r ist verfügbar - |cFF00FFB0Update empfohlen!|r"
 
   -- about
   rgpvpw.L["author"] = "Authr: Michael Wiesendanger"

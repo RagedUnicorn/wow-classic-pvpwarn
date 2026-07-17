@@ -26,6 +26,10 @@
 RGPVPW_CONSTANTS = {
   ADDON_NAME = "PVPWarn",
   --[[
+    Addon message prefix for the version broadcast (code/Comm.lua), max 16 characters
+  ]]--
+  ADDON_MESSAGE_PREFIX = "RGPVPW_VER",
+  --[[
     Unit ids
   ]]--
   DEFAULT_VOICE_PACK_NAME = "default",

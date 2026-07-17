@@ -124,7 +124,13 @@ PVPWarnConfiguration = {
     ["maxOpacity"] = 0.85,
     ["pulse"] = true,
     ["blendMode"] = "BLEND"
-  }
+  },
+  --[[
+    Highest version the update notifier (code/Comm.lua) already announced to the
+    user - bookkeeping like addonVersion, deliberately not part of profiles.
+    Empty string means no version was announced yet
+  ]]--
+  ["lastNotifiedVersion"] = ""
 }
 
 --[[
@@ -175,6 +181,11 @@ function me.SetupConfiguration()
   -- Migrate nil to "default" for existing users
   if PVPWarnConfiguration.activeVoicePack == nil then
     PVPWarnConfiguration.activeVoicePack = RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME
+  end
+
+  if PVPWarnConfiguration.lastNotifiedVersion == nil then
+    mod.logger.LogInfo(me.tag, "lastNotifiedVersion has unexpected nil value")
+    PVPWarnConfiguration.lastNotifiedVersion = ""
   end
 
   me.SetupDetectionBarConfiguration()
@@ -268,6 +279,33 @@ end
 function me.MigrationPath()
   me.UpgradeToV1_1_2()
   me.UpgradeToV2_0_0()
+end
+
+--[[
+  Semver-ish comparison of two version strings of the form "v1.2.0" (the leading "v"
+  is optional). Missing or unparseable versions are never considered older.
+
+  @param {string | nil} version
+  @param {string} otherVersion
+  @return {boolean}
+    true - if version is older than otherVersion
+    false - otherwise
+]]--
+function me.IsVersionBefore(version, otherVersion)
+  local major, minor, patch = string.match(version or "", "^v?(%d+)%.(%d+)%.(%d+)")
+  local otherMajor, otherMinor, otherPatch = string.match(otherVersion or "", "^v?(%d+)%.(%d+)%.(%d+)")
+
+  if major == nil or otherMajor == nil then return false end
+
+  if tonumber(major) ~= tonumber(otherMajor) then
+    return tonumber(major) < tonumber(otherMajor)
+  end
+
+  if tonumber(minor) ~= tonumber(otherMinor) then
+    return tonumber(minor) < tonumber(otherMinor)
+  end
+
+  return tonumber(patch) < tonumber(otherPatch)
 end
 
 --[[

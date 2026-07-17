@@ -64,6 +64,10 @@ function me.RegisterEvents(self)
   me.event.Register("PLAYER_TARGET_CHANGED", OnTargetChanged, { gated = true })
   -- Fired when the user enters a new zone or city
   me.event.Register("ZONE_CHANGED_NEW_AREA", OnZoneChanged)
+  -- Version broadcasts from other players. Gated until initialization completes.
+  me.event.Register("CHAT_MSG_ADDON", me.comm.OnChatMsgAddon, { gated = true })
+  -- Rebroadcast the running version on roster edges. Gated until initialization completes.
+  me.event.Register("GROUP_ROSTER_UPDATE", me.comm.BroadcastVersion, { gated = true })
 
   me.event.Setup(self)
 end
@@ -111,6 +115,9 @@ function me.Initialize()
     me.ticker.StartTickerCheckStanceStateExpired()
   end
 
+  -- register addon message prefix for the version broadcast
+  me.comm.Initialize()
+
   me.ShowWelcomeMessage()
   me.ShowDetectionBarHint()
 
@@ -140,7 +147,9 @@ end
 
 --[[
   Run the bootstrap sequence on login or /reload, then open the readiness gate
-  so gated handlers (combat log, target changes) begin processing.
+  so gated handlers (combat log, target changes) begin processing. Every entering
+  world edge (including instance transfers) broadcasts the running addon version;
+  the broadcast has its own cooldown against bursts.
 
   @param {boolean} isInitialLogin
   @param {boolean} isReloadingUi
@@ -151,6 +160,8 @@ OnEnteringWorld = function(isInitialLogin, isReloadingUi)
     me.event.SetReady()
     me.zone.UpdateZone()
   end
+
+  me.comm.BroadcastVersion()
 end
 
 --[[

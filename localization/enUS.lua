@@ -38,6 +38,7 @@ rgpvpw.L["stancestate"] = "|cFFFFC300stancestate enable/disable|r - configure th
 rgpvpw.L["reload"] = "|cFFFFC300reload|r - reload UI"
 rgpvpw.L["bar"] = "|cFFFFC300bar lock/unlock/test|r - lock, unlock or test the detection bar"
 rgpvpw.L["invalid_argument"] = "Invalid argument passed"
+rgpvpw.L["update_available"] = "New version |cFFFFC300%s|r is available - |cFF00FFB0consider updating!|r"
 
 -- about
 rgpvpw.L["author"] = "Author: Michael Wiesendanger"

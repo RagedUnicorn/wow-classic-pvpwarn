@@ -57,6 +57,7 @@ code/Tooltip.lua
 code/Macro.lua
 code/Zone.lua
 code/Season.lua
+code/Comm.lua
 
 # profiles
 profiles/Profile.lua

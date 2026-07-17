@@ -39,6 +39,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["reload"] = "|cFFFFC300reload|r - перезагрузить интерфейс"
   rgpvpw.L["bar"] = "|cFFFFC300bar lock/unlock/test|r - заблокировать, разблокировать или проверить панель обнаружения"
   rgpvpw.L["invalid_argument"] = "Недопустимый аргумент"
+  rgpvpw.L["update_available"] = "Доступна новая версия |cFFFFC300%s|r — |cFF00FFB0рекомендуется обновление!|r"
 
   -- about
   rgpvpw.L["author"] = "Автор: Michael Wiesendanger"
