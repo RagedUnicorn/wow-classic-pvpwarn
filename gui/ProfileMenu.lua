@@ -39,6 +39,11 @@ local profileRows = {}
 local profileListScrollFrame
 -- the name of the currently selected profile in the profile list
 local currentSelectedProfileName
+-- the multiline edit box used for export/import strings
+local profileStringEditBox
+
+-- forward declaration
+local FinishProfileImport
 
 --[[
   Get the currently selected profile name from the profile list.
@@ -165,6 +170,51 @@ StaticPopupDialogs["RGPVPW_UPDATE_PROFILE_WARNING"] = {
 }
 
 --[[
+  Popup dialog for choosing a name for an imported profile. The validated
+  envelope is passed as the dialog data payload.
+]]--
+StaticPopupDialogs["RGPVPW_IMPORT_PROFILE_NAME"] = {
+  text = rgpvpw.L["profile_import_name_prompt"],
+  button1 = rgpvpw.L["choose_profile_name_accept_button"],
+  button2 = rgpvpw.L["choose_profile_name_cancel_button"],
+  OnShow = function(dialog)
+    local editBox = dialog:GetEditBox()
+    local button1 = dialog:GetButton1()
+
+    if editBox ~= nil and button1 ~= nil then
+      editBox:SetText((dialog.data and dialog.data.name) or "")
+      editBox:SetFocus()
+      editBox:HighlightText()
+
+      if string.len(editBox:GetText()) > 0 then
+        button1:Enable()
+      else
+        button1:Disable()
+      end
+    end
+  end,
+  OnAccept = function(dialog)
+    FinishProfileImport(dialog:GetEditBox():GetText(), dialog.data)
+  end,
+  EditBoxOnTextChanged = function(editBox)
+    local button1 = editBox:GetParent():GetButton1()
+
+    if editBox ~= nil and button1 ~= nil then
+      if string.len(editBox:GetText()) > 0 then
+        button1:Enable()
+      else
+        button1:Disable()
+      end
+    end
+  end,
+  timeout = 0,
+  whileDead = true,
+  preferredIndex = 3,
+  hasEditBox = true,
+  maxLetters = mod.profile.GetMaxProfileNameLength()
+}
+
+--[[
   @param {table} frame
 ]]--
 function me.Init(frame)
@@ -213,6 +263,25 @@ function me.BuildUi(frame)
     {"LEFT", loadButton, "RIGHT", 0, 0},
     rgpvpw.L["update_profile_button"],
     me.UpdateProfileButtonOnClick
+  )
+
+  local profileStringLabel = me.CreateProfileStringLabel(frame, saveButton)
+  local profileStringBox = me.CreateProfileStringBox(frame, profileStringLabel)
+  -- create a button that exports the selected profile into the string box
+  local exportButton = me.CreateConfigurationButton(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_PROFILE_EXPORT_BUTTON,
+    {"BOTTOMLEFT", profileStringBox, "BOTTOMLEFT", 0, -40},
+    rgpvpw.L["profile_export_button"],
+    me.ExportProfileButtonOnClick
+  )
+  -- create a button that imports the profile string in the string box
+  me.CreateConfigurationButton(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_PROFILE_IMPORT_BUTTON,
+    {"LEFT", exportButton, "RIGHT", 0, 0},
+    rgpvpw.L["profile_import_button"],
+    me.ImportProfileButtonOnClick
   )
 
   -- init scrollFrame
@@ -459,6 +528,64 @@ function me.CreateConfigurationButton(parentFrame, frameName, position, text, ca
 end
 
 --[[
+  Create a label for the profile export/import string box
+
+  @param {table} parentFrame
+  @param {table} anchorFrame
+    The frame to anchor the label below
+
+  @return {table}
+    The created fontString
+]]--
+function me.CreateProfileStringLabel(parentFrame, anchorFrame)
+  local stringLabelFontString = parentFrame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_PROFILE_STRING_LABEL, "OVERLAY")
+  stringLabelFontString:SetFont(STANDARD_TEXT_FONT, 15)
+  stringLabelFontString:SetPoint("TOPLEFT", anchorFrame, "BOTTOMLEFT", 0, -20)
+  stringLabelFontString:SetJustifyH("LEFT")
+  stringLabelFontString:SetText(rgpvpw.L["profile_string_label"])
+
+  return stringLabelFontString
+end
+
+--[[
+  Create the multiline string box used to export and import profile strings
+
+  @param {table} frame
+  @param {table} anchorFrame
+    The frame to anchor the string box below
+
+  @return {table}
+    The created scrollFrame
+]]--
+function me.CreateProfileStringBox(frame, anchorFrame)
+  local stringScrollFrame = CreateFrame(
+    "ScrollFrame",
+    RGPVPW_CONSTANTS.ELEMENT_PROFILE_STRING_SCROLL_FRAME,
+    frame,
+    "InputScrollFrameTemplate"
+  )
+  stringScrollFrame:SetSize(
+    RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH,
+    RGPVPW_CONSTANTS.PROFILE_STRING_BOX_HEIGHT
+  )
+  stringScrollFrame:SetPoint("TOPLEFT", anchorFrame, "BOTTOMLEFT", 0, -10)
+
+  if stringScrollFrame.CharCount then
+    stringScrollFrame.CharCount:Hide()
+  end
+
+  profileStringEditBox = stringScrollFrame.EditBox
+  profileStringEditBox:SetMaxLetters(0)
+  profileStringEditBox:SetFontObject("ChatFontNormal")
+  profileStringEditBox:SetWidth(RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH - 18)
+  profileStringEditBox:SetScript("OnEscapePressed", function(self)
+    self:ClearFocus()
+  end)
+
+  return stringScrollFrame
+end
+
+--[[
   Button callback to save the current user configuration. This will invoke a popup
   dialog for the user to choose a name for the profile.
 ]]--
@@ -518,4 +645,63 @@ function me.UpdateProfileButtonOnClick()
   end
 
   StaticPopup_Show("RGPVPW_UPDATE_PROFILE_WARNING")
+end
+
+--[[
+  Button callback to export the selected profile into the string box. The resulting
+  string is highlighted so it can be copied right away.
+]]--
+function me.ExportProfileButtonOnClick()
+  local selectedProfileName = me.GetCurrentSelectedProfileName()
+
+  if not selectedProfileName or selectedProfileName == "" then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_export"])
+    return
+  end
+
+  local exportString = mod.profile.ExportString(selectedProfileName)
+
+  if exportString == nil then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_export"])
+    return
+  end
+
+  profileStringEditBox:SetText(exportString)
+  profileStringEditBox:HighlightText()
+  profileStringEditBox:SetFocus()
+end
+
+--[[
+  Button callback to import the profile string in the string box. Validates the
+  string and prompts for a profile name on success. Shows a localized error
+  message and changes nothing if the string cannot be imported.
+]]--
+function me.ImportProfileButtonOnClick()
+  local envelope, errorKey = mod.profile.ImportString(profileStringEditBox:GetText())
+
+  if not envelope then
+    mod.logger.PrintUserError(rgpvpw.L[errorKey])
+    return
+  end
+
+  StaticPopup_Show("RGPVPW_IMPORT_PROFILE_NAME", nil, nil, envelope)
+end
+
+--[[
+  Store an imported, already validated envelope under the passed profile name.
+  The imported profile is added to the profile list but not activated.
+
+  @param {string} profileName
+  @param {table} envelope
+    A validated envelope as returned by mod.profile.ImportString
+]]--
+FinishProfileImport = function(profileName, envelope)
+  if not mod.profile.AddImportedProfile(profileName, envelope.payload) then
+    return
+  end
+
+  profileStringEditBox:SetText("")
+  me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+  me.ClearSelectedProfile()
+  mod.logger.PrintUserMessage(string.format(rgpvpw.L["profile_import_success"], profileName))
 end

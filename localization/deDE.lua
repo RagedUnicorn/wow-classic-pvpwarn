@@ -136,6 +136,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["user_message_select_profile_before_delete"] = "Wähle ein Profil aus um es zu löschen"
   rgpvpw.L["user_message_select_profile_before_load"] = "Wähle ein Profil aus um es zu laden"
   rgpvpw.L["user_message_select_profile_before_update"] = "Wähle ein Profil aus um es zu aktualisieren"
+  rgpvpw.L["user_message_select_profile_before_export"] = "Wähle ein Profil aus um es zu exportieren"
   rgpvpw.L["user_message_select_profile_already_exists"] = "Das Profil existiert bereits - wähle einen anderen Name"
   rgpvpw.L["user_message_add_new_profile_max_reached"] = "Eine maximale Anzahl von %s Profilen ist erlaubt. "
     .. "Du hast das maximum erreicht"
