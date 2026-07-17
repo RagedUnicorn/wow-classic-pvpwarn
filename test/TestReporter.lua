@@ -24,6 +24,12 @@
 
 -- luacheck: globals C_Timer GetTime time
 
+-- Test reporting for PVPWarn addon. Holds no module-global run state - all
+-- bookkeeping (current test group, current test, failed tests, test queues,
+-- message sequence) lives on the run context owned by TestSessionManager, so
+-- every run starts from a clean slate and a stranded run cannot leak state
+-- into the next one.
+
 local mod = rgpvpw
 local me = {}
 mod.testReporter = me
@@ -31,38 +37,20 @@ mod.testReporter = me
 me.tag = "TestReporter"
 
 -- forward declaration
+local GetRunContext
+local getMessageData
+local initializeTestLogStructure
+local logTestGroupStart
+local logTestGroupSummary
+local logFailedTests
+local logFinalSummary
+local playImmediateTests
+local playDelayedTests
 local executeTestFunction
-
-local testManager = {
-  ["currentTestGroup"] = nil,
-  ["currentTest"] = nil,
-  ["currentFailedTests"] = {}
-}
-
-local testQueueWithDelay = {}
-local testQueueImmediate = {}
 
 if PVPWarnTestLog == nil then
   PVPWarnTestLog = {}
 end
-
--- Global sequence counter for message ordering
-local messageSequence = 0
-
---[[
-  Get next sequence number and current timestamp for message ordering
-
-  @return {number, number} - sequence number, timestamp
-]]--
-local function getMessageData()
-  messageSequence = messageSequence + 1
-  local baseTime = time()
-  local gameTime = GetTime()
-  local fractionalSeconds = gameTime - math.floor(gameTime)
-  return messageSequence, baseTime + fractionalSeconds
-end
-
-
 
 --[[
   Reset SavedVariable for storing logs
@@ -73,36 +61,8 @@ function me.ClearSavedTestReports()
 end
 
 --[[
-  Initialize PVPWarnTestLog structure for a test group
-
-  @param {string} groupName
-]]--
-local function initializeTestLogStructure(groupName)
-  PVPWarnTestLog[groupName] = {}
-  PVPWarnTestLog[groupName].testCount = 0
-  PVPWarnTestLog[groupName].testSuccess = 0
-  PVPWarnTestLog[groupName].testFailure = 0
-end
-
---[[
-  Log and display test group start message
-
-  @param {string} groupName
-]]--
-local function logTestGroupStart(groupName)
-  local logMessage = string.format("Starting test group with name %s", groupName)
-  local sequence, timestamp = getMessageData()
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {message = logMessage, timestamp = timestamp, sequence = sequence, messageType = "INFO"}
-  )
-
-  me.NotifyTestLogWindow("=== Test Group: " .. groupName .. " ===", "GROUP_HEADER")
-  me.NotifyTestLogWindow(logMessage)
-end
-
---[[
-  Starting a new group of tests
+  Starting a new group of tests. Requires an active test session - the test
+  group's state is stored on the session's run context.
 
   @param {string} groupName
 ]]--
@@ -110,7 +70,14 @@ function me.StartTestGroup(groupName)
   assert(type(groupName) == "string",
     string.format("bad argument #1 to `StartTestGroup` (expected string got %s)", type(groupName)))
 
-  if testManager.currentTestGroup ~= nil then
+  local context = GetRunContext()
+
+  if context == nil then
+    mod.logger.LogError(me.tag, "Cannot start test group - no active test session")
+    return
+  end
+
+  if context.testGroupName ~= nil then
     mod.logger.LogError(me.tag, "A test group was already started. Stop the test group first before starting a new one")
     return
   end
@@ -118,132 +85,9 @@ function me.StartTestGroup(groupName)
   mod.testHelper.EnableTestMode()
   mod.testHelper.HookMaxWarnAge()
 
-  testManager.currentTestGroup = groupName
+  context.testGroupName = groupName
   initializeTestLogStructure(groupName)
-  logTestGroupStart(groupName)
-end
-
---[[
-  Force clear test manager state (recovery path for a stranded session).
-  Restores test mode only if a test group was active - RestoreMaxWarnAge
-  must not run without a prior HookMaxWarnAge.
-]]--
-function me.ForceResetTestManager()
-  if testManager.currentTestGroup ~= nil then
-    mod.testHelper.RestoreMaxWarnAge()
-    mod.testHelper.DisableTestMode()
-  end
-
-  testManager.currentTestGroup = nil
-  testManager.currentTest = nil
-  testManager.currentFailedTests = {}
-  testQueueWithDelay = {}
-  testQueueImmediate = {}
-  mod.logger.LogInfo(me.tag, "TestReporter state forcibly reset")
-end
-
---[[
-  Log and display individual test group summary lines
-
-  @param {string} groupName
-]]--
-local function logTestGroupSummary(groupName)
-  local finishedMessage = string.format("Finished test group with name: %s", groupName)
-  me.NotifyTestLogWindow(finishedMessage)
-  local sequence1, timestamp1 = getMessageData()
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {message = finishedMessage, timestamp = timestamp1, sequence = sequence1, messageType = "INFO"}
-  )
-
-  local succeededMessage = string.format("Tests succeeded: %i", PVPWarnTestLog[groupName].testSuccess)
-  me.NotifyTestLogWindow(succeededMessage, "SUCCESS")
-  local sequence2, timestamp2 = getMessageData()
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {message = succeededMessage, timestamp = timestamp2, sequence = sequence2, messageType = "SUCCESS"}
-  )
-
-  local failedMessage = string.format("Tests failed: %i", PVPWarnTestLog[groupName].testFailure)
-  local failedMessageType = PVPWarnTestLog[groupName].testFailure > 0 and "FAILURE" or "INFO"
-  me.NotifyTestLogWindow(failedMessage, failedMessageType)
-  local sequence3, timestamp3 = getMessageData()
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {message = failedMessage, timestamp = timestamp3, sequence = sequence3, messageType = failedMessageType}
-  )
-
-  local totalMessage = string.format("Tests total: %i", PVPWarnTestLog[groupName].testCount)
-  me.NotifyTestLogWindow(totalMessage, "INFO")
-  local sequence4, timestamp4 = getMessageData()
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {message = totalMessage, timestamp = timestamp4, sequence = sequence4, messageType = "INFO"}
-  )
-end
-
---[[
-  Log and display failed test details
-
-  @param {string} groupName
-]]--
-local function logFailedTests(groupName)
-  if #testManager.currentFailedTests == 0 then
-    return
-  end
-
-  local failedTestsMessage = "Failed tests:"
-  me.NotifyTestLogWindow(failedTestsMessage, "FAILURE")
-  local failedSequence, failedTimestamp = getMessageData()
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {
-      message = failedTestsMessage,
-      timestamp = failedTimestamp,
-      sequence = failedSequence,
-      messageType = "FAILURE"
-    }
-  )
-
-  for i = 1, #testManager.currentFailedTests do
-    me.NotifyTestLogWindow(testManager.currentFailedTests[i], "FAILURE")
-    local testSequence, testTimestamp = getMessageData()
-    table.insert(
-      PVPWarnTestLog[groupName],
-      {
-        message = testManager.currentFailedTests[i],
-        timestamp = testTimestamp,
-        sequence = testSequence,
-        messageType = "FAILURE"
-      }
-    )
-  end
-end
-
---[[
-  Log and display final summary statistics
-
-  @param {string} groupName
-]]--
-local function logFinalSummary(groupName)
-  local summaryStats = string.format("Total: %d, Success: %d, Failure: %d",
-    PVPWarnTestLog[groupName].testCount,
-    PVPWarnTestLog[groupName].testSuccess,
-    PVPWarnTestLog[groupName].testFailure)
-
-  me.NotifyTestLogWindow(summaryStats, "INFO")
-  local summarySequence, summaryTimestamp = getMessageData()
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {
-      message = summaryStats,
-      timestamp = summaryTimestamp,
-      sequence = summarySequence,
-      messageType = "INFO"
-    }
-  )
-
-  me.NotifyTestLogWindow("", "SEPARATOR")
+  logTestGroupStart(context, groupName)
 end
 
 --[[
@@ -252,22 +96,24 @@ end
   @param {function} completionCallback - Optional callback to call after test group cleanup
 ]]--
 function me.StopTestGroup(completionCallback)
-  if testManager.currentTestGroup == nil then
+  local context = GetRunContext()
+
+  if context == nil or context.testGroupName == nil then
     mod.logger.LogError(me.tag, "No running test group found to stop")
     return
   end
 
-  local groupName = testManager.currentTestGroup
+  local groupName = context.testGroupName
 
-  logFailedTests(groupName)
-  logTestGroupSummary(groupName)
-  logFinalSummary(groupName)
+  logFailedTests(context, groupName)
+  logTestGroupSummary(context, groupName)
+  logFinalSummary(context, groupName)
 
   mod.testHelper.RestoreMaxWarnAge()
   mod.testHelper.DisableTestMode()
 
-  testManager.currentTestGroup = nil
-  testManager.currentFailedTests = {}
+  context.testGroupName = nil
+  context.failedTests = {}
 
   if type(completionCallback) == "function" then
     completionCallback(groupName)
@@ -283,22 +129,24 @@ function me.StartTestRun(testName)
   assert(type(testName) == "string",
     string.format("bad argument #1 to `StartTestRun` (expected string got %s)", type(testName)))
 
-  if testManager.currentTestGroup == nil then
+  local context = GetRunContext()
+
+  if context == nil or context.testGroupName == nil then
     mod.logger.LogError(me.tag, "No current test group found. Every test has to be part of a test group.")
     return
   end
 
-  testManager.currentTest = testName
-  PVPWarnTestLog[testManager.currentTestGroup].testCount = PVPWarnTestLog[testManager.currentTestGroup].testCount + 1
+  context.currentTest = testName
+  PVPWarnTestLog[context.testGroupName].testCount = PVPWarnTestLog[context.testGroupName].testCount + 1
 
   local logMessage = string.format("Starting test with name %s", testName)
 
   me.NotifyTestLogWindow(logMessage, "INFO")
-  PVPWarnTestLog[testManager.currentTestGroup][testName] = {}
-  PVPWarnTestLog[testManager.currentTestGroup][testName].status = nil
-  local sequence, timestamp = getMessageData()
+  PVPWarnTestLog[context.testGroupName][testName] = {}
+  PVPWarnTestLog[context.testGroupName][testName].status = nil
+  local sequence, timestamp = getMessageData(context)
   table.insert(
-    PVPWarnTestLog[testManager.currentTestGroup][testName],
+    PVPWarnTestLog[context.testGroupName][testName],
     {
       message = logMessage,
       timestamp = timestamp,
@@ -312,20 +160,22 @@ end
   Report a test as success
 ]]--
 function me.ReportSuccessTestRun()
-  if testManager.currentTest == nil then
+  local context = GetRunContext()
+
+  if context == nil or context.currentTest == nil then
     mod.logger.LogError(me.tag, "Cannot report test status because there was no test started")
     return
   end
 
-  local logMessage = string.format("Test with name %s finished with status SUCCESS", testManager.currentTest)
+  local logMessage = string.format("Test with name %s finished with status SUCCESS", context.currentTest)
 
   me.NotifyTestLogWindow(logMessage, "SUCCESS")
-  PVPWarnTestLog[testManager.currentTestGroup].testSuccess =
-    PVPWarnTestLog[testManager.currentTestGroup].testSuccess + 1
-  PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest].status = "SUCCESS"
-  local sequence, timestamp = getMessageData()
+  PVPWarnTestLog[context.testGroupName].testSuccess =
+    PVPWarnTestLog[context.testGroupName].testSuccess + 1
+  PVPWarnTestLog[context.testGroupName][context.currentTest].status = "SUCCESS"
+  local sequence, timestamp = getMessageData(context)
   table.insert(
-    PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest],
+    PVPWarnTestLog[context.testGroupName][context.currentTest],
     {
       message = logMessage,
       timestamp = timestamp,
@@ -334,7 +184,7 @@ function me.ReportSuccessTestRun()
     }
   )
 
-  testManager.currentTest = nil
+  context.currentTest = nil
 end
 
 --[[
@@ -346,20 +196,22 @@ end
     Option reason why a failure is getting reported
 ]]--
 function me.ReportFailureTestRun(category, testName, reason)
-  if testManager.currentTest == nil then
+  local context = GetRunContext()
+
+  if context == nil or context.currentTest == nil then
     mod.logger.LogError(me.tag, "Cannot report test status because there was no test started")
     return
   end
 
-  local logMessage = string.format("Test with name %s finished with status FAILURE", testManager.currentTest)
+  local logMessage = string.format("Test with name %s finished with status FAILURE", context.currentTest)
 
   me.NotifyTestLogWindow(logMessage, "FAILURE")
   if reason then
     local failureDetail = category .. " : " .. testName .. " - " .. reason
     me.NotifyTestLogWindow(failureDetail, "FAILURE")
-    local sequence, timestamp = getMessageData()
+    local sequence, timestamp = getMessageData(context)
     table.insert(
-      PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest],
+      PVPWarnTestLog[context.testGroupName][context.currentTest],
       {
         message = failureDetail,
         timestamp = timestamp,
@@ -369,12 +221,12 @@ function me.ReportFailureTestRun(category, testName, reason)
     )
   end
 
-  PVPWarnTestLog[testManager.currentTestGroup].testFailure =
-    PVPWarnTestLog[testManager.currentTestGroup].testFailure + 1
-  PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest].status = "FAILURE"
-  local sequence, timestamp = getMessageData()
+  PVPWarnTestLog[context.testGroupName].testFailure =
+    PVPWarnTestLog[context.testGroupName].testFailure + 1
+  PVPWarnTestLog[context.testGroupName][context.currentTest].status = "FAILURE"
+  local sequence, timestamp = getMessageData(context)
   table.insert(
-    PVPWarnTestLog[testManager.currentTestGroup][testManager.currentTest],
+    PVPWarnTestLog[context.testGroupName][context.currentTest],
     {
       message = logMessage,
       timestamp = timestamp,
@@ -382,9 +234,9 @@ function me.ReportFailureTestRun(category, testName, reason)
       messageType = "FAILURE"
     }
   )
-  table.insert(testManager.currentFailedTests, category .. " - " .. testName)
+  table.insert(context.failedTests, category .. " - " .. testName)
 
-  testManager.currentTest = nil
+  context.currentTest = nil
 end
 
 --[[
@@ -393,7 +245,14 @@ end
     testfunction to execute
 ]]--
 function me.AddToTestQueueWithDelay(testFunction)
-  table.insert(testQueueWithDelay, testFunction)
+  local context = GetRunContext()
+
+  if context == nil then
+    mod.logger.LogError(me.tag, "Cannot queue test - no active test session")
+    return
+  end
+
+  table.insert(context.testQueueWithDelay, testFunction)
 end
 
 --[[
@@ -402,7 +261,14 @@ end
     testfunction to execute
 ]]--
 function me.AddToTestQueueImmediate(testFunction)
-  table.insert(testQueueImmediate, testFunction)
+  local context = GetRunContext()
+
+  if context == nil then
+    mod.logger.LogError(me.tag, "Cannot queue test - no active test session")
+    return
+  end
+
+  table.insert(context.testQueueImmediate, testFunction)
 end
 
 --[[
@@ -411,48 +277,15 @@ end
     Callback function that is invoked once all test queues are empty/done
 ]]--
 function me.PlayTestQueueWithDelay(callback)
-  -- First execute all immediate tests
-  if #testQueueImmediate > 0 then
-    me.PlayTestQueueImmediate(function()
-      -- After immediate tests are done, start delayed tests
-      me.PlayDelayedTests(callback)
-    end)
-  else
-    -- No immediate tests, start delayed tests directly
-    me.PlayDelayedTests(callback)
-  end
-end
+  local context = GetRunContext()
 
---[[
-  Execute immediate tests without delay
-  @param {function} callback
-    Callback function that is invoked once the immediate queue is empty
-]]--
-function me.PlayTestQueueImmediate(callback)
-  while testQueueImmediate[1] ~= nil do
-    executeTestFunction(testQueueImmediate[1])
-    table.remove(testQueueImmediate, 1)
-  end
-  callback()
-end
-
---[[
-  Execute delayed tests with 0.8s delay between each
-  @param {function} callback
-    Callback function that is invoked once the delayed queue is empty/done
-]]--
-function me.PlayDelayedTests(callback)
-  if testQueueWithDelay[1] ~= nil then
-    executeTestFunction(testQueueWithDelay[1])
-    table.remove(testQueueWithDelay, 1)
-  else
-    callback()
-    return -- queue is empty abort...
+  if context == nil then
+    mod.logger.LogError(me.tag, "Cannot play test queue - no active test session")
+    return
   end
 
-  C_Timer.After(0.8, function()
-    me.PlayDelayedTests(callback)
-  end)
+  playImmediateTests(context)
+  playDelayedTests(context, callback)
 end
 
 --[[
@@ -476,20 +309,221 @@ function me.NotifyTestLogWindow(message, messageType)
 end
 
 --[[
+  Resolve the run context of the active test session
+
+  @return {table|nil} - The active run context or nil if no session is running
+]]--
+GetRunContext = function()
+  return mod.testSessionManager.GetRunContext()
+end
+
+--[[
+  Get next sequence number and current timestamp for message ordering
+
+  @param {table} context - The run context owning the sequence counter
+
+  @return {number, number} - sequence number, timestamp
+]]--
+getMessageData = function(context)
+  context.messageSequence = context.messageSequence + 1
+  local baseTime = time()
+  local gameTime = GetTime()
+  local fractionalSeconds = gameTime - math.floor(gameTime)
+  return context.messageSequence, baseTime + fractionalSeconds
+end
+
+--[[
+  Initialize PVPWarnTestLog structure for a test group
+
+  @param {string} groupName
+]]--
+initializeTestLogStructure = function(groupName)
+  PVPWarnTestLog[groupName] = {}
+  PVPWarnTestLog[groupName].testCount = 0
+  PVPWarnTestLog[groupName].testSuccess = 0
+  PVPWarnTestLog[groupName].testFailure = 0
+end
+
+--[[
+  Log and display test group start message
+
+  @param {table} context - The active run context
+  @param {string} groupName
+]]--
+logTestGroupStart = function(context, groupName)
+  local logMessage = string.format("Starting test group with name %s", groupName)
+  local sequence, timestamp = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = logMessage, timestamp = timestamp, sequence = sequence, messageType = "INFO"}
+  )
+
+  me.NotifyTestLogWindow("=== Test Group: " .. groupName .. " ===", "GROUP_HEADER")
+  me.NotifyTestLogWindow(logMessage)
+end
+
+--[[
+  Log and display individual test group summary lines
+
+  @param {table} context - The active run context
+  @param {string} groupName
+]]--
+logTestGroupSummary = function(context, groupName)
+  local finishedMessage = string.format("Finished test group with name: %s", groupName)
+  me.NotifyTestLogWindow(finishedMessage)
+  local sequence1, timestamp1 = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = finishedMessage, timestamp = timestamp1, sequence = sequence1, messageType = "INFO"}
+  )
+
+  local succeededMessage = string.format("Tests succeeded: %i", PVPWarnTestLog[groupName].testSuccess)
+  me.NotifyTestLogWindow(succeededMessage, "SUCCESS")
+  local sequence2, timestamp2 = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = succeededMessage, timestamp = timestamp2, sequence = sequence2, messageType = "SUCCESS"}
+  )
+
+  local failedMessage = string.format("Tests failed: %i", PVPWarnTestLog[groupName].testFailure)
+  local failedMessageType = PVPWarnTestLog[groupName].testFailure > 0 and "FAILURE" or "INFO"
+  me.NotifyTestLogWindow(failedMessage, failedMessageType)
+  local sequence3, timestamp3 = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = failedMessage, timestamp = timestamp3, sequence = sequence3, messageType = failedMessageType}
+  )
+
+  local totalMessage = string.format("Tests total: %i", PVPWarnTestLog[groupName].testCount)
+  me.NotifyTestLogWindow(totalMessage, "INFO")
+  local sequence4, timestamp4 = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = totalMessage, timestamp = timestamp4, sequence = sequence4, messageType = "INFO"}
+  )
+end
+
+--[[
+  Log and display failed test details
+
+  @param {table} context - The active run context
+  @param {string} groupName
+]]--
+logFailedTests = function(context, groupName)
+  if #context.failedTests == 0 then
+    return
+  end
+
+  local failedTestsMessage = "Failed tests:"
+  me.NotifyTestLogWindow(failedTestsMessage, "FAILURE")
+  local failedSequence, failedTimestamp = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {
+      message = failedTestsMessage,
+      timestamp = failedTimestamp,
+      sequence = failedSequence,
+      messageType = "FAILURE"
+    }
+  )
+
+  for i = 1, #context.failedTests do
+    me.NotifyTestLogWindow(context.failedTests[i], "FAILURE")
+    local testSequence, testTimestamp = getMessageData(context)
+    table.insert(
+      PVPWarnTestLog[groupName],
+      {
+        message = context.failedTests[i],
+        timestamp = testTimestamp,
+        sequence = testSequence,
+        messageType = "FAILURE"
+      }
+    )
+  end
+end
+
+--[[
+  Log and display final summary statistics
+
+  @param {table} context - The active run context
+  @param {string} groupName
+]]--
+logFinalSummary = function(context, groupName)
+  local summaryStats = string.format("Total: %d, Success: %d, Failure: %d",
+    PVPWarnTestLog[groupName].testCount,
+    PVPWarnTestLog[groupName].testSuccess,
+    PVPWarnTestLog[groupName].testFailure)
+
+  me.NotifyTestLogWindow(summaryStats, "INFO")
+  local summarySequence, summaryTimestamp = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {
+      message = summaryStats,
+      timestamp = summaryTimestamp,
+      sequence = summarySequence,
+      messageType = "INFO"
+    }
+  )
+
+  me.NotifyTestLogWindow("", "SEPARATOR")
+end
+
+--[[
+  Execute immediate tests without delay
+
+  @param {table} context - The run context whose immediate queue is drained
+]]--
+playImmediateTests = function(context)
+  while context.testQueueImmediate[1] ~= nil do
+    executeTestFunction(context, context.testQueueImmediate[1])
+    table.remove(context.testQueueImmediate, 1)
+  end
+end
+
+--[[
+  Execute delayed tests with 0.8s delay between each. The timer chain captures its
+  run context - if that run was cancelled (completed or force reset) a still-pending
+  timer does nothing instead of draining a newer run's queue.
+
+  @param {table} context - The run context whose delayed queue is drained
+  @param {function} callback
+    Callback function that is invoked once the delayed queue is empty/done
+]]--
+playDelayedTests = function(context, callback)
+  if context.cancelled then
+    return
+  end
+
+  if context.testQueueWithDelay[1] == nil then
+    callback()
+    return -- queue is empty abort...
+  end
+
+  executeTestFunction(context, context.testQueueWithDelay[1])
+  table.remove(context.testQueueWithDelay, 1)
+
+  C_Timer.After(0.8, function()
+    playDelayedTests(context, callback)
+  end)
+end
+
+--[[
   Execute a queued test function with error isolation. A thrown error must not
   abort the queue - it would strand the session with no way to recover short
   of a reload. An error in a started test is reported as its failure.
 
+  @param {table} context - The run context the test executes under
   @param {function} testFunction
 ]]--
-executeTestFunction = function(testFunction)
+executeTestFunction = function(context, testFunction)
   local status, err = pcall(testFunction)
 
   if not status then
     mod.logger.LogError(me.tag, "Test function failed with error: " .. tostring(err))
 
-    if testManager.currentTest ~= nil then
-      me.ReportFailureTestRun("LuaError", testManager.currentTest, tostring(err))
+    if context.currentTest ~= nil then
+      me.ReportFailureTestRun("LuaError", context.currentTest, tostring(err))
     end
   end
 end

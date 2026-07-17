@@ -193,15 +193,17 @@ function me.DisableTestMode()
 end
 
 --[[
-  Active test branch. The test runner sets this before each pass (`classic` / `sod` / `tbc`) so
-  the facades and validators assemble the correct map for that pass. Defaults to "classic" so
-  any code that consults it without an explicit set sees a sensible value.
+  Fallback active test branch for when no test session (and therefore no run context) is
+  active. During a run the branch lives on the session's run context, so it always starts
+  at "classic" and cannot leak between runs; this fallback keeps consumers like the spell
+  map facades functional outside a session.
 ]]--
-local activeBranch = "classic"
+local fallbackActiveBranch = "classic"
 
 --[[
-  Set the active test branch. Invalidates the facades' assembled-map caches so the next
-  GetSpellMap / GetSpellAvoidMap call returns the new branch's map.
+  Set the active test branch. The test runner sets this before each pass
+  (`classic` / `sod` / `tbc`) so the facades and validators assemble the correct map for
+  that pass. Stored on the active session's run context when one exists.
 
   @param {string} branch
     One of "classic", "sod", "tbc".
@@ -209,7 +211,14 @@ local activeBranch = "classic"
 function me.SetActiveBranch(branch)
   assert(branch == "classic" or branch == "sod" or branch == "tbc",
     string.format("SetActiveBranch: invalid branch %q (expected classic/sod/tbc)", tostring(branch)))
-  activeBranch = branch
+
+  local context = mod.testSessionManager.GetRunContext()
+
+  if context ~= nil then
+    context.activeBranch = branch
+  else
+    fallbackActiveBranch = branch
+  end
 end
 
 --[[
@@ -217,7 +226,13 @@ end
     The currently active test branch.
 ]]--
 function me.GetActiveBranch()
-  return activeBranch
+  local context = mod.testSessionManager.GetRunContext()
+
+  if context ~= nil then
+    return context.activeBranch
+  end
+
+  return fallbackActiveBranch
 end
 
 --[[
@@ -277,7 +292,7 @@ end
 ]]--
 function me.ResolveTestFunction(prefix, categoryName, functionName)
   local categoryUp = me.FirstToUpper(categoryName)
-  local branchUp = me.FirstToUpper(activeBranch)
+  local branchUp = me.FirstToUpper(me.GetActiveBranch())
   local primary = mod[prefix .. categoryUp .. branchUp]
 
   if primary and type(primary[functionName]) == "function" then
@@ -304,6 +319,7 @@ end
 ]]--
 function me.GetSpellMapForActiveBranch()
   local overlays = {}
+  local activeBranch = me.GetActiveBranch()
 
   if activeBranch == "sod" then
     table.insert(overlays, mod.spellMapOverlaySod.GetOverlay())
@@ -321,6 +337,7 @@ end
 ]]--
 function me.GetSpellAvoidMapForActiveBranch()
   local overlays = {}
+  local activeBranch = me.GetActiveBranch()
 
   if activeBranch == "sod" then
     table.insert(overlays, mod.spellAvoidMapOverlaySod.GetOverlay())

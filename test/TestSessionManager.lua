@@ -35,16 +35,18 @@ mod.testSessionManager = me
 
 me.tag = "TestSessionManager"
 
--- Session state tracking
-local currentSession = {
-  isActive = false,
-  sessionName = nil,
-  sessionId = nil,
-  commandType = nil,
-  commandCategory = nil,
-  startTime = nil
-}
+-- forward declaration
+local CreateRunContext
 
+--[[
+  The active run context, or nil when no session is running. Created by StartSession
+  and dropped on completion or force reset. All mutable test framework state for a
+  run - session identity, reporter bookkeeping, the test queues and the active
+  branch - lives on this table, so a finished or abandoned run can never leak state
+  into the next one. Async callbacks (delayed-queue timers, completion callbacks)
+  capture their run's context and go dead with it instead of corrupting a new run.
+]]--
+local runContext = nil
 
 --[[
   Check if a test session is currently active
@@ -52,7 +54,18 @@ local currentSession = {
   @return {boolean} - True if a session is active
 ]]--
 function me.IsSessionActive()
-  return currentSession.isActive
+  return runContext ~= nil
+end
+
+--[[
+  Get the active run context. TestReporter and TestHelper resolve their per-run
+  state through this accessor; framework-internal async chains capture the returned
+  table directly so they stay bound to their own run.
+
+  @return {table|nil} - The active run context or nil if no session is running
+]]--
+function me.GetRunContext()
+  return runContext
 end
 
 --[[
@@ -61,30 +74,17 @@ end
   @return {table|nil} - Current session info or nil if no active session
 ]]--
 function me.GetCurrentSession()
-  if currentSession.isActive then
-    return {
-      sessionName = currentSession.sessionName,
-      sessionId = currentSession.sessionId,
-      commandType = currentSession.commandType,
-      commandCategory = currentSession.commandCategory,
-      startTime = currentSession.startTime
-    }
+  if runContext == nil then
+    return nil
   end
 
-  return nil
-end
-
---[[
-  Generate a session name based on command type and category
-
-  @param {string} commandType - Type of command (e.g., "Sound", "CombatEvent", "SelfSound", "EnemySound")
-  @param {string} category - Category name (e.g., "mage", "all")
-
-  @return {string} - Generated session name
-]]--
-local function GenerateSessionName(commandType, category)
-  local timestamp = date("%Y%m%d_%H%M%S")
-  return string.format("%s_%s_%s", commandType, category, timestamp)
+  return {
+    sessionName = runContext.sessionName,
+    sessionId = runContext.sessionId,
+    commandType = runContext.commandType,
+    commandCategory = runContext.commandCategory,
+    startTime = runContext.startTime
+  }
 end
 
 --[[
@@ -97,26 +97,19 @@ end
   @return {boolean} - True if session started successfully
 ]]--
 function me.StartSession(commandType, category, testFunction)
-  if currentSession.isActive then
+  if runContext ~= nil then
     mod.logger.LogError(me.tag,
-      "Cannot start new session - session '" .. currentSession.sessionName .. "' is already active")
+      "Cannot start new session - session '" .. runContext.sessionName .. "' is already active")
 
     return false
   end
 
-  local sessionName = GenerateSessionName(commandType, category)
-  local sessionId = date("%Y%m%d_%H%M%S")
+  local context = CreateRunContext(commandType, category)
+  runContext = context
 
-  currentSession.isActive = true
-  currentSession.sessionName = sessionName
-  currentSession.sessionId = sessionId
-  currentSession.commandType = commandType
-  currentSession.commandCategory = category
-  currentSession.startTime = date("%Y-%m-%d %H:%M:%S")
+  mod.logger.LogInfo(me.tag, "Starting test session: " .. context.sessionName)
 
-  mod.logger.LogInfo(me.tag, "Starting test session: " .. sessionName)
-
-  mod.testReporter.StartTestGroup(sessionName)
+  mod.testReporter.StartTestGroup(context.sessionName)
 
   if mod.testLogWindow and mod.testLogWindow.OnSessionStart then
     mod.testLogWindow.OnSessionStart()
@@ -127,7 +120,8 @@ function me.StartSession(commandType, category, testFunction)
     local status, err = pcall(testFunction, completionCallback)
 
     if not status then
-      mod.logger.LogError(me.tag, "Test session '" .. sessionName .. "' failed with error: " .. tostring(err))
+      mod.logger.LogError(me.tag,
+        "Test session '" .. context.sessionName .. "' failed with error: " .. tostring(err))
       completionCallback()
     end
   end
@@ -139,51 +133,90 @@ end
   Force reset the session state without running the normal completion flow.
   Recovery path for a stranded session where the completion callback can no
   longer be reached (e.g. a test errored inside an async timer callback).
+  Cancelling the context makes any still-scheduled async callback of the
+  stranded run a no-op.
 ]]--
 function me.ForceResetSession()
-  if not currentSession.isActive then
+  if runContext == nil then
     mod.logger.LogInfo(me.tag, "No active test session to reset")
     return
   end
 
-  mod.logger.LogWarn(me.tag, "Forcibly resetting test session: " .. currentSession.sessionName)
+  mod.logger.LogWarn(me.tag, "Forcibly resetting test session: " .. runContext.sessionName)
 
-  currentSession.isActive = false
-  currentSession.sessionName = nil
-  currentSession.sessionId = nil
-  currentSession.commandType = nil
-  currentSession.commandCategory = nil
-  currentSession.startTime = nil
+  -- Restore test mode only if the test group made it far enough to install the
+  -- hooks - RestoreMaxWarnAge must not run without a prior HookMaxWarnAge
+  if runContext.testGroupName ~= nil then
+    mod.testHelper.RestoreMaxWarnAge()
+    mod.testHelper.DisableTestMode()
+  end
+
+  runContext.cancelled = true
+  runContext = nil
 end
 
 --[[
-  Create a completion callback for test functions to call when they finish
+  Create a completion callback for test functions to call when they finish.
+  The callback is bound to the run context active at creation time - if that run
+  was force reset (or already completed) in the meantime it does nothing instead
+  of tearing down a newer session.
 
   @return {function} - Completion callback that handles session cleanup
 ]]--
 function me.CreateCompletionCallback()
+  local context = runContext
+
   return function()
-    if currentSession.isActive then
-      local completedSessionName = currentSession.sessionName
-
-      mod.logger.LogInfo(me.tag, "Test session completed: " .. completedSessionName)
-
-      -- Create the session cleanup callback
-      local sessionCleanupCallback = function()
-        currentSession.isActive = false
-        currentSession.sessionName = nil
-        currentSession.sessionId = nil
-        currentSession.commandType = nil
-        currentSession.commandCategory = nil
-        currentSession.startTime = nil
-
-        if mod.testLogWindow and mod.testLogWindow.OnSessionEnd then
-          mod.testLogWindow.OnSessionEnd(completedSessionName)
-        end
-      end
-
-      -- Call StopTestGroup with the cleanup callback
-      mod.testReporter.StopTestGroup(sessionCleanupCallback)
+    if context == nil or context ~= runContext then
+      return
     end
+
+    local completedSessionName = context.sessionName
+
+    mod.logger.LogInfo(me.tag, "Test session completed: " .. completedSessionName)
+
+    -- Create the session cleanup callback
+    local sessionCleanupCallback = function()
+      context.cancelled = true
+      runContext = nil
+
+      if mod.testLogWindow and mod.testLogWindow.OnSessionEnd then
+        mod.testLogWindow.OnSessionEnd(completedSessionName)
+      end
+    end
+
+    -- Call StopTestGroup with the cleanup callback
+    mod.testReporter.StopTestGroup(sessionCleanupCallback)
   end
+end
+
+--[[
+  Create a fresh run context for a starting session
+
+  @param {string} commandType - Type of command (e.g., "Sound", "CombatEvent", "Validation", "All")
+  @param {string} category - Category name (e.g., "mage", "all")
+
+  @return {table} - The new run context
+]]--
+CreateRunContext = function(commandType, category)
+  local timestamp = date("%Y%m%d_%H%M%S")
+
+  return {
+    sessionName = string.format("%s_%s_%s", commandType, category, timestamp),
+    sessionId = timestamp,
+    commandType = commandType,
+    commandCategory = category,
+    startTime = date("%Y-%m-%d %H:%M:%S"),
+    -- set when the run ends (normally or forcibly); stale async callbacks check it
+    cancelled = false,
+    -- test branch consumed by spell map assembly and test-case discovery (TestHelper)
+    activeBranch = "classic",
+    -- reporter state (owned by TestReporter)
+    testGroupName = nil,
+    currentTest = nil,
+    failedTests = {},
+    messageSequence = 0,
+    testQueueWithDelay = {},
+    testQueueImmediate = {}
+  }
 end

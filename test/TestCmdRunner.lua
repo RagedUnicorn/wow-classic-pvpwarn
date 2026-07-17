@@ -73,9 +73,9 @@ function me.HandleTestCommand(commandType, testCommand, branchArg, availableCate
       local index = 1
 
       --[[
-        Categories must run one at a time — the delayed test queue, active branch and
-        session state are shared singletons; concurrent categories would drain each
-        other's queue and attribute results to the wrong branch.
+        Categories must run one at a time — the run owns a single test queue and a
+        single active branch on its run context; concurrent categories would drain
+        each other's queue and attribute results to the wrong branch.
       ]]--
       local function runNextCategory()
         if index > #categoryList then

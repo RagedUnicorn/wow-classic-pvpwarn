@@ -47,33 +47,32 @@ mod.testSound = me
 
 me.tag = "TestSound"
 
-local testGroupName = "ShouldHaveSoundTestForAllSpells"
-
 --[[
+  Run all sound coverage validators. Reporter state lives on the session's run
+  context, so outside an active session a new session is started for the run.
+
   @param {string} categoryName
     Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
 function me.Test(categoryName)
-  local isUsingSessionManager = false
-
-  -- Check if session manager is handling test group management
-  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
-    -- Session manager is active, just collect tests without managing test group
-    isUsingSessionManager = true
-  else
-    -- No session manager, handle test group ourselves
-    mod.testReporter.StartTestGroup(testGroupName)
+  local runValidators = function()
+    me.ShouldHaveSoundTestForAllSpells(categoryName)
+    me.ShouldHaveSoundDownTestForAllSpells(categoryName)
+    me.ShouldHaveSoundRefreshTestForAllSpells(categoryName)
+    me.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName)
+    me.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName)
   end
 
-  me.ShouldHaveSoundTestForAllSpells(categoryName)
-  me.ShouldHaveSoundDownTestForAllSpells(categoryName)
-  me.ShouldHaveSoundRefreshTestForAllSpells(categoryName)
-  me.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName)
-  me.ShouldHaveSoundAvoidTestForAllSpells(RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName)
-
-  if not isUsingSessionManager then
-    mod.testReporter.StopTestGroup()
+  if mod.testSessionManager.IsSessionActive() then
+    -- run within the already-active session's test group
+    runValidators()
+    return
   end
+
+  mod.testSessionManager.StartSession("Validation", categoryName or "sound", function(completionCallback)
+    runValidators()
+    completionCallback()
+  end)
 end
 
 --[[

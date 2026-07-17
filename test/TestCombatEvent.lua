@@ -43,42 +43,41 @@ mod.testCombatEvent = me
 
 me.tag = "TestCombatEvent"
 
-local testGroupName = "ShouldHaveCombatEventTestForAllTrackedEvents"
-
 --[[
+  Run all combat event coverage validators. Reporter state lives on the session's
+  run context, so outside an active session a new session is started for the run.
+
   @param {string} categoryName
     Optional valid categoryName such as "priest", "warrior" etc.
 ]]--
 function me.Test(categoryName)
-  local isUsingSessionManager = false
+  local runValidators = function()
+    me.ShouldHaveCombatEventTestForAllTrackedEvents(categoryName)
 
-  -- Check if session manager is handling test group management
-  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
-    -- Session manager is active, just collect tests without managing test group
-    isUsingSessionManager = true
-  else
-    -- No session manager, handle test group ourselves
-    mod.testReporter.StartTestGroup(testGroupName)
+    me.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName
+    )
+    me.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName
+    )
+    me.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName
+    )
+    me.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
+      RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName
+    )
   end
 
-  me.ShouldHaveCombatEventTestForAllTrackedEvents(categoryName)
-
-  me.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName
-  )
-  me.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.SELF_AVOID, categoryName
-  )
-  me.ShouldHaveCombatEventAvoidTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName
-  )
-  me.ShouldHaveCombatEventAvoidIrrelevantTestForAllTrackedEvents(
-    RGPVPW_CONSTANTS.SPELL_AVOID_TYPE.ENEMY_AVOID, categoryName
-  )
-
-  if not isUsingSessionManager then
-    mod.testReporter.StopTestGroup()
+  if mod.testSessionManager.IsSessionActive() then
+    -- run within the already-active session's test group
+    runValidators()
+    return
   end
+
+  mod.testSessionManager.StartSession("Validation", categoryName or "combatevent", function(completionCallback)
+    runValidators()
+    completionCallback()
+  end)
 end
 
 --[[

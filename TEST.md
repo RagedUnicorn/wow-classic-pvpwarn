@@ -51,16 +51,18 @@ the aggregate entry point in `test/TestAll.lua`:
 
 `TestAll` first runs the coverage validators for each branch, then enqueues and plays every
 sound and combat-event test (including self-avoid and enemy-avoid variants) for that branch.
-It manages its own test session group, so unlike the per-category modules it can be invoked
-directly via `/run`. The test log window does not open automatically for `TestAll` - open it
-first with `/rgpvpw testlog show` to watch results stream in as the queue plays.
+It starts a regular test session through `mod.testSessionManager`, so unlike the per-category
+modules it can be invoked directly via `/run`, and its results appear in the test log window's
+session dropdown like any slash-command run. The test log window does not open automatically
+for `TestAll` - open it first with `/rgpvpw testlog show` to watch results stream in as the
+queue plays.
 
 ### Command Line Interface
 
 Individual categories are run through `/rgpvpw` slash commands. **Do not call a per-category
 test module's `Test()` function directly with `/run`** - those modules check for an active test
 session and abort with an error pointing you back to the slash command. `TestAll` (above) is the
-only supported `/run` entry point because it sets up its own session group.
+only supported `/run` entry point; it starts its own test session.
 
 #### Available Test Commands
 
@@ -73,6 +75,7 @@ only supported `/run` entry point because it sets up its own session group.
 /rgpvpw testselfcombatevent <category> [branch]   - Run self-avoid combat event tests
 /rgpvpw testenemycombatevent <category> [branch]  - Run enemy-avoid combat event tests
 /rgpvpw testvalidation <suite> [branch]           - Run a test-coverage validation suite
+/rgpvpw testreset                                 - Force-reset a stuck test session
 ```
 
 Running any command with no arguments prints its inline help.
@@ -202,8 +205,15 @@ test sessions.
 ### Test Session System
 
 Per-category tests run inside a test session managed by `mod.testSessionManager`. The
-slash-command handlers call `StartSession(...)`, which establishes the active session before any
-test module runs. Each test module guards against being invoked outside a session:
+slash-command handlers call `StartSession(...)`, which creates a per-run context and
+establishes the active session before any test module runs. All mutable framework state for a
+run - the current test group, the current test, the failed-test list, the test queues and the
+active branch - lives on that run context; `TestReporter` and `TestHelper` hold no run state of
+their own. Each run therefore starts from a clean slate, and async callbacks (delayed-queue
+timers, completion callbacks) capture their run's context and go dead with it, so a stranded or
+force-reset run can never bleed into the next one. `/rgpvpw testreset` drops the active context
+to recover a stuck session without a `/reload`. Each test module guards against being invoked
+outside a session:
 
 ```lua
 function me.Test(completionCallback)
@@ -229,8 +239,10 @@ end
 - `me.Test(completionCallback)` chains into the next branch/category via its callback, which is
   how the runner sequences multiple branches and the `all` category.
 - Direct `/run` calls to a per-category module's `Test()` bypass session management and abort.
-- `rgpvpw.testAll.TestAll()` is the exception - it sets up its own session group and is the
+- `rgpvpw.testAll.TestAll()` is the exception - it starts its own test session and is the
   supported way to run everything via `/run`.
+- `/rgpvpw testreset` force-resets a stuck session (restores test mode, cancels the run context)
+  so the next test command starts cleanly without a `/reload`.
 
 ### Test Case Collection
 

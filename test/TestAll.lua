@@ -31,6 +31,10 @@
   optional branch arg is provided. For each branch the active branch is set before validators and
   CollectTestCases run so the assembled spell map and the discovery lookups all target that
   branch's content.
+
+  Runs through the standard test session (TestSessionManager.StartSession), so results are
+  recorded under a generated session name and show up in the test log window's session dropdown
+  like any slash-command run.
 ]]--
 
 local mod = rgpvpw
@@ -39,7 +43,8 @@ mod.testAll = me
 
 me.tag = "TestAll"
 
-local testGroupName = "TestAll"
+-- forward declaration
+local queueIfPresent
 
 -- Branch names as they appear when appended to a module name (e.g. testSoundHunterClassic).
 local branches = { "Classic", "Sod", "Tbc" }
@@ -52,14 +57,6 @@ local soundAvoidCategories = {
   "Warrior", "Priest", "Rogue", "Mage", "Hunter", "Warlock", "Paladin", "Druid", "Shaman"
 }
 
-local function queueIfPresent(modulePrefix, classCap, branchCap)
-  local moduleTable = mod[modulePrefix .. classCap .. branchCap]
-
-  if moduleTable and type(moduleTable.CollectTestCases) == "function" then
-    moduleTable.CollectTestCases()
-  end
-end
-
 function me.TestAll(branchArg)
   local branchFilter, branchErr = mod.testHelper.ResolveBranchFilter(branchArg)
   if branchErr then
@@ -67,8 +64,23 @@ function me.TestAll(branchArg)
     return
   end
 
-  mod.testReporter.StartTestGroup(testGroupName)
+  local category = branchFilter and string.lower(branchFilter[1]) or "all"
 
+  mod.testSessionManager.StartSession("All", category, function(completionCallback)
+    me.RunAllTests(branchFilter, completionCallback)
+  end)
+end
+
+--[[
+  Run validators and all spell tests for the selected branches within the active session.
+
+  @param {table|nil} branchFilter
+    Optional 1-element PascalCase branch list from `testHelper.ResolveBranchFilter`;
+    when nil, all three branches run in order.
+  @param {function} completionCallback
+    Invoked once every selected branch's queue has been played to completion.
+]]--
+function me.RunAllTests(branchFilter, completionCallback)
   local branchList = branchFilter or branches
   local index = 1
 
@@ -79,7 +91,7 @@ function me.TestAll(branchArg)
   ]]--
   local function processNextBranch()
     if index > #branchList then
-      mod.testReporter.StopTestGroup() -- async finish of test group
+      completionCallback() -- async finish of the session's test group
       return
     end
 
@@ -133,4 +145,19 @@ function me.TestAll(branchArg)
   end
 
   processNextBranch()
+end
+
+--[[
+  Enqueue a test module's test cases if the module exists for the given branch
+
+  @param {string} modulePrefix - Module name prefix, e.g. "testSound"
+  @param {string} classCap - Capitalized category name, e.g. "Warrior"
+  @param {string} branchCap - Capitalized branch name, e.g. "Classic"
+]]--
+queueIfPresent = function(modulePrefix, classCap, branchCap)
+  local moduleTable = mod[modulePrefix .. classCap .. branchCap]
+
+  if moduleTable and type(moduleTable.CollectTestCases) == "function" then
+    moduleTable.CollectTestCases()
+  end
 end
