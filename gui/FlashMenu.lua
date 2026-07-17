@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT
+-- luacheck: globals CreateFrame
 
 --[[
   Dedicated options sub-panel for the vignette flash feature. Provides a global enable toggle,
@@ -65,10 +65,10 @@ end
   @param {table} frame
 ]]--
 function me.BuildTitle(frame)
-  local titleFontString = frame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_FLASH_MENU_TITLE, "OVERLAY")
-  titleFontString:SetFont(STANDARD_TEXT_FONT, 20)
-  titleFontString:SetPoint("TOP", 0, -20)
-  titleFontString:SetSize(frame:GetWidth(), 20)
+  local titleFontString = frame:CreateFontString(
+    RGPVPW_CONSTANTS.ELEMENT_FLASH_MENU_TITLE, "OVERLAY", "GameFontNormalLarge")
+  titleFontString:SetPoint("TOPLEFT", 16, -16)
+  mod.guiHelper.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
   titleFontString:SetText(rgpvpw.L["flash_title"])
 end
 
@@ -92,7 +92,8 @@ function me.BuildEnableOption(frame)
     function(self)
       self:SetChecked(mod.configuration.IsFlashEnabled())
     end,
-    rgpvpw.L["flash_enable"]
+    rgpvpw.L["flash_enable"],
+    rgpvpw.L["flash_enable_tooltip"]
   )
 
   checkbox:SetChecked(mod.configuration.IsFlashEnabled())
@@ -108,7 +109,7 @@ function me.BuildMaxOpacitySlider(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_MAX_OPACITY_SLIDER,
     rgpvpw.L["flash_max_opacity_label"],
-    0.1, 1.0, 0.05, 25, -120,
+    0.1, 1.0, 0.05, 25, -140,
     mod.configuration.GetFlashMaxOpacity,
     mod.configuration.SetFlashMaxOpacity,
     function(value)
@@ -127,7 +128,7 @@ function me.BuildPulseOption(frame)
   local checkbox = mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_PULSE,
     frame,
-    {"TOPLEFT", 20, -170},
+    {"TOPLEFT", 20, -185},
     function(self)
       if self:GetChecked() then
         mod.configuration.EnableFlashPulse()
@@ -140,7 +141,8 @@ function me.BuildPulseOption(frame)
     function(self)
       self:SetChecked(mod.configuration.IsFlashPulseEnabled())
     end,
-    rgpvpw.L["flash_pulse"]
+    rgpvpw.L["flash_pulse"],
+    rgpvpw.L["flash_pulse_tooltip"]
   )
 
   checkbox:SetChecked(mod.configuration.IsFlashPulseEnabled())
@@ -156,7 +158,7 @@ function me.BuildAdditiveBlendOption(frame)
   local checkbox = mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_ADDITIVE_BLEND,
     frame,
-    {"TOPLEFT", 20, -210},
+    {"TOPLEFT", 20, -245},
     function(self)
       if self:GetChecked() then
         mod.configuration.SetFlashBlendMode("ADD")
@@ -167,7 +169,8 @@ function me.BuildAdditiveBlendOption(frame)
     function(self)
       self:SetChecked(mod.configuration.GetFlashBlendMode() == "ADD")
     end,
-    rgpvpw.L["flash_additive_blend"]
+    rgpvpw.L["flash_additive_blend"],
+    rgpvpw.L["flash_additive_blend_tooltip"]
   )
 
   checkbox:SetChecked(mod.configuration.GetFlashBlendMode() == "ADD")
@@ -200,7 +203,7 @@ function me.BuildTestButton(frame)
   mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_TEST_BUTTON,
     frame,
-    {"TOPLEFT", 20, -260},
+    {"TOPLEFT", 20, -305},
     function()
       mod.flash.Show(me.GetRandomColorValue())
     end,

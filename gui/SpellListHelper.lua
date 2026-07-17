@@ -758,9 +758,9 @@ end
 UpdateChooseVisualDropdownMenuState = function(frame, enable)
   if enable then
     mod.libUiDropDownMenu.UiDropDownMenu_EnableDropDown(frame.chooseVisual)
-    frame.chooseVisualLabel:SetTextColor(1, 1, 1)
+    mod.guiHelper.SetColor(frame.chooseVisualLabel, RGPVPW_CONSTANTS.COLOR.BODY)
   else
     mod.libUiDropDownMenu.UiDropDownMenu_DisableDropDown(frame.chooseVisual)
-    frame.chooseVisualLabel:SetTextColor(0.66, 0.66, 0.66)
+    mod.guiHelper.SetColor(frame.chooseVisualLabel, RGPVPW_CONSTANTS.COLOR.DISABLED)
   end
 end

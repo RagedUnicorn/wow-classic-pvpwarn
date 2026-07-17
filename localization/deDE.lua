@@ -93,9 +93,13 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["configuration_menu_flash"] = "Blitz"
   rgpvpw.L["flash_title"] = "Blitz-Konfiguration"
   rgpvpw.L["flash_enable"] = "Blitz aktivieren"
+  rgpvpw.L["flash_enable_tooltip"] = "Zeigt eine farbige Vignette am Bildschirmrand, wenn ein verfolgter "
+    .. "gegnerischer Zauber ausgelöst wird"
   rgpvpw.L["flash_max_opacity_label"] = "Maximale Deckkraft:"
   rgpvpw.L["flash_pulse"] = "Pulseffekt"
+  rgpvpw.L["flash_pulse_tooltip"] = "Lässt die Vignette pulsieren statt einmal gleichmässig aufzublitzen"
   rgpvpw.L["flash_additive_blend"] = "Additives Blending (heller)"
+  rgpvpw.L["flash_additive_blend_tooltip"] = "Verwendet additives Blending, wodurch die Vignette heller erscheint"
   rgpvpw.L["flash_test_button"] = "Test"
   rgpvpw.L["detection_bar_hint"] = "Tipp: Aktiviere die Erkennungsleiste unter Optionen, um verfolgte "
     .. "gegnerische Zauber als gestapelte Warnleisten anzuzeigen. Öffne Optionen > Erkennungsleiste zum "
@@ -109,6 +113,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["battleground_warsong_gulch"] = "Kriegshymnenschlucht"
   -- labels
   rgpvpw.L["label_battlegrounds"] = "Schlachtfelder:"
+  rgpvpw.L["label_battlegrounds_description"] = "Warnungen sind nur in aktivierten Schlachtfeldern aktiv"
 
   -- profiles
   rgpvpw.L["configuration_menu_profiles"] = "Profile"

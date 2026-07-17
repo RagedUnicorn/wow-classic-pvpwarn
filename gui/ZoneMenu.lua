@@ -48,24 +48,29 @@ function me.BuildUi(frame)
     {"TOPLEFT", 20, -50},
     rgpvpw.L["label_battlegrounds"]
   )
+  me.BuildLabelDescription(
+    frame,
+    {"TOPLEFT", 24, -75},
+    rgpvpw.L["label_battlegrounds_description"]
+  )
   me.BuildZoneOption(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_ZONE_ALTERAC_VALLEY,
-    {"TOPLEFT", 20, -80},
+    {"TOPLEFT", 20, -100},
     rgpvpw.L["battleground_alterac_valley"],
     RGPVPW_ZONE.ZONE_BATTLEGROUND_ALTERAC_VALLEY
   )
   me.BuildZoneOption(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_ZONE_ARATHI_BASIN,
-    {"TOPLEFT", 20, -120},
+    {"TOPLEFT", 20, -140},
     rgpvpw.L["battleground_arathi_basin"],
     RGPVPW_ZONE.ZONE_BATTLEGROUND_ARATHI_BASIN
   )
   me.BuildZoneOption(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_ZONE_WARSONG_GULCH,
-    {"TOPLEFT", 20, -160},
+    {"TOPLEFT", 20, -180},
     rgpvpw.L["battleground_warsong_gulch"],
     RGPVPW_ZONE.ZONE_BATTLEGROUND_WARSONG_GULCH
   )
@@ -80,10 +85,10 @@ end
     The addon configuration frame to attach to
 ]]--
 function me.BuildTitle(parentFrame)
-  local titleFontString = parentFrame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_ZONE_TITLE, "OVERLAY")
-  titleFontString:SetFont(STANDARD_TEXT_FONT, 20)
-  titleFontString:SetPoint("TOP", 0, -20)
-  titleFontString:SetSize(parentFrame:GetWidth(), 20)
+  local titleFontString = parentFrame:CreateFontString(
+    RGPVPW_CONSTANTS.ELEMENT_ZONE_TITLE, "OVERLAY", "GameFontNormalLarge")
+  titleFontString:SetPoint("TOPLEFT", 16, -16)
+  mod.guiHelper.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
   titleFontString:SetText(rgpvpw.L["zone_title"])
 end
 
@@ -99,8 +104,28 @@ function me.BuildLabel(frame, position, text)
   )
   zoneLabel:SetPoint(unpack(position))
   zoneLabel:SetFont(STANDARD_TEXT_FONT, 20)
-  zoneLabel:SetTextColor(1, 1, 1)
+  mod.guiHelper.SetColor(zoneLabel, RGPVPW_CONSTANTS.COLOR.SECTION_GOLD)
   zoneLabel:SetText(text)
+end
+
+--[[
+  Build an always-visible gray description below a section label. The zone checkboxes
+  themselves carry no per-checkbox description - their labels are the zone names.
+
+  @param {table} frame
+  @param {table} position
+  @param {string} text
+]]--
+function me.BuildLabelDescription(frame, position, text)
+  local descriptionFontString = frame:CreateFontString(
+    nil,
+    "OVERLAY"
+  )
+  descriptionFontString:SetPoint(unpack(position))
+  descriptionFontString:SetFont(STANDARD_TEXT_FONT, 12)
+  mod.guiHelper.SetColor(descriptionFontString, RGPVPW_CONSTANTS.COLOR.SUBNOTE)
+  descriptionFontString:SetJustifyH("LEFT")
+  descriptionFontString:SetText(text)
 end
 
 --[[

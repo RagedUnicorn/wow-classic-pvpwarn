@@ -88,10 +88,10 @@ end
     The addon configuration frame to attach to
 ]]--
 function me.BuildTitle(frame)
-  local titleFontString = frame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_GENERAL_TITLE, "OVERLAY")
-  titleFontString:SetFont(STANDARD_TEXT_FONT, 20)
-  titleFontString:SetPoint("TOP", 0, -20)
-  titleFontString:SetSize(frame:GetWidth(), 20)
+  local titleFontString = frame:CreateFontString(
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_TITLE, "OVERLAY", "GameFontNormalLarge")
+  titleFontString:SetPoint("TOPLEFT", 16, -16)
+  mod.guiHelper.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
   titleFontString:SetText(rgpvpw.L["general_title"])
 end
 
@@ -106,7 +106,7 @@ function me.BuildCombatStateOptions(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_COMBAT_STATE,
     40,
-    -110,
+    -128,
     me.LockFrameCombatStateOnShow,
     me.LockFrameCombatStateOnClick
   )
@@ -193,7 +193,7 @@ function me.BuildStanceStateOptions(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE,
     40,
-    -190,
+    -240,
     me.LockFrameStanceStateOnShow,
     me.LockFrameStanceStateOnClick
   )
@@ -202,7 +202,7 @@ function me.BuildStanceStateOptions(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_HIDE_UNKNOWN_STANCE,
     40,
-    -220,
+    -288,
     me.HideUnknownStanceOnShow,
     me.HideUnknownStanceOnClick
   )
@@ -211,7 +211,7 @@ function me.BuildStanceStateOptions(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_ENABLE_STANCE_STATE,
     20,
-    -160,
+    -192,
     me.EnableStanceStateTrackingOnShow,
     me.EnableStanceStateTrackingOnClick,
     {
@@ -323,13 +323,15 @@ end
 ]]--
 function me.BuildCheckButtonOption(parentFrame, optionFrameName, posX, posY, onShowCallback, onClickCallback,
   linkedCheckButtonNames)
+  local labelText, descriptionText = me.GetOptionTexts(optionFrameName)
   local checkButtonOptionFrame = mod.guiHelper.CreateCheckBox(
     optionFrameName,
     parentFrame,
     {"TOPLEFT", posX, posY},
     onClickCallback,
     onShowCallback,
-    me.GetLabelText(optionFrameName)
+    labelText,
+    descriptionText
   )
 
   --[[
@@ -339,53 +341,26 @@ function me.BuildCheckButtonOption(parentFrame, optionFrameName, posX, posY, onS
     checkButtonOptionFrame.linkedCheckButtonNames = linkedCheckButtonNames
   end
 
-  checkButtonOptionFrame:SetScript("OnEnter", me.OptTooltipOnEnter)
-  checkButtonOptionFrame:SetScript("OnLeave", me.OptTooltipOnLeave)
   -- load initial state
   onShowCallback(checkButtonOptionFrame)
 end
 
 --[[
-  Get the label text for the checkbutton
+  Get the label and description text for the checkbutton
 
   @param {string} frameName
 
-  @return {string}
-    The text for the label
+  @return {string}, {string}
+    The text for the label and the always-visible description below it
 ]]--
-function me.GetLabelText(frameName)
+function me.GetOptionTexts(frameName)
   if not frameName then return end
 
   for i = 1, #options do
     if frameName == RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT .. options[i][1] then
-      return options[i][2]
+      return options[i][2], options[i][3]
     end
   end
-end
-
---[[
-  OnEnter callback for checkbuttons - show tooltip
-
-  @param {table} self
-]]--
-function me.OptTooltipOnEnter(self)
-  local name = self:GetName()
-
-  if not name then return end
-
-  for i = 1, #options do
-    if name == RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT .. options[i][1] then
-      mod.tooltip.BuildTooltipForOption(options[i][2], options[i][3])
-      break
-    end
-  end
-end
-
---[[
-  OnEnter callback for checkbuttons - hide tooltip
-]]--
-function me.OptTooltipOnLeave()
-  _G[RGPVPW_CONSTANTS.ELEMENT_TOOLTIP]:Hide()
 end
 
 --[[
@@ -432,8 +407,8 @@ end
 function me.BuildWarnModeDropdown(frame)
   local dropdownLabel = frame:CreateFontString(nil, "OVERLAY")
   dropdownLabel:SetFont(STANDARD_TEXT_FONT, 15)
-  dropdownLabel:SetPoint("TOPLEFT", 20, -270)
-  dropdownLabel:SetTextColor(.95, .95, .95)
+  dropdownLabel:SetPoint("TOPLEFT", 20, -350)
+  mod.guiHelper.SetColor(dropdownLabel, RGPVPW_CONSTANTS.COLOR.BODY)
   dropdownLabel:SetText(rgpvpw.L["warn_mode_label"])
 
   warnModeDropdown = mod.libUiDropDownMenu.CreateUiDropDownMenu(

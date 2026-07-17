@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT
+-- luacheck: globals CreateFrame
 -- luacheck: globals SettingsPanel InterfaceOptionsFrame
 
 --[[
@@ -116,10 +116,10 @@ end
   @param {table} frame
 ]]--
 function me.BuildTitle(frame)
-  local titleFontString = frame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_TITLE, "OVERLAY")
-  titleFontString:SetFont(STANDARD_TEXT_FONT, 20)
-  titleFontString:SetPoint("TOP", 0, -20)
-  titleFontString:SetSize(frame:GetWidth(), 20)
+  local titleFontString = frame:CreateFontString(
+    RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_TITLE, "OVERLAY", "GameFontNormalLarge")
+  titleFontString:SetPoint("TOPLEFT", 16, -16)
+  mod.guiHelper.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
   titleFontString:SetText(rgpvpw.L["detection_bar_title"])
 end
 
@@ -143,7 +143,8 @@ function me.BuildEnableOption(frame)
     function(self)
       self:SetChecked(mod.configuration.IsDetectionBarEnabled())
     end,
-    rgpvpw.L["detection_bar_enable"]
+    rgpvpw.L["detection_bar_enable"],
+    rgpvpw.L["detection_bar_enable_tooltip"]
   )
 
   --[[
@@ -163,7 +164,7 @@ function me.BuildPositionButton(frame)
   positionButton = mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_POSITION_BUTTON,
     frame,
-    {"TOPLEFT", 20, -95},
+    {"TOPLEFT", 20, -115},
     function()
       mod.detectionBarAnchor.TogglePositioning()
     end,
@@ -248,7 +249,7 @@ function me.BuildMaxBarsSlider(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_MAX_BARS_SLIDER,
     rgpvpw.L["detection_bar_max_bars_label"],
-    1, 4, 1, 25, -150,
+    1, 4, 1, 25, -170,
     mod.configuration.GetDetectionBarMaxBars,
     mod.configuration.SetDetectionBarMaxBars
   )
@@ -264,7 +265,7 @@ function me.BuildScaleSlider(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_SCALE_SLIDER,
     rgpvpw.L["detection_bar_size_label"],
-    0.5, 2.0, 0.05, 25, -210,
+    0.5, 2.0, 0.05, 25, -230,
     mod.configuration.GetDetectionBarScale,
     me.SetBarScale,
     function(value)
@@ -292,7 +293,7 @@ function me.BuildResetAnchorButton(frame)
   mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_RESET_ANCHOR_BUTTON,
     frame,
-    {"TOPLEFT", 20, -270},
+    {"TOPLEFT", 20, -290},
     function()
       mod.detectionBarAnchor.ResetPosition()
     end,

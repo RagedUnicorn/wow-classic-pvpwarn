@@ -298,10 +298,10 @@ end
     The created fontString
 ]]--
 function me.CreateProfileTitle(parentFrame)
-  local profileTitleFontString = parentFrame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_PROFILE_TITLE, "OVERLAY")
-  profileTitleFontString:SetFont(STANDARD_TEXT_FONT, 20)
-  profileTitleFontString:SetPoint("TOP", 0, -20)
-  profileTitleFontString:SetSize(parentFrame:GetWidth(), 20)
+  local profileTitleFontString = parentFrame:CreateFontString(
+    RGPVPW_CONSTANTS.ELEMENT_PROFILE_TITLE, "OVERLAY", "GameFontNormalLarge")
+  profileTitleFontString:SetPoint("TOPLEFT", 16, -16)
+  mod.guiHelper.SetColor(profileTitleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
   profileTitleFontString:SetText(rgpvpw.L["configuration_menu_profiles"])
 
   return profileTitleFontString

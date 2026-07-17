@@ -31,6 +31,16 @@ mod.guiHelper = me
 me.tag = "GuiHelper"
 
 --[[
+  Apply one of the RGPVPW_CONSTANTS.COLOR { r, g, b } tokens to a font string.
+
+  @param {table} fontString
+  @param {table} color
+]]--
+function me.SetColor(fontString, color)
+  fontString:SetTextColor(color[1], color[2], color[3])
+end
+
+--[[
   Create a configuration checkbox
 
   @param {string} frameName
@@ -43,11 +53,13 @@ me.tag = "GuiHelper"
       Callback that is called onShow
   @param {string} text
     Optional text that is used as label for the checkbox
+  @param {string} description
+    Optional always-visible gray description rendered directly beneath the checkbox
 
   @return {table}
     The created checkbox
 ]]--
-function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowCallback, text)
+function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowCallback, text, description)
   local checkBoxFrame = CreateFrame(
     "CheckButton",
     frameName,
@@ -62,10 +74,20 @@ function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowC
 
   checkBoxFrame.text = _G[checkBoxFrame:GetName() .. "Text"]
   checkBoxFrame.text:SetFont(STANDARD_TEXT_FONT, 15)
-  checkBoxFrame.text:SetTextColor(.95, .95, .95)
+  me.SetColor(checkBoxFrame.text, RGPVPW_CONSTANTS.COLOR.BODY)
 
   if text ~= nil then
     checkBoxFrame.text:SetText(text)
+  end
+
+  if description ~= nil then
+    local descriptionFontString = checkBoxFrame:CreateFontString(nil, "OVERLAY")
+    descriptionFontString:SetFont(STANDARD_TEXT_FONT, 12)
+    me.SetColor(descriptionFontString, RGPVPW_CONSTANTS.COLOR.SUBNOTE)
+    descriptionFontString:SetPoint("TOPLEFT", checkBoxFrame, "BOTTOMLEFT", 4, 4)
+    descriptionFontString:SetJustifyH("LEFT")
+    descriptionFontString:SetText(description)
+    checkBoxFrame.description = descriptionFontString
   end
 
   checkBoxFrame:SetScript("OnClick", onClickCallback)
@@ -181,7 +203,7 @@ end
 ]]
 function me.DisableCheckButton(checkButton)
   checkButton:Disable()
-  checkButton.text:SetTextColor(0.66, 0.66, 0.66)
+  me.SetColor(checkButton.text, RGPVPW_CONSTANTS.COLOR.DISABLED)
 end
 
 --[[
@@ -192,7 +214,7 @@ end
 ]]
 function me.EnableCheckButton(checkButton)
   checkButton:Enable()
-  checkButton.text:SetTextColor(1, 1, 1)
+  me.SetColor(checkButton.text, RGPVPW_CONSTANTS.COLOR.BODY)
 end
 
 --[[
@@ -351,7 +373,7 @@ function me.CreateVisualWarningLabel(parentFrame, visualLabelName, labelText)
     0,
     0
   )
-  visualWarningLabelFontString:SetTextColor(.95, .95, .95)
+  me.SetColor(visualWarningLabelFontString, RGPVPW_CONSTANTS.COLOR.BODY)
   visualWarningLabelFontString:SetText(labelText)
   visualWarningLabelFontString:SetWidth(
     visualWarningLabelFontString:GetStringWidth()

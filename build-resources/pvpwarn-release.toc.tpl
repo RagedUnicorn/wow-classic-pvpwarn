@@ -54,7 +54,6 @@ code/SpellConfiguration.lua
 code/Cmd.lua
 code/DetectionBarCmd.lua
 code/CmdFlash.lua
-code/Tooltip.lua
 code/Macro.lua
 code/Zone.lua
 code/Season.lua

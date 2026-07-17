@@ -77,10 +77,10 @@ end
     The addon configuration frame to attach to
 ]]--
 function me.BuildTitle(frame)
-  local titleFontString = frame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_TITLE, "OVERLAY")
-  titleFontString:SetFont(STANDARD_TEXT_FONT, 20)
-  titleFontString:SetPoint("TOP", 0, -20)
-  titleFontString:SetSize(frame:GetWidth(), 20)
+  local titleFontString = frame:CreateFontString(
+    RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_TITLE, "OVERLAY", "GameFontNormalLarge")
+  titleFontString:SetPoint("TOPLEFT", 16, -16)
+  mod.guiHelper.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
   titleFontString:SetText(rgpvpw.L["voice_pack_title"])
 end
 
@@ -94,7 +94,7 @@ function me.BuildVoicePackDropdown(frame)
   local dropdownLabel = frame:CreateFontString(nil, "OVERLAY")
   dropdownLabel:SetFont(STANDARD_TEXT_FONT, 15)
   dropdownLabel:SetPoint("TOPLEFT", 20, -80)
-  dropdownLabel:SetTextColor(.95, .95, .95)
+  mod.guiHelper.SetColor(dropdownLabel, RGPVPW_CONSTANTS.COLOR.BODY)
   dropdownLabel:SetText(rgpvpw.L["voice_pack_dropdown_label"])
 
   voicePackDropdown = mod.libUiDropDownMenu.CreateUiDropDownMenu(

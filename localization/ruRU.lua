@@ -91,9 +91,13 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["configuration_menu_flash"] = "Вспышка"
   rgpvpw.L["flash_title"] = "Настройка вспышки"
   rgpvpw.L["flash_enable"] = "Включить вспышку"
+  rgpvpw.L["flash_enable_tooltip"] = "Показывает цветную виньетку по краям экрана при срабатывании "
+    .. "отслеживаемого вражеского заклинания"
   rgpvpw.L["flash_max_opacity_label"] = "Макс. непрозрачность:"
   rgpvpw.L["flash_pulse"] = "Эффект пульсации"
+  rgpvpw.L["flash_pulse_tooltip"] = "Виньетка пульсирует вместо одиночной ровной вспышки"
   rgpvpw.L["flash_additive_blend"] = "Аддитивное смешивание (ярче)"
+  rgpvpw.L["flash_additive_blend_tooltip"] = "Использует аддитивное смешивание, из-за чего виньетка выглядит ярче"
   rgpvpw.L["flash_test_button"] = "Тест"
   rgpvpw.L["detection_bar_hint"] = "Совет: включите панель обнаружения в настройках, чтобы показывать "
     .. "отслеживаемые вражеские заклинания в виде панелей оповещения. Откройте Настройки > Панель "
@@ -107,6 +111,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["battleground_warsong_gulch"] = "Ущелье Песни Войны"
   -- labels
   rgpvpw.L["label_battlegrounds"] = "Поля боя:"
+  rgpvpw.L["label_battlegrounds_description"] = "Предупреждения работают только на включённых полях боя"
 
   -- profiles
   rgpvpw.L["configuration_menu_profiles"] = "Профили"

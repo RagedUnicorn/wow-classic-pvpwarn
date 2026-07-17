@@ -198,7 +198,17 @@ RGPVPW_CONSTANTS = {
     Addon configuration
   ]]--
   ELEMENT_ADDON_PANEL = "PVPW_AddonPanel",
-  ELEMENT_TOOLTIP = "GameTooltip", -- default blizzard frames tooltip
+  --[[
+    Design colour tokens as { r, g, b } in the 0-1 range (mirrors Quartermaster's COLOR table)
+  ]]--
+  COLOR = {
+    TITLE_GOLD = { 1.0, 0.819, 0.0 },       -- #ffd100 panel titles
+    SECTION_GOLD = { 0.851, 0.647, 0.129 }, -- #d9a521 section headers
+    BODY = { 0.788, 0.718, 0.627 },         -- #c9b7a0 body text / option labels
+    MUTED = { 0.541, 0.486, 0.392 },        -- #8a7c64 idle / dim text
+    DISABLED = { 0.45, 0.41, 0.35 },        -- disabled control labels (QM stepper disabled-glyph tone)
+    SUBNOTE = { 0.435, 0.388, 0.314 }       -- #6f6350 option descriptions
+  },
   --[[
     About
   ]]--
