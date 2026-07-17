@@ -178,6 +178,7 @@ end
 ]]--
 OnTargetChanged = function()
   me.target.UpdateCurrentTarget()
+  me.targetFilter.UpdateCurrentTarget()
 end
 
 --[[

@@ -220,6 +220,7 @@ RGPVPW_CONSTANTS = {
   ELEMENT_GENERAL_OPT_ENABLE_STANCE_STATE = "PVPW_OptEnableStanceStateTracking",
   ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE = "PVPW_OptLockFrameStanceState",
   ELEMENT_GENERAL_OPT_HIDE_UNKNOWN_STANCE = "PVPW_OptHideUnknownStance",
+  ELEMENT_GENERAL_OPT_WARN_MODE_DROPDOWN = "PVPW_OptWarnModeDropdown",
   --[[
     ZoneMenu
   ]]--
@@ -257,6 +258,11 @@ RGPVPW_CONSTANTS = {
   ELEMENT_FLASH_OPT_PULSE = "PVPW_FlashOptPulse",
   ELEMENT_FLASH_OPT_ADDITIVE_BLEND = "PVPW_FlashOptAdditiveBlend",
   ELEMENT_FLASH_OPT_TEST_BUTTON = "PVPW_FlashOptTestButton",
+  --[[
+    Target filter warning modes (see code/CombatLog.lua ShouldWarnForTarget)
+  ]]--
+  TARGET_FILTER_MODE_WARN_ALL = "warnAll",
+  TARGET_FILTER_MODE_CURRENT_TARGET = "currentTarget",
   --[[
     Fallback event-text color for a detection bar when the detected spell has no visual
     warning color configured (colorValue "none"). #FF4FA8

@@ -51,10 +51,14 @@
   Expected cwd: addon repo root. Run from elsewhere and the dofile()s will fail.
 ]]--
 
--- luacheck: globals rgpvpw RGPVPW_ENVIRONMENT
+-- luacheck: globals rgpvpw RGPVPW_ENVIRONMENT unpack
 
 -- allow specs to require the opt-in WoW-global stub registry as `require("WowStubs")`
 package.path = "./test/headless/?.lua;" .. package.path
+
+-- WoW's Lua 5.1 exposes unpack as a global (used by code/Common.lua SelectMultiple);
+-- the busted container runs a newer Lua where it lives in table.unpack
+unpack = unpack or table.unpack -- luacheck: ignore 143
 
 -- the addon namespace, normally created by code/Core.lua
 rgpvpw = {}

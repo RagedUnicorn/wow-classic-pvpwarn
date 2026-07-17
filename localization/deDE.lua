@@ -62,6 +62,9 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["lock_frame_stance_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Haltungszustand Fenster"
   rgpvpw.L["hide_unknown_stance"] = "Unbekannte Haltung ausblenden"
   rgpvpw.L["hide_unknown_stance_tooltip"] = "Blendet das Haltungssymbol aus, wenn die Haltung unbekannt ist"
+  rgpvpw.L["warn_mode_label"] = "Warnmodus:"
+  rgpvpw.L["warn_mode_warn_all"] = "So viel wie möglich warnen"
+  rgpvpw.L["warn_mode_current_target"] = "Nur für mein aktuelles Ziel warnen"
 
   -- voice pack
   rgpvpw.L["configuration_menu_voice_pack"] = "Sprachpakete"

@@ -59,6 +59,9 @@ rgpvpw.L["lock_frame_stance_state"] = "Lock stancestate frame"
 rgpvpw.L["lock_frame_stance_state_tooltip"] = "Locks or unlocks the stancestate frame"
 rgpvpw.L["hide_unknown_stance"] = "Hide unknown stance"
 rgpvpw.L["hide_unknown_stance_tooltip"] = "Hides the stance icon when the stance is unknown"
+rgpvpw.L["warn_mode_label"] = "Warning mode:"
+rgpvpw.L["warn_mode_warn_all"] = "Warn me as much as possible"
+rgpvpw.L["warn_mode_current_target"] = "Warn me for my current opponent"
 
 -- voice pack
 rgpvpw.L["configuration_menu_voice_pack"] = "Voice Packs"

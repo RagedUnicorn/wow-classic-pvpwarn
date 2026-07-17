@@ -126,6 +126,19 @@ PVPWarnConfiguration = {
     ["blendMode"] = "BLEND"
   },
   --[[
+    Target filter settings (see code/CombatLog.lua ShouldWarnForTarget).
+
+    targetFilter = {
+      mode = {string}    -- "warnAll": no filtering, every detected spell warns
+                         -- "currentTarget": only warn about spells cast by or at the
+                         --   current enemy target; spells aimed at the player always
+                         --   warn and an unresolvable caster fails open
+    }
+  ]]--
+  ["targetFilter"] = {
+    ["mode"] = "warnAll"
+  },
+  --[[
     Highest version the update notifier (code/Comm.lua) already announced to the
     user - bookkeeping like addonVersion, deliberately not part of profiles.
     Empty string means no version was announced yet
@@ -190,6 +203,7 @@ function me.SetupConfiguration()
 
   me.SetupDetectionBarConfiguration()
   me.SetupFlashConfiguration()
+  me.SetupTargetFilterConfiguration()
 
   --[[
     Set saved variables with addon version. This can be used later to determine whether
@@ -251,6 +265,35 @@ function me.SetupFlashConfiguration()
       flash[key] = value
     end
   end
+end
+
+--[[
+  Backfill the targetFilter configuration block. Mirrors SetupDetectionBarConfiguration -
+  new SavedVariables keys are added with a nil-check that runs after an addon upgrade, so
+  existing players gain the target filter settings without a dedicated migration path. Each
+  sub-key is backfilled individually so a partial upgrade self-heals.
+]]--
+function me.SetupTargetFilterConfiguration()
+  if PVPWarnConfiguration.targetFilter == nil then
+    mod.logger.LogInfo(me.tag, "targetFilter has unexpected nil value")
+    PVPWarnConfiguration.targetFilter = {}
+  end
+
+  local targetFilter = PVPWarnConfiguration.targetFilter
+  local defaults = {
+    ["mode"] = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_WARN_ALL
+  }
+
+  for key, value in pairs(defaults) do
+    if targetFilter[key] == nil then
+      targetFilter[key] = value
+    end
+  end
+
+  -- drop the pre-release three-toggle shape (never shipped, dev installs only)
+  targetFilter.onlyCurrentTarget = nil
+  targetFilter.warnOnSelf = nil
+  targetFilter.showWhenCasterUnknown = nil
 end
 
 --[[
@@ -829,6 +872,28 @@ function me.SetFlashBlendMode(blendMode)
     PVPWarnConfiguration.flash.blendMode = "ADD"
   else
     PVPWarnConfiguration.flash.blendMode = "BLEND"
+  end
+end
+
+--[[
+  @return {string}
+    The active target filter warning mode - TARGET_FILTER_MODE_WARN_ALL or
+    TARGET_FILTER_MODE_CURRENT_TARGET
+]]--
+function me.GetTargetFilterMode()
+  return PVPWarnConfiguration.targetFilter.mode
+end
+
+--[[
+  @param {string} mode
+    The target filter warning mode - anything other than TARGET_FILTER_MODE_CURRENT_TARGET
+    falls back to TARGET_FILTER_MODE_WARN_ALL
+]]--
+function me.SetTargetFilterMode(mode)
+  if mode == RGPVPW_CONSTANTS.TARGET_FILTER_MODE_CURRENT_TARGET then
+    PVPWarnConfiguration.targetFilter.mode = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_CURRENT_TARGET
+  else
+    PVPWarnConfiguration.targetFilter.mode = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_WARN_ALL
   end
 end
 

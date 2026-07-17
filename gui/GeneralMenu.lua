@@ -61,6 +61,9 @@ local options = {
 -- track whether the menu was already built
 local builtMenu = false
 
+-- reference to the warn mode dropdown frame
+local warnModeDropdown
+
 --[[
   Build the ui for the general menu
 
@@ -73,6 +76,7 @@ function me.BuildUi(frame)
   me.BuildTitle(frame)
   me.BuildCombatStateOptions(frame)
   me.BuildStanceStateOptions(frame)
+  me.BuildWarnModeDropdown(frame)
 
   builtMenu = true
 end
@@ -416,4 +420,85 @@ function me.DisableCheckButtons(checkButtonNames)
       mod.logger.LogError(me.tag, "Tried to disable non-existent checkbutton")
     end
   end
+end
+
+--[[
+  Build the warning mode dropdown (target filter). Mirrors the voice pack dropdown in
+  gui/VoicePackMenu.lua.
+
+  @param {table} frame
+    The addon configuration frame to attach to
+]]--
+function me.BuildWarnModeDropdown(frame)
+  local dropdownLabel = frame:CreateFontString(nil, "OVERLAY")
+  dropdownLabel:SetFont(STANDARD_TEXT_FONT, 15)
+  dropdownLabel:SetPoint("TOPLEFT", 20, -270)
+  dropdownLabel:SetTextColor(.95, .95, .95)
+  dropdownLabel:SetText(rgpvpw.L["warn_mode_label"])
+
+  warnModeDropdown = mod.libUiDropDownMenu.CreateUiDropDownMenu(
+    RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_WARN_MODE_DROPDOWN,
+    frame
+  )
+  warnModeDropdown:SetPoint("LEFT", dropdownLabel, "RIGHT", 10, -2)
+
+  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(warnModeDropdown, me.InitializeWarnModeDropdown)
+  mod.libUiDropDownMenu.UiDropDownMenu_SetWidth(warnModeDropdown, 220)
+
+  me.UpdateWarnModeDropdownSelection()
+end
+
+--[[
+  Initialize the warning mode dropdown with the available target filter modes
+]]--
+function me.InitializeWarnModeDropdown()
+  local activeMode = mod.configuration.GetTargetFilterMode()
+  local modes = {
+    {
+      value = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_WARN_ALL,
+      text = rgpvpw.L["warn_mode_warn_all"]
+    }, {
+      value = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_CURRENT_TARGET,
+      text = rgpvpw.L["warn_mode_current_target"]
+    }
+  }
+
+  for _, mode in ipairs(modes) do
+    local info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
+
+    info.text = mode.text
+    info.value = mode.value
+    info.func = me.OnWarnModeSelect
+    info.checked = activeMode == mode.value
+    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
+  end
+end
+
+--[[
+  Callback for when a warning mode is selected
+
+  @param {table} self
+    The menu item that was clicked
+]]--
+function me.OnWarnModeSelect(self)
+  mod.configuration.SetTargetFilterMode(self.value)
+  me.UpdateWarnModeDropdownSelection()
+  mod.libUiDropDownMenu.CloseDropDownMenus()
+
+  mod.logger.LogInfo(me.tag, "Selected warning mode: " .. self.value)
+end
+
+--[[
+  Update the dropdown to show the currently selected warning mode
+]]--
+function me.UpdateWarnModeDropdownSelection()
+  local displayText
+
+  if mod.configuration.GetTargetFilterMode() == RGPVPW_CONSTANTS.TARGET_FILTER_MODE_CURRENT_TARGET then
+    displayText = rgpvpw.L["warn_mode_current_target"]
+  else
+    displayText = rgpvpw.L["warn_mode_warn_all"]
+  end
+
+  mod.libUiDropDownMenu.UiDropDownMenu_SetText(warnModeDropdown, displayText)
 end

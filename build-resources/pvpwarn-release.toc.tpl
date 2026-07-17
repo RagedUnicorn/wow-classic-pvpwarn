@@ -44,6 +44,7 @@ code/spellavoidmap/Assemble.lua
 code/SpellAvoidMap.lua
 code/Common.lua
 code/Target.lua
+code/TargetFilter.lua
 code/CombatState.lua
 code/StanceState.lua
 code/Configuration.lua

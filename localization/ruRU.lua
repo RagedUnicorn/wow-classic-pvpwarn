@@ -60,6 +60,9 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["lock_frame_stance_state_tooltip"] = "Фиксирует или разблокирует рамку стойки"
   rgpvpw.L["hide_unknown_stance"] = "Скрывать неизвестную стойку"
   rgpvpw.L["hide_unknown_stance_tooltip"] = "Скрывает иконку стойки, если она неизвестна"
+  rgpvpw.L["warn_mode_label"] = "Режим предупреждений:"
+  rgpvpw.L["warn_mode_warn_all"] = "Предупреждать как можно чаще"
+  rgpvpw.L["warn_mode_current_target"] = "Предупреждать о моей текущей цели"
 
   -- voice pack
   rgpvpw.L["configuration_menu_voice_pack"] = "Голосовые пакеты"

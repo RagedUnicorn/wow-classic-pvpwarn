@@ -24,13 +24,16 @@
 ]]--
 
 -- luacheck: globals CombatLog_Object_IsA COMBATLOG_FILTER_HOSTILE_PLAYERS COMBATLOG_FILTER_MINE
--- luacheck: globals GetPlayerInfoByGUID
+-- luacheck: globals GetPlayerInfoByGUID UnitGUID
 
 local mod = rgpvpw
 local me = {}
 mod.combatLog = me
 
 me.tag = "CombatLog"
+
+-- lazily cached player GUID (see GetPlayerGuid) - stable for the whole session
+local playerGuid
 
 -- forward declaration
 local ProcessDetectedSpell
@@ -447,6 +450,56 @@ function me.BuildDetectionBarPayload(srcGUID, srcName, spellId, spellName, color
 end
 
 --[[
+  Returns the players own GUID, resolving it once on first use. UnitGUID("player") is
+  stable for the whole session so the cached value never needs invalidation.
+
+  @return {string}
+]]--
+function me.GetPlayerGuid()
+  if playerGuid == nil then
+    playerGuid = UnitGUID(RGPVPW_CONSTANTS.UNIT_ID_PLAYER)
+  end
+
+  return playerGuid
+end
+
+--[[
+  Whether the detected combat log event passes the target filter. In the default
+  TARGET_FILTER_MODE_WARN_ALL mode every event passes. In
+  TARGET_FILTER_MODE_CURRENT_TARGET mode an event passes when its source or destination
+  is the current enemy target, when its destination is the player (being attacked is
+  always relevant) or when its source GUID cannot be resolved (fail-open).
+
+  @param {vararg} ...
+    The raw combat-log event args, used for source (4) and destination (8) GUID extraction
+
+  @return {boolean}
+    true - if the event should warn
+    false - if the event should be suppressed
+]]--
+function me.ShouldWarnForTarget(...)
+  if mod.configuration.GetTargetFilterMode() ~= RGPVPW_CONSTANTS.TARGET_FILTER_MODE_CURRENT_TARGET then
+    return true
+  end
+
+  local sourceGuid, destGuid = mod.common.SelectMultiple({4, 8}, ...)
+
+  if destGuid == me.GetPlayerGuid() then return true end
+
+  local targetGuid = mod.targetFilter.GetCurrentTargetGuid()
+
+  if targetGuid ~= nil and (sourceGuid == targetGuid or destGuid == targetGuid) then
+    return true
+  end
+
+  if sourceGuid == nil or sourceGuid == "" then return true end
+
+  mod.logger.LogDebug(me.tag, "Suppressing warning because the event did not pass the target filter")
+
+  return false
+end
+
+--[[
   Shared tail of the combat log handlers. Gates the detected spell on its configuration,
   resolves the visual warning color and detection bar payload and plays the warning.
 
@@ -464,6 +517,7 @@ end
 ]]--
 ProcessDetectedSpell = function(spellType, category, spellId, spell, spellName, callback, ...)
   if not me.IsValidSpellType(spellType) then return end
+  if not me.ShouldWarnForTarget(...) then return end
 
   local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
   local spellMap = mod.common.GetSpellMap(spellType)
