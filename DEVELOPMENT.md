@@ -195,6 +195,10 @@ The project includes a comprehensive Docker Compose configuration with multiple 
 docker compose run --rm luacheck                    # Run lua linting
 docker compose run --rm luacheck-report             # Generate lua lint report
 
+# Tests
+docker compose run --rm busted                      # Run headless busted tests
+docker compose run --rm busted-report               # Generate busted test report
+
 # Combat Log Analysis
 docker compose run --rm combat-log-parser           # Parse combat logs 
 docker compose run --rm combat-log-parser-report    # Parse combat logs with report output
@@ -217,6 +221,7 @@ docker compose run --rm voice-generator             # Generate voice files using
 **Output Files:**
 Services with "-report" suffix generate output files in the `./target/` directory:
 - `./target/luacheck-junit.xml` - Luacheck results in JUnit format
+- `./target/busted-junit.xml` - Busted test results in JUnit format
 - `./target/combat_log_parser_output/` - Combat log analysis results  
 - `./target/verify_sounds_output/verification_report.txt` - Sound verification report
 - `./target/verify_spellmap_output/verification_report.txt` - SpellMap validation report
@@ -247,6 +252,51 @@ docker compose run --rm luacheck-report
   - Global variables specific to WoW addons
   - Lua 5.1 standard for compatibility
   - Excluded directories (e.g., `target/`, `tools/`)
+
+### Headless Unit Tests (busted)
+
+The project uses [busted](https://lunarmodules.github.io/busted/) for headless unit tests. Specs
+live under `test/headless/spec/`; a busted helper at `test/headless/Bootstrap.lua` reproduces the
+minimal addon environment (the `rgpvpw` namespace, a shimmed `RGPVPW_ENVIRONMENT`, and the pure
+modules Constants/Logger/Common in TOC dependency order) so modules can be tested without the WoW
+client running. The `test/headless/` subfolder keeps these specs separate from the in-game tests
+under `test/`.
+
+**To run the test suite:**
+
+```bash
+docker compose run --rm busted
+```
+
+This will:
+- Mount the project directory as read-only
+- Run busted against the `test/headless/spec/` directory (configured via `.busted`)
+- Report the number of successes / failures / errors
+
+**To generate a report:**
+```bash
+docker compose run --rm busted-report
+```
+
+This generates a JUnit XML report in `./target/busted-junit.xml`.
+
+**Configuration:**
+- `.busted` - busted run configuration (spec root, the bootstrap helper, the `Spec.lua` pattern)
+- `test/headless/Bootstrap.lua` - test globals and pure-module bootstrap
+- `test/headless/WowStubs.lua` - opt-in registry of WoW-global stubs (`GetTime`, `C_Timer`,
+  `GetLocale`, `C_AddOns`, ...); a spec installs what it needs and restores it in `after_each`
+
+**Spec conventions:**
+- Saved variables are assigned through the global table (`_G.PVPWarnConfiguration = { ... }`) - a
+  bareword assignment inside the busted sandbox is not seen by the module under test.
+- Modules load via `dofile`, not `require`: re-`dofile` a module in `before_each`
+  (e.g. `dofile("code/Warn.lua")`) to reset its file-local state between tests.
+
+**Relationship to the in-game test framework:** the headless busted suite covers pure Lua logic
+(table/string math, configuration state, queue timing) with no WoW client involved. Anything that
+touches real WoW APIs - combat-log replay, sound playback, frame behavior - still runs through the
+in-game session-based framework triggered via `/rgpvpw test ...`; see [TEST.md](TEST.md) for that
+suite's layout and naming conventions.
 
 ### Testing and Code Quality
 
