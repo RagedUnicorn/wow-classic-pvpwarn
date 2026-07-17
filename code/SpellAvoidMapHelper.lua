@@ -68,6 +68,12 @@ function me.GetAllForCategory(category)
   local spellAvoidList = {}
   local filteredSpellAvoidMap = me.GetFilteredSpellAvoidMap()
 
+  if filteredSpellAvoidMap[category] == nil then
+    mod.logger.LogWarn(me.tag, "No avoid spells found for category " .. category)
+
+    return spellAvoidList
+  end
+
   for spellId, spellData in pairs(filteredSpellAvoidMap[category]) do
     local clonedSpell = mod.common.Clone(spellData)
     clonedSpell.spellId = spellId
