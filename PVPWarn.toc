@@ -43,6 +43,8 @@ code/Target.lua
 code/CombatState.lua
 code/StanceState.lua
 code/Configuration.lua
+code/Serializer.lua
+code/Encoder.lua
 code/SpellConfiguration.lua
 code/Cmd.lua
 code/DetectionBarCmd.lua
