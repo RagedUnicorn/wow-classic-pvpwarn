@@ -3,6 +3,8 @@
 # Usage:
 #   docker compose run --rm luacheck                    # Run lua linting
 #   docker compose run --rm luacheck-report             # Generate lua lint report
+#   docker compose run --rm busted                      # Run headless busted tests
+#   docker compose run --rm busted-report               # Generate busted test report
 #   docker compose run --rm combat-log-parser           # Parse combat logs
 #   docker compose run --rm combat-log-parser-report    # Parse combat logs with report output
 #   docker compose run --rm verify-sounds               # Verify sound files exist
@@ -33,6 +35,22 @@ services:
     working_dir: /workspace
     entrypoint: /bin/sh
     command: ["-c", "luacheck --formatter JUnit . > /reports/luacheck-junit.xml"]
+  busted:
+    image: ragedunicorn/busted:2.3.0-alpine3.24.1-1
+    container_name: pvpwarn-busted
+    volumes:
+      - ./:/workspace:ro
+    working_dir: /workspace
+    command: ["test/headless/spec"]
+  busted-report:
+    image: ragedunicorn/busted:2.3.0-alpine3.24.1-1
+    container_name: pvpwarn-busted-report
+    volumes:
+      - ./:/workspace:ro
+      - ./target:/reports
+    working_dir: /workspace
+    entrypoint: /bin/sh
+    command: ["-c", "busted --output=junit test/headless/spec > /reports/busted-junit.xml"]
   combat-log-parser:
     image: ragedunicorn/python:3.14.6-alpine3.24.1-1
     volumes:
