@@ -137,6 +137,17 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "Профиль по умолчанию нельзя изменить"
   rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Ваши профили были сброшены на стандартные "
     .. "из-за обновления до v2.0.0"
+  -- profile export / import
+  rgpvpw.L["profile_string_label"] = "Строка профиля (экспорт / импорт)"
+  rgpvpw.L["profile_export_button"] = "Экспорт"
+  rgpvpw.L["profile_import_button"] = "Импорт"
+  rgpvpw.L["profile_import_name_prompt"] = "Введите имя, под которым сохранить импортированный профиль:"
+  rgpvpw.L["profile_import_success"] = "Профиль \"%s\" импортирован"
+  rgpvpw.L["profile_error_empty"] = "Нет строки профиля для импорта"
+  rgpvpw.L["profile_error_invalid"] = "Строка профиля недействительна или не может быть прочитана"
+  rgpvpw.L["profile_error_checksum"] = "Строка профиля повреждена (несовпадение контрольной суммы)"
+  rgpvpw.L["profile_error_wrong_addon"] = "Эта строка профиля создана не PVPWarn"
+  rgpvpw.L["profile_error_version"] = "Эта строка профиля создана более новой версией PVPWarn"
   -- categories
   rgpvpw.L["category_druid"] = "Друид"
   rgpvpw.L["category_hunter"] = "Охотник"

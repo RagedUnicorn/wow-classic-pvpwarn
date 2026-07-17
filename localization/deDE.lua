@@ -144,6 +144,18 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Deine Profile wurden aufgrund des Upgrades auf v2.0.0 auf die "
     .. "Standardeinstellungen zurückgesetzt."
 
+  -- profile export / import
+  rgpvpw.L["profile_string_label"] = "Profil-Zeichenkette (Export / Import)"
+  rgpvpw.L["profile_export_button"] = "Exportieren"
+  rgpvpw.L["profile_import_button"] = "Importieren"
+  rgpvpw.L["profile_import_name_prompt"] = "Gib einen Namen ein, unter dem das importierte Profil gespeichert wird:"
+  rgpvpw.L["profile_import_success"] = "Profil \"%s\" importiert"
+  rgpvpw.L["profile_error_empty"] = "Es gibt keine Profil-Zeichenkette zum Importieren"
+  rgpvpw.L["profile_error_invalid"] = "Die Profil-Zeichenkette ist ungültig oder konnte nicht gelesen werden"
+  rgpvpw.L["profile_error_checksum"] = "Die Profil-Zeichenkette ist beschädigt (Prüfsumme stimmt nicht)"
+  rgpvpw.L["profile_error_wrong_addon"] = "Diese Profil-Zeichenkette wurde nicht von PVPWarn erstellt"
+  rgpvpw.L["profile_error_version"] = "Diese Profil-Zeichenkette wurde mit einer neueren Version von PVPWarn erstellt"
+
   -- categories
   rgpvpw.L["category_druid"] = "Druide"
   rgpvpw.L["category_hunter"] = "Jäger"

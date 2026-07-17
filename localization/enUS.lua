@@ -134,6 +134,17 @@ rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "The default profil
 rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "The default profile cannot be modified"
 rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Your profiles have been reset to default due to the upgrade "
   .. "to v2.0.0"
+-- profile export / import
+rgpvpw.L["profile_string_label"] = "Profile String (Export / Import)"
+rgpvpw.L["profile_export_button"] = "Export"
+rgpvpw.L["profile_import_button"] = "Import"
+rgpvpw.L["profile_import_name_prompt"] = "Enter a name to save the imported profile under:"
+rgpvpw.L["profile_import_success"] = "Imported profile \"%s\""
+rgpvpw.L["profile_error_empty"] = "There is no profile string to import"
+rgpvpw.L["profile_error_invalid"] = "The profile string is invalid or could not be read"
+rgpvpw.L["profile_error_checksum"] = "The profile string is corrupt (checksum mismatch)"
+rgpvpw.L["profile_error_wrong_addon"] = "This profile string was not created by PVPWarn"
+rgpvpw.L["profile_error_version"] = "This profile string was created by a newer version of PVPWarn"
 -- categories
 rgpvpw.L["category_druid"] = "Druid"
 rgpvpw.L["category_hunter"] = "Hunter"
