@@ -28,7 +28,8 @@ from verify_spellmap import Reporter
 from verify_spellmap.reporter import ReportSection
 # verify_spellmap/__init__.py wires the sibling tools/spellmap_core package onto sys.path.
 from spellmap_core import LuaParser, SpellMapFileReader
-from spellmap_core.assembler import apply as assemble_apply
+from spellmap_core.assembler import apply as assemble_apply, \
+    synthesize_rank_aliases
 from verify_spellmap.validators import (
     NameValidator, DuplicateValidator, TypeValidator,
     TrackedEventsValidator, SoundFileNameValidator, SpellIconValidator,
@@ -118,9 +119,17 @@ class MapVerifier:
 
         for branch in BRANCHES:
             assembled = assemble_apply(base_entries, branch_overlays[branch])
+            synthesis_errors = synthesize_rank_aliases(assembled)
             section = ReportSection(f"{self.map_name} ({branch} branch)")
             section.spell_entries = assembled
             section.dynamic_properties = base_dynamic_properties if branch == "classic" else []
+
+            if synthesis_errors:
+                section.validator_results.append(
+                    ("RankAliasSynthesis", len(synthesis_errors), synthesis_errors)
+                )
+                section.errors.extend(synthesis_errors)
+                any_errors = True
 
             validators = _build_entry_validators(self.is_avoid_map, base_dynamic_properties)
             for validator in validators:

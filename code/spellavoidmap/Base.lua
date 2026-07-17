@@ -54,8 +54,6 @@ local spellAvoidMap = {
         { spellId = 20615, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       },
     },
-    [20253] = { refId = 20615 },
-    [20614] = { refId = 20615 },
     [7373] = {
       name = "Hamstring",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -70,9 +68,6 @@ local spellAvoidMap = {
         { spellId = 25212, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1715] = { refId = 7373 },
-    [7372] = { refId = 7373 },
-    [25212] = { refId = 7373 },
     [21553] = {
       name = "Mortal Strike",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -87,9 +82,6 @@ local spellAvoidMap = {
         { spellId = 21553, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [12294] = { refId = 21553 },
-    [21551] = { refId = 21553 },
-    [21552] = { refId = 21553 },
     [5246] = {
       name = "Intimidating Shout",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -113,7 +105,6 @@ local spellAvoidMap = {
         { spellId = 6554, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [6552] = { refId = 6554 },
     [676] = {
       name = "Disarm",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -143,11 +134,6 @@ local spellAvoidMap = {
         { spellId = 19280, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [2944] = { refId = 19280 },
-    [19276] = { refId = 19280 },
-    [19277] = { refId = 19280 },
-    [19278] = { refId = 19280 },
-    [19279] = { refId = 19280 },
     [15326] = {
       name = "Blackout",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -163,10 +149,6 @@ local spellAvoidMap = {
         { spellId = 15326, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [15268] = { refId = 15326 },
-    [15323] = { refId = 15326 },
-    [15324] = { refId = 15326 },
-    [15325] = { refId = 15326 },
     [10876] = {
       name = "Mana Burn",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -182,10 +164,6 @@ local spellAvoidMap = {
         { spellId = 10876, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8129] = { refId = 10876 },
-    [8131] = { refId = 10876 },
-    [10874] = { refId = 10876 },
-    [10875] = { refId = 10876 },
     [10912] = {
       name = "Mind Control",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -199,8 +177,6 @@ local spellAvoidMap = {
         { spellId = 10912, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [605] = { refId = 10912 },
-    [10911] = { refId = 10912 },
     [10890] = {
       name = "Psychic Scream",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -215,9 +191,6 @@ local spellAvoidMap = {
         { spellId = 10890, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8122] = { refId = 10890 },
-    [8124] = { refId = 10890 },
-    [10888] = { refId = 10890 },
     [10894] = {
       name = "Shadow Word: Pain",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -237,13 +210,6 @@ local spellAvoidMap = {
         { spellId = 10894, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [589] = { refId = 10894 },
-    [594] = { refId = 10894 },
-    [970] = { refId = 10894 },
-    [992] = { refId = 10894 },
-    [2767] = { refId = 10894 },
-    [10892] = { refId = 10894 },
-    [10893] = { refId = 10894 },
     [15487] = {
       name = "Silence",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -282,9 +248,6 @@ local spellAvoidMap = {
         { spellId = 1769, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1766] = { refId = 1769 },
-    [1767] = { refId = 1769 },
-    [1768] = { refId = 1769 },
     [1833] = {
       name = "Cheap Shot",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -311,10 +274,6 @@ local spellAvoidMap = {
         { spellId = 11286, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1776] = { refId = 11286 },
-    [1777] = { refId = 11286 },
-    [8629] = { refId = 11286 },
-    [11285] = { refId = 11286 },
     [8643] = {
       name = "Kidney Shot",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -327,7 +286,6 @@ local spellAvoidMap = {
         { spellId = 8643, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [408] = { refId = 8643 },
     [2094] = {
       name = "Blind",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -363,8 +321,6 @@ local spellAvoidMap = {
         { spellId = 11297, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [6770] = { refId = 11297 },
-    [2070] = { refId = 11297 },
     [1725] = {
       name = "Distract",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -392,10 +348,6 @@ local spellAvoidMap = {
         { spellId = 11198, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8647] = { refId = 11198 },
-    [8649] = { refId = 11198 },
-    [8650] = { refId = 11198 },
-    [11197] = { refId = 11198 },
     [11290] = {
       name = "Garrote",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -412,11 +364,6 @@ local spellAvoidMap = {
         { spellId = 11290, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [703] = { refId = 11290 },
-    [8631] = { refId = 11290 },
-    [8632] = { refId = 11290 },
-    [8633] = { refId = 11290 },
-    [11289] = { refId = 11290 },
     [11275] = {
       name = "Rupture",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -433,11 +380,6 @@ local spellAvoidMap = {
         { spellId = 11275, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1943] = { refId = 11275 },
-    [8639] = { refId = 11275 },
-    [8640] = { refId = 11275 },
-    [11273] = { refId = 11275 },
-    [11274] = { refId = 11275 }
   },
   ["mage"] = {
     [2139] = {
@@ -467,11 +409,6 @@ local spellAvoidMap = {
         { spellId = 28272, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [118] = { refId = 12826 },
-    [12824] = { refId = 12826 },
-    [12825] = { refId = 12826 },
-    [28271] = { refId = 12826 },
-    [28272] = { refId = 12826 },
     [10230] = {
       name = "Frost Nova",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -486,9 +423,6 @@ local spellAvoidMap = {
         { spellId = 10230, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [122] = { refId = 10230 },
-    [865] = { refId = 10230 },
-    [6131] = { refId = 10230 },
     [10161] = {
       name = "Cone of Cold",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -504,10 +438,6 @@ local spellAvoidMap = {
         { spellId = 10161, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [120] = { refId = 10161 },
-    [8492] = { refId = 10161 },
-    [10159] = { refId = 10161 },
-    [10160] = { refId = 10161 }
   },
   ["hunter"] = {
     [5116] = {
@@ -550,13 +480,6 @@ local spellAvoidMap = {
         { spellId = 13555, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1978] = { refId = 13555 },
-    [13549] = { refId = 13555 },
-    [13550] = { refId = 13555 },
-    [13551] = { refId = 13555 },
-    [13552] = { refId = 13555 },
-    [13553] = { refId = 13555 },
-    [13554] = { refId = 13555 },
     [14280] = {
       name = "Viper Sting",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -570,8 +493,6 @@ local spellAvoidMap = {
         { spellId = 14280, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [3034] = { refId = 14280 },
-    [14279] = { refId = 14280 },
     [14308] = {
       name = "Freezing Trap", -- freezing trap effect
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -584,7 +505,6 @@ local spellAvoidMap = {
         { spellId = 14308, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [3355] = { refId = 14308 },
     [14268] = {
       name = "Wing Clip",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -598,8 +518,6 @@ local spellAvoidMap = {
         { spellId = 14268, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [2974] = { refId = 14268 },
-    [14267] = { refId = 14268 },
   },
   ["warlock"] = {
     [11719] = {
@@ -614,7 +532,6 @@ local spellAvoidMap = {
         { spellId = 11719, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1714] = { refId = 11719 },
     [17926] = {
       name = "Death Coil",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -628,8 +545,6 @@ local spellAvoidMap = {
         { spellId = 17926, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [6789] = { refId = 17926 },
-    [17925] = { refId = 17926 },
     [6215] = {
       name = "Fear",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -643,8 +558,6 @@ local spellAvoidMap = {
         { spellId = 6215, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [5782] = { refId = 6215 },
-    [6213] = { refId = 6215 },
     [17928] = {
       name = "Howl of Terror",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -657,7 +570,6 @@ local spellAvoidMap = {
         { spellId = 17928, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [5484] = { refId = 17928 }
   },
   ["paladin"] = {
     [24239] = {
@@ -673,8 +585,6 @@ local spellAvoidMap = {
         { spellId = 24239, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [24274] = { refId = 24239 },
-    [24275] = { refId = 24239 },
     [10308] = {
       name = "Hammer of Justice",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -689,9 +599,6 @@ local spellAvoidMap = {
         { spellId = 10308, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [853] = { refId = 10308 },
-    [5588] = { refId = 10308 },
-    [5589] = { refId = 10308 }
   },
   ["druid"] = {
     [19970] = {
@@ -710,11 +617,6 @@ local spellAvoidMap = {
         { spellId = 19970, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [339] = { refId = 19970 },
-    [1062] = { refId = 19970 },
-    [5195] = { refId = 19970 },
-    [5196] = { refId = 19970 },
-    [9852] = { refId = 19970 },
     [9907] = {
       name = "Faerie Fire",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -729,9 +631,6 @@ local spellAvoidMap = {
         { spellId = 9907, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [770] = { refId = 9907 },
-    [778] = { refId = 9907 },
-    [9749] = { refId = 9907 },
     [17392] = {
       name = "Faerie Fire (Feral)",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -746,9 +645,6 @@ local spellAvoidMap = {
         { spellId = 17392, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [16857] = { refId = 17392 },
-    [17390] = { refId = 17392 },
-    [17391] = { refId = 17392 },
     [8983] = {
       name = "Bash",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -762,8 +658,6 @@ local spellAvoidMap = {
         { spellId = 8983, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [5211] = { refId = 8983 },
-    [6798] = { refId = 8983 },
     [19675] = {
       name = "Feral Charge Effect",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -794,12 +688,6 @@ local spellAvoidMap = {
         { spellId = 10414, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8042] = { refId = 10414 },
-    [8044] = { refId = 10414 },
-    [8045] = { refId = 10414 },
-    [8046] = { refId = 10414 },
-    [10412] = { refId = 10414 },
-    [10413] = { refId = 10414 },
     [29228] = {
       name = "Flame Shock",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -816,11 +704,6 @@ local spellAvoidMap = {
         { spellId = 29228, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8050] = { refId = 29228 },
-    [8052] = { refId = 29228 },
-    [8053] = { refId = 29228 },
-    [10447] = { refId = 29228 },
-    [10448] = { refId = 29228 },
     [10473] = {
       name = "Frost Shock",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -835,9 +718,6 @@ local spellAvoidMap = {
         { spellId = 10473, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8056] = { refId = 10473 },
-    [8058] = { refId = 10473 },
-    [10472] = { refId = 10473 },
   }
 }
 --[[

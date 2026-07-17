@@ -330,6 +330,110 @@ describe("spellMapAssembler", function()
     end)
   end)
 
+  describe("SynthesizeRankAliases", function()
+    local function BuildAssembled()
+      return {
+        SHAMAN = {
+          [10463] = {
+            name = "Healing Stream Totem",
+            allRanks = {
+              { spellId = 5394, type = "SPELL_TYPE_BASE" },
+              { spellId = 10463, type = "SPELL_TYPE_BASE" }
+            }
+          }
+        },
+        MAGE = {
+          [12042] = {
+            name = "Arcane Power",
+            allRanks = {
+              { spellId = 12042, type = "SPELL_TYPE_BASE" }
+            }
+          }
+        }
+      }
+    end
+
+    it("synthesizes an alias for every non-primary rank", function()
+      local map = BuildAssembled()
+
+      assembler.SynthesizeRankAliases(map)
+
+      assert.are.equal(0, #loggedErrors)
+      assert.are.same({ refId = 10463 }, map.SHAMAN[5394])
+    end)
+
+    it("does not alias the primary's own key", function()
+      local map = BuildAssembled()
+
+      assembler.SynthesizeRankAliases(map)
+
+      assert.are.equal("Healing Stream Totem", map.SHAMAN[10463].name)
+      assert.are.equal("Arcane Power", map.MAGE[12042].name)
+      assert.is_nil(next(map.MAGE, 12042))
+    end)
+
+    it("is idempotent when the alias already matches", function()
+      local map = BuildAssembled()
+
+      assembler.SynthesizeRankAliases(map)
+      assembler.SynthesizeRankAliases(map)
+
+      assert.are.equal(0, #loggedErrors)
+      assert.are.same({ refId = 10463 }, map.SHAMAN[5394])
+    end)
+
+    it("covers ranks appended by an overlay", function()
+      local map = BuildAssembled()
+
+      assembler.ApplyOne(map, {
+        SHAMAN = {
+          appendRanks = { [10463] = { { spellId = 25567, type = "SPELL_TYPE_TBC" } } }
+        }
+      })
+      assembler.SynthesizeRankAliases(map)
+
+      assert.are.equal(0, #loggedErrors)
+      assert.are.same({ refId = 10463 }, map.SHAMAN[25567])
+    end)
+
+    it("logs a conflict and keeps the existing entry when a rank id is another primary", function()
+      local map = BuildAssembled()
+      map.SHAMAN[5394] = {
+        name = "Impostor",
+        allRanks = {
+          { spellId = 5394, type = "SPELL_TYPE_BASE" }
+        }
+      }
+
+      assembler.SynthesizeRankAliases(map)
+
+      assert.are.equal(1, #loggedErrors)
+      assert.matches("rank alias synthesis failed: spellId 5394 of primary 10463 already exists in category SHAMAN",
+        loggedErrors[1].message)
+      assert.are.equal("Impostor", map.SHAMAN[5394].name)
+    end)
+
+    it("logs a conflict when a rank id is already aliased to a different primary", function()
+      local map = BuildAssembled()
+      map.SHAMAN[5394] = { refId = 99999 }
+
+      assembler.SynthesizeRankAliases(map)
+
+      assert.are.equal(1, #loggedErrors)
+      assert.are.same({ refId = 99999 }, map.SHAMAN[5394])
+    end)
+
+    it("skips malformed rank entries", function()
+      local map = BuildAssembled()
+      table.insert(map.SHAMAN[10463].allRanks, 99999)
+
+      assembler.SynthesizeRankAliases(map)
+
+      assert.are.equal(0, #loggedErrors)
+      assert.is_nil(map.SHAMAN[99999])
+    end)
+  end)
+
   describe("Validate", function()
     it("returns ok for nil overlays", function()
       local ok, errs = assembler.Validate(BuildBase(), nil)

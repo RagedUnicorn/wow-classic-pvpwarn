@@ -61,7 +61,12 @@ local function buildAssembledMap(branch)
     end
   end
 
-  return mod.spellAvoidMapAssembler.Apply(base, overlays)
+  local assembled = mod.spellAvoidMapAssembler.Apply(base, overlays)
+  -- rank aliases are synthesized from the primaries' allRanks arrays after overlay
+  -- application, so overlay-appended ranks get their alias too
+  mod.spellAvoidMapAssembler.SynthesizeRankAliases(assembled)
+
+  return assembled
 end
 
 local function ensureAssembled()

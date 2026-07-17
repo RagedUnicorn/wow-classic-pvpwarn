@@ -38,7 +38,8 @@ from typing import Dict, List, Tuple, Any
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "spellmap_core"))
 
 from spellmap_core import LuaParser, SpellMapFileReader  # noqa: E402
-from spellmap_core.assembler import apply as assemble_apply, validate as assemble_validate  # noqa: E402
+from spellmap_core.assembler import apply as assemble_apply, validate as assemble_validate, \
+    synthesize_rank_aliases  # noqa: E402
 
 
 BRANCHES = ("classic", "sod", "tbc")
@@ -474,9 +475,21 @@ def _dump_json(path: Path, data: Dict[str, Dict[int, Dict]]) -> None:
     _write(path, json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
 
 
-def assemble_branches(base, overlays_by_branch) -> Dict[str, Dict[int, Dict]]:
-    """Assemble every branch's view of a map from a shared base + per-branch overlays."""
-    return {branch: assemble_apply(base, overlays_by_branch[branch]) for branch in BRANCHES}
+def assemble_branches(base, overlays_by_branch,
+                      hard_errors: List[str], map_label: str) -> Dict[str, Dict[int, Dict]]:
+    """Assemble every branch's view of a map from a shared base + per-branch overlays.
+
+    Rank aliases are synthesized after each branch's overlay application (mirroring
+    buildAssembledMap in code/SpellMap.lua); synthesis conflicts are appended to
+    ``hard_errors``.
+    """
+    assembled_by_branch: Dict[str, Dict[int, Dict]] = {}
+    for branch in BRANCHES:
+        assembled = assemble_apply(base, overlays_by_branch[branch])
+        for err in synthesize_rank_aliases(assembled):
+            hard_errors.append(f"{map_label} [{branch}]: {err}")
+        assembled_by_branch[branch] = assembled
+    return assembled_by_branch
 
 
 class MapExporter:
@@ -515,7 +528,8 @@ class MapExporter:
                 hard_errors.append(f"{self.map_label} [{branch_name}]: {err}")
 
         overlays_by_branch = {"classic": [], "sod": [sod_overlay], "tbc": [tbc_overlay]}
-        assembled_by_branch = assemble_branches(base, overlays_by_branch)
+        assembled_by_branch = assemble_branches(base, overlays_by_branch,
+                                                hard_errors, self.map_label)
 
         summaries_by_branch: Dict[str, Dict[str, Any]] = {}
         for branch in BRANCHES:

@@ -33,8 +33,9 @@ me.tag = "SpellMapOverlaySod"
 --[[
   Branch overlay applied when Season of Discovery is the active client. Contains every SoD-only
   spell PVPWarn knows about. The hunter block additionally removes the four Classic hunter trap
-  primaries (and their alias ranks) so the SoD-reworked traps fully take their place; everything
-  else is a pure `add`.
+  primaries so the SoD-reworked traps fully take their place (their rank aliases never exist at
+  overlay time - SynthesizeRankAliases runs after overlay application and only covers surviving
+  primaries); everything else is a pure `add`.
 
   @return {table}
     Overlay table consumed by mod.spellMapAssembler.Apply.
@@ -267,7 +268,6 @@ function me.GetOverlay()
           -- When using offensive 402284
           -- When using healing 402289
         },
-        [402284] = { refId = 402289 },
         [401946] = {
           name = "Circle of Healing",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
@@ -926,10 +926,10 @@ function me.GetOverlay()
     },
     hunter = {
       remove = {
-        14317, 13813, 14316,                  -- Explosive Trap base + alias ranks
-        14311, 1499, 14310,                   -- Freezing Trap base + alias ranks
-        14305, 13795, 14302, 14303, 14304,    -- Immolation Trap base + alias ranks
-        13809,                                -- Frost Trap (single rank)
+        14317,    -- Explosive Trap
+        14311,    -- Freezing Trap
+        14305,    -- Immolation Trap
+        13809,    -- Frost Trap
       },
       add = {
         [409535] = {
@@ -948,8 +948,6 @@ function me.GetOverlay()
             { spellId = 409535, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
           }
         },
-        [409532] = { refId = 409535 },
-        [409534] = { refId = 409535 },
         [409519] = {
           name = "Freezing Trap",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
@@ -966,8 +964,6 @@ function me.GetOverlay()
             { spellId = 409519, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
           }
         },
-        [409510] = { refId = 409519 },
-        [409512] = { refId = 409519 },
         [409530] = {
           name = "Immolation Trap",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
@@ -986,10 +982,6 @@ function me.GetOverlay()
             { spellId = 409530, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
           }
         },
-        [409521] = { refId = 409530 },
-        [409524] = { refId = 409530 },
-        [409526] = { refId = 409530 },
-        [409528] = { refId = 409530 },
         [409520] = {
           name = "Frost Trap",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
@@ -1969,7 +1961,6 @@ function me.GetOverlay()
             { spellId = 437698, type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD },
           }
         },
-        [437698] = { refId = 437699 },
         [13494] = {
           name = "Catnip",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,

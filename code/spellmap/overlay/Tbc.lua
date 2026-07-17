@@ -33,15 +33,16 @@ me.tag = "SpellMapOverlayTbc"
   the per-class TBC migration tasks (PWI-0017..PWI-0026).
 
   Op semantics (see code/spellmap/Assemble.lua):
-    - add:          insert a brand-new entry (or a refId alias) at a key not present in Base.
+    - add:          insert a brand-new entry at a key not present in Base.
     - replace:      swap a Base entry whole (only mage [11958] / [12472] for the Ice Block /
                     Cold Snap / Icy Veins ID swap; lives in PWI-0023).
     - appendRanks:  add one or more `{ spellId, type }` rank entries to an existing Base
                     entry's `allRanks` array. The base spellId must already exist in the
                     working map.
 
-  Every appended rank also gets a paired `add` entry installing a refId alias so combat-log
-  dispatch via SpellMapHelper.SearchBySpellId routes back to the base entry.
+  Rank aliases are not written by hand: after overlay application SynthesizeRankAliases
+  generates a `{ refId }` alias for every appended rank, so combat-log dispatch via
+  SpellMapHelper.SearchBySpellId routes back to the base entry.
 
   @return {table}
 ]]--
@@ -65,12 +66,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [25272] = { refId = 20252 },  -- Intercept rank 4
-        [25275] = { refId = 20252 },  -- Intercept rank 5
-        [25258] = { refId = 23922 },  -- Shield Slam rank 5
-        [30356] = { refId = 23922 },  -- Shield Slam rank 6
-        [29704] = { refId = 72 },     -- Shield Bash rank 4
-        [12976] = { refId = 12975 },  -- Last Stand rank 2
         -- TBC-only warrior spells (PWI-0017). Commanding Shout (469) is
         -- a 20-yard group buff; tracking SPELL_AURA_APPLIED would fire
         -- per recipient (5+ events per cast in a BG group), so it is
@@ -142,12 +137,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [25431] = { refId = 10952 },  -- Inner Fire rank 7
-        [25467] = { refId = 19280 },  -- Devouring Plague rank 7
-        [25460] = { refId = 19266 },  -- Touch of Weakness rank 7
-        [25437] = { refId = 19243 },  -- Desperate Prayer rank 8
-        [25470] = { refId = 9035 },   -- Hex of Weakness rank 7
-        [25477] = { refId = 18137 },  -- Shadowguard rank 7
         [32375] = {
           name = "Mass Dispel",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -251,9 +240,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [38768] = { refId = 1769 },  -- Kick rank 5
-        [26669] = { refId = 5277 },  -- Evasion rank 2
-        [26889] = { refId = 1857 },  -- Vanish rank 3
         [36554] = {
           name = "Shadowstep",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -378,14 +364,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [27128] = { refId = 10225 },  -- Fire Ward rank 6
-        [32796] = { refId = 28609 },  -- Frost Ward rank 6
-        [27131] = { refId = 10193 },  -- Mana Shield rank 7
-        [27134] = { refId = 13033 },  -- Ice Barrier rank 5
-        [33405] = { refId = 13033 },  -- Ice Barrier rank 6
-        [27088] = { refId = 10230 },  -- Frost Nova rank 5
-        [27133] = { refId = 13021 },  -- Blast Wave rank 6
-        [33933] = { refId = 13021 },  -- Blast Wave rank 7
         -- TBC Ice Block lives at a brand-new key (45438), distinct from
         -- the Classic-Era Ice Block key (11958, repurposed by the replace
         -- op above). Sound and icon match the Classic Ice Block entry.
@@ -495,11 +473,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [27044] = { refId = 25296 },  -- Aspect of the Hawk rank 8
-        [27045] = { refId = 20190 },  -- Aspect of the Wild rank 3
-        [27025] = { refId = 14317 },  -- Explosive Trap rank 4
-        [27023] = { refId = 14305 },  -- Immolation Trap rank 6
-        [27018] = { refId = 14280 },  -- Viper Sting rank 4
         -- TBC-only Aspect of the Viper. The Classic SoD entry lives at
         -- [415423] in Overlay/Sod.lua; SoD and TBC are mutually exclusive
         -- so the brand-new TBC entry sits at the canonical TBC id 34074
@@ -577,9 +550,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [27263] = { refId = 18871 },  -- Shadowburn rank 7
-        [30546] = { refId = 18871 },  -- Shadowburn rank 8
-        [27223] = { refId = 17926 },  -- Death Coil rank 4
         [30283] = {
           name = "Shadowfury",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -670,14 +640,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [27149] = { refId = 10293 },  -- Devotion Aura rank 8
-        [27150] = { refId = 10301 },  -- Retribution Aura rank 6
-        [27151] = { refId = 19896 },  -- Shadow Resistance Aura rank 4
-        [27152] = { refId = 19898 },  -- Frost Resistance Aura rank 4
-        [27153] = { refId = 19900 },  -- Fire Resistance Aura rank 4
-        [27147] = { refId = 20729 },  -- Blessing of Sacrifice rank 3
-        [27148] = { refId = 20729 },  -- Blessing of Sacrifice rank 4
-        [27154] = { refId = 10310 },  -- Lay on Hands rank 4
         -- TBC-only paladin spells. Avenger's Shield applies
         -- a separate silence aura on impact; we track the cast itself
         -- as the unique per-cast cue.
@@ -728,10 +690,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [27009] = { refId = 17329 },  -- Nature's Grasp rank 7
-        [26999] = { refId = 22896 },  -- Frenzied Regeneration rank 4
-        [26993] = { refId = 9907 },   -- Faerie Fire rank 5
-        [27011] = { refId = 17392 },  -- Faerie Fire (Feral) rank 5
         [33786] = {
           name = "Cyclone",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -869,23 +827,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [25563] = { refId = 10538 },  -- Fire Resistance Totem rank 4
-        [25560] = { refId = 10479 },  -- Frost Resistance Totem rank 4
-        [25574] = { refId = 10601 },  -- Nature Resistance Totem rank 4
-        [25557] = { refId = 16387 },  -- Flametongue Totem rank 5
-        [25508] = { refId = 10408 },  -- Stoneskin Totem rank 7
-        [25509] = { refId = 10408 },  -- Stoneskin Totem rank 8
-        [25528] = { refId = 25361 },  -- Strength of Earth Totem rank 6
-        [25585] = { refId = 10614 },  -- Windfury Totem rank 4
-        [25587] = { refId = 10614 },  -- Windfury Totem rank 5
-        [25577] = { refId = 15112 },  -- Windwall Totem rank 4
-        [25546] = { refId = 11315 },  -- Fire Nova Totem rank 6
-        [25547] = { refId = 11315 },  -- Fire Nova Totem rank 7
-        [25552] = { refId = 10587 },  -- Magma Totem rank 5
-        [25533] = { refId = 10438 },  -- Searing Totem rank 7
-        [25525] = { refId = 10428 },  -- Stoneclaw Totem rank 7
-        [25567] = { refId = 10463 },  -- Healing Stream Totem rank 6
-        [25570] = { refId = 10497 },  -- Mana Spring Totem rank 5
         [974] = {
           name = "Earth Shield",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -1033,8 +974,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [33697] = { refId = 20572 },  -- Blood Fury (caster/hybrid)
-        [33702] = { refId = 20572 },  -- Blood Fury (caster spell damage only)
         [25046] = {
           name = "Arcane Torrent",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -1073,11 +1012,6 @@ function me.GetOverlay()
           { spellId = 27031, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
           { spellId = 30020, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
         },
-      },
-      add = {
-        [27030] = { refId = 18610 },  -- Netherweave Bandage
-        [27031] = { refId = 18610 },  -- Heavy Netherweave Bandage
-        [30020] = { refId = 18610 },  -- Crystal Infused Bandage
       },
     },
   }

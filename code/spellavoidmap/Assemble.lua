@@ -135,6 +135,42 @@ function me.ApplyOne(map, overlay)
 end
 
 --[[
+  Synthesize `{ refId = <primarySpellId> }` rank-alias entries from each primary entry's
+  allRanks array. See mod.spellMapAssembler.SynthesizeRankAliases for the full contract.
+
+  @param {table} map
+    The assembled map keyed by category; mutated in place.
+]]--
+function me.SynthesizeRankAliases(map)
+  for category, spells in pairs(map) do
+    local primaries = {}
+
+    for spellId, spellData in pairs(spells) do
+      if spellData.refId == nil and spellData.allRanks ~= nil then
+        primaries[spellId] = spellData
+      end
+    end
+
+    for primarySpellId, spellData in pairs(primaries) do
+      for _, rank in ipairs(spellData.allRanks) do
+        if type(rank) == "table" and type(rank.spellId) == "number"
+            and rank.spellId ~= primarySpellId then
+          local existing = spells[rank.spellId]
+
+          if existing == nil then
+            spells[rank.spellId] = { refId = primarySpellId }
+          elseif existing.refId ~= primarySpellId then
+            mod.logger.LogError(me.tag, string.format(
+              "rank alias synthesis failed: spellId %d of primary %d already exists in category %s",
+              rank.spellId, primarySpellId, tostring(category)))
+          end
+        end
+      end
+    end
+  end
+end
+
+--[[
   Validate one or more overlays against a base map. Returns ok, errs.
 ]]--
 function me.Validate(base, overlays)

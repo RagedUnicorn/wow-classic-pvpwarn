@@ -5,7 +5,7 @@ Tests for the Python port of mod.spellMapAssembler (spellmap_core/assembler.py).
 import copy
 import pytest
 
-from spellmap_core.assembler import apply, validate
+from spellmap_core.assembler import apply, synthesize_rank_aliases, validate
 
 
 @pytest.fixture
@@ -337,3 +337,71 @@ class TestAppendRanksMalformed:
         result = apply(base_with_ranks, [overlay])
         assert any(isinstance(r, dict) and r.get("spellId") == 25567
                    for r in result["shaman"][10463]["allRanks"])
+
+
+class TestSynthesizeRankAliases:
+    @pytest.fixture
+    def assembled(self):
+        """Assembled map without any alias entries (the post-refactor data-file shape)."""
+        return {
+            "shaman": {
+                10463: {
+                    "name": "Healing Stream Totem",
+                    "type": "SPELL_TYPE_BASE",
+                    "allRanks": [
+                        {"spellId": 5394,  "type": "SPELL_TYPE_BASE"},
+                        {"spellId": 10463, "type": "SPELL_TYPE_BASE"},
+                    ],
+                },
+            },
+            "mage": {
+                12042: {"name": "Arcane Power", "type": "SPELL_TYPE_BASE",
+                        "allRanks": [{"spellId": 12042, "type": "SPELL_TYPE_BASE"}]},
+            },
+        }
+
+    def test_synthesizes_alias_for_non_primary_ranks(self, assembled):
+        errors = synthesize_rank_aliases(assembled)
+        assert errors == []
+        assert assembled["shaman"][5394] == {"refId": 10463}
+
+    def test_does_not_alias_the_primary_key_itself(self, assembled):
+        synthesize_rank_aliases(assembled)
+        assert assembled["shaman"][10463]["name"] == "Healing Stream Totem"
+        assert assembled["mage"][12042]["name"] == "Arcane Power"
+        assert len(assembled["mage"]) == 1
+
+    def test_idempotent_when_alias_already_correct(self, assembled):
+        synthesize_rank_aliases(assembled)
+        errors = synthesize_rank_aliases(assembled)
+        assert errors == []
+        assert assembled["shaman"][5394] == {"refId": 10463}
+
+    def test_covers_overlay_appended_ranks(self, assembled):
+        overlay = {"shaman": {"appendRanks": {10463: [
+            {"spellId": 25567, "type": "SPELL_TYPE_TBC"},
+        ]}}}
+        result = apply(assembled, [overlay])
+        errors = synthesize_rank_aliases(result)
+        assert errors == []
+        assert result["shaman"][25567] == {"refId": 10463}
+
+    def test_conflict_with_other_primary_reports_error_and_keeps_entry(self, assembled):
+        assembled["shaman"][5394] = {"name": "Impostor", "type": "SPELL_TYPE_BASE",
+                                     "allRanks": [{"spellId": 5394, "type": "SPELL_TYPE_BASE"}]}
+        errors = synthesize_rank_aliases(assembled)
+        assert len(errors) == 1
+        assert "spellId 5394 of primary 10463 already exists" in errors[0]
+        assert assembled["shaman"][5394]["name"] == "Impostor"
+
+    def test_conflict_with_alias_to_other_primary_reports_error(self, assembled):
+        assembled["shaman"][5394] = {"refId": 99999}
+        errors = synthesize_rank_aliases(assembled)
+        assert len(errors) == 1
+        assert assembled["shaman"][5394] == {"refId": 99999}
+
+    def test_skips_malformed_ranks(self, assembled):
+        assembled["shaman"][10463]["allRanks"].append(99999)  # bare int, malformed
+        errors = synthesize_rank_aliases(assembled)
+        assert errors == []
+        assert 99999 not in assembled["shaman"]

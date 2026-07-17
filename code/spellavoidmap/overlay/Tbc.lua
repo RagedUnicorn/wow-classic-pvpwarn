@@ -43,10 +43,6 @@ function me.GetOverlay()
           { spellId = 30330, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
         },
       },
-      add = {
-        [25248] = { refId = 21553 },  -- Mortal Strike rank 5
-        [30330] = { refId = 21553 },  -- Mortal Strike rank 6
-      },
     },
     priest = {
       appendRanks = {
@@ -63,11 +59,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [25467] = { refId = 19280 },  -- Devouring Plague rank 7
-        [25379] = { refId = 10876 },  -- Mana Burn rank 6
-        [25380] = { refId = 10876 },  -- Mana Burn rank 7
-        [25367] = { refId = 10894 },  -- Shadow Word: Pain rank 9
-        [25368] = { refId = 10894 },  -- Shadow Word: Pain rank 10
         [44041] = {
           name = "Chastise",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -101,12 +92,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [38768] = { refId = 1769 },   -- Kick rank 5
-        [38764] = { refId = 11286 },  -- Gouge rank 6
-        [26866] = { refId = 11198 },  -- Expose Armor rank 6
-        [26839] = { refId = 11290 },  -- Garrote rank 7
-        [26884] = { refId = 11290 },  -- Garrote rank 8
-        [26867] = { refId = 11275 },  -- Rupture rank 7
         [26679] = {
           name = "Deadly Throw",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -130,8 +115,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [27088] = { refId = 10230 },  -- Frost Nova rank 5
-        [27087] = { refId = 10161 },  -- Cone of Cold rank 6
         [31661] = {
           name = "Dragon's Breath",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -167,9 +150,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [25295] = { refId = 13555 },  -- Serpent Sting rank 9
-        [27016] = { refId = 13555 },  -- Serpent Sting rank 10
-        [27018] = { refId = 14280 },  -- Viper Sting rank 4
         [34490] = {
           name = "Silencing Shot",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -190,7 +170,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [27223] = { refId = 17926 },  -- Death Coil rank 4
         [30283] = {
           name = "Shadowfury",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -210,9 +189,6 @@ function me.GetOverlay()
           { spellId = 27180, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
         },
       },
-      add = {
-        [27180] = { refId = 24239 },  -- Hammer of Wrath rank 4
-      },
     },
     druid = {
       appendRanks = {
@@ -227,9 +203,6 @@ function me.GetOverlay()
         },
       },
       add = {
-        [26989] = { refId = 19970 },  -- Entangling Roots rank 7
-        [26993] = { refId = 9907 },   -- Faerie Fire rank 5
-        [27011] = { refId = 17392 },  -- Faerie Fire (Feral) rank 5
         [33786] = {
           name = "Cyclone",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
@@ -265,11 +238,6 @@ function me.GetOverlay()
         [10473] = {  -- Frost Shock
           { spellId = 25464, type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC },
         },
-      },
-      add = {
-        [25454] = { refId = 10414 },  -- Earth Shock rank 8
-        [25457] = { refId = 29228 },  -- Flame Shock rank 7
-        [25464] = { refId = 10473 },  -- Frost Shock rank 5
       },
     },
   }

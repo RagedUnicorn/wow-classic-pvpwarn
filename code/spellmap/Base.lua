@@ -153,8 +153,6 @@ local spellMap = {
         { spellId = 20617, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [20616] = { refId = 20252 },
-    [20617] = { refId = 20252 },
     [676] = {
       name = "Disarm",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -213,7 +211,6 @@ local spellMap = {
         { spellId = 6554, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [6554] = { refId = 6552 },
     [100] = {
       name = "Charge",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -230,8 +227,6 @@ local spellMap = {
         { spellId = 11578, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [6178] = { refId = 100 },
-    [11578] = { refId = 100 },
     [5246] = {
       name = "Intimidating Shout",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -278,9 +273,6 @@ local spellMap = {
         { spellId = 23925, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [23923] = { refId = 23922 },
-    [23924] = { refId = 23922 },
-    [23925] = { refId = 23922 },
     [871] = {
       name = "Shield Wall",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -327,8 +319,6 @@ local spellMap = {
         { spellId = 1672, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1671] = { refId = 72 },
-    [1672] = { refId = 72 },
     [20230] = {
       name = "Retaliation",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -379,9 +369,6 @@ local spellMap = {
         { spellId = 10890, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8122] = { refId = 10890 },
-    [8124] = { refId = 10890 },
-    [10888] = { refId = 10890 },
     [15487] = {
       name = "Silence",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -433,11 +420,6 @@ local spellMap = {
         { spellId = 10952, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [588] = { refId = 10952 },
-    [7128] = { refId = 10952 },
-    [602] = { refId = 10952 },
-    [1006] = { refId = 10952 },
-    [10951] = { refId = 10952 },
     [15286] = {
       name = "Vampiric Embrace",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -472,11 +454,6 @@ local spellMap = {
         { spellId = 19280, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [2944] = { refId = 19280 },
-    [19276] = { refId = 19280 },
-    [19277] = { refId = 19280 },
-    [19278] = { refId = 19280 },
-    [19279] = { refId = 19280 },
     [19266] = {
       name = "Touch of Weakness",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -498,11 +475,6 @@ local spellMap = {
         { spellId = 19266, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [2652] = { refId = 19266 },
-    [19261] = { refId = 19266 },
-    [19262] = { refId = 19266 },
-    [19264] = { refId = 19266 },
-    [19265] = { refId = 19266 },
     [6346] = {
       name = "Fear Ward",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -539,12 +511,6 @@ local spellMap = {
         { spellId = 19243, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [13908] = { refId = 19243 },
-    [19236] = { refId = 19243 },
-    [19238] = { refId = 19243 },
-    [19240] = { refId = 19243 },
-    [19241] = { refId = 19243 },
-    [19242] = { refId = 19243 },
     [9035] = {
       name = "Hex of Weakness",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -564,11 +530,6 @@ local spellMap = {
         { spellId = 19285, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [19281] = { refId = 9035 },
-    [19282] = { refId = 9035 },
-    [19283] = { refId = 9035 },
-    [19284] = { refId = 9035 },
-    [19285] = { refId = 9035 },
     [18137] = {
       name = "Shadowguard",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -590,11 +551,6 @@ local spellMap = {
         { spellId = 19312, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [19308] = { refId = 18137 },
-    [19309] = { refId = 18137 },
-    [19310] = { refId = 18137 },
-    [19311] = { refId = 18137 },
-    [19312] = { refId = 18137 },
   },
   ["rogue"] = {
     [2094] = {
@@ -629,9 +585,6 @@ local spellMap = {
         { spellId = 1769, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1766] = { refId = 1769 },
-    [1767] = { refId = 1769 },
-    [1768] = { refId = 1769 },
     [11305] = {
       name = "Sprint",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -649,8 +602,6 @@ local spellMap = {
         { spellId = 11305, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [2983] = { refId = 11305 },
-    [8696] = { refId = 11305 },
     [5277] = {
       name = "Evasion",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -681,7 +632,6 @@ local spellMap = {
         { spellId = 8643, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [408] = { refId = 8643 },
     [1833] = {
       name = "Cheap Shot",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -771,7 +721,6 @@ local spellMap = {
         { spellId = 1857, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1856] = { refId = 1857 },
     [1787] = {
       name = "Stealth",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -789,9 +738,6 @@ local spellMap = {
         { spellId = 1787, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1784] = { refId = 1787 },
-    [1785] = { refId = 1787 },
-    [1786] = { refId = 1787 },
   },
   ["mage"] = {
     [11958] = {
@@ -830,11 +776,6 @@ local spellMap = {
         { spellId = 28272, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [118] = { refId = 12826 },
-    [12824] = { refId = 12826 },
-    [12825] = { refId = 12826 },
-    [28271] = { refId = 12826 },
-    [28272] = { refId = 12826 },
     [1953] = {
       name = "Blink",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -868,10 +809,6 @@ local spellMap = {
         { spellId = 10225, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [543] = { refId = 10225 },
-    [8457] = { refId = 10225 },
-    [8458] = { refId = 10225 },
-    [10223] = { refId = 10225 },
     [28609] = {
       name = "Frost Ward",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -891,10 +828,6 @@ local spellMap = {
         { spellId = 28609, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [6143] = { refId = 28609 },
-    [8461] = { refId = 28609 },
-    [8462] = { refId = 28609 },
-    [10177] = { refId = 28609 },
     [2139] = {
       name = "Counterspell",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -931,11 +864,6 @@ local spellMap = {
         { spellId = 10193, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1463] = { refId = 10193 },
-    [8494] = { refId = 10193 },
-    [8495] = { refId = 10193 },
-    [10191] = { refId = 10193 },
-    [10192] = { refId = 10193 },
     [13033] = {
       name = "Ice Barrier",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -955,9 +883,6 @@ local spellMap = {
         { spellId = 13033, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [11426] = { refId = 13033 },
-    [13031] = { refId = 13033 },
-    [13032] = { refId = 13033 },
     [10230] = {
       name = "Frost Nova",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -975,9 +900,6 @@ local spellMap = {
         { spellId = 10230, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [122] = { refId = 10230 },
-    [865] = { refId = 10230 },
-    [6131] = { refId = 10230 },
     [12042] = {
       name = "Arcane Power",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1056,10 +978,6 @@ local spellMap = {
         { spellId = 13021, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [11113] = { refId = 13021 },
-    [13018] = { refId = 13021 },
-    [13019] = { refId = 13021 },
-    [13020] = { refId = 13021 },
     [12472] = {
       name = "Cold Snap",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1126,12 +1044,6 @@ local spellMap = {
         { spellId = 25296, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [13165] = { refId = 25296 },
-    [14318] = { refId = 25296 },
-    [14319] = { refId = 25296 },
-    [14320] = { refId = 25296 },
-    [14321] = { refId = 25296 },
-    [14322] = { refId = 25296 },
     [13159] = {
       name = "Aspect of the Pack",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1178,7 +1090,6 @@ local spellMap = {
         { spellId = 20190, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [20043] = { refId = 20190 },
     [13161] = {
       name = "Aspect of the Beast",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1225,8 +1136,6 @@ local spellMap = {
         { spellId = 14317, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [13813] = { refId = 14317 },
-    [14316] = { refId = 14317 },
     [14311] = {
       name = "Freezing Trap",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1243,8 +1152,6 @@ local spellMap = {
         { spellId = 14311, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1499] = { refId = 14311 },
-    [14310] = { refId = 14311 },
     [14305] = {
       name = "Immolation Trap",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1263,10 +1170,6 @@ local spellMap = {
         { spellId = 14305, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [13795] = { refId = 14305 },
-    [14302] = { refId = 14305 },
-    [14303] = { refId = 14305 },
-    [14304] = { refId = 14305 },
     [13809] = {
       name = "Frost Trap",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1297,8 +1200,6 @@ local spellMap = {
         { spellId = 14280, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [3034] = { refId = 14280 },
-    [14279] = { refId = 14280 },
     [19503] = {
       name = "Scatter Shot",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1390,8 +1291,6 @@ local spellMap = {
         { spellId = 6215, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [5782] = { refId = 6215 },
-    [6213] = { refId = 6215 },
     [18871] = {
       name = "Shadowburn",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1411,11 +1310,6 @@ local spellMap = {
         { spellId = 18871, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [17877] = { refId = 18871 },
-    [18867] = { refId = 18871 },
-    [18868] = { refId = 18871 },
-    [18869] = { refId = 18871 },
-    [18870] = { refId = 18871 },
     [28610] = {
       name = "Shadow Ward",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1434,9 +1328,6 @@ local spellMap = {
         { spellId = 28610, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [6229] = { refId = 28610 },
-    [11739] = { refId = 28610 },
-    [11740] = { refId = 28610 },
     [17928] = {
       name = "Howl of Terror",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1452,7 +1343,6 @@ local spellMap = {
         { spellId = 17928, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [5484] = { refId = 17928 },
     [17926] = {
       name = "Death Coil",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1469,8 +1359,6 @@ local spellMap = {
         { spellId = 17926, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [6789] = { refId = 17926 },
-    [17925] = { refId = 17926 },
     [18288] = {
       name = "Amplify Curse",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1501,7 +1389,6 @@ local spellMap = {
         { spellId = 19647, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [19244] = { refId = 19647 },
     [19028] = {
       name = "Soul Link",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1555,12 +1442,6 @@ local spellMap = {
         { spellId = 10293, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [465] = { refId = 10293 },
-    [10290] = { refId = 10293 },
-    [643] = { refId = 10293 },
-    [10291] = { refId = 10293 },
-    [1032] = { refId = 10293 },
-    [10292] = { refId = 10293 },
     [10301] = {
       name = "Retribution Aura",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1579,10 +1460,6 @@ local spellMap = {
         { spellId = 10301, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [7294] = { refId = 10301 },
-    [10298] = { refId = 10301 },
-    [10299] = { refId = 10301 },
-    [10300] = { refId = 10301 },
     [19746] = {
       name = "Concentration Aura",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1613,8 +1490,6 @@ local spellMap = {
         { spellId = 19896, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [19876] = { refId = 19896 },
-    [19895] = { refId = 19896 },
     [19898] = {
       name = "Frost Resistance Aura",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1631,8 +1506,6 @@ local spellMap = {
         { spellId = 19898, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [19888] = { refId = 19898 },
-    [19897] = { refId = 19898 },
     [19900] = {
       name = "Fire Resistance Aura",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1649,8 +1522,6 @@ local spellMap = {
         { spellId = 19900, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [19891] = { refId = 19900 },
-    [19899] = { refId = 19900 },
     [10278] = {
       name = "Blessing of Protection",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1668,8 +1539,6 @@ local spellMap = {
         { spellId = 10278, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1022] = { refId = 10278 },
-    [5599] = { refId = 10278 },
     [1044] = {
       name = "Blessing of Freedom",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1701,7 +1570,6 @@ local spellMap = {
         { spellId = 20729, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [6940] = { refId = 20729 },
     [10308] = {
       name = "Hammer of Justice",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1719,9 +1587,6 @@ local spellMap = {
         { spellId = 10308, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [853] = { refId = 10308 },
-    [5588] = { refId = 10308 },
-    [5589] = { refId = 10308 },
     [20066] = {
       name = "Repentance",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1752,7 +1617,6 @@ local spellMap = {
         { spellId = 1020, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [642] = { refId = 1020 },
     [25771] = {
       name = "Forbearance",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1784,8 +1648,6 @@ local spellMap = {
         { spellId = 10310, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [633] = { refId = 10310 },
-    [2800] = { refId = 10310 },
     [5573] = {
       name = "Divine Protection",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1802,7 +1664,6 @@ local spellMap = {
         { spellId = 5573, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [498] = { refId = 5573 },
   },
   ["druid"] = {
     [5487] = {
@@ -1936,11 +1797,6 @@ local spellMap = {
         { spellId = 17329, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [16689] = { refId = 17329 },
-    [16810] = { refId = 17329 },
-    [16811] = { refId = 17329 },
-    [16812] = { refId = 17329 },
-    [16813] = { refId = 17329 },
     [8983] = {
       name = "Bash",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1957,8 +1813,6 @@ local spellMap = {
         { spellId = 8983, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [5211] = { refId = 8983 },
-    [6798] = { refId = 8983 },
     [16979] = {
       name = "Feral Charge",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -1990,8 +1844,6 @@ local spellMap = {
         { spellId = 22896, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [22842] = { refId = 22896 },
-    [22895] = { refId = 22896 },
     [2893] = {
       name = "Abolish Poison",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2054,9 +1906,6 @@ local spellMap = {
         { spellId = 9907, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [770] = { refId = 9907 },
-    [778] = { refId = 9907 },
-    [9749] = { refId = 9907 },
     [17392] = {
       name = "Faerie Fire (Feral)",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2074,9 +1923,6 @@ local spellMap = {
         { spellId = 17392, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [16857] = { refId = 17392 },
-    [17390] = { refId = 17392 },
-    [17391] = { refId = 17392 },
   },
   ["shaman"] = {
     [16166] = {
@@ -2167,8 +2013,6 @@ local spellMap = {
         { spellId = 10538, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8184] = { refId = 10538 },
-    [10537] = { refId = 10538 },
     [10479] = {
       name = "Frost Resistance Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2185,8 +2029,6 @@ local spellMap = {
         { spellId = 10479, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8181] = { refId = 10479 },
-    [10478] = { refId = 10479 },
     [10601] = {
       name = "Nature Resistance Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2203,8 +2045,6 @@ local spellMap = {
         { spellId = 10601, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [10595] = { refId = 10601 },
-    [10600] = { refId = 10601 },
     [16387] = {
       name = "Flametongue Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2222,9 +2062,6 @@ local spellMap = {
         { spellId = 16387, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8227] = { refId = 16387 },
-    [8249] = { refId = 16387 },
-    [10526] = { refId = 16387 },
     [25359] = {
       name = "Grace of Air Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2241,8 +2078,6 @@ local spellMap = {
         { spellId = 25359, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8835] = { refId = 25359 },
-    [10627] = { refId = 25359 },
     [10408] = {
       name = "Stoneskin Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2262,11 +2097,6 @@ local spellMap = {
         { spellId = 10408, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8071] = { refId = 10408 },
-    [8154] = { refId = 10408 },
-    [8155] = { refId = 10408 },
-    [10406] = { refId = 10408 },
-    [10407] = { refId = 10408 },
     [25361] = {
       name = "Strength of Earth Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2285,10 +2115,6 @@ local spellMap = {
         { spellId = 25361, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8075] = { refId = 25361 },
-    [8160] = { refId = 25361 },
-    [8161] = { refId = 25361 },
-    [10442] = { refId = 25361 },
     [10614] = {
       name = "Windfury Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2305,8 +2131,6 @@ local spellMap = {
         { spellId = 10614, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8512] = { refId = 10614 },
-    [10613] = { refId = 10614 },
     [15112] = {
       name = "Windwall Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2323,8 +2147,6 @@ local spellMap = {
         { spellId = 15112, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [15107] = { refId = 15112 },
-    [15111] = { refId = 15112 },
     [2484] = {
       name = "Earthbind Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2357,10 +2179,6 @@ local spellMap = {
         { spellId = 11315, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [1535] = { refId = 11315 },
-    [8498] = { refId = 11315 },
-    [8499] = { refId = 11315 },
-    [11314] = { refId = 11315 },
     [10587] = {
       name = "Magma Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2378,9 +2196,6 @@ local spellMap = {
         { spellId = 10587, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [8190] = { refId = 10587 },
-    [10585] = { refId = 10587 },
-    [10586] = { refId = 10587 },
     [10438] = {
       name = "Searing Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2400,11 +2215,6 @@ local spellMap = {
         { spellId = 10438, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [3599] = { refId = 10438 },
-    [6363] = { refId = 10438 },
-    [6364] = { refId = 10438 },
-    [6365] = { refId = 10438 },
-    [10437] = { refId = 10438 },
     [10428] = {
       name = "Stoneclaw Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2424,11 +2234,6 @@ local spellMap = {
         { spellId = 10428, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [5730] = { refId = 10428 },
-    [6390] = { refId = 10428 },
-    [6391] = { refId = 10428 },
-    [6392] = { refId = 10428 },
-    [10427] = { refId = 10428 },
     [10463] = {
       name = "Healing Stream Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2447,10 +2252,6 @@ local spellMap = {
         { spellId = 10463, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [5394] = { refId = 10463 },
-    [6375] = { refId = 10463 },
-    [6377] = { refId = 10463 },
-    [10462] = { refId = 10463 },
     [8170] = {
       name = "Disease Cleansing Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2482,9 +2283,6 @@ local spellMap = {
         { spellId = 10497, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [5675] = { refId = 10497 },
-    [10495] = { refId = 10497 },
-    [10496] = { refId = 10497 },
     [17359] = {
       name = "Mana Tide Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2501,8 +2299,6 @@ local spellMap = {
         { spellId = 17359, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [16190] = { refId = 17359 },
-    [17354] = { refId = 17359 },
     [25908] = {
       name = "Tranquil Air Totem",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -2609,8 +2405,6 @@ local spellMap = {
         { spellId = 26297, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE },
       }
     },
-    [26297] = { refId = 20554 }, -- energy
-    [26296] = { refId = 20554 }, -- rage
     [20580] = {
       name = "Shadowmeld",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
@@ -3105,15 +2899,6 @@ local spellMap = {
         { spellId = 18610, type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE }, -- Heavy Runecloth Bandage
       }
     },
-    [746] = { refId = 18610 },
-    [1159] = { refId = 18610 },
-    [3267] = { refId = 18610 },
-    [3268] = { refId = 18610 },
-    [7926] = { refId = 18610 },
-    [7927] = { refId = 18610 },
-    [10838] = { refId = 18610 },
-    [10839] = { refId = 18610 },
-    [18608] = { refId = 18610 },
     [17548] = {
       name = "Greater Shadow Protection Potion",
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,

@@ -1,9 +1,11 @@
 """
 Python port of code/spellmap/Assemble.lua (and code/spellavoidmap/Assemble.lua).
 
-Mirrors mod.spellMapAssembler.Apply and Validate exactly:
+Mirrors mod.spellMapAssembler.Apply, SynthesizeRankAliases and Validate exactly:
   - Apply deep-copies the base map and applies each overlay's remove, then add, then replace,
     then appendRanks.
+  - SynthesizeRankAliases generates the `{ refId = <primarySpellId> }` rank-alias entries from
+    the primaries' allRanks arrays; runs on an assembled map after Apply.
   - Validate checks structural invariants (remove of missing, add of existing, replace of missing,
     appendRanks of missing base / duplicate rank) against a working copy, accumulating errors
     instead of raising.
@@ -89,6 +91,47 @@ def _apply_one(working: Dict[str, Dict[int, Dict]], overlay: Dict[str, Dict]) ->
                     continue  # duplicate; Validate() reports it.
                 entry["allRanks"].append(copy.deepcopy(rank))
                 existing.add(rank_spell_id)
+
+
+def synthesize_rank_aliases(assembled: Dict[str, Dict[int, Dict]]) -> List[str]:
+    """Synthesize ``{ refId = <primarySpellId> }`` rank-alias entries from each primary
+    entry's allRanks array. Mirrors SynthesizeRankAliases in code/spellmap/Assemble.lua /
+    code/spellavoidmap/Assemble.lua.
+
+    Intended to run on an assembled map after apply(), so ranks appended by overlay
+    appendRanks ops are covered. The primaries' allRanks arrays are the single source of
+    truth for rank aliases - the data files carry no hand-written alias entries.
+
+    Args:
+        assembled: The assembled map keyed by category, then by spellId. Mutated in place.
+
+    Returns:
+        A list of conflict error strings (a rank spellId already taken by another primary
+        or by an alias to a different primary). Empty list means clean synthesis.
+    """
+    errors: List[str] = []
+
+    for category, spells in assembled.items():
+        primaries = {
+            spell_id: entry for spell_id, entry in spells.items()
+            if isinstance(entry, dict) and "refId" not in entry and entry.get("allRanks")
+        }
+
+        for primary_spell_id, entry in primaries.items():
+            for rank in entry["allRanks"]:
+                rank_spell_id = _rank_spell_id(rank)
+                if rank_spell_id is None or rank_spell_id == primary_spell_id:
+                    continue
+                existing = spells.get(rank_spell_id)
+                if existing is None:
+                    spells[rank_spell_id] = {"refId": primary_spell_id}
+                elif not isinstance(existing, dict) or existing.get("refId") != primary_spell_id:
+                    errors.append(
+                        f"{category}: rank alias synthesis failed: spellId {rank_spell_id} "
+                        f"of primary {primary_spell_id} already exists"
+                    )
+
+    return errors
 
 
 def validate(base: Dict[str, Dict[int, Dict]],
