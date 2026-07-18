@@ -149,6 +149,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Ваши профили были сброшены на стандартные "
     .. "из-за обновления до v2.0.0"
   -- profile export / import
+  rgpvpw.L["profile_list_label"] = "Сохранённые профили"
   rgpvpw.L["profile_string_label"] = "Строка профиля (экспорт / импорт)"
   rgpvpw.L["profile_export_button"] = "Экспорт"
   rgpvpw.L["profile_import_button"] = "Импорт"

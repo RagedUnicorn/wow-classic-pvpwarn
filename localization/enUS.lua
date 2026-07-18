@@ -146,6 +146,7 @@ rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "The default profi
 rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Your profiles have been reset to default due to the upgrade "
   .. "to v2.0.0"
 -- profile export / import
+rgpvpw.L["profile_list_label"] = "Saved Profiles"
 rgpvpw.L["profile_string_label"] = "Profile String (Export / Import)"
 rgpvpw.L["profile_export_button"] = "Export"
 rgpvpw.L["profile_import_button"] = "Import"

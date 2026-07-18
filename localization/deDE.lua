@@ -156,6 +156,7 @@ if (GetLocale() == "deDE") then
     .. "Standardeinstellungen zurückgesetzt."
 
   -- profile export / import
+  rgpvpw.L["profile_list_label"] = "Gespeicherte Profile"
   rgpvpw.L["profile_string_label"] = "Profil-Zeichenkette (Export / Import)"
   rgpvpw.L["profile_export_button"] = "Exportieren"
   rgpvpw.L["profile_import_button"] = "Importieren"

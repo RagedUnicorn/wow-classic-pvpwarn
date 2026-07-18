@@ -34,8 +34,6 @@ me.tag = "ProfileMenu"
 local builtMenu = false
 
 local profileRows = {}
--- holds a reference to the bordered container around the profile list
-local profileListContainer
 -- holds a reference to the scrollable content frame the profile rows attach to
 local profileListContent
 -- the name of the currently selected profile in the profile list
@@ -231,48 +229,59 @@ end
 ]]--
 function me.BuildUi(frame)
   me.CreateProfileTitle(frame)
-  profileListContainer = me.CreateProfileList(frame)
+
+  local listLabel = frame:CreateFontString(nil, "OVERLAY")
+  listLabel:SetFont(STANDARD_TEXT_FONT, 13)
+  listLabel:SetPoint("TOPLEFT", 20, -46)
+  listLabel:SetText(rgpvpw.L["profile_list_label"])
+
+  me.CreateProfileList(frame)
+
   -- creates a button that creates a new profile based on the current configuration
-  local saveButton = me.CreateConfigurationButton(
+  me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_SAVE_PROFILE_BUTTON,
-    {"BOTTOMLEFT", profileListContainer, "BOTTOMLEFT", 0, -40},
+    150,
+    {"TOPLEFT", 320, -64},
     rgpvpw.L["save_current_profile_button"],
     me.SaveProfileOnClick
   )
-  -- create a button that allows to delete the selected profile
-  local deleteButton = me.CreateConfigurationButton(
-    frame,
-    RGPVPW_CONSTANTS.ELEMENT_DELETE_PROFILE_BUTTON,
-    {"LEFT", saveButton, "RIGHT", 0, 0},
-    rgpvpw.L["delete_selected_profile_button"],
-    me.DeleteSelectedProfileButtonOnClick
-  )
   -- create a button that loads the selected profile
-  local loadButton = me.CreateConfigurationButton(
+  me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_LOAD_PROFILE_BUTTON,
-    {"LEFT", deleteButton, "RIGHT", 0, 0},
+    150,
+    {"TOPLEFT", 320, -96},
     rgpvpw.L["load_selected_profile_button"],
     me.LoadSelectedProfileButtonOnClick
   )
-
   -- create a button that updates the selected profile
   me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_UPDATE_PROFILE_BUTTON,
-    {"LEFT", loadButton, "RIGHT", 0, 0},
+    150,
+    {"TOPLEFT", 320, -128},
     rgpvpw.L["update_profile_button"],
     me.UpdateProfileButtonOnClick
   )
+  -- create a button that allows to delete the selected profile
+  me.CreateConfigurationButton(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_DELETE_PROFILE_BUTTON,
+    150,
+    {"TOPLEFT", 320, -160},
+    rgpvpw.L["delete_selected_profile_button"],
+    me.DeleteSelectedProfileButtonOnClick
+  )
 
-  local profileStringLabel = me.CreateProfileStringLabel(frame, saveButton)
-  local profileStringBox = me.CreateProfileStringBox(frame, profileStringLabel)
+  me.CreateProfileStringLabel(frame)
+  me.CreateProfileStringBox(frame)
   -- create a button that exports the selected profile into the string box
-  local exportButton = me.CreateConfigurationButton(
+  me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_PROFILE_EXPORT_BUTTON,
-    {"BOTTOMLEFT", profileStringBox, "BOTTOMLEFT", 0, -40},
+    110,
+    {"TOPLEFT", 20, -366},
     rgpvpw.L["profile_export_button"],
     me.ExportProfileButtonOnClick
   )
@@ -280,7 +289,8 @@ function me.BuildUi(frame)
   me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_PROFILE_IMPORT_BUTTON,
-    {"LEFT", exportButton, "RIGHT", 0, 0},
+    110,
+    {"TOPLEFT", 140, -366},
     rgpvpw.L["profile_import_button"],
     me.ImportProfileButtonOnClick
   )
@@ -322,7 +332,7 @@ function me.CreateProfileList(frame)
 
   local listContainer = CreateFrame("Frame", nil, frame, "BackdropTemplate")
   listContainer:SetSize(listWidth, listHeight)
-  listContainer:SetPoint("TOPLEFT", 20, -52)
+  listContainer:SetPoint("TOPLEFT", 20, -64)
   mod.guiHelper.ApplyBorderBackdrop(listContainer)
 
   local scrollFrame = CreateFrame(
@@ -353,24 +363,19 @@ end
     The created row
 ]]--
 function me.CreateRowFrame(frame, position)
+  local rowOffset = (position - 1) * RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT * -1
   local row = CreateFrame(
-    "Button", RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_CONTENT_FRAME .. position, frame, "BackdropTemplate")
-  row:SetSize(frame:GetWidth(), RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT)
-  row:SetPoint("TOPLEFT", frame, 0, (position -1) * RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT * -1)
-
-  row:SetBackdrop({
-    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-    insets = {left = 0, right = 0, top = 0, bottom = 0},
-  })
-
-  if math.fmod(position, 2) == 0 then
-    row:SetBackdropColor(0.37, 0.37, 0.37, .4)
-  else
-    row:SetBackdropColor(.25, .25, .25, .8)
-  end
+    "Button", RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_CONTENT_FRAME .. position, frame)
+  row:SetHeight(RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT)
+  row:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, rowOffset)
+  row:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, rowOffset)
 
   row.profileName = me.CreateProfileName(row)
   row.highlight = me.CreateHighlightTexture(row)
+
+  local hoverTexture = row:CreateTexture(nil, "HIGHLIGHT")
+  hoverTexture:SetAllPoints()
+  hoverTexture:SetColorTexture(1, 1, 1, 0.15)
 
   row:SetScript("OnClick", me.ProfileListCellOnClick)
 
@@ -386,20 +391,16 @@ end
     The created fontstring
 ]]--
 function me.CreateProfileName(profileFrame)
-  local profileNameFontString = profileFrame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_PROFILE_NAME, "OVERLAY")
-  profileNameFontString:SetFont(STANDARD_TEXT_FONT, 15)
+  local profileNameFontString = profileFrame:CreateFontString(
+    RGPVPW_CONSTANTS.ELEMENT_PROFILE_NAME, "OVERLAY", "GameFontHighlightSmall")
+  profileNameFontString:SetPoint("LEFT", 4, 0)
   profileNameFontString:SetJustifyH("LEFT")
-  profileNameFontString:SetWidth(profileFrame:GetWidth())
-  profileNameFontString:SetPoint(
-    "LEFT", 0, 0
-  )
-  profileNameFontString:SetTextColor(.95, .95, .95)
 
   return profileNameFontString
 end
 
 --[[
-  Create a texture that allows to mark the active state of a row
+  Create a texture that marks the currently selected row
 
   @param {table} row
 
@@ -408,10 +409,8 @@ end
 ]]--
 function me.CreateHighlightTexture(row)
   local highlightTexture = row:CreateTexture(RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_ROW_HIGHLIGHT, "BACKGROUND")
-  highlightTexture:SetSize(row:GetWidth(), row:GetHeight())
-  highlightTexture:SetPoint("TOPLEFT")
-  highlightTexture:SetTexture("Interface\\QuestFrame\\UI-QuestLogTitleHighlight")
-  highlightTexture:SetBlendMode("ADD")
+  highlightTexture:SetAllPoints()
+  highlightTexture:SetColorTexture(1, 0.82, 0, 0.25)
   highlightTexture:Hide()
 
   return highlightTexture
@@ -498,6 +497,7 @@ end
 --[[
   @param {table} parentFrame
   @param {string} frameName
+  @param {number} width
   @param {table} position
   @param {string} text
   @param {function} callback
@@ -505,7 +505,7 @@ end
   @return {table}
     The created button
 ]]--
-function me.CreateConfigurationButton(parentFrame, frameName, position, text, callback)
+function me.CreateConfigurationButton(parentFrame, frameName, width, position, text, callback)
   -- create save configuration button
   local configurationButton = CreateFrame(
     "Button",
@@ -514,12 +514,10 @@ function me.CreateConfigurationButton(parentFrame, frameName, position, text, ca
     "UIPanelButtonTemplate"
   )
 
-  configurationButton:SetHeight(RGPVPW_CONSTANTS.BUTTON_DEFAULT_HEIGHT)
+  configurationButton:SetSize(width, RGPVPW_CONSTANTS.BUTTON_DEFAULT_HEIGHT)
   configurationButton:SetText(text)
   configurationButton:SetPoint(unpack(position))
   configurationButton:SetScript("OnClick", callback)
-
-  mod.guiHelper.ResizeButtonToText(configurationButton)
 
   return configurationButton
 end
@@ -528,16 +526,14 @@ end
   Create a label for the profile export/import string box
 
   @param {table} parentFrame
-  @param {table} anchorFrame
-    The frame to anchor the label below
 
   @return {table}
     The created fontString
 ]]--
-function me.CreateProfileStringLabel(parentFrame, anchorFrame)
+function me.CreateProfileStringLabel(parentFrame)
   local stringLabelFontString = parentFrame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_PROFILE_STRING_LABEL, "OVERLAY")
-  stringLabelFontString:SetFont(STANDARD_TEXT_FONT, 15)
-  stringLabelFontString:SetPoint("TOPLEFT", anchorFrame, "BOTTOMLEFT", 0, -20)
+  stringLabelFontString:SetFont(STANDARD_TEXT_FONT, 13)
+  stringLabelFontString:SetPoint("TOPLEFT", 20, -246)
   stringLabelFontString:SetJustifyH("LEFT")
   stringLabelFontString:SetText(rgpvpw.L["profile_string_label"])
 
@@ -548,19 +544,17 @@ end
   Create the multiline string box used to export and import profile strings
 
   @param {table} frame
-  @param {table} anchorFrame
-    The frame to anchor the string box below
 
   @return {table}
     The created scrollFrame
 ]]--
-function me.CreateProfileStringBox(frame, anchorFrame)
+function me.CreateProfileStringBox(frame)
   local stringContainer = CreateFrame("Frame", nil, frame, "BackdropTemplate")
   stringContainer:SetSize(
-    RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH,
+    RGPVPW_CONSTANTS.PROFILE_STRING_BOX_WIDTH,
     RGPVPW_CONSTANTS.PROFILE_STRING_BOX_HEIGHT
   )
-  stringContainer:SetPoint("TOPLEFT", anchorFrame, "BOTTOMLEFT", 0, -10)
+  stringContainer:SetPoint("TOPLEFT", 20, -264)
   mod.guiHelper.ApplyBorderBackdrop(stringContainer)
 
   local scrollContainer = CreateFrame(
@@ -592,7 +586,7 @@ function me.CreateProfileStringBox(frame, anchorFrame)
   profileStringEditBox = scrollContainer.EditBox
   profileStringEditBox:SetMaxLetters(0)
   profileStringEditBox:SetFontObject("ChatFontNormal")
-  profileStringEditBox:SetWidth(RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH - 30)
+  profileStringEditBox:SetWidth(RGPVPW_CONSTANTS.PROFILE_STRING_BOX_WIDTH - 30)
   profileStringEditBox:SetScript("OnEscapePressed", function(self)
     self:ClearFocus()
   end)
