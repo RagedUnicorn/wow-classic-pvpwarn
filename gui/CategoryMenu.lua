@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame PanelTemplates_TabResize PanelTemplates_SelectTab PanelTemplates_DeselectTab
+-- luacheck: globals CreateFrame
 
 local mod = rgpvpw
 local me = {}
@@ -136,7 +136,7 @@ function me.CreateCategoryMenu(self)
   local spellTabButton = me.CreateTabButton(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. spellTab,
-    {"TOPLEFT", 5, 30},
+    {"TOPLEFT", 5, 0},
     rgpvpw.L["tab_button_spell"],
     spellTab
   )
@@ -149,16 +149,17 @@ function me.CreateCategoryMenu(self)
     resistTab
   )
 
+  --[[ content sits directly below the 37px tall tabs so the active tab art connects to it ]]--
   local spellContentFrame = me.CreateCategoryMenuContentFrame(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. spellTab,
-    {"TOPLEFT", self, 5, -7}
+    {"TOPLEFT", self, 5, -37}
   )
 
   local avoidContentFrame = me.CreateCategoryMenuContentFrame(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. resistTab,
-    {"TOPLEFT", self, 5, -7}
+    {"TOPLEFT", self, 5, -37}
   )
 
   local category = {
@@ -184,13 +185,14 @@ end
   @return {table}
 ]]--
 function me.CreateTabButton(parentFrame, tabButtonName, position, text, id)
-  local tabButton = CreateFrame("Button", tabButtonName, parentFrame, "TabButtonTemplate")
+  local tabButton = CreateFrame("Button", tabButtonName, parentFrame, "MinimalTabTemplate")
 
   tabButton.id = id
   tabButton:SetPoint(unpack(position))
-  tabButton:SetText(text)
-  PanelTemplates_TabResize(tabButton, 0)
-  PanelTemplates_DeselectTab(tabButton)
+  --[[ the template reads its text from an xml keyvalue which CreateFrame cannot pass -
+       assign it after the fact and redo the mixin's width calculation ]]--
+  tabButton.Text:SetText(text)
+  tabButton:SetWidth(tabButton.Text:GetStringWidth() + 40)
   tabButton:SetScript("OnClick", function(self)
     me.TabNavigationButtonOnClick(self)
   end)
@@ -240,8 +242,8 @@ function me.ResetNavigation()
 
   category.spellContentFrame:Hide()
   category.avoidContentFrame:Hide()
-  PanelTemplates_DeselectTab(category.spellTabButton)
-  PanelTemplates_DeselectTab(category.avoidTabButton)
+  category.spellTabButton:SetSelected(false)
+  category.avoidTabButton:SetSelected(false)
 
   activeTab = nil
 end
@@ -259,18 +261,18 @@ function me.ActivateTab(position)
 
   if position == spellTab then
     category.spellContentFrame:Show()
-    PanelTemplates_SelectTab(category.spellTabButton)
+    category.spellTabButton:SetSelected(true)
     category.avoidContentFrame:Hide()
-    PanelTemplates_DeselectTab(category.avoidTabButton)
+    category.avoidTabButton:SetSelected(false)
 
     activeTab = spellTab
 
     category.spellInitFunc(category.spellContentFrame, categoryName)
   elseif position == resistTab then
     category.avoidContentFrame:Show()
-    PanelTemplates_SelectTab(category.avoidTabButton)
+    category.avoidTabButton:SetSelected(true)
     category.spellContentFrame:Hide()
-    PanelTemplates_DeselectTab(category.spellTabButton)
+    category.spellTabButton:SetSelected(false)
 
     activeTab = resistTab
 
