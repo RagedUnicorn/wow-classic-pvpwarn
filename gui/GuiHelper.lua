@@ -23,6 +23,7 @@
 ]]--
 
 -- luacheck: globals CreateFrame STANDARD_TEXT_FONT CloseMenus TargetFrame
+-- luacheck: globals Settings MinimalSliderWithSteppersMixin
 
 local mod = rgpvpw
 local me = {}
@@ -81,6 +82,69 @@ function me.CreateSettingsDropdown(frameName, parent, position, width, menuGener
   dropdown:SetupMenu(menuGenerator)
 
   return dropdown
+end
+
+--[[
+  Create a slider with stepper buttons in the style of the stock configuration menus
+  (MinimalSliderWithSteppersTemplate, mirrors Pulse's settings sliders)
+
+  @param {string} frameName
+  @param {table} parent
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+  @param {table} sliderConfig
+    {
+      min - {number} minimum slider value
+      max - {number} maximum slider value
+      step - {number} value step per slider tick
+      defaultValue - {number} initial value
+      label - {string} title rendered above the slider
+      formatValue - {function} optional value to display string formatter
+      onValueChanged - {function} invoked with (owner, value) whenever the value changes
+    }
+
+  @return {table}
+    The created slider frame
+]]--
+function me.CreateSliderWithSteppers(frameName, parent, position, sliderConfig)
+  local function formatValue(value)
+    if sliderConfig.formatValue then
+      return sliderConfig.formatValue(value)
+    end
+
+    return value
+  end
+
+  local sliderOptions = Settings.CreateSliderOptions(sliderConfig.min, sliderConfig.max, sliderConfig.step)
+  sliderOptions:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Right, function(value)
+    return formatValue(value)
+  end)
+  sliderOptions:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Min, function()
+    return formatValue(sliderConfig.min)
+  end)
+  sliderOptions:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Max, function()
+    return formatValue(sliderConfig.max)
+  end)
+  sliderOptions:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Top, function()
+    return sliderConfig.label
+  end)
+
+  local sliderFrame = CreateFrame("Frame", frameName, parent, "MinimalSliderWithSteppersTemplate")
+  sliderFrame:SetWidth(RGPVPW_CONSTANTS.SLIDER_WITH_STEPPERS_WIDTH)
+  sliderFrame:SetPoint(unpack(position))
+  sliderFrame:Init(
+    sliderConfig.defaultValue,
+    sliderOptions.minValue,
+    sliderOptions.maxValue,
+    sliderOptions.steps,
+    sliderOptions.formatters
+  )
+
+  if sliderConfig.onValueChanged then
+    sliderFrame:RegisterCallback("OnValueChanged", sliderConfig.onValueChanged, sliderFrame)
+  end
+
+  return sliderFrame
 end
 
 --[[

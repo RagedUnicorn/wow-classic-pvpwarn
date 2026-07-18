@@ -109,7 +109,7 @@ function me.BuildMaxOpacitySlider(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_MAX_OPACITY_SLIDER,
     rgpvpw.L["flash_max_opacity_label"],
-    0.1, 1.0, 0.05, 25, -132,
+    0.1, 1.0, 0.05, 20, -120,
     mod.configuration.GetFlashMaxOpacity,
     mod.configuration.SetFlashMaxOpacity,
     function(value)
@@ -231,34 +231,20 @@ end
     The created slider
 ]]--
 function me.CreateSlider(frame, name, label, min, max, step, posX, posY, getValue, setValue, formatValue)
-  local slider = CreateFrame("Slider", name, frame, "OptionsSliderTemplate")
-  slider:SetPoint("TOPLEFT", posX, posY)
-  slider:SetWidth(220)
-  slider:SetMinMaxValues(min, max)
-  slider:SetValueStep(step)
-  slider:SetObeyStepOnDrag(true)
-
-  local function fmt(value)
-    if formatValue then return formatValue(value) end
-
-    return tostring(value)
-  end
-
-  _G[name .. "Low"]:SetText(fmt(min))
-  _G[name .. "High"]:SetText(fmt(max))
-
-  local function updateLabel(value)
-    _G[name .. "Text"]:SetText(label .. " (" .. fmt(value) .. ")")
-  end
-
-  slider:SetValue(getValue())
-  updateLabel(getValue())
-
-  slider:SetScript("OnValueChanged", function(_, value)
-    value = math.floor(value / step + 0.5) * step
-    setValue(value)
-    updateLabel(value)
-  end)
-
-  return slider
+  return mod.guiHelper.CreateSliderWithSteppers(
+    name,
+    frame,
+    {"TOPLEFT", posX, posY},
+    {
+      min = min,
+      max = max,
+      step = step,
+      defaultValue = getValue(),
+      label = label,
+      formatValue = formatValue,
+      onValueChanged = function(_, value)
+        setValue(value)
+      end
+    }
+  )
 end

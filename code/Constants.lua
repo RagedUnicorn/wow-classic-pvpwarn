@@ -211,6 +211,7 @@ RGPVPW_CONSTANTS = {
     DISABLED = { 0.45, 0.41, 0.35 },        -- disabled control labels (QM stepper disabled-glyph tone)
     SUBNOTE = { 0.66, 0.60, 0.50 }          -- #a89980 option descriptions (warm mid gray)
   },
+  SLIDER_WITH_STEPPERS_WIDTH = 250,
   --[[
     About
   ]]--

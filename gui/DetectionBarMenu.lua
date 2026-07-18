@@ -205,38 +205,24 @@ end
     The created slider
 ]]--
 function me.CreateSlider(frame, name, label, min, max, step, posX, posY, getValue, setValue, formatValue)
-  local slider = CreateFrame("Slider", name, frame, "OptionsSliderTemplate")
-  slider:SetPoint("TOPLEFT", posX, posY)
-  slider:SetWidth(220)
-  slider:SetMinMaxValues(min, max)
-  slider:SetValueStep(step)
-  slider:SetObeyStepOnDrag(true)
-
-  local function fmt(value)
-    if formatValue then return formatValue(value) end
-
-    return tostring(value)
-  end
-
-  _G[name .. "Low"]:SetText(fmt(min))
-  _G[name .. "High"]:SetText(fmt(max))
-
-  local function updateLabel(value)
-    _G[name .. "Text"]:SetText(label .. " (" .. fmt(value) .. ")")
-  end
-
-  slider:SetValue(getValue())
-  updateLabel(getValue())
-
-  slider:SetScript("OnValueChanged", function(_, value)
-    value = math.floor(value / step + 0.5) * step
-    setValue(value)
-    updateLabel(value)
-    --[[ reflect sizing changes on the sample bar while positioning ]]--
-    mod.detectionBarManager.RefreshPreview()
-  end)
-
-  return slider
+  return mod.guiHelper.CreateSliderWithSteppers(
+    name,
+    frame,
+    {"TOPLEFT", posX, posY},
+    {
+      min = min,
+      max = max,
+      step = step,
+      defaultValue = getValue(),
+      label = label,
+      formatValue = formatValue,
+      onValueChanged = function(_, value)
+        setValue(value)
+        --[[ reflect sizing changes on the sample bar while positioning ]]--
+        mod.detectionBarManager.RefreshPreview()
+      end
+    }
+  )
 end
 
 --[[
@@ -249,7 +235,7 @@ function me.BuildMaxBarsSlider(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_MAX_BARS_SLIDER,
     rgpvpw.L["detection_bar_max_bars_label"],
-    1, 4, 1, 25, -162,
+    1, 4, 1, 20, -162,
     mod.configuration.GetDetectionBarMaxBars,
     mod.configuration.SetDetectionBarMaxBars
   )
@@ -265,7 +251,7 @@ function me.BuildScaleSlider(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_SCALE_SLIDER,
     rgpvpw.L["detection_bar_size_label"],
-    0.5, 2.0, 0.05, 25, -222,
+    0.5, 2.0, 0.05, 20, -222,
     mod.configuration.GetDetectionBarScale,
     me.SetBarScale,
     function(value)
