@@ -94,8 +94,8 @@
         </Scripts>
       </CheckButton>
 
-      <!-- Scroll frame -->
-      <ScrollFrame name="$parentScrollFrame" inherits="UIPanelScrollFrameTemplate">
+      <!-- Scroll frame - driven by a MinimalScrollBar created in TestLogWindow.lua -->
+      <ScrollFrame name="$parentScrollFrame">
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>

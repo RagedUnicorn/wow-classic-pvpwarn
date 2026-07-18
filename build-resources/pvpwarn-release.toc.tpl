@@ -73,12 +73,6 @@ profiles/WarlockProfile.lua
 profiles/WarriorProfile.lua
 
 # gui
-# custom blizzard dropdown impl
-libs/LibUiDropDownMenu/LibUiDropDownMenu.lua
-libs/LibUiDropDownMenu/LibUiDropDownMenu.xml
-libs/LibUiDropDownMenu/LibUiDropDownMenuTemplates.lua
-libs/LibUiDropDownMenu/LibUiDropDownMenuTemplates.xml
-
 gui/Frame.xml
 gui/AddonConfiguration.lua
 gui/AboutContent.lua

@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals C_Timer CreateFrame date StaticPopup_Show StaticPopupDialogs
+-- luacheck: globals C_Timer CreateFrame date StaticPopup_Show StaticPopupDialogs ScrollUtil
 
 local mod = rgpvpw
 local me = {}
@@ -40,6 +40,7 @@ me.messagePadding = 2
 me.selectedSession = nil
 
 local sessionDropdown
+local scrollBar
 
 -- forward declaration
 local ReleaseMessageFrame
@@ -59,31 +60,41 @@ me.messageColors = {
 
 --[[
   Create session dropdown following VoicePackMenu pattern
+
+  @param {table} frame
+    The test log window frame to attach to
 ]]--
 function me.CreateSessionDropdown(frame)
-  sessionDropdown = mod.libUiDropDownMenu.CreateUiDropDownMenu("PVPW_TestLogWindowSessionDropdown", frame)
-  sessionDropdown:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, -40)
-
-  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(sessionDropdown, me.SessionDropdown_Initialize)
-  mod.libUiDropDownMenu.UiDropDownMenu_SetWidth(sessionDropdown, 200)
-  mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Select Session")
+  sessionDropdown = mod.guiHelper.CreateSettingsDropdown(
+    "PVPW_TestLogWindowSessionDropdown",
+    frame,
+    {"TOPLEFT", frame, "TOPLEFT", 20, -40},
+    200,
+    me.InitializeSessionDropdown
+  )
+  sessionDropdown:SetDefaultText("Select Session")
+  -- generate once so the button shows the current selection before the menu was ever opened
+  sessionDropdown:GenerateMenu()
 end
 
 --[[
-  Initialize session dropdown menu items
-]]--
-function me.SessionDropdown_Initialize()
-  local info
+  Menu generator for the session dropdown - fills the root description with a radio
+  entry per available session plus a clear option while a session is selected
 
+  @param {table} _
+    The dropdown the menu is generated for (unused)
+  @param {table} rootDescription
+]]--
+function me.InitializeSessionDropdown(_, rootDescription)
   -- Add current session if active
   if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
     local currentSession = mod.testSessionManager.GetCurrentSession()
-    info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
-    info.text = "Current: " .. currentSession.sessionName
-    info.value = "current"
-    info.func = me.SessionDropdown_OnClick
-    info.checked = (me.selectedSession == "current")
-    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
+    rootDescription:CreateRadio(
+      "Current: " .. currentSession.sessionName,
+      me.IsSessionSelected,
+      me.OnSessionSelect,
+      "current"
+    )
   end
 
   -- Add all test group entries from PVPWarnTestLog. Groups are identified by the counter
@@ -92,48 +103,57 @@ function me.SessionDropdown_Initialize()
   if PVPWarnTestLog then
     for groupName, groupData in pairs(PVPWarnTestLog) do
       if type(groupData) == "table" and type(groupData.testCount) == "number" then
-        info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
-        info.text = groupName
-        info.value = "session_" .. groupName
-        info.func = me.SessionDropdown_OnClick
-        info.checked = (me.selectedSession == "session_" .. groupName)
-        mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
+        rootDescription:CreateRadio(
+          groupName,
+          me.IsSessionSelected,
+          me.OnSessionSelect,
+          "session_" .. groupName
+        )
       end
     end
   end
 
   -- Add clear selection option
   if me.selectedSession then
-    info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
-    info.text = "Clear Selection"
-    info.value = "clear"
-    info.func = me.SessionDropdown_OnClick
-    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
+    rootDescription:CreateButton("Clear Selection", me.OnSessionClear)
   end
 end
 
 --[[
-  Handle session dropdown selection
+  Whether the passed session is the currently selected one
+
+  @param {string} sessionValue
+    "current" or "session_" .. groupName
+
+  @return {boolean}
 ]]--
-function me.SessionDropdown_OnClick(self)
-  if self.value == "clear" then
-    me.selectedSession = nil
-    mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Select Session")
-    me.ShowEmptyState()
+function me.IsSessionSelected(sessionValue)
+  return me.selectedSession == sessionValue
+end
+
+--[[
+  Callback for when a session is selected
+
+  @param {string} sessionValue
+    "current" or "session_" .. groupName
+]]--
+function me.OnSessionSelect(sessionValue)
+  me.selectedSession = sessionValue
+
+  if sessionValue == "current" then
+    me.ShowCurrentSession()
   else
-    me.selectedSession = self.value
-
-    if self.value == "current" then
-      mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, self:GetText())
-      me.ShowCurrentSession()
-    elseif self.value:match("^session_") then
-      local groupName = self.value:gsub("^session_", "")
-      mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, self:GetText())
-      me.ShowStoredSession(groupName)
-    end
+    me.ShowStoredSession((sessionValue:gsub("^session_", "")))
   end
+end
 
-  mod.libUiDropDownMenu.CloseDropDownMenus()
+--[[
+  Callback for the clear selection entry
+]]--
+function me.OnSessionClear()
+  me.selectedSession = nil
+  me.UpdateSessionDropdown()
+  me.ShowEmptyState()
 end
 
 --[[
@@ -278,6 +298,10 @@ function me.Show()
     me.CreateSessionDropdown(testLogWindow)
   end
 
+  if not scrollBar then
+    me.CreateScrollBar(testLogWindow)
+  end
+
   testLogWindow:Show()
   testLogWindow:ClearAllPoints()
 
@@ -289,6 +313,27 @@ function me.Show()
   else
     me.LoadTestLogs()
   end
+end
+
+--[[
+  Attach a MinimalScrollBar in the style of the stock configuration menus to the
+  scroll frame defined in TestLogWindow.xml
+
+  @param {table} frame
+    The test log window frame to attach to
+]]--
+function me.CreateScrollBar(frame)
+  local scrollFrame = _G["PVPW_TestLogWindowScrollFrame"]
+
+  if not scrollFrame then
+    mod.logger.LogError(me.tag, "Test log window scroll frame not found")
+    return
+  end
+
+  scrollBar = CreateFrame("EventFrame", nil, frame, "MinimalScrollBar")
+  scrollBar:SetPoint("TOPLEFT", scrollFrame, "TOPRIGHT", 8, 0)
+  scrollBar:SetPoint("BOTTOMLEFT", scrollFrame, "BOTTOMRIGHT", 8, 0)
+  ScrollUtil.InitScrollFrameWithScrollBar(scrollFrame, scrollBar)
 end
 
 --[[
@@ -465,12 +510,7 @@ function me.ClearAllSavedLogs()
   mod.testReporter.ClearSavedTestReports()
   me.ClearLog()
   me.selectedSession = nil
-
-  if sessionDropdown then
-    mod.libUiDropDownMenu.UiDropDownMenu_Initialize(sessionDropdown, me.SessionDropdown_Initialize)
-    mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Select Session")
-  end
-
+  me.UpdateSessionDropdown()
   me.ShowEmptyState()
   mod.logger.LogInfo(me.tag, "All saved test logs cleared")
 end
@@ -579,11 +619,11 @@ function me.LoadSpecificSession(sessionName)
 end
 
 --[[
-  Update dropdown when sessions change
+  Update dropdown entries and button text when sessions or the selection change
 ]]--
 function me.UpdateSessionDropdown()
   if sessionDropdown then
-    mod.libUiDropDownMenu.UiDropDownMenu_Initialize(sessionDropdown, me.SessionDropdown_Initialize)
+    sessionDropdown:GenerateMenu()
   end
 end
 
@@ -600,17 +640,17 @@ function me.OnSessionStart()
   -- Clear current window content
   me.ClearLog()
 
-  -- Update dropdown to show current session
+  -- Select the current session before regenerating so the button text reflects it
+  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
+    me.selectedSession = "current"
+  end
+
   me.UpdateSessionDropdown()
 
-  -- Select current session and update dropdown text
-  if mod.testSessionManager and mod.testSessionManager.IsSessionActive() then
-    local currentSession = mod.testSessionManager.GetCurrentSession()
-    me.selectedSession = "current"
+  if me.selectedSession == "current" then
     if sessionDropdown then
-      mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Current: " .. currentSession.sessionName)
       -- Disable dropdown while session is running
-      mod.libUiDropDownMenu.UiDropDownMenu_DisableDropDown(sessionDropdown)
+      sessionDropdown:SetEnabled(false)
     end
     me.ShowCurrentSession()
   end
@@ -624,27 +664,19 @@ end
 function me.OnSessionEnd(completedSessionName)
   -- Re-enable dropdown when session ends
   if sessionDropdown then
-    mod.libUiDropDownMenu.UiDropDownMenu_EnableDropDown(sessionDropdown)
+    sessionDropdown:SetEnabled(true)
   end
 
   -- Add a small delay to allow TestReporter to finish writing to PVPWarnTestLog
   C_Timer.After(0.1, function()
-    -- Update dropdown to reflect new state (reload from PVPWarnTestLog)
-    me.UpdateSessionDropdown()
-
     -- Preselect the just-completed session if it exists in PVPWarnTestLog
     if completedSessionName and PVPWarnTestLog and PVPWarnTestLog[completedSessionName] then
       me.selectedSession = "session_" .. completedSessionName
-      if sessionDropdown then
-        mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, completedSessionName)
-      end
+      me.UpdateSessionDropdown()
       me.ShowStoredSession(completedSessionName)
     else
       me.selectedSession = nil
-
-      if sessionDropdown then
-        mod.libUiDropDownMenu.UiDropDownMenu_SetText(sessionDropdown, "Select Session")
-      end
+      me.UpdateSessionDropdown()
       me.ShowEmptyState()
     end
   end)
