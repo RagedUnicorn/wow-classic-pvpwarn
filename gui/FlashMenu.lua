@@ -81,7 +81,7 @@ function me.BuildEnableOption(frame)
   local checkbox = mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_ENABLE,
     frame,
-    {"TOPLEFT", 20, -60},
+    {"TOPLEFT", 20, -52},
     function(self)
       if self:GetChecked() then
         mod.configuration.EnableFlash()
@@ -109,7 +109,7 @@ function me.BuildMaxOpacitySlider(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_MAX_OPACITY_SLIDER,
     rgpvpw.L["flash_max_opacity_label"],
-    0.1, 1.0, 0.05, 25, -140,
+    0.1, 1.0, 0.05, 25, -132,
     mod.configuration.GetFlashMaxOpacity,
     mod.configuration.SetFlashMaxOpacity,
     function(value)
@@ -128,7 +128,7 @@ function me.BuildPulseOption(frame)
   local checkbox = mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_PULSE,
     frame,
-    {"TOPLEFT", 20, -185},
+    {"TOPLEFT", 20, -177},
     function(self)
       if self:GetChecked() then
         mod.configuration.EnableFlashPulse()
@@ -158,7 +158,7 @@ function me.BuildAdditiveBlendOption(frame)
   local checkbox = mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_ADDITIVE_BLEND,
     frame,
-    {"TOPLEFT", 20, -245},
+    {"TOPLEFT", 20, -237},
     function(self)
       if self:GetChecked() then
         mod.configuration.SetFlashBlendMode("ADD")
@@ -203,7 +203,7 @@ function me.BuildTestButton(frame)
   mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_TEST_BUTTON,
     frame,
-    {"TOPLEFT", 20, -305},
+    {"TOPLEFT", 20, -297},
     function()
       mod.flash.Show(me.GetRandomColorValue())
     end,

@@ -22,8 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame StaticPopupDialogs StaticPopup_Show STANDARD_TEXT_FONT
--- luacheck: globals FauxScrollFrame_Update FauxScrollFrame_GetOffset
+-- luacheck: globals CreateFrame StaticPopupDialogs StaticPopup_Show STANDARD_TEXT_FONT ScrollUtil
 
 local mod = rgpvpw
 local me = {}
@@ -35,8 +34,10 @@ me.tag = "ProfileMenu"
 local builtMenu = false
 
 local profileRows = {}
--- holds a reference to the profile scrollFrame
-local profileListScrollFrame
+-- holds a reference to the bordered container around the profile list
+local profileListContainer
+-- holds a reference to the scrollable content frame the profile rows attach to
+local profileListContent
 -- the name of the currently selected profile in the profile list
 local currentSelectedProfileName
 -- the multiline edit box used for export/import strings
@@ -97,7 +98,7 @@ StaticPopupDialogs["RGPVPW_CHOOSE_PROFILE_NAME"] = {
   end,
   OnAccept = function(dialog)
     mod.profile.CreateProfile(dialog:GetEditBox():GetText())
-    me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+    me.ProfileListUpdateOnUpdate()
     me.ClearSelectedProfile()
   end,
   EditBoxOnTextChanged = function(editBox)
@@ -127,7 +128,7 @@ StaticPopupDialogs["RGPVPW_DELETE_PROFILE_WARNING"] = {
   button2 = rgpvpw.L["confirm_delete_profile_no_button"],
   OnAccept = function()
     mod.profile.DeleteProfile(me.GetCurrentSelectedProfileName())
-    me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+    me.ProfileListUpdateOnUpdate()
     me.ClearSelectedProfile()
   end,
   timeout = 0,
@@ -144,7 +145,7 @@ StaticPopupDialogs["RGPVPW_LOAD_PROFILE_WARNING"] = {
   button2 = rgpvpw.L["confirm_load_profile_no_button"],
   OnAccept = function()
     mod.profile.LoadProfile(me.GetCurrentSelectedProfileName())
-    me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+    me.ProfileListUpdateOnUpdate()
     me.ClearSelectedProfile()
   end,
   timeout = 0,
@@ -161,7 +162,7 @@ StaticPopupDialogs["RGPVPW_UPDATE_PROFILE_WARNING"] = {
   button2 = rgpvpw.L["confirm_override_profile_no_button"],
   OnAccept = function()
     mod.profile.UpdateProfile(me.GetCurrentSelectedProfileName())
-    me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+    me.ProfileListUpdateOnUpdate()
     me.ClearSelectedProfile()
   end,
   timeout = 0,
@@ -219,7 +220,7 @@ StaticPopupDialogs["RGPVPW_IMPORT_PROFILE_NAME"] = {
 ]]--
 function me.Init(frame)
   if builtMenu then
-    me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+    me.ProfileListUpdateOnUpdate()
   else
     me.BuildUi(frame)
   end
@@ -230,12 +231,12 @@ end
 ]]--
 function me.BuildUi(frame)
   me.CreateProfileTitle(frame)
-  profileListScrollFrame = me.CreateProfileListScrollFrame(frame)
+  profileListContainer = me.CreateProfileList(frame)
   -- creates a button that creates a new profile based on the current configuration
   local saveButton = me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_SAVE_PROFILE_BUTTON,
-    {"BOTTOMLEFT", profileListScrollFrame, "BOTTOMLEFT", 0, -40},
+    {"BOTTOMLEFT", profileListContainer, "BOTTOMLEFT", 0, -40},
     rgpvpw.L["save_current_profile_button"],
     me.SaveProfileOnClick
   )
@@ -285,7 +286,7 @@ function me.BuildUi(frame)
   )
 
   -- init scrollFrame
-  me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+  me.ProfileListUpdateOnUpdate()
   builtMenu = true
 end
 
@@ -308,38 +309,40 @@ function me.CreateProfileTitle(parentFrame)
 end
 
 --[[
-  Create a scrollFrame with a list of all current profiles
+  Create the bordered container with a scrollable list of all current profiles
 
   @param {table} frame
+
+  @return {table}
+    The created list container
 ]]--
-function me.CreateProfileListScrollFrame(frame)
+function me.CreateProfileList(frame)
+  local listWidth = RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH
+  local listHeight = RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT * RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS
+
+  local listContainer = CreateFrame("Frame", nil, frame, "BackdropTemplate")
+  listContainer:SetSize(listWidth, listHeight)
+  listContainer:SetPoint("TOPLEFT", 20, -52)
+  mod.guiHelper.ApplyBorderBackdrop(listContainer)
+
   local scrollFrame = CreateFrame(
     "ScrollFrame",
     RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_SCROLL_FRAME,
-    frame,
-    "FauxScrollFrameTemplate, BackdropTemplate"
+    listContainer
   )
-  scrollFrame:SetWidth(RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH)
-  scrollFrame:SetHeight(RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT * RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS)
-  scrollFrame:EnableMouseWheel(true)
-  scrollFrame:SetPoint("TOPLEFT", frame, 5, -50)
+  scrollFrame:SetPoint("TOPLEFT", 6, -6)
+  scrollFrame:SetPoint("BOTTOMRIGHT", -22, 6)
 
-  scrollFrame:SetBackdrop({
-    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-    insets = {left = 0, right = 0, top = 0, bottom = 0},
-  })
+  local scrollBar = CreateFrame("EventFrame", nil, listContainer, "MinimalScrollBar")
+  scrollBar:SetPoint("TOPLEFT", scrollFrame, "TOPRIGHT", 8, 0)
+  scrollBar:SetPoint("BOTTOMLEFT", scrollFrame, "BOTTOMRIGHT", 8, 0)
+  ScrollUtil.InitScrollFrameWithScrollBar(scrollFrame, scrollBar)
 
-  scrollFrame:SetScript("OnVerticalScroll", function(self, offset)
-    self.ScrollBar:SetValue(offset)
-    self.offset = math.floor(offset / RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT + 0.5)
-    me.ProfileListUpdateOnUpdate(self)
-  end)
+  profileListContent = CreateFrame("Frame", RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_CONTENT_FRAME, scrollFrame)
+  profileListContent:SetSize(listWidth - 28, listHeight)
+  scrollFrame:SetScrollChild(profileListContent)
 
-  for i = 1, RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS do
-    table.insert(profileRows, me.CreateRowFrame(scrollFrame, i))
-  end
-
-  return scrollFrame
+  return listContainer
 end
 
 --[[
@@ -415,30 +418,20 @@ function me.CreateHighlightTexture(row)
 end
 
 --[[
-  FauxScrollFrame callback for profileslist
-
-  @param {table} scrollFrame
+  Update the profile list rows to reflect the current profiles. Rows are created
+  lazily - one per profile - and surplus rows are hidden.
 ]]--
-function me.ProfileListUpdateOnUpdate(scrollFrame)
+function me.ProfileListUpdateOnUpdate()
   local profiles = PVPWarnProfiles
-  local maxValue = #profiles
 
-  if maxValue <= RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS then
-    maxValue = RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS + 1
-  end
-  -- Note: maxValue needs to be at least max_rows + 1
-  FauxScrollFrame_Update(
-    scrollFrame,
-    maxValue,
-    RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS,
-    RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT
-  )
+  for i = 1, math.max(#profiles, #profileRows) do
+    local profile = profiles[i]
 
-  local offset = FauxScrollFrame_GetOffset(scrollFrame)
+    if profile ~= nil and profileRows[i] == nil then
+      profileRows[i] = me.CreateRowFrame(profileListContent, i)
+    end
 
-  for i = 1, RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS do
     local row = profileRows[i]
-    local profile = profiles[offset + i]
 
     if profile ~= nil then
       local profileName = profile.name
@@ -459,6 +452,10 @@ function me.ProfileListUpdateOnUpdate(scrollFrame)
       row:Hide()
     end
   end
+
+  profileListContent:SetHeight(
+    math.max(#profiles, RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS) * RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT
+  )
 end
 
 --[[
@@ -558,31 +555,49 @@ end
     The created scrollFrame
 ]]--
 function me.CreateProfileStringBox(frame, anchorFrame)
-  local stringScrollFrame = CreateFrame(
-    "ScrollFrame",
-    RGPVPW_CONSTANTS.ELEMENT_PROFILE_STRING_SCROLL_FRAME,
-    frame,
-    "InputScrollFrameTemplate"
-  )
-  stringScrollFrame:SetSize(
+  local stringContainer = CreateFrame("Frame", nil, frame, "BackdropTemplate")
+  stringContainer:SetSize(
     RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH,
     RGPVPW_CONSTANTS.PROFILE_STRING_BOX_HEIGHT
   )
-  stringScrollFrame:SetPoint("TOPLEFT", anchorFrame, "BOTTOMLEFT", 0, -10)
+  stringContainer:SetPoint("TOPLEFT", anchorFrame, "BOTTOMLEFT", 0, -10)
+  mod.guiHelper.ApplyBorderBackdrop(stringContainer)
 
-  if stringScrollFrame.CharCount then
-    stringScrollFrame.CharCount:Hide()
+  local scrollContainer = CreateFrame(
+    "ScrollFrame",
+    RGPVPW_CONSTANTS.ELEMENT_PROFILE_STRING_SCROLL_FRAME,
+    stringContainer,
+    "InputScrollFrameTemplate"
+  )
+  scrollContainer:SetPoint("TOPLEFT", 6, -6)
+  scrollContainer:SetPoint("BOTTOMRIGHT", -6, 6)
+
+  --[[ the template draws its own input-border art outside its rect which does not line
+       up with the profile list's backdrop - hide it, the container draws the border ]]--
+  local artKeys = {
+    "TopLeftTex", "TopRightTex", "BottomLeftTex", "BottomRightTex",
+    "TopTex", "BottomTex", "LeftTex", "RightTex", "MiddleTex"
+  }
+
+  for _, artKey in ipairs(artKeys) do
+    if scrollContainer[artKey] then
+      scrollContainer[artKey]:Hide()
+    end
   end
 
-  profileStringEditBox = stringScrollFrame.EditBox
+  if scrollContainer.CharCount then
+    scrollContainer.CharCount:Hide()
+  end
+
+  profileStringEditBox = scrollContainer.EditBox
   profileStringEditBox:SetMaxLetters(0)
   profileStringEditBox:SetFontObject("ChatFontNormal")
-  profileStringEditBox:SetWidth(RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH - 18)
+  profileStringEditBox:SetWidth(RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH - 30)
   profileStringEditBox:SetScript("OnEscapePressed", function(self)
     self:ClearFocus()
   end)
 
-  return stringScrollFrame
+  return stringContainer
 end
 
 --[[
@@ -701,7 +716,7 @@ FinishProfileImport = function(profileName, envelope)
   end
 
   profileStringEditBox:SetText("")
-  me.ProfileListUpdateOnUpdate(profileListScrollFrame)
+  me.ProfileListUpdateOnUpdate()
   me.ClearSelectedProfile()
   mod.logger.PrintUserMessage(string.format(rgpvpw.L["profile_import_success"], profileName))
 end

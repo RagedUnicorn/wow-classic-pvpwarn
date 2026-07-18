@@ -93,7 +93,7 @@ end
 function me.BuildVoicePackDropdown(frame)
   local dropdownLabel = frame:CreateFontString(nil, "OVERLAY")
   dropdownLabel:SetFont(STANDARD_TEXT_FONT, 15)
-  dropdownLabel:SetPoint("TOPLEFT", 20, -80)
+  dropdownLabel:SetPoint("TOPLEFT", 20, -52)
   mod.guiHelper.SetColor(dropdownLabel, RGPVPW_CONSTANTS.COLOR.BODY)
   dropdownLabel:SetText(rgpvpw.L["voice_pack_dropdown_label"])
 

@@ -106,7 +106,7 @@ function me.BuildCombatStateOptions(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_COMBAT_STATE,
     40,
-    -128,
+    -100,
     me.LockFrameCombatStateOnShow,
     me.LockFrameCombatStateOnClick
   )
@@ -115,7 +115,7 @@ function me.BuildCombatStateOptions(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_ENABLE_COMBAT_STATE,
     20,
-    -80,
+    -52,
     me.EnableCombatStateTrackingOnShow,
     me.EnableCombatStateTrackingOnClick,
     { RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_COMBAT_STATE }
@@ -193,7 +193,7 @@ function me.BuildStanceStateOptions(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE,
     40,
-    -240,
+    -212,
     me.LockFrameStanceStateOnShow,
     me.LockFrameStanceStateOnClick
   )
@@ -202,7 +202,7 @@ function me.BuildStanceStateOptions(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_HIDE_UNKNOWN_STANCE,
     40,
-    -288,
+    -260,
     me.HideUnknownStanceOnShow,
     me.HideUnknownStanceOnClick
   )
@@ -211,7 +211,7 @@ function me.BuildStanceStateOptions(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_ENABLE_STANCE_STATE,
     20,
-    -192,
+    -164,
     me.EnableStanceStateTrackingOnShow,
     me.EnableStanceStateTrackingOnClick,
     {
@@ -407,7 +407,7 @@ end
 function me.BuildWarnModeDropdown(frame)
   local dropdownLabel = frame:CreateFontString(nil, "OVERLAY")
   dropdownLabel:SetFont(STANDARD_TEXT_FONT, 15)
-  dropdownLabel:SetPoint("TOPLEFT", 20, -350)
+  dropdownLabel:SetPoint("TOPLEFT", 20, -322)
   mod.guiHelper.SetColor(dropdownLabel, RGPVPW_CONSTANTS.COLOR.BODY)
   dropdownLabel:SetText(rgpvpw.L["warn_mode_label"])
 

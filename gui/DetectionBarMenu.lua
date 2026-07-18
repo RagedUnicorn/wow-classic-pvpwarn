@@ -132,7 +132,7 @@ function me.BuildEnableOption(frame)
   local checkbox = mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ENABLE,
     frame,
-    {"TOPLEFT", 20, -60},
+    {"TOPLEFT", 20, -52},
     function(self)
       if self:GetChecked() then
         mod.configuration.EnableDetectionBar()
@@ -164,7 +164,7 @@ function me.BuildPositionButton(frame)
   positionButton = mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_POSITION_BUTTON,
     frame,
-    {"TOPLEFT", 20, -115},
+    {"TOPLEFT", 20, -107},
     function()
       mod.detectionBarAnchor.TogglePositioning()
     end,
@@ -249,7 +249,7 @@ function me.BuildMaxBarsSlider(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_MAX_BARS_SLIDER,
     rgpvpw.L["detection_bar_max_bars_label"],
-    1, 4, 1, 25, -170,
+    1, 4, 1, 25, -162,
     mod.configuration.GetDetectionBarMaxBars,
     mod.configuration.SetDetectionBarMaxBars
   )
@@ -265,7 +265,7 @@ function me.BuildScaleSlider(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_SCALE_SLIDER,
     rgpvpw.L["detection_bar_size_label"],
-    0.5, 2.0, 0.05, 25, -230,
+    0.5, 2.0, 0.05, 25, -222,
     mod.configuration.GetDetectionBarScale,
     me.SetBarScale,
     function(value)
@@ -293,7 +293,7 @@ function me.BuildResetAnchorButton(frame)
   mod.guiHelper.CreatePlayButton(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_RESET_ANCHOR_BUTTON,
     frame,
-    {"TOPLEFT", 20, -290},
+    {"TOPLEFT", 20, -282},
     function()
       mod.detectionBarAnchor.ResetPosition()
     end,

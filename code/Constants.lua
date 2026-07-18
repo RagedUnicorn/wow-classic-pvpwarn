@@ -199,15 +199,17 @@ RGPVPW_CONSTANTS = {
   ]]--
   ELEMENT_ADDON_PANEL = "PVPW_AddonPanel",
   --[[
-    Design colour tokens as { r, g, b } in the 0-1 range (mirrors Quartermaster's COLOR table)
+    Design colour tokens as { r, g, b } in the 0-1 range. Derived from Quartermaster's COLOR
+    table, but BODY / SUBNOTE are brightened: Quartermaster's values are tuned for its own
+    near-black panel backdrop, while these panels render on the lighter stock settings canvas.
   ]]--
   COLOR = {
     TITLE_GOLD = { 1.0, 0.819, 0.0 },       -- #ffd100 panel titles
     SECTION_GOLD = { 0.851, 0.647, 0.129 }, -- #d9a521 section headers
-    BODY = { 0.788, 0.718, 0.627 },         -- #c9b7a0 body text / option labels
+    BODY = { 0.91, 0.87, 0.80 },            -- #e8decc body text / option labels (warm near-white)
     MUTED = { 0.541, 0.486, 0.392 },        -- #8a7c64 idle / dim text
     DISABLED = { 0.45, 0.41, 0.35 },        -- disabled control labels (QM stepper disabled-glyph tone)
-    SUBNOTE = { 0.435, 0.388, 0.314 }       -- #6f6350 option descriptions
+    SUBNOTE = { 0.66, 0.60, 0.50 }          -- #a89980 option descriptions (warm mid gray)
   },
   --[[
     About
@@ -221,7 +223,7 @@ RGPVPW_CONSTANTS = {
     Generalmenu
   ]]--
   ELEMENT_GENERAL_SUB_OPTION_FRAME = "PVPW_GeneralMenuOptionsFrame",
-  GENERAL_CHECK_OPTION_SIZE = 32,
+  GENERAL_CHECK_OPTION_SIZE = 24,
   ELEMENT_GENERAL_OPT = "PVPW_Opt",
   ELEMENT_GENERAL_FRAME = "PVPW_GeneralFrame",
   ELEMENT_GENERAL_TITLE = "PVPW_GeneralTitle",
@@ -427,7 +429,7 @@ RGPVPW_CONSTANTS = {
   -- spell configuration (single row)
   ELEMENT_CATEGORY_SPELL_ICON = "$parentIcon",
   CATEGORY_SPELL_ICON_SIZE = 32,
-  CATEGORY_CHECK_BOX_SIZE = 32,
+  CATEGORY_CHECK_BOX_SIZE = 24,
   SPELL_TITLE_WIDTH = 150,
   ELEMENT_CATEGORY_SPELL_NAME = "PVPW_SpellName",
   ELEMENT_CATEGORY_ENABLE_SPELL = "$parentEnableSpell",

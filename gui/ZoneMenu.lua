@@ -45,32 +45,32 @@ function me.BuildUi(frame)
   me.BuildTitle(frame)
   me.BuildLabel(
     frame,
-    {"TOPLEFT", 20, -50},
+    {"TOPLEFT", 20, -52},
     rgpvpw.L["label_battlegrounds"]
   )
   me.BuildLabelDescription(
     frame,
-    {"TOPLEFT", 24, -75},
+    {"TOPLEFT", 24, -77},
     rgpvpw.L["label_battlegrounds_description"]
   )
   me.BuildZoneOption(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_ZONE_ALTERAC_VALLEY,
-    {"TOPLEFT", 20, -100},
+    {"TOPLEFT", 20, -102},
     rgpvpw.L["battleground_alterac_valley"],
     RGPVPW_ZONE.ZONE_BATTLEGROUND_ALTERAC_VALLEY
   )
   me.BuildZoneOption(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_ZONE_ARATHI_BASIN,
-    {"TOPLEFT", 20, -140},
+    {"TOPLEFT", 20, -142},
     rgpvpw.L["battleground_arathi_basin"],
     RGPVPW_ZONE.ZONE_BATTLEGROUND_ARATHI_BASIN
   )
   me.BuildZoneOption(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_ZONE_WARSONG_GULCH,
-    {"TOPLEFT", 20, -180},
+    {"TOPLEFT", 20, -182},
     rgpvpw.L["battleground_warsong_gulch"],
     RGPVPW_ZONE.ZONE_BATTLEGROUND_WARSONG_GULCH
   )
