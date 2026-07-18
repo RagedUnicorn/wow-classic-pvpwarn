@@ -247,7 +247,9 @@ CreateRowFrame = function(spellList, frame, position)
   row.playVisual = mod.guiHelper.CreatePlayButton(
     options.elementNames.playVisualAlert,
     row,
-    {"LEFT", row.chooseVisual, "RIGHT", 140, 0},
+    --[[ dropdown ends at title right + 150, the sound play buttons start at + 174
+         (checkbox 24 + offset 150) - a 24px gap lines this button up with that column ]]--
+    {"LEFT", row.chooseVisual, "RIGHT", 24, 0},
     function(self)
       ToggleVisualWarningOnClick(spellList, self)
     end,
@@ -457,23 +459,11 @@ end
     The created dropdown
 ]]--
 CreateVisualAlertDropdown = function(spellList, spellFrame)
-  local dropDownMenuCallback = function(self)
-    DropDownMenuCallback(spellList, self)
-  end
-
   return mod.guiHelper.CreateVisualWarningDropdown(
     spellFrame,
     spellList.options.elementNames.visualWarningDropdown,
-    function(self)
-      for colorName, color in pairs(RGPVPW_CONSTANTS.TEXTURES) do
-        mod.libUiDropDownMenu.UiDropDownMenu_AddButton(
-          mod.guiHelper.CreateDropdownButton(colorName, color.colorValue, dropDownMenuCallback)
-        )
-      end
-
-      if mod.libUiDropDownMenu.UiDropDownMenu_GetSelectedValue(self) == nil then
-        mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(self, RGPVPW_CONSTANTS.TEXTURES.none.colorValue)
-      end
+    function(dropdown, colorValue)
+      DropDownMenuCallback(spellList, dropdown, colorValue)
     end
   )
 end
@@ -482,23 +472,18 @@ end
   Callback for color dropdownmenu
 
   @param {table} spellList
-  @param {table} self
-    A reference to the dropdownbutton
+  @param {table} dropdown
+    A reference to the dropdown
+  @param {number} colorValue
+    The selected color value
 ]]--
-DropDownMenuCallback = function(spellList, self)
-  local parentDropdown = self:GetParent().dropdown
-
+DropDownMenuCallback = function(spellList, dropdown, colorValue)
   mod.spellConfiguration.UpdateVisualWarningColor(
     spellList.options.spellList,
     spellList.activeCategory,
-    parentDropdown:GetParent().spellId,
-    parentDropdown:GetParent().normalizedSpellName,
-    self.value
-  )
-
-  mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(
-    parentDropdown,
-    self.value
+    dropdown:GetParent().spellId,
+    dropdown:GetParent().normalizedSpellName,
+    colorValue
   )
 end
 
@@ -717,13 +702,9 @@ UpdateChooseVisualDropdownMenu = function(spellList, dropdownMenu, categoryName,
     spellId
   )
 
-  mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(
-    dropdownMenu,
-    colorValue
-  )
-
-  -- fix for updating text properly
-  mod.libUiDropDownMenu.UiDropDownMenu_SetText(dropdownMenu, rgpvpw.L[mod.common.GetTextureNameByValue(colorValue)])
+  dropdownMenu.selectedColorValue = colorValue
+  -- regenerate so the button text reflects the newly selected radio entry
+  dropdownMenu:GenerateMenu()
 end
 
 --[[
@@ -757,10 +738,10 @@ end
 ]]--
 UpdateChooseVisualDropdownMenuState = function(frame, enable)
   if enable then
-    mod.libUiDropDownMenu.UiDropDownMenu_EnableDropDown(frame.chooseVisual)
+    frame.chooseVisual:SetEnabled(true)
     mod.guiHelper.SetColor(frame.chooseVisualLabel, RGPVPW_CONSTANTS.COLOR.BODY)
   else
-    mod.libUiDropDownMenu.UiDropDownMenu_DisableDropDown(frame.chooseVisual)
+    frame.chooseVisual:SetEnabled(false)
     mod.guiHelper.SetColor(frame.chooseVisualLabel, RGPVPW_CONSTANTS.COLOR.DISABLED)
   end
 end

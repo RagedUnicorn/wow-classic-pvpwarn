@@ -411,23 +411,26 @@ function me.BuildWarnModeDropdown(frame)
   mod.guiHelper.SetColor(dropdownLabel, RGPVPW_CONSTANTS.COLOR.BODY)
   dropdownLabel:SetText(rgpvpw.L["warn_mode_label"])
 
-  warnModeDropdown = mod.libUiDropDownMenu.CreateUiDropDownMenu(
+  warnModeDropdown = mod.guiHelper.CreateSettingsDropdown(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_OPT_WARN_MODE_DROPDOWN,
-    frame
+    frame,
+    {"LEFT", dropdownLabel, "RIGHT", 10, -2},
+    220,
+    me.InitializeWarnModeDropdown
   )
-  warnModeDropdown:SetPoint("LEFT", dropdownLabel, "RIGHT", 10, -2)
-
-  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(warnModeDropdown, me.InitializeWarnModeDropdown)
-  mod.libUiDropDownMenu.UiDropDownMenu_SetWidth(warnModeDropdown, 220)
-
-  me.UpdateWarnModeDropdownSelection()
+  -- generate once so the button shows the current selection before the menu was ever opened
+  warnModeDropdown:GenerateMenu()
 end
 
 --[[
-  Initialize the warning mode dropdown with the available target filter modes
+  Menu generator for the warning mode dropdown - fills the root description with a radio
+  entry per available target filter mode
+
+  @param {table} _
+    The dropdown the menu is generated for (unused)
+  @param {table} rootDescription
 ]]--
-function me.InitializeWarnModeDropdown()
-  local activeMode = mod.configuration.GetTargetFilterMode()
+function me.InitializeWarnModeDropdown(_, rootDescription)
   local modes = {
     {
       value = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_WARN_ALL,
@@ -439,41 +442,29 @@ function me.InitializeWarnModeDropdown()
   }
 
   for _, mode in ipairs(modes) do
-    local info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
-
-    info.text = mode.text
-    info.value = mode.value
-    info.func = me.OnWarnModeSelect
-    info.checked = activeMode == mode.value
-    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
+    rootDescription:CreateRadio(mode.text, me.IsWarnModeSelected, me.OnWarnModeSelect, mode.value)
   end
+end
+
+--[[
+  Whether the passed warning mode is the currently configured one
+
+  @param {string} mode
+
+  @return {boolean}
+]]--
+function me.IsWarnModeSelected(mode)
+  return mod.configuration.GetTargetFilterMode() == mode
 end
 
 --[[
   Callback for when a warning mode is selected
 
-  @param {table} self
-    The menu item that was clicked
+  @param {string} mode
+    The selected target filter mode
 ]]--
-function me.OnWarnModeSelect(self)
-  mod.configuration.SetTargetFilterMode(self.value)
-  me.UpdateWarnModeDropdownSelection()
-  mod.libUiDropDownMenu.CloseDropDownMenus()
+function me.OnWarnModeSelect(mode)
+  mod.configuration.SetTargetFilterMode(mode)
 
-  mod.logger.LogInfo(me.tag, "Selected warning mode: " .. self.value)
-end
-
---[[
-  Update the dropdown to show the currently selected warning mode
-]]--
-function me.UpdateWarnModeDropdownSelection()
-  local displayText
-
-  if mod.configuration.GetTargetFilterMode() == RGPVPW_CONSTANTS.TARGET_FILTER_MODE_CURRENT_TARGET then
-    displayText = rgpvpw.L["warn_mode_current_target"]
-  else
-    displayText = rgpvpw.L["warn_mode_warn_all"]
-  end
-
-  mod.libUiDropDownMenu.UiDropDownMenu_SetText(warnModeDropdown, displayText)
+  mod.logger.LogInfo(me.tag, "Selected warning mode: " .. mode)
 end

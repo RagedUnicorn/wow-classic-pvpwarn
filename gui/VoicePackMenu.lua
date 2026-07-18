@@ -97,33 +97,32 @@ function me.BuildVoicePackDropdown(frame)
   mod.guiHelper.SetColor(dropdownLabel, RGPVPW_CONSTANTS.COLOR.BODY)
   dropdownLabel:SetText(rgpvpw.L["voice_pack_dropdown_label"])
 
-  voicePackDropdown = mod.libUiDropDownMenu.CreateUiDropDownMenu(
+  voicePackDropdown = mod.guiHelper.CreateSettingsDropdown(
     RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_DROPDOWN,
-    frame
+    frame,
+    {"LEFT", dropdownLabel, "RIGHT", 10, -2},
+    RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_DROPDOWN_MIN_WIDTH,
+    me.InitializeDropdown
   )
-  voicePackDropdown:SetPoint("LEFT", dropdownLabel, "RIGHT", 10, -2)
-
-  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(voicePackDropdown, me.InitializeDropdown)
-
+  voicePackDropdown:SetDefaultText(rgpvpw.L["voice_pack_default"])
+  -- generate once so the button shows the current selection before the menu was ever opened
+  voicePackDropdown:GenerateMenu()
   me.UpdateDropdownWidth()
-  me.UpdateDropdownSelection()
 end
 
 --[[
-  Initialize the dropdown menu with available voice packs
+  Menu generator for the voice pack dropdown - fills the root description with a radio
+  entry per registered voice pack, the default voice pack first
+
+  @param {table} _
+    The dropdown the menu is generated for (unused)
+  @param {table} rootDescription
 ]]--
-function me.InitializeDropdown()
+function me.InitializeDropdown(_, rootDescription)
   local voicePacks = mod.voicePack.GetRegisteredVoicePacks()
-  local activeVoicePack = mod.configuration.GetActiveVoicePack()
 
   local function addVoicePackToDropdown(name, voicePack)
-    local info = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
-
-    info.text = voicePack.displayName
-    info.value = name
-    info.func = me.OnVoicePackSelect
-    info.checked = activeVoicePack == name
-    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(info)
+    rootDescription:CreateRadio(voicePack.displayName, me.IsVoicePackSelected, me.OnVoicePackSelect, name)
   end
 
   local defaultVoicePack = voicePacks[RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME]
@@ -137,38 +136,31 @@ function me.InitializeDropdown()
       addVoicePackToDropdown(name, voicePack)
     end
   end
+end
 
-  me.UpdateDropdownWidth()
+--[[
+  Whether the passed voice pack is the currently active one
+
+  @param {string} voicePackName
+
+  @return {boolean}
+]]--
+function me.IsVoicePackSelected(voicePackName)
+  return mod.configuration.GetActiveVoicePack() == voicePackName
 end
 
 --[[
   Callback for when a voice pack is selected
 
-  @param {table} self
-    The menu item that was clicked
+  @param {string} voicePackName
+    The name of the selected voice pack
 ]]--
-function me.OnVoicePackSelect(self)
-  local voicePackName = self.value
-
+function me.OnVoicePackSelect(voicePackName)
   mod.configuration.SetActiveVoicePack(voicePackName)
   mod.voicePack.SetActiveVoicePack(voicePackName)
-  me.UpdateDropdownSelection()
   me.UpdateDropdownWidth()
-  mod.libUiDropDownMenu.CloseDropDownMenus()
 
   mod.logger.LogInfo(me.tag, "Selected voice pack: " .. voicePackName)
-end
-
---[[
-  Update the dropdown to show the currently selected voice pack
-]]--
-function me.UpdateDropdownSelection()
-  local activeVoicePack = mod.configuration.GetActiveVoicePack()
-  local voicePacks = mod.voicePack.GetRegisteredVoicePacks()
-  local voicePack = voicePacks[activeVoicePack]
-  local displayText = voicePack and voicePack.displayName or rgpvpw.L["voice_pack_default"]
-
-  mod.libUiDropDownMenu.UiDropDownMenu_SetText(voicePackDropdown, displayText)
 end
 
 --[[
@@ -203,7 +195,7 @@ function me.UpdateDropdownWidth()
     dropdownWidth = RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_DROPDOWN_MIN_WIDTH
   end
 
-  mod.libUiDropDownMenu.UiDropDownMenu_SetWidth(voicePackDropdown, dropdownWidth)
+  voicePackDropdown:SetWidth(dropdownWidth)
 end
 
 --[[

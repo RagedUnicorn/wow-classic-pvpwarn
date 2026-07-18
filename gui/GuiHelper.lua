@@ -60,6 +60,30 @@ function me.ApplyBorderBackdrop(frame)
 end
 
 --[[
+  Create a dropdown in the dark style of the stock configuration menus (WowStyle2, without
+  the stepper buttons the settings panel adds around some of its dropdowns)
+
+  @param {string} frameName
+  @param {table} parent
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+  @param {number} width
+  @param {function} menuGenerator
+    Menu generator passed to SetupMenu - receives (dropdown, rootDescription)
+
+  @return {table}
+    The created dropdown
+]]--
+function me.CreateSettingsDropdown(frameName, parent, position, width, menuGenerator)
+  local dropdown = CreateFrame("DropdownButton", frameName, parent, "WowStyle2DropdownTemplate")
+  dropdown:SetPoint(unpack(position))
+  dropdown:SetWidth(width)
+  dropdown:SetupMenu(menuGenerator)
+
+  return dropdown
+end
+
+--[[
   Create a configuration checkbox
 
   @param {string} frameName
@@ -158,24 +182,6 @@ function me.CreatePlayButton(frameName, parent, position, callback, text)
   )
 
   return playButton
-end
-
---[[
-  @param {string} text
-  @param {number} value
-  @param {function} callback
-
-  @return {table}
-    The created button
-]]--
-function me.CreateDropdownButton(text, value, callback)
-  local button = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
-
-  button.text = rgpvpw.L["texture_" .. text]
-  button.value = value
-  button.func = callback
-
-  return button
 end
 
 --[[
@@ -366,6 +372,7 @@ function me.CreateSpellTitle(parentFrame, spellTitle, spellTitleWidth, iconSize)
   local spellTitleFontString = parentFrame:GetParent():CreateFontString(spellTitle, "OVERLAY")
   spellTitleFontString:SetFont(STANDARD_TEXT_FONT, 15)
   spellTitleFontString:SetWidth(spellTitleWidth)
+  spellTitleFontString:SetJustifyH("LEFT")
   spellTitleFontString:SetPoint(
     "LEFT",
     parentFrame,
@@ -397,7 +404,7 @@ function me.CreateVisualWarningLabel(parentFrame, visualLabelName, labelText)
     "RIGHT",
     parentFrame,
     "LEFT",
-    0,
+    -5,
     0
   )
   me.SetColor(visualWarningLabelFontString, RGPVPW_CONSTANTS.COLOR.BODY)
@@ -414,20 +421,37 @@ end
 
   @param {table} parentFrame
   @param {string} dropdownName
-  @param {function} initializeFunction
+  @param {function} onColorSelected
+    Invoked with (dropdown, colorValue) when the player picks a color
 
   @return {table}
     The created dropdown
 ]]--
-function me.CreateVisualWarningDropdown(parentFrame, dropdownName, initializeFunction)
-  local chooseVisualWarningDropdownMenu = mod.libUiDropDownMenu.CreateUiDropDownMenu(
+function me.CreateVisualWarningDropdown(parentFrame, dropdownName, onColorSelected)
+  local chooseVisualWarningDropdownMenu = me.CreateSettingsDropdown(
     dropdownName .. parentFrame.position,
-    parentFrame
+    parentFrame,
+    --[[ left-align with the sound checkbox column above ]]--
+    {"LEFT", parentFrame.spellTitle, "RIGHT", 0, -30},
+    150,
+    function(dropdown, rootDescription)
+      for colorName, color in pairs(RGPVPW_CONSTANTS.TEXTURES) do
+        rootDescription:CreateRadio(
+          rgpvpw.L["texture_" .. colorName],
+          function(colorValue)
+            return dropdown.selectedColorValue == colorValue
+          end,
+          function(colorValue)
+            dropdown.selectedColorValue = colorValue
+            onColorSelected(dropdown, colorValue)
+          end,
+          color.colorValue
+        )
+      end
+    end
   )
-  chooseVisualWarningDropdownMenu:SetPoint("RIGHT", parentFrame.spellTitle, "RIGHT", 165, -30)
   chooseVisualWarningDropdownMenu.position = parentFrame.position
-
-  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(chooseVisualWarningDropdownMenu, initializeFunction)
+  chooseVisualWarningDropdownMenu.selectedColorValue = RGPVPW_CONSTANTS.TEXTURES.none.colorValue
 
   return chooseVisualWarningDropdownMenu
 end
