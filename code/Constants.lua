@@ -279,6 +279,10 @@ RGPVPW_CONSTANTS = {
   ]]--
   DETECTION_BAR_DEFAULT_EVENT_COLOR = { r = 1.00, g = 0.31, b = 0.66 },
   --[[
+    event-text color for aura-removed ("down") detections, matching the red 'X' icon marker
+  ]]--
+  DETECTION_BAR_REMOVED_EVENT_COLOR = { r = 0.92, g = 0.26, b = 0.23 },
+  --[[
     Detection bar visual tokens
   ]]--
   DETECTION_BAR_WIDTH = 760,
@@ -289,6 +293,7 @@ RGPVPW_CONSTANTS = {
   DETECTION_BAR_ICON_GLOW_TEXTURE = "Interface\\AddOns\\PVPWarn\\assets\\detection_bar\\icon_glow",
   DETECTION_BAR_GRADIENT_CLASS_TEXTURE = "Interface\\AddOns\\PVPWarn\\assets\\detection_bar\\bar_gradient_class",
   DETECTION_BAR_GRADIENT_DARK_TEXTURE = "Interface\\AddOns\\PVPWarn\\assets\\detection_bar\\bar_gradient_dark",
+  DETECTION_BAR_REMOVED_MARK_TEXTURE = "Interface\\RaidFrame\\ReadyCheck-NotReady",
   --[[
     A list of available categories consisting of all classes, racials, items and a
     misc category

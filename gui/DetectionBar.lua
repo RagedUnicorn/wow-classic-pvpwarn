@@ -109,6 +109,13 @@ function me.New(parent)
   icon:SetPoint("BOTTOMRIGHT", -2, 2)
   icon:SetTexCoord(0.08, 0.92, 0.08, 0.92) -- crop Blizzard's default dark icon edge
 
+  --[[ Red 'X' shown over the icon for aura-removed ("down") detections ]]--
+  local removedMark = iconHolder:CreateTexture(nil, "OVERLAY")
+  removedMark:SetTexture(RGPVPW_CONSTANTS.DETECTION_BAR_REMOVED_MARK_TEXTURE)
+  removedMark:SetPoint("TOPLEFT", 2, -2)
+  removedMark:SetPoint("BOTTOMRIGHT", -2, 2)
+  removedMark:Hide()
+
   --[[ Event text - heavy Fira Sans (~design weight 800), ~0.46 of bar height ]]--
   local eventText = frame:CreateFontString(nil, "OVERLAY")
   applyFont(eventText, 24, "OUTLINE")
@@ -154,6 +161,7 @@ function me.New(parent)
     iconHolder = iconHolder,
     icon = icon,
     iconGlow = iconGlow,
+    removedMark = removedMark,
     eventText = eventText,
     nameText = nameText,
     life = life
@@ -178,6 +186,7 @@ end
       playerName = {string},   -- may include a "-Realm" suffix which is stripped
       eventText = {string},    -- the localized spell name to display
       eventColor = { r, g, b } -- optional, defaults to #FF4FA8
+      isRemoved = {boolean}    -- optional, marks an aura-removed detection with an 'X' overlay
     }
 ]]--
 function me.Set(bar, opts)
@@ -193,6 +202,13 @@ function me.Set(bar, opts)
 
   if opts.spellID then
     bar.icon:SetTexture(select(3, GetSpellInfo(opts.spellID)))
+  end
+
+  --[[ explicit show/hide so pooled reuse and preview bars never carry a stale marker ]]--
+  if opts.isRemoved then
+    bar.removedMark:Show()
+  else
+    bar.removedMark:Hide()
   end
 
   --[[

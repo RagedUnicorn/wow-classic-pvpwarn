@@ -44,10 +44,10 @@ me.tag = "DetectionBarCmd"
   slide-up animation get exercised.
 ]]--
 local TEST_BARS = {
-  { spellID = 1784, classToken = "ROGUE", playerName = "Sneaky-Whitemane" }, -- Stealth
-  { spellID = 118, classToken = "MAGE", playerName = "Frostbolt" },          -- Polymorph
-  { spellID = 17, classToken = "PRIEST", playerName = "Lightwell" },         -- Power Word: Shield
-  { spellID = 100, classToken = "WARRIOR", playerName = "Chargington" }      -- Charge
+  { spellID = 1784, classToken = "ROGUE", playerName = "Sneaky-Whitemane" },       -- Stealth
+  { spellID = 118, classToken = "MAGE", playerName = "Frostbolt" },                -- Polymorph
+  { spellID = 17, classToken = "PRIEST", playerName = "Lightwell", isRemoved = true }, -- Power Word: Shield down
+  { spellID = 100, classToken = "WARRIOR", playerName = "Chargington" }            -- Charge
 }
 
 --[[
@@ -81,12 +81,17 @@ function me.PushTestBars()
 
   for i, testBar in ipairs(TEST_BARS) do
     C_Timer.After((i - 1) * 0.5, function()
+      local spellName = GetSpellInfo(testBar.spellID)
+
       mod.detectionBarManager.Push({
         spellID = testBar.spellID,
         classToken = testBar.classToken,
         playerName = testBar.playerName,
-        eventText = GetSpellInfo(testBar.spellID),
-        eventColor = eventColor
+        eventText = testBar.isRemoved
+          and mod.combatLog.BuildRemovedEventText(spellName, eventColor) or spellName,
+        eventColor = testBar.isRemoved
+          and RGPVPW_CONSTANTS.DETECTION_BAR_REMOVED_EVENT_COLOR or eventColor,
+        isRemoved = testBar.isRemoved
       })
     end)
   end

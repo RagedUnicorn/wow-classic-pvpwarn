@@ -208,7 +208,9 @@ end
 
 --[[
   If an active bar matches the incoming (playerName, spellID) within the dedup window, refresh
-  its hold timer and return true. Otherwise return false.
+  its hold timer and return true. Otherwise return false. The bar is re-populated from the
+  incoming payload so a refresh that changes the event kind (e.g. aura-applied followed by
+  aura-removed) updates the visual state instead of keeping the stale one.
 
   @param {table} opts
 
@@ -222,6 +224,7 @@ function me.TryDedup(opts)
   for _, bar in ipairs(me.active) do
     if bar.spellID == opts.spellID and bar.playerName == incomingName
         and bar.lastPushedAt ~= nil and (now - bar.lastPushedAt) <= window then
+      mod.detectionBar.Set(bar, opts)
       mod.detectionBar.Refresh(bar)
       bar.lastPushedAt = now
       mod.logger.LogDebug(me.tag, "Deduped detection bar push for " .. incomingName)

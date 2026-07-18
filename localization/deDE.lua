@@ -88,6 +88,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["detection_bar_locked_message"] = "Positionierung der Erkennungsleiste deaktiviert"
   rgpvpw.L["detection_bar_unlocked_message"] = "Positionierung der Erkennungsleiste aktiviert - "
     .. "ziehe die Leiste zum Verschieben"
+  rgpvpw.L["detection_bar_event_removed"] = "%s aus"
   rgpvpw.L["flash_enabled_message"] = "Blitz-Warnung aktiviert"
   rgpvpw.L["flash_disabled_message"] = "Blitz-Warnung deaktiviert"
   rgpvpw.L["configuration_menu_flash"] = "Blitz"

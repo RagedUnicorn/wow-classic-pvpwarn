@@ -376,6 +376,8 @@ end
   Resolve the detection-bar payload for the current combat-log event, or nil when the
   detection bar is globally disabled.
 
+  @param {number} spellType
+    RGPVPW_CONSTANTS.SPELL_TYPES
   @param {number} spellId
   @param {string} spellName
   @param {number} colorValue
@@ -386,12 +388,12 @@ end
   @return {table | nil}
     A payload table for mod.detectionBarManager.Push, or nil
 ]]--
-function me.ResolveDetectionBarPayload(spellId, spellName, colorValue, ...)
+function me.ResolveDetectionBarPayload(spellType, spellId, spellName, colorValue, ...)
   if not mod.configuration.IsDetectionBarEnabled() then return nil end
 
   local srcGUID, srcName = mod.common.SelectMultiple({4, 5}, ...)
 
-  return me.BuildDetectionBarPayload(srcGUID, srcName, spellId, spellName, colorValue)
+  return me.BuildDetectionBarPayload(spellType, srcGUID, srcName, spellId, spellName, colorValue)
 end
 
 --[[
@@ -418,8 +420,35 @@ function me.ResolveDetectionBarEventColor(colorValue)
 end
 
 --[[
-  Build the payload the detection bar manager needs from a combat-log source.
+  Build the event text for an aura-removed detection. The bar's font string gets the red
+  removed color as its base color so the localized static suffix ("down") renders red in any
+  locale word order, while the substituted spell name is wrapped in an inline color escape
+  to keep the regular event color.
 
+  @param {string} spellName
+  @param {table} eventColor
+    The keyed { r, g, b } event color the spell name should keep
+
+  @return {string}
+]]--
+function me.BuildRemovedEventText(spellName, eventColor)
+  local coloredSpellName = string.format(
+    "|cff%02x%02x%02x%s|r",
+    math.floor(eventColor.r * 255 + 0.5),
+    math.floor(eventColor.g * 255 + 0.5),
+    math.floor(eventColor.b * 255 + 0.5),
+    spellName
+  )
+
+  return string.format(rgpvpw.L["detection_bar_event_removed"], coloredSpellName)
+end
+
+--[[
+  Build the payload the detection bar manager needs from a combat-log source. Aura-removed
+  detections are marked so the bar renders them visibly distinct from a fresh cast.
+
+  @param {number} spellType
+    RGPVPW_CONSTANTS.SPELL_TYPES
   @param {string} srcGUID
     The combat-log source GUID, used to derive the enemy class color
   @param {string} srcName
@@ -433,19 +462,31 @@ end
   @return {table}
     A payload table for mod.detectionBarManager.Push
 ]]--
-function me.BuildDetectionBarPayload(srcGUID, srcName, spellId, spellName, colorValue)
+function me.BuildDetectionBarPayload(spellType, srcGUID, srcName, spellId, spellName, colorValue)
   local classToken
 
   if srcGUID then
     classToken = select(2, GetPlayerInfoByGUID(srcGUID)) -- englishClass e.g. "ROGUE"
   end
 
+  local isRemoved = spellType == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED
+  local eventText = spellName
+  local eventColor = me.ResolveDetectionBarEventColor(colorValue)
+
+  --[[ removed detections: red base color (matches the 'X' marker) so only the localized
+       suffix renders red while the spell name keeps the regular event color ]]--
+  if isRemoved then
+    eventText = me.BuildRemovedEventText(spellName, eventColor)
+    eventColor = RGPVPW_CONSTANTS.DETECTION_BAR_REMOVED_EVENT_COLOR
+  end
+
   return {
     spellID = spellId,
     classToken = classToken,
     playerName = srcName or "",
-    eventText = spellName,
-    eventColor = me.ResolveDetectionBarEventColor(colorValue)
+    eventText = eventText,
+    eventColor = eventColor,
+    isRemoved = isRemoved
   }
 end
 
@@ -532,7 +573,7 @@ ProcessDetectedSpell = function(spellType, category, spellId, spell, spellName, 
     spell.visualWarningColor = visualWarningColor
   end
 
-  local detectionBarPayload = me.ResolveDetectionBarPayload(spellId, spellName, visualWarningColor, ...)
+  local detectionBarPayload = me.ResolveDetectionBarPayload(spellType, spellId, spellName, visualWarningColor, ...)
 
   mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual, detectionBarPayload)
 end

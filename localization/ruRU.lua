@@ -86,6 +86,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["detection_bar_locked_message"] = "Размещение панели обнаружения отключено"
   rgpvpw.L["detection_bar_unlocked_message"] = "Размещение панели обнаружения включено - "
     .. "перетащите панель для перемещения"
+  rgpvpw.L["detection_bar_event_removed"] = "%s спал"
   rgpvpw.L["flash_enabled_message"] = "Вспышка включена"
   rgpvpw.L["flash_disabled_message"] = "Вспышка отключена"
   rgpvpw.L["configuration_menu_flash"] = "Вспышка"
