@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals FauxScrollFrame_Update FauxScrollFrame_GetOffset GetSpellInfo GetItemIcon
+-- luacheck: globals CreateFrame ScrollUtil GetSpellInfo GetItemIcon
 
 local mod = rgpvpw
 local me = {}
@@ -33,7 +33,7 @@ me.tag = "SpellListHelper"
 -- forward declaration
 local BuildUi
 local UpdateListAnchor
-local CreateSpellListScrollFrame
+local CreateSpellListContainer
 local CreateRowFrame
 local CreateSpellStateCheckbox
 local CreateSoundCheckBox
@@ -45,7 +45,7 @@ local PlaySoundSpecialButtonOnClick
 local CreateVisualAlertDropdown
 local DropDownMenuCallback
 local ToggleVisualWarningOnClick
-local FauxScrollFrameOnUpdate
+local UpdateSpellRows
 local UpdateIcon
 local UpdateSpellStateCheckBox
 local UpdateSound
@@ -94,7 +94,11 @@ function me.NewSpellList(options)
     options = options,
     -- local references to the created row ui elements
     rows = {},
+    -- outer container holding the scrollFrame and its scrollbar
+    container = nil,
     scrollFrame = nil,
+    -- scroll child the rows attach to
+    content = nil,
     --[[
       Cached category data for reusing while the player scrolls through the spell list.
       Wiped when the category changes
@@ -127,7 +131,7 @@ function me.Init(spellList, frame, categoryName)
 
     UpdateListAnchor(spellList, frame)
     -- update the scrolllist with new category data
-    FauxScrollFrameOnUpdate(spellList, spellList.scrollFrame, categoryName)
+    UpdateSpellRows(spellList, categoryName)
   else
     BuildUi(spellList, frame, categoryName)
     spellList.builtMenu = true
@@ -142,8 +146,8 @@ end
   @param {string} categoryName
 ]]--
 BuildUi = function(spellList, frame, categoryName)
-  spellList.scrollFrame = CreateSpellListScrollFrame(spellList, frame, categoryName)
-  FauxScrollFrameOnUpdate(spellList, spellList.scrollFrame, categoryName)
+  spellList.container = CreateSpellListContainer(spellList, frame, categoryName)
+  UpdateSpellRows(spellList, categoryName)
 end
 
 --[[
@@ -153,36 +157,52 @@ end
   @param {table} parentFrame
 ]]--
 UpdateListAnchor = function(spellList, parentFrame)
-  spellList.scrollFrame:ClearAllPoints()
-  spellList.scrollFrame:SetPoint("TOPLEFT", parentFrame)
-  spellList.scrollFrame:SetParent(parentFrame)
+  spellList.container:ClearAllPoints()
+  spellList.container:SetPoint("TOPLEFT", parentFrame)
+  spellList.container:SetParent(parentFrame)
   spellList.scrollFrame:SetVerticalScroll(0) -- reset scroll position to top
 end
 
 --[[
-  Create the scrollist for the spelllist
+  Create the scrollable container for the spelllist. The rows attach to a scroll child
+  driven by a MinimalScrollBar in the style of the stock configuration menus.
 
   @param {table} spellList
   @param {table} frame
   @param {string} categoryName
 
   @return {table}
+    The created container
 ]]--
-CreateSpellListScrollFrame = function(spellList, frame, categoryName)
-  return mod.guiHelper.CreateFauxScrollFrame(
-    spellList.options.getScrollFrameName(categoryName),
-    frame,
-    spellList.options.listWidth,
-    spellList.options.rowHeight,
-    spellList.options.maxRows,
-    function(scrollFrame, category)
-      FauxScrollFrameOnUpdate(spellList, scrollFrame, category)
-    end,
-    function(scrollFrame, position)
-      return CreateRowFrame(spellList, scrollFrame, position)
-    end,
-    spellList.rows
+CreateSpellListContainer = function(spellList, frame, categoryName)
+  local options = spellList.options
+  local listHeight = options.rowHeight * options.maxRows
+
+  local container = CreateFrame("Frame", nil, frame)
+  container:SetSize(options.listWidth, listHeight)
+  container:SetPoint("TOPLEFT", frame)
+
+  local scrollFrame = CreateFrame(
+    "ScrollFrame",
+    options.getScrollFrameName(categoryName),
+    container
   )
+  scrollFrame:SetPoint("TOPLEFT")
+  scrollFrame:SetPoint("BOTTOMRIGHT")
+
+  local scrollBar = CreateFrame("EventFrame", nil, container, "MinimalScrollBar")
+  scrollBar:SetPoint("TOPLEFT", scrollFrame, "TOPRIGHT", 8, 0)
+  scrollBar:SetPoint("BOTTOMLEFT", scrollFrame, "BOTTOMRIGHT", 8, 0)
+  ScrollUtil.InitScrollFrameWithScrollBar(scrollFrame, scrollBar)
+
+  local content = CreateFrame("Frame", nil, scrollFrame)
+  content:SetSize(options.listWidth, listHeight)
+  scrollFrame:SetScrollChild(content)
+
+  spellList.scrollFrame = scrollFrame
+  spellList.content = content
+
+  return container
 end
 
 --[[
@@ -510,15 +530,15 @@ ToggleVisualWarningOnClick = function(spellList, self)
 end
 
 --[[
-  Update the scrollframe on vertical scroll events and initially. Gathers all items that
-  are intended to be displayed. To prevent a heavy load while retrieving the data this step
-  is only done once and the data is being cached for further update events.
+  Update the spell list rows to reflect the active category. Rows are created lazily -
+  one per spell - and surplus rows from a previously displayed category are hidden. To
+  prevent a heavy load while retrieving the data this step is only done once and the
+  data is being cached for further update events.
 
   @param {table} spellList
-  @param {table} scrollFrame
   @param {string} categoryName
 ]]--
-FauxScrollFrameOnUpdate = function(spellList, scrollFrame, categoryName)
+UpdateSpellRows = function(spellList, categoryName)
   local options = spellList.options
 
   spellList.activeCategory = categoryName
@@ -530,52 +550,42 @@ FauxScrollFrameOnUpdate = function(spellList, scrollFrame, categoryName)
     spellList.cachedCategoryData = options.getCategoryData(categoryName)
   end
 
-  local maxValue = #spellList.cachedCategoryData
+  local spellCount = #spellList.cachedCategoryData
 
-  if maxValue <= options.maxRows then
-    maxValue = options.maxRows + 1
-  end
-  -- Note: maxValue needs to be at least maxRows + 1
-  FauxScrollFrame_Update(
-    scrollFrame,
-    maxValue,
-    options.maxRows,
-    options.rowHeight
-  )
+  for i = 1, math.max(spellCount, #spellList.rows) do
+    local spell = spellList.cachedCategoryData[i]
 
-  local offset = FauxScrollFrame_GetOffset(scrollFrame)
+    if spell ~= nil and spellList.rows[i] == nil then
+      spellList.rows[i] = CreateRowFrame(spellList, spellList.content, i)
+    end
 
-  for i = 1, options.maxRows do
-    local value = i + offset
+    local row = spellList.rows[i]
 
-    if value <= maxValue then
-      local row = spellList.rows[i]
-      local spell = spellList.cachedCategoryData[value]
+    if spell ~= nil then
+      row.spellId = spell.spellId
+      row.normalizedSpellName = spell.normalizedSpellName
+      row.category = categoryName
+      row.spellTitle:SetText(spell.name)
+      row.playSound.soundFileName = spell.soundFileName
 
-      if spell ~= nil then
-        row.spellId = spell.spellId
-        row.normalizedSpellName = spell.normalizedSpellName
-        row.category = categoryName
-        row.spellTitle:SetText(spell.name)
-        row.playSound.soundFileName = spell.soundFileName
+      UpdateIcon(row.spellIcon, categoryName, spell)
+      UpdateSpellStateCheckBox(spellList, row.spellStateCheckBox, categoryName, spell.spellId)
+      UpdateSound(spellList, row.soundCheckBox, categoryName, spell.spellId)
 
-        UpdateIcon(row.spellIcon, categoryName, spell)
-        UpdateSpellStateCheckBox(spellList, row.spellStateCheckBox, categoryName, spell.spellId)
-        UpdateSound(spellList, row.soundCheckBox, categoryName, spell.spellId)
-
-        if options.hasSpecialSoundColumn then
-          row.playSoundSpecial.soundFileName = spell.soundFileName
-          UpdateSoundSpecial(spellList, row.soundSpecialCheckBox, row.playSoundSpecial, categoryName, spell)
-        end
-
-        UpdateChooseVisualDropdownMenu(spellList, row.chooseVisual, categoryName, spell.spellId)
-
-        row:Show()
-      else
-        row:Hide()
+      if options.hasSpecialSoundColumn then
+        row.playSoundSpecial.soundFileName = spell.soundFileName
+        UpdateSoundSpecial(spellList, row.soundSpecialCheckBox, row.playSoundSpecial, categoryName, spell)
       end
+
+      UpdateChooseVisualDropdownMenu(spellList, row.chooseVisual, categoryName, spell.spellId)
+
+      row:Show()
+    else
+      row:Hide()
     end
   end
+
+  spellList.content:SetHeight(math.max(spellCount, options.maxRows) * options.rowHeight)
 end
 
 --[[
