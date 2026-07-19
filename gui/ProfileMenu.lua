@@ -114,7 +114,7 @@ StaticPopupDialogs["RGPVPW_CHOOSE_PROFILE_NAME"] = {
   end,
   OnAccept = function(dialog)
     mod.profile.CreateProfile(dialog:GetEditBox():GetText())
-    me.ProfileListUpdateOnUpdate()
+    me.RefreshProfileList()
     me.ClearSelectedProfile()
   end,
   EditBoxOnTextChanged = function(editBox)
@@ -136,7 +136,7 @@ StaticPopupDialogs["RGPVPW_DELETE_PROFILE_WARNING"] = {
   button2 = rgpvpw.L["confirm_delete_profile_no_button"],
   OnAccept = function()
     mod.profile.DeleteProfile(me.GetCurrentSelectedProfileName())
-    me.ProfileListUpdateOnUpdate()
+    me.RefreshProfileList()
     me.ClearSelectedProfile()
   end,
   timeout = 0,
@@ -153,7 +153,7 @@ StaticPopupDialogs["RGPVPW_LOAD_PROFILE_WARNING"] = {
   button2 = rgpvpw.L["confirm_load_profile_no_button"],
   OnAccept = function()
     mod.profile.LoadProfile(me.GetCurrentSelectedProfileName())
-    me.ProfileListUpdateOnUpdate()
+    me.RefreshProfileList()
     me.ClearSelectedProfile()
   end,
   timeout = 0,
@@ -170,7 +170,7 @@ StaticPopupDialogs["RGPVPW_UPDATE_PROFILE_WARNING"] = {
   button2 = rgpvpw.L["confirm_override_profile_no_button"],
   OnAccept = function()
     mod.profile.UpdateProfile(me.GetCurrentSelectedProfileName())
-    me.ProfileListUpdateOnUpdate()
+    me.RefreshProfileList()
     me.ClearSelectedProfile()
   end,
   timeout = 0,
@@ -220,7 +220,7 @@ StaticPopupDialogs["RGPVPW_IMPORT_PROFILE_NAME"] = {
 ]]--
 function me.Init(frame)
   if builtMenu then
-    me.ProfileListUpdateOnUpdate()
+    me.RefreshProfileList()
   else
     me.BuildUi(frame)
   end
@@ -298,7 +298,7 @@ function me.BuildUi(frame)
   )
 
   -- init scrollFrame
-  me.ProfileListUpdateOnUpdate()
+  me.RefreshProfileList()
   builtMenu = true
 end
 
@@ -403,7 +403,7 @@ end
   Update the profile list rows to reflect the current profiles. Rows are created
   lazily - one per profile - and surplus rows are hidden.
 ]]--
-function me.ProfileListUpdateOnUpdate()
+function me.RefreshProfileList()
   local profiles = PVPWarnProfiles
 
   for i = 1, math.max(#profiles, #profileRows) do
@@ -691,7 +691,7 @@ FinishProfileImport = function(profileName, envelope)
   end
 
   profileStringEditBox:SetText("")
-  me.ProfileListUpdateOnUpdate()
+  me.RefreshProfileList()
   me.ClearSelectedProfile()
   mod.logger.PrintUserMessage(string.format(rgpvpw.L["profile_import_success"], profileName))
 end
