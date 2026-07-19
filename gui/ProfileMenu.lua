@@ -228,7 +228,7 @@ end
   @param {table} frame
 ]]--
 function me.BuildUi(frame)
-  me.CreateProfileTitle(frame)
+  mod.guiHelper.CreatePanelTitle(frame, RGPVPW_CONSTANTS.ELEMENT_PROFILE_TITLE, rgpvpw.L["configuration_menu_profiles"])
 
   local listLabel = frame:CreateFontString(nil, "OVERLAY")
   listLabel:SetFont(STANDARD_TEXT_FONT, 13)
@@ -298,24 +298,6 @@ function me.BuildUi(frame)
   -- init scrollFrame
   me.ProfileListUpdateOnUpdate()
   builtMenu = true
-end
-
---[[
-  Create a label for profiles
-
-  @param {table} frame
-
-  @return {table}
-    The created fontString
-]]--
-function me.CreateProfileTitle(parentFrame)
-  local profileTitleFontString = parentFrame:CreateFontString(
-    RGPVPW_CONSTANTS.ELEMENT_PROFILE_TITLE, "OVERLAY", "GameFontNormalLarge")
-  profileTitleFontString:SetPoint("TOPLEFT", 16, -16)
-  mod.guiHelper.SetColor(profileTitleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
-  profileTitleFontString:SetText(rgpvpw.L["configuration_menu_profiles"])
-
-  return profileTitleFontString
 end
 
 --[[

@@ -49,7 +49,7 @@ local builtMenu = false
 function me.BuildUi(frame)
   if builtMenu then return end
 
-  me.BuildTitle(frame)
+  mod.guiHelper.CreatePanelTitle(frame, RGPVPW_CONSTANTS.ELEMENT_FLASH_MENU_TITLE, rgpvpw.L["flash_title"])
   me.BuildEnableOption(frame)
   me.BuildMaxOpacitySlider(frame)
   me.BuildPulseOption(frame)
@@ -57,19 +57,6 @@ function me.BuildUi(frame)
   me.BuildTestButton(frame)
 
   builtMenu = true
-end
-
---[[
-  Build the title for the flash menu.
-
-  @param {table} frame
-]]--
-function me.BuildTitle(frame)
-  local titleFontString = frame:CreateFontString(
-    RGPVPW_CONSTANTS.ELEMENT_FLASH_MENU_TITLE, "OVERLAY", "GameFontNormalLarge")
-  titleFontString:SetPoint("TOPLEFT", 16, -16)
-  mod.guiHelper.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
-  titleFontString:SetText(rgpvpw.L["flash_title"])
 end
 
 --[[

@@ -63,25 +63,11 @@ local sampleSounds = {
 function me.BuildUi(frame)
   if builtMenu then return end
 
-  me.BuildTitle(frame)
+  mod.guiHelper.CreatePanelTitle(frame, RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_TITLE, rgpvpw.L["voice_pack_title"])
   me.BuildVoicePackDropdown(frame)
   me.BuildPlaySoundButton(frame)
 
   builtMenu = true
-end
-
---[[
-  Build the title for the voice pack menu
-
-  @param {table} frame
-    The addon configuration frame to attach to
-]]--
-function me.BuildTitle(frame)
-  local titleFontString = frame:CreateFontString(
-    RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_TITLE, "OVERLAY", "GameFontNormalLarge")
-  titleFontString:SetPoint("TOPLEFT", 16, -16)
-  mod.guiHelper.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
-  titleFontString:SetText(rgpvpw.L["voice_pack_title"])
 end
 
 --[[

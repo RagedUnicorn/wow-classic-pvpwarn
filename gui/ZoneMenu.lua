@@ -42,7 +42,7 @@ local builtMenu = false
 function me.BuildUi(frame)
   if builtMenu then return end
 
-  me.BuildTitle(frame)
+  mod.guiHelper.CreatePanelTitle(frame, RGPVPW_CONSTANTS.ELEMENT_ZONE_TITLE, rgpvpw.L["zone_title"])
   me.BuildLabel(
     frame,
     {"TOPLEFT", 20, -52},
@@ -76,20 +76,6 @@ function me.BuildUi(frame)
   )
 
   builtMenu = true
-end
-
---[[
-  Build the title for the general menu
-
-  @param {table} parentFrame
-    The addon configuration frame to attach to
-]]--
-function me.BuildTitle(parentFrame)
-  local titleFontString = parentFrame:CreateFontString(
-    RGPVPW_CONSTANTS.ELEMENT_ZONE_TITLE, "OVERLAY", "GameFontNormalLarge")
-  titleFontString:SetPoint("TOPLEFT", 16, -16)
-  mod.guiHelper.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
-  titleFontString:SetText(rgpvpw.L["zone_title"])
 end
 
 --[[

@@ -447,6 +447,28 @@ function me.CreateVisualWarningLabel(parentFrame, visualLabelName, labelText)
 end
 
 --[[
+  Create the gold title shared by all option sub-panels
+
+  @param {table} parentFrame
+    The panel frame to attach to
+  @param {string} frameName
+    A reference name for the fontString
+  @param {string} text
+    The already localized title text
+
+  @return {table}
+    The created fontString
+]]--
+function me.CreatePanelTitle(parentFrame, frameName, text)
+  local titleFontString = parentFrame:CreateFontString(frameName, "OVERLAY", "GameFontNormalLarge")
+  titleFontString:SetPoint("TOPLEFT", 16, -16)
+  me.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
+  titleFontString:SetText(text)
+
+  return titleFontString
+end
+
+--[[
   Create a dropdown with alert color textures to choose
 
   @param {table} parentFrame

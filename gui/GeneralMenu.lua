@@ -73,26 +73,12 @@ local warnModeDropdown
 function me.BuildUi(frame)
   if builtMenu then return end
 
-  me.BuildTitle(frame)
+  mod.guiHelper.CreatePanelTitle(frame, RGPVPW_CONSTANTS.ELEMENT_GENERAL_TITLE, rgpvpw.L["general_title"])
   me.BuildCombatStateOptions(frame)
   me.BuildStanceStateOptions(frame)
   me.BuildWarnModeDropdown(frame)
 
   builtMenu = true
-end
-
---[[
-  Build the title for the general menu
-
-  @param {table} frame
-    The addon configuration frame to attach to
-]]--
-function me.BuildTitle(frame)
-  local titleFontString = frame:CreateFontString(
-    RGPVPW_CONSTANTS.ELEMENT_GENERAL_TITLE, "OVERLAY", "GameFontNormalLarge")
-  titleFontString:SetPoint("TOPLEFT", 16, -16)
-  mod.guiHelper.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
-  titleFontString:SetText(rgpvpw.L["general_title"])
 end
 
 --[[

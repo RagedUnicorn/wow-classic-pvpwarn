@@ -94,7 +94,7 @@ end
 function me.BuildUi(frame)
   if builtMenu then return end
 
-  me.BuildTitle(frame)
+  mod.guiHelper.CreatePanelTitle(frame, RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_TITLE, rgpvpw.L["detection_bar_title"])
   me.BuildEnableOption(frame)
   me.BuildPositionButton(frame)
   me.BuildMaxBarsSlider(frame)
@@ -108,19 +108,6 @@ function me.BuildUi(frame)
   mod.detectionBarAnchor.onPositioningChanged = me.UpdatePositionButtonLabel
 
   builtMenu = true
-end
-
---[[
-  Build the title for the detection bar menu.
-
-  @param {table} frame
-]]--
-function me.BuildTitle(frame)
-  local titleFontString = frame:CreateFontString(
-    RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_TITLE, "OVERLAY", "GameFontNormalLarge")
-  titleFontString:SetPoint("TOPLEFT", 16, -16)
-  mod.guiHelper.SetColor(titleFontString, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
-  titleFontString:SetText(rgpvpw.L["detection_bar_title"])
 end
 
 --[[
