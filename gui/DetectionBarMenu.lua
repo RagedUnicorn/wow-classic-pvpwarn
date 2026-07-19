@@ -175,56 +175,22 @@ function me.UpdatePositionButtonLabel()
 end
 
 --[[
-  Generic slider builder.
-
-  @param {table} frame
-  @param {string} name
-  @param {string} label
-  @param {number} min
-  @param {number} max
-  @param {number} step
-  @param {number} posX
-  @param {number} posY
-  @param {function} getValue
-  @param {function} setValue
-
-  @return {table}
-    The created slider
-]]--
-function me.CreateSlider(frame, name, label, min, max, step, posX, posY, getValue, setValue, formatValue)
-  return mod.guiHelper.CreateSliderWithSteppers(
-    name,
-    frame,
-    {"TOPLEFT", posX, posY},
-    {
-      min = min,
-      max = max,
-      step = step,
-      defaultValue = getValue(),
-      label = label,
-      formatValue = formatValue,
-      onValueChanged = function(_, value)
-        setValue(value)
-        --[[ reflect sizing changes on the sample bar while positioning ]]--
-        mod.detectionBarManager.RefreshPreview()
-      end
-    }
-  )
-end
-
---[[
   Build the max-bars slider (1-4).
 
   @param {table} frame
 ]]--
 function me.BuildMaxBarsSlider(frame)
-  me.CreateSlider(
+  mod.guiHelper.CreateSlider(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_MAX_BARS_SLIDER,
     rgpvpw.L["detection_bar_max_bars_label"],
     1, 4, 1, 20, -162,
     mod.configuration.GetDetectionBarMaxBars,
-    mod.configuration.SetDetectionBarMaxBars
+    function(value)
+      mod.configuration.SetDetectionBarMaxBars(value)
+      --[[ reflect sizing changes on the sample bar while positioning ]]--
+      mod.detectionBarManager.RefreshPreview()
+    end
   )
 end
 
@@ -234,13 +200,17 @@ end
   @param {table} frame
 ]]--
 function me.BuildScaleSlider(frame)
-  me.CreateSlider(
+  mod.guiHelper.CreateSlider(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_SCALE_SLIDER,
     rgpvpw.L["detection_bar_size_label"],
     0.5, 2.0, 0.05, 20, -222,
     mod.configuration.GetDetectionBarScale,
-    me.SetBarScale,
+    function(value)
+      me.SetBarScale(value)
+      --[[ reflect sizing changes on the sample bar while positioning ]]--
+      mod.detectionBarManager.RefreshPreview()
+    end,
     function(value)
       return tostring(math.floor(value * 100 + 0.5)) .. "%"
     end

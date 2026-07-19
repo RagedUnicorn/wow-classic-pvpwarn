@@ -92,7 +92,7 @@ end
   @param {table} frame
 ]]--
 function me.BuildMaxOpacitySlider(frame)
-  me.CreateSlider(
+  mod.guiHelper.CreateSlider(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_MAX_OPACITY_SLIDER,
     rgpvpw.L["flash_max_opacity_label"],
@@ -195,43 +195,5 @@ function me.BuildTestButton(frame)
       mod.flash.Show(me.GetRandomColorValue())
     end,
     rgpvpw.L["flash_test_button"]
-  )
-end
-
---[[
-  Generic slider builder. Mirrors gui/DetectionBarMenu.lua's slider, without the detection-bar
-  preview hook.
-
-  @param {table} frame
-  @param {string} name
-  @param {string} label
-  @param {number} min
-  @param {number} max
-  @param {number} step
-  @param {number} posX
-  @param {number} posY
-  @param {function} getValue
-  @param {function} setValue
-  @param {function} formatValue
-
-  @return {table}
-    The created slider
-]]--
-function me.CreateSlider(frame, name, label, min, max, step, posX, posY, getValue, setValue, formatValue)
-  return mod.guiHelper.CreateSliderWithSteppers(
-    name,
-    frame,
-    {"TOPLEFT", posX, posY},
-    {
-      min = min,
-      max = max,
-      step = step,
-      defaultValue = getValue(),
-      label = label,
-      formatValue = formatValue,
-      onValueChanged = function(_, value)
-        setValue(value)
-      end
-    }
   )
 end

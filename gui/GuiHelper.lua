@@ -148,6 +148,47 @@ function me.CreateSliderWithSteppers(frameName, parent, position, sliderConfig)
 end
 
 --[[
+  Generic option-panel slider builder - a compact positional wrapper around
+  CreateSliderWithSteppers that reads the initial value via getValue and forwards value
+  changes to setValue.
+
+  @param {table} frame
+  @param {string} name
+  @param {string} label
+  @param {number} min
+  @param {number} max
+  @param {number} step
+  @param {number} posX
+  @param {number} posY
+  @param {function} getValue
+  @param {function} setValue
+    Invoked with (value) whenever the value changes
+  @param {function} formatValue
+    Optional value to display string formatter
+
+  @return {table}
+    The created slider
+]]--
+function me.CreateSlider(frame, name, label, min, max, step, posX, posY, getValue, setValue, formatValue)
+  return me.CreateSliderWithSteppers(
+    name,
+    frame,
+    {"TOPLEFT", posX, posY},
+    {
+      min = min,
+      max = max,
+      step = step,
+      defaultValue = getValue(),
+      label = label,
+      formatValue = formatValue,
+      onValueChanged = function(_, value)
+        setValue(value)
+      end
+    }
+  )
+end
+
+--[[
   Create a configuration checkbox
 
   @param {string} frameName
