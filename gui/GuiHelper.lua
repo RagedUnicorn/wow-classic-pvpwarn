@@ -23,7 +23,7 @@
 ]]--
 
 -- luacheck: globals CreateFrame STANDARD_TEXT_FONT TargetFrame
--- luacheck: globals Settings MinimalSliderWithSteppersMixin
+-- luacheck: globals Settings MinimalSliderWithSteppersMixin GameTooltip
 
 local mod = rgpvpw
 local me = {}
@@ -460,6 +460,9 @@ function me.CreateSpellFrame(parentFrame, position, spellFrameName, spellFrameRo
 end
 
 --[[
+  Creates the spell icon with a tooltip showing the hovered spell or item. The
+  displayed spellId/itemId is stored on the iconHolder by the spell list row update.
+
   @param {table} parentFrame
   @param {string} iconName
   @param {number} iconSize
@@ -474,6 +477,21 @@ function me.CreateSpellIcon(parentFrame, iconName, iconSize)
     iconSize + 5
   )
   iconHolder:SetPoint("LEFT", 40, 0)
+  iconHolder:EnableMouse(true)
+  iconHolder:SetScript("OnEnter", function(self)
+    if self.itemId ~= nil then
+      GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+      GameTooltip:SetItemByID(self.itemId)
+      GameTooltip:Show()
+    elseif self.spellId ~= nil then
+      GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+      GameTooltip:SetSpellByID(self.spellId)
+      GameTooltip:Show()
+    end
+  end)
+  iconHolder:SetScript("OnLeave", function()
+    GameTooltip:Hide()
+  end)
 
   local spellIcon = iconHolder:CreateTexture(iconName, "ARTWORK")
   spellIcon.iconHolder = iconHolder

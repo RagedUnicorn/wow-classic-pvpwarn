@@ -620,6 +620,9 @@ UpdateIcon = function(spellIcon, categoryName, spell)
 
   spellIcon:SetTexture(iconId)
   spellIcon.iconHolder:SetBackdropBorderColor(unpack(color))
+  -- itemId may be nil which clears a stale value when the row is reused
+  spellIcon.iconHolder.spellId = spell.spellId
+  spellIcon.iconHolder.itemId = spell.itemId
 end
 
 --[[
