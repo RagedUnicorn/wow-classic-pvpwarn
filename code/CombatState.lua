@@ -46,8 +46,6 @@ function me.UpdateCombatState()
     and UnitIsEnemy(RGPVPW_CONSTANTS.UNIT_ID_PLAYER, RGPVPW_CONSTANTS.UNIT_ID_TARGET)
 
   if hasEnemyPlayerTarget or configurationMode then
-    mod.logger.LogDebug(me.tag, "Acquired new enemy target - starting combatstate tracking")
-    -- after switching targets instantly update
     local affectingCombat = UnitAffectingCombat(RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode
 
     mod.logger.LogDebug(me.tag, "Targeted unit is affected by combat: " .. tostring(affectingCombat))
