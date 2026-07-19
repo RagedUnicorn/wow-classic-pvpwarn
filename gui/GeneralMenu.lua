@@ -310,25 +310,24 @@ end
 function me.BuildCheckButtonOption(parentFrame, optionFrameName, posX, posY, onShowCallback, onClickCallback,
   linkedCheckButtonNames)
   local labelText, descriptionText = me.GetOptionTexts(optionFrameName)
-  local checkButtonOptionFrame = mod.guiHelper.CreateCheckBox(
+
+  mod.guiHelper.CreateCheckBox(
     optionFrameName,
     parentFrame,
     {"TOPLEFT", posX, posY},
     onClickCallback,
-    onShowCallback,
+    --[[
+      Linked buttons automatically get enabled/disabled based on the checkButton state. The
+      names are assigned in the wrapper so they are already present when CreateCheckBox
+      invokes the callback to load the initial state.
+    ]]--
+    function(self)
+      self.linkedCheckButtonNames = linkedCheckButtonNames
+      onShowCallback(self)
+    end,
     labelText,
     descriptionText
   )
-
-  --[[
-    Set a linked button that automatically gets enabled/disabled based on the checkButton state
-  ]]--
-  if linkedCheckButtonNames ~= nil then
-    checkButtonOptionFrame.linkedCheckButtonNames = linkedCheckButtonNames
-  end
-
-  -- load initial state
-  onShowCallback(checkButtonOptionFrame)
 end
 
 --[[

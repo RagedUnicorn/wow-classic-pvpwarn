@@ -65,7 +65,7 @@ end
   @param {table} frame
 ]]--
 function me.BuildEnableOption(frame)
-  local checkbox = mod.guiHelper.CreateCheckBox(
+  mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_ENABLE,
     frame,
     {"TOPLEFT", 20, -52},
@@ -82,8 +82,6 @@ function me.BuildEnableOption(frame)
     rgpvpw.L["flash_enable"],
     rgpvpw.L["flash_enable_tooltip"]
   )
-
-  checkbox:SetChecked(mod.configuration.IsFlashEnabled())
 end
 
 --[[
@@ -112,7 +110,7 @@ end
   @param {table} frame
 ]]--
 function me.BuildPulseOption(frame)
-  local checkbox = mod.guiHelper.CreateCheckBox(
+  mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_PULSE,
     frame,
     {"TOPLEFT", 20, -177},
@@ -131,8 +129,6 @@ function me.BuildPulseOption(frame)
     rgpvpw.L["flash_pulse"],
     rgpvpw.L["flash_pulse_tooltip"]
   )
-
-  checkbox:SetChecked(mod.configuration.IsFlashPulseEnabled())
 end
 
 --[[
@@ -142,7 +138,7 @@ end
   @param {table} frame
 ]]--
 function me.BuildAdditiveBlendOption(frame)
-  local checkbox = mod.guiHelper.CreateCheckBox(
+  mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_ADDITIVE_BLEND,
     frame,
     {"TOPLEFT", 20, -237},
@@ -159,8 +155,6 @@ function me.BuildAdditiveBlendOption(frame)
     rgpvpw.L["flash_additive_blend"],
     rgpvpw.L["flash_additive_blend_tooltip"]
   )
-
-  checkbox:SetChecked(mod.configuration.GetFlashBlendMode() == "ADD")
 end
 
 --[[

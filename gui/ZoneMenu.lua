@@ -125,55 +125,20 @@ end
     A zone from RGPVPW_ZONE
 ]]--
 function me.BuildZoneOption(parentFrame, frameName, position, text, zone)
-  local zoneOption = mod.guiHelper.CreateCheckBox(
+  mod.guiHelper.CreateCheckBox(
     frameName,
     parentFrame,
     position,
     function(self)
-      me.OnClickCallback(self)
+      if self:GetChecked() then
+        mod.configuration.EnableZone(zone)
+      else
+        mod.configuration.DisableZone(zone)
+      end
     end,
     function(self)
-      me.OnShowCallback(self)
+      self:SetChecked(mod.configuration.IsZoneEnabled(zone))
     end,
     text
   )
-
-  zoneOption.value = zone -- set the map or instance id
-  --[[
-    After creating a new zoneOption show and manually invoke its OnShowCallback to load the initial state
-  ]]--
-  zoneOption:Show()
-  me.OnShowCallback(zoneOption)
-end
-
---[[
-  Update the configuration state of the option. Invoked via onClick event.
-
-  @param {table} self
-]]--
-function me.OnClickCallback(self)
-  -- change state
-  local enabled = self:GetChecked()
-
-  if enabled then
-    mod.configuration.EnableZone(self.value)
-  else
-    mod.configuration.DisableZone(self.value)
-  end
-end
-
---[[
-  Load the configuration state of the option. Invoked manually or via onShow event.
-
-  @param {table} self
-]]--
-function me.OnShowCallback(self)
-  -- initial state
-  local isZoneEnabled = mod.configuration.IsZoneEnabled(self.value)
-
-  if isZoneEnabled then
-    self:SetChecked(true)
-  else
-    self:SetChecked(false)
-  end
 end

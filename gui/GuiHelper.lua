@@ -238,16 +238,20 @@ end
   @param {function} onClickCallback
     Callback that is called onClick
     @param {function} onShowCallback
-      Callback that is called onShow
+      Callback that is called onShow and once during creation to load the initial state
   @param {string} text
     Optional text that is used as label for the checkbox
   @param {string} description
     Optional always-visible gray description rendered directly beneath the checkbox
+  @param {boolean} skipInitialSync
+    Optional - skip the initial onShowCallback invocation for checkboxes whose state source
+    (e.g. the row's spellId) is populated after creation; they sync via the real OnShow event
 
   @return {table}
     The created checkbox
 ]]--
-function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowCallback, text, description)
+function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowCallback, text, description,
+    skipInitialSync)
   local checkBoxFrame = CreateFrame(
     "CheckButton",
     frameName,
@@ -288,6 +292,12 @@ function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowC
 
   checkBoxFrame:SetScript("OnClick", onClickCallback)
   checkBoxFrame:SetScript("OnShow", onShowCallback)
+
+  --[[ option panels build lazily while already shown - OnShow has fired before the script was
+       registered and won't sync the initial state; invoke the callback once during creation ]]--
+  if onShowCallback ~= nil and not skipInitialSync then
+    onShowCallback(checkBoxFrame)
+  end
 
   return checkBoxFrame
 end

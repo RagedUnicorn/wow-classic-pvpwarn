@@ -116,7 +116,7 @@ end
   @param {table} frame
 ]]--
 function me.BuildEnableOption(frame)
-  local checkbox = mod.guiHelper.CreateCheckBox(
+  mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ENABLE,
     frame,
     {"TOPLEFT", 20, -52},
@@ -133,12 +133,6 @@ function me.BuildEnableOption(frame)
     rgpvpw.L["detection_bar_enable"],
     rgpvpw.L["detection_bar_enable_tooltip"]
   )
-
-  --[[
-    GuiHelper.CreateCheckBox registers the OnShow handler but does not invoke it, so sync the
-    initial checked state to the saved config explicitly
-  ]]--
-  checkbox:SetChecked(mod.configuration.IsDetectionBarEnabled())
 end
 
 --[[

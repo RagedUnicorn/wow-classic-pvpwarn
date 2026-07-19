@@ -323,7 +323,10 @@ CreateSpellStateCheckbox = function(spellList, spellFrame)
       else
         self:SetChecked(false)
       end
-    end
+    end,
+    nil,
+    nil,
+    true -- the row's spellId is populated after creation; sync via the real OnShow event
   )
 end
 
@@ -362,7 +365,9 @@ CreateSoundCheckBox = function(spellList, spellFrame)
         self:SetChecked(false)
       end
     end,
-    spellList.options.labels.enableSound
+    spellList.options.labels.enableSound,
+    nil,
+    true -- the row's spellId is populated after creation; sync via the real OnShow event
   )
 end
 
@@ -386,7 +391,10 @@ CreateSoundSpecialCheckBox = function(spellList, spellFrame)
     end,
     function(self)
       SoundSpecialCheckBoxOnShow(spellList, self)
-    end
+    end,
+    nil,
+    nil,
+    true -- the row's spellId and type are populated after creation; sync via the real OnShow event
   )
 end
 
