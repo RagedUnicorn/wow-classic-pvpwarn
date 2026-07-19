@@ -56,7 +56,7 @@ RGPVPW_CONSTANTS = {
   ]]--
   WARN_QUEUE_UPDATE_INTERVAL = 0.1,
   CHECK_COMBAT_STATE_INTERVAL = 0.4,
-  CHECK_STANCE_STACE_EXPIRED_INTERVAL = 60,
+  CHECK_STANCE_STATE_EXPIRED_INTERVAL = 60,
   --[[
     Warn textures - TEXTURES is derived from RGPVPW_COLORS.WARNINGS and assigned after
     this table (see BuildWarnTextures)

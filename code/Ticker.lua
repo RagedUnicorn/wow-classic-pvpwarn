@@ -85,7 +85,7 @@ end
 function me.StartTickerCheckStanceStateExpired()
   if checkStanceStateExpired == nil or checkStanceStateExpired:IsCancelled() then
     checkStanceStateExpired = C_Timer.NewTicker(
-      RGPVPW_CONSTANTS.CHECK_STANCE_STACE_EXPIRED_INTERVAL, mod.stanceState.CleanExpiredTrackedStances)
+      RGPVPW_CONSTANTS.CHECK_STANCE_STATE_EXPIRED_INTERVAL, mod.stanceState.CleanExpiredTrackedStances)
     mod.logger.LogInfo(me.tag, "Started 'CheckStanceStateExpired'")
   end
 end
