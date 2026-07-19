@@ -144,34 +144,6 @@ class Reporter:
 
         print(f"\n{'='*60}\n")
 
-    def export_results(self, output_path: str) -> None:
-        """Export results to a file.
-
-        Args:
-            output_path: Path to save the results
-        """
-        with open(output_path, 'w', encoding='utf-8') as f:
-            f.write("Voice Generation Report\n")
-            f.write(f"Generated at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-            f.write("=" * 60 + "\n\n")
-
-            # Write summary
-            f.write("Summary:\n")
-            f.write(f"  Generated: {len(self.results['generated'])}\n")
-            f.write(f"  Failed: {len(self.results['failed'])}\n")
-            f.write(f"  Skipped: {len(self.results['skipped'])}\n\n")
-
-            # Write detailed results
-            for category, items in self.results.items():
-                if items:
-                    f.write(f"\n{category.capitalize()} Files:\n")
-                    f.write("-" * 40 + "\n")
-                    for item in items:
-                        f.write(f"  - {item['file']}")
-                        if item.get('error'):
-                            f.write(f" (Error: {item['error']})")
-                        f.write("\n")
-
     def log_configuration(self, config: Dict) -> None:
         """Log the configuration used for generation.
 

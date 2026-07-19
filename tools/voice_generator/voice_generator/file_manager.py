@@ -63,20 +63,6 @@ class FileManager:
         else:
             return os.path.join(self.output_path, sound_file_name)
 
-    def file_exists(self, sound_file_name: str, category: Optional[str] = None, subcategory: Optional[str] = None) -> bool:
-        """Check if a file exists in the output directory.
-
-        Args:
-            sound_file_name: Base name of the sound file
-            category: Optional category for checking in subdirectories
-            subcategory: Optional subcategory for further organization
-
-        Returns:
-            True if file exists in output directory
-        """
-        output_path = self.get_output_file_path(sound_file_name, category, subcategory)
-        return os.path.exists(output_path)
-
     def list_existing_files(self) -> Dict[str, Dict[str, Set[str]]]:
         """List all existing voice files in the output directory organized by category and subcategory.
 
@@ -182,23 +168,3 @@ class FileManager:
                                     print(f"Failed to remove {category_name}/{item}/{file_name}: {e}")
 
         return count
-
-    def verify_file_integrity(self, sound_file_name: str, category: Optional[str] = None, subcategory: Optional[str] = None) -> bool:
-        """Verify that a generated file has valid content.
-
-        Args:
-            sound_file_name: Base name of the sound file
-            category: Optional category for checking in subdirectories
-            subcategory: Optional subcategory for further organization
-
-        Returns:
-            True if file exists and has content
-        """
-        file_path = self.get_output_file_path(sound_file_name, category, subcategory)
-
-        if not os.path.exists(file_path):
-            return False
-
-        # Check file size (should be more than just headers)
-        file_size = os.path.getsize(file_path)
-        return file_size > 1000  # MP3 files should be at least 1KB

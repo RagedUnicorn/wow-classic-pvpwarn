@@ -188,7 +188,7 @@ def main():
     spellmap_paths = _resolve_map_paths(spellmap_dir, "SpellMap")
     spellavoidmap_paths = _resolve_map_paths(spellavoidmap_dir, "SpellAvoidMap")
 
-    reporter = Reporter(root_path=spellmap_dir.parent)
+    reporter = Reporter()
 
     spellmap_verifier = MapVerifier(
         "SpellMap", *spellmap_paths, is_avoid_map=False,

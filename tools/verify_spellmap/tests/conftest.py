@@ -109,29 +109,6 @@ def valid_spell_variations(fixture_loader):
 
 
 @pytest.fixture
-def invalid_all_ranks_spellmap(fixture_loader):
-    """Load the spellmap with invalid all ranks."""
-    return fixture_loader.load_fixture("invalid_all_ranks")
-
-
-@pytest.fixture
-def invalid_active_spellmap(fixture_loader):
-    """Load the spellmap with invalid active values."""
-    return fixture_loader.load_fixture("invalid_active")
-
-
-@pytest.fixture
-def minimal_valid_spell():
-    """Provide a minimal valid spell entry for testing."""
-    return {
-        "name": "Test Spell",
-        "type": "SPELL_TYPE_BASE",
-        "soundFileName": "test_sound",
-        "trackedEvents": ["SPELL_CAST_SUCCESS"]
-    }
-
-
-@pytest.fixture 
 def reference_entry():
     """Provide a reference entry for testing."""
     return {"refId": 12345}

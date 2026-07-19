@@ -252,13 +252,3 @@ class LuaParser:
                     seen_files.add(self_file)
 
         return voice_files
-
-    def get_unique_voice_files_needed(self, categories: Optional[List[str]] = None) -> Set[str]:
-        """Get a set of unique voice files that need to be generated."""
-        voice_files: Set[str] = set()
-        for voice_data in self.get_voice_files_with_text(categories):
-            file_name = voice_data.get("file_name")
-            if file_name:
-                base_name = os.path.splitext(file_name)[0]
-                voice_files.add(base_name)
-        return voice_files

@@ -15,7 +15,6 @@ DEFAULT_SPELL_AVOID_MAP_PATH = os.path.join(TOOL_ROOT, '..', '..', 'code', 'spel
 
 # File configuration
 DEFAULT_FILE_EXTENSION = '.mp3'
-SUPPORTED_EXTENSIONS = ['.mp3', '.ogg', '.wav']
 
 # Sound file naming patterns
 FADE_SUFFIX = '_down'
@@ -31,10 +30,6 @@ ENEMY_AVOID_FOLDER = 'enemy_avoid'
 EXIT_SUCCESS = 0
 EXIT_MISSING_FILES = 1
 EXIT_ERROR = 2
-
-# Lua parsing patterns
-SPELL_MAP_PATTERN = r'spellMap\[categories\.([A-Z_]+)\]\[.*?\]\s*=\s*\{'
-SPELL_AVOID_MAP_PATTERN = r'spellAvoidMap\[categories\.([A-Z_]+)\]\[.*?\]\s*=\s*\{'
 
 # Report formatting
 REPORT_SEPARATOR = '-' * 60

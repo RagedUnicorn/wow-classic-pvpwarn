@@ -34,7 +34,7 @@ class TestSummarize:
             },
         }
 
-        summary = ex.summarize(assembled, is_avoid_map=False)
+        summary = ex.summarize(assembled)
 
         assert summary["total_real"] == 2
         assert summary["total_alias"] == 1
@@ -55,7 +55,7 @@ class TestSummarize:
             },
         }
 
-        anomalies = ex.summarize(assembled, is_avoid_map=False)["anomalies"]
+        anomalies = ex.summarize(assembled)["anomalies"]
 
         joined = "\n".join(anomalies)
         assert "mage[1]: refId 999 has no target" in joined
@@ -99,7 +99,7 @@ def test_render_functions_produce_markdown():
     maps = {"classic": {"warrior": {100: _entry("Charge", ex.TYPE_BASE, [100])}},
             "sod": {"warrior": {100: _entry("Charge", ex.TYPE_BASE, [100])}},
             "tbc": {"warrior": {100: _entry("Charge", ex.TYPE_BASE, [100])}}}
-    summary = ex.summarize(maps["classic"], is_avoid_map=False)
+    summary = ex.summarize(maps["classic"])
 
     summary_md = ex.render_summary_md("SpellMap", "classic", summary)
     diff_md = ex.render_diff_md([ex.build_diff("SpellMap", maps)])

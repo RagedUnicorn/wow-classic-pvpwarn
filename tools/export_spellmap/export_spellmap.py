@@ -182,7 +182,7 @@ def enrich(assembled: Dict[str, Dict[int, Dict]], branch: str, is_avoid_map: boo
     return assembled, missing_sounds
 
 
-def summarize(assembled: Dict[str, Dict[int, Dict]], is_avoid_map: bool) -> Dict[str, Any]:
+def summarize(assembled: Dict[str, Dict[int, Dict]]) -> Dict[str, Any]:
     """Compute counts and anomalies for one assembled map.
 
     Returns a plain dict consumed by both the Markdown writer and the stdout report. Pure: no
@@ -245,7 +245,6 @@ def summarize(assembled: Dict[str, Dict[int, Dict]], is_avoid_map: bool) -> Dict
         per_category[category] = {"real": cat_real, "alias": cat_alias}
 
     return {
-        "is_avoid_map": is_avoid_map,
         "total_real": total_real,
         "total_alias": total_alias,
         "total_ranks": total_ranks,
@@ -525,7 +524,7 @@ class MapExporter:
             # Enrich before summarizing/dumping so the JSON carries the derived fields and the
             # summary can report missing-but-expected sound files.
             assembled, missing_sounds = enrich(assembled, branch, self.is_avoid_map, self.assets_dir)
-            summary = summarize(assembled, self.is_avoid_map)
+            summary = summarize(assembled)
             summary["missing_sounds"] = missing_sounds
             summaries_by_branch[branch] = summary
 

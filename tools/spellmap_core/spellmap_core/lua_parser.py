@@ -9,7 +9,6 @@ from lupa import LuaRuntime
 
 from .constants import (
     LUA_ADDON_NAMESPACE_MOCK,
-    LUA_DYNAMIC_VALUE_TRACKING,
     LUA_UNITFACTIONGROUP_MOCK,
     CATEGORY_PATTERN,
     DYNAMIC_NAME_PATTERN,
@@ -31,7 +30,6 @@ class LuaParser:
     def setup_environment(self) -> None:
         """Set up the Lua environment with necessary mocks and constants."""
         self.lua.execute(LUA_ADDON_NAMESPACE_MOCK)
-        self.lua.execute(LUA_DYNAMIC_VALUE_TRACKING)
         self.lua.execute(LUA_UNITFACTIONGROUP_MOCK)
 
     def parse_spellmap(self, content: str) -> Dict[str, Dict[int, Dict]]:
@@ -264,25 +262,6 @@ class LuaParser:
 
         # Otherwise treat as dictionary
         return self.lua_table_to_dict(lua_table)
-
-    def analyze_table_structure(self, lua_table, name: str = "") -> str:
-        """Analyze and describe the structure of a Lua table for debugging."""
-        if lupa.lua_type(lua_table) != 'table':
-            return f"{name}: {type(lua_table).__name__}"
-
-        keys = list(lua_table)
-        key_types = set(type(k).__name__ for k in keys)
-
-        # Sample some values to understand content
-        value_types = set()
-        for i, key in enumerate(keys[:5]):  # Sample first 5 entries
-            value = lua_table[key]
-            if lupa.lua_type(value) == 'table':
-                value_types.add('table')
-            else:
-                value_types.add(type(value).__name__)
-
-        return f"{name}: Table with {len(keys)} keys, key types: {key_types}, value types: {value_types}"
 
     def get_dynamic_properties(self) -> List[str]:
         """Get the list of dynamic properties found during parsing."""

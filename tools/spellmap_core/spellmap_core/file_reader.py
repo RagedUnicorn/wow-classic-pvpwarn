@@ -4,7 +4,6 @@ File reading functionality for the SpellMap / SpellAvoidMap source.
 
 import sys
 from pathlib import Path
-from typing import Optional
 
 
 class SpellMapFileReader:
@@ -38,11 +37,3 @@ class SpellMapFileReader:
         except Exception as e:
             print(f"Error reading file: {e}")
             sys.exit(1)
-
-    def exists(self) -> bool:
-        """Check if the file exists."""
-        return self.file_path.exists()
-
-    def get_path(self) -> Path:
-        """Get the file path."""
-        return self.file_path

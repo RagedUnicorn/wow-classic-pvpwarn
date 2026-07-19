@@ -2,9 +2,8 @@
 Sound file verification logic.
 """
 
-import os
 from pathlib import Path
-from typing import Dict, List, Tuple, Set
+from typing import Dict
 
 from .constants import (
     FADE_SUFFIX,

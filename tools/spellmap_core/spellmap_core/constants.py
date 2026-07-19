@@ -22,27 +22,13 @@ RGPVPW_CONSTANTS = {
     UNIT_ID_PLAYER = "player",
     SPELL_TYPE_SOD = "SPELL_TYPE_SOD",
     SPELL_TYPE_BASE = "SPELL_TYPE_BASE",
-    SPELL_TYPE_BS = "SPELL_TYPE_BS",
     SPELL_TYPE_TBC = "SPELL_TYPE_TBC",
     -- Add other constants as needed
 }
 """
 
-LUA_DYNAMIC_VALUE_TRACKING = """
-_G.dynamic_values = {}
-_G.current_spell_id = nil
-_G.current_category = nil
-"""
-
 LUA_UNITFACTIONGROUP_MOCK = """
 function UnitFactionGroup(unit)
-    -- Track that this spell has faction-specific properties
-    if _G.current_spell_id and _G.current_category then
-        if not _G.dynamic_values[_G.current_category] then
-            _G.dynamic_values[_G.current_category] = {}
-        end
-        _G.dynamic_values[_G.current_category][_G.current_spell_id] = true
-    end
     -- Return a value for parsing to continue
     return "Alliance"
 end

@@ -31,12 +31,7 @@ class ReportSection:
 class Reporter:
     """Accumulates one or more report sections and prints a combined report."""
 
-    def __init__(self, root_path):
-        """
-        Args:
-            root_path: Path of the input being verified - only used in the report header.
-        """
-        self.root_path = root_path
+    def __init__(self):
         self.sections: List[ReportSection] = []
 
     def add_section(self, section: ReportSection) -> None:
