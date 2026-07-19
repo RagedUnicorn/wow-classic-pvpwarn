@@ -46,6 +46,23 @@ local FinishProfileImport
 local ProfileNameEditBoxOnTextChanged
 
 --[[
+  Panel layout. Positions are derived from the shared dimension constants and from each
+  other so a resized element moves its siblings along.
+]]--
+local contentLeft = 20
+local listTop = -64
+local listHeight = RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT * RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS
+-- vertical distance between a section label and the content frame below it
+local labelOffset = 18
+local actionButtonWidth = 150
+local actionButtonLeft = contentLeft + RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH + 20
+local actionButtonSpacing = 32
+local stringLabelTop = listTop - listHeight - 22
+local stringBoxTop = stringLabelTop - labelOffset
+local stringButtonWidth = 110
+local stringButtonTop = stringBoxTop - RGPVPW_CONSTANTS.PROFILE_STRING_BOX_HEIGHT - 12
+
+--[[
   Get the currently selected profile name from the profile list.
   If no profile is selected, nil will be returned.
 
@@ -217,7 +234,7 @@ function me.BuildUi(frame)
 
   local listLabel = frame:CreateFontString(nil, "OVERLAY")
   listLabel:SetFont(STANDARD_TEXT_FONT, 13)
-  listLabel:SetPoint("TOPLEFT", 20, -46)
+  listLabel:SetPoint("TOPLEFT", contentLeft, listTop + labelOffset)
   listLabel:SetText(rgpvpw.L["profile_list_label"])
 
   me.CreateProfileList(frame)
@@ -226,8 +243,8 @@ function me.BuildUi(frame)
   me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_SAVE_PROFILE_BUTTON,
-    150,
-    {"TOPLEFT", 320, -64},
+    actionButtonWidth,
+    {"TOPLEFT", actionButtonLeft, listTop},
     rgpvpw.L["save_current_profile_button"],
     me.SaveProfileOnClick
   )
@@ -235,8 +252,8 @@ function me.BuildUi(frame)
   me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_LOAD_PROFILE_BUTTON,
-    150,
-    {"TOPLEFT", 320, -96},
+    actionButtonWidth,
+    {"TOPLEFT", actionButtonLeft, listTop - actionButtonSpacing},
     rgpvpw.L["load_selected_profile_button"],
     me.LoadSelectedProfileButtonOnClick
   )
@@ -244,8 +261,8 @@ function me.BuildUi(frame)
   me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_UPDATE_PROFILE_BUTTON,
-    150,
-    {"TOPLEFT", 320, -128},
+    actionButtonWidth,
+    {"TOPLEFT", actionButtonLeft, listTop - actionButtonSpacing * 2},
     rgpvpw.L["update_profile_button"],
     me.UpdateProfileButtonOnClick
   )
@@ -253,8 +270,8 @@ function me.BuildUi(frame)
   me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DELETE_PROFILE_BUTTON,
-    150,
-    {"TOPLEFT", 320, -160},
+    actionButtonWidth,
+    {"TOPLEFT", actionButtonLeft, listTop - actionButtonSpacing * 3},
     rgpvpw.L["delete_selected_profile_button"],
     me.DeleteSelectedProfileButtonOnClick
   )
@@ -265,8 +282,8 @@ function me.BuildUi(frame)
   me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_PROFILE_EXPORT_BUTTON,
-    110,
-    {"TOPLEFT", 20, -366},
+    stringButtonWidth,
+    {"TOPLEFT", contentLeft, stringButtonTop},
     rgpvpw.L["profile_export_button"],
     me.ExportProfileButtonOnClick
   )
@@ -274,8 +291,8 @@ function me.BuildUi(frame)
   me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_PROFILE_IMPORT_BUTTON,
-    110,
-    {"TOPLEFT", 140, -366},
+    stringButtonWidth,
+    {"TOPLEFT", contentLeft + stringButtonWidth + 10, stringButtonTop},
     rgpvpw.L["profile_import_button"],
     me.ImportProfileButtonOnClick
   )
@@ -295,11 +312,10 @@ end
 ]]--
 function me.CreateProfileList(frame)
   local listWidth = RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH
-  local listHeight = RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT * RGPVPW_CONSTANTS.PROFILE_LIST_MAX_ROWS
 
   local listContainer = CreateFrame("Frame", nil, frame, "BackdropTemplate")
   listContainer:SetSize(listWidth, listHeight)
-  listContainer:SetPoint("TOPLEFT", 20, -64)
+  listContainer:SetPoint("TOPLEFT", contentLeft, listTop)
   mod.guiHelper.ApplyBorderBackdrop(listContainer)
 
   local scrollFrame = CreateFrame(
@@ -498,7 +514,7 @@ end
 function me.CreateProfileStringLabel(parentFrame)
   local stringLabelFontString = parentFrame:CreateFontString(RGPVPW_CONSTANTS.ELEMENT_PROFILE_STRING_LABEL, "OVERLAY")
   stringLabelFontString:SetFont(STANDARD_TEXT_FONT, 13)
-  stringLabelFontString:SetPoint("TOPLEFT", 20, -246)
+  stringLabelFontString:SetPoint("TOPLEFT", contentLeft, stringLabelTop)
   stringLabelFontString:SetJustifyH("LEFT")
   stringLabelFontString:SetText(rgpvpw.L["profile_string_label"])
 
@@ -519,7 +535,7 @@ function me.CreateProfileStringBox(frame)
     RGPVPW_CONSTANTS.PROFILE_STRING_BOX_WIDTH,
     RGPVPW_CONSTANTS.PROFILE_STRING_BOX_HEIGHT
   )
-  stringContainer:SetPoint("TOPLEFT", 20, -264)
+  stringContainer:SetPoint("TOPLEFT", contentLeft, stringBoxTop)
   mod.guiHelper.ApplyBorderBackdrop(stringContainer)
 
   local scrollContainer = CreateFrame(
