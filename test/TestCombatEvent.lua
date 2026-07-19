@@ -142,7 +142,7 @@ function me.CombatEventTest(categoryName, categoryData)
 
       mod.testReporter.StartTestRun(testName)
 
-      local eventName = mod.testHelper.MappEventToName(trackedEvent)
+      local eventName = mod.testHelper.MapEventToName(trackedEvent)
 
       if eventName == nil then
         mod.testReporter.ReportFailureTestRun(

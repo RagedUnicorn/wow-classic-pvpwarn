@@ -68,7 +68,7 @@ mod.testHelper.missingCombatEventAvoidTest = "Did not find a combat avoid event 
     string - if a matching event could be found
     nil - if no matching event could be found
 ]]--
-function me.MappEventToName(event)
+function me.MapEventToName(event)
   local eventMap = {
     ["SPELL_CAST_SUCCESS"] = "Success",
     ["SPELL_CAST_START"] = "Start",
