@@ -125,7 +125,7 @@ function me.Init(spellList, frame, categoryName)
 
   if spellList.builtMenu then
     spellList.cachedCategoryData = nil
-    mod.logger.LogInfo(me.tag, string.format(
+    mod.logger.LogDebug(me.tag, string.format(
       "Wiped cached %s after category switch", spellList.options.spellList)
     )
 
@@ -552,7 +552,7 @@ UpdateSpellRows = function(spellList, categoryName)
   spellList.activeCategory = categoryName
 
   if spellList.cachedCategoryData == nil then
-    mod.logger.LogInfo(me.tag, string.format(
+    mod.logger.LogDebug(me.tag, string.format(
       "Warmed up cached %s for category '%s'", options.spellList, categoryName)
     )
     spellList.cachedCategoryData = options.getCategoryData(categoryName)
