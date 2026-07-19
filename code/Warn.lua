@@ -234,7 +234,7 @@ function me.PlayWarning(category, spellType, spell, callback, playSound, playVis
   if callback ~= nil then
     assert(type(callback) == "function",
       string.format(
-        "bad argument #4 to `ProcessUnfilteredCombatLogEvent` (expected function got %s)", type(callback)
+        "bad argument #4 to `PlayWarning` (expected function got %s)", type(callback)
       )
     )
 
