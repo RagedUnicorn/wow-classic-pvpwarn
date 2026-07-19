@@ -7,8 +7,8 @@
 # THIS FILE IS AUTO-GENERATED. ALL CHANGES ARE OVERWRITTEN
 
 # constant values
-code/Constants.lua
 code/Colors.lua
+code/Constants.lua
 # environment variables
 code/Environment.lua
 

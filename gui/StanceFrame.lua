@@ -128,7 +128,7 @@ UpdateStanceBorderColor = function()
   local targetClass = mod.target.GetCurrentTargetClass()
   local color
 
-  color = RGPVPW_COLORS.GetClassColor(targetClass)
+  color = RGPVPW_COLORS.GetCategoryColor(targetClass)
 
   stanceStateFrame.iconHolder:SetBackdropBorderColor(unpack(color))
 end

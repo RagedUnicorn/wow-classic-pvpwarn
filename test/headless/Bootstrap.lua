@@ -35,7 +35,8 @@
        tests do not depend on `mvn generate-resources` or the build-generated file. TEST is kept
        false: SpellConfiguration.IsOptionActive short-circuits to true when TEST is truthy, which
        would make configuration specs vacuously pass,
-    3. the pure modules Constants.lua, Logger.lua and Common.lua, dofile'd in TOC dependency order.
+    3. the pure modules Colors.lua, Constants.lua, Logger.lua and Common.lua, dofile'd in TOC
+       dependency order.
 
   It also prepends test/headless to package.path so specs can `require("WowStubs")` for the opt-in
   WoW-global stub registry.
@@ -74,6 +75,7 @@ RGPVPW_ENVIRONMENT = {
 }
 
 -- load the pure modules in PVPWarn.toc dependency order
-dofile("code/Constants.lua") -- defines RGPVPW_CONSTANTS (no load-time WoW calls)
+dofile("code/Colors.lua")    -- defines RGPVPW_COLORS (no load-time WoW calls)
+dofile("code/Constants.lua") -- defines RGPVPW_CONSTANTS (derives TEXTURES from RGPVPW_COLORS)
 dofile("code/Logger.lua")    -- defines rgpvpw.logger (reads RGPVPW_ENVIRONMENT at load time)
 dofile("code/Common.lua")    -- defines rgpvpw.common

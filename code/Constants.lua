@@ -23,6 +23,9 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
+-- forward declaration
+local BuildWarnTextures
+
 RGPVPW_CONSTANTS = {
   ADDON_NAME = "PVPWarn",
   --[[
@@ -55,58 +58,13 @@ RGPVPW_CONSTANTS = {
   CHECK_COMBAT_STATE_INTERVAL = 0.4,
   CHECK_STANCE_STACE_EXPIRED_INTERVAL = 60,
   --[[
-    Warn textures
+    Warn textures - TEXTURES is derived from RGPVPW_COLORS.WARNINGS and assigned after
+    this table (see BuildWarnTextures)
   ]]--
-  TEXTURES = {
-    none = {
-      textureName = "texture_none",
-      colorValue = 0
-    },
-    yellow = {
-      textureName = "texture_yellow",
-      colorValue = 1
-    },
-    violet = {
-      textureName = "texture_violet",
-      colorValue = 2
-    },
-    red = {
-      textureName = "texture_red",
-      colorValue = 3
-    },
-    orange = {
-      textureName = "texture_orange",
-      colorValue = 4
-    },
-    green = {
-      textureName = "texture_green",
-      colorValue = 5
-    },
-    blue = {
-      textureName = "texture_blue",
-      colorValue = 6
-    },
-    brown = {
-      textureName = "texture_brown",
-      colorValue = 7
-    },
-    white = {
-      textureName = "texture_white",
-      colorValue = 8
-    },
-    pink = {
-      textureName = "texture_pink",
-      colorValue = 9
-    },
-    light_blue = {
-      textureName = "texture_light_blue",
-      colorValue = 10
-    }
-  },
   --[[
-    default color based on TEXTURES - colorValue
+    default color - no visual warning configured
   ]]--
-  DEFAULT_COLOR = 0, -- none
+  DEFAULT_COLOR = RGPVPW_COLORS.NONE,
   SPELL_TYPES = {
     NORMAL = 1, -- SPELL_CAST_SUCCESS
     START = 2, -- SPELL_CAST_START
@@ -476,3 +434,27 @@ RGPVPW_CONSTANTS = {
   ELEMENT_CATEGORY_ENEMY_AVOID_VISUAL_WARNING_DROPDOWN = "ChooseEnemyAvoidVisual_",
   ELEMENT_CATEGORY_PLAY_ENEMY_AVOID_VISUAL_ALERT_BUTTON = "$parentPlayEnemyAvoidVisualAlert"
 }
+
+--[[
+  Build the warn texture table - one entry per RGPVPW_COLORS.WARNINGS color, keyed by the
+  bare color name. Derived so a color added in code/Colors.lua automatically gets its
+  texture entry (the matching texture assets must still be shipped). Requires code/Colors.lua
+  to be loaded first (see toc order).
+
+  @return {table}
+    colorName = {textureName = "texture_<colorName>", colorValue = <number>}
+]]--
+BuildWarnTextures = function()
+  local textures = {}
+
+  for colorName, colorData in pairs(RGPVPW_COLORS.WARNINGS) do
+    textures[colorName] = {
+      textureName = "texture_" .. colorName,
+      colorValue = colorData.value
+    }
+  end
+
+  return textures
+end
+
+RGPVPW_CONSTANTS.TEXTURES = BuildWarnTextures()

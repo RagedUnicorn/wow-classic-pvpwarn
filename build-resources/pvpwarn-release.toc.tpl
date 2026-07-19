@@ -10,8 +10,8 @@
 ${addon.comment.generated.toc}
 
 # constant values
-code/Constants.lua
 code/Colors.lua
+code/Constants.lua
 # environment variables
 code/Environment.lua
 

@@ -33,24 +33,11 @@ me.tag = "Flash"
 --[[
   Private
 ]]--
-local TEXTURE_BASE_PATH = "Interface\\AddOns\\PVPWarn\\assets\\flash\\"
 --[[
-  The flash uses the soft vignette flavor only. Colors that ship a vignette texture under
-  assets/flash/ - every RGPVPW_CONSTANTS.TEXTURES color except `none` (which has no flash).
-  Any unexpected color falls back to white (see me.Show).
+  The flash uses the soft vignette flavor only. Every RGPVPW_CONSTANTS.TEXTURES color except
+  `none` (which never flashes) ships a vignette texture under assets/flash/.
 ]]--
-local FLASH_COLORS = {
-  ["red"] = true,
-  ["orange"] = true,
-  ["yellow"] = true,
-  ["green"] = true,
-  ["blue"] = true,
-  ["light_blue"] = true,
-  ["pink"] = true,
-  ["brown"] = true,
-  ["white"] = true,
-  ["violet"] = true
-}
+local TEXTURE_BASE_PATH = "Interface\\AddOns\\PVPWarn\\assets\\flash\\"
 
 local flashFrame
 local flashTexture
@@ -221,11 +208,6 @@ function me.Show(colorValue)
     return
   end
 
-  -- any unexpected color without a dedicated vignette asset falls back to white
-  if not FLASH_COLORS[color] then
-    color = "white"
-  end
-
   me.Initialize()
 
   flashTexture:SetBlendMode(mod.configuration.GetFlashBlendMode())
@@ -243,14 +225,15 @@ end
   panel test button to fire a one-off flash without a combat event.
 
   @param {string} colorName
-    one of the FLASH_COLORS keys
+    one of the RGPVPW_CONSTANTS.TEXTURES color names except `none`
 
   @return {boolean}
     true  - the flash was fired
     false - the color was invalid (caller is expected to print a user error)
 ]]--
 function me.Test(colorName)
-  if type(colorName) ~= "string" or not FLASH_COLORS[colorName] then
+  if type(colorName) ~= "string" or colorName == "none"
+    or RGPVPW_CONSTANTS.TEXTURES[colorName] == nil then
     return false
   end
 
