@@ -39,19 +39,6 @@ me.tag = "AddonConfiguration"
 local mainCategoryId
 
 --[[
-  Retrieve a reference to the main category of the addon
-  @return {table | nil}
-    The main category of the addon or nil if not found
-]]--
-function me.GetMainCategory()
-  if mainCategoryId ~= nil then
-    return Settings.GetCategory(mainCategoryId)
-  end
-
-  return nil
-end
-
---[[
   Create addon configuration menu(s)
 ]]--
 function me.SetupAddonConfiguration()
