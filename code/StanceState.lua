@@ -49,9 +49,11 @@ local stanceExpiredTimeout = 120
 function me.UpdateStanceState()
   if not mod.configuration.IsStanceStateTrackingEnabled() then return end
 
-  if UnitIsPlayer(RGPVPW_CONSTANTS.UNIT_ID_TARGET) and UnitIsEnemy(RGPVPW_CONSTANTS.UNIT_ID_PLAYER,
-    RGPVPW_CONSTANTS.UNIT_ID_TARGET) and me.IsCurrentTargetSupportedClass() or configurationMode then
+  local hasTrackableEnemyPlayerTarget = UnitIsPlayer(RGPVPW_CONSTANTS.UNIT_ID_TARGET)
+    and UnitIsEnemy(RGPVPW_CONSTANTS.UNIT_ID_PLAYER, RGPVPW_CONSTANTS.UNIT_ID_TARGET)
+    and me.IsCurrentTargetSupportedClass()
 
+  if hasTrackableEnemyPlayerTarget or configurationMode then
     local currentTargetGuid = mod.target.GetCurrentTargetGuid()
 
     if currentTargetGuid == nil then

@@ -42,8 +42,10 @@ local configurationMode = false
 function me.UpdateCombatState()
   if not mod.configuration.IsCombatStateTrackingEnabled() then return end
 
-  if UnitIsPlayer(RGPVPW_CONSTANTS.UNIT_ID_TARGET) and UnitIsEnemy(RGPVPW_CONSTANTS.UNIT_ID_PLAYER,
-    RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode then
+  local hasEnemyPlayerTarget = UnitIsPlayer(RGPVPW_CONSTANTS.UNIT_ID_TARGET)
+    and UnitIsEnemy(RGPVPW_CONSTANTS.UNIT_ID_PLAYER, RGPVPW_CONSTANTS.UNIT_ID_TARGET)
+
+  if hasEnemyPlayerTarget or configurationMode then
     mod.logger.LogDebug(me.tag, "Acquired new enemy target - starting combatstate tracking")
     -- after switching targets instantly update
     local affectingCombat = UnitAffectingCombat(RGPVPW_CONSTANTS.UNIT_ID_TARGET) or configurationMode
