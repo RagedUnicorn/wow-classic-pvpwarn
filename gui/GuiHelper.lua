@@ -345,9 +345,14 @@ end
 --[[
   Load a frames position from SavedVariablesPerCharacter
 
-  @param {table} slot
+  @param {table} frame
+  @param {string} frameName
+    The name the position is persisted under
+  @param {table} defaultPosition
+    Optional SetPoint arguments applied when no (valid) position is saved. Without it the
+    frame keeps its current points, or gets an initial CENTER position when it has none.
 ]]--
-function me.LoadFramePosition(frame, frameName)
+function me.LoadFramePosition(frame, frameName, defaultPosition)
   local framePosition = mod.configuration.GetUserPlacedFramePosition(frameName)
 
   -- discard positions saved by versions that persisted the relativeTo frame object itself
@@ -367,6 +372,9 @@ function me.LoadFramePosition(frame, frameName)
       framePosition.posX,
       framePosition.posY
     )
+  elseif defaultPosition ~= nil then
+    frame:ClearAllPoints()
+    frame:SetPoint(unpack(defaultPosition))
   elseif frame:GetNumPoints() == 0 then
     -- initial position for first time use
     frame:SetPoint("CENTER", 0, 0)

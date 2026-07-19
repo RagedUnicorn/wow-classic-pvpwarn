@@ -109,30 +109,11 @@ end
   Restore the saved anchor position or fall back to the default CENTER offset.
 ]]--
 function me.RestorePosition()
-  local framePosition = mod.configuration.GetUserPlacedFramePosition(
-    RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ANCHOR_FRAME
+  mod.guiHelper.LoadFramePosition(
+    anchorFrame,
+    RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ANCHOR_FRAME,
+    {"CENTER", UIParent, "CENTER", 0, DEFAULT_OFFSET_Y}
   )
-
-  -- discard positions saved by versions that persisted the relativeTo frame object itself
-  if framePosition ~= nil and type(framePosition.relativeTo) == "table" then
-    mod.logger.LogWarn(me.tag, "Discarding corrupted saved frame position for - "
-      .. RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ANCHOR_FRAME)
-    framePosition = nil
-  end
-
-  anchorFrame:ClearAllPoints()
-
-  if framePosition ~= nil then
-    anchorFrame:SetPoint(
-      framePosition.point,
-      framePosition.relativeTo,
-      framePosition.relativePoint,
-      framePosition.posX,
-      framePosition.posY
-    )
-  else
-    anchorFrame:SetPoint("CENTER", UIParent, "CENTER", 0, DEFAULT_OFFSET_Y)
-  end
 end
 
 --[[
