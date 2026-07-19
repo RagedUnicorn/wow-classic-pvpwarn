@@ -52,7 +52,7 @@ code/Encoder.lua
 code/SpellConfiguration.lua
 code/Cmd.lua
 code/DetectionBarCmd.lua
-code/CmdFlash.lua
+code/FlashCmd.lua
 code/Macro.lua
 code/Zone.lua
 code/Season.lua

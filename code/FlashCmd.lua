@@ -36,7 +36,7 @@ local mod = rgpvpw
 local me = {}
 mod.flashCmd = me
 
-me.tag = "CmdFlash"
+me.tag = "FlashCmd"
 
 --[[
   Handle the `flash` subcommand.

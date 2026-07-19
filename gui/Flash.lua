@@ -221,7 +221,7 @@ function me.Show(colorValue)
 end
 
 --[[
-  Thin wrapper used by the `flash` slash subcommand (see code/CmdFlash.lua) and the options
+  Thin wrapper used by the `flash` slash subcommand (see code/FlashCmd.lua) and the options
   panel test button to fire a one-off flash without a combat event.
 
   @param {string} colorName
