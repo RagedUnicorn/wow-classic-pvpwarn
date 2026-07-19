@@ -526,7 +526,7 @@ function me.CreateSpellTitle(parentFrame, spellTitle, spellTitleWidth, iconSize)
     iconSize + 10,
     0
   )
-  spellTitleFontString:SetTextColor(.95, .95, .95)
+  me.SetColor(spellTitleFontString, RGPVPW_CONSTANTS.COLOR.SPELL_TITLE)
 
   return spellTitleFontString
 end

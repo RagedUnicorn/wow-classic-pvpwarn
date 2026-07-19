@@ -53,6 +53,7 @@ local UpdateSoundSpecial
 local UpdateChooseVisualDropdownMenu
 local UpdateCheckButtonState
 local UpdateChooseVisualDropdownMenuState
+local UpdateSpellTitleState
 
 --[[
   Create a new per-spell settings list instance. The instance carries the configuration
@@ -310,6 +311,7 @@ CreateSpellStateCheckBox = function(spellList, spellFrame)
       end
 
       UpdateChooseVisualDropdownMenuState(parentFrame, self:GetChecked())
+      UpdateSpellTitleState(parentFrame, self:GetChecked())
     end,
     function(self)
       local isActive = mod.spellConfiguration.IsSpellActive(
@@ -654,6 +656,7 @@ UpdateSpellStateCheckBox = function(spellList, spellStateCheckBox, categoryName,
   end
 
   UpdateChooseVisualDropdownMenuState(parentFrame, isSpellActive)
+  UpdateSpellTitleState(parentFrame, isSpellActive)
 end
 
 --[[
@@ -762,5 +765,20 @@ UpdateChooseVisualDropdownMenuState = function(frame, enable)
   else
     frame.chooseVisual:SetEnabled(false)
     mod.guiHelper.SetColor(frame.chooseVisualLabel, RGPVPW_CONSTANTS.COLOR.DISABLED)
+  end
+end
+
+--[[
+  Grays out the spell title while the spell itself is deactivated, matching the
+  disabled look of the row's other labels
+
+  @param {table} frame
+  @param {boolean} enable
+]]--
+UpdateSpellTitleState = function(frame, enable)
+  if enable then
+    mod.guiHelper.SetColor(frame.spellTitle, RGPVPW_CONSTANTS.COLOR.SPELL_TITLE)
+  else
+    mod.guiHelper.SetColor(frame.spellTitle, RGPVPW_CONSTANTS.COLOR.DISABLED)
   end
 end
