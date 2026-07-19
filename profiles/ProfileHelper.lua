@@ -29,8 +29,13 @@ mod.profileHelper = me
 
 me.tag = "ProfileHelper"
 
+-- forward declaration
+local NormalizeSpellConfigEntries
+
 --[[
-  Helper function to create spell configuration
+  Helper function to create spell configuration. The returned entry is aligned with the
+  spell's metadata when the profile is retrieved through GetSpellProfile - see
+  NormalizeSpellConfigEntries.
 
   @param {boolean} active - Whether the spell tracking is active
   @param {boolean} sound - Whether sound warning is active
@@ -61,9 +66,46 @@ function me.GetSpellProfile(profiles, spellType, tag)
   local profile = profiles[spellType]
 
   if profile then
-    return mod.common.Clone(profile)
+    local clonedProfile = mod.common.Clone(profile)
+    NormalizeSpellConfigEntries(clonedProfile)
+
+    return clonedProfile
   else
     mod.logger.LogError(tag, "Invalid spellType: " .. tostring(spellType))
     return nil
+  end
+end
+
+--[[
+  Align profile-seeded entries with the shape SpellConfiguration.SetupPrerequisiteForOptionEntry
+  creates lazily: soundFadeWarningActive / soundStartWarningActive are present exactly when the
+  spell's metadata has hasFade / hasCast. Entries without metadata are left untouched.
+
+  @param {table} profile
+    A profile table shaped [categoryName][spellId] = spellConfig
+]]--
+NormalizeSpellConfigEntries = function(profile)
+  for categoryName, spells in pairs(profile) do
+    for spellId, spellConfig in pairs(spells) do
+      local spellMetadata = mod.spellMap.GetSpellMetadata(categoryName, spellId)
+
+      if spellMetadata then
+        if spellMetadata.hasFade then
+          if spellConfig.soundFadeWarningActive == nil then
+            spellConfig.soundFadeWarningActive = false
+          end
+        else
+          spellConfig.soundFadeWarningActive = nil
+        end
+
+        if spellMetadata.hasCast then
+          if spellConfig.soundStartWarningActive == nil then
+            spellConfig.soundStartWarningActive = false
+          end
+        else
+          spellConfig.soundStartWarningActive = nil
+        end
+      end
+    end
   end
 end
