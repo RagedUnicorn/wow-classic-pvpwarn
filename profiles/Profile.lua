@@ -57,6 +57,15 @@ local PROFILE_PAYLOAD_FIELDS = {
   "spellEnemyAvoidConfiguration"
 }
 
+--[[
+  Maps each profile payload field to the PVPWarnConfiguration spell list it mirrors
+]]--
+local PROFILE_FIELD_TO_SPELL_TYPE = {
+  ["spellConfiguration"] = RGPVPW_CONSTANTS.SPELL_TYPE.SPELL,
+  ["spellSelfAvoidConfiguration"] = RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID,
+  ["spellEnemyAvoidConfiguration"] = RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID
+}
+
 -- forward declaration
 local FindProfile
 
@@ -126,22 +135,19 @@ function me.CreateProfile(profileName)
     return
   end
 
-  for i = 1, #PVPWarnProfiles do
-    if PVPWarnProfiles[i].name == profileName then
-      mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_already_exists"])
-      return
-    end
+  if FindProfile(profileName) ~= nil then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_already_exists"])
+    return
   end
 
   local profile = {
     name = profileName,
-    version = C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version"),
-    ["spellConfiguration"] = mod.configuration.GetSpellConfiguration(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL),
-    ["spellSelfAvoidConfiguration"] =
-      mod.configuration.GetSpellConfiguration(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID),
-    ["spellEnemyAvoidConfiguration"] =
-      mod.configuration.GetSpellConfiguration(RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID)
+    version = C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
   }
+
+  for _, field in ipairs(PROFILE_PAYLOAD_FIELDS) do
+    profile[field] = mod.configuration.GetSpellConfiguration(PROFILE_FIELD_TO_SPELL_TYPE[field])
+  end
 
   table.insert(PVPWarnProfiles, profile)
   mod.logger.LogInfo(me.tag, "Created new profile with name - " .. profileName)
@@ -166,13 +172,12 @@ function me.DeleteProfile(profileName)
     return
   end
 
-  for i = 1, #PVPWarnProfiles do
-    if PVPWarnProfiles[i].name == profileName then
-      table.remove(PVPWarnProfiles, i)
-      mod.logger.LogInfo(me.tag, "Deleted profile with name - " .. profileName)
-      return
-    end
-  end
+  local profile, index = FindProfile(profileName)
+
+  if profile == nil then return end
+
+  table.remove(PVPWarnProfiles, index)
+  mod.logger.LogInfo(me.tag, "Deleted profile with name - " .. profileName)
 end
 
 --[[
@@ -187,35 +192,20 @@ function me.LoadProfile(profileName)
     return
   end
 
-  for i = 1, #PVPWarnProfiles do
-    if PVPWarnProfiles[i].name == profileName then
-      if PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL] ~= nil then
-        table.wipe(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL])
-      end
-      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL] =
-        mod.common.Clone(PVPWarnProfiles[i].spellConfiguration)
+  local profile = FindProfile(profileName)
 
-      if PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID] ~= nil then
-        table.wipe(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID])
-      end
-      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID] =
-        mod.common.Clone(PVPWarnProfiles[i].spellSelfAvoidConfiguration)
-
-      if PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID] ~= nil then
-        table.wipe(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID])
-      end
-      PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID] =
-        mod.common.Clone(PVPWarnProfiles[i].spellEnemyAvoidConfiguration)
-
-      PVPWarnProfiles.activeProfile = PVPWarnProfiles[i].name
-      PVPWarnProfiles.modified = false
-      mod.logger.LogInfo(me.tag, "Loaded profile with name: " .. PVPWarnProfiles[i].name)
-
-      return
-    end
+  if profile == nil then
+    mod.logger.LogWarn(me.tag, "Unable to find profile with name: " .. profileName)
+    return
   end
 
-  mod.logger.LogWarn(me.tag, "Unable to find profile with name: " .. profileName)
+  for _, field in ipairs(PROFILE_PAYLOAD_FIELDS) do
+    PVPWarnConfiguration[PROFILE_FIELD_TO_SPELL_TYPE[field]] = mod.common.Clone(profile[field])
+  end
+
+  PVPWarnProfiles.activeProfile = profile.name
+  PVPWarnProfiles.modified = false
+  mod.logger.LogInfo(me.tag, "Loaded profile with name: " .. profile.name)
 end
 
 --[[
@@ -229,36 +219,21 @@ function me.UpdateProfile(profileName)
     return
   end
 
-  for i = 1, #PVPWarnProfiles do
-    if PVPWarnProfiles[i].name == profileName then
-      if PVPWarnProfiles[i].spellConfiguration ~= nil  then
-        table.wipe(PVPWarnProfiles[i].spellConfiguration)
-      end
-      PVPWarnProfiles[i].spellConfiguration =
-        mod.common.Clone(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL])
+  local profile = FindProfile(profileName)
 
-      if PVPWarnProfiles[i].spellSelfAvoidConfiguration ~= nil  then
-        table.wipe(PVPWarnProfiles[i].spellSelfAvoidConfiguration)
-      end
-      PVPWarnProfiles[i].spellSelfAvoidConfiguration =
-        mod.common.Clone(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_SELF_AVOID])
-
-      if PVPWarnProfiles[i].spellEnemyAvoidConfiguration ~= nil  then
-        table.wipe(PVPWarnProfiles[i].spellEnemyAvoidConfiguration)
-      end
-      PVPWarnProfiles[i].spellEnemyAvoidConfiguration =
-        mod.common.Clone(PVPWarnConfiguration[RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID])
-
-      PVPWarnProfiles.modified = false
-      PVPWarnProfiles.activeProfile = PVPWarnProfiles[i].name
-
-      mod.logger.LogInfo(me.tag, "Updated profile with name: " .. PVPWarnProfiles[i].name)
-
-      return
-    end
+  if profile == nil then
+    mod.logger.LogWarn(me.tag, "Unable to find profile with name: " .. profileName)
+    return
   end
 
-  mod.logger.LogWarn(me.tag, "Unable to find profile with name: " .. profileName)
+  for _, field in ipairs(PROFILE_PAYLOAD_FIELDS) do
+    profile[field] = mod.common.Clone(PVPWarnConfiguration[PROFILE_FIELD_TO_SPELL_TYPE[field]])
+  end
+
+  PVPWarnProfiles.modified = false
+  PVPWarnProfiles.activeProfile = profile.name
+
+  mod.logger.LogInfo(me.tag, "Updated profile with name: " .. profile.name)
 end
 
 --[[
@@ -439,13 +414,13 @@ end
 
   @param {string} profileName
 
-  @return {table | nil}
-    the stored profile, or nil if no such profile exists
+  @return {table | nil}, {number | nil}
+    the stored profile and its index, or nil if no such profile exists
 ]]--
 FindProfile = function(profileName)
   for i = 1, #PVPWarnProfiles do
     if PVPWarnProfiles[i].name == profileName then
-      return PVPWarnProfiles[i]
+      return PVPWarnProfiles[i], i
     end
   end
 
