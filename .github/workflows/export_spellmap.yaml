@@ -43,6 +43,11 @@ jobs:
           cd tools/export_spellmap
           pip install -r requirements.txt
 
+      - name: Run export tool tests
+        run: |
+          cd tools/export_spellmap
+          python -m pytest tests/
+
       - name: Run SpellMap export
         id: export
         run: |

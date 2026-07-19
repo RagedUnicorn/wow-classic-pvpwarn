@@ -79,3 +79,24 @@ services:
           --cov-report=html:/target/test_results/verify_spellmap/coverage_html \
           --cov-report=xml:/target/test_results/verify_spellmap/coverage.xml \
           --junit-xml=/target/test_results/verify_spellmap/junit.xml
+
+  export-spellmap-tests:
+    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
+    volumes:
+      - ./tools:/app
+      - ./target:/target
+    working_dir: /app/export_spellmap
+    entrypoint: [ ]
+    command:
+      - sh
+      - -c
+      - |
+        pip install -r requirements.txt &&
+        mkdir -p /target/test_results/export_spellmap &&
+        python -m pytest tests/ \
+          --verbose \
+          --tb=short \
+          --cov=export_spellmap \
+          --cov-report=html:/target/test_results/export_spellmap/coverage_html \
+          --cov-report=xml:/target/test_results/export_spellmap/coverage.xml \
+          --junit-xml=/target/test_results/export_spellmap/junit.xml
