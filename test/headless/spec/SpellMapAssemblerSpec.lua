@@ -23,7 +23,8 @@
 ]]--
 
 --[[
-  Headless spec for code/spellmap/Assemble.lua (rgpvpw.spellMapAssembler). Uses small synthetic
+  Headless spec for code/SpellMapAssembler.lua (rgpvpw.spellMapAssembler; rgpvpw.spellAvoidMapAssembler
+  is a second instance of the same engine). Uses small synthetic
   base/overlay fixtures instead of the production Base.lua, so no WoW stubs are needed beyond the
   bootstrap. mod.logger.LogError is replaced with a capturing stub per test to assert the
   logged-and-skipped error branches without reaching the chat-frame printer.
@@ -62,7 +63,7 @@ describe("spellMapAssembler", function()
   end
 
   setup(function()
-    dofile("code/spellmap/Assemble.lua")
+    dofile("code/SpellMapAssembler.lua")
     assembler = rgpvpw.spellMapAssembler
   end)
 

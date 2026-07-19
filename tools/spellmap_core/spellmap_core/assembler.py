@@ -1,5 +1,5 @@
 """
-Python port of code/spellmap/Assemble.lua (and code/spellavoidmap/Assemble.lua).
+Python port of code/SpellMapAssembler.lua (shared by both spell catalogs).
 
 Mirrors mod.spellMapAssembler.Apply, SynthesizeRankAliases and Validate exactly:
   - Apply deep-copies the base map and applies each overlay's remove, then add, then replace,
@@ -22,8 +22,7 @@ def _rank_spell_id(rank: Any) -> Optional[int]:
     """Return the numeric spellId of a rank entry, or None if the entry is malformed.
 
     Used by apply() to skip malformed ranks silently and by validate() to report a clear
-    error. Mirrors the type-guards on the Lua side
-    (code/spellmap/Assemble.lua / code/spellavoidmap/Assemble.lua).
+    error. Mirrors the type-guards on the Lua side (code/SpellMapAssembler.lua).
     """
     if not isinstance(rank, dict):
         return None
@@ -60,7 +59,7 @@ def apply(base: Dict[str, Dict[int, Dict]],
 
 def _apply_one(working: Dict[str, Dict[int, Dict]], overlay: Dict[str, Dict]) -> None:
     """Apply a single overlay to ``working`` in place. Operations within a category run in the
-    order remove, add, replace, appendRanks - matching Assemble.lua's ApplyOne."""
+    order remove, add, replace, appendRanks - matching SpellMapAssembler.lua's ApplyOne."""
     for category, ops in overlay.items():
         if category not in working:
             working[category] = {}
@@ -95,8 +94,7 @@ def _apply_one(working: Dict[str, Dict[int, Dict]], overlay: Dict[str, Dict]) ->
 
 def synthesize_rank_aliases(assembled: Dict[str, Dict[int, Dict]]) -> List[str]:
     """Synthesize ``{ refId = <primarySpellId> }`` rank-alias entries from each primary
-    entry's allRanks array. Mirrors SynthesizeRankAliases in code/spellmap/Assemble.lua /
-    code/spellavoidmap/Assemble.lua.
+    entry's allRanks array. Mirrors SynthesizeRankAliases in code/SpellMapAssembler.lua.
 
     Intended to run on an assembled map after apply(), so ranks appended by overlay
     appendRanks ops are covered. The primaries' allRanks arrays are the single source of

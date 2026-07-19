@@ -8,7 +8,7 @@ library, not a tool — it has no CLI entry point of its own.
 | Module | Purpose |
 | --- | --- |
 | `lua_parser.py` | `LuaParser` — executes the Lua source (via lupa) in a mocked addon environment and converts spellMap / spellAvoidMap / overlay tables to Python |
-| `assembler.py` | Python port of `code/spellmap/Assemble.lua` (`apply` / `validate`) — keep in sync with the Lua side |
+| `assembler.py` | Python port of `code/SpellMapAssembler.lua` (`apply` / `validate`) — keep in sync with the Lua side |
 | `map_loader.py` | `load_union_map` / `union_apply` — directory-level loading of the Base.lua + overlay layout into the cross-branch union view (add / replace / appendRanks applied, `remove` skipped) |
 | `file_reader.py` | `SpellMapFileReader` — file I/O helper used by the verify / export entry points |
 | `constants.py` | Lua environment mocks and parsing patterns |

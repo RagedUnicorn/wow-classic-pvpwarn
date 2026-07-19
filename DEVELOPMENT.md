@@ -157,7 +157,8 @@ overlays:
 - `code/spellmap/Base.lua` / `code/spellavoidmap/Base.lua` - the Classic Era base map.
 - `code/spellmap/overlay/Sod.lua`, `code/spellmap/overlay/Tbc.lua` (and their
   `code/spellavoidmap/overlay/` counterparts) - branch overlays applied on top of the base map by
-  `code/spellmap/Assemble.lua` (`mod.spellMapAssembler`).
+  `code/SpellMapAssembler.lua` (`mod.spellMapAssembler` / `mod.spellAvoidMapAssembler`, two
+  instances of the same shared engine).
 
 Spell entries additionally carry a `type` (`RGPVPW_CONSTANTS.SPELL_TYPE_BASE`, `SPELL_TYPE_SOD`, or
 `SPELL_TYPE_TBC`) that `SpellMapHelper.GetFilteredSpellMap` uses to filter what is shown.

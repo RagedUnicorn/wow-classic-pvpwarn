@@ -31,16 +31,15 @@ code/Warn.lua
 code/Sound.lua
 code/CombatLog.lua
 code/SpellMapHelper.lua
+code/SpellMapAssembler.lua
 code/spellmap/Base.lua
 code/spellmap/overlay/Sod.lua
 code/spellmap/overlay/Tbc.lua
-code/spellmap/Assemble.lua
 code/SpellMap.lua
 code/SpellAvoidMapHelper.lua
 code/spellavoidmap/Base.lua
 code/spellavoidmap/overlay/Sod.lua
 code/spellavoidmap/overlay/Tbc.lua
-code/spellavoidmap/Assemble.lua
 code/SpellAvoidMap.lua
 code/Common.lua
 code/Target.lua

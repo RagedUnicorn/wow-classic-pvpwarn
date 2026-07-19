@@ -32,7 +32,7 @@ me.tag = "SpellMapOverlayTbc"
   Branch overlay applied when the Burning Crusade Anniversary client is active. Populated by
   the per-class TBC migration tasks (PWI-0017..PWI-0026).
 
-  Op semantics (see code/spellmap/Assemble.lua):
+  Op semantics (see code/SpellMapAssembler.lua):
     - add:          insert a brand-new entry at a key not present in Base.
     - replace:      swap a Base entry whole (only mage [11958] / [12472] for the Ice Block /
                     Cold Snap / Icy Veins ID swap; lives in PWI-0023).

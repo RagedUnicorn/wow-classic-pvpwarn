@@ -1,7 +1,7 @@
 """
 Validator for branch-overlay structural operations (remove / add / replace).
 
-Mirrors mod.spellMapAssembler.Validate from code/spellmap/Assemble.lua. Catches authoring
+Mirrors mod.spellMapAssembler.Validate from code/SpellMapAssembler.lua. Catches authoring
 mistakes that would silently break the in-game assembled map:
   - remove of a spellId that doesn't exist in the working state
   - add of a spellId that already exists
