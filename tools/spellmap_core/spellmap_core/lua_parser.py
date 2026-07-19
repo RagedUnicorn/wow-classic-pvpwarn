@@ -10,7 +10,9 @@ from .constants import (
     LUA_ADDON_NAMESPACE_MOCK,
     LUA_UNITFACTIONGROUP_MOCK,
     SPELLMAP_DEFINITION,
-    SPELLMAP_GLOBAL
+    SPELLMAP_GLOBAL,
+    SPELLAVOIDMAP_DEFINITION,
+    SPELLAVOIDMAP_GLOBAL
 )
 
 
@@ -82,7 +84,7 @@ class LuaParser:
         self.spell_avoid_entries.clear()
 
         # Modify content to expose spellAvoidMap globally
-        modified_content = content.replace("local spellAvoidMap = {", "_G.spellAvoidMap = {")
+        modified_content = content.replace(SPELLAVOIDMAP_DEFINITION, SPELLAVOIDMAP_GLOBAL)
 
         # Execute in Lua environment
         try:

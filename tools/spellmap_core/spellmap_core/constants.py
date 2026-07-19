@@ -40,3 +40,5 @@ CATEGORY_PATTERN = r'\["(\w+)"\]\s*=\s*\{'
 # Spell map markers
 SPELLMAP_DEFINITION = "local spellMap = {"
 SPELLMAP_GLOBAL = "_G.spellMap = {"
+SPELLAVOIDMAP_DEFINITION = "local spellAvoidMap = {"
+SPELLAVOIDMAP_GLOBAL = "_G.spellAvoidMap = {"

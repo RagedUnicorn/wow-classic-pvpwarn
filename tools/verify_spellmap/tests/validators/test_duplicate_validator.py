@@ -26,6 +26,12 @@ class TestDuplicateValidator:
         # so only the last definition remains in the parsed data
         assert len(errors) > 0
 
+        # The source-level scan must catch the within-category duplicate (18499
+        # appears twice in warrior) that Lua parsing silently swallows
+        source_errors = [e for e in errors if "18499" in e and "overwrite" in e]
+        assert len(source_errors) == 1
+        assert "Berserker Rage Duplicate" in source_errors[0]
+
         # Check for cross-category duplicate (12323 appears in warrior, items, and mage)
         duplicate_errors = [e for e in errors if "12323" in e and "Duplicate" in e]
         assert len(duplicate_errors) > 0
@@ -34,6 +40,29 @@ class TestDuplicateValidator:
         error_text = " ".join(duplicate_errors)
         assert "warrior" in error_text
         assert ("items" in error_text or "mage" in error_text)
+
+    def test_source_scan_anchors_on_spellavoidmap_definition(self):
+        """The source-level scan must also work for SpellAvoidMap Base.lua content."""
+        content = "\n".join([
+            "local spellAvoidMap = {",
+            '  ["warrior"] = {',
+            "    [18499] = {",
+            '      name = "Berserker Rage",',
+            "    },",
+            "    [18499] = {",
+            '      name = "Berserker Rage Duplicate",',
+            "    }",
+            "  }",
+            "}",
+        ])
+
+        validator = DuplicateValidator()
+        validator.validate({}, content)
+
+        errors = validator.get_errors()
+        assert len(errors) == 1
+        assert "18499" in errors[0]
+        assert "overwrite" in errors[0]
 
     def test_valid_spellmap_no_duplicates(self, valid_spellmap, fixture_loader):
         """Test that valid spellmap has no duplicate errors."""

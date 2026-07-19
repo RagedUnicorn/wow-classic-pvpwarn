@@ -6,7 +6,11 @@ import re
 from typing import Dict, List
 
 from .base_validator import BaseValidator
-from spellmap_core.constants import SPELLMAP_DEFINITION, CATEGORY_PATTERN
+from spellmap_core.constants import (
+    SPELLMAP_DEFINITION,
+    SPELLAVOIDMAP_DEFINITION,
+    CATEGORY_PATTERN
+)
 from ..constants import (
     SPELL_ID_PATTERN,
     NAME_VALUE_PATTERN
@@ -43,8 +47,10 @@ class DuplicateValidator(BaseValidator):
         Detect duplicate spell IDs in the source code before Lua parsing.
         This catches duplicates that would be overwritten in Lua.
         """
-        # Find where spellMap is defined
+        # Find where the map table is defined (spellMap or spellAvoidMap)
         spellmap_start = content.find(SPELLMAP_DEFINITION)
+        if spellmap_start == -1:
+            spellmap_start = content.find(SPELLAVOIDMAP_DEFINITION)
         if spellmap_start == -1:
             return
 

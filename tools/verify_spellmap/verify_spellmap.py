@@ -84,9 +84,10 @@ class MapVerifier:
         parser = LuaParser()
         parser.setup_environment()
 
-        base_entries = parser.parse_spell_avoid_map(SpellMapFileReader(str(self.base_path)).read()) \
+        base_content = SpellMapFileReader(str(self.base_path)).read()
+        base_entries = parser.parse_spell_avoid_map(base_content) \
             if self.is_avoid_map \
-            else parser.parse_spellmap(SpellMapFileReader(str(self.base_path)).read())
+            else parser.parse_spellmap(base_content)
 
         sod_overlay = parser.parse_overlay(SpellMapFileReader(str(self.sod_path)).read())
         tbc_overlay = parser.parse_overlay(SpellMapFileReader(str(self.tbc_path)).read())
@@ -128,9 +129,14 @@ class MapVerifier:
                 section.errors.extend(synthesis_errors)
                 any_errors = True
 
+            # Source-level checks (duplicate keys Lua silently swallows during parsing)
+            # only apply to Base.lua, which the classic branch mirrors 1:1 - passing the
+            # content on every branch would just repeat the same errors three times.
+            source_content = base_content if branch == "classic" else None
+
             validators = _build_entry_validators(self.is_avoid_map)
             for validator in validators:
-                validator.validate(assembled)
+                validator.validate(assembled, content=source_content)
                 errors = validator.get_errors()
                 section.validator_results.append((validator.get_name(), len(errors), errors))
                 section.errors.extend(errors)
