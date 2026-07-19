@@ -32,18 +32,58 @@ me.tag = "SpellAvoidMap"
 -- in code/SpellMap.lua.
 local assembledByBranch = {}
 
-local function determineActiveBranch()
-  if RGPVPW_ENVIRONMENT.TEST then
-    return mod.testHelper.GetActiveBranch()
-  end
+-- flat spellId → category index per assembled branch, built lazily from the assembled
+-- map so combat-log searches resolve with a single lookup instead of a category scan
+local categoryIndexByBranch = {}
 
-  if mod.season.IsTbcActive() then return "tbc" end
-  if mod.season.IsSodActive() then return "sod" end
+-- forward declaration
+local BuildAssembledMap
+local EnsureAssembled
+local EnsureCategoryIndex
 
-  return "classic"
+--[[
+  Get the spellAvoidMap
+
+  @return {table}
+    The spellAvoidMap
+]]--
+function me.GetSpellAvoidMap()
+  return mod.common.Clone(EnsureAssembled())
 end
 
-local function buildAssembledMap(branch)
+--[[
+  Get the assembled spellAvoidMap without cloning it. Intended for read-only lookups on
+  the combat-log hot path — callers must not mutate the returned table. Consumers that
+  need a mutable copy use GetSpellAvoidMap instead.
+
+  @return {table}
+    The assembled spellAvoidMap
+]]--
+function me.GetRawSpellAvoidMap()
+  return EnsureAssembled()
+end
+
+--[[
+  Find the category that contains the passed spellId
+
+  @param {number} spellId
+
+  @return {string | nil}
+    The category name or nil if the spellId is not present in the spellAvoidMap
+]]--
+function me.GetCategoryBySpellId(spellId)
+  return EnsureCategoryIndex()[spellId]
+end
+
+--[[
+  Assemble the spellAvoidMap for the passed branch by applying its overlays to the base map
+
+  @param {string} branch
+
+  @return {table}
+    The assembled spellAvoidMap
+]]--
+BuildAssembledMap = function(branch)
   local overlays = {}
 
   if branch == "sod" then
@@ -69,55 +109,20 @@ local function buildAssembledMap(branch)
   return assembled
 end
 
-local function ensureAssembled()
-  local branch = determineActiveBranch()
-
-  if assembledByBranch[branch] == nil then
-    assembledByBranch[branch] = buildAssembledMap(branch)
-  end
-
-  return assembledByBranch[branch]
-end
-
--- flat spellId → category index per assembled branch, built lazily from the assembled
--- map so combat-log searches resolve with a single lookup instead of a category scan
-local categoryIndexByBranch = {}
-
--- forward declaration
-local ensureCategoryIndex
-
 --[[
-  Get the spellAvoidMap
-
-  @return {table}
-    The spellAvoidMap
-]]--
-function me.GetSpellAvoidMap()
-  return mod.common.Clone(ensureAssembled())
-end
-
---[[
-  Get the assembled spellAvoidMap without cloning it. Intended for read-only lookups on
-  the combat-log hot path — callers must not mutate the returned table. Consumers that
-  need a mutable copy use GetSpellAvoidMap instead.
+  Build (once per branch) and return the assembled spellAvoidMap for the active branch
 
   @return {table}
     The assembled spellAvoidMap
 ]]--
-function me.GetRawSpellAvoidMap()
-  return ensureAssembled()
-end
+EnsureAssembled = function()
+  local branch = mod.season.GetActiveBranch()
 
---[[
-  Find the category that contains the passed spellId
+  if assembledByBranch[branch] == nil then
+    assembledByBranch[branch] = BuildAssembledMap(branch)
+  end
 
-  @param {number} spellId
-
-  @return {string | nil}
-    The category name or nil if the spellId is not present in the spellAvoidMap
-]]--
-function me.GetCategoryBySpellId(spellId)
-  return ensureCategoryIndex()[spellId]
+  return assembledByBranch[branch]
 end
 
 --[[
@@ -126,13 +131,13 @@ end
   @return {table}
     The spellId → category index
 ]]--
-ensureCategoryIndex = function()
-  local branch = determineActiveBranch()
+EnsureCategoryIndex = function()
+  local branch = mod.season.GetActiveBranch()
 
   if categoryIndexByBranch[branch] == nil then
     local index = {}
 
-    for category, spells in pairs(ensureAssembled()) do
+    for category, spells in pairs(EnsureAssembled()) do
       for spellId in pairs(spells) do
         index[spellId] = category
       end

@@ -29,56 +29,34 @@ mod.spellAvoidMapHelper = me
 me.tag = "SpellAvoidMapHelper"
 
 --[[
-  Retrieve the spellAvoidMap filtered to the version of WoW running. Base spells available in
-  every version are marked with RGPVPW_CONSTANTS.SPELL_TYPE_BASE; Season of Discovery spells
-  with RGPVPW_CONSTANTS.SPELL_TYPE_SOD; Burning Crusade Anniversary spells with
-  RGPVPW_CONSTANTS.SPELL_TYPE_TBC. Each surviving spell's allRanks list is also filtered down
-  to ranks whose .type is allowed in the active mode.
-
-  @return {table}
-    The filtered spellAvoidMap
-]]--
-function me.GetFilteredSpellAvoidMap()
-  local filteredSpellAvoidMap = {}
-  local baseSpellAvoidMap = mod.spellAvoidMap.GetSpellAvoidMap()
-
-  for category, _ in pairs(baseSpellAvoidMap) do
-    filteredSpellAvoidMap[category] = {}
-    for spellId, spellData in pairs(baseSpellAvoidMap[category]) do
-      if spellData.refId == nil then
-        filteredSpellAvoidMap[category][spellId] = spellData
-      end
-    end
-  end
-
-  return filteredSpellAvoidMap
-end
-
---[[
-  Get map for a certain category - used for ui tabs
+  Get all avoid spells for a certain category - used for ui tabs. Rank alias entries (refId)
+  are skipped; each returned spell is a clone enriched with its spellId and normalized name.
 
   @param {string} category
 
   @return {table}
-    Map for the passed category
+    List of avoid spells for the passed category
 ]]--
 function me.GetAllForCategory(category)
   if not category then return nil end
 
   local spellAvoidList = {}
-  local filteredSpellAvoidMap = me.GetFilteredSpellAvoidMap()
+  -- read-only iteration on the raw map; each returned spell is cloned individually
+  local categorySpells = mod.spellAvoidMap.GetRawSpellAvoidMap()[category]
 
-  if filteredSpellAvoidMap[category] == nil then
+  if categorySpells == nil then
     mod.logger.LogWarn(me.tag, "No avoid spells found for category " .. category)
 
     return spellAvoidList
   end
 
-  for spellId, spellData in pairs(filteredSpellAvoidMap[category]) do
-    local clonedSpell = mod.common.Clone(spellData)
-    clonedSpell.spellId = spellId
-    clonedSpell.normalizedSpellName = mod.common.NormalizeSpellName(spellData.name)
-    table.insert(spellAvoidList, clonedSpell)
+  for spellId, spellData in pairs(categorySpells) do
+    if spellData.refId == nil then
+      local clonedSpell = mod.common.Clone(spellData)
+      clonedSpell.spellId = spellId
+      clonedSpell.normalizedSpellName = mod.common.NormalizeSpellName(spellData.name)
+      table.insert(spellAvoidList, clonedSpell)
+    end
   end
 
   return spellAvoidList

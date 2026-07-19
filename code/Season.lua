@@ -62,3 +62,21 @@ function me.IsTbcActive()
 
   return false
 end
+
+--[[
+  Determine the active spell-data branch. In test sessions the branch is controlled by the
+  test helper instead of the running client.
+
+  @return {string}
+    "classic", "sod" or "tbc"
+]]--
+function me.GetActiveBranch()
+  if RGPVPW_ENVIRONMENT.TEST then
+    return mod.testHelper.GetActiveBranch()
+  end
+
+  if me.IsTbcActive() then return "tbc" end
+  if me.IsSodActive() then return "sod" end
+
+  return "classic"
+end
