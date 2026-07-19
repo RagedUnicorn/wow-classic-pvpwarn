@@ -201,7 +201,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["label_enable_enemy_avoid_sound"] = "Включить звук"
   rgpvpw.L["label_play_enemy_avoid_sound"] = "Воспроизвести"
   rgpvpw.L["label_play_enemy_avoid_visual"] = "Воспроизвести"
-  rgpvpw.L["label_enemy_avoid_sound"] = "Визуальное предупреждение:"
+  rgpvpw.L["label_enemy_avoid_visual_warning"] = "Визуальное предупреждение:"
 
   -- dropdown colors
   rgpvpw.L["texture_none"] = "Нет"

@@ -67,7 +67,7 @@ local spellList = mod.spellListHelper.NewSpellList({
   labels = {
     enableSound = rgpvpw.L["label_enable_enemy_avoid_sound"],
     playSound = rgpvpw.L["label_play_enemy_avoid_sound"],
-    visualWarning = rgpvpw.L["label_enemy_avoid_sound"],
+    visualWarning = rgpvpw.L["label_enemy_avoid_visual_warning"],
     playVisual = rgpvpw.L["label_play_enemy_avoid_visual"]
   }
 })

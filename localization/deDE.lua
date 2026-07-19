@@ -209,7 +209,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["label_enable_enemy_avoid_sound"] = "Aktiviere Ton"
   rgpvpw.L["label_play_enemy_avoid_sound"] = "Abspielen"
   rgpvpw.L["label_play_enemy_avoid_visual"] = "Abspielen"
-  rgpvpw.L["label_enemy_avoid_sound"] = "Optische Warnung:"
+  rgpvpw.L["label_enemy_avoid_visual_warning"] = "Optische Warnung:"
 
   -- dropdown colors
   rgpvpw.L["texture_none"] = "Keine"
