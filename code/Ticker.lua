@@ -52,6 +52,7 @@ end
 function me.StopTickerWarnQueue()
   if warnQueueTicker then
     warnQueueTicker:Cancel()
+    warnQueueTicker = nil
     mod.logger.LogInfo(me.tag, "Stopped 'WarnQueueTicker'")
   end
 end
@@ -63,7 +64,7 @@ function me.StartTickerCheckCombatState()
   if checkCombatState == nil or checkCombatState:IsCancelled() then
     checkCombatState = C_Timer.NewTicker(
       RGPVPW_CONSTANTS.CHECK_COMBAT_STATE_INTERVAL, mod.combatState.UpdateCombatState)
-      mod.logger.LogInfo(me.tag, "Started 'CheckCombatState'")
+    mod.logger.LogInfo(me.tag, "Started 'CheckCombatState'")
   end
 end
 
@@ -73,6 +74,7 @@ end
 function me.StopTickerCheckCombatState()
   if checkCombatState then
     checkCombatState:Cancel()
+    checkCombatState = nil
     mod.logger.LogInfo(me.tag, "Stopped 'CheckCombatState'")
   end
 end
@@ -94,7 +96,7 @@ end
 function me.StopTickerCheckStanceStateExpired()
   if checkStanceStateExpired then
     checkStanceStateExpired:Cancel()
-    checkStanceStateExpired = nil -- explicit reset
+    checkStanceStateExpired = nil
     mod.logger.LogInfo(me.tag, "Stopped 'CheckStanceStateExpired'")
   end
 end
