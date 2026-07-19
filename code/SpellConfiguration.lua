@@ -114,8 +114,8 @@ end
   @param {number} spellId
 
   @return {boolean}
-    true if the sound warning is active
-    false if the sound warning is inactive
+    true if the sound fade warning is active
+    false if the sound fade warning is inactive
 ]]--
 function me.IsSoundFadeWarningActive(spellList, categoryName, spellId)
   return me.IsOptionActive(spellList, categoryName, spellId, "soundFadeWarningActive")

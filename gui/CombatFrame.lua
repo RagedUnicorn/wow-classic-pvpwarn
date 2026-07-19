@@ -61,7 +61,7 @@ end
   - Show the combat affecting icon if the target is affected by combat
   - Hide the combat affecting icon if the target is not affected by combat
 
-  @param {boolean} affectingCombat
+  @param {boolean} combatState
 ]]--
 function me.UpdateCombatStateUi(combatState)
   if combatState then

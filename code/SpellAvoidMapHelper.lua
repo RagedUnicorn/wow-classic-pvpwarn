@@ -65,6 +65,8 @@ end
 --[[
   Retrieve a spell from the spellAvoidMap by spellId. Follows refIds if present to retrieve the correct spell.
 
+  @param {number} spellId
+
   @return ({string} {number} {table}) | {nil}
     category, spellId, spell
     category is the category where the spell was found

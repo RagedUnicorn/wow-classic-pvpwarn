@@ -385,7 +385,7 @@ end
 
 --[[
   Rebuild the preview for the current configuration if it is currently shown. Used by the options
-  sliders so max-bars and font-size changes preview live.
+  sliders so max-bars and bar-scale changes preview live.
 ]]--
 function me.RefreshPreview()
   for _, bar in ipairs(me.previewBars) do

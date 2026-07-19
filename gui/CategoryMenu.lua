@@ -177,7 +177,7 @@ end
 
 --[[
   @param {table} parentFrame
-  @param {string} contentFrameName
+  @param {string} tabButtonName
   @param {table} position
   @param {string} text
   @param {number} id

@@ -34,7 +34,7 @@ me.tag = "ZoneMenu"
 local builtMenu = false
 
 --[[
-  Build the ui for the general menu
+  Build the ui for the zone menu
 
   @param {table} frame
     The addon configuration frame to attach to

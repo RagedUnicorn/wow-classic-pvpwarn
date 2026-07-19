@@ -131,7 +131,7 @@ RGPVPW_CONSTANTS = {
   ELEMENT_FLASH_FRAME = "PVPW_FlashFrame",
   ELEMENT_FLASH_TEXTURE = "PVPW_FlashTexture",
   --[[
-
+    Shared icon size for the combat state and stance state icon holders
   ]]--
   STATE_ICON_HOLDER_ICON_SIZE = 20,
   --[[

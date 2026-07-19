@@ -27,7 +27,7 @@
 
 --[[
   Dedicated options sub-panel for the detection bar feature. Provides a global enable toggle,
-  an anchor lock toggle, max-bars / font-size sliders and an anchor reset button. Registered as
+  a positioning toggle button, max-bars / bar-scale sliders and an anchor reset button. Registered as
   a sub-category under the addon Settings panel via gui/AddonConfiguration.lua. Mirrors the
   structure of gui/GeneralMenu.lua.
 ]]--
