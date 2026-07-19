@@ -122,27 +122,6 @@ function me.GetCategoryBySpellId(spellId)
 end
 
 --[[
-  Get spellMap for a certain category
-
-  @param {string} category
-
-  @return {table}
-    Map for the passed category
-]]--
-function me.GetSpellMapByCategory(category)
-  local map = ensureAssembled()
-
-  if not category or not map[category] then
-    mod.logger.LogError(me.tag, "Unable to retrieve spellMap for category: "
-      .. tostring(category))
-
-    return nil
-  end
-
-  return mod.common.Clone(map[category])
-end
-
---[[
   Gets spell metadata from the spell map for a specific spellId
 
   @param {string} categoryName

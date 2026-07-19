@@ -121,27 +121,6 @@ function me.GetCategoryBySpellId(spellId)
 end
 
 --[[
-  Get spellAvoidMap for a certain category
-
-  @param {string} category
-
-  @return {table}
-    Map for the passed category
-]]--
-function me.GetSpellAvoidMapByCategory(category)
-  local map = ensureAssembled()
-
-  if not category or not map[category] then
-    mod.logger.LogError(me.tag, "Unable to retrieve spellMap for category: "
-        .. tostring(category))
-
-    return nil
-  end
-
-  return mod.common.Clone(map[category])
-end
-
---[[
   Build (once per branch) and return the flat spellId → category index for the active branch
 
   @return {table}
