@@ -67,9 +67,6 @@ me.active = {}
 me.pool = {}
 --[[ Whether new bars are currently suppressed (loading screen) ]]--
 me.suppressed = false
---[[ Debug counters - used by /rgpvpw bar test to confirm pooling reuses bars ]]--
-me.barsCreated = 0
-me.poolReuses = 0
 --[[ Dedicated static sample bars shown during edit-mode positioning (index = slot) ]]--
 me.previewBars = {}
 
@@ -148,11 +145,9 @@ function me.Acquire(parent)
   local bar = table.remove(me.pool)
 
   if bar then
-    me.poolReuses = me.poolReuses + 1
     bar.frame:SetParent(parent)
   else
     bar = mod.detectionBar.New(parent)
-    me.barsCreated = me.barsCreated + 1
   end
 
   bar.onDeath = me.OnBarDeath

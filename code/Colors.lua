@@ -24,7 +24,6 @@
 ]]--
 
 RGPVPW_COLORS = {
-  NONE = 0,
   YELLOW = 1,
   VIOLET = 2,
   RED = 3,

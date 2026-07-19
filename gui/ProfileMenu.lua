@@ -470,7 +470,6 @@ function me.ProfileListCellOnClick(self)
     -- clear all current highlighting
     me.ClearCellList()
 
-    self.selectedRow = true
     self.highlight:Show()
   end
 end
@@ -480,7 +479,6 @@ end
 ]]--
 function me.ClearCellList()
   for _, profileRow in pairs(profileRows) do
-    profileRow.selectedRow = false
     profileRow.highlight:Hide()
   end
 end

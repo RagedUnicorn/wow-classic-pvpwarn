@@ -38,7 +38,6 @@ RGPVPW_CONSTANTS = {
   --[[
     Buff types
   ]]--
-  BUFF_TYPE_BUFF = "BUFF",
   BUFF_TYPE_DEBUFF = "DEBUFF",
   --[[
     Spell types
@@ -184,14 +183,12 @@ RGPVPW_CONSTANTS = {
   ]]--
   ELEMENT_COMBAT_STATE_FRAME = "PVPW_CombatStateFrame",
   ELEMENT_COMBAT_STATE_TEXTURE = "PVPW_CombatStateTexture",
-  COMBAT_STATE_ICON_SIZE = 20,
   COMBAT_STATE_ACTIVE_ICON_ID = 132336, -- warrior challenge
   --[[
     TargetFrame stanceState
   ]]--
   ELEMENT_STANCE_STATE_FRAME = "PVPW_StanceStateFrame",
   ELEMENT_STANCE_STATE_TEXTURE = "PVPW_StanceStateTexture",
-  STANCE_STATE_ICON_SIZE = 20,
   STANCE_STATE_UNKNOWN_STANCE_ICON_ID = 134400,
 
   --[[
@@ -207,7 +204,6 @@ RGPVPW_CONSTANTS = {
     TITLE_GOLD = { 1.0, 0.819, 0.0 },       -- #ffd100 panel titles
     SECTION_GOLD = { 0.851, 0.647, 0.129 }, -- #d9a521 section headers
     BODY = { 0.91, 0.87, 0.80 },            -- #e8decc body text / option labels (warm near-white)
-    MUTED = { 0.541, 0.486, 0.392 },        -- #8a7c64 idle / dim text
     DISABLED = { 0.45, 0.41, 0.35 },        -- disabled control labels (QM stepper disabled-glyph tone)
     SUBNOTE = { 0.66, 0.60, 0.50 }          -- #a89980 option descriptions (warm mid gray)
   },
@@ -224,9 +220,7 @@ RGPVPW_CONSTANTS = {
     Generalmenu
   ]]--
   ELEMENT_GENERAL_SUB_OPTION_FRAME = "PVPW_GeneralMenuOptionsFrame",
-  GENERAL_CHECK_OPTION_SIZE = 24,
   ELEMENT_GENERAL_OPT = "PVPW_Opt",
-  ELEMENT_GENERAL_FRAME = "PVPW_GeneralFrame",
   ELEMENT_GENERAL_TITLE = "PVPW_GeneralTitle",
   ELEMENT_GENERAL_OPT_ENABLE_COMBAT_STATE = "PVPW_OptEnableCombatStateTracking",
   ELEMENT_GENERAL_OPT_LOCK_FRAME_COMBAT_STATE = "PVPW_OptLockFrameCombatState",
@@ -399,7 +393,6 @@ RGPVPW_CONSTANTS = {
   ELEMENT_PROFILE_LIST_CONTENT_FRAME = "PVPW_ProfileListContentFrame",
   ELEMENT_PROFILE_TITLE = "PVPW_ProfileTitle",
   ELEMENT_PROFILE_NAME = "PVPW_ProfileName",
-  PROFILE_NAME_WIDTH = 150,
   ELEMENT_SAVE_PROFILE_BUTTON = "PVPW_SaveProfile",
   ELEMENT_DELETE_PROFILE_BUTTON = "PVPW_DeleteProfile",
   ELEMENT_LOAD_PROFILE_BUTTON = "PVPW_LoadProfile",
@@ -412,17 +405,12 @@ RGPVPW_CONSTANTS = {
   PROFILE_STRING_BOX_HEIGHT = 90,
   ELEMENT_PROFILE_LIST_ROW_HIGHLIGHT = "$parentHighlight",
   DEFAULT_PROFILE_NAME = "Default",
-  --[[
-    Categorymenu
-  ]]--
-  ELEMENT_CATEGORY_SUB_OPTION_FRAME = "PVPW_CategoryMenuOptionsFrame",
 
   --[[
     Spellstab
   ]]--
   -- scroll list
   ELEMENT_SPELL_LIST_SCROLL_FRAME = "$parent_PVPW_SpellListScrollFrame",
-  ELEMENT_SPELL_LIST_SCROLL_FRAME_SLIDER = "PVPW_SpellListScrollFrameSlider",
   ELEMENT_SPELL_LIST_CONTENT_FRAME = "$parent_PVPW_SpellListContentFrame",
   SPELL_LIST_CONTENT_FRAME_WIDTH = 580,
   SPELL_LIST_CONTENT_FRAME_HEIGHT = 552,

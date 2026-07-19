@@ -61,6 +61,7 @@ function me.RegisterVoicePack(name, displayName, assetPath)
 
   -- check if this is the configured voice pack
   local configuredVoicePack = mod.configuration.GetActiveVoicePack()
+
   if configuredVoicePack == name then
     mod.logger.LogInfo(me.tag, "Registered voice pack matches configured pack, activating: " .. name)
   end
