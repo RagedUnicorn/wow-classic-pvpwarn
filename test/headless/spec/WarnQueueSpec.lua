@@ -71,7 +71,6 @@ describe("warn queue", function()
     overrides = overrides or {}
 
     warn.AddToQueue(
-      "test-warning",
       "priest",
       overrides.spellType or spellTypes.NORMAL,
       BuildSpell(),
@@ -359,7 +358,7 @@ describe("warn queue", function()
     it("plays the sound but skips the visual when no visual channel is registered", function()
       local freshWarn = FreshWarnWithoutChannels()
 
-      freshWarn.AddToQueue("test-warning", "priest", spellTypes.NORMAL, BuildSpell(), true, true)
+      freshWarn.AddToQueue("priest", spellTypes.NORMAL, BuildSpell(), true, true)
       freshWarn.ProcessQueue()
 
       assert.are.equal(1, #playedSounds)

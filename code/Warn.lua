@@ -83,8 +83,6 @@ function me.RegisterDetectionBarChannel(channel)
 end
 
 --[[
-  @param {string} warnName
-    generated name
   @param {string} category
     e.g rogue, misc, racials etc
   @param {string} spellType
@@ -96,9 +94,8 @@ end
   @param {boolean} playVisual
     Whether to play a visual warning or not depending on the users preferences
 ]]--
-function me.AddToQueue(warnName, category, spellType, spell, playSound, playVisual)
+function me.AddToQueue(category, spellType, spell, playSound, playVisual)
   local warning = {
-    ["warnName"] = warnName,
     ["category"] = category,
     ["spell"] = spell,
     ["spellType"] = spellType, -- see constants SPELL_TYPES
@@ -108,7 +105,7 @@ function me.AddToQueue(warnName, category, spellType, spell, playSound, playVisu
   }
 
   table.insert(warnQueue, warning)
-  mod.logger.LogDebug(me.tag, "Added new warning with name '" .. warning.warnName .. "' to queue")
+  mod.logger.LogDebug(me.tag, "Added new warning for spell '" .. warning.spell.name .. "' to queue")
 end
 
 --[[
@@ -217,7 +214,7 @@ function me.PlayWarning(category, spellType, spell, callback, playSound, playVis
   end
 
   -- queue spell into warnqueue
-  me.AddToQueue(tostring(math.floor(math.random() * 100000)), category, spellType, spell, playSound, playVisual)
+  me.AddToQueue(category, spellType, spell, playSound, playVisual)
 
   --[[
     The detection bar bypasses the warn-queue. Push it directly so it is not throttled by the
