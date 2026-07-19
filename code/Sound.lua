@@ -85,15 +85,15 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
   local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
 
   if spellType == spellTypes.NORMAL or spellType == spellTypes.APPLIED or spellType == spellTypes.REFRESH then
-    soundPath =  soundPath .. soundFileName .. FILE_TYPE
+    soundPath = soundPath .. soundFileName .. FILE_TYPE
   elseif spellType == spellTypes.REMOVED then
     soundPath = soundPath .. soundFileName .. FILE_NAME_DOWN .. FILE_TYPE
   elseif spellType == spellTypes.START then
     soundPath = soundPath .. soundFileName .. FILE_NAME_START .. FILE_TYPE
   elseif spellType == spellTypes.MISSED_SELF then
-    soundPath = soundPath .. PATH_SELF_AVOID .. FILE_NAME_SELF_AVOID .. soundFileName.. FILE_TYPE
+    soundPath = soundPath .. PATH_SELF_AVOID .. FILE_NAME_SELF_AVOID .. soundFileName .. FILE_TYPE
   elseif spellType == spellTypes.MISSED_ENEMY then
-    soundPath = soundPath .. PATH_ENEMY_AVOID .. FILE_NAME_ENEMY_AVOID .. soundFileName.. FILE_TYPE
+    soundPath = soundPath .. PATH_ENEMY_AVOID .. FILE_NAME_ENEMY_AVOID .. soundFileName .. FILE_TYPE
   else
     mod.logger.LogWarn(me.tag, "Invalid spellType: " .. spellType)
     return status
@@ -105,7 +105,6 @@ function me.PlaySound(soundCategory, spellType, soundFileName)
   if not status then
     -- this also happens when sound is deactivated
     mod.logger.LogWarn(me.tag, string.format("There seems to be an issue playing: %s", soundPath))
-    return status
   end
 
   return status
