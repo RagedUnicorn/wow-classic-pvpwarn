@@ -138,20 +138,3 @@ function me.GetSpellMap(spellType)
     return RGPVPW_CONSTANTS.SPELL_TYPE.SPELL
   end
 end
-
---[[
-  Get a textures name by its numerical value
-
-  @parma {number} colorValue
-
-  @return {string}
-]]--
-function me.GetTextureNameByValue(colorValue)
-  for _, texture in pairs(RGPVPW_CONSTANTS.TEXTURES) do
-    if colorValue == texture.colorValue then
-      return texture.textureName
-    end
-  end
-
-  return RGPVPW_CONSTANTS.TEXTURES.none.textureName -- default if none was found
-end
