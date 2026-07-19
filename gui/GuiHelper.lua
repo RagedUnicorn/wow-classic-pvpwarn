@@ -189,6 +189,27 @@ function me.CreateSlider(frame, name, label, min, max, step, posX, posY, getValu
 end
 
 --[[
+  Create the content frame that hosts a category's spell list
+
+  @param {table} parentFrame
+  @param {string} contentFrameName
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+
+  @return {table}
+    The created content frame
+]]--
+function me.CreateCategoryContentFrame(parentFrame, contentFrameName, position)
+  local contentFrame = CreateFrame("Frame", contentFrameName, parentFrame)
+
+  contentFrame:SetPoint(unpack(position))
+  contentFrame:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)
+  contentFrame:SetHeight(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_HEIGHT)
+
+  return contentFrame
+end
+
+--[[
   Create the drag handler pair for a movable frame whose position is persisted. Both handlers
   are gated on the canMove predicate; once the drag ends the frame's position is saved under
   frameName (see Configuration.SaveUserPlacedFramePosition).

@@ -150,13 +150,13 @@ function me.CreateCategoryMenu(self)
   )
 
   --[[ content sits directly below the 37px tall tabs so the active tab art connects to it ]]--
-  local spellContentFrame = me.CreateCategoryMenuContentFrame(
+  local spellContentFrame = mod.guiHelper.CreateCategoryContentFrame(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. spellTab,
     {"TOPLEFT", self, 5, -37}
   )
 
-  local avoidContentFrame = me.CreateCategoryMenuContentFrame(
+  local avoidContentFrame = mod.guiHelper.CreateCategoryContentFrame(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. resistTab,
     {"TOPLEFT", self, 5, -37}
@@ -198,24 +198,6 @@ function me.CreateTabButton(parentFrame, tabButtonName, position, text, id)
   end)
 
   return tabButton
-end
-
---[[
-  @param {table} self
-  @param {string} contentFrameName
-  @param {table} position
-
-  @return {table}
-]]--
-function me.CreateCategoryMenuContentFrame(self, contentFrameName, position)
-  local contentFrame = CreateFrame("Frame", contentFrameName, self, "BackdropTemplate")
-
-  contentFrame:SetPoint(unpack(position))
-  contentFrame:SetBackdropColor(1, 0.37, 0.5, .7)
-  contentFrame:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)
-  contentFrame:SetHeight(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_HEIGHT)
-
-  return contentFrame
 end
 
 --[[

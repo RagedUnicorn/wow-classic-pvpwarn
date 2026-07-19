@@ -81,7 +81,13 @@ function me.Init(frame)
   end
 
   me.SetCategoryName()
-  mod.spellListHelper.Init(spellList, me.CreateCategoryMenuContentFrame(frame), activeCategory)
+
+  local contentFrame = mod.guiHelper.CreateCategoryContentFrame(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_SPELL_ENEMY_AVOID_LIST_CONTENT_FRAME,
+    {"TOPLEFT", frame, 5, -7}
+  )
+  mod.spellListHelper.Init(spellList, contentFrame, activeCategory)
   builtMenu = true
 end
 
@@ -95,18 +101,3 @@ function me.SetCategoryName()
   mod.logger.LogDebug(me.tag, "Set category to: " .. string.lower(englishClass))
 end
 
---[[
-  @param {table} frame
-
-  @return {table}
-]]--
-function me.CreateCategoryMenuContentFrame(frame)
-  local contentFrame = CreateFrame(
-    "Frame", RGPVPW_CONSTANTS.ELEMENT_SPELL_ENEMY_AVOID_LIST_CONTENT_FRAME, frame, "BackdropTemplate")
-  contentFrame:SetPoint("TOPLEFT", frame, 5, -7)
-  contentFrame:SetBackdropColor(1, 0.37, 0.5, .7)
-  contentFrame:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)
-  contentFrame:SetHeight(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_HEIGHT)
-
-  return contentFrame
-end
