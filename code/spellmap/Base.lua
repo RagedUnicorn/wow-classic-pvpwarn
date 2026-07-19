@@ -30,6 +30,29 @@ mod.spellMapBase = me
 
 me.tag = "SpellMapBase"
 
+--[[
+  Resolve a faction-dependent value to the OPPOSING faction's variant. PVPWarn warns about
+  enemy casts - the insignia the player needs to recognize is the one the enemy uses, so a
+  Horde player gets the Alliance variant and vice versa. Parameters carry the actual faction
+  of each value so call sites stay honest. Resolved once at file load - the player's faction
+  never changes within a session.
+
+  @param {any} allianceValue
+    The Alliance faction's variant of the value
+  @param {any} hordeValue
+    The Horde faction's variant of the value
+
+  @return {any}
+    allianceValue for a Horde player, hordeValue for an Alliance player
+]]--
+local function OpposingFactionValue(allianceValue, hordeValue)
+  if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
+    return allianceValue
+  end
+
+  return hordeValue
+end
+
 local spellMap = {
   ["warrior"] = {
     [18499] = {
@@ -2513,13 +2536,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "insignia",
       soundText = "Insignia",
-      itemId = (function()
-        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
-          return 18834
-        else
-          return 18854
-        end
-      end)(),
+      itemId = OpposingFactionValue(18854, 18834),
       hasFade = false,
       active = true,
       trackedEvents = {
@@ -2534,13 +2551,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "insignia",
       soundText = "Insignia",
-      itemId = (function()
-        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
-          return 18852
-        else
-          return 18858
-        end
-      end)(),
+      itemId = OpposingFactionValue(18858, 18852),
       hasFade = false,
       active = true,
       trackedEvents = {
@@ -2555,13 +2566,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "insignia",
       soundText = "Insignia",
-      itemId = (function()
-        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
-          return 18850
-        else
-          return 18859
-        end
-      end)(),
+      itemId = OpposingFactionValue(18859, 18850),
       hasFade = false,
       active = true,
       trackedEvents = {
@@ -2576,13 +2581,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "insignia",
       soundText = "Insignia",
-      itemId = (function()
-        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
-          return 18851
-        else
-          return 18862
-        end
-      end)(),
+      itemId = OpposingFactionValue(18862, 18851),
       hasFade = false,
       active = true,
       trackedEvents = {
@@ -2597,13 +2596,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "insignia",
       soundText = "Insignia",
-      itemId = (function()
-        if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
-          return 18853
-        else
-          return 18863
-        end
-      end)(),
+      itemId = OpposingFactionValue(18863, 18853),
       hasFade = false,
       active = true,
       trackedEvents = {
