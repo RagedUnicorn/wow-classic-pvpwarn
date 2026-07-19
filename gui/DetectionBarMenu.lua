@@ -142,7 +142,7 @@ end
   @param {table} frame
 ]]--
 function me.BuildPositionButton(frame)
-  positionButton = mod.guiHelper.CreatePlayButton(
+  positionButton = mod.guiHelper.CreateTextButton(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_POSITION_BUTTON,
     frame,
     {"TOPLEFT", 20, -107},
@@ -227,7 +227,7 @@ end
   @param {table} frame
 ]]--
 function me.BuildResetAnchorButton(frame)
-  mod.guiHelper.CreatePlayButton(
+  mod.guiHelper.CreateTextButton(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_RESET_ANCHOR_BUTTON,
     frame,
     {"TOPLEFT", 20, -282},

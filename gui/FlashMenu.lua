@@ -181,7 +181,7 @@ end
   @param {table} frame
 ]]--
 function me.BuildTestButton(frame)
-  mod.guiHelper.CreatePlayButton(
+  mod.guiHelper.CreateTextButton(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_OPT_TEST_BUTTON,
     frame,
     {"TOPLEFT", 20, -297},

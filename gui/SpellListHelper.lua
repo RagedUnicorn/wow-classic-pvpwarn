@@ -237,7 +237,7 @@ CreateRowFrame = function(spellList, frame, position)
   )
 
   row.soundCheckBox = CreateSoundCheckBox(spellList, row)
-  row.playSound = mod.guiHelper.CreatePlayButton(
+  row.playSound = mod.guiHelper.CreateTextButton(
     options.elementNames.playSound,
     row,
     {"LEFT", row.soundCheckBox, "RIGHT", 150, 0},
@@ -249,7 +249,7 @@ CreateRowFrame = function(spellList, frame, position)
 
   if options.hasSpecialSoundColumn then
     row.soundSpecialCheckBox = CreateSoundSpecialCheckBox(spellList, row)
-    row.playSoundSpecial = mod.guiHelper.CreatePlayButton(
+    row.playSoundSpecial = mod.guiHelper.CreateTextButton(
       options.elementNames.playSoundSpecial,
       row,
       {"LEFT", row.soundSpecialCheckBox, "RIGHT", 150, 0},
@@ -264,7 +264,7 @@ CreateRowFrame = function(spellList, frame, position)
     options.elementNames.visualWarningLabel,
     options.labels.visualWarning
   )
-  row.playVisual = mod.guiHelper.CreatePlayButton(
+  row.playVisual = mod.guiHelper.CreateTextButton(
     options.elementNames.playVisualAlert,
     row,
     --[[ dropdown ends at title right + 150, the sound play buttons start at + 174

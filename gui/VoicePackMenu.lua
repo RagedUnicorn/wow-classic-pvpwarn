@@ -191,7 +191,7 @@ end
     The addon configuration frame to attach to
 ]]--
 function me.BuildPlaySoundButton(frame)
-  mod.guiHelper.CreatePlayButton(
+  mod.guiHelper.CreateTextButton(
     RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_PLAY_SOUND_BUTTON,
     frame,
     {"TOPLEFT", voicePackDropdown, "TOPRIGHT", 10, -2},

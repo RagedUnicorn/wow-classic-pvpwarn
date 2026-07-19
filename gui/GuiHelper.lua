@@ -324,6 +324,8 @@ function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowC
 end
 
 --[[
+  Create a generic text button whose width auto-sizes to its text
+
   @param {string} frameName
     The name of the button
   @param {table} parent
@@ -338,21 +340,21 @@ end
   @return {table}
     The created button
 ]]--
-function me.CreatePlayButton(frameName, parent, position, callback, text)
-  local playButton = CreateFrame(
+function me.CreateTextButton(frameName, parent, position, callback, text)
+  local textButton = CreateFrame(
     "Button",
     frameName,
     parent,
     "UIPanelButtonTemplate"
   )
 
-  playButton:SetHeight(RGPVPW_CONSTANTS.BUTTON_DEFAULT_HEIGHT)
-  playButton:SetText(text)
-  playButton:SetPoint(unpack(position))
-  playButton:SetScript("OnClick", callback)
-  me.ResizeButtonToText(playButton)
+  textButton:SetHeight(RGPVPW_CONSTANTS.BUTTON_DEFAULT_HEIGHT)
+  textButton:SetText(text)
+  textButton:SetPoint(unpack(position))
+  textButton:SetScript("OnClick", callback)
+  me.ResizeButtonToText(textButton)
 
-  return playButton
+  return textButton
 end
 
 --[[
