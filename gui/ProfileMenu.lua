@@ -43,6 +43,7 @@ local profileStringEditBox
 
 -- forward declaration
 local FinishProfileImport
+local ProfileNameEditBoxOnTextChanged
 
 --[[
   Get the currently selected profile name from the profile list.
@@ -100,15 +101,7 @@ StaticPopupDialogs["RGPVPW_CHOOSE_PROFILE_NAME"] = {
     me.ClearSelectedProfile()
   end,
   EditBoxOnTextChanged = function(editBox)
-    local button1 = editBox:GetParent():GetButton1()
-
-    if editBox ~= nil and button1 ~= nil then
-      if string.len(editBox:GetText()) > 0 then
-        button1:Enable()
-      else
-        button1:Disable()
-      end
-    end
+    ProfileNameEditBoxOnTextChanged(editBox)
   end,
   timeout = 0,
   whileDead = true,
@@ -196,15 +189,7 @@ StaticPopupDialogs["RGPVPW_IMPORT_PROFILE_NAME"] = {
     FinishProfileImport(dialog:GetEditBox():GetText(), dialog.data)
   end,
   EditBoxOnTextChanged = function(editBox)
-    local button1 = editBox:GetParent():GetButton1()
-
-    if editBox ~= nil and button1 ~= nil then
-      if string.len(editBox:GetText()) > 0 then
-        button1:Enable()
-      else
-        button1:Disable()
-      end
-    end
+    ProfileNameEditBoxOnTextChanged(editBox)
   end,
   timeout = 0,
   whileDead = true,
@@ -693,4 +678,22 @@ FinishProfileImport = function(profileName, envelope)
   me.ProfileListUpdateOnUpdate()
   me.ClearSelectedProfile()
   mod.logger.PrintUserMessage(string.format(rgpvpw.L["profile_import_success"], profileName))
+end
+
+--[[
+  Shared EditBoxOnTextChanged handler for the profile name dialogs - the accept button is
+  only enabled while a non-empty name is entered.
+
+  @param {table} editBox
+]]--
+ProfileNameEditBoxOnTextChanged = function(editBox)
+  local button1 = editBox:GetParent():GetButton1()
+
+  if button1 ~= nil then
+    if string.len(editBox:GetText()) > 0 then
+      button1:Enable()
+    else
+      button1:Disable()
+    end
+  end
 end
