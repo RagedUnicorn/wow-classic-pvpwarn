@@ -244,11 +244,3 @@ function me.ResetPosition()
     DEFAULT_OFFSET_Y
   )
 end
-
---[[
-  @return {table | nil}
-    The anchor frame, or nil if not built yet
-]]--
-function me.GetAnchor()
-  return anchorFrame
-end
