@@ -350,12 +350,7 @@ function me.CreatePlayButton(frameName, parent, position, callback, text)
   playButton:SetText(text)
   playButton:SetPoint(unpack(position))
   playButton:SetScript("OnClick", callback)
-
-  local buttonFontString = playButton:GetFontString()
-
-  playButton:SetWidth(
-    buttonFontString:GetStringWidth() + RGPVPW_CONSTANTS.BUTTON_DEFAULT_PADDING
-  )
+  me.ResizeButtonToText(playButton)
 
   return playButton
 end
