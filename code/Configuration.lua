@@ -55,6 +55,24 @@ local targetFilterDefaults = {
 }
 
 --[[
+  Single source of truth for the top-level defaults - referenced by both the initial
+  SavedVariables literal below and the SetupConfiguration backfill loop that runs after an
+  addon upgrade. Function values are lazy factories invoked at backfill time (the spell
+  lists and the sub-blocks above have their own dedicated setup steps).
+]]--
+local configurationDefaults = {
+  ["enableCombatStateTracking"] = true,
+  ["lockCombatStateFrame"] = true,
+  ["enableStanceStateTracking"] = true,
+  ["lockStanceStateFrame"] = true,
+  ["hideUnknownStance"] = false,
+  ["addonZoneConfiguration"] = function() return mod.zone.InitializeDefaultZoneConfiguration() end,
+  ["frames"] = function() return {} end,
+  ["activeVoicePack"] = RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME,
+  ["lastNotifiedVersion"] = ""
+}
+
+--[[
   Saved addon variable
 ]]--
 PVPWarnConfiguration = {
@@ -73,23 +91,23 @@ PVPWarnConfiguration = {
   --[[
     Whether combat state tracking is enabled or not
   ]]--
-  ["enableCombatStateTracking"] = true,
+  ["enableCombatStateTracking"] = configurationDefaults.enableCombatStateTracking,
   --[[
     Whether the frame to track an enemies combat state is locked or not
   ]]--
-  ["lockCombatStateFrame"] = true,
+  ["lockCombatStateFrame"] = configurationDefaults.lockCombatStateFrame,
   --[[
     Whether stance state tracking is enabled or not
   ]]--
-  ["enableStanceStateTracking"] = true,
+  ["enableStanceStateTracking"] = configurationDefaults.enableStanceStateTracking,
   --[[
     Whether the frame to track an enemies stance state is locked or not
   ]]--
-  ["lockStanceStateFrame"] = true,
+  ["lockStanceStateFrame"] = configurationDefaults.lockStanceStateFrame,
   --[[
     Whether to hide the stance icon when the stance is unknown
   ]]--
-  ["hideUnknownStance"] = false,
+  ["hideUnknownStance"] = configurationDefaults.hideUnknownStance,
   --[[
     A configuration object that tracks in what places the addon should be enabled or disabled. This mostly helps prevent
     spamming events in places where the player doesn't want to receive warnings.
@@ -98,7 +116,7 @@ PVPWarnConfiguration = {
   --[[
     The active voice pack name, "default" for built-in sounds
   ]]--
-  ["activeVoicePack"] = RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME,
+  ["activeVoicePack"] = configurationDefaults.activeVoicePack,
   --[[
     Framepositions for user draggable Frames
     frames = {
@@ -154,7 +172,7 @@ PVPWarnConfiguration = {
     user - bookkeeping like addonVersion, deliberately not part of profiles.
     Empty string means no version was announced yet
   ]]--
-  ["lastNotifiedVersion"] = ""
+  ["lastNotifiedVersion"] = configurationDefaults.lastNotifiedVersion
 }
 
 --[[
@@ -167,49 +185,16 @@ function me.SetupConfiguration()
     mod.profile.InitializeDefaultProfile()
   end
 
-  if PVPWarnConfiguration.enableCombatStateTracking == nil then
-    mod.logger.LogInfo(me.tag, "enableCombatStateTracking has unexpected nil value")
-    PVPWarnConfiguration.enableCombatStateTracking = true
-  end
+  for key, default in pairs(configurationDefaults) do
+    if PVPWarnConfiguration[key] == nil then
+      mod.logger.LogInfo(me.tag, key .. " has unexpected nil value")
 
-  if PVPWarnConfiguration.lockCombatStateFrame == nil then
-    mod.logger.LogInfo(me.tag, "lockCombatStateFrame has unexpected nil value")
-    PVPWarnConfiguration.lockCombatStateFrame = true
-  end
-
-  if PVPWarnConfiguration.enableStanceStateTracking == nil then
-    mod.logger.LogInfo(me.tag, "enableStanceStateTracking has unexpected nil value")
-    PVPWarnConfiguration.enableStanceStateTracking = true
-  end
-
-  if PVPWarnConfiguration.lockStanceStateFrame == nil then
-    mod.logger.LogInfo(me.tag, "lockStanceStateFrame has unexpected nil value")
-    PVPWarnConfiguration.lockStanceStateFrame = true
-  end
-
-  if PVPWarnConfiguration.hideUnknownStance == nil then
-    mod.logger.LogInfo(me.tag, "hideUnknownStance has unexpected nil value")
-    PVPWarnConfiguration.hideUnknownStance = false
-  end
-
-  if PVPWarnConfiguration.addonZoneConfiguration == nil then
-    mod.logger.LogInfo(me.tag, "addonZoneConfiguration has unexpected nil value")
-    PVPWarnConfiguration.addonZoneConfiguration  = mod.zone.InitializeDefaultZoneConfiguration()
-  end
-
-  if PVPWarnConfiguration.frames == nil then
-    mod.logger.LogInfo(me.tag, "frames has unexpected nil value")
-    PVPWarnConfiguration.frames = {}
-  end
-
-  -- Migrate nil to "default" for existing users
-  if PVPWarnConfiguration.activeVoicePack == nil then
-    PVPWarnConfiguration.activeVoicePack = RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME
-  end
-
-  if PVPWarnConfiguration.lastNotifiedVersion == nil then
-    mod.logger.LogInfo(me.tag, "lastNotifiedVersion has unexpected nil value")
-    PVPWarnConfiguration.lastNotifiedVersion = ""
+      if type(default) == "function" then
+        PVPWarnConfiguration[key] = default()
+      else
+        PVPWarnConfiguration[key] = default
+      end
+    end
   end
 
   me.SetupDetectionBarConfiguration()
