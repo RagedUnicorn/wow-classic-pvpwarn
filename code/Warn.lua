@@ -43,6 +43,8 @@ local detectionBarChannel
 
 -- forward declaration
 local RemoveFromQueue
+local DispatchWarning
+local EngageBusyGate
 local PlaySound
 local PlayVisual
 
@@ -143,6 +145,23 @@ function me.ProcessQueue()
     return
   end
 
+  if DispatchWarning(warning) then
+    EngageBusyGate()
+  end
+
+  RemoveFromQueue(1)
+end
+
+--[[
+  Route a warning to its output channels based on the warning's spellType
+
+  @param {table} warning
+
+  @return {boolean}
+    true - if at least one channel played the warning
+    false - if no channel played the warning
+]]--
+DispatchWarning = function(warning)
   local playedSound = false
   local playedVisual = false
   local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
@@ -166,14 +185,17 @@ function me.ProcessQueue()
     mod.logger.LogError(me.tag, "Found invalid spelltype: " .. warning.spellType)
   end
 
-  if playedSound or playedVisual then
-    isQueueBusy = true
-    C_Timer.After(RGPVPW_CONSTANTS.WARN_QUEUE_BUSY_GATE, function()
-      isQueueBusy = false
-    end)
-  end
+  return playedSound or playedVisual
+end
 
-  RemoveFromQueue(1)
+--[[
+  Block the queue for WARN_QUEUE_BUSY_GATE so consecutive warnings do not talk over each other
+]]--
+EngageBusyGate = function()
+  isQueueBusy = true
+  C_Timer.After(RGPVPW_CONSTANTS.WARN_QUEUE_BUSY_GATE, function()
+    isQueueBusy = false
+  end)
 end
 
 --[[
