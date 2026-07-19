@@ -238,6 +238,7 @@ RGPVPW_CONSTANTS = {
   --[[
     Detection bar visual tokens
   ]]--
+  DETECTION_BAR_MAX_SLOTS = 4,
   DETECTION_BAR_WIDTH = 760,
   DETECTION_BAR_HEIGHT = 56,
   DETECTION_BAR_GAP = 6,

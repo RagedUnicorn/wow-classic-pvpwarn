@@ -37,7 +37,7 @@ me.tag = "AddonOptions"
 ]]--
 local detectionBarDefaults = {
   ["enabled"] = true,
-  ["maxBars"] = 4,
+  ["maxBars"] = RGPVPW_CONSTANTS.DETECTION_BAR_MAX_SLOTS,
   ["scale"] = 1.0,
   ["dedupWindow"] = 1.0,
   ["hintShown"] = false
@@ -705,13 +705,16 @@ end
 
 --[[
   @param {number} maxBars
-    The maximum amount of visible stacked detection bars (clamped to 1-4)
+    The maximum amount of visible stacked detection bars
+    (clamped to 1-DETECTION_BAR_MAX_SLOTS)
 ]]--
 function me.SetDetectionBarMaxBars(maxBars)
   if type(maxBars) ~= "number" then return end
 
   if maxBars < 1 then maxBars = 1 end
-  if maxBars > 4 then maxBars = 4 end
+  if maxBars > RGPVPW_CONSTANTS.DETECTION_BAR_MAX_SLOTS then
+    maxBars = RGPVPW_CONSTANTS.DETECTION_BAR_MAX_SLOTS
+  end
 
   PVPWarnConfiguration.detectionBar.maxBars = maxBars
 end

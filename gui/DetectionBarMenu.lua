@@ -169,7 +169,7 @@ function me.UpdatePositionButtonLabel()
 end
 
 --[[
-  Build the max-bars slider (1-4).
+  Build the max-bars slider (1-DETECTION_BAR_MAX_SLOTS).
 
   @param {table} frame
 ]]--
@@ -178,7 +178,7 @@ function me.BuildMaxBarsSlider(frame)
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_MAX_BARS_SLIDER,
     rgpvpw.L["detection_bar_max_bars_label"],
-    1, 4, 1, 20, -162,
+    1, RGPVPW_CONSTANTS.DETECTION_BAR_MAX_SLOTS, 1, 20, -162,
     mod.configuration.GetDetectionBarMaxBars,
     function(value)
       mod.configuration.SetDetectionBarMaxBars(value)

@@ -41,9 +41,11 @@ mod.detectionBarManager = me
 
 me.tag = "DetectionBarManager"
 
---[[ stack-position alpha multipliers, newest (top) first ]]--
+local MAX_SLOTS = RGPVPW_CONSTANTS.DETECTION_BAR_MAX_SLOTS
+--[[ stack-position alpha multipliers, newest (top) first - one entry per slot ]]--
 local STACK_ALPHA = { 1.0, 0.7, 0.45, 0.30 }
-local MAX_SLOTS = 4
+assert(#STACK_ALPHA == MAX_SLOTS,
+  string.format("STACK_ALPHA must have exactly %d entries (one per slot) got %d", MAX_SLOTS, #STACK_ALPHA))
 local SLIDE_UP_DURATION = 0.2
 
 --[[
