@@ -30,7 +30,6 @@ def test_valid_active_false(validator):
                 "name": "Test Spell",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "test_spell",
-                "spellIcon": "test_icon",
                 "hasFade": False,
                 "active": False,  # Testing with False value
                 "trackedEvents": ["SPELL_CAST_SUCCESS"],
@@ -128,7 +127,6 @@ def test_reference_entries_are_skipped(validator):
                 "name": "Shield Bash",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "shield_bash",
-                "spellIcon": "ability_warrior_shieldbash",
                 "hasFade": False,
                 "active": True,
                 "trackedEvents": ["SPELL_CAST_SUCCESS"],

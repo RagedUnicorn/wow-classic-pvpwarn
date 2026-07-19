@@ -20,7 +20,6 @@ def test_valid_has_cast_true(validator):
                 "name": "Polymorph",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "polymorph",
-                "spellIcon": "spell_nature_polymorph",
                 "hasFade": False,
                 "hasCast": True,  # Testing with True value
                 "active": True,
@@ -44,7 +43,6 @@ def test_valid_has_cast_false(validator):
                 "name": "Test Spell",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "test_spell",
-                "spellIcon": "test_icon",
                 "hasFade": False,
                 "hasCast": False,  # Testing with False value
                 "active": True,
@@ -67,7 +65,6 @@ def test_missing_has_cast_is_valid(validator):
                 "name": "Test Spell",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "test_spell",
-                "spellIcon": "test_icon",
                 "hasFade": False,
                 # hasCast is intentionally missing - this should be valid
                 "active": True,
@@ -90,7 +87,6 @@ def test_has_cast_string_instead_of_boolean(validator):
                 "name": "Test Spell",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "test_spell",
-                "spellIcon": "test_icon",
                 "hasFade": False,
                 "hasCast": "true",  # String instead of boolean
                 "active": True,
@@ -116,7 +112,6 @@ def test_has_cast_number_instead_of_boolean(validator):
                 "name": "Test Spell",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "test_spell",
-                "spellIcon": "test_icon",
                 "hasFade": False,
                 "hasCast": 1,  # Number instead of boolean
                 "active": True,
@@ -142,7 +137,6 @@ def test_has_cast_none_instead_of_boolean(validator):
                 "name": "Test Spell",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "test_spell",
-                "spellIcon": "test_icon",
                 "hasFade": False,
                 "hasCast": None,  # None instead of boolean
                 "active": True,
@@ -168,7 +162,6 @@ def test_has_cast_list_instead_of_boolean(validator):
                 "name": "Test Spell",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "test_spell",
-                "spellIcon": "test_icon",
                 "hasFade": False,
                 "hasCast": [],  # List instead of boolean
                 "active": True,
@@ -194,7 +187,6 @@ def test_has_cast_dict_instead_of_boolean(validator):
                 "name": "Test Spell",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "test_spell",
-                "spellIcon": "test_icon",
                 "hasFade": False,
                 "hasCast": {},  # Dict instead of boolean
                 "active": True,
@@ -221,7 +213,6 @@ def test_reference_entries_are_skipped(validator):
                 "name": "Polymorph",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "polymorph",
-                "spellIcon": "spell_nature_polymorph",
                 "hasFade": False,
                 "hasCast": True,
                 "active": True,
@@ -246,7 +237,6 @@ def test_multiple_entries_with_mixed_has_cast(validator):
                 "name": "Polymorph",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "polymorph",
-                "spellIcon": "spell_nature_polymorph",
                 "hasFade": False,
                 "hasCast": True,
                 "active": True,
@@ -258,7 +248,6 @@ def test_multiple_entries_with_mixed_has_cast(validator):
                 "name": "Fireball",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "fireball",
-                "spellIcon": "spell_fire_fireball",
                 "hasFade": False,
                 "active": True,
                 "trackedEvents": ["SPELL_CAST_SUCCESS"],
@@ -269,7 +258,6 @@ def test_multiple_entries_with_mixed_has_cast(validator):
                 "name": "Mana Shield",
                 "type": "RGPVPW_CONSTANTS.SPELL_TYPE_BASE",
                 "soundFileName": "mana_shield",
-                "spellIcon": "spell_shadow_detectlesserinvisibility",
                 "hasFade": True,
                 "hasCast": "yes",  # Invalid type
                 "active": True,

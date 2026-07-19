@@ -90,11 +90,6 @@ Each validator has its own test file that verifies:
 - ❌ Missing soundFileName properties are detected
 - ❌ Empty sound file names are detected
 
-#### Spell Icons (`test_spell_icon_validator.py`)
-- ✅ Valid spell icons are accepted
-- ❌ Missing spellIcon properties are detected
-- ❌ Empty spell icons are detected
-
 #### All Ranks Validation (`test_all_ranks_validator.py`)
 - ✅ Valid integer arrays for allRanks
 - ❌ Non-array allRanks values are detected

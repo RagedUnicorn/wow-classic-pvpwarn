@@ -9,7 +9,6 @@ from .duplicate_validator import DuplicateValidator
 from .type_validator import TypeValidator
 from .tracked_events_validator import TrackedEventsValidator
 from .sound_file_name_validator import SoundFileNameValidator
-from .spell_icon_validator import SpellIconValidator
 from .all_ranks_validator import AllRanksValidator
 from .active_validator import ActiveValidator
 from .has_fade_validator import HasFadeValidator
@@ -19,6 +18,6 @@ from .item_id_validator import ItemIdValidator
 from .overlay_operations_validator import OverlayOperationsValidator
 
 __all__ = ["BaseValidator", "NameValidator", "DuplicateValidator", "TypeValidator",
-          "TrackedEventsValidator", "SoundFileNameValidator", "SpellIconValidator",
+          "TrackedEventsValidator", "SoundFileNameValidator",
           "AllRanksValidator", "ActiveValidator", "HasFadeValidator", "HasCastValidator",
           "AvoidPropertiesValidator", "ItemIdValidator", "OverlayOperationsValidator"]

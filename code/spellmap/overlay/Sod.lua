@@ -48,7 +48,6 @@ function me.GetOverlay()
           name = "Raging Blow",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "raging_blow",
-          spellIcon = "ability_hunter_swiftstrike",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -62,7 +61,6 @@ function me.GetOverlay()
           name = "Consumed By Rage",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "consumed_by_rage",
-          spellIcon = "spell_nature_shamanrage",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -77,7 +75,6 @@ function me.GetOverlay()
           name = "Quick Strike",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "quick_strike",
-          spellIcon = "inv_axe_03",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -91,7 +88,6 @@ function me.GetOverlay()
           name = "Enraged Regeneration",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "enraged_regeneration",
-          spellIcon = "ability_hunter_harass",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -106,7 +102,6 @@ function me.GetOverlay()
           name = "Rallying Cry",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "rallying_cry",
-          spellIcon = "ability_warrior_commandingshout",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -121,7 +116,6 @@ function me.GetOverlay()
           name = "Intervene",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "intervene",
-          spellIcon = "ability_warrior_victoryrush",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -135,7 +129,6 @@ function me.GetOverlay()
           name = "Commanding Shout",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "commanding_shout",
-          spellIcon = "ability_warrior_rallyingcry",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -149,7 +142,6 @@ function me.GetOverlay()
           name = "Rampage",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "rampage",
-          spellIcon = "ability_warrior_rampage",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -164,7 +156,6 @@ function me.GetOverlay()
           name = "Meathook",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "meathook",
-          spellIcon = "inv_belt_18",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -178,7 +169,6 @@ function me.GetOverlay()
           name = "Shockwave",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "shockwave",
-          spellIcon = "ability_warrior_shockwave",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -192,7 +182,6 @@ function me.GetOverlay()
           name = "Sudden Death",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "sudden_death",
-          spellIcon = "ability_warrior_improveddisciplines",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -207,7 +196,6 @@ function me.GetOverlay()
           name = "Valor of Azeroth",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "valor_of_azeroth",
-          spellIcon = "ability_warrior_innerrage",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -222,7 +210,6 @@ function me.GetOverlay()
           name = "Victory Rush",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "victory_rush",
-          spellIcon = "ability_warrior_devastate",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -236,7 +223,6 @@ function me.GetOverlay()
           name = "Gladiator Stance",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "gladiator_stance",
-          spellIcon = "achievement_featsofstrength_gladiator_08",
           hasFade = false,
           isStanceSpell = true,
           active = true,
@@ -255,7 +241,6 @@ function me.GetOverlay()
           name = "Penance",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "penance",
-          spellIcon = "spell_holy_penance",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -272,7 +257,6 @@ function me.GetOverlay()
           name = "Circle of Healing",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "circle_of_healing",
-          spellIcon = "spell_holy_circleofrenewal",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -287,7 +271,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "shadow_word_death",
           soundText = "Shadowword death",
-          spellIcon = "spell_shadow_demonicfortitude",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -301,7 +284,6 @@ function me.GetOverlay()
           name = "Homunculi",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "homunculi",
-          spellIcon = "spell_shadow_twistedfaith",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -315,7 +297,6 @@ function me.GetOverlay()
           name = "Shadowfiend",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "shadowfiend",
-          spellIcon = "spell_shadow_shadowfiend",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -329,7 +310,6 @@ function me.GetOverlay()
           name = "Prayer of Mending",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "prayer_of_mending",
-          spellIcon = "spell_holy_prayerofmendingtga",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -343,7 +323,6 @@ function me.GetOverlay()
           name = "Void Plague",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "void_plague",
-          spellIcon = "spell_deathknight_bloodplague",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -357,7 +336,6 @@ function me.GetOverlay()
           name = "Mind Spike",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "mind_spike",
-          spellIcon = "spell_shadow_painspike",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -371,7 +349,6 @@ function me.GetOverlay()
           name = "Eye of the Void",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "eye_of_the_void",
-          spellIcon = "inv_misc_eye_03",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -385,7 +362,6 @@ function me.GetOverlay()
           name = "Void Zone",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "void_zone",
-          spellIcon = "inv_enchant_voidsphere",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -399,7 +375,6 @@ function me.GetOverlay()
           name = "Vampiric Touch",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "vampiric_touch",
-          spellIcon = "spell_holy_stoicism",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -413,7 +388,6 @@ function me.GetOverlay()
           name = "Spirit of the Redeemer",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "spirit_of_the_redeemer",
-          spellIcon = "inv_enchant_essenceeternallarge",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -428,7 +402,6 @@ function me.GetOverlay()
           name = "Surge of Light",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "surge_of_light",
-          spellIcon = "spell_holy_surgeoflight",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -443,7 +416,6 @@ function me.GetOverlay()
           name = "Serendipity",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "serendipity",
-          spellIcon = "spell_holy_serendipity",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -459,7 +431,6 @@ function me.GetOverlay()
           name = "Dispersion",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "dispersion",
-          spellIcon = "spell_shadow_dispersion",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -474,7 +445,6 @@ function me.GetOverlay()
           name = "Pain Suppression",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "pain_suppression",
-          spellIcon = "spell_holy_painsupression",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -493,7 +463,6 @@ function me.GetOverlay()
           name = "Quick Draw",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "quick_draw",
-          spellIcon = "inv_musket_02",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -507,7 +476,6 @@ function me.GetOverlay()
           name = "Between the Eyes",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "between_the_eyes",
-          spellIcon = "inv_weapon_rifle_01",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -521,7 +489,6 @@ function me.GetOverlay()
           name = "Blade Dance",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "blade_dance",
-          spellIcon = "ability_warrior_punishingblow",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -536,7 +503,6 @@ function me.GetOverlay()
           name = "Mutilate",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "mutilate",
-          spellIcon = "ability_rogue_shadowstrikes",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -550,7 +516,6 @@ function me.GetOverlay()
           name = "Shadowstrike",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "shadowstrike",
-          spellIcon = "ability_rogue_envelopingshadows",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -564,7 +529,6 @@ function me.GetOverlay()
           name = "Saber Slash",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "saber_slash",
-          spellIcon = "inv_1h_haremmatron_d_01",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -578,7 +542,6 @@ function me.GetOverlay()
           name = "Shadowstep",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "shadowstep",
-          spellIcon = "ability_rogue_shadowstep",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -592,7 +555,6 @@ function me.GetOverlay()
           name = "Poisoned Knife",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "poisoned_knife",
-          spellIcon = "ability_rogue_deadlybrew",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -606,7 +568,6 @@ function me.GetOverlay()
           name = "Shuriken Toss",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "shuriken_toss",
-          spellIcon = "ability_upgrademoonglaive",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -620,7 +581,6 @@ function me.GetOverlay()
           name = "Envenom",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "envenom",
-          spellIcon = "ability_rogue_disembowel",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -634,7 +594,6 @@ function me.GetOverlay()
           name = "Main Gauche",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "main_gauche",
-          spellIcon = "spell_deathknight_spelldeflection",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -648,7 +607,6 @@ function me.GetOverlay()
           name = "Master of Subtlety",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "master_of_subtlety",
-          spellIcon = "ability_rogue_masterofsubtlety",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -663,7 +621,6 @@ function me.GetOverlay()
           name = "Cutthroat",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "cutthroat",
-          spellIcon = "ability_rogue_slaughterfromtheshadows",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -678,7 +635,6 @@ function me.GetOverlay()
           name = "Blunderbuss",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "blunderbuss",
-          spellIcon = "inv_musket_04",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -692,7 +648,6 @@ function me.GetOverlay()
           name = "Crimson Tempest",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "crimson_tempest",
-          spellIcon = "inv_sword_17",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -706,7 +661,6 @@ function me.GetOverlay()
           name = "Fan of Knives",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "fan_of_knives",
-          spellIcon = "ability_rogue_fanofknives",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -724,7 +678,6 @@ function me.GetOverlay()
           name = "Fingers of Frost",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "fingers_of_frost",
-          spellIcon = "ability_mage_wintersgrasp",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -739,7 +692,6 @@ function me.GetOverlay()
           name = "Icy Veins",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "icy_veins",
-          spellIcon = "spell_frost_coldhearted",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -754,7 +706,6 @@ function me.GetOverlay()
           name = "Arcane Surge",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "arcane_surge",
-          spellIcon = "spell_arcane_arcanetorrent",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -768,7 +719,6 @@ function me.GetOverlay()
           name = "Living Bomb",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "living_bomb",
-          spellIcon = "ability_mage_livingbomb",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -782,7 +732,6 @@ function me.GetOverlay()
           name = "Chronostatic Preservation",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "chronostatic_preservation",
-          spellIcon = "spell_arcane_arcane02",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -797,7 +746,6 @@ function me.GetOverlay()
           name = "Living Flame",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "living_flame",
-          spellIcon = "spell_fire_masterofelements",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -811,7 +759,6 @@ function me.GetOverlay()
           name = "Ice Lance",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "ice_lance",
-          spellIcon = "spell_frost_frostblast",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -825,7 +772,6 @@ function me.GetOverlay()
           name = "Deep Freeze",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "deep_freeze",
-          spellIcon = "ability_mage_deepfreeze",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -840,7 +786,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "frostfire_bolt",
           soundText = "Frostfirebolt",
-          spellIcon = "ability_mage_frostfirebolt",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -854,7 +799,6 @@ function me.GetOverlay()
           name = "Spellfrost Bolt",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "spellfrost_bolt",
-          spellIcon = "spell_fire_blueflamebolt",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -868,7 +812,6 @@ function me.GetOverlay()
           name = "Balefire Bolt",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "balefire_bolt",
-          spellIcon = "spell_fire_firebolt",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -882,7 +825,6 @@ function me.GetOverlay()
           name = "Hot Streak",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "hot_streak",
-          spellIcon = "ability_mage_hotstreak",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -897,7 +839,6 @@ function me.GetOverlay()
           name = "Brain Freeze",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "brain_freeze",
-          spellIcon = "ability_mage_brainfreeze",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -912,7 +853,6 @@ function me.GetOverlay()
           name = "Frozen Orb",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "frozen_orb",
-          spellIcon = "spell_frost_frozencore",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -936,7 +876,6 @@ function me.GetOverlay()
           name = "Explosive Trap",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "explosive_trap",
-          spellIcon = "spell_fire_selfdestruct",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -952,7 +891,6 @@ function me.GetOverlay()
           name = "Freezing Trap",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "freezing_trap",
-          spellIcon = "spell_frost_chainsofice",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -968,7 +906,6 @@ function me.GetOverlay()
           name = "Immolation Trap",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "immolation_trap",
-          spellIcon = "spell_fire_flameshock",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -986,7 +923,6 @@ function me.GetOverlay()
           name = "Frost Trap",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "frost_trap",
-          spellIcon = "spell_frost_freezingbreath",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1000,7 +936,6 @@ function me.GetOverlay()
           name = "Sniper Training",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "sniper_training",
-          spellIcon = "ability_hunter_snipershot",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1015,7 +950,6 @@ function me.GetOverlay()
           name = "Kill Shot",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "kill_shot",
-          spellIcon = "ability_hunter_assassinate2",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1029,7 +963,6 @@ function me.GetOverlay()
           name = "Flanking Strike",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "flanking_strike",
-          spellIcon = "ability_hunter_harass",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1043,7 +976,6 @@ function me.GetOverlay()
           name = "Chimera Shot",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "chimera_shot",
-          spellIcon = "ability_hunter_chimerashot2",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1057,7 +989,6 @@ function me.GetOverlay()
           name = "Explosive Shot",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "explosive_shot",
-          spellIcon = "ability_hunter_explosiveshot",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1071,7 +1002,6 @@ function me.GetOverlay()
           name = "Lock and Load",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "lock_and_load",
-          spellIcon = "ability_hunter_lockandload",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1086,7 +1016,6 @@ function me.GetOverlay()
           name = "Hit and Run",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "hit_and_run",
-          spellIcon = "ability_hunter_displacement",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1101,7 +1030,6 @@ function me.GetOverlay()
           name = "Aspect of the Falcon",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "aspect_of_the_falcon",
-          spellIcon = "ability_hunter_pet_dragonhawk",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1116,7 +1044,6 @@ function me.GetOverlay()
           name = "Aspect of the Viper",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "aspect_of_the_viper",
-          spellIcon = "ability_hunter_aspectoftheviper",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1135,7 +1062,6 @@ function me.GetOverlay()
           name = "Demonic Grace",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "demonic_grace",
-          spellIcon = "ability_warlock_demonicpower",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1150,7 +1076,6 @@ function me.GetOverlay()
           name = "Haunt",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "haunt",
-          spellIcon = "ability_warlock_haunt",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1164,7 +1089,6 @@ function me.GetOverlay()
           name = "Vengeance",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "vengeance",
-          spellIcon = "ability_warlock_improveddemonictactics",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1179,7 +1103,6 @@ function me.GetOverlay()
           name = "Immolation Aura",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "immolation_aura",
-          spellIcon = "spell_fire_felimmolation",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1194,7 +1117,6 @@ function me.GetOverlay()
           name = "Unstable Affliction",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "unstable_affliction",
-          spellIcon = "spell_shadow_unstableaffliction_3",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1208,7 +1130,6 @@ function me.GetOverlay()
           name = "Backdraft",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "backdraft",
-          spellIcon = "ability_warlock_backdraft",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1223,7 +1144,6 @@ function me.GetOverlay()
           name = "Infernal Armor",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "infernal_armor",
-          spellIcon = "achievement_boss_kiljaedan",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1238,7 +1158,6 @@ function me.GetOverlay()
           name = "Metamorphosis",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "metamorphosis",
-          spellIcon = "spell_shadow_demonform",
           hasFade = true,
           isStanceSpell = true,
           active = true,
@@ -1258,7 +1177,6 @@ function me.GetOverlay()
           name = "Aegis",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "aegis",
-          spellIcon = "inv_shield_48",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1273,7 +1191,6 @@ function me.GetOverlay()
           name = "Divine Sacrifice",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "divine_sacrifice",
-          spellIcon = "spell_holy_powerwordbarrier",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1288,7 +1205,6 @@ function me.GetOverlay()
           name = "Inspiration Exemplar",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "inspiration_exemplar",
-          spellIcon = "spell_holy_power",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1302,7 +1218,6 @@ function me.GetOverlay()
           name = "Avenger's Shield",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "avengers_shield",
-          spellIcon = "spell_holy_avengersshield",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1316,7 +1231,6 @@ function me.GetOverlay()
           name = "Rebuke",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "rebuke",
-          spellIcon = "inv_relics_totemofrage",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1330,7 +1244,6 @@ function me.GetOverlay()
           name = "Crusader Strike",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "crusader_strike",
-          spellIcon = "spell_holy_crusaderstrike",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1344,7 +1257,6 @@ function me.GetOverlay()
           name = "Divine Storm",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "divine_storm",
-          spellIcon = "ability_paladin_divinestorm",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1358,7 +1270,6 @@ function me.GetOverlay()
           name = "Divine Steed",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "divine_steed",
-          spellIcon = "spell_holy_crusaderaura",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1373,7 +1284,6 @@ function me.GetOverlay()
           name = "Hand of Sacrifice",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "hand_of_sacrifice",
-          spellIcon = "spell_holy_sealofsacrifice",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1388,7 +1298,6 @@ function me.GetOverlay()
           name = "Divine Light",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "divine_light",
-          spellIcon = "spell_holy_surgeoflight",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1402,7 +1311,6 @@ function me.GetOverlay()
           name = "Avenging Wrath",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "avenging_wrath",
-          spellIcon = "spell_holy_avenginewrath",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1421,7 +1329,6 @@ function me.GetOverlay()
           name = "Skull Bash",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "skull_bash",
-          spellIcon = "inv_misc_bone_taurenskull_01",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1435,7 +1342,6 @@ function me.GetOverlay()
           name = "Savage Roar",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "savage_roar",
-          spellIcon = "ability_druid_skinteeth",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1450,7 +1356,6 @@ function me.GetOverlay()
           name = "Lacerate",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "lacerate",
-          spellIcon = "ability_druid_lacerate",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1464,7 +1369,6 @@ function me.GetOverlay()
           name = "Wild Growth",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "wild_growth",
-          spellIcon = "ability_druid_flourish",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1478,7 +1382,6 @@ function me.GetOverlay()
           name = "Mangle",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "mangle",
-          spellIcon = "ability_druid_mangle2",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1492,7 +1395,6 @@ function me.GetOverlay()
           name = "Berserk",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "berserk",
-          spellIcon = "ability_druid_berserk",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1507,7 +1409,6 @@ function me.GetOverlay()
           name = "Survival Instincts",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "survival_instincts",
-          spellIcon = "ability_mount_whitedirewolf",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1522,7 +1423,6 @@ function me.GetOverlay()
           name = "Tree of Life",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "tree_of_life",
-          spellIcon = "ability_druid_treeoflife",
           hasFade = true,
           isStanceSpell = true,
           active = true,
@@ -1538,7 +1438,6 @@ function me.GetOverlay()
           name = "Fury of Stormrage",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "fury_of_stormrage",
-          spellIcon = "inv_staff_90",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1553,7 +1452,6 @@ function me.GetOverlay()
           name = "Eclipse: Solar",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "eclipse_solar",
-          spellIcon = "ability_druid_eclipseorange",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1568,7 +1466,6 @@ function me.GetOverlay()
           name = "Eclipse: Lunar",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "eclipse_lunar",
-          spellIcon = "ability_druid_eclipse",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1587,7 +1484,6 @@ function me.GetOverlay()
           name = "Healing Rain",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "healing_rain",
-          spellIcon = "spell_nature_tranquility",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1601,7 +1497,6 @@ function me.GetOverlay()
           name = "Ancestral Guidance",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "ancestral_guidance",
-          spellIcon = "ability_druid_lunarguidance",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1616,7 +1511,6 @@ function me.GetOverlay()
           name = "Earth Shield",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "earth_shield",
-          spellIcon = "spell_nature_skinofearth",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1631,7 +1525,6 @@ function me.GetOverlay()
           name = "Water Shield",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "water_shield",
-          spellIcon = "ability_shaman_watershield",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1646,7 +1539,6 @@ function me.GetOverlay()
           name = "Decoy Totem",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "decoy_totem",
-          spellIcon = "inv_misc_toy_04",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1660,7 +1552,6 @@ function me.GetOverlay()
           name = "Totemic Projection",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "totemic_projection",
-          spellIcon = "spell_shaman_totemrecall",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1674,7 +1565,6 @@ function me.GetOverlay()
           name = "Maelstrom Weapon",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "maelstrom_weapon",
-          spellIcon = "spell_shaman_maelstromweapon",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1689,7 +1579,6 @@ function me.GetOverlay()
           name = "Tidal Waves",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "tidal_waves",
-          spellIcon = "spell_shaman_tidalwaves",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1704,7 +1593,6 @@ function me.GetOverlay()
           name = "Riptide",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "riptide",
-          spellIcon = "spell_nature_riptide",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1718,7 +1606,6 @@ function me.GetOverlay()
           name = "Power Surge",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "power_surge",
-          spellIcon = "inv_misc_orb_05",
           hasFade = true,
           active = true,
           trackedEvents = {
@@ -1733,7 +1620,6 @@ function me.GetOverlay()
           name = "Feral Spirit",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "feral_spirit",
-          spellIcon = "spell_shaman_feralspirit",
           hasFade = false,
           active = true,
           trackedEvents = {
@@ -1767,13 +1653,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "greater_insignia",
           soundText = "Insignia",
-          spellIcon = (function()
-            if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
-              return "inv_jewelry_trinketpvp_01" -- alliance
-            else
-              return "inv_jewelry_trinketpvp_02" -- horde
-            end
-          end)(),
           itemId = (function()
             if UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde" then
               return 216938 -- alliance
@@ -1796,7 +1675,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "blood_caked_insignia",
           soundText = "Insignia",
-          spellIcon = "spell_deathknight_runetap",
           itemId = 233728,
           hasFade = false,
           active = true,
@@ -1812,7 +1690,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "void_touched_leather_gauntlets_gloves",
           soundText = "Void madness",
-          spellIcon = "inv_gauntlets_24",
           itemId = 211502,
           hasFade = true,
           active = true,
@@ -1829,7 +1706,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "extraplanar_spidersilk_boots",
           soundText = "Planar shift",
-          spellIcon = "inv_boots_05",
           itemId = 210795,
           hasFade = true,
           active = true,
@@ -1846,7 +1722,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "gneuro_linked_arcano_filament_monocle",
           soundText = "Charged inspiration",
-          spellIcon = "inv_misc_enggizmos_27",
           itemId = 215111,
           hasFade = true,
           active = true,
@@ -1863,7 +1738,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "glowing_gneuro_linked_cowl",
           soundText = "Gneuro logical shock",
-          spellIcon = "inv_helmet_15",
           itemId = 215166,
           hasFade = true,
           active = true,
@@ -1880,7 +1754,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "tempered_interference_negating_helmet",
           soundText = "Intense concentration",
-          spellIcon = "inv_helmet_49",
           itemId = 215161,
           hasFade = true,
           active = true,
@@ -1897,7 +1770,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "gneuro_conductive_chanelers_hood",
           soundText = "Gneuromantic meditation",
-          spellIcon = "inv_helmet_42",
           itemId = 215381,
           hasFade = true,
           active = true,
@@ -1914,7 +1786,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "reflective_truesilver_braincage",
           soundText = "Reinforced willpower",
-          spellIcon = "inv_helmet_49",
           itemId = 215167,
           hasFade = true,
           active = true,
@@ -1931,7 +1802,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "glowing_hyperconductive_scale_coif",
           soundText = "Hyperconductive shock",
-          spellIcon = "inv_helmet_43",
           itemId = 215114,
           hasFade = true,
           active = true,
@@ -1948,7 +1818,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "hyperconductive_goldwrap",
           soundText = "Coin flip",
-          spellIcon = "inv_belt_32",
           itemId = 215115,
           hasFade = true,
           active = true,
@@ -1966,7 +1835,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "catnip",
           soundText = "Haste",
-          spellIcon = "inv_misc_plant_01",
           itemId = 213407,
           hasFade = true,
           active = true,
@@ -1983,7 +1851,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "domesticated_attack_chicken",
           soundText = "Chicken",
-          spellIcon = "spell_magic_polymorphchicken",
           itemId = 215461,
           hasFade = false,
           active = true,
@@ -1999,7 +1866,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "gniodine_pill_bottle",
           soundText = "Gniodine dispel",
-          spellIcon = "inv_valentinecolognebottle",
           itemId = 213349,
           hasFade = true,
           active = true,
@@ -2016,7 +1882,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "wirdals_hardened_core",
           soundText = "Hardened to the core",
-          spellIcon = "inv_gizmo_khoriumpowercore",
           itemId = 213350,
           hasFade = true,
           active = true,
@@ -2033,7 +1898,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "miniaturized_fire_extinguisher",
           soundText = "Extinguish fire",
-          spellIcon = "inv_misc_enggizmos_essencedistiller",
           itemId = 228084,
           hasFade = false,
           active = true,
@@ -2049,7 +1913,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "woodcarved_moonstalker",
           soundText = "Moonstalker fury",
-          spellIcon = "inv_jewelcrafting_blackpearlpanther",
           itemId = 228089,
           hasFade = true,
           active = true,
@@ -2066,7 +1929,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "germinating_poisonseed",
           soundText = "Guardian of nature",
-          spellIcon = "inv_misc_herb_nightmareseed",
           itemId = 228081,
           hasFade = true,
           active = true,
@@ -2082,7 +1944,6 @@ function me.GetOverlay()
           name = "Accursed Chalice",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "accursed_chalice",
-          spellIcon = "inv_offhand_pvealliance_d_01",
           itemId = 228078,
           hasFade = true,
           active = true,
@@ -2098,7 +1959,6 @@ function me.GetOverlay()
           name = "Mar'li's Eye",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "marlis_eye",
-          spellIcon = "inv_zulgurubtrinket",
           itemId = 230920,
           hasFade = false,
           active = true,
@@ -2114,7 +1974,6 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "shadowflame_sword",
           soundText = "shadowflame fury",
-          spellIcon = "inv_sword_35",
           itemId = 228143,
           hasFade = true,
           active = true,
@@ -2134,7 +1993,6 @@ function me.GetOverlay()
           name = "First Aid",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "first_aid",
-          spellIcon = "inv_misc_bandage_netherweave_heavy",
           itemId = 232433,
           hasFade = false,
           active = true,

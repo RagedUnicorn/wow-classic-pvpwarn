@@ -28,7 +28,7 @@ The JSON dumps are pretty-printed with sorted keys so they diff cleanly between 
 
 ## Derived fields
 
-On top of the verbatim Lua source fields (`name`, `type`, `soundFileName`, `spellIcon`,
+On top of the verbatim Lua source fields (`name`, `type`, `soundFileName`,
 `allRanks`, flags, …), every **real** entry is enriched inline with data computed offline - no
 network, nothing fetched. Ref-aliases (`{ "refId": ... }`) are left untouched.
 
@@ -36,7 +36,6 @@ network, nothing fetched. Ref-aliases (`{ "refId": ... }`) are left untouched.
 |------------------|--------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | `wowheadUrl`     | `https://www.wowhead.com/classic/spell=18499`                                                                | spell id + per-branch wowhead path (`/classic/` for `classic` and `sod`, `/tbc/` for `tbc`)                                      |
 | `itemWowheadUrl` | `https://www.wowhead.com/classic/item=10592`                                                                 | only on item-backed entries (those with an `itemId`)                                                                             |
-| `iconUrl`        | `https://wow.zamimg.com/images/wow/icons/large/spell_nature_ancestralguardian.jpg`                           | zamimg CDN URL from `spellIcon` (works for item icons too)                                                                       |
 | `soundFiles`     | `{ "applied": { "path": "assets/sounds/en/warrior/berserker_rage.mp3", "exists": true }, "removed": { … } }` | the concrete `.mp3` files the AddOn would play, reconstructed from `code/Sound.lua`'s path convention, each checked against disk |
 
 `soundFiles` roles for a **SpellMap** entry come from its `trackedEvents`

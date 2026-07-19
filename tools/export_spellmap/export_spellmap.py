@@ -54,7 +54,7 @@ KNOWN_TYPES = (TYPE_BASE, TYPE_SOD, TYPE_TBC)
 # --- Derived enrichment ----------------------------------------------------------------------
 # Computed offline from data already in the map (no network). Wowhead URLs follow the public URL
 # scheme; sound paths mirror code/Sound.lua's path building exactly. This keeps the export
-# self-contained for review (clickable spell pages, icon images, the concrete .mp3 files played).
+# self-contained for review (clickable spell pages, the concrete .mp3 files played).
 
 # wowhead has no distinct /sod/ path - Season of Discovery spells live under the classic domain.
 WOWHEAD_SPELL_BASE = {
@@ -67,7 +67,6 @@ WOWHEAD_ITEM_BASE = {
     "sod": "https://www.wowhead.com/classic/item=",
     "tbc": "https://www.wowhead.com/tbc/item=",
 }
-ZAMIMG_ICON_BASE = "https://wow.zamimg.com/images/wow/icons/large/"
 
 # Sound path pieces - mirror code/Sound.lua:36-43 exactly. SOUND_ROOT is the addon-relative root
 # the JSON display paths are anchored to; the on-disk existence check resolves the per-entry
@@ -107,11 +106,6 @@ def build_wowhead_url(branch: str, spell_id: int) -> str:
 def build_item_wowhead_url(branch: str, item_id: int) -> str:
     """Wowhead item-page URL for item-backed entries (those carrying an ``itemId``)."""
     return f"{WOWHEAD_ITEM_BASE[branch]}{item_id}"
-
-
-def build_icon_url(spell_icon: str) -> str:
-    """Wowhead (zamimg CDN) large icon image URL built from the ``spellIcon`` texture name."""
-    return f"{ZAMIMG_ICON_BASE}{spell_icon.lower()}.jpg"
 
 
 def derive_sound_files(category: str, entry: Dict[str, Any], is_avoid_map: bool) -> Dict[str, str]:
@@ -155,7 +149,7 @@ def enrich(assembled: Dict[str, Dict[int, Dict]], branch: str, is_avoid_map: boo
            assets_dir: Path) -> Tuple[Dict[str, Dict[int, Dict]], List[str]]:
     """Add derived fields to every real entry and collect missing-but-expected sound files.
 
-    Adds (inline) ``wowheadUrl``, ``iconUrl``, ``itemWowheadUrl`` (item-backed only) and a
+    Adds (inline) ``wowheadUrl``, ``itemWowheadUrl`` (item-backed only) and a
     ``soundFiles`` map of ``{role: {path, exists}}``. Ref-aliases are passed through untouched.
     Mutates the entries in place (the assembled map is exporter-local, not shared) and also returns
     it. Returns ``(assembled, missing_sounds)``.
@@ -172,10 +166,6 @@ def enrich(assembled: Dict[str, Dict[int, Dict]], branch: str, is_avoid_map: boo
             item_id = entry.get("itemId")
             if item_id is not None:
                 entry["itemWowheadUrl"] = build_item_wowhead_url(branch, item_id)
-
-            spell_icon = entry.get("spellIcon")
-            if spell_icon:
-                entry["iconUrl"] = build_icon_url(spell_icon)
 
             sound_files: Dict[str, Dict[str, Any]] = {}
             for role, subpath in derive_sound_files(category, entry, is_avoid_map).items():
@@ -234,8 +224,6 @@ def summarize(assembled: Dict[str, Dict[int, Dict]], is_avoid_map: bool) -> Dict
 
             if "name" not in entry or not entry.get("name"):
                 anomalies.append(f"{category}[{spell_id}]: missing 'name'")
-            if "spellIcon" not in entry or not entry.get("spellIcon"):
-                anomalies.append(f"{category}[{spell_id}]: missing 'spellIcon'")
 
             all_ranks = entry.get("allRanks")
             if not all_ranks:

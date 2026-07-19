@@ -63,7 +63,6 @@ class TestTypeValidator:
                     "name": "Charge",
                     "type": "SPELL_TYPE_TBC",
                     "soundFileName": "charge",
-                    "spellIcon": "ability_warrior_charge",
                     "trackedEvents": ["SPELL_CAST_SUCCESS"],
                 }
             }

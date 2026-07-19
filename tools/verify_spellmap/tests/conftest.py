@@ -103,12 +103,6 @@ def invalid_sound_file_names_spellmap(fixture_loader):
 
 
 @pytest.fixture
-def invalid_spell_icons_spellmap(fixture_loader):
-    """Load the spellmap with invalid spell icons."""
-    return fixture_loader.load_fixture("invalid_spell_icons")
-
-
-@pytest.fixture
 def valid_spell_variations(fixture_loader):
     """Load the spellmap with various valid spell patterns."""
     return fixture_loader.load_fixture("valid_spell_variations")
@@ -133,7 +127,6 @@ def minimal_valid_spell():
         "name": "Test Spell",
         "type": "SPELL_TYPE_BASE",
         "soundFileName": "test_sound",
-        "spellIcon": "test_icon",
         "trackedEvents": ["SPELL_CAST_SUCCESS"]
     }
 

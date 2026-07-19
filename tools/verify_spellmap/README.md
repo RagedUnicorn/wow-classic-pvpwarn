@@ -64,7 +64,6 @@ The verifier mirrors the in-game test framework's three-pass model. For each map
 - **Type Property Validation**: Validates spell types (SPELL_TYPE_BASE, SPELL_TYPE_SOD, SPELL_TYPE_TBC, etc.)
 - **Duplicate Spell ID Detection**: Checks for spell IDs that appear multiple times within the same category
 - **Sound File Name Validation**: Ensures soundFileName property exists and is non-empty
-- **Spell Icon Validation**: Validates spellIcon property exists and is non-empty
 - **All Ranks Validation**: Verifies allRanks property is a valid array of integers
 - **Overlay Operations Validation**: Mirrors `mod.spellMapAssembler.Validate` - checks remove/add/replace ops are coherent against the base
 
@@ -122,7 +121,6 @@ Validators run:
   [OK] Name Property Validator: PASSED
   [OK] Type Property Validator: PASSED
   [OK] SoundFileNameValidator: PASSED
-  [OK] SpellIconValidator: PASSED
   [OK] AllRanksValidator: PASSED
   [OK] TrackedEventsValidator: PASSED
   [OK] ActiveValidator: PASSED
@@ -155,7 +153,6 @@ Validators run:
   [OK] Name Property Validator: PASSED
   [OK] Type Property Validator: PASSED
   [OK] SoundFileNameValidator: PASSED
-  [OK] SpellIconValidator: PASSED
   [OK] AllRanksValidator: PASSED
   [OK] Avoid Properties Validator: PASSED
 
@@ -212,7 +209,6 @@ spellmap_verify/
 │       ├── type_validator.py           # Type validation
 │       ├── duplicate_validator.py      # Duplicate detection
 │       ├── sound_file_name_validator.py # Sound file validation
-│       ├── spell_icon_validator.py     # Spell icon validation
 │       ├── all_ranks_validator.py      # All ranks validation
 │       ├── tracked_events_validator.py # Tracked events validation
 │       ├── active_validator.py         # Active property validation

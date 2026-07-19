@@ -12,7 +12,6 @@ function me.GetOverlay()
           name = "Piercing Howl (duplicated)",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "piercing_howl",
-          spellIcon = "spell_shadow_deathscream",
           hasFade = false,
           active = true,
           trackedEvents = { "SPELL_CAST_SUCCESS" },

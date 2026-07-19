@@ -18,7 +18,6 @@ def _entry(name, type_, ranks, **extra):
     e = {
         "name": name,
         "type": type_,
-        "spellIcon": "icon_" + name.lower(),
         "allRanks": [{"spellId": rid, "type": type_} for rid in ranks],
     }
     e.update(extra)
@@ -47,14 +46,12 @@ class TestSummarize:
         assert summary["per_rank_type"][ex.TYPE_SOD] == 1
         assert summary["anomalies"] == []
 
-    def test_flags_broken_ref_missing_icon_and_empty_ranks(self):
+    def test_flags_broken_ref_and_empty_ranks(self):
         assembled = {
             "mage": {
                 1: {"refId": 999},                                  # target 999 not present
-                2: {"name": "Frostbolt", "type": ex.TYPE_BASE,      # missing spellIcon
-                    "allRanks": [{"spellId": 2, "type": ex.TYPE_BASE}]},
                 3: {"name": "Fireball", "type": ex.TYPE_BASE,       # empty allRanks
-                    "spellIcon": "x", "allRanks": []},
+                    "allRanks": []},
             },
         }
 
@@ -62,7 +59,6 @@ class TestSummarize:
 
         joined = "\n".join(anomalies)
         assert "mage[1]: refId 999 has no target" in joined
-        assert "mage[2]: missing 'spellIcon'" in joined
         assert "mage[3]: empty or missing 'allRanks'" in joined
 
 
@@ -125,15 +121,6 @@ class TestUrlBuilders:
         assert ex.build_item_wowhead_url("classic", 10592) == "https://www.wowhead.com/classic/item=10592"
         assert ex.build_item_wowhead_url("tbc", 10592) == "https://www.wowhead.com/tbc/item=10592"
 
-    def test_icon_url_from_texture_name(self):
-        assert ex.build_icon_url("spell_nature_ancestralguardian") == (
-            "https://wow.zamimg.com/images/wow/icons/large/spell_nature_ancestralguardian.jpg"
-        )
-        # Defensive lowercasing - texture names are already lowercase in the data.
-        assert ex.build_icon_url("Spell_Nature_X") == (
-            "https://wow.zamimg.com/images/wow/icons/large/spell_nature_x.jpg"
-        )
-
 
 class TestDeriveSoundFiles:
     def test_spellmap_events_drive_roles(self):
@@ -191,7 +178,7 @@ class TestEnrich:
         assembled = {
             "warrior": {
                 18499: _entry("Berserker Rage", ex.TYPE_BASE, [18499],
-                              soundFileName="berserker_rage", spellIcon="spell_x",
+                              soundFileName="berserker_rage",
                               trackedEvents=["SPELL_AURA_APPLIED", "SPELL_AURA_REMOVED"]),
                 101: {"refId": 18499},
             }
@@ -201,7 +188,6 @@ class TestEnrich:
 
         entry = enriched["warrior"][18499]
         assert entry["wowheadUrl"] == "https://www.wowhead.com/classic/spell=18499"
-        assert entry["iconUrl"] == "https://wow.zamimg.com/images/wow/icons/large/spell_x.jpg"
         assert entry["soundFiles"]["applied"] == {
             "path": "assets/sounds/en/warrior/berserker_rage.mp3", "exists": True}
         assert entry["soundFiles"]["removed"] == {
@@ -215,7 +201,7 @@ class TestEnrich:
         assembled = {
             "items": {
                 12608: _entry("Catseye Elixir", ex.TYPE_BASE, [12608],
-                              soundFileName="catseye_elixir", spellIcon="inv_potion_36",
+                              soundFileName="catseye_elixir",
                               itemId=10592, trackedEvents=["SPELL_AURA_APPLIED"]),
             }
         }

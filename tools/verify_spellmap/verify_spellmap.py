@@ -32,7 +32,7 @@ from spellmap_core.assembler import apply as assemble_apply, \
     synthesize_rank_aliases
 from verify_spellmap.validators import (
     NameValidator, DuplicateValidator, TypeValidator,
-    TrackedEventsValidator, SoundFileNameValidator, SpellIconValidator,
+    TrackedEventsValidator, SoundFileNameValidator,
     AllRanksValidator, ActiveValidator, HasFadeValidator, HasCastValidator,
     BaseValidator, AvoidPropertiesValidator, ItemIdValidator,
     OverlayOperationsValidator,
@@ -49,7 +49,6 @@ def _build_entry_validators(is_avoid_map: bool, dynamic_properties: List[str]) -
         NameValidator(dynamic_properties),
         TypeValidator(),
         SoundFileNameValidator(),
-        SpellIconValidator(),
         AllRanksValidator(),
     ]
 

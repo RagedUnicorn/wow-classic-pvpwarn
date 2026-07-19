@@ -63,7 +63,6 @@ function me.GetOverlay()
           name = "Chastise",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
           soundFileName = "chastise",
-          spellIcon = "spell_holy_chastise",
           self_avoid = true,
           enemy_avoid = true,
           allRanks = {
@@ -96,7 +95,6 @@ function me.GetOverlay()
           name = "Deadly Throw",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
           soundFileName = "deadly_throw",
-          spellIcon = "inv_throwingknife_06",
           self_avoid = true,
           enemy_avoid = true,
           allRanks = {
@@ -119,7 +117,6 @@ function me.GetOverlay()
           name = "Dragon's Breath",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
           soundFileName = "dragons_breath",
-          spellIcon = "inv_misc_head_dragon_01",
           self_avoid = true,
           enemy_avoid = true,
           allRanks = {
@@ -130,7 +127,6 @@ function me.GetOverlay()
           name = "Spellsteal",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
           soundFileName = "spellsteal",
-          spellIcon = "spell_arcane_arcane02",
           self_avoid = true,
           enemy_avoid = true,
           allRanks = {
@@ -154,7 +150,6 @@ function me.GetOverlay()
           name = "Silencing Shot",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
           soundFileName = "silencing_shot",
-          spellIcon = "ability_theblackarrow",
           self_avoid = true,
           enemy_avoid = true,
           allRanks = {
@@ -174,7 +169,6 @@ function me.GetOverlay()
           name = "Shadowfury",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
           soundFileName = "shadowfury",
-          spellIcon = "spell_shadow_shadowfury",
           self_avoid = true,
           enemy_avoid = true,
           allRanks = {
@@ -207,7 +201,6 @@ function me.GetOverlay()
           name = "Cyclone",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
           soundFileName = "cyclone",
-          spellIcon = "spell_nature_earthbind",
           self_avoid = true,
           enemy_avoid = true,
           allRanks = {
@@ -218,7 +211,6 @@ function me.GetOverlay()
           name = "Maim",
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
           soundFileName = "maim",
-          spellIcon = "ability_druid_mangle",
           self_avoid = true,
           enemy_avoid = true,
           allRanks = {
