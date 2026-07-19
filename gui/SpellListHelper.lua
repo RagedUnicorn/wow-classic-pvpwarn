@@ -44,7 +44,7 @@ local PlaySoundButtonOnClick
 local PlaySoundSpecialButtonOnClick
 local CreateVisualAlertDropdown
 local DropDownMenuCallback
-local ToggleVisualWarningOnClick
+local PlayVisualAlertButtonOnClick
 local UpdateSpellRows
 local UpdateIcon
 local UpdateSpellStateCheckBox
@@ -271,7 +271,7 @@ CreateRowFrame = function(spellList, frame, position)
          (checkbox 24 + offset 150) - a 24px gap lines this button up with that column ]]--
     {"LEFT", row.chooseVisual, "RIGHT", 24, 0},
     function(self)
-      ToggleVisualWarningOnClick(spellList, self)
+      PlayVisualAlertButtonOnClick(spellList, self)
     end,
     options.labels.playVisual
   )
@@ -516,12 +516,13 @@ DropDownMenuCallback = function(spellList, dropdown, colorValue)
 end
 
 --[[
-  Click callback for enabling/disabling visual warnings
+  Click callback for previewing the spell's configured visual warning - fires the flash
+  in the spell's chosen color or asks the user to pick a color first
 
   @param {table} spellList
   @param {table} self
 ]]--
-ToggleVisualWarningOnClick = function(spellList, self)
+PlayVisualAlertButtonOnClick = function(spellList, self)
   -- retrieve color for specific spell and category from configuration
   local color = mod.spellConfiguration.GetVisualWarningColor(
     spellList.options.spellList,
