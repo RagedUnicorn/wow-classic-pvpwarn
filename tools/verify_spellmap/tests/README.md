@@ -14,8 +14,7 @@ tests/
 └── validators/         # Individual validator tests
     ├── test_name_validator.py      # Tests for NameValidator
     ├── test_type_validator.py      # Tests for TypeValidator
-    ├── test_duplicate_validator.py # Tests for DuplicateValidator
-    └── test_dynamic_properties.py  # Tests for dynamic property handling
+    └── test_duplicate_validator.py # Tests for DuplicateValidator
 ```
 
 ## Running Tests
@@ -53,9 +52,6 @@ pytest tests/validators/test_type_validator.py
 
 # Run only duplicate validator tests
 pytest tests/validators/test_duplicate_validator.py
-
-# Run only dynamic property tests
-pytest tests/validators/test_dynamic_properties.py
 ```
 
 ### Run Specific Test Methods
@@ -89,7 +85,6 @@ A completely valid spell map that should pass all validations.
 Tests for NameValidator:
 - Missing name property
 - Empty name property
-- Dynamic faction-specific names
 
 ### invalid_types.lua
 Tests for TypeValidator:

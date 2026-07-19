@@ -73,7 +73,6 @@ Each validator has its own test file that verifies:
 - ✅ Valid spell names are accepted
 - ❌ Missing names are detected
 - ❌ Empty names are detected
-- ✅ Dynamic properties (faction-specific names) are handled
 
 #### Type Validation (`test_type_validator.py`)
 - ✅ Valid spell types (SPELL_TYPE_BASE, SPELL_TYPE_SOD, etc.)

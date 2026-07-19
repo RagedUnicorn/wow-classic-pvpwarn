@@ -33,23 +33,6 @@ class TestNameValidator:
         errors = validator.get_errors()
         assert len(errors) == 0
 
-    def test_dynamic_properties_in_fixture(self, missing_names_spellmap, fixture_loader):
-        """Test that dynamic properties are detected from fixtures."""
-        # The missing_names fixture has a dynamic faction-specific name
-        dynamic_props = fixture_loader.lua_parser.get_dynamic_properties()
-
-        # Should have detected the dynamic property for spell 438273
-        assert len(dynamic_props) > 0
-        assert any("438273" in prop for prop in dynamic_props)
-
-        # Validator should handle dynamic properties without errors
-        validator = NameValidator(dynamic_props)
-        validator.validate(missing_names_spellmap)
-
-        errors = validator.get_errors()
-        # Should only have errors for missing/empty names, not for dynamic property
-        assert not any("438273" in error for error in errors)
-
     def test_reference_entries_in_fixture(self, valid_spellmap):
         """Test that reference entries are properly skipped in fixtures."""
         validator = NameValidator()

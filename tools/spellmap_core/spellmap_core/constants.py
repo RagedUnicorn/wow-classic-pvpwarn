@@ -36,7 +36,6 @@ end
 
 # Regex patterns
 CATEGORY_PATTERN = r'\["(\w+)"\]\s*=\s*\{'
-DYNAMIC_NAME_PATTERN = r'\[(\d+)\]\s*=\s*\{[^}]*name\s*=\s*\(function\(\)'
 
 # Spell map markers
 SPELLMAP_DEFINITION = "local spellMap = {"

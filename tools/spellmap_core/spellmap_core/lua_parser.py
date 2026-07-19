@@ -2,16 +2,13 @@
 Lua parsing functionality for the SpellMap / SpellAvoidMap source.
 """
 
-import re
-from typing import Dict, List
+from typing import Dict
 import lupa
 from lupa import LuaRuntime
 
 from .constants import (
     LUA_ADDON_NAMESPACE_MOCK,
     LUA_UNITFACTIONGROUP_MOCK,
-    CATEGORY_PATTERN,
-    DYNAMIC_NAME_PATTERN,
     SPELLMAP_DEFINITION,
     SPELLMAP_GLOBAL
 )
@@ -25,7 +22,6 @@ class LuaParser:
         self.lua = LuaRuntime(unpack_returned_tuples=True)
         self.spell_entries: Dict[str, Dict[int, Dict]] = {}
         self.spell_avoid_entries: Dict[str, Dict[int, Dict]] = {}
-        self.dynamic_properties: List[str] = []
 
     def setup_environment(self) -> None:
         """Set up the Lua environment with necessary mocks and constants."""
@@ -44,10 +40,6 @@ class LuaParser:
         """
         # Reset state
         self.spell_entries.clear()
-        self.dynamic_properties.clear()
-
-        # Detect dynamic properties
-        self._detect_dynamic_properties(content)
 
         # Modify content to expose spellMap globally
         modified_content = content.replace(SPELLMAP_DEFINITION, SPELLMAP_GLOBAL)
@@ -88,9 +80,6 @@ class LuaParser:
         """
         # Reset state
         self.spell_avoid_entries.clear()
-
-        # Detect dynamic properties
-        self._detect_dynamic_properties(content)
 
         # Modify content to expose spellAvoidMap globally
         modified_content = content.replace("local spellAvoidMap = {", "_G.spellAvoidMap = {")
@@ -137,8 +126,7 @@ class LuaParser:
             }
 
         Missing sections are normalised to empty containers so the assembler can iterate
-        without nil-checks. Detects dynamic-name properties on overlay-added spells just like
-        ``parse_spellmap``.
+        without nil-checks.
 
         Args:
             content: Raw Lua source.
@@ -146,8 +134,6 @@ class LuaParser:
         Returns:
             The parsed overlay dict.
         """
-        self._detect_dynamic_properties(content)
-
         if "function me.GetOverlay()" not in content:
             raise ValueError(
                 "Overlay file does not declare a `function me.GetOverlay()` entry point"
@@ -212,17 +198,6 @@ class LuaParser:
 
         return result
 
-    def _detect_dynamic_properties(self, content: str) -> None:
-        """Detect spell entries with dynamic (function-based) properties."""
-        for match in re.finditer(DYNAMIC_NAME_PATTERN, content, re.DOTALL):
-            spell_id = match.group(1)
-            # Find which category this spell belongs to
-            before_match = content[:match.start()]
-            category_matches = list(re.finditer(CATEGORY_PATTERN, before_match))
-            if category_matches:
-                last_category = category_matches[-1].group(1)
-                self.dynamic_properties.append(f"{last_category}[{spell_id}]")
-
     def lua_table_to_dict(self, lua_table) -> Dict:
         """Convert a Lua table to a Python dictionary."""
         if lupa.lua_type(lua_table) != 'table':
@@ -262,7 +237,3 @@ class LuaParser:
 
         # Otherwise treat as dictionary
         return self.lua_table_to_dict(lua_table)
-
-    def get_dynamic_properties(self) -> List[str]:
-        """Get the list of dynamic properties found during parsing."""
-        return self.dynamic_properties.copy()

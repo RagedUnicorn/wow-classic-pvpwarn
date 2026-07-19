@@ -25,7 +25,6 @@ class ReportSection:
         self.errors: List[str] = []
         # (validator_name, error_count, errors)
         self.validator_results: List[Tuple[str, int, List[str]]] = []
-        self.dynamic_properties: List[str] = []
 
 
 class Reporter:
@@ -100,8 +99,6 @@ class Reporter:
             f"Total spell references: {total_references}",
             f"Total unique spell IDs: {len(unique_ids)}",
         ]
-        if section.dynamic_properties:
-            lines.append(f"Dynamic properties detected: {len(section.dynamic_properties)}")
         return lines
 
     @staticmethod

@@ -42,11 +42,11 @@ from verify_spellmap.validators import (
 BRANCHES = ("classic", "sod", "tbc")
 
 
-def _build_entry_validators(is_avoid_map: bool, dynamic_properties: List[str]) -> List[BaseValidator]:
+def _build_entry_validators(is_avoid_map: bool) -> List[BaseValidator]:
     """Build the per-entry validator stack for one branch pass."""
     validators: List[BaseValidator] = [
         DuplicateValidator(),
-        NameValidator(dynamic_properties),
+        NameValidator(),
         TypeValidator(),
         SoundFileNameValidator(),
         AllRanksValidator(),
@@ -87,7 +87,6 @@ class MapVerifier:
         base_entries = parser.parse_spell_avoid_map(SpellMapFileReader(str(self.base_path)).read()) \
             if self.is_avoid_map \
             else parser.parse_spellmap(SpellMapFileReader(str(self.base_path)).read())
-        base_dynamic_properties = parser.get_dynamic_properties()
 
         sod_overlay = parser.parse_overlay(SpellMapFileReader(str(self.sod_path)).read())
         tbc_overlay = parser.parse_overlay(SpellMapFileReader(str(self.tbc_path)).read())
@@ -121,7 +120,6 @@ class MapVerifier:
             synthesis_errors = synthesize_rank_aliases(assembled)
             section = ReportSection(f"{self.map_name} ({branch} branch)")
             section.spell_entries = assembled
-            section.dynamic_properties = base_dynamic_properties if branch == "classic" else []
 
             if synthesis_errors:
                 section.validator_results.append(
@@ -130,7 +128,7 @@ class MapVerifier:
                 section.errors.extend(synthesis_errors)
                 any_errors = True
 
-            validators = _build_entry_validators(self.is_avoid_map, base_dynamic_properties)
+            validators = _build_entry_validators(self.is_avoid_map)
             for validator in validators:
                 validator.validate(assembled)
                 errors = validator.get_errors()

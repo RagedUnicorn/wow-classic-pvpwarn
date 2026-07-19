@@ -16,17 +16,5 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "retaliation",
     }
-  },
-  ["items"] = {
-    -- Dynamic faction-specific name
-    [438273] = {
-      name = (function()
-        return UnitFactionGroup(RGPVPW_CONSTANTS.UNIT_ID_PLAYER) == "Horde"
-          and "Greater Insignia of the Horde"
-          or "Greater Insignia of the Alliance"
-      end)(),
-      type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
-      soundFileName = "pvp_trinket",
-    }
   }
 }

@@ -100,7 +100,6 @@ Total categories found: 12
 Total spell definitions: 317
 Total spell references: 216
 Total unique spell IDs: 533
-Dynamic properties detected: 1
 
 Spells per category:
   druid: 42 spells
