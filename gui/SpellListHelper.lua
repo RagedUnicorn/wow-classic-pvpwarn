@@ -35,7 +35,7 @@ local BuildUi
 local UpdateListAnchor
 local CreateSpellListContainer
 local CreateRowFrame
-local CreateSpellStateCheckbox
+local CreateSpellStateCheckBox
 local CreateSoundCheckBox
 local CreateSoundSpecialCheckBox
 local SoundSpecialCheckBoxOnClick
@@ -223,7 +223,7 @@ CreateRowFrame = function(spellList, frame, position)
   )
 
   row.position = position
-  row.spellStateCheckBox = CreateSpellStateCheckbox(spellList, row)
+  row.spellStateCheckBox = CreateSpellStateCheckBox(spellList, row)
   row.spellIcon = mod.guiHelper.CreateSpellIcon(
     row,
     options.elementNames.spellIcon,
@@ -288,7 +288,7 @@ end
   @return {table}
     The created checkbox
 ]]--
-CreateSpellStateCheckbox = function(spellList, spellFrame)
+CreateSpellStateCheckBox = function(spellList, spellFrame)
   return mod.guiHelper.CreateCheckBox(
     spellList.options.elementNames.enableSpell,
     spellFrame,
