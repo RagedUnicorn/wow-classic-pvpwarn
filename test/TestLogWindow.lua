@@ -254,20 +254,6 @@ function me.LoadTestLogs()
 end
 
 --[[
-  Process test messages from test data
-
-  @param {table} testData - Array of test message objects
-]]--
-function me.ProcessTestMessages(testData)
-  for _, testMessage in ipairs(testData) do
-    if type(testMessage) == "table" and testMessage.message then
-      local messageType = testMessage.messageType or me.DetermineMessageType(testMessage.message)
-      me.AppendMessage(testMessage.message, messageType, testMessage.timestamp)
-    end
-  end
-end
-
---[[
   Add a single new message to the window without clearing existing content
 
   @param {string} message - The message to add
@@ -344,19 +330,6 @@ function me.Hide()
 
   if testLogWindow then
     testLogWindow:Hide()
-  end
-end
-
---[[
-  Toggle the test log window
-]]--
-function me.Toggle()
-  local testLogWindow = _G["PVPW_TestLogWindow"]
-
-  if testLogWindow and testLogWindow:IsShown() then
-    me.Hide()
-  else
-    me.Show()
   end
 end
 
