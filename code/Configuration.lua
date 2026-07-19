@@ -31,6 +31,30 @@ mod.configuration = me
 me.tag = "AddonOptions"
 
 --[[
+  Single source of truth for the sub-block defaults - referenced by both the initial
+  SavedVariables literal below (cloned so runtime writes never touch the defaults) and
+  the Setup*Configuration backfills that run after an addon upgrade.
+]]--
+local detectionBarDefaults = {
+  ["enabled"] = true,
+  ["maxBars"] = 4,
+  ["scale"] = 1.0,
+  ["dedupWindow"] = 1.0,
+  ["hintShown"] = false
+}
+
+local flashDefaults = {
+  ["enabled"] = true,
+  ["maxOpacity"] = 0.85,
+  ["pulse"] = true,
+  ["blendMode"] = "BLEND"
+}
+
+local targetFilterDefaults = {
+  ["mode"] = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_WARN_ALL
+}
+
+--[[
   Saved addon variable
 ]]--
 PVPWarnConfiguration = {
@@ -100,13 +124,7 @@ PVPWarnConfiguration = {
       hintShown = {boolean}                 -- whether the one-time discovery hint has been shown
     }
   ]]--
-  ["detectionBar"] = {
-    ["enabled"] = true,
-    ["maxBars"] = 4,
-    ["scale"] = 1.0,
-    ["dedupWindow"] = 1.0,
-    ["hintShown"] = false
-  },
+  ["detectionBar"] = mod.common.Clone(detectionBarDefaults),
   --[[
     Vignette flash settings. The flash is the modern replacement for the cloudy screen
     flash - a soft full-screen vignette that fires on the same per-spell visual warning
@@ -119,12 +137,7 @@ PVPWarnConfiguration = {
       blendMode = {string}      -- texture blend mode, "BLEND" or "ADD"
     }
   ]]--
-  ["flash"] = {
-    ["enabled"] = true,
-    ["maxOpacity"] = 0.85,
-    ["pulse"] = true,
-    ["blendMode"] = "BLEND"
-  },
+  ["flash"] = mod.common.Clone(flashDefaults),
   --[[
     Target filter settings (see code/CombatLog.lua ShouldWarnForTarget).
 
@@ -135,9 +148,7 @@ PVPWarnConfiguration = {
                          --   warn and an unresolvable caster fails open
     }
   ]]--
-  ["targetFilter"] = {
-    ["mode"] = "warnAll"
-  },
+  ["targetFilter"] = mod.common.Clone(targetFilterDefaults),
   --[[
     Highest version the update notifier (code/Comm.lua) already announced to the
     user - bookkeeping like addonVersion, deliberately not part of profiles.
@@ -225,15 +236,8 @@ function me.SetupDetectionBarConfiguration()
   end
 
   local detectionBar = PVPWarnConfiguration.detectionBar
-  local defaults = {
-    ["enabled"] = true,
-    ["maxBars"] = 4,
-    ["scale"] = 1.0,
-    ["dedupWindow"] = 1.0,
-    ["hintShown"] = false
-  }
 
-  for key, value in pairs(defaults) do
+  for key, value in pairs(detectionBarDefaults) do
     if detectionBar[key] == nil then
       detectionBar[key] = value
     end
@@ -253,14 +257,8 @@ function me.SetupFlashConfiguration()
   end
 
   local flash = PVPWarnConfiguration.flash
-  local defaults = {
-    ["enabled"] = true,
-    ["maxOpacity"] = 0.85,
-    ["pulse"] = true,
-    ["blendMode"] = "BLEND"
-  }
 
-  for key, value in pairs(defaults) do
+  for key, value in pairs(flashDefaults) do
     if flash[key] == nil then
       flash[key] = value
     end
@@ -280,11 +278,8 @@ function me.SetupTargetFilterConfiguration()
   end
 
   local targetFilter = PVPWarnConfiguration.targetFilter
-  local defaults = {
-    ["mode"] = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_WARN_ALL
-  }
 
-  for key, value in pairs(defaults) do
+  for key, value in pairs(targetFilterDefaults) do
     if targetFilter[key] == nil then
       targetFilter[key] = value
     end
@@ -356,17 +351,7 @@ end
   Description: Version before did not have a default profile entry in PVPWarnProfiles
 ]]--
 function me.UpgradeToV1_1_2()
-  local versions = {"v1.1.1", "v1.1.0", "v1.0.0"}
-  local shouldRunUpgradePath = false
-
-  for _, version in pairs(versions) do
-    if PVPWarnConfiguration.addonVersion == version then
-      shouldRunUpgradePath = true
-      break
-    end
-  end
-
-  if not shouldRunUpgradePath then return end
+  if not me.IsVersionBefore(PVPWarnConfiguration.addonVersion, "v1.1.2") then return end
 
   mod.logger.LogDebug(me.tag, "Running upgrade path from " .. PVPWarnConfiguration.addonVersion .. " to v1.1.2")
 
@@ -396,17 +381,7 @@ end
   to ensure consistency with the new structure.
 ]]--
 function me.UpgradeToV2_0_0()
-  local versions = {"v1.1.11", "v1.2.0", "v1.2.1", "v1.2.2", "v1.2.3", "v1.2.4", "v1.2.5", "v1.2.6", "v1.2.7", "v1.2.8"}
-  local shouldRunUpgradePath = false
-
-  for _, version in pairs(versions) do
-    if PVPWarnConfiguration.addonVersion == version then
-      shouldRunUpgradePath = true
-      break
-    end
-  end
-
-  if not shouldRunUpgradePath then return end
+  if not me.IsVersionBefore(PVPWarnConfiguration.addonVersion, "v2.0.0") then return end
 
   mod.logger.LogDebug(me.tag, "Running upgrade path from " .. PVPWarnConfiguration.addonVersion .. " to v2.0.0")
 
@@ -425,13 +400,10 @@ function me.UpgradeToV2_0_0()
         break
       end
 
-      -- Check if profile version is one of the old versions
-      for _, oldVersion in pairs(versions) do
-        if profile.version == oldVersion then
-          needsProfileUpgrade = true
-          mod.logger.LogDebug(me.tag, "Found profile with old version: " .. profile.name .. " - " .. profile.version)
-          break
-        end
+      -- Check if profile version predates the new structure
+      if me.IsVersionBefore(profile.version, "v2.0.0") then
+        needsProfileUpgrade = true
+        mod.logger.LogDebug(me.tag, "Found profile with old version: " .. profile.name .. " - " .. profile.version)
       end
 
       if needsProfileUpgrade then break end

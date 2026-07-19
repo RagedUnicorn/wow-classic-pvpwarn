@@ -212,7 +212,7 @@ end
   @return {boolean}
 ]]--
 function me.TryDedup(opts)
-  local window = mod.configuration.GetDetectionBarDedupWindow() or 1.0
+  local window = mod.configuration.GetDetectionBarDedupWindow()
   local incomingName = opts.playerName and (opts.playerName:match("^([^%-]+)") or opts.playerName) or ""
   local now = GetTime()
 
