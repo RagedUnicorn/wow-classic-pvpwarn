@@ -24,9 +24,9 @@
 
 local mod = rgpvpw
 local me = {}
-mod.categoryMenuResistTab = me
+mod.categoryMenuAvoidTab = me
 
-me.tag = "CategoryMenuResistTab"
+me.tag = "CategoryMenuAvoidTab"
 
 --[[
   Shared per-spell settings list configured for spells avoided by the player

@@ -184,7 +184,7 @@ if (GetLocale() == "deDE") then
 
   -- category navigation
   rgpvpw.L["tab_button_spell"] = "Zauber"
-  rgpvpw.L["tab_button_resist"] = "Meiden"
+  rgpvpw.L["tab_button_avoid"] = "Meiden"
 
   -- category configuration
 

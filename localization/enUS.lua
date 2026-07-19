@@ -173,7 +173,7 @@ rgpvpw.L["category_misc"] = "Misc"
 
 -- category navigation
 rgpvpw.L["tab_button_spell"] = "Spells"
-rgpvpw.L["tab_button_resist"] = "Avoid"
+rgpvpw.L["tab_button_avoid"] = "Avoid"
 
 -- category configuration
 

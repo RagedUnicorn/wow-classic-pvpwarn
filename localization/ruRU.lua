@@ -176,7 +176,7 @@ if (GetLocale() == "ruRU") then
 
   -- category navigation
   rgpvpw.L["tab_button_spell"] = "Заклинания"
-  rgpvpw.L["tab_button_resist"] = "Избежание"
+  rgpvpw.L["tab_button_avoid"] = "Избежание"
 
   -- category configuration
 

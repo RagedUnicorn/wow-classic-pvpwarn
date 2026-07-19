@@ -45,11 +45,11 @@ local categoryName
   Identifiers for the different tabs
 ]]--
 local spellTab = 1
-local resistTab = 2
+local avoidTab = 2
 --[[
   Reference to the currently active tab
 
-  One of spellTab(0) or resistTab(1)
+  One of spellTab(1) or avoidTab(2)
 ]]--
 local activeTab
 --[[
@@ -143,10 +143,10 @@ function me.CreateCategoryMenu(self)
 
   local avoidTabButton = me.CreateTabButton(
     self,
-    RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. resistTab,
+    RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. avoidTab,
     {"LEFT", spellTabButton, "RIGHT", 5, 0},
-    rgpvpw.L["tab_button_resist"],
-    resistTab
+    rgpvpw.L["tab_button_avoid"],
+    avoidTab
   )
 
   --[[ content sits directly below the 37px tall tabs so the active tab art connects to it ]]--
@@ -158,7 +158,7 @@ function me.CreateCategoryMenu(self)
 
   local avoidContentFrame = mod.guiHelper.CreateCategoryContentFrame(
     self,
-    RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. resistTab,
+    RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. avoidTab,
     {"TOPLEFT", self, 5, -37}
   )
 
@@ -167,7 +167,7 @@ function me.CreateCategoryMenu(self)
     spellContentFrame = spellContentFrame,
     spellInitFunc = mod.categoryMenuSpellsTab.Init,
     avoidContentFrame = avoidContentFrame,
-    resistInitFunc = mod.categoryMenuResistTab.Init,
+    avoidInitFunc = mod.categoryMenuAvoidTab.Init,
     spellTabButton = spellTabButton,
     avoidTabButton = avoidTabButton
   }
@@ -234,7 +234,7 @@ end
   Activate a specific tab. Function is either called by an onclick event on one
   of the tab buttons or initially when the first tab is activated automatically
 
-  @param {number} position spellTag or resistTab
+  @param {number} position spellTab or avoidTab
 ]]--
 function me.ActivateTab(position)
   mod.logger.LogDebug(me.tag, "Activating tab position " .. position)
@@ -250,14 +250,14 @@ function me.ActivateTab(position)
     activeTab = spellTab
 
     category.spellInitFunc(category.spellContentFrame, categoryName)
-  elseif position == resistTab then
+  elseif position == avoidTab then
     category.avoidContentFrame:Show()
     category.avoidTabButton:SetSelected(true)
     category.spellContentFrame:Hide()
     category.spellTabButton:SetSelected(false)
 
-    activeTab = resistTab
+    activeTab = avoidTab
 
-    category.resistInitFunc(category.avoidContentFrame, categoryName)
+    category.avoidInitFunc(category.avoidContentFrame, categoryName)
   end
 end
