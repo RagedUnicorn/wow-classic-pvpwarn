@@ -78,12 +78,14 @@ local initialAddonZoneConfiguration = {
 }
 
 --[[
-  Retrieve the default configuration for zones
+  Retrieve the default configuration for zones. Returns a clone so callers - the
+  configuration stores the result in SavedVariables and mutates it through the zone
+  toggles - never write into the module's defaults.
 
   @return {table}
 ]]--
 function me.InitializeDefaultZoneConfiguration()
-  return initialAddonZoneConfiguration
+  return mod.common.Clone(initialAddonZoneConfiguration)
 end
 
 --[[
