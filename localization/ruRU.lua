@@ -116,7 +116,7 @@ if (GetLocale() == "ruRU") then
 
   -- profiles
   rgpvpw.L["configuration_menu_profiles"] = "Профили"
-  rgpvpw.L["save_current_profile_button"] = "Создать новый профиль"
+  rgpvpw.L["create_new_profile_button"] = "Создать новый профиль"
   rgpvpw.L["delete_selected_profile_button"] = "Удалить профиль"
   rgpvpw.L["load_selected_profile_button"] = "Загрузить профиль"
   rgpvpw.L["update_profile_button"] = "Обновить профиль"

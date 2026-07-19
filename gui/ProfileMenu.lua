@@ -242,11 +242,11 @@ function me.BuildUi(frame)
   -- creates a button that creates a new profile based on the current configuration
   me.CreateConfigurationButton(
     frame,
-    RGPVPW_CONSTANTS.ELEMENT_SAVE_PROFILE_BUTTON,
+    RGPVPW_CONSTANTS.ELEMENT_CREATE_PROFILE_BUTTON,
     actionButtonWidth,
     {"TOPLEFT", actionButtonLeft, listTop},
-    rgpvpw.L["save_current_profile_button"],
-    me.SaveProfileOnClick
+    rgpvpw.L["create_new_profile_button"],
+    me.CreateProfileButtonOnClick
   )
   -- create a button that loads the selected profile
   me.CreateConfigurationButton(
@@ -576,10 +576,10 @@ function me.CreateProfileStringBox(frame)
 end
 
 --[[
-  Button callback to save the current user configuration. This will invoke a popup
-  dialog for the user to choose a name for the profile.
+  Button callback to create a new profile from the current configuration. This will invoke
+  a popup dialog for the user to choose a name for the profile.
 ]]--
-function me.SaveProfileOnClick()
+function me.CreateProfileButtonOnClick()
   StaticPopup_Show("RGPVPW_CHOOSE_PROFILE_NAME")
 end
 

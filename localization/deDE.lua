@@ -118,7 +118,7 @@ if (GetLocale() == "deDE") then
 
   -- profiles
   rgpvpw.L["configuration_menu_profiles"] = "Profile"
-  rgpvpw.L["save_current_profile_button"] = "Erstelle Profil"
+  rgpvpw.L["create_new_profile_button"] = "Erstelle Profil"
   rgpvpw.L["delete_selected_profile_button"] = "Lösche Profil"
   rgpvpw.L["load_selected_profile_button"] = "Lade Profil"
   rgpvpw.L["update_profile_button"] = "Aktualisiere Profil"

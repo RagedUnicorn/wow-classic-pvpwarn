@@ -112,7 +112,7 @@ rgpvpw.L["label_battlegrounds_description"] = "Warnings are only active in enabl
 
 -- profiles
 rgpvpw.L["configuration_menu_profiles"] = "Profiles"
-rgpvpw.L["save_current_profile_button"] = "Create new Profile"
+rgpvpw.L["create_new_profile_button"] = "Create new Profile"
 rgpvpw.L["delete_selected_profile_button"] = "Delete Profile"
 rgpvpw.L["load_selected_profile_button"] = "Load Profile"
 rgpvpw.L["update_profile_button"] = "Update Profile"
