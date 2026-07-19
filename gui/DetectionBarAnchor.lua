@@ -74,8 +74,13 @@ function me.BuildAnchor()
   anchorFrame:EnableMouse(false)
   anchorFrame:EnableMouseWheel(false)
   anchorFrame:RegisterForDrag("LeftButton")
-  anchorFrame:SetScript("OnDragStart", me.StartDrag)
-  anchorFrame:SetScript("OnDragStop", me.StopDrag)
+
+  local startDrag, stopDrag = mod.guiHelper.CreateDragHandlers(
+    RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ANCHOR_FRAME,
+    function() return positioning end
+  )
+  anchorFrame:SetScript("OnDragStart", startDrag)
+  anchorFrame:SetScript("OnDragStop", stopDrag)
 
   me.RestorePosition()
   me.BuildDragHandle()
@@ -142,39 +147,6 @@ function me.BuildDragHandle()
   label:Hide()
 
   anchorFrame.dragLabel = label
-end
-
---[[
-  Frame callback to start moving the anchor.
-
-  @param {table} self
-]]--
-function me.StartDrag(self)
-  if not positioning then return end
-
-  self:StartMoving()
-end
-
---[[
-  Frame callback to stop moving the anchor and persist its new position.
-
-  @param {table} self
-]]--
-function me.StopDrag(self)
-  if not positioning then return end
-
-  self:StopMovingOrSizing()
-
-  local point, relativeTo, relativePoint, posX, posY = self:GetPoint()
-
-  mod.configuration.SaveUserPlacedFramePosition(
-    RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_ANCHOR_FRAME,
-    point,
-    relativeTo and relativeTo:GetName() or nil, -- persist the name, frames cannot round-trip SavedVariables
-    relativePoint,
-    posX,
-    posY
-  )
 end
 
 --[[

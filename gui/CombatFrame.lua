@@ -44,43 +44,14 @@ function me.BuildCombatStateUi()
     {"RIGHT", 0, 0},
     RGPVPW_COLORS.UI.combat_active,
     function(frame)
-      frame:SetScript("OnMouseDown", me.StartCombatStateDragFrame)
-      frame:SetScript("OnMouseUp", me.StopCombatStateDragFrame)
+      local startDrag, stopDrag = mod.guiHelper.CreateDragHandlers(
+        RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME,
+        function() return not mod.configuration.IsCombatStateFrameLocked() end
+      )
+      frame:SetScript("OnMouseDown", startDrag)
+      frame:SetScript("OnMouseUp", stopDrag)
     end,
     RGPVPW_CONSTANTS.COMBAT_STATE_ACTIVE_ICON_ID
-  )
-end
-
---[[
-  Frame callback to start moving the passed (self) frame
-
-  @param {table} self
-]]--
-function me.StartCombatStateDragFrame(self)
-  if mod.configuration.IsCombatStateFrameLocked() then return end
-
-  self:StartMoving()
-end
-
---[[
-  Frame callback to stop moving the passed (self) frame
-
-  @param {table} self
-]]--
-function me.StopCombatStateDragFrame(self)
-  if mod.configuration.IsCombatStateFrameLocked() then return end
-
-  self:StopMovingOrSizing()
-
-  local point, relativeTo, relativePoint, posX, posY = self:GetPoint()
-
-  mod.configuration.SaveUserPlacedFramePosition(
-    RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME,
-    point,
-    relativeTo and relativeTo:GetName() or nil, -- persist the name, frames cannot round-trip SavedVariables
-    relativePoint,
-    posX,
-    posY
   )
 end
 

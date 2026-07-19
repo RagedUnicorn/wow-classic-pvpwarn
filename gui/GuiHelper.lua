@@ -189,6 +189,46 @@ function me.CreateSlider(frame, name, label, min, max, step, posX, posY, getValu
 end
 
 --[[
+  Create the drag handler pair for a movable frame whose position is persisted. Both handlers
+  are gated on the canMove predicate; once the drag ends the frame's position is saved under
+  frameName (see Configuration.SaveUserPlacedFramePosition).
+
+  @param {string} frameName
+    The name the position is persisted under
+  @param {function} canMove
+    Predicate - the frame only starts/stops moving while it returns true
+
+  @return {function}, {function}
+    The drag start (OnMouseDown/OnDragStart) and drag stop (OnMouseUp/OnDragStop) handlers
+]]--
+function me.CreateDragHandlers(frameName, canMove)
+  local function startDrag(self)
+    if not canMove() then return end
+
+    self:StartMoving()
+  end
+
+  local function stopDrag(self)
+    if not canMove() then return end
+
+    self:StopMovingOrSizing()
+
+    local point, relativeTo, relativePoint, posX, posY = self:GetPoint()
+
+    mod.configuration.SaveUserPlacedFramePosition(
+      frameName,
+      point,
+      relativeTo and relativeTo:GetName() or nil, -- persist the name, frames cannot round-trip SavedVariables
+      relativePoint,
+      posX,
+      posY
+    )
+  end
+
+  return startDrag, stopDrag
+end
+
+--[[
   Create a configuration checkbox
 
   @param {string} frameName

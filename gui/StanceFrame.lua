@@ -48,42 +48,13 @@ function me.BuildStanceStateUi()
     {"RIGHT", 25, 0},
     RGPVPW_COLORS.UI.neutral,
     function(frame)
-      frame:SetScript("OnMouseDown", me.StartStanceStateDragFrame)
-      frame:SetScript("OnMouseUp", me.StopStanceStateDragFrame)
+      local startDrag, stopDrag = mod.guiHelper.CreateDragHandlers(
+        RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_FRAME,
+        function() return not mod.configuration.IsStanceStateFrameLocked() end
+      )
+      frame:SetScript("OnMouseDown", startDrag)
+      frame:SetScript("OnMouseUp", stopDrag)
     end
-  )
-end
-
---[[
-  Frame callback to start moving the passed (self) frame
-
-  @param {table} self
-]]--
-function me.StartStanceStateDragFrame(self)
-  if mod.configuration.IsStanceStateFrameLocked() then return end
-
-  self:StartMoving()
-end
-
---[[
-  Frame callback to stop moving the passed (self) frame
-
-  @param {table} self
-]]--
-function me.StopStanceStateDragFrame(self)
-  if mod.configuration.IsStanceStateFrameLocked() then return end
-
-  self:StopMovingOrSizing()
-
-  local point, relativeTo, relativePoint, posX, posY = self:GetPoint()
-
-  mod.configuration.SaveUserPlacedFramePosition(
-    RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_FRAME,
-    point,
-    relativeTo and relativeTo:GetName() or nil, -- persist the name, frames cannot round-trip SavedVariables
-    relativePoint,
-    posX,
-    posY
   )
 end
 
