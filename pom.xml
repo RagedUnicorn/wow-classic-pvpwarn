@@ -31,7 +31,7 @@
       TBC - covers: TBC Anniversary (Burning Crusade Classic)
     -->
     <!-- renovate: datasource=custom.wow-versions-classic depName=wow-interface-classic versioning=loose -->
-    <addon.interface.classic>11508</addon.interface.classic>
+    <addon.interface.classic>11509</addon.interface.classic>
     <!-- renovate: datasource=custom.wow-versions-tbcc depName=wow-interface-tbcc versioning=loose -->
     <addon.interface.tbcc>20506</addon.interface.tbcc>
     <!-- Aggregated interface line consumed by the .toc template. When additional WoW variants are supported, list them here as a comma-separated string. -->
