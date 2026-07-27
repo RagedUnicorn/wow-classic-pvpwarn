@@ -449,14 +449,35 @@ function me.CreateSpellFrame(parentFrame, position, spellFrameName, spellFrameRo
     bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
     insets = {left = 0, right = 0, top = 0, bottom = 0},
   })
+  spellFrame:SetBackdropColor(0.14, 0.14, 0.14, 0.85)
 
-  if math.fmod(position, 2) == 0 then
-    spellFrame:SetBackdropColor(0.37, 0.37, 0.37, .4)
-  else
-    spellFrame:SetBackdropColor(.25, .25, .25, .8)
-  end
+  --[[
+    Category-colored gradient on top of the dark base. Reuses the detection bar
+    gradient texture (white fading to transparent, made for SetVertexColor tinting).
+    Tinted per category in UpdateSpellFrameCategoryColor; adjust the fade extent
+    via SetTexCoord if ever needed.
+  ]]--
+  spellFrame.categoryGradient = spellFrame:CreateTexture(nil, "BACKGROUND", nil, 1)
+  spellFrame.categoryGradient:SetTexture(RGPVPW_CONSTANTS.DETECTION_BAR_GRADIENT_CLASS_TEXTURE)
+  spellFrame.categoryGradient:SetAllPoints(spellFrame)
 
   return  spellFrame
+end
+
+--[[
+  Tints the rows gradient with the categories color. Zebra striping is achieved by
+  alternating the gradients alpha between odd and even rows. Rows are shared across
+  categories and thus need to be retinted on every category switch.
+
+  @param {table} spellFrame
+  @param {string} categoryName
+  @param {number} position
+]]--
+function me.UpdateSpellFrameCategoryColor(spellFrame, categoryName, position)
+  local color = RGPVPW_COLORS.GetCategoryColor(categoryName)
+  local alpha = math.fmod(position, 2) == 0 and 0.20 or 0.38
+
+  spellFrame.categoryGradient:SetVertexColor(color[1], color[2], color[3], alpha)
 end
 
 --[[

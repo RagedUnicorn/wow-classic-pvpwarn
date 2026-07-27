@@ -577,6 +577,7 @@ UpdateSpellRows = function(spellList, categoryName)
       row.normalizedSpellName = spell.normalizedSpellName
       row.category = categoryName
       row.spellTitle:SetText(spell.name)
+      mod.guiHelper.UpdateSpellFrameCategoryColor(row, categoryName, row.position)
       row.playSound.soundFileName = spell.soundFileName
 
       UpdateIcon(row.spellIcon, categoryName, spell)
