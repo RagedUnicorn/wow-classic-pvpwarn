@@ -308,6 +308,12 @@ Before committing changes:
 3. Verify functionality in-game (spell warnings, stance tracking, etc.)
 4. Run any relevant tests from the test suite
 
+Before creating a release, additionally complete the full test procedure - automated gates,
+the in-client automated suite, the in-game test matrix and the manual test case catalog -
+documented in [test/TESTING.md](test/TESTING.md). The `test/manual/` subfolder keeps the
+manual in-game test cases separate from the headless specs under `test/headless/` and the
+in-game test framework under `test/classic|sod|tbc/`.
+
 ## Dependency Management
 
 This repository uses [Renovate](https://renovatebot.com/) for automated dependency updates. Renovate monitors and updates:

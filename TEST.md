@@ -167,8 +167,9 @@ Unlike the automated commands, `bar` needs no test session, takes no `[branch]` 
 **available in every build** - it lives in `code/DetectionBarCmd.lua` (the always-loaded code
 section), not the development-only `test/` tree. It exercises the visual surface directly and
 does not touch the combat log, so it works without an enemy target. To verify the combat-log
-path instead, enable a spell's per-spell *Detection Bar* checkbox in the Spells tab and have that
-spell cast on you.
+path instead, make sure *Enable detection bar* is checked in **Settings → PVPWarn → Detection
+Bar** and have a tracked spell cast on you. The bar is a single global on/off - there is no
+per-spell detection bar setting.
 
 ### Test Log Window
 

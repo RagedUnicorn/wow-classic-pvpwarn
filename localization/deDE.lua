@@ -40,6 +40,7 @@ if (GetLocale() == "deDE") then
     .. "Konfiguriere die Position des Haltungszustand Symbol"
   rgpvpw.L["reload"] = "|cFFFFC300reload|r - UI neu laden"
   rgpvpw.L["bar"] = "|cFFFFC300bar lock/unlock/test|r - die Erkennungsleiste sperren, entsperren oder testen"
+  rgpvpw.L["flash"] = "|cFFFFC300flash test/enable/disable|r - die Blitzwarnung testen, aktivieren oder deaktivieren"
   rgpvpw.L["invalid_argument"] = "Ungültiges Argument übergeben"
   rgpvpw.L["update_available"] = "Neue Version |cFFFFC300%s|r ist verfügbar - |cFF00FFB0Update empfohlen!|r"
 
