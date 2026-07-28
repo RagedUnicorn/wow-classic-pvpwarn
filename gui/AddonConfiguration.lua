@@ -39,6 +39,32 @@ me.tag = "AddonConfiguration"
 local mainCategoryId
 
 --[[
+  Category ids captured at registration, keyed by a stable name: "main", "general", "zone",
+  "voicePack", "detectionBar", "flash", "profile", "enemyAvoid", plus one per spell category
+  keyed by RGPVPW_CONSTANTS.CATEGORIES[i].categoryName ("druid" through "misc").
+  Settings.OpenToCategory requires the numeric id - passing a category name errors on Classic
+  Era ("outside of expected range") - so callers resolve through me.GetCategoryId instead of
+  hardcoding ids or looking up localized names.
+  {table}
+]]--
+local categoryIds = {}
+
+--[[
+  Retrieve the numeric settings category id registered under a key. Intended for programmatic
+  navigation via Settings.OpenToCategory, which accepts only numeric ids.
+
+  @param {string} key
+    One of "main", "general", "zone", "voicePack", "detectionBar", "flash", "profile",
+    "enemyAvoid" or a spell category name ("druid" ... "misc")
+
+  @return {number | nil}
+    The category id or nil for an unknown key or before SetupAddonConfiguration ran
+]]--
+function me.GetCategoryId(key)
+  return categoryIds[key]
+end
+
+--[[
   Create addon configuration menu(s)
 ]]--
 function me.SetupAddonConfiguration()
@@ -46,57 +72,65 @@ function me.SetupAddonConfiguration()
   local category, menu = me.BuildCategory(RGPVPW_CONSTANTS.ELEMENT_ADDON_PANEL, nil, rgpvpw.L["addon_name"])
   -- add about content into main category
   mod.aboutContent.BuildAboutContent(menu)
+  categoryIds.main = category.ID
 
-  me.BuildCategory(
+  local generalSubCategory = me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_general"],
     mod.generalMenu.BuildUi
   )
+  categoryIds.general = generalSubCategory.ID
 
-  me.BuildCategory(
+  local zoneSubCategory = me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_ZONE_MENU_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_zone"],
     mod.zoneMenu.BuildUi
   )
+  categoryIds.zone = zoneSubCategory.ID
 
-  me.BuildCategory(
+  local voicePackSubCategory = me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_voice_pack"],
     mod.voicePackMenu.BuildUi
   )
+  categoryIds.voicePack = voicePackSubCategory.ID
 
-  me.BuildCategory(
+  local detectionBarSubCategory = me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_DETECTION_BAR_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_detection_bar"],
     mod.detectionBarMenu.OnPanelShow
   )
+  categoryIds.detectionBar = detectionBarSubCategory.ID
 
-  me.BuildCategory(
+  local flashSubCategory = me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_FLASH_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_flash"],
     mod.flashMenu.BuildUi
   )
+  categoryIds.flash = flashSubCategory.ID
 
-  me.BuildCategory(
+  local profileSubCategory = me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_PROFILE_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_profiles"],
     mod.profileMenu.Init
   )
+  categoryIds.profile = profileSubCategory.ID
 
   me.BuildSpellCategories(category)
 
-  me.BuildCategory(
+  local enemyAvoidSubCategory = me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_ENEMY_AVOID_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_enemy_avoid"],
     mod.enemyAvoidMenu.Init
   )
+  categoryIds.enemyAvoid = enemyAvoidSubCategory.ID
 end
 
 --[[
@@ -157,6 +191,12 @@ function me.BuildSpellCategories(parent)
     subcategory.name = rgpvpw.L[category.localizationKey]
 
     Settings.RegisterAddOnCategory(subcategory)
+    --[[
+      categoryName ("druid" ... "misc") is the stable, locale-independent token this addon
+      already identifies a category by everywhere else - the frame name is UI-coupled and the
+      localized name would break on a non-enUS client
+    ]]--
+    categoryIds[category.categoryName] = subcategory.ID
     menu:SetScript("OnShow", mod.categoryMenu.MenuOnShow)
 
     --[[

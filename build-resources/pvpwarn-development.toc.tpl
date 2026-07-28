@@ -4,6 +4,7 @@
 ## Notes: ${addon.description}
 ## Version: ${addon.tag.version}
 ## SavedVariablesPerCharacter: ${addon.savedVariablesPerCharacter}
+## SavedVariables: PVPWarnShotLog
 ## IconTexture: Interface\AddOns\PVPWarn\assets\pvpwarn_icon
 ${addon.comment.generated.toc}
 
@@ -291,3 +292,7 @@ test/tbc/misc/TestCombatEventsMisc.lua
 
 # test all
 test/TestAll.lua
+
+# dev - media capture
+dev/ShotManifest.lua
+dev/Capture.lua

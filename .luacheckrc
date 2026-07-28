@@ -8,7 +8,9 @@ globals = {
   "PVPWarnConfiguration",
   "PVPWarnProfiles",
   "PVPWarnLogTracker",
-  "PVPWarnLogTrackerAvoid"
+  "PVPWarnLogTrackerAvoid",
+  "PVPWarnShotLog",
+  "RGPVPW_SHOTS"
 }
 
 files = {
@@ -16,7 +18,8 @@ files = {
   ["gui"] = {std = "lua51"},
   ["localization"] = {std = "lua51"},
   ["profiles"] = {std = "lua51"},
-  ["test"] = {std = "lua51"}
+  ["test"] = {std = "lua51"},
+  ["dev"] = {std = "lua51"}
 }
 
 exclude_files = {
