@@ -95,7 +95,7 @@ RGPVPW_SHOTS = {
     name = "pvpwarn_target_state_still",
     shot = "target_state_still",
     frame = "PVPW_CombatStateFrame",
-    setup = { "closeSettings", "showCombatState", "showStanceState" },
+    setup = { "closeSettings", "showCombatState", "previewStanceState:15473" },
     includeFrames = { "PVPW_StanceStateFrame", "TargetFrame" },
     hideFrames = { "PVPW_DetectionBarAnchor" },
     hideChrome = true,
@@ -105,7 +105,7 @@ RGPVPW_SHOTS = {
   {
     name = "pvpwarn_configure_spell",
     shot = "configure_spell",
-    frame = "SettingsPanel",
+    frame = "UIParent",
     kind = "gif",
     setup = { "openCategory:warrior" },
     hideFrames = { "PVPW_DetectionBarAnchor" },
@@ -116,7 +116,7 @@ RGPVPW_SHOTS = {
   {
     name = "pvpwarn_configure_self_avoid",
     shot = "configure_self_avoid",
-    frame = "SettingsPanel",
+    frame = "UIParent",
     kind = "gif",
     setup = { "openCategory:priest", "selectTab:2" },
     hideFrames = { "PVPW_DetectionBarAnchor" },
@@ -127,7 +127,7 @@ RGPVPW_SHOTS = {
   {
     name = "pvpwarn_configure_enemy_avoid",
     shot = "configure_enemy_avoid",
-    frame = "SettingsPanel",
+    frame = "UIParent",
     kind = "gif",
     setup = { "openCategory:enemyAvoid" },
     hideFrames = { "PVPW_DetectionBarAnchor" },

@@ -40,7 +40,7 @@
 ]]--
 
 -- luacheck: globals C_Timer Screenshot SetCVar GetPhysicalScreenSize InCombatLockdown
--- luacheck: globals Settings SettingsPanel CreateFrame UIParent time
+-- luacheck: globals Settings SettingsPanel CreateFrame UIParent time GetSpellInfo
 -- luacheck: globals PVPWarnShotLog RGPVPW_SHOTS
 
 local mod = rgpvpw
@@ -244,6 +244,34 @@ local setupVerbs = {
 
   ["showStanceState"] = function()
     mod.stanceState.EnableConfigurationMode()
+  end,
+
+  --[[
+    Paint a REAL stance icon on the stance frame, given the spell id of a stance or form.
+
+    Not a variant of showStanceState: stanceState.EnableConfigurationMode unconditionally
+    paints STANCE_STATE_UNKNOWN_STANCE_ICON_ID (the question mark), and UpdateStanceState only
+    draws a real icon when its tracker holds a stance observed in the combat log for the
+    current target's guid. Neither is stageable for media - the addon would have to witness the
+    target casting the form while you have it selected. So this verb bypasses the tracker and
+    drives the frame directly, exactly the way previewDetectionBar bypasses live detections.
+
+    UpdateStanceStateUi sets the texture, recolours the border from the target's class and
+    shows the frame, so a target is still needed for placement and colour.
+
+    Stance/form spell ids: 2457 Battle Stance, 71 Defensive Stance, 2458 Berserker Stance,
+    15473 Shadowform, 5487 Bear Form, 768 Cat Form.
+  ]]--
+  ["previewStanceState"] = function(spellId)
+    local id = tonumber(spellId) or 2457
+    local icon = select(3, GetSpellInfo(id))
+
+    if icon == nil then
+      mod.logger.PrintUserError("No spell icon for stance spell id: " .. tostring(id))
+      return
+    end
+
+    mod.stanceFrame.UpdateStanceStateUi(icon)
   end
 }
 

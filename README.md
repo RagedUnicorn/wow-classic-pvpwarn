@@ -60,6 +60,10 @@ To configure the resist warning for your own class, use the `Enemy Avoid` naviga
 
 PVPWarn loads a default profile based on your class when the addon loads for the first time. The default profile can be loaded again at any point. If you start modifying which spells are tracked, however, you can create a new profile, or even keep multiple different profiles that you can load depending on your situation.
 
+![](docs/pvpwarn_configure_profiles.png)
+
+Profiles can also be exported to a string and imported on another character, which makes it easy to share a setup.
+
 #### Loading Profiles with Macros
 
 Once a profile is created, it can be loaded manually or with a macro.
@@ -96,9 +100,13 @@ If PVPWarn is unable to determine the stance it will display a question mark for
 
 PVPWarn can display detected enemy spells as a stack of bars on the screen. Each bar shows the spell icon with a class-colored border, the detected event and the name of the enemy player. The detection bar is a global feature that can be enabled in the settings, where the scale and the maximum amount of bars shown at once can be configured as well. The bar can also be repositioned, locked, unlocked or tested with `/rgpvpw bar lock/unlock/test`.
 
+![](docs/pvpwarn_detection_bar.gif)
+
 ### Flash
 
 PVPWarn can flash the edges of the screen with a soft vignette when a spell with a configured visual warning is detected. The flash uses the same color that was chosen for the spell's visual warning. The feature can be enabled in the settings, where the maximum opacity, an additional pulse effect and additive blending can be configured and tested.
+
+![](docs/pvpwarn_flash.png)
 
 ### Voice Packs
 
