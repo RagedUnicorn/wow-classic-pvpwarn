@@ -124,7 +124,7 @@ end
 
 ### Stance Tracking
 
-PVPWarn tracks stance states for Warriors, Druids, Priests, Hunters, and Warlocks to display their current form/stance in the UI. This feature helps players identify enemy capabilities at a glance.
+PVPWarn tracks stance states for Warriors, Druids, Priests, and Warlocks to display their current form/stance in the UI. This feature helps players identify enemy capabilities at a glance.
 
 #### How It Works
 
@@ -137,17 +137,18 @@ PVPWarn tracks stance states for Warriors, Druids, Priests, Hunters, and Warlock
 
 - **code/StanceState.lua**: Core stance tracking logic
 - **code/spellmap/Base.lua**: Defines which spells are stance spells (`isStanceSpell = true`)
+- **code/spellmap/overlay/Sod.lua**: Season of Discovery stance spells (Gladiator Stance, Metamorphosis, Tree of Life)
 - **code/CombatLog.lua**: Processes combat events and triggers stance tracking
 
 #### Adding Stance Support
 
 To add stance tracking for a new spell:
 
-1. Add `isStanceSpell = true` to the spell entry in code/spellmap/Base.lua
+1. Add `isStanceSpell = true` to the spell entry in code/spellmap/Base.lua, or in the matching branch overlay under code/spellmap/overlay/ for a branch-specific spell
 2. Include both `SPELL_AURA_APPLIED` and `SPELL_AURA_REMOVED` in `trackedEvents`
 3. Add the class to `supportedClasses` in StanceState.lua if needed
 
-For a detailed flow diagram and more information, see [docs/stance-tracking-flow.md](docs/stance_tracking_flow.md).
+For a detailed flow diagram and more information, see [docs/stance_tracking_flow.md](docs/stance_tracking_flow.md).
 
 ### Branch-specific Spells (Season of Discovery / TBC)
 

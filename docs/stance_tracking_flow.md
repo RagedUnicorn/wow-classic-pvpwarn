@@ -1,6 +1,6 @@
 # Stance Tracking Flow
 
-This diagram illustrates how PVPWarn tracks stance states for different classes (Warriors, Druids, Priests, Hunters, and Warlocks).
+This diagram illustrates how PVPWarn tracks stance states for different classes (Warriors, Druids, Priests, and Warlocks).
 
 ```mermaid
 graph TD
@@ -63,6 +63,7 @@ graph TD
 
 - Spells with `isStanceSpell = true` are tracked
 - Events are filtered in `ProcessNormal` in CombatLog.lua
+- The flag is set in `code/spellmap/Base.lua` and `code/spellmap/overlay/Sod.lua`
 
 ### Class-Specific Behavior
 
@@ -70,28 +71,28 @@ graph TD
    - Only track SPELL_AURA_APPLIED events in spell configuration
    - Always in one stance (Battle, Defensive, or Berserker)
    - Switching stances automatically replaces the previous one
+   - Gladiator Stance (Season of Discovery) follows the same APPLIED-only pattern
 
 2. **Druids**:
    - Track both APPLIED and REMOVED events
    - Can leave forms entirely (shift back to humanoid)
-   - Forms: Bear, Dire Bear, Cat, Travel, Aquatic, Moonkin, Tree of Life
+   - Forms: Bear, Dire Bear, Cat, Travel, Aquatic, Moonkin
+   - Tree of Life (Season of Discovery)
 
 3. **Priests**:
    - Track both APPLIED and REMOVED events
    - Shadowform can be cancelled
 
-4. **Hunters**:
-   - Track both APPLIED and REMOVED events
-   - Aspects: Hawk, Monkey, Pack, Cheetah, Wild, Beast, Falcon, Viper
-   - Only one aspect active at a time
-
-5. **Warlocks**:
+4. **Warlocks**:
    - Track both APPLIED and REMOVED events
    - Metamorphosis form (Season of Discovery)
    - Can be cancelled like other transformation abilities
 
 ### Important Note
 As of the latest update, `TrackStanceRemoved` no longer checks the class category - it uniformly clears the stance tracker entry for any class when a stance is removed.
+
+### Hunters
+`"HUNTER"` is listed in `supportedClasses` in StanceState.lua, but no hunter spell carries `isStanceSpell = true` - the aspects are regular tracked spells. A hunter target therefore passes the class check and always renders the unknown stance icon. Flagging the aspects would be required to make the class behave like the others.
 
 ### Data Storage
 - **stanceTracker**: Lua table storing stance data by target GUID
