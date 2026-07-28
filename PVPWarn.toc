@@ -4,6 +4,7 @@
 ## Notes: PVPWarn aims to warn players visually and acoustically about pvp events
 ## Version: v1.3.0
 ## SavedVariablesPerCharacter: PVPWarnConfiguration PVPWarnProfiles PVPWarnLogTracker PVPWarnLogTrackerAvoid PVPWarnTestLog
+## IconTexture: Interface\AddOns\PVPWarn\assets\pvpwarn_icon
 # THIS FILE IS AUTO-GENERATED. ALL CHANGES ARE OVERWRITTEN
 
 # constant values
