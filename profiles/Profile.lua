@@ -32,7 +32,7 @@ me.tag = "Profile"
 
 -- allow for a maximum of 10 profiles
 local maxProfiles = 10
-local maxProfileNameLength = 25
+local maxProfileNameLength = 30
 
 --[[
   Bumped when the on-the-wire profile payload changes shape. Import refuses any
@@ -68,6 +68,7 @@ local PROFILE_FIELD_TO_SPELL_TYPE = {
 
 -- forward declaration
 local FindProfile
+local IsNameTooLong
 
 --[[
   Default profiles consider the class from the player that uses the addon. As an
@@ -125,6 +126,13 @@ end
 function me.CreateProfile(profileName)
   if not profileName or profileName == "" then
     mod.logger.LogWarn(me.tag, "CreateProfile called with invalid profile name")
+    return
+  end
+
+  if IsNameTooLong(profileName) then
+    mod.logger.PrintUserError(
+      string.format(rgpvpw.L["user_message_profile_name_too_long"], maxProfileNameLength)
+    )
     return
   end
 
@@ -382,6 +390,13 @@ function me.AddImportedProfile(profileName, payload)
     return false
   end
 
+  if IsNameTooLong(profileName) then
+    mod.logger.PrintUserError(
+      string.format(rgpvpw.L["user_message_profile_name_too_long"], maxProfileNameLength)
+    )
+    return false
+  end
+
   if #PVPWarnProfiles >= maxProfiles then
     mod.logger.PrintUserError(
       string.format(rgpvpw.L["user_message_add_new_profile_max_reached"], maxProfiles)
@@ -407,6 +422,27 @@ function me.AddImportedProfile(profileName, payload)
   mod.logger.LogInfo(me.tag, "Added imported profile with name - " .. profileName)
 
   return true
+end
+
+--[[
+  Whether a profile name exceeds the maximum allowed length. A plain `#profileName`
+  would count bytes and cut a localized name short, so continuation bytes (0x80-0xBF)
+  of a utf-8 sequence are not counted.
+
+  @param {string} profileName
+
+  @return {boolean}
+    true - if the name is longer than maxProfileNameLength characters
+    false - otherwise
+]]--
+IsNameTooLong = function(profileName)
+  if type(profileName) ~= "string" then
+    return false
+  end
+
+  local _, count = string.gsub(profileName, "[^\128-\191]", "")
+
+  return count > maxProfileNameLength
 end
 
 --[[

@@ -143,6 +143,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["user_message_select_profile_before_update"] = "Выберите профиль для обновления"
   rgpvpw.L["user_message_select_profile_before_export"] = "Выберите профиль для экспорта"
   rgpvpw.L["user_message_select_profile_already_exists"] = "Профиль уже существует - выберите другое имя"
+  rgpvpw.L["user_message_profile_name_too_long"] = "Имя профиля не может быть длиннее %d символов"
   rgpvpw.L["user_message_add_new_profile_max_reached"] = "Достигнут максимум из %s профилей"
   rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "Профиль по умолчанию нельзя удалить"
   rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "Профиль по умолчанию нельзя изменить"

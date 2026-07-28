@@ -148,6 +148,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["user_message_select_profile_before_update"] = "Wähle ein Profil aus um es zu aktualisieren"
   rgpvpw.L["user_message_select_profile_before_export"] = "Wähle ein Profil aus um es zu exportieren"
   rgpvpw.L["user_message_select_profile_already_exists"] = "Das Profil existiert bereits - wähle einen anderen Name"
+  rgpvpw.L["user_message_profile_name_too_long"] = "Der Profilname darf nicht länger als %d Zeichen sein"
   rgpvpw.L["user_message_add_new_profile_max_reached"] = "Eine maximale Anzahl von %s Profilen ist erlaubt. "
     .. "Du hast das maximum erreicht"
   rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "Das Standard Profil kann nicht gelöscht werden"
