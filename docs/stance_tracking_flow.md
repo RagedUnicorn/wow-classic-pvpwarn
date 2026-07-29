@@ -92,7 +92,7 @@ graph TD
 As of the latest update, `TrackStanceRemoved` no longer checks the class category - it uniformly clears the stance tracker entry for any class when a stance is removed.
 
 ### Hunters
-`"HUNTER"` is listed in `supportedClasses` in StanceState.lua, but no hunter spell carries `isStanceSpell = true` - the aspects are regular tracked spells. A hunter target therefore passes the class check and always renders the unknown stance icon. Flagging the aspects would be required to make the class behave like the others.
+Hunters are **not** tracked. `"HUNTER"` is deliberately absent from `supportedClasses` in StanceState.lua because no hunter spell carries `isStanceSpell = true` - the aspects are regular tracked spells. Listing the class without flagging its spells would make every hunter target render a permanent unknown stance icon, so the class is left out until the aspects are flagged.
 
 ### Data Storage
 - **stanceTracker**: Lua table storing stance data by target GUID

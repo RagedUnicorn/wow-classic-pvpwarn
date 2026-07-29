@@ -39,7 +39,7 @@ local stanceTracker = {}
 -- Tracks whether configuration mode is enabled or not
 local configurationMode = false
 -- classes that should be considered to be tracked
-local supportedClasses = {"WARRIOR", "DRUID", "PRIEST", "HUNTER", "WARLOCK"}
+local supportedClasses = {"WARRIOR", "DRUID", "PRIEST", "WARLOCK"}
 -- clear stances that are older than 2 minutes
 local stanceExpiredTimeout = 120
 
