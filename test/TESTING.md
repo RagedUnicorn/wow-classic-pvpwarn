@@ -145,13 +145,13 @@ One file per test case under [test/manual/](manual/). Case IDs follow `TC-<AREA>
 
 ### Detection bar
 
-| ID                                                        | Case                                        |
-|-----------------------------------------------------------|---------------------------------------------|
-| [TC-DB-01](manual/TC-DB-01-stack-renders-and-fades.md)    | Bar stack renders, stacks and fades         |
-| [TC-DB-02](manual/TC-DB-02-dedup-window.md)               | Dedup window collapses repeated detections  |
-| [TC-DB-03](manual/TC-DB-03-positioning-and-persistence.md)| Positioning mode, drag, reset and persist   |
-| [TC-DB-04](manual/TC-DB-04-max-bars-and-scale.md)         | Maximum visible bars and scale sliders      |
-| [TC-DB-05](manual/TC-DB-05-global-disable.md)             | Global disable suppresses every bar         |
+| ID                                                         | Case                                       |
+|------------------------------------------------------------|--------------------------------------------|
+| [TC-DB-01](manual/TC-DB-01-stack-renders-and-fades.md)     | Bar stack renders, stacks and fades        |
+| [TC-DB-02](manual/TC-DB-02-dedup-window.md)                | Dedup window collapses repeated detections |
+| [TC-DB-03](manual/TC-DB-03-positioning-and-persistence.md) | Positioning mode, drag, reset and persist  |
+| [TC-DB-04](manual/TC-DB-04-max-bars-and-scale.md)          | Maximum visible bars and scale sliders     |
+| [TC-DB-05](manual/TC-DB-05-global-disable.md)              | Global disable suppresses every bar        |
 
 ### Flash
 
