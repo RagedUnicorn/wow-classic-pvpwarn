@@ -1,6 +1,6 @@
 ## PVPWarn v2.0.0
 
-> ### ⚠ Please read before updating — your spell settings will be reset
+> ### IMPORTANT - please read before updating: your spell settings will be reset
 >
 > This release changes how PVPWarn stores per-spell configuration. Internally, spells were
 > previously addressed by **name** and are now addressed by **numeric spell ID**, which makes
@@ -8,15 +8,15 @@
 > name-based entries, so **on first login after the update all profiles are reset to your
 > class defaults** and you will see a chat message confirming it.
 >
-> **What you lose:** every per-spell customization — which spells are active, per-spell sound
+> **What you lose:** every per-spell customization - which spells are active, per-spell sound
 > and colour choices, and any custom profiles you created.
 >
 > **What survives:** your zone settings, combat and stance state tracking options, frame
 > positions and lock states, and your selected voice pack.
 >
 > **Recommendation:** if you have a profile you care about, export it before updating
-> (Profiles panel → Export) so you have a record of it, then rebuild it after the update.
-> This is a one-time reset — future updates will not repeat it.
+> (Profiles panel, then Export) so you have a record of it, then rebuild it after the update.
+> This is a one-time reset - future updates will not repeat it.
 
 ---
 
@@ -33,19 +33,19 @@ A soft screen-edge flash on detection, coloured per spell. Each spell can carry 
 warning colour, so you can make your interrupts and crowd control instantly distinguishable
 from routine chatter. Preview it any time with `/rgpvpw flash test`.
 
-### Warning Modes — cut the noise
+### Warning Modes - cut the noise
 
 A new **Warning mode** setting in General Settings controls which events warn you:
 
-- **Warn all** (default) — the previous behaviour, every detected spell warns
-- **Current target** — only warn about events involving your current enemy target
+- **Warn all** (default) - the previous behaviour, every detected spell warns
+- **Current target** - only warn about events involving your current enemy target
 
 Spells cast directly at you always warn regardless of the mode, so filtering can never hide
 something aimed your way.
 
 ### Profile Import & Export
 
-Profiles can now be exported to a share string and imported back — copy a setup between
+Profiles can now be exported to a share string and imported back - copy a setup between
 characters, back it up, or share it with your guild. Imports are validated before they are
 applied.
 
@@ -53,7 +53,7 @@ applied.
 
 PVPWarn now ships as a single addon supporting both **Classic Era** and **TBC Anniversary**,
 with a TBC-specific spell catalog layered on top of the shared base. No separate download and
-no manual switching — the correct spell data is selected from the client you log into.
+no manual switching - the correct spell data is selected from the client you log into.
 
 ### Update Notifications
 
