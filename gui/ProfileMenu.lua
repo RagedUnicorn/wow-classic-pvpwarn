@@ -42,10 +42,17 @@ local profileListScrollBar
 local currentSelectedProfileName
 -- the multiline edit box used for export/import strings
 local profileStringEditBox
+--[[
+  The two action buttons that are greyed out while the immutable default profile is
+  selected
+]]--
+local updateProfileButton
+local deleteProfileButton
 
 -- forward declaration
 local FinishProfileImport
 local ProfileNameEditBoxOnTextChanged
+local UpdateActionButtonState
 
 --[[
   Panel layout. Positions are derived from the shared dimension constants and from each
@@ -260,7 +267,7 @@ function me.BuildUi(frame)
     me.LoadSelectedProfileButtonOnClick
   )
   -- create a button that updates the selected profile
-  me.CreateConfigurationButton(
+  updateProfileButton = me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_UPDATE_PROFILE_BUTTON,
     actionButtonWidth,
@@ -269,7 +276,7 @@ function me.BuildUi(frame)
     me.UpdateProfileButtonOnClick
   )
   -- create a button that allows to delete the selected profile
-  me.CreateConfigurationButton(
+  deleteProfileButton = me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_DELETE_PROFILE_BUTTON,
     actionButtonWidth,
@@ -461,6 +468,8 @@ function me.RefreshProfileList()
     keep the list permanently scrollable. The list box itself keeps its fixed height
   ]]--
   profileListContent:SetHeight(math.max(#profiles * RGPVPW_CONSTANTS.PROFILE_LIST_ROW_HEIGHT, 1))
+
+  UpdateActionButtonState()
 end
 
 --[[
@@ -477,6 +486,7 @@ function me.ProfileListCellOnClick(self)
     me.ClearCellList()
 
     self.highlight:Show()
+    UpdateActionButtonState()
   end
 end
 
@@ -496,6 +506,7 @@ end
 function me.ClearSelectedProfile()
   me.ClearCellList()
   me.ResetCurrentSelectedProfileName()
+  UpdateActionButtonState()
 end
 
 --[[
@@ -717,6 +728,22 @@ FinishProfileImport = function(profileName, envelope)
   me.RefreshProfileList()
   me.ClearSelectedProfile()
   mod.logger.PrintUserMessage(string.format(rgpvpw.L["profile_import_success"], profileName))
+end
+
+--[[
+  Grey out the update and delete buttons while the immutable default profile is selected.
+  The click handlers guard the same condition - this only makes the refusal visible before
+  the click. A selection of nothing leaves both buttons enabled, their click handlers print
+  the "select a profile first" message.
+]]--
+UpdateActionButtonState = function()
+  if not updateProfileButton or not deleteProfileButton then return end
+
+  local isDefault = currentSelectedProfileName ~= nil
+    and currentSelectedProfileName == RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME
+
+  updateProfileButton:SetEnabled(not isDefault)
+  deleteProfileButton:SetEnabled(not isDefault)
 end
 
 --[[

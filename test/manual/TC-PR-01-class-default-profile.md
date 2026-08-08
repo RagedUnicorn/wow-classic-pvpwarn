@@ -12,8 +12,9 @@
 
 1. Log in on the fresh state
 2. Open `/rgpvpw opt` → Profiles and read the profile list
-3. Select the `Default` profile and try **Delete Profile**
-4. Try **Update Profile** on it
+3. Select the `Default` profile and check the state of **Update Profile** and
+   **Delete Profile**
+4. Deselect it again — create a second profile, select that one, and check both buttons again
 5. Open a category panel for your own class and check which spells are pre-enabled
 6. Open a category panel for a different class and compare
 
@@ -23,9 +24,11 @@
   `mod.<class>Profile.GetSpellProfile(...)` for the logged-in character's class
 - The pre-enabled spell selection is class-appropriate — a Warrior's default differs from a
   Mage's
-- **Delete Profile** on `Default` is refused with
-  `user_message_default_profile_cannot_be_deleted`
-- **Update Profile** on `Default` is refused with
+- While `Default` is selected, **Update Profile** and **Delete Profile** are greyed out and
+  cannot be clicked
+- Both buttons become clickable again as soon as a non-default profile is selected
+- The click-time refusals still stand behind the greying out — a click that does reach them
+  prints `user_message_default_profile_cannot_be_deleted` /
   `user_message_default_profile_cannot_be_modified`
 - The profile carries a `version` field stamped with the current addon version
 - No Lua errors
