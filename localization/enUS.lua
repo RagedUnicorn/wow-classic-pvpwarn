@@ -47,9 +47,9 @@ rgpvpw.L["email"] = "E-Mail: michael.wiesendanger@gmail.com"
 rgpvpw.L["version"] = "Version: " .. C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
 rgpvpw.L["issues"] = "Issues: https://github.com/RagedUnicorn/wow-classic-pvpwarn/issues"
 
--- general
-rgpvpw.L["configuration_menu_general"] = "Options"
-rgpvpw.L["general_title"] = "Options"
+-- options
+rgpvpw.L["options_category_name"] = "Options"
+rgpvpw.L["options_title"] = "Options"
 rgpvpw.L["warn_mode_label"] = "Warning mode:"
 rgpvpw.L["warn_mode_warn_all"] = "Warn me as much as possible"
 rgpvpw.L["warn_mode_current_target"] = "Warn me for my current opponent"

@@ -48,9 +48,9 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["version"] = "Версия: " .. C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
   rgpvpw.L["issues"] = "Проблемы: https://github.com/RagedUnicorn/wow-classic-pvpwarn/issues"
 
-  -- general
-  rgpvpw.L["configuration_menu_general"] = "Настройки"
-  rgpvpw.L["general_title"] = "Настройки"
+  -- options
+  rgpvpw.L["options_category_name"] = "Настройки"
+  rgpvpw.L["options_title"] = "Настройки"
   rgpvpw.L["warn_mode_label"] = "Режим предупреждений:"
   rgpvpw.L["warn_mode_warn_all"] = "Предупреждать как можно чаще"
   rgpvpw.L["warn_mode_current_target"] = "Предупреждать о моей текущей цели"

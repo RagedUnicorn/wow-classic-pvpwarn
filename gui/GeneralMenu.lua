@@ -51,7 +51,7 @@ local warnModeDropdown
 function me.BuildUi(frame)
   if builtMenu then return end
 
-  mod.guiHelper.CreatePanelTitle(frame, RGPVPW_CONSTANTS.ELEMENT_GENERAL_TITLE, rgpvpw.L["general_title"])
+  mod.guiHelper.CreatePanelTitle(frame, RGPVPW_CONSTANTS.ELEMENT_GENERAL_TITLE, rgpvpw.L["options_title"])
   me.BuildWarnModeDropdown(frame)
 
   builtMenu = true

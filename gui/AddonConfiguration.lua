@@ -79,7 +79,7 @@ function me.SetupAddonConfiguration()
   local generalSubCategory = me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_GENERAL_SUB_OPTION_FRAME,
     category,
-    rgpvpw.L["configuration_menu_general"],
+    rgpvpw.L["options_category_name"],
     mod.generalMenu.BuildUi
   )
   categoryIds.general = generalSubCategory.ID
