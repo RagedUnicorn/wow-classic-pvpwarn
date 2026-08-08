@@ -61,6 +61,30 @@ function me.ApplyBorderBackdrop(frame)
 end
 
 --[[
+  Hide a scrollbar while its list fits into the visible area. Must be called after the scroll
+  frame and its bar were wired up through ScrollUtil.InitScrollFrameWithScrollBar.
+
+  @param {table} scrollFrame
+  @param {table} scrollBar
+]]--
+function me.EnableScrollBarAutoHide(scrollFrame, scrollBar)
+  if scrollBar.SetHideIfUnscrollable then
+    scrollBar:SetHideIfUnscrollable(true)
+
+    return
+  end
+
+  --[[
+    Classic Era did not backport ScrollBarMixin:SetHideIfUnscrollable - track the scroll
+    range manually instead
+  ]]--
+  scrollFrame:HookScript("OnScrollRangeChanged", function(_, _, yRange)
+    scrollBar:SetShown(yRange > 0)
+  end)
+  scrollBar:Hide()
+end
+
+--[[
   Create a dropdown in the dark style of the stock configuration menus (WowStyle2, without
   the stepper buttons the settings panel adds around some of its dropdowns)
 
@@ -189,12 +213,16 @@ function me.CreateSlider(frame, name, label, min, max, step, posX, posY, getValu
 end
 
 --[[
-  Create the content frame that hosts a category's spell list
+  Create the content frame that hosts a category's spell list. The frame stretches to the
+  settings canvas it sits on instead of using a fixed box - the canvas size comes from the
+  SettingsPanel and varies with resolution and ui scale, so a hardcoded size either overflows
+  the panel or leaves a dead strip below the list.
 
   @param {table} parentFrame
   @param {string} contentFrameName
   @param {table} position
-    An object containing configuration parameters for a SetPoint function call
+    An object containing configuration parameters for a SetPoint function call. Defines the
+    top left corner of the frame - the bottom right one always tracks the canvas
 
   @return {table}
     The created content frame
@@ -203,8 +231,13 @@ function me.CreateCategoryContentFrame(parentFrame, contentFrameName, position)
   local contentFrame = CreateFrame("Frame", contentFrameName, parentFrame)
 
   contentFrame:SetPoint(unpack(position))
-  contentFrame:SetWidth(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_WIDTH)
-  contentFrame:SetHeight(RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_HEIGHT)
+  contentFrame:SetPoint(
+    "BOTTOMRIGHT",
+    parentFrame,
+    "BOTTOMRIGHT",
+    RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_INSET_RIGHT * -1,
+    RGPVPW_CONSTANTS.SPELL_LIST_CONTENT_FRAME_INSET_BOTTOM
+  )
 
   return contentFrame
 end
@@ -442,8 +475,15 @@ end
 ]]--
 function me.CreateSpellFrame(parentFrame, position, spellFrameName, spellFrameRowHeight)
   local spellFrame = CreateFrame("Button", spellFrameName .. position, parentFrame, "BackdropTemplate")
-  spellFrame:SetSize(parentFrame:GetWidth(), spellFrameRowHeight)
-  spellFrame:SetPoint("TOPLEFT", parentFrame, 0, (position -1) * spellFrameRowHeight * -1)
+  local offsetY = (position - 1) * spellFrameRowHeight * -1
+
+  --[[
+    Anchored to both sides instead of getting a fixed width - the row then follows the scroll
+    childs width whenever the settings canvas changes size
+  ]]--
+  spellFrame:SetHeight(spellFrameRowHeight)
+  spellFrame:SetPoint("TOPLEFT", parentFrame, "TOPLEFT", 0, offsetY)
+  spellFrame:SetPoint("TOPRIGHT", parentFrame, "TOPRIGHT", 0, offsetY)
 
   spellFrame:SetBackdrop({
     bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
@@ -487,17 +527,19 @@ end
   @param {table} parentFrame
   @param {string} iconName
   @param {number} iconSize
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
 
   @return {table}
     The created icon texture holder
 ]]--
-function me.CreateSpellIcon(parentFrame, iconName, iconSize)
+function me.CreateSpellIcon(parentFrame, iconName, iconSize, position)
   local iconHolder = CreateFrame("Frame", nil, parentFrame, "BackdropTemplate")
   iconHolder:SetSize(
     iconSize + 5,
     iconSize + 5
   )
-  iconHolder:SetPoint("LEFT", 40, 0)
+  iconHolder:SetPoint(unpack(position))
   iconHolder:EnableMouse(true)
   iconHolder:SetScript("OnEnter", function(self)
     if self.itemId ~= nil then
@@ -544,25 +586,36 @@ function me.CreateSpellIcon(parentFrame, iconName, iconSize)
 end
 
 --[[
-  Create fontstring for title of the spell to configure
+  Create fontstring for title of the spell to configure. Both horizontal edges are anchored
+  instead of setting a fixed width - the title then takes whatever space the left cluster and
+  the control columns of the row leave over and grows with the list.
 
   @param {table} parentFrame
   @param {string} spellTitle
-  @param {number} spellTitleWidth
-  @param {number} iconSize
+  @param {table} leftAnchor
+    The frame the title starts to the right of
+  @param {table} rightAnchor
+    The frame the title ends to the left of
 
   @return {table}
     The created fontstring
 ]]--
-function me.CreateSpellTitle(parentFrame, spellTitle, spellTitleWidth, iconSize)
-  local spellTitleFontString = parentFrame:GetParent():CreateFontString(spellTitle, "OVERLAY")
+function me.CreateSpellTitle(parentFrame, spellTitle, leftAnchor, rightAnchor)
+  local spellTitleFontString = parentFrame:CreateFontString(spellTitle, "OVERLAY")
   spellTitleFontString:SetFont(STANDARD_TEXT_FONT, 15)
-  spellTitleFontString:SetWidth(spellTitleWidth)
   spellTitleFontString:SetJustifyH("LEFT")
   spellTitleFontString:SetPoint(
     "LEFT",
-    parentFrame,
-    iconSize + 10,
+    leftAnchor,
+    "RIGHT",
+    RGPVPW_CONSTANTS.SPELL_LIST_ROW_TITLE_GAP,
+    0
+  )
+  spellTitleFontString:SetPoint(
+    "RIGHT",
+    rightAnchor,
+    "LEFT",
+    RGPVPW_CONSTANTS.SPELL_LIST_ROW_TITLE_GAP * -1,
     0
   )
   me.SetColor(spellTitleFontString, RGPVPW_CONSTANTS.COLOR.SPELL_TITLE)
@@ -629,19 +682,20 @@ end
 
   @param {table} parentFrame
   @param {string} dropdownName
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
   @param {function} onColorSelected
     Invoked with (dropdown, colorValue) when the player picks a color
 
   @return {table}
     The created dropdown
 ]]--
-function me.CreateVisualWarningDropdown(parentFrame, dropdownName, onColorSelected)
+function me.CreateVisualWarningDropdown(parentFrame, dropdownName, position, onColorSelected)
   local chooseVisualWarningDropdownMenu = me.CreateSettingsDropdown(
     dropdownName .. parentFrame.position,
     parentFrame,
-    --[[ left-align with the sound checkbox column above ]]--
-    {"LEFT", parentFrame.spellTitle, "RIGHT", 0, -30},
-    150,
+    position,
+    RGPVPW_CONSTANTS.SPELL_LIST_ROW_DROPDOWN_WIDTH,
     function(dropdown, rootDescription)
       for colorName, color in pairs(RGPVPW_CONSTANTS.TEXTURES) do
         rootDescription:CreateRadio(

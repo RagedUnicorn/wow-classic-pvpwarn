@@ -34,7 +34,12 @@ me.tag = "SpellListHelper"
 local BuildUi
 local UpdateListAnchor
 local CreateSpellListContainer
+local AnchorContainer
+local GetVisibleRowCount
+local UpdateContentSize
 local CreateRowFrame
+local CreateControlColumn
+local UpdateControlColumnWidth
 local CreateSpellStateCheckBox
 local CreateSoundCheckBox
 local CreateSoundSpecialCheckBox
@@ -70,11 +75,12 @@ local UpdateSpellTitleState
         sound checkbox and play button
       getCategoryData - {function} categoryName -> list of spells to display
       getScrollFrameName - {function} categoryName -> name of the scroll frame
-      listWidth - {number} width of the scroll frame
+      listWidth - {number} fallback width of the scroll frame, used until the settings
+        canvas reports a size - the list otherwise stretches to the canvas
       rowHeight - {number} height of a single row
-      maxRows - {number} maximum amount of visible rows
+      maxRows - {number} fallback amount of visible rows, used until the settings canvas
+        reports a size - the visible rows otherwise follow the available height
       iconSize - {number} size of the spell icon
-      titleWidth - {number} width of the spell title fontstring
       elementNames - {table} frame names for the created ui elements
         {
           rowFrame, spellIcon, spellName, enableSpell, enableSound, playSound,
@@ -158,9 +164,8 @@ end
   @param {table} parentFrame
 ]]--
 UpdateListAnchor = function(spellList, parentFrame)
-  spellList.container:ClearAllPoints()
-  spellList.container:SetPoint("TOPLEFT", parentFrame)
   spellList.container:SetParent(parentFrame)
+  AnchorContainer(spellList.container, parentFrame)
   spellList.scrollFrame:SetVerticalScroll(0) -- reset scroll position to top
 end
 
@@ -177,33 +182,106 @@ end
 ]]--
 CreateSpellListContainer = function(spellList, frame, categoryName)
   local options = spellList.options
-  local listHeight = options.rowHeight * options.maxRows
 
   local container = CreateFrame("Frame", nil, frame)
-  container:SetSize(options.listWidth, listHeight)
-  container:SetPoint("TOPLEFT", frame)
+  AnchorContainer(container, frame)
 
   local scrollFrame = CreateFrame(
     "ScrollFrame",
     options.getScrollFrameName(categoryName),
     container
   )
+  --[[ the rows fill the container, the scrollbar overlays them - see the scrollbar below ]]--
   scrollFrame:SetPoint("TOPLEFT")
   scrollFrame:SetPoint("BOTTOMRIGHT")
 
+  --[[
+    The bar is placed on top of the rows instead of next to them so the row background runs
+    all the way to the border of the list. The rows keep their controls clear of it through
+    RGPVPW_CONSTANTS.SPELL_LIST_ROW_INSET_RIGHT.
+  ]]--
   local scrollBar = CreateFrame("EventFrame", nil, container, "MinimalScrollBar")
-  scrollBar:SetPoint("TOPLEFT", scrollFrame, "TOPRIGHT", 8, 0)
-  scrollBar:SetPoint("BOTTOMLEFT", scrollFrame, "BOTTOMRIGHT", 8, 0)
+  scrollBar:SetPoint("TOPRIGHT", scrollFrame, RGPVPW_CONSTANTS.SPELL_LIST_SCROLL_BAR_GAP * -1, 0)
+  scrollBar:SetPoint("BOTTOMRIGHT", scrollFrame, RGPVPW_CONSTANTS.SPELL_LIST_SCROLL_BAR_GAP * -1, 0)
+  --[[ clears the rows, which sit two frame levels below their scroll frame ]]--
+  scrollBar:SetFrameLevel(container:GetFrameLevel() + 10)
   ScrollUtil.InitScrollFrameWithScrollBar(scrollFrame, scrollBar)
+  --[[ a category with fewer spells than fit must not show an inert bar ]]--
+  mod.guiHelper.EnableScrollBarAutoHide(scrollFrame, scrollBar)
 
+  --[[ fallback size until the canvas reports one - replaced by UpdateContentSize ]]--
   local content = CreateFrame("Frame", nil, scrollFrame)
-  content:SetSize(options.listWidth, listHeight)
+  content:SetSize(options.listWidth, options.rowHeight * options.maxRows)
   scrollFrame:SetScrollChild(content)
 
   spellList.scrollFrame = scrollFrame
   spellList.content = content
 
+  --[[
+    The settings canvas has no size before the panel was shown for the first time and changes
+    with resolution and ui scale - follow it instead of sizing the list once
+  ]]--
+  scrollFrame:HookScript("OnSizeChanged", function()
+    UpdateContentSize(spellList)
+  end)
+  UpdateContentSize(spellList)
+
   return container
+end
+
+--[[
+  Anchor the spell list container to fill the content frame it belongs to
+
+  @param {table} container
+  @param {table} parentFrame
+]]--
+AnchorContainer = function(container, parentFrame)
+  container:ClearAllPoints()
+  container:SetPoint("TOPLEFT", parentFrame)
+  container:SetPoint("BOTTOMRIGHT", parentFrame)
+end
+
+--[[
+  Derive how many rows fit into the visible area of the list. The height the settings canvas
+  hands out decides this - options.maxRows is only a fallback while the list has no measurable
+  size yet.
+
+  @param {table} spellList
+
+  @return {number}
+    The amount of rows that fit into the visible area
+]]--
+GetVisibleRowCount = function(spellList)
+  local options = spellList.options
+  local availableHeight = spellList.scrollFrame:GetHeight()
+
+  if availableHeight <= 0 then
+    return options.maxRows
+  end
+
+  return math.max(math.floor(availableHeight / options.rowHeight), 1)
+end
+
+--[[
+  Size the scroll child to the scroll frame. The width has to follow the frame for the rows to
+  span the whole canvas, the height has to cover at least the visible area so a category with
+  fewer spells than fit does not leave the scroll child short.
+
+  @param {table} spellList
+]]--
+UpdateContentSize = function(spellList)
+  local options = spellList.options
+  local availableWidth = spellList.scrollFrame:GetWidth()
+
+  if availableWidth > 0 then
+    spellList.content:SetWidth(availableWidth)
+  end
+
+  local spellCount = spellList.cachedCategoryData ~= nil and #spellList.cachedCategoryData or 0
+
+  spellList.content:SetHeight(
+    math.max(spellCount, GetVisibleRowCount(spellList)) * options.rowHeight
+  )
 end
 
 --[[
@@ -228,20 +306,17 @@ CreateRowFrame = function(spellList, frame, position)
   row.spellIcon = mod.guiHelper.CreateSpellIcon(
     row,
     options.elementNames.spellIcon,
-    options.iconSize
-  )
-  row.spellTitle = mod.guiHelper.CreateSpellTitle(
-    row.spellIcon,
-    options.elementNames.spellName,
-    options.titleWidth,
-    options.iconSize
+    options.iconSize,
+    {"LEFT", row.spellStateCheckBox, "RIGHT", RGPVPW_CONSTANTS.SPELL_LIST_ROW_ICON_GAP, 0}
   )
 
-  row.soundCheckBox = CreateSoundCheckBox(spellList, row)
+  local controls = CreateControlColumn(row)
+
+  row.controls = controls
   row.playSound = mod.guiHelper.CreateTextButton(
     options.elementNames.playSound,
     row,
-    {"LEFT", row.soundCheckBox, "RIGHT", 150, 0},
+    {"RIGHT", controls, "RIGHT", 0, RGPVPW_CONSTANTS.SPELL_LIST_ROW_SOUND_LINE_Y},
     function(self)
       PlaySoundButtonOnClick(spellList, self)
     end,
@@ -249,35 +324,112 @@ CreateRowFrame = function(spellList, frame, position)
   )
 
   if options.hasSpecialSoundColumn then
-    row.soundSpecialCheckBox = CreateSoundSpecialCheckBox(spellList, row)
     row.playSoundSpecial = mod.guiHelper.CreateTextButton(
       options.elementNames.playSoundSpecial,
       row,
-      {"LEFT", row.soundSpecialCheckBox, "RIGHT", 150, 0},
+      {"RIGHT", controls, "RIGHT", 0, RGPVPW_CONSTANTS.SPELL_LIST_ROW_SOUND_SPECIAL_LINE_Y},
       PlaySoundSpecialButtonOnClick,
       options.labels.playSoundSpecial
     )
   end
 
-  row.chooseVisual = CreateVisualAlertDropdown(spellList, row)
-  row.chooseVisualLabel = mod.guiHelper.CreateVisualWarningLabel(
-    row.chooseVisual,
-    options.elementNames.visualWarningLabel,
-    options.labels.visualWarning
-  )
   row.playVisual = mod.guiHelper.CreateTextButton(
     options.elementNames.playVisualAlert,
     row,
-    --[[ dropdown ends at title right + 150, the sound play buttons start at + 174
-         (checkbox 24 + offset 150) - a 24px gap lines this button up with that column ]]--
-    {"LEFT", row.chooseVisual, "RIGHT", 24, 0},
+    {"RIGHT", controls, "RIGHT", 0, RGPVPW_CONSTANTS.SPELL_LIST_ROW_VISUAL_LINE_Y},
     function(self)
       PlayVisualAlertButtonOnClick(spellList, self)
     end,
     options.labels.playVisual
   )
 
+  UpdateControlColumnWidth(row)
+
+  --[[ the checkbox and the dropdown column both start at the left edge of the control column ]]--
+  row.soundCheckBox = CreateSoundCheckBox(
+    spellList,
+    row,
+    {"LEFT", controls, "LEFT", 0, RGPVPW_CONSTANTS.SPELL_LIST_ROW_SOUND_LINE_Y}
+  )
+
+  if options.hasSpecialSoundColumn then
+    row.soundSpecialCheckBox = CreateSoundSpecialCheckBox(
+      spellList,
+      row,
+      {"LEFT", controls, "LEFT", 0, RGPVPW_CONSTANTS.SPELL_LIST_ROW_SOUND_SPECIAL_LINE_Y}
+    )
+  end
+
+  row.chooseVisual = CreateVisualAlertDropdown(
+    spellList,
+    row,
+    {"LEFT", controls, "LEFT", 0, RGPVPW_CONSTANTS.SPELL_LIST_ROW_VISUAL_LINE_Y}
+  )
+  row.chooseVisualLabel = mod.guiHelper.CreateVisualWarningLabel(
+    row.chooseVisual,
+    options.elementNames.visualWarningLabel,
+    options.labels.visualWarning
+  )
+
+  row.spellTitle = mod.guiHelper.CreateSpellTitle(
+    row,
+    options.elementNames.spellName,
+    row.spellIcon.iconHolder,
+    controls
+  )
+
   return row
+end
+
+--[[
+  Create the column that holds the control clusters of a row. The column is an anchor only
+  frame - it carries no visuals and exists to pin both control columns to the rows right edge
+  at once, which is what lets the spell title to its left absorb the width of the list.
+
+  @param {table} row
+
+  @return {table}
+    The created control column
+]]--
+CreateControlColumn = function(row)
+  local controls = CreateFrame("Frame", nil, row)
+
+  controls:SetPoint("TOPRIGHT", row, "TOPRIGHT", RGPVPW_CONSTANTS.SPELL_LIST_ROW_INSET_RIGHT * -1, 0)
+  controls:SetPoint("BOTTOMRIGHT", row, "BOTTOMRIGHT", RGPVPW_CONSTANTS.SPELL_LIST_ROW_INSET_RIGHT * -1, 0)
+
+  return controls
+end
+
+--[[
+  Give every play button of a row the same width and size the control column to hold a
+  checkbox, its label and that button. Uniform buttons keep both edges of the button column
+  aligned - the right one against the rows inset, the left one against the checkbox and
+  dropdown column to its left.
+
+  @param {table} row
+]]--
+UpdateControlColumnWidth = function(row)
+  local buttons = {row.playSound, row.playVisual}
+
+  if row.playSoundSpecial ~= nil then
+    table.insert(buttons, row.playSoundSpecial)
+  end
+
+  local buttonWidth = 0
+
+  for _, button in ipairs(buttons) do
+    buttonWidth = math.max(buttonWidth, button:GetWidth())
+  end
+
+  for _, button in ipairs(buttons) do
+    button:SetWidth(buttonWidth)
+  end
+
+  row.controls:SetWidth(
+    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE
+      + RGPVPW_CONSTANTS.SPELL_LIST_ROW_LABEL_COLUMN_WIDTH
+      + buttonWidth
+  )
 end
 
 --[[
@@ -293,7 +445,8 @@ CreateSpellStateCheckBox = function(spellList, spellFrame)
   return mod.guiHelper.CreateCheckBox(
     spellList.options.elementNames.enableSpell,
     spellFrame,
-    {"LEFT", 0, 0},
+    --[[ inset so the checkbox does not sit flush against the border of the list ]]--
+    {"LEFT", RGPVPW_CONSTANTS.SPELL_LIST_ROW_INSET_LEFT, 0},
     function(self)
       mod.spellConfiguration.ToggleSpellState(
         spellList.options.spellList,
@@ -337,15 +490,17 @@ end
 
   @param {table} spellList
   @param {table} spellFrame
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
 
   @return {table}
     The created checkbox
 ]]--
-CreateSoundCheckBox = function(spellList, spellFrame)
+CreateSoundCheckBox = function(spellList, spellFrame, position)
   return mod.guiHelper.CreateCheckBox(
     spellList.options.elementNames.enableSound,
     spellFrame,
-    {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 25},
+    position,
     function()
       mod.spellConfiguration.ToggleSoundWarning(
         spellList.options.spellList,
@@ -379,15 +534,17 @@ end
 
   @param {table} spellList
   @param {table} spellFrame
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
 
   @return {table}
     The created checkbox
 ]]--
-CreateSoundSpecialCheckBox = function(spellList, spellFrame)
+CreateSoundSpecialCheckBox = function(spellList, spellFrame, position)
   return mod.guiHelper.CreateCheckBox(
     spellList.options.elementNames.enableSoundSpecial,
     spellFrame,
-    {"LEFT", spellFrame.spellTitle, "RIGHT", 0, 0},
+    position,
     function(self)
       SoundSpecialCheckBoxOnClick(spellList, self)
     end,
@@ -484,14 +641,17 @@ end
 
   @param {table} spellList
   @param {table} spellFrame
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
 
   @return {table}
     The created dropdown
 ]]--
-CreateVisualAlertDropdown = function(spellList, spellFrame)
+CreateVisualAlertDropdown = function(spellList, spellFrame, position)
   return mod.guiHelper.CreateVisualWarningDropdown(
     spellFrame,
     spellList.options.elementNames.visualWarningDropdown,
+    position,
     function(dropdown, colorValue)
       DropDownMenuCallback(spellList, dropdown, colorValue)
     end
@@ -597,7 +757,7 @@ UpdateSpellRows = function(spellList, categoryName)
     end
   end
 
-  spellList.content:SetHeight(math.max(spellCount, options.maxRows) * options.rowHeight)
+  UpdateContentSize(spellList)
 end
 
 --[[

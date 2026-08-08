@@ -348,6 +348,10 @@ RGPVPW_CONSTANTS = {
   PROFILE_LIST_CONTENT_FRAME_WIDTH = 280,
   PROFILE_LIST_MAX_ROWS = 8,
   PROFILE_LIST_ROW_HEIGHT = 20,
+  -- padding between the border of the list container and the rows inside it
+  PROFILE_LIST_VIEWPORT_INSET = 6,
+  -- keeps a profile name clear of the scrollbar that overlays the right edge of its row
+  PROFILE_LIST_NAME_INSET_RIGHT = 24,
   ELEMENT_PROFILE_LIST_CONTENT_FRAME = "PVPW_ProfileListContentFrame",
   ELEMENT_PROFILE_TITLE = "PVPW_ProfileTitle",
   ELEMENT_PROFILE_NAME = "$parentName",
@@ -370,15 +374,52 @@ RGPVPW_CONSTANTS = {
   -- scroll list
   ELEMENT_SPELL_LIST_SCROLL_FRAME = "$parent_PVPW_SpellListScrollFrame",
   ELEMENT_SPELL_LIST_CONTENT_FRAME = "$parent_PVPW_SpellListContentFrame",
+  --[[
+    Shared spell list layout. All three lists (spells tab, avoid tab, enemy avoid) stretch to
+    the settings canvas they are placed on - its size comes from the SettingsPanel and varies
+    with resolution and ui scale. The insets below say how much of the canvas is kept free
+    around the list, the per list width/maxRows constants are only fallbacks used until the
+    canvas reports a size.
+  ]]--
+  SPELL_LIST_CONTENT_FRAME_INSET_RIGHT = 5,
+  SPELL_LIST_CONTENT_FRAME_INSET_BOTTOM = 10,
+  --[[
+    The scrollbar overlays the rows at the right edge of the list rather than getting a gutter
+    of its own - that way the row background reaches the border of the list and runs on behind
+    the bar. SPELL_LIST_ROW_INSET_RIGHT keeps the row controls clear of it.
+  ]]--
+  SPELL_LIST_SCROLL_BAR_GAP = 6,
   SPELL_LIST_CONTENT_FRAME_WIDTH = 580,
-  SPELL_LIST_CONTENT_FRAME_HEIGHT = 552,
   SPELL_LIST_MAX_ROWS = 6,
   SPELL_LIST_ROW_HEIGHT = 92,
   -- spell configuration (single row)
   ELEMENT_CATEGORY_SPELL_ICON = "$parentIcon",
   CATEGORY_SPELL_ICON_SIZE = 32,
   CATEGORY_CHECK_BOX_SIZE = 24,
-  SPELL_TITLE_WIDTH = 250,
+  --[[
+    Single row layout, shared by all three lists - see gui/SpellListHelper.lua CreateRowFrame.
+    The left cluster (enable checkbox, icon) hangs off the rows left edge and the control
+    columns off its right one, so every pixel the list gains ends up in the spell title, which
+    is anchored between the two.
+  ]]--
+  SPELL_LIST_ROW_INSET_LEFT = 10,
+  -- wide enough to clear the scrollbar the rows now run underneath
+  SPELL_LIST_ROW_INSET_RIGHT = 22,
+  -- gap between the enable checkbox and the spell icon
+  SPELL_LIST_ROW_ICON_GAP = 16,
+  -- gap the spell title keeps to the icon on its left and to the control columns on its right
+  SPELL_LIST_ROW_TITLE_GAP = 8,
+  --[[
+    Space kept free to the right of a checkbox for its label. Checkbox plus label column put
+    the play button 174 into the control column, which the 150 wide dropdown on the line below
+    reaches with a 24px gap to spare - so all three play buttons end up in one column.
+  ]]--
+  SPELL_LIST_ROW_LABEL_COLUMN_WIDTH = 150,
+  SPELL_LIST_ROW_DROPDOWN_WIDTH = 150,
+  -- vertical offsets of the three control lines, relative to the center of the row
+  SPELL_LIST_ROW_SOUND_LINE_Y = 25,
+  SPELL_LIST_ROW_SOUND_SPECIAL_LINE_Y = 0,
+  SPELL_LIST_ROW_VISUAL_LINE_Y = -30,
   ELEMENT_CATEGORY_SPELL_NAME = "PVPW_SpellName",
   ELEMENT_CATEGORY_ENABLE_SPELL = "$parentEnableSpell",
   ELEMENT_CATEGORY_ENABLE_SOUND = "$parentEnableSound",
@@ -404,7 +445,6 @@ RGPVPW_CONSTANTS = {
   ELEMENT_CATEGORY_SPELL_SELF_AVOID_ICON = "$parentIcon",
   ELEMENT_CATEGORY_SPELL_SELF_AVOID_ICON_SIZE = 32,
   ELEMENT_CATEGORY_SPELL_SELF_AVOID_NAME = "PVPW_SpellSelfAvoidName",
-  SPELL_SELF_AVOID_TITLE_WIDTH = 250,
   ELEMENT_CATEGORY_ENABLE_SELF_AVOID_SOUND = "$parentEnableSelfAvoidSound",
   ELEMENT_CATEGORY_PLAY_SELF_AVOID_SOUND_BUTTON = "$parentPlaySelfAvoidSound",
   ELEMENT_CATEGORY_SELF_AVOID_VISUAL_WARNING_LABEL = "$parentSelfAvoidVisualLabel",
@@ -429,7 +469,6 @@ RGPVPW_CONSTANTS = {
   ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON = "$parentIcon",
   ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_ICON_SIZE = 32,
   ELEMENT_CATEGORY_SPELL_ENEMY_AVOID_NAME =  "PVPW_SpellEnemyAvoidName",
-  SPELL_ENEMY_AVOID_TITLE_WIDTH = 250,
   ELEMENT_CATEGORY_ENABLE_ENEMY_AVOID_SOUND = "$parentEnableEnemyAvoidSound",
   ELEMENT_CATEGORY_PLAY_ENEMY_AVOID_SOUND_BUTTON = "$parentPlayEnemyAvoidSound",
   ELEMENT_CATEGORY_ENEMY_AVOID_VISUAL_WARNING_LABEL = "$parentEnemyAvoidVisualLabel",

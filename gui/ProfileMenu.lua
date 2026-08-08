@@ -314,6 +314,8 @@ end
 ]]--
 function me.CreateProfileList(frame)
   local listWidth = RGPVPW_CONSTANTS.PROFILE_LIST_CONTENT_FRAME_WIDTH
+  -- padding between the border of the container and the list itself
+  local viewportInset = RGPVPW_CONSTANTS.PROFILE_LIST_VIEWPORT_INSET
 
   local listContainer = CreateFrame("Frame", nil, frame, "BackdropTemplate")
   listContainer:SetSize(listWidth, listHeight)
@@ -325,26 +327,21 @@ function me.CreateProfileList(frame)
     RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_SCROLL_FRAME,
     listContainer
   )
-  scrollFrame:SetPoint("TOPLEFT", 6, -6)
-  scrollFrame:SetPoint("BOTTOMRIGHT", -22, 6)
+  scrollFrame:SetPoint("TOPLEFT", viewportInset, viewportInset * -1)
+  scrollFrame:SetPoint("BOTTOMRIGHT", viewportInset * -1, viewportInset)
 
+  --[[
+    The bar is placed on top of the rows instead of next to them so the row background - the
+    selection highlight above all - reaches the border of the list and runs on behind the bar.
+    CreateProfileName keeps the profile name clear of it.
+  ]]--
   profileListScrollBar = CreateFrame("EventFrame", nil, listContainer, "MinimalScrollBar")
-  profileListScrollBar:SetPoint("TOPLEFT", scrollFrame, "TOPRIGHT", 6, 0)
-  profileListScrollBar:SetPoint("BOTTOMLEFT", scrollFrame, "BOTTOMRIGHT", 6, 0)
+  profileListScrollBar:SetPoint("TOPRIGHT", scrollFrame, viewportInset * -1, 0)
+  profileListScrollBar:SetPoint("BOTTOMRIGHT", scrollFrame, viewportInset * -1, 0)
+  --[[ clears the rows, which sit two frame levels below their scroll frame ]]--
+  profileListScrollBar:SetFrameLevel(listContainer:GetFrameLevel() + 10)
   ScrollUtil.InitScrollFrameWithScrollBar(scrollFrame, profileListScrollBar)
-
-  if profileListScrollBar.SetHideIfUnscrollable then
-    profileListScrollBar:SetHideIfUnscrollable(true)
-  else
-    --[[
-      Classic Era did not backport ScrollBarMixin:SetHideIfUnscrollable - track the scroll
-      range manually instead
-    ]]--
-    scrollFrame:HookScript("OnScrollRangeChanged", function(_, _, yRange)
-      profileListScrollBar:SetShown(yRange > 0)
-    end)
-    profileListScrollBar:Hide()
-  end
+  mod.guiHelper.EnableScrollBarAutoHide(scrollFrame, profileListScrollBar)
 
   profileListContent = CreateFrame("Frame", RGPVPW_CONSTANTS.ELEMENT_PROFILE_LIST_CONTENT_FRAME, scrollFrame)
   --[[
@@ -352,7 +349,7 @@ function me.CreateProfileList(frame)
     it knows its row count. Seeding the full listHeight would leave the list scrollable by the
     viewport insets alone and keep the scrollbar visible on an empty list
   ]]--
-  profileListContent:SetSize(listWidth - 28, 1)
+  profileListContent:SetSize(listWidth - viewportInset * 2, 1)
   scrollFrame:SetScrollChild(profileListContent)
 
   return listContainer
@@ -397,7 +394,11 @@ function me.CreateProfileName(profileFrame)
   local profileNameFontString = profileFrame:CreateFontString(
     RGPVPW_CONSTANTS.ELEMENT_PROFILE_NAME, "OVERLAY", "GameFontHighlightSmall")
   profileNameFontString:SetPoint("LEFT", 4, 0)
+  --[[ bounded on the right so a long name is cut off before it reaches the scrollbar that
+       overlays the row, instead of running underneath it ]]--
+  profileNameFontString:SetPoint("RIGHT", RGPVPW_CONSTANTS.PROFILE_LIST_NAME_INSET_RIGHT * -1, 0)
   profileNameFontString:SetJustifyH("LEFT")
+  profileNameFontString:SetWordWrap(false)
 
   return profileNameFontString
 end
