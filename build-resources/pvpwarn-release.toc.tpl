@@ -8,6 +8,7 @@
 ## X-Curse-Project-ID: ${addon.curseforge.projectId}
 ## X-Wago-ID: ${addon.wago.projectId}
 ## IconTexture: Interface\AddOns\PVPWarn\assets\pvpwarn_icon
+## Category: RagedUnicorn
 ${addon.comment.generated.toc}
 
 # constant values

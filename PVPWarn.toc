@@ -6,6 +6,7 @@
 ## SavedVariablesPerCharacter: PVPWarnConfiguration PVPWarnProfiles PVPWarnLogTracker PVPWarnLogTrackerAvoid PVPWarnTestLog
 ## SavedVariables: PVPWarnShotLog
 ## IconTexture: Interface\AddOns\PVPWarn\assets\pvpwarn_icon
+## Category: RagedUnicorn
 # THIS FILE IS AUTO-GENERATED. ALL CHANGES ARE OVERWRITTEN
 
 # constant values

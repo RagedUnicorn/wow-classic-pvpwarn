@@ -6,6 +6,7 @@
 ## SavedVariablesPerCharacter: ${addon.savedVariablesPerCharacter}
 ## SavedVariables: PVPWarnShotLog
 ## IconTexture: Interface\AddOns\PVPWarn\assets\pvpwarn_icon
+## Category: RagedUnicorn
 ${addon.comment.generated.toc}
 
 # constant values
