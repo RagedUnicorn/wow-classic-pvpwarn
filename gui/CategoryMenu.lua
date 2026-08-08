@@ -133,10 +133,17 @@ end
   the function will not run again.
 ]]--
 function me.CreateCategoryMenu(self)
+  mod.guiHelper.CreatePanelTitle(
+    self,
+    RGPVPW_CONSTANTS.ELEMENT_CATEGORY_TITLE .. self.categoryName,
+    rgpvpw.L[RGPVPW_CONSTANTS.CATEGORIES[self.value].localizationKey]
+  )
+
+  --[[ the tabs start below the panel title, which sits at -16 and is about 19px tall ]]--
   local spellTabButton = me.CreateTabButton(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_BUTTON .. spellTab,
-    {"TOPLEFT", 5, 0},
+    {"TOPLEFT", 5, -44},
     rgpvpw.L["tab_button_spell"],
     spellTab
   )
@@ -153,13 +160,13 @@ function me.CreateCategoryMenu(self)
   local spellContentFrame = mod.guiHelper.CreateCategoryContentFrame(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. spellTab,
-    {"TOPLEFT", self, 5, -37}
+    {"TOPLEFT", self, 5, -81}
   )
 
   local avoidContentFrame = mod.guiHelper.CreateCategoryContentFrame(
     self,
     RGPVPW_CONSTANTS.ELEMENT_TAB_CONTENT_FRAME .. avoidTab,
-    {"TOPLEFT", self, 5, -37}
+    {"TOPLEFT", self, 5, -81}
   )
 
   local category = {

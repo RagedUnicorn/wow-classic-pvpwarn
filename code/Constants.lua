@@ -335,6 +335,13 @@ RGPVPW_CONSTANTS = {
     }
   },
   --[[
+    Categorymenu
+
+    The title is created once per category - the categoryName ("druid" ... "misc") is appended
+    to keep the fontString names unique
+  ]]--
+  ELEMENT_CATEGORY_TITLE = "PVPW_CategoryTitle_",
+  --[[
     Tab configuration
   ]]--
   ELEMENT_TAB_BUTTON = "PVPW_TabButton_",
@@ -454,6 +461,7 @@ RGPVPW_CONSTANTS = {
     EnemyAvoidMenu
   ]]--
   ELEMENT_ENEMY_AVOID_SUB_OPTION_FRAME = "PVPW_EnemyAvoidMenuOptionsFrame",
+  ELEMENT_ENEMY_AVOID_TITLE = "PVPW_EnemyAvoidTitle",
   --[[
     SpellEnemyAvoid
   ]]--

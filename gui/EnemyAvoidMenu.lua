@@ -81,10 +81,17 @@ function me.Init(frame)
 
   me.SetCategoryName()
 
+  mod.guiHelper.CreatePanelTitle(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_ENEMY_AVOID_TITLE,
+    rgpvpw.L["configuration_menu_enemy_avoid"]
+  )
+
+  --[[ the list starts below the panel title, which sits at -16 and is about 19px tall ]]--
   local contentFrame = mod.guiHelper.CreateCategoryContentFrame(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_SPELL_ENEMY_AVOID_LIST_CONTENT_FRAME,
-    {"TOPLEFT", frame, 5, -7}
+    {"TOPLEFT", frame, 5, -52}
   )
   mod.spellListHelper.Init(spellList, contentFrame, activeCategory)
   builtMenu = true
