@@ -62,13 +62,16 @@ SavedVariables came from a real v1.2.8 install, or the fixture below.
   - Both avoid lists are **empty again** — the fixture's Warrior Hamstring / Mortal Strike /
     Pummel / Disarm and Rogue Kidney Shot entries are gone, since every class default ships
     empty avoid profiles
-- The non-spell v1.2.8 keys **do** survive: `enableCombatStateTracking`,
-  `lockCombatStateFrame`, `addonZoneConfiguration` (Warsong Gulch still `enabled = false` as
-  set in the fixture) and the `PVPW_CombatStateFrame` entry in `frames` unchanged
+- The non-spell v1.2.8 values **do** survive: `addonZoneConfiguration` (Warsong Gulch still
+  `enabled = false` as set in the fixture) and the `PVPW_CombatStateFrame` entry in `frames`
+  unchanged
+- The fixture's two flat state keys are **lifted, not lost**: `enableCombatStateTracking` and
+  `lockCombatStateFrame` are gone from the top level, their values now sitting in
+  `combatState = { enabled = true, locked = true }`
 - Fields introduced after v1.2.8 are present at their defaults:
-  `enableStanceStateTracking = true`, `lockStanceStateFrame = true`,
-  `hideUnknownStance = false`, `activeVoicePack = "default"`, `lastNotifiedVersion = ""`,
-  and the whole `detectionBar` / `flash` / `targetFilter` sub-blocks
+  `stanceState = { enabled = true, locked = true, hideUnknown = false }`,
+  `activeVoicePack = "default"`, `lastNotifiedVersion = ""`, and the whole
+  `detectionBar` / `flash` / `targetFilter` sub-blocks
 - `addonVersion` in the file is bumped to the new release version
 - No Lua errors
 

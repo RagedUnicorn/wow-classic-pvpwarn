@@ -54,6 +54,35 @@ local targetFilterDefaults = {
   ["mode"] = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_WARN_ALL
 }
 
+local combatStateDefaults = {
+  ["enabled"] = true,
+  ["locked"] = true
+}
+
+local stanceStateDefaults = {
+  ["enabled"] = true,
+  ["locked"] = true,
+  ["hideUnknown"] = false
+}
+
+--[[
+  Legacy flat keys that were lifted into the combatState / stanceState blocks, mapped to the
+  sub-key they became. Consumed once by the two Setup*Configuration backfills.
+]]--
+local combatStateLegacyKeys = {
+  ["enabled"] = "enableCombatStateTracking",
+  ["locked"] = "lockCombatStateFrame"
+}
+
+local stanceStateLegacyKeys = {
+  ["enabled"] = "enableStanceStateTracking",
+  ["locked"] = "lockStanceStateFrame",
+  ["hideUnknown"] = "hideUnknownStance"
+}
+
+-- forward declaration
+local MigrateLegacyKeys
+
 --[[
   Single source of truth for the top-level defaults - referenced by both the initial
   SavedVariables literal below and the SetupConfiguration backfill loop that runs after an
@@ -61,11 +90,6 @@ local targetFilterDefaults = {
   lists and the sub-blocks above have their own dedicated setup steps).
 ]]--
 local configurationDefaults = {
-  ["enableCombatStateTracking"] = true,
-  ["lockCombatStateFrame"] = true,
-  ["enableStanceStateTracking"] = true,
-  ["lockStanceStateFrame"] = true,
-  ["hideUnknownStance"] = false,
   ["addonZoneConfiguration"] = function() return mod.zone.InitializeDefaultZoneConfiguration() end,
   ["frames"] = function() return {} end,
   ["activeVoicePack"] = RGPVPW_CONSTANTS.DEFAULT_VOICE_PACK_NAME,
@@ -89,26 +113,6 @@ PVPWarnConfiguration = {
   ]]--
   ["spellEnemyAvoidList"] = nil,
   --[[
-    Whether combat state tracking is enabled or not
-  ]]--
-  ["enableCombatStateTracking"] = configurationDefaults.enableCombatStateTracking,
-  --[[
-    Whether the frame to track an enemies combat state is locked or not
-  ]]--
-  ["lockCombatStateFrame"] = configurationDefaults.lockCombatStateFrame,
-  --[[
-    Whether stance state tracking is enabled or not
-  ]]--
-  ["enableStanceStateTracking"] = configurationDefaults.enableStanceStateTracking,
-  --[[
-    Whether the frame to track an enemies stance state is locked or not
-  ]]--
-  ["lockStanceStateFrame"] = configurationDefaults.lockStanceStateFrame,
-  --[[
-    Whether to hide the stance icon when the stance is unknown
-  ]]--
-  ["hideUnknownStance"] = configurationDefaults.hideUnknownStance,
-  --[[
     A configuration object that tracks in what places the addon should be enabled or disabled. This mostly helps prevent
     spamming events in places where the player doesn't want to receive warnings.
   ]]--
@@ -130,6 +134,28 @@ PVPWarnConfiguration = {
     }
   ]]--
   ["frames"] = {},
+  --[[
+    Combat state tracker settings. The tracker shows an icon next to the target frame
+    reflecting whether the current enemy target is in combat.
+
+    combatState = {
+      enabled = {boolean},    -- whether combat state tracking is enabled
+      locked = {boolean}      -- whether the combat state frame can be dragged
+    }
+  ]]--
+  ["combatState"] = mod.common.Clone(combatStateDefaults),
+  --[[
+    Stance state tracker settings. The tracker shows an icon next to the target frame
+    reflecting the stance/form the current enemy target was last observed in.
+
+    stanceState = {
+      enabled = {boolean},       -- whether stance state tracking is enabled
+      locked = {boolean},        -- whether the stance state frame can be dragged
+      hideUnknown = {boolean}    -- whether to hide the icon instead of showing "?" for an
+                                 --   unobserved stance
+    }
+  ]]--
+  ["stanceState"] = mod.common.Clone(stanceStateDefaults),
   --[[
     Detection bar settings. The detection bar is a third warning channel (next to sound and
     visual) that surfaces a horizontal alert bar when a tracked enemy spell fires.
@@ -197,6 +223,8 @@ function me.SetupConfiguration()
     end
   end
 
+  me.SetupCombatStateConfiguration()
+  me.SetupStanceStateConfiguration()
   me.SetupDetectionBarConfiguration()
   me.SetupFlashConfiguration()
   me.SetupTargetFilterConfiguration()
@@ -206,6 +234,50 @@ function me.SetupConfiguration()
     a migration path applies to the current saved variables or not
   ]]--
   me.SetAddonVersion()
+end
+
+--[[
+  Backfill the combatState configuration block. Mirrors SetupDetectionBarConfiguration, with
+  one addition - versions before v2.0.0 kept these settings as flat top-level keys, so any
+  value still found there is lifted into the block first and the flat key dropped. Each
+  sub-key is backfilled individually so a partial upgrade self-heals.
+]]--
+function me.SetupCombatStateConfiguration()
+  if PVPWarnConfiguration.combatState == nil then
+    mod.logger.LogInfo(me.tag, "combatState has unexpected nil value")
+    PVPWarnConfiguration.combatState = {}
+  end
+
+  local combatState = PVPWarnConfiguration.combatState
+
+  MigrateLegacyKeys(combatState, combatStateLegacyKeys)
+
+  for key, value in pairs(combatStateDefaults) do
+    if combatState[key] == nil then
+      combatState[key] = value
+    end
+  end
+end
+
+--[[
+  Backfill the stanceState configuration block. Mirrors SetupCombatStateConfiguration,
+  including the lift of the pre-v2.0.0 flat top-level keys.
+]]--
+function me.SetupStanceStateConfiguration()
+  if PVPWarnConfiguration.stanceState == nil then
+    mod.logger.LogInfo(me.tag, "stanceState has unexpected nil value")
+    PVPWarnConfiguration.stanceState = {}
+  end
+
+  local stanceState = PVPWarnConfiguration.stanceState
+
+  MigrateLegacyKeys(stanceState, stanceStateLegacyKeys)
+
+  for key, value in pairs(stanceStateDefaults) do
+    if stanceState[key] == nil then
+      stanceState[key] = value
+    end
+  end
 end
 
 --[[
@@ -411,7 +483,7 @@ end
   Enable combat state tracking
 ]]--
 function me.EnableCombatStateTracking()
-  PVPWarnConfiguration.enableCombatStateTracking = true
+  PVPWarnConfiguration.combatState.enabled = true
   -- no actual work needed. Combat state tracking will start once the player acquires a target
 end
 
@@ -419,7 +491,7 @@ end
   Disable combat state tracking
 ]]--
 function me.DisableCombatStateTracking()
-  PVPWarnConfiguration.enableCombatStateTracking = false
+  PVPWarnConfiguration.combatState.enabled = false
   mod.combatState.DisableCombatStateTracking()
 end
 
@@ -429,21 +501,21 @@ end
     false - if combat state tracking is disabled
 ]]--
 function me.IsCombatStateTrackingEnabled()
-  return PVPWarnConfiguration.enableCombatStateTracking
+  return PVPWarnConfiguration.combatState.enabled
 end
 
 --[[
   Lock combat state frame
 ]]--
 function me.LockCombatStateFrame()
-  PVPWarnConfiguration.lockCombatStateFrame = true
+  PVPWarnConfiguration.combatState.locked = true
 end
 
 --[[
   Unlock combat state frame
 ]]--
 function me.UnlockCombatStateFrame()
-  PVPWarnConfiguration.lockCombatStateFrame = false
+  PVPWarnConfiguration.combatState.locked = false
 end
 
 --[[
@@ -452,14 +524,14 @@ end
     false - if combat state frame is unlocked
 ]]--
 function me.IsCombatStateFrameLocked()
-  return PVPWarnConfiguration.lockCombatStateFrame
+  return PVPWarnConfiguration.combatState.locked
 end
 
 --[[
   Enable stance state tracking
 ]]--
 function me.EnableStanceStateTracking()
-  PVPWarnConfiguration.enableStanceStateTracking = true
+  PVPWarnConfiguration.stanceState.enabled = true
   mod.stanceState.EnableStanceStateTracking()
 end
 
@@ -467,7 +539,7 @@ end
   Disable stance state tracking
 ]]--
 function me.DisableStanceStateTracking()
-  PVPWarnConfiguration.enableStanceStateTracking = false
+  PVPWarnConfiguration.stanceState.enabled = false
   mod.stanceState.DisableStanceStateTracking()
 end
 
@@ -477,21 +549,21 @@ end
     false - if stance state tracking is disabled
 ]]--
 function me.IsStanceStateTrackingEnabled()
-  return PVPWarnConfiguration.enableStanceStateTracking
+  return PVPWarnConfiguration.stanceState.enabled
 end
 
 --[[
   Lock stance state frame
 ]]--
 function me.LockStanceStateFrame()
-  PVPWarnConfiguration.lockStanceStateFrame = true
+  PVPWarnConfiguration.stanceState.locked = true
 end
 
 --[[
   Unlock stance state frame
 ]]--
 function me.UnlockStanceStateFrame()
-  PVPWarnConfiguration.lockStanceStateFrame = false
+  PVPWarnConfiguration.stanceState.locked = false
 end
 
 --[[
@@ -500,21 +572,21 @@ end
     false - if stance state frame is unlocked
 ]]--
 function me.IsStanceStateFrameLocked()
-  return PVPWarnConfiguration.lockStanceStateFrame
+  return PVPWarnConfiguration.stanceState.locked
 end
 
 --[[
   Enable hide unknown stance
 ]]--
 function me.EnableHideUnknownStance()
-  PVPWarnConfiguration.hideUnknownStance = true
+  PVPWarnConfiguration.stanceState.hideUnknown = true
 end
 
 --[[
   Disable hide unknown stance
 ]]--
 function me.DisableHideUnknownStance()
-  PVPWarnConfiguration.hideUnknownStance = false
+  PVPWarnConfiguration.stanceState.hideUnknown = false
 end
 
 --[[
@@ -523,7 +595,7 @@ end
     false - if hide unknown stance is disabled
 ]]--
 function me.IsHideUnknownStanceEnabled()
-  return PVPWarnConfiguration.hideUnknownStance
+  return PVPWarnConfiguration.stanceState.hideUnknown
 end
 
 --[[
@@ -854,6 +926,32 @@ function me.SetTargetFilterMode(mode)
     PVPWarnConfiguration.targetFilter.mode = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_CURRENT_TARGET
   else
     PVPWarnConfiguration.targetFilter.mode = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_WARN_ALL
+  end
+end
+
+--[[
+  Lift pre-v2.0.0 flat top-level settings into their configuration block and drop the flat
+  key. A value already present in the block wins - it was written by a version that had the
+  block, so it is the newer one - but the stale flat key is cleared either way so the lift
+  runs exactly once.
+
+  @param {table} block
+    The configuration block to migrate into
+  @param {table} legacyKeys
+    Map of block sub-key to the flat PVPWarnConfiguration key it replaced
+]]--
+MigrateLegacyKeys = function(block, legacyKeys)
+  for key, legacyKey in pairs(legacyKeys) do
+    local legacyValue = PVPWarnConfiguration[legacyKey]
+
+    if legacyValue ~= nil then
+      if block[key] == nil then
+        mod.logger.LogInfo(me.tag, "Migrating " .. legacyKey .. " into its configuration block")
+        block[key] = legacyValue
+      end
+
+      PVPWarnConfiguration[legacyKey] = nil
+    end
   end
 end
 

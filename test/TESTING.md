@@ -232,6 +232,11 @@ One file per test case under [test/manual/](manual/). Case IDs follow `TC-<AREA>
 
 * Localization is covered by the busted spec `LocalizationParitySpec` (key parity of `deDE`
   and `ruRU` against `enUS`) - no manual locale pass is required.
+* The `combatState` / `stanceState` configuration blocks - their defaults, the per-sub-key
+  backfill and the lift of the pre-v2.0.0 flat keys - are covered by `ConfigurationSpec`,
+  which replays the same v1.2.8 fixture
+  [TC-SV-02](manual/TC-SV-02-upgrade-from-previous-release.md) uses. The manual cases confirm
+  the client writes the file, not that the migration is correct.
 * The spell catalog and its sound coverage are covered by `verify-spellmap` and
   `verify-sounds` - the manual cases sample a few spells, they do not walk the catalog.
 * [TC-REL-01](manual/TC-REL-01-release-build-strip.md) is the only case that needs an actual
