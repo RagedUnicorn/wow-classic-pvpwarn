@@ -51,19 +51,27 @@ if (GetLocale() == "ruRU") then
   -- general
   rgpvpw.L["configuration_menu_general"] = "Настройки"
   rgpvpw.L["general_title"] = "Настройки"
+  rgpvpw.L["warn_mode_label"] = "Режим предупреждений:"
+  rgpvpw.L["warn_mode_warn_all"] = "Предупреждать как можно чаще"
+  rgpvpw.L["warn_mode_current_target"] = "Предупреждать о моей текущей цели"
+
+  -- combat state
+  rgpvpw.L["configuration_menu_combat_state"] = "Состояние боя"
+  rgpvpw.L["combat_state_title"] = "Настройка состояния боя"
   rgpvpw.L["enable_combat_state_tracking"] = "Отслеживать состояние боя"
   rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Отслеживает состояние боя вражеской цели"
   rgpvpw.L["lock_frame_combat_state"] = "Заблокировать рамку состояния боя"
   rgpvpw.L["lock_frame_combat_state_tooltip"] = "Фиксирует или разблокирует рамку состояния боя"
+
+  -- stance state
+  rgpvpw.L["configuration_menu_stance_state"] = "Стойка"
+  rgpvpw.L["stance_state_title"] = "Настройка стойки"
   rgpvpw.L["enable_stance_state_tracking"] = "Отслеживать стойку"
   rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Отслеживает стойку вражеской цели"
   rgpvpw.L["lock_frame_stance_state"] = "Заблокировать рамку стойки"
   rgpvpw.L["lock_frame_stance_state_tooltip"] = "Фиксирует или разблокирует рамку стойки"
   rgpvpw.L["hide_unknown_stance"] = "Скрывать неизвестную стойку"
   rgpvpw.L["hide_unknown_stance_tooltip"] = "Скрывает иконку стойки, если она неизвестна"
-  rgpvpw.L["warn_mode_label"] = "Режим предупреждений:"
-  rgpvpw.L["warn_mode_warn_all"] = "Предупреждать как можно чаще"
-  rgpvpw.L["warn_mode_current_target"] = "Предупреждать о моей текущей цели"
 
   -- voice pack
   rgpvpw.L["configuration_menu_voice_pack"] = "Голосовые пакеты"

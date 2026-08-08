@@ -39,9 +39,10 @@ me.tag = "AddonConfiguration"
 local mainCategoryId
 
 --[[
-  Category ids captured at registration, keyed by a stable name: "main", "general", "zone",
-  "voicePack", "detectionBar", "flash", "profile", "enemyAvoid", plus one per spell category
-  keyed by RGPVPW_CONSTANTS.CATEGORIES[i].categoryName ("druid" through "misc").
+  Category ids captured at registration, keyed by a stable name: "main", "general",
+  "combatState", "stanceState", "zone", "voicePack", "detectionBar", "flash", "profile",
+  "enemyAvoid", plus one per spell category keyed by
+  RGPVPW_CONSTANTS.CATEGORIES[i].categoryName ("druid" through "misc").
   Settings.OpenToCategory requires the numeric id - passing a category name errors on Classic
   Era ("outside of expected range") - so callers resolve through me.GetCategoryId instead of
   hardcoding ids or looking up localized names.
@@ -54,8 +55,9 @@ local categoryIds = {}
   navigation via Settings.OpenToCategory, which accepts only numeric ids.
 
   @param {string} key
-    One of "main", "general", "zone", "voicePack", "detectionBar", "flash", "profile",
-    "enemyAvoid" or a spell category name ("druid" ... "misc")
+    One of "main", "general", "combatState", "stanceState", "zone", "voicePack",
+    "detectionBar", "flash", "profile", "enemyAvoid" or a spell category name
+    ("druid" ... "misc")
 
   @return {number | nil}
     The category id or nil for an unknown key or before SetupAddonConfiguration ran
@@ -81,6 +83,22 @@ function me.SetupAddonConfiguration()
     mod.generalMenu.BuildUi
   )
   categoryIds.general = generalSubCategory.ID
+
+  local combatStateSubCategory = me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_SUB_OPTION_FRAME,
+    category,
+    rgpvpw.L["configuration_menu_combat_state"],
+    mod.combatStateMenu.BuildUi
+  )
+  categoryIds.combatState = combatStateSubCategory.ID
+
+  local stanceStateSubCategory = me.BuildCategory(
+    RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_SUB_OPTION_FRAME,
+    category,
+    rgpvpw.L["configuration_menu_stance_state"],
+    mod.stanceStateMenu.BuildUi
+  )
+  categoryIds.stanceState = stanceStateSubCategory.ID
 
   local zoneSubCategory = me.BuildCategory(
     RGPVPW_CONSTANTS.ELEMENT_ZONE_MENU_SUB_OPTION_FRAME,

@@ -357,6 +357,48 @@ function me.CreateCheckBox(frameName, parent, position, onClickCallback, onShowC
 end
 
 --[[
+  Create a checkbox that owns a set of dependent checkboxes. The linked names are assigned onto
+  the frame before the onShow callback runs so they are already present when CreateCheckBox
+  invokes the callback to load the initial state - the callback enables or disables them through
+  me.EnableCheckButtons / me.DisableCheckButtons.
+
+  @param {string} frameName
+    The name of the checkbox
+  @param {table} parent
+    A parent frame to attach to
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+  @param {function} onClickCallback
+    Callback that is called onClick
+  @param {function} onShowCallback
+    Callback that is called onShow and once during creation to load the initial state
+  @param {string} text
+    Text that is used as label for the checkbox
+  @param {string} description
+    Always-visible gray description rendered directly beneath the checkbox
+  @param {table} linkedCheckButtonNames
+    Names of the checkboxes that are enabled/disabled based on this checkbox state
+
+  @return {table}
+    The created checkbox
+]]--
+function me.CreateLinkedCheckBox(frameName, parent, position, onClickCallback, onShowCallback, text, description,
+    linkedCheckButtonNames)
+  return me.CreateCheckBox(
+    frameName,
+    parent,
+    position,
+    onClickCallback,
+    function(self)
+      self.linkedCheckButtonNames = linkedCheckButtonNames
+      onShowCallback(self)
+    end,
+    text,
+    description
+  )
+end
+
+--[[
   Create a generic text button whose width auto-sizes to its text
 
   @param {string} frameName
@@ -462,6 +504,40 @@ end
 function me.EnableCheckButton(checkButton)
   checkButton:Enable()
   me.SetColor(checkButton.text, RGPVPW_CONSTANTS.COLOR.BODY)
+end
+
+--[[
+  Enables a list of checkButtons by their global frame name
+
+  @param {table} checkButtonNames
+]]--
+function me.EnableCheckButtons(checkButtonNames)
+  for _, checkButtonName in pairs(checkButtonNames) do
+    local checkButtonFrame = _G[checkButtonName]
+
+    if checkButtonFrame ~= nil then
+      me.EnableCheckButton(checkButtonFrame)
+    else
+      mod.logger.LogError(me.tag, "Tried to enable non-existent checkbutton")
+    end
+  end
+end
+
+--[[
+  Disables a list of checkButtons by their global frame name
+
+  @param {table} checkButtonNames
+]]--
+function me.DisableCheckButtons(checkButtonNames)
+  for _, checkButtonName in pairs(checkButtonNames) do
+    local checkButtonFrame = _G[checkButtonName]
+
+    if checkButtonFrame ~= nil then
+      me.DisableCheckButton(checkButtonFrame)
+    else
+      mod.logger.LogError(me.tag, "Tried to disable non-existent checkbutton")
+    end
+  end
 end
 
 --[[

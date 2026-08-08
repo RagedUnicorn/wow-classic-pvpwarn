@@ -4,7 +4,7 @@
 
 ## Preconditions
 
-- **Enable combatstate tracking** checked in `/rgpvpw opt` → Options
+- **Enable combatstate tracking** checked in `/rgpvpw opt` → Combat State
 - A hostile player who can be observed entering and leaving combat
 
 ## Steps

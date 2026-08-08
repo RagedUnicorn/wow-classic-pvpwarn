@@ -4,7 +4,7 @@
 
 ## Preconditions
 
-- **Enable stancestate tracking** checked in `/rgpvpw opt` → Options
+- **Enable stancestate tracking** checked in `/rgpvpw opt` → Stance State
 - A hostile Warrior or Druid — the classes whose stance/form is worth tracking
 
 ## Steps

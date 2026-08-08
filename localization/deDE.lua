@@ -53,19 +53,27 @@ if (GetLocale() == "deDE") then
   -- general
   rgpvpw.L["configuration_menu_general"] = "Optionen"
   rgpvpw.L["general_title"] = "Optionen"
+  rgpvpw.L["warn_mode_label"] = "Warnmodus:"
+  rgpvpw.L["warn_mode_warn_all"] = "So viel wie möglich warnen"
+  rgpvpw.L["warn_mode_current_target"] = "Nur für mein aktuelles Ziel warnen"
+
+  -- combat state
+  rgpvpw.L["configuration_menu_combat_state"] = "Kampfzustand"
+  rgpvpw.L["combat_state_title"] = "Kampfzustand Konfiguration"
   rgpvpw.L["enable_combat_state_tracking"] = "Aktiviere Kampfstatus Überwachung"
   rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Überwacht den Kampfstatus eines gegnerischen Zieles"
   rgpvpw.L["lock_frame_combat_state"] = "Blockiere das Kampfzustand Fenster"
   rgpvpw.L["lock_frame_combat_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Kampfzustand Fenster"
+
+  -- stance state
+  rgpvpw.L["configuration_menu_stance_state"] = "Haltungszustand"
+  rgpvpw.L["stance_state_title"] = "Haltungszustand Konfiguration"
   rgpvpw.L["enable_stance_state_tracking"] = "Aktiviere Haltungszustand Überwachung"
   rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Überwacht den Haltungszustand eines gegnerischen Zieles"
   rgpvpw.L["lock_frame_stance_state"] = "Blockiere das Haltungszustand Fenster"
   rgpvpw.L["lock_frame_stance_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Haltungszustand Fenster"
   rgpvpw.L["hide_unknown_stance"] = "Unbekannte Haltung ausblenden"
   rgpvpw.L["hide_unknown_stance_tooltip"] = "Blendet das Haltungssymbol aus, wenn die Haltung unbekannt ist"
-  rgpvpw.L["warn_mode_label"] = "Warnmodus:"
-  rgpvpw.L["warn_mode_warn_all"] = "So viel wie möglich warnen"
-  rgpvpw.L["warn_mode_current_target"] = "Nur für mein aktuelles Ziel warnen"
 
   -- voice pack
   rgpvpw.L["configuration_menu_voice_pack"] = "Sprachpakete"

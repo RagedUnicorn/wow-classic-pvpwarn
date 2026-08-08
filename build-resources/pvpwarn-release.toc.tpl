@@ -78,6 +78,8 @@ gui/Frame.xml
 gui/AddonConfiguration.lua
 gui/AboutContent.lua
 gui/GeneralMenu.lua
+gui/CombatStateMenu.lua
+gui/StanceStateMenu.lua
 gui/ZoneMenu.lua
 gui/VoicePackMenu.lua
 gui/ProfileMenu.lua

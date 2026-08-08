@@ -50,19 +50,27 @@ rgpvpw.L["issues"] = "Issues: https://github.com/RagedUnicorn/wow-classic-pvpwar
 -- general
 rgpvpw.L["configuration_menu_general"] = "Options"
 rgpvpw.L["general_title"] = "Options"
+rgpvpw.L["warn_mode_label"] = "Warning mode:"
+rgpvpw.L["warn_mode_warn_all"] = "Warn me as much as possible"
+rgpvpw.L["warn_mode_current_target"] = "Warn me for my current opponent"
+
+-- combat state
+rgpvpw.L["configuration_menu_combat_state"] = "Combat State"
+rgpvpw.L["combat_state_title"] = "Combat State Configuration"
 rgpvpw.L["enable_combat_state_tracking"] = "Enable combatstate tracking"
 rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Tracks the combatstate of an enemy target"
 rgpvpw.L["lock_frame_combat_state"] = "Lock combatstate frame"
 rgpvpw.L["lock_frame_combat_state_tooltip"] = "Locks or unlocks the combatstate frame"
+
+-- stance state
+rgpvpw.L["configuration_menu_stance_state"] = "Stance State"
+rgpvpw.L["stance_state_title"] = "Stance State Configuration"
 rgpvpw.L["enable_stance_state_tracking"] = "Enable stancestate tracking"
 rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Tracks the stancestate of an enemy target"
 rgpvpw.L["lock_frame_stance_state"] = "Lock stancestate frame"
 rgpvpw.L["lock_frame_stance_state_tooltip"] = "Locks or unlocks the stancestate frame"
 rgpvpw.L["hide_unknown_stance"] = "Hide unknown stance"
 rgpvpw.L["hide_unknown_stance_tooltip"] = "Hides the stance icon when the stance is unknown"
-rgpvpw.L["warn_mode_label"] = "Warning mode:"
-rgpvpw.L["warn_mode_warn_all"] = "Warn me as much as possible"
-rgpvpw.L["warn_mode_current_target"] = "Warn me for my current opponent"
 
 -- voice pack
 rgpvpw.L["configuration_menu_voice_pack"] = "Voice Packs"

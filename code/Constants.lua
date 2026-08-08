@@ -177,14 +177,23 @@ RGPVPW_CONSTANTS = {
     Generalmenu
   ]]--
   ELEMENT_GENERAL_SUB_OPTION_FRAME = "PVPW_GeneralMenuOptionsFrame",
-  ELEMENT_GENERAL_OPT = "PVPW_Opt",
   ELEMENT_GENERAL_TITLE = "PVPW_GeneralTitle",
-  ELEMENT_GENERAL_OPT_ENABLE_COMBAT_STATE = "PVPW_OptEnableCombatStateTracking",
-  ELEMENT_GENERAL_OPT_LOCK_FRAME_COMBAT_STATE = "PVPW_OptLockFrameCombatState",
-  ELEMENT_GENERAL_OPT_ENABLE_STANCE_STATE = "PVPW_OptEnableStanceStateTracking",
-  ELEMENT_GENERAL_OPT_LOCK_FRAME_STANCE_STATE = "PVPW_OptLockFrameStanceState",
-  ELEMENT_GENERAL_OPT_HIDE_UNKNOWN_STANCE = "PVPW_OptHideUnknownStance",
   ELEMENT_GENERAL_OPT_WARN_MODE_DROPDOWN = "PVPW_OptWarnModeDropdown",
+  --[[
+    CombatStateMenu
+  ]]--
+  ELEMENT_COMBAT_STATE_SUB_OPTION_FRAME = "PVPW_CombatStateMenuOptionsFrame",
+  ELEMENT_COMBAT_STATE_TITLE = "PVPW_CombatStateTitle",
+  ELEMENT_COMBAT_STATE_OPT_ENABLE = "PVPW_CombatStateOptEnable",
+  ELEMENT_COMBAT_STATE_OPT_LOCK_FRAME = "PVPW_CombatStateOptLockFrame",
+  --[[
+    StanceStateMenu
+  ]]--
+  ELEMENT_STANCE_STATE_SUB_OPTION_FRAME = "PVPW_StanceStateMenuOptionsFrame",
+  ELEMENT_STANCE_STATE_TITLE = "PVPW_StanceStateTitle",
+  ELEMENT_STANCE_STATE_OPT_ENABLE = "PVPW_StanceStateOptEnable",
+  ELEMENT_STANCE_STATE_OPT_LOCK_FRAME = "PVPW_StanceStateOptLockFrame",
+  ELEMENT_STANCE_STATE_OPT_HIDE_UNKNOWN = "PVPW_StanceStateOptHideUnknownStance",
   --[[
     ZoneMenu
   ]]--
