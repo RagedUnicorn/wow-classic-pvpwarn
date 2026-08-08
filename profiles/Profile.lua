@@ -258,6 +258,10 @@ end
   Returns whether the activated profile was modified in any way.
   Note: This includes any change to the profile even if the change was reverted
 
+  The flag is tracked but no longer surfaced anywhere in the ui - the profile list used to
+  append a "*" to the active row and that marker was dropped. Kept as the read side of
+  SetModified for callers that want the drift state.
+
   @return {boolean}
     true - if the active profile was modified
     false - if the active profile was not modified

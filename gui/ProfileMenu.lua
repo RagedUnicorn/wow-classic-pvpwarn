@@ -429,7 +429,8 @@ end
 
 --[[
   Update the profile list rows to reflect the current profiles. Rows are created
-  lazily - one per profile - and surplus rows are hidden.
+  lazily - one per profile - and surplus rows are hidden. Also recolors the rows, the
+  active profile being the one drawn in gold.
 ]]--
 function me.RefreshProfileList()
   local profiles = PVPWarnProfiles
@@ -444,17 +445,19 @@ function me.RefreshProfileList()
     local row = profileRows[i]
 
     if profile ~= nil then
-      local profileName = profile.name
+      --[[
+        The active profile is marked by the color of its label alone - the name itself is
+        left untouched so a row always reads exactly like the profile it stands for. The
+        gold selection highlight is a separate signal: a row can be active, selected or both
+      ]]--
+      local isActive = mod.profile.GetActiveProfileName() == profile.name
 
-      if mod.profile.GetActiveProfileName() == profile.name then
-        profileName = profileName .. " (active)"
-
-        if mod.profile.IsModified() then
-          profileName = profileName .. "*"
-        end
-      end
       row.profileName.name = profile.name
-      row.profileName:SetText(profileName)
+      row.profileName:SetText(profile.name)
+      mod.guiHelper.SetColor(
+        row.profileName,
+        isActive and RGPVPW_CONSTANTS.COLOR.TITLE_GOLD or RGPVPW_CONSTANTS.COLOR.BODY
+      )
       row:Show()
     else
       row.profileName:SetText("")

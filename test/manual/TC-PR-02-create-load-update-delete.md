@@ -22,7 +22,10 @@
 ## Expected
 
 - Each of create/load/update/delete raises a confirmation dialog before acting
-- **Load Profile** restores the saved per-spell settings across all three spell lists
+- **Load Profile** restores the saved per-spell settings across all three spell lists, and
+  the loaded profile becomes the one drawn in gold — exactly one row is gold at any time and
+  it follows the load, while the translucent gold selection box stays on whatever row was
+  clicked last. No row name carries an " (active)" suffix or a trailing "*"
 - **Update Profile** overwrites the stored profile with the live configuration
 - **Delete Profile** removes it from the list and from `PVPWarnProfiles`
 - With nothing selected each button prints its own `user_message_select_profile_before_*`
