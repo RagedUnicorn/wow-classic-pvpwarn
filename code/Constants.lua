@@ -58,8 +58,8 @@ RGPVPW_CONSTANTS = {
   CHECK_COMBAT_STATE_INTERVAL = 0.4,
   CHECK_STANCE_STATE_EXPIRED_INTERVAL = 60,
   --[[
-    Warn textures - TEXTURES is derived from RGPVPW_COLORS.WARNINGS and assigned after
-    this table (see BuildWarnTextures)
+    Warn textures - TEXTURES and TEXTURES_ORDERED are derived from RGPVPW_COLORS.WARNINGS
+    and assigned after this table (see BuildWarnTextures)
   ]]--
   --[[
     default color - no visual warning configured
@@ -515,20 +515,39 @@ RGPVPW_CONSTANTS = {
   texture entry (the matching texture assets must still be shipped). Requires code/Colors.lua
   to be loaded first (see toc order).
 
+  The keyed table is a plain hash and thus has no order the ui could iterate - the second
+  return value holds the same entries as an array sorted ascending by colorValue. Because
+  RGPVPW_COLORS numbers NONE = 0 that puts the default first and keeps the rest in the
+  numbering order of code/Colors.lua (see gui/GuiHelper.lua CreateVisualWarningDropdown).
+
   @return {table}
     colorName = {textureName = "texture_<colorName>", colorValue = <number>}
+  @return {table}
+    {colorName = "<colorName>", textureName = "texture_<colorName>", colorValue = <number>}
+    entries sorted ascending by colorValue
 ]]--
 BuildWarnTextures = function()
   local textures = {}
+  local orderedTextures = {}
 
   for colorName, colorData in pairs(RGPVPW_COLORS.WARNINGS) do
     textures[colorName] = {
       textureName = "texture_" .. colorName,
       colorValue = colorData.value
     }
+
+    table.insert(orderedTextures, {
+      colorName = colorName,
+      textureName = textures[colorName].textureName,
+      colorValue = colorData.value
+    })
   end
 
-  return textures
+  table.sort(orderedTextures, function(left, right)
+    return left.colorValue < right.colorValue
+  end)
+
+  return textures, orderedTextures
 end
 
-RGPVPW_CONSTANTS.TEXTURES = BuildWarnTextures()
+RGPVPW_CONSTANTS.TEXTURES, RGPVPW_CONSTANTS.TEXTURES_ORDERED = BuildWarnTextures()

@@ -816,9 +816,13 @@ function me.CreateVisualWarningDropdown(parentFrame, dropdownName, position, onC
     position,
     RGPVPW_CONSTANTS.SPELL_LIST_ROW_DROPDOWN_WIDTH,
     function(dropdown, rootDescription)
-      for colorName, color in pairs(RGPVPW_CONSTANTS.TEXTURES) do
+      --[[
+        Iterating the ordered array instead of the keyed hash keeps `none` at the top of the
+        menu and the colors in a stable order (see BuildWarnTextures in code/Constants.lua)
+      ]]--
+      for _, color in ipairs(RGPVPW_CONSTANTS.TEXTURES_ORDERED) do
         rootDescription:CreateRadio(
-          rgpvpw.L["texture_" .. colorName],
+          rgpvpw.L["texture_" .. color.colorName],
           function(colorValue)
             return dropdown.selectedColorValue == colorValue
           end,
