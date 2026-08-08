@@ -84,6 +84,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["voice_pack_dropdown_label"] = "Выберите голосовой пакет:"
   rgpvpw.L["voice_pack_default"] = "По умолчанию"
   rgpvpw.L["voice_pack_play_sound_button"] = "Проверить голосовой пакет"
+  rgpvpw.L["voice_pack_source_hint"] = "Больше голосовых пакетов на CurseForge или Wago - ищите PVPWarn Voice Pack."
 
   -- detection bar
   rgpvpw.L["configuration_menu_detection_bar"] = "Панель обнаружения"

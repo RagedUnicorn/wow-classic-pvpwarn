@@ -86,6 +86,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["voice_pack_dropdown_label"] = "Sprachpaket auswählen:"
   rgpvpw.L["voice_pack_default"] = "Standard"
   rgpvpw.L["voice_pack_play_sound_button"] = "Sprachpaket testen"
+  rgpvpw.L["voice_pack_source_hint"] = "Weitere Sprachpakete auf CurseForge oder Wago - suche nach PVPWarn Voice Pack."
 
   -- detection bar
   rgpvpw.L["configuration_menu_detection_bar"] = "Erkennungsleiste"

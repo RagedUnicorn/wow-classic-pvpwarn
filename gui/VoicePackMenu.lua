@@ -66,6 +66,7 @@ function me.BuildUi(frame)
   mod.guiHelper.CreatePanelTitle(frame, RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_TITLE, rgpvpw.L["voice_pack_title"])
   me.BuildVoicePackDropdown(frame)
   me.BuildPlaySoundButton(frame)
+  me.BuildSourceHint(frame)
 
   builtMenu = true
 end
@@ -198,6 +199,25 @@ function me.BuildPlaySoundButton(frame)
     me.PlayRandomSoundOnClick,
     rgpvpw.L["voice_pack_play_sound_button"]
   )
+end
+
+--[[
+  Build the hint telling the player where additional voice packs come from. Voice packs are
+  separate addons, so a player with none installed sees nothing but the default entry in the
+  dropdown and no indication that there is anything else to pick.
+
+  @param {table} frame
+    The addon configuration frame to attach to
+]]--
+function me.BuildSourceHint(frame)
+  local hintFontString = frame:CreateFontString(nil, "OVERLAY")
+
+  hintFontString:SetPoint("TOPLEFT", 20, -82)
+  hintFontString:SetWidth(RGPVPW_CONSTANTS.ELEMENT_VOICE_PACK_SOURCE_HINT_WIDTH)
+  hintFontString:SetFont(STANDARD_TEXT_FONT, 12)
+  mod.guiHelper.SetColor(hintFontString, RGPVPW_CONSTANTS.COLOR.SUBNOTE)
+  hintFontString:SetJustifyH("LEFT")
+  hintFontString:SetText(rgpvpw.L["voice_pack_source_hint"])
 end
 
 --[[

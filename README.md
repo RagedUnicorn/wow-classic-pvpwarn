@@ -128,20 +128,25 @@ PVPWarn supports configurable voice packs to customize the audio experience with
 #### Available Voice Packs
 
 **VPNFC - Night Elf Female Character**
+- Download: [CurseForge](https://www.curseforge.com/wow/addons/pvpwarn-vpnfc) | [Wago](https://addons.wago.io/addons/EGPXgeG1)
 - Repository: [Nightelf Female Classic](https://github.com/RagedUnicorn/wow-classic-pvpwarn-vpnfc)
 - Features audio cues spoken by a Night Elf Female Character voice
 
 **VPUMC - Undead Male Character**
+- Download: [CurseForge](https://www.curseforge.com/wow/addons/pvpwarn-vpumc) | [Wago](https://addons.wago.io/addons/nGvpy06x)
 - Repository: [Undead Male Classic](https://github.com/RagedUnicorn/wow-classic-pvpwarn-vpumc)
 - Features audio cues spoken by an Undead Male Character voice
 
 **VPGFC - Gnome Female Character**
+- Download: [CurseForge](https://www.curseforge.com/wow/addons/pvpwarn-vpgfc) | [Wago](https://addons.wago.io/addons/rN4VwrKD)
 - Repository: [Gnome Female Classic](https://github.com/RagedUnicorn/wow-classic-pvpwarn-vpgfc)
 - Features audio cues spoken by a Gnome Female Character voice
 
 #### Installation and Usage
 
-Voice packs are installed as separate addons in your `Interface\AddOns` directory alongside PVPWarn. Once installed, you can configure which voice pack to use through PVPWarn's settings. Each voice pack provides a unique audio experience while maintaining all of PVPWarn's core functionality.
+The easiest way to install a voice pack is through an addon manager - search for `PVPWarn Voice Pack` on CurseForge or Wago, or grab it from the download links above. Voice packs can also be installed manually like any other addon by placing them in your `Interface\AddOns` directory alongside PVPWarn, keeping the folder name as it ships (`PVPWarn_VoicePack_NFC`, `PVPWarn_VoicePack_UMC` or `PVPWarn_VoicePack_GFC`).
+
+Once installed, you can configure which voice pack to use through PVPWarn's settings. Each voice pack provides a unique audio experience while maintaining all of PVPWarn's core functionality.
 
 ## FAQ
 

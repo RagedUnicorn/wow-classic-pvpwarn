@@ -83,6 +83,7 @@ rgpvpw.L["voice_pack_title"] = "Voice Pack Configuration"
 rgpvpw.L["voice_pack_dropdown_label"] = "Select Voice Pack:"
 rgpvpw.L["voice_pack_default"] = "Default"
 rgpvpw.L["voice_pack_play_sound_button"] = "Test Voice Pack"
+rgpvpw.L["voice_pack_source_hint"] = "Get more voice packs on CurseForge or Wago - search for PVPWarn Voice Pack."
 
 -- detection bar
 rgpvpw.L["configuration_menu_detection_bar"] = "Detection Bar"

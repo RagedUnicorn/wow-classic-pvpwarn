@@ -16,6 +16,7 @@
 4. Have a duel partner cast a tracked spell and listen to which voice announces it
 5. `/reload` and confirm the selection held
 6. Log out and check `PVPWarnConfiguration.activeVoicePack`
+7. Disable every voice pack addon, `/reload` and open the panel again
 
 ## Expected
 
@@ -25,4 +26,7 @@
 - Real warnings use the selected pack, not just the test button
 - The selection persists to `activeVoicePack` (`"default"` for the built-in sounds) and
   survives `/reload`
+- The gray hint naming CurseForge and Wago renders under the dropdown row, wraps inside the
+  panel instead of running past its right edge, and is shown whether or not a pack is
+  installed - recheck in deDE and ruRU, whose strings are the longest
 - No Lua errors
