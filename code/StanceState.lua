@@ -31,15 +31,19 @@ mod.stanceState = me
 
 me.tag = "StanceState"
 
+-- forward declaration
+local MatchesCurrentTargetClass
+
 --[[
   ["spell"] = {table},
-  ["detectedTime"] = {number}
+  ["detectedTime"] = {number},
+  ["category"] = {string} - the spell map category of the stance spell, a lower cased class name
 --]]
 local stanceTracker = {}
 -- Tracks whether configuration mode is enabled or not
 local configurationMode = false
 -- classes that should be considered to be tracked
-local supportedClasses = {"WARRIOR", "DRUID", "PRIEST", "WARLOCK"}
+local supportedClasses = {"WARRIOR", "DRUID", "PRIEST", "HUNTER", "WARLOCK"}
 -- clear stances that are older than 2 minutes
 local stanceExpiredTimeout = 120
 
@@ -76,6 +80,12 @@ function me.UpdateStanceState()
     end
 
     local playerStanceData = stanceTracker[currentTargetGuid]
+
+    if playerStanceData ~= nil and not MatchesCurrentTargetClass(playerStanceData.category) then
+      mod.logger.LogDebug(me.tag, "Ignoring tracked stance: " .. playerStanceData.spell.name
+        .. " because its category does not match the class of target: " .. currentTargetGuid)
+      playerStanceData = nil
+    end
 
     if playerStanceData ~= nil then
       mod.logger.LogInfo(me.tag, "Found tracked stance: " .. playerStanceData.spell.name
@@ -185,13 +195,18 @@ end
 --[[
   @param {table} spell
   @param {string} target
+  @param {string} category
+    The spell map category the stance spell was found in. Retained so the render side can tell
+    a stance that belongs to the targets class from one that merely landed on them - see
+    MatchesCurrentTargetClass
 ]]--
-function me.TrackStanceApplied(spell, target)
+function me.TrackStanceApplied(spell, target, category)
   if target == nil or spell == nil then return end
 
   stanceTracker[target] = {
     ["spell"] = spell,
-    ["detectedTime"] = GetTime()
+    ["detectedTime"] = GetTime(),
+    ["category"] = category
   }
 
   mod.logger.LogDebug(me.tag, "Tracked stance: " .. spell.name .. " for target: " .. target)
@@ -243,4 +258,36 @@ function me.CleanExpiredTrackedStances()
       mod.logger.LogInfo(me.tag, "Cleared expired stance data for target: " .. target)
     end
   end
+end
+
+--[[
+  Whether a tracked stance spell belongs to the class of the current target.
+
+  Almost every stance spell is a self only aura - the caster is the only unit the aura lands on,
+  so the spells category can never disagree with the targets class. The hunter aspects of the
+  Pack and of the Wild are party wide area auras though: an enemy hunter casting one emits a
+  SPELL_AURA_APPLIED for every member of their party, which would otherwise overwrite the stance
+  of a targeted warrior standing next to them. The combat log does not carry the class of the
+  aura target, so the mismatch can only be resolved here at render time. The mismatched entry is
+  left in place rather than deleted - the 2 minute expiry sweep collects it and a declined render
+  costs a single comparison.
+
+  @param {string} category
+    The spell map category of the tracked stance spell. Categories are lower cased class names
+    while GetCurrentTargetClass returns an uppercase class token, hence the normalization
+
+  @return {boolean}
+    true - if the category matches the class of the current target or cannot be compared
+    false - if the category belongs to a different class than the current target
+]]--
+MatchesCurrentTargetClass = function(category)
+  local currentClass = mod.target.GetCurrentTargetClass()
+
+  --[[
+    Fail open when either side is unknown. Stances tracked before the category was plumbed
+    through and the no target case of configuration mode both land here
+  ]]--
+  if category == nil or currentClass == nil then return true end
+
+  return category == string.lower(currentClass)
 end

@@ -1,6 +1,6 @@
 # Stance Tracking Flow
 
-This diagram illustrates how PVPWarn tracks stance states for different classes (Warriors, Druids, Priests, and Warlocks).
+This diagram illustrates how PVPWarn tracks stance states for different classes (Warriors, Druids, Priests, Hunters, and Warlocks).
 
 ```mermaid
 graph TD
@@ -18,7 +18,7 @@ graph TD
     WhichEventCheck -->|SPELL_AURA_REMOVED| TrackRemoved[TrackStanceRemoved]
 
     TrackApplied --> StoreTracker[Store in stanceTracker]
-    StoreTracker --> TrackerData[Key: Target GUID<br/>Value: spell + timestamp]
+    StoreTracker --> TrackerData[Key: Target GUID<br/>Value: spell + timestamp + category]
 
     TrackRemoved --> ClearTracker[Clear stanceTracker entry]
 
@@ -32,8 +32,11 @@ graph TD
     ValidTargetCheck -->|No| HideUI[Hide Stance UI]
     ValidTargetCheck -->|Yes| StanceInTrackerCheck{Stance in Tracker?}
 
-    StanceInTrackerCheck -->|Yes| ShowStance[Show Stance Icon]
+    StanceInTrackerCheck -->|Yes| CategoryCheck{Category matches<br/>target class?}
     StanceInTrackerCheck -->|No| ShowUnknown[Show Unknown Icon]
+
+    CategoryCheck -->|Yes| ShowStance[Show Stance Icon]
+    CategoryCheck -->|No| ShowUnknown
 
     ShowStance --> End
     ShowUnknown --> End
@@ -63,7 +66,7 @@ graph TD
 
 - Spells with `isStanceSpell = true` are tracked
 - Events are filtered in `ProcessNormal` in CombatLog.lua
-- The flag is set in `code/spellmap/Base.lua` and `code/spellmap/overlay/Sod.lua`
+- The flag is set in `code/spellmap/Base.lua` and in the branch overlays `code/spellmap/overlay/Sod.lua` and `code/spellmap/overlay/Tbc.lua`
 
 ### Class-Specific Behavior
 
@@ -83,22 +86,32 @@ graph TD
    - Track both APPLIED and REMOVED events
    - Shadowform can be cancelled
 
-4. **Warlocks**:
+4. **Hunters**:
+   - Track both APPLIED and REMOVED events
+   - Aspects: Monkey, Hawk, Pack, Cheetah, Wild, Beast
+   - Falcon and Viper (Season of Discovery), Viper (TBC)
+   - Aspects are swapped far more often than any other class swaps stance
+   - Aspect of the Pack and Aspect of the Wild are **party wide area auras** - they land on every
+     member of the casters party, not only on the caster. The render side therefore compares the
+     tracked spells category against the class of the current target and declines to paint a
+     mismatch, so a hunter running Aspect of the Pack cannot overwrite the stance icon of the
+     warrior next to them
+
+5. **Warlocks**:
    - Track both APPLIED and REMOVED events
    - Metamorphosis form (Season of Discovery)
    - Can be cancelled like other transformation abilities
 
 ### Important Note
-As of the latest update, `TrackStanceRemoved` no longer checks the class category - it uniformly clears the stance tracker entry for any class when a stance is removed.
-
-### Hunters
-Hunters are **not** tracked. `"HUNTER"` is deliberately absent from `supportedClasses` in StanceState.lua because no hunter spell carries `isStanceSpell = true` - the aspects are regular tracked spells. Listing the class without flagging its spells would make every hunter target render a permanent unknown stance icon, so the class is left out until the aspects are flagged.
+`TrackStanceRemoved` does not check the class category - it clears the tracker entry for any class, but only when the removal is for the stance that is currently tracked. A stance swap emits a removal for the old stance and an application for the new one in no guaranteed order, so an unconditional clear would wipe the freshly tracked new stance.
 
 ### Data Storage
 - **stanceTracker**: Lua table storing stance data by target GUID
 - Each entry contains:
   - `spell`: The spell data object
   - `detectedTime`: Timestamp for cleanup
+  - `category`: The spell map category the stance spell was found in, a lower cased class name.
+    Compared against the class of the current target at render time (see Hunters above)
 
 ### UI Updates
 - **UpdateStanceState**: Called when:

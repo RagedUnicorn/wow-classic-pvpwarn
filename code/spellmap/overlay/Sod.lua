@@ -1054,6 +1054,7 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "aspect_of_the_falcon",
           hasFade = true,
+          isStanceSpell = true,
           active = true,
           trackedEvents = {
             "SPELL_AURA_APPLIED",
@@ -1068,6 +1069,7 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_SOD,
           soundFileName = "aspect_of_the_viper",
           hasFade = true,
+          isStanceSpell = true,
           active = true,
           trackedEvents = {
             "SPELL_AURA_APPLIED",

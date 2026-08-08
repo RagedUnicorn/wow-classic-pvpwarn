@@ -976,6 +976,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "aspect_of_the_monkey",
       hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
@@ -990,6 +991,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "aspect_of_the_hawk",
       hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
@@ -1010,6 +1012,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "aspect_of_the_pack",
       hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
@@ -1024,6 +1027,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "aspect_of_the_cheetah",
       hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
@@ -1038,6 +1042,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "aspect_of_the_wild",
       hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",
@@ -1053,6 +1058,7 @@ local spellMap = {
       type = RGPVPW_CONSTANTS.SPELL_TYPE_BASE,
       soundFileName = "aspect_of_the_beast",
       hasFade = true,
+      isStanceSpell = true,
       active = true,
       trackedEvents = {
         "SPELL_AURA_APPLIED",

@@ -461,6 +461,7 @@ function me.GetOverlay()
           type = RGPVPW_CONSTANTS.SPELL_TYPE_TBC,
           soundFileName = "aspect_of_the_viper",
           hasFade = true,
+          isStanceSpell = true,
           active = true,
           trackedEvents = {
             "SPELL_AURA_APPLIED",

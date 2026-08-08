@@ -124,7 +124,7 @@ end
 
 ### Stance Tracking
 
-PVPWarn tracks stance states for Warriors, Druids, Priests, and Warlocks to display their current form/stance in the UI. This feature helps players identify enemy capabilities at a glance.
+PVPWarn tracks stance states for Warriors, Druids, Priests, Hunters, and Warlocks to display their current form/stance in the UI. This feature helps players identify enemy capabilities at a glance.
 
 #### How It Works
 
@@ -137,7 +137,8 @@ PVPWarn tracks stance states for Warriors, Druids, Priests, and Warlocks to disp
 
 - **code/StanceState.lua**: Core stance tracking logic
 - **code/spellmap/Base.lua**: Defines which spells are stance spells (`isStanceSpell = true`)
-- **code/spellmap/overlay/Sod.lua**: Season of Discovery stance spells (Gladiator Stance, Metamorphosis, Tree of Life)
+- **code/spellmap/overlay/Sod.lua**: Season of Discovery stance spells (Gladiator Stance, Metamorphosis, Tree of Life, Aspect of the Falcon, Aspect of the Viper)
+- **code/spellmap/overlay/Tbc.lua**: TBC stance spells (Aspect of the Viper)
 - **code/CombatLog.lua**: Processes combat events and triggers stance tracking
 
 #### Adding Stance Support
@@ -146,7 +147,9 @@ To add stance tracking for a new spell:
 
 1. Add `isStanceSpell = true` to the spell entry in code/spellmap/Base.lua, or in the matching branch overlay under code/spellmap/overlay/ for a branch-specific spell
 2. Include both `SPELL_AURA_APPLIED` and `SPELL_AURA_REMOVED` in `trackedEvents`
-3. Add the class to `supportedClasses` in StanceState.lua if needed
+3. Add the class to `supportedClasses` in StanceState.lua if needed - only ever together with step 1, a class listed there whose spells carry no `isStanceSpell` flag renders a permanent unknown stance icon
+
+Stance spells are assumed to be self-only auras. A stance spell that is an *area* aura lands on the casters whole party, so the tracker stores the spells category and the render side drops it when it does not match the class of the current target - see the Hunters section of [docs/stance_tracking_flow.md](docs/stance_tracking_flow.md).
 
 For a detailed flow diagram and more information, see [docs/stance_tracking_flow.md](docs/stance_tracking_flow.md).
 

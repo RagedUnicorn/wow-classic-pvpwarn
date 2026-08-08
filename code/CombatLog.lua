@@ -146,7 +146,7 @@ function me.ProcessNormal(event, callback, ...)
   ]]--
   if me.IsStanceSpell(spell) then
     if event == "SPELL_AURA_APPLIED" then
-      mod.stanceState.TrackStanceApplied(spell, target)
+      mod.stanceState.TrackStanceApplied(spell, target, category)
     elseif event == "SPELL_AURA_REMOVED" then
       mod.stanceState.TrackStanceRemoved(spell, target)
     end
