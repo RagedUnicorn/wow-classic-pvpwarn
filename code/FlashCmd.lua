@@ -60,7 +60,8 @@ function me.HandleFlash(args)
     mod.configuration.DisableFlash()
     print(rgpvpw.L["info_title"] .. " " .. rgpvpw.L["flash_disabled_message"])
   else
-    mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
+    print(rgpvpw.L["info_title"])
+    print(rgpvpw.L["flash"])
   end
 end
 

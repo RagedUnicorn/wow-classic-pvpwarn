@@ -68,7 +68,8 @@ function me.HandleBar(args)
   elseif action == "test" then
     me.PushTestBars()
   else
-    mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
+    print(rgpvpw.L["info_title"])
+    print(rgpvpw.L["bar"])
   end
 end
 
