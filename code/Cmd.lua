@@ -94,7 +94,8 @@ ParseSlashCommand = function(msg)
     elseif args[2] == "disable" then
       mod.stanceState.DisableConfigurationMode()
     else
-      mod.logger.PrintUserError(rgpvpw.L["invalid_argument"])
+      print(rgpvpw.L["info_title"])
+      print(rgpvpw.L["stancestate"])
     end
   else
     if me.registeredCommands[args[1]] then
