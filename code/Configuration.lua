@@ -56,13 +56,15 @@ local targetFilterDefaults = {
 
 local combatStateDefaults = {
   ["enabled"] = true,
-  ["locked"] = true
+  ["locked"] = true,
+  ["iconSize"] = RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE
 }
 
 local stanceStateDefaults = {
   ["enabled"] = true,
   ["locked"] = true,
-  ["hideUnknown"] = false
+  ["hideUnknown"] = false,
+  ["iconSize"] = RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE
 }
 
 --[[
@@ -140,9 +142,10 @@ PVPWarnConfiguration = {
 
     combatState = {
       enabled = {boolean},    -- whether combat state tracking is enabled
-      locked = {boolean}      -- retained for compatibility only - the icon is draggable while
+      locked = {boolean},     -- retained for compatibility only - the icon is draggable while
                               --   positioning mode is active and click through otherwise
                               --   (see gui/StateFramePositioning.lua)
+      iconSize = {number}     -- edge length of the combat state icon in pixels
     }
   ]]--
   ["combatState"] = mod.common.Clone(combatStateDefaults),
@@ -155,8 +158,9 @@ PVPWarnConfiguration = {
       locked = {boolean},        -- retained for compatibility only - the icon is draggable while
                                  --   positioning mode is active and click through otherwise
                                  --   (see gui/StateFramePositioning.lua)
-      hideUnknown = {boolean}    -- whether to hide the icon instead of showing "?" for an
+      hideUnknown = {boolean},   -- whether to hide the icon instead of showing "?" for an
                                  --   unobserved stance
+      iconSize = {number}        -- edge length of the stance state icon in pixels
     }
   ]]--
   ["stanceState"] = mod.common.Clone(stanceStateDefaults),
@@ -509,6 +513,21 @@ function me.IsCombatStateTrackingEnabled()
 end
 
 --[[
+  @return {number}
+    Edge length of the combat state icon in pixels
+]]--
+function me.GetCombatStateIconSize()
+  return PVPWarnConfiguration.combatState.iconSize
+end
+
+--[[
+  @param {number} size
+]]--
+function me.SetCombatStateIconSize(size)
+  PVPWarnConfiguration.combatState.iconSize = size
+end
+
+--[[
   Enable stance state tracking
 ]]--
 function me.EnableStanceStateTracking()
@@ -554,6 +573,21 @@ end
 ]]--
 function me.IsHideUnknownStanceEnabled()
   return PVPWarnConfiguration.stanceState.hideUnknown
+end
+
+--[[
+  @return {number}
+    Edge length of the stance state icon in pixels
+]]--
+function me.GetStanceStateIconSize()
+  return PVPWarnConfiguration.stanceState.iconSize
+end
+
+--[[
+  @param {number} size
+]]--
+function me.SetStanceStateIconSize(size)
+  PVPWarnConfiguration.stanceState.iconSize = size
 end
 
 --[[

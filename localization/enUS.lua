@@ -59,7 +59,7 @@ rgpvpw.L["configuration_menu_combat_state"] = "Combat State"
 rgpvpw.L["combat_state_title"] = "Combat State Configuration"
 rgpvpw.L["enable_combat_state_tracking"] = "Enable combatstate tracking"
 rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Tracks the combatstate of an enemy target"
-rgpvpw.L["combat_state_reset_position"] = "Reset combatstate position"
+rgpvpw.L["combat_state_reset"] = "Reset combatstate icon"
 
 -- stance state
 rgpvpw.L["configuration_menu_stance_state"] = "Stance State"
@@ -68,11 +68,13 @@ rgpvpw.L["enable_stance_state_tracking"] = "Enable stancestate tracking"
 rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Tracks the stancestate of an enemy target"
 rgpvpw.L["hide_unknown_stance"] = "Hide unknown stance"
 rgpvpw.L["hide_unknown_stance_tooltip"] = "Hides the stance icon when the stance is unknown"
-rgpvpw.L["stance_state_reset_position"] = "Reset stancestate position"
+rgpvpw.L["stance_state_reset"] = "Reset stancestate icon"
 
 -- state frames (shared by combat state and stance state)
 rgpvpw.L["state_frame_position"] = "Position state icons"
 rgpvpw.L["state_frame_done"] = "Done"
+rgpvpw.L["state_frame_icon_size_label"] = "Icon size:"
+rgpvpw.L["state_frame_icon_size_unit"] = "px"
 rgpvpw.L["configuration_mode_no_target"] = "Make sure to target something to see the frame"
 
 -- voice pack

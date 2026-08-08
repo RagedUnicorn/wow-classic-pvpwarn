@@ -131,9 +131,21 @@ RGPVPW_CONSTANTS = {
   ELEMENT_FLASH_FRAME = "PVPW_FlashFrame",
   ELEMENT_FLASH_TEXTURE = "PVPW_FlashTexture",
   --[[
-    Shared icon size for the combat state and stance state icon holders
+    Default icon size for the combat state and stance state icon holders. Both are configurable
+    per frame (PVPWarnConfiguration.combatState.iconSize / stanceState.iconSize) - this is the
+    value a fresh install and every existing install start out with.
   ]]--
   STATE_ICON_HOLDER_ICON_SIZE = 20,
+  STATE_ICON_SIZE_MIN = 16,
+  STATE_ICON_SIZE_MAX = 64,
+  STATE_ICON_SIZE_STEP = 2,
+  --[[
+    The icon holder is 25% wider than the icon it holds and the slot backdrop scales with it, so
+    the border keeps the same proportions at every size. At the default size of 20 this
+    reproduces the previously hardcoded holder size of 25, edge size of 20 and inset of 2.
+  ]]--
+  STATE_ICON_HOLDER_SIZE_FACTOR = 1.25,
+  STATE_ICON_HOLDER_INSET_FACTOR = 0.1,
   --[[
     CombatFrame combatState
   ]]--
@@ -186,6 +198,7 @@ RGPVPW_CONSTANTS = {
   ELEMENT_COMBAT_STATE_TITLE = "PVPW_CombatStateTitle",
   ELEMENT_COMBAT_STATE_OPT_ENABLE = "PVPW_CombatStateOptEnable",
   ELEMENT_COMBAT_STATE_POSITION_BUTTON = "PVPW_CombatStatePositionButton",
+  ELEMENT_COMBAT_STATE_ICON_SIZE_SLIDER = "PVPW_CombatStateIconSizeSlider",
   ELEMENT_COMBAT_STATE_RESET_BUTTON = "PVPW_CombatStateResetButton",
   --[[
     StanceStateMenu
@@ -195,6 +208,7 @@ RGPVPW_CONSTANTS = {
   ELEMENT_STANCE_STATE_OPT_ENABLE = "PVPW_StanceStateOptEnable",
   ELEMENT_STANCE_STATE_OPT_HIDE_UNKNOWN = "PVPW_StanceStateOptHideUnknownStance",
   ELEMENT_STANCE_STATE_POSITION_BUTTON = "PVPW_StanceStatePositionButton",
+  ELEMENT_STANCE_STATE_ICON_SIZE_SLIDER = "PVPW_StanceStateIconSizeSlider",
   ELEMENT_STANCE_STATE_RESET_BUTTON = "PVPW_StanceStateResetButton",
   --[[
     ZoneMenu

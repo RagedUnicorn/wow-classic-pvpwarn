@@ -40,6 +40,8 @@ me.tag = "CombatStateMenu"
 local builtMenu = false
 -- reference to the positioning toggle button so its label can be kept in sync
 local positionButton
+-- reference to the icon size slider so the reset button can move it back to the default
+local iconSizeSlider
 
 --[[
   OnShow handler for the panel. Builds the ui once, then syncs the positioning button label
@@ -69,7 +71,8 @@ function me.BuildUi(frame)
   )
   me.BuildCombatStateOptions(frame)
   me.BuildPositionButton(frame)
-  me.BuildResetPositionButton(frame)
+  me.BuildIconSizeSlider(frame)
+  me.BuildResetButton(frame)
 
   --[[ positioning mode is shared and can also be flipped by the slash commands - the coordinator
        owns the callback slots and fans changes out to every registered listener ]]--
@@ -115,19 +118,47 @@ function me.BuildPositionButton(frame)
 end
 
 --[[
-  Build the button that resets the combat state icon back to its default position
+  Build the icon size slider. Resizing is applied live to the icon and persisted per frame -
+  the stance icon has its own independent size.
 
   @param {table} frame
 ]]--
-function me.BuildResetPositionButton(frame)
+function me.BuildIconSizeSlider(frame)
+  iconSizeSlider = mod.guiHelper.CreateSlider(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_ICON_SIZE_SLIDER,
+    rgpvpw.L["state_frame_icon_size_label"],
+    RGPVPW_CONSTANTS.STATE_ICON_SIZE_MIN,
+    RGPVPW_CONSTANTS.STATE_ICON_SIZE_MAX,
+    RGPVPW_CONSTANTS.STATE_ICON_SIZE_STEP,
+    20, -162,
+    mod.configuration.GetCombatStateIconSize,
+    function(value)
+      mod.configuration.SetCombatStateIconSize(value)
+      mod.combatFrame.SetIconSize(value)
+    end,
+    function(value)
+      return tostring(value) .. rgpvpw.L["state_frame_icon_size_unit"]
+    end
+  )
+end
+
+--[[
+  Build the button that resets the combat state icon back to its defaults - position and size
+
+  @param {table} frame
+]]--
+function me.BuildResetButton(frame)
   mod.guiHelper.CreateTextButton(
     RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_RESET_BUTTON,
     frame,
-    {"TOPLEFT", 20, -162},
+    {"TOPLEFT", 20, -222},
     function()
-      mod.combatFrame.ResetPosition()
+      mod.combatFrame.ResetToDefault()
+      --[[ the reset changed the size behind the slider's back - move it along ]]--
+      mod.guiHelper.SetSliderValue(iconSizeSlider, RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE)
     end,
-    rgpvpw.L["combat_state_reset_position"]
+    rgpvpw.L["combat_state_reset"]
   )
 end
 

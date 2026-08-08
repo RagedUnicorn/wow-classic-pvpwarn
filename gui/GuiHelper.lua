@@ -241,6 +241,21 @@ function me.CreateSlider(frame, name, label, min, max, step, posX, posY, getValu
 end
 
 --[[
+  Move a slider created by CreateSlider / CreateSliderWithSteppers to a new value. Used when
+  something other than the slider itself changes the setting - a reset button - so the displayed
+  value does not go stale. Setting the value fires the slider's OnValueChanged, so the caller's
+  setValue runs again with the same value.
+
+  @param {table} slider
+  @param {number} value
+]]--
+function me.SetSliderValue(slider, value)
+  if slider == nil then return end
+
+  slider:SetValue(value)
+end
+
+--[[
   Create the content frame that hosts a category's spell list. The frame stretches to the
   settings canvas it sits on instead of using a fixed box - the canvas size comes from the
   SettingsPanel and varies with resolution and ui scale, so a hardcoded size either overflows
@@ -832,6 +847,8 @@ end
   @param {table} position
     The default position of the frame - SetPoint arguments, also used as the fallback whenever
     no user placed position is saved
+  @param {number} size
+    Edge length of the icon in pixels - the holder and its backdrop scale with it
   @param {table} borderColor
     The color to use for the border of the iconHolder
   @param {function} dragFrameCallback
@@ -842,12 +859,8 @@ end
   @return {table}
     The created texture object with iconHolder reference
 ]]--
-function me.BuildIconHolderUi(frameName, textureName, position, borderColor, dragFrameCallback, defaultTexture)
+function me.BuildIconHolderUi(frameName, textureName, position, size, borderColor, dragFrameCallback, defaultTexture)
   local iconHolder = CreateFrame("Frame", frameName, TargetFrame, "BackdropTemplate")
-  iconHolder:SetSize(
-    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE + 5,
-    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE + 5
-  )
   iconHolder:SetPoint(unpack(position))
   iconHolder:SetMovable(true)
   iconHolder:SetClampedToScreen(true)
@@ -866,27 +879,8 @@ function me.BuildIconHolderUi(frameName, textureName, position, borderColor, dra
   texture.iconHolder = iconHolder
   texture:SetTexCoord(0.07, 0.93, 0.07, 0.93)
   texture:SetPoint("CENTER", 0, 0)
-  texture:SetSize(
-    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE,
-    RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE
-  )
 
-  local backdrop = {
-    bgFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
-    edgeFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
-    tile = false,
-    tileSize = 32,
-    edgeSize = 20,
-    insets = {
-      left = 2,
-      right = 2,
-      top = 2,
-      bottom = 2
-    }
-  }
-
-  iconHolder:SetBackdrop(backdrop)
-  texture.iconHolder:SetBackdropBorderColor(unpack(borderColor))
+  me.ApplyIconHolderSize(texture, size, borderColor)
 
   if defaultTexture ~= nil then
     texture:SetTexture(defaultTexture)
@@ -895,4 +889,45 @@ function me.BuildIconHolderUi(frameName, textureName, position, borderColor, dra
   iconHolder:Hide()
 
   return texture
+end
+
+--[[
+  Size an icon holder and its texture. Everything scales with the icon size - the holder, the
+  slot backdrop's edge and its insets - so the border keeps the same proportions at 16 pixels
+  as it does at 64. The holder is only ever resized, never re-anchored, so its anchor point
+  stays exactly where the player placed it and the icon grows away from that point.
+
+  @param {table} texture
+    An icon texture created by BuildIconHolderUi - carries its holder as texture.iconHolder
+  @param {number} size
+    Edge length of the icon in pixels
+  @param {table} borderColor
+    Optional {r, g, b} - SetBackdrop resets the border color, so a caller that does not pass
+    one here has to re-apply its own afterwards
+]]--
+function me.ApplyIconHolderSize(texture, size, borderColor)
+  local iconHolder = texture.iconHolder
+  local holderSize = size * RGPVPW_CONSTANTS.STATE_ICON_HOLDER_SIZE_FACTOR
+  local inset = size * RGPVPW_CONSTANTS.STATE_ICON_HOLDER_INSET_FACTOR
+
+  iconHolder:SetSize(holderSize, holderSize)
+  texture:SetSize(size, size)
+
+  iconHolder:SetBackdrop({
+    bgFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
+    edgeFile = "Interface\\AddOns\\PVPWarn\\assets\\images\\ui_slot_background",
+    tile = false,
+    tileSize = 32,
+    edgeSize = size,
+    insets = {
+      left = inset,
+      right = inset,
+      top = inset,
+      bottom = inset
+    }
+  })
+
+  if borderColor ~= nil then
+    iconHolder:SetBackdropBorderColor(unpack(borderColor))
+  end
 end

@@ -46,6 +46,8 @@ local wowStubs = require("WowStubs")
 
 local ADDON_VERSION = "v2.0.0"
 local FIXTURE_V1_2_8 = "test/manual/fixtures/TC-SV-02-pvpwarn-v1.2.8.lua"
+--[[ both state blocks default to the shared icon size constant ]]--
+local DEFAULT_ICON_SIZE = RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE
 
 describe("configuration state blocks", function()
   local configuration
@@ -119,14 +121,14 @@ describe("configuration state blocks", function()
   describe("fresh install", function()
     it("ships a combatState block holding its documented sub-keys", function()
       assert.same(
-        { enabled = true, locked = true },
+        { enabled = true, locked = true, iconSize = DEFAULT_ICON_SIZE },
         _G.PVPWarnConfiguration.combatState
       )
     end)
 
     it("ships a stanceState block holding its documented sub-keys", function()
       assert.same(
-        { enabled = true, locked = true, hideUnknown = false },
+        { enabled = true, locked = true, hideUnknown = false, iconSize = DEFAULT_ICON_SIZE },
         _G.PVPWarnConfiguration.stanceState
       )
     end)
@@ -156,11 +158,11 @@ describe("configuration state blocks", function()
       configuration.SetupStanceStateConfiguration()
 
       assert.same(
-        { enabled = false, locked = false },
+        { enabled = false, locked = false, iconSize = DEFAULT_ICON_SIZE },
         _G.PVPWarnConfiguration.combatState
       )
       assert.same(
-        { enabled = false, locked = false, hideUnknown = true },
+        { enabled = false, locked = false, hideUnknown = true, iconSize = DEFAULT_ICON_SIZE },
         _G.PVPWarnConfiguration.stanceState
       )
     end)
@@ -214,7 +216,7 @@ describe("configuration state blocks", function()
       assert.is_nil(_G.PVPWarnConfiguration.lockCombatStateFrame)
       --[[ the fixture carries no stance keys at all - the block lands on its defaults ]]--
       assert.same(
-        { enabled = true, locked = true, hideUnknown = false },
+        { enabled = true, locked = true, hideUnknown = false, iconSize = DEFAULT_ICON_SIZE },
         _G.PVPWarnConfiguration.stanceState
       )
     end)
@@ -229,7 +231,7 @@ describe("configuration state blocks", function()
       configuration.SetupStanceStateConfiguration()
 
       assert.same(
-        { enabled = false, locked = true, hideUnknown = true },
+        { enabled = false, locked = true, hideUnknown = true, iconSize = DEFAULT_ICON_SIZE },
         _G.PVPWarnConfiguration.stanceState
       )
     end)
@@ -240,7 +242,7 @@ describe("configuration state blocks", function()
       configuration.SetupCombatStateConfiguration()
 
       assert.same(
-        { enabled = true, locked = true },
+        { enabled = true, locked = true, iconSize = DEFAULT_ICON_SIZE },
         _G.PVPWarnConfiguration.combatState
       )
     end)
@@ -287,6 +289,24 @@ describe("configuration state blocks", function()
 
       assert.is_false(_G.PVPWarnConfiguration.stanceState.hideUnknown)
       assert.is_false(configuration.IsHideUnknownStanceEnabled())
+    end)
+
+    it("reads and writes both icon sizes independently through their blocks", function()
+      assert.are.equal(RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE, configuration.GetCombatStateIconSize())
+      assert.are.equal(RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE, configuration.GetStanceStateIconSize())
+
+      configuration.SetCombatStateIconSize(40)
+
+      assert.are.equal(40, _G.PVPWarnConfiguration.combatState.iconSize)
+      assert.are.equal(40, configuration.GetCombatStateIconSize())
+      -- the stance icon keeps its own size
+      assert.are.equal(RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE, configuration.GetStanceStateIconSize())
+
+      configuration.SetStanceStateIconSize(64)
+
+      assert.are.equal(64, _G.PVPWarnConfiguration.stanceState.iconSize)
+      assert.are.equal(64, configuration.GetStanceStateIconSize())
+      assert.are.equal(40, configuration.GetCombatStateIconSize())
     end)
   end)
 end)

@@ -60,7 +60,7 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["combat_state_title"] = "Настройка состояния боя"
   rgpvpw.L["enable_combat_state_tracking"] = "Отслеживать состояние боя"
   rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Отслеживает состояние боя вражеской цели"
-  rgpvpw.L["combat_state_reset_position"] = "Сбросить позицию значка боя"
+  rgpvpw.L["combat_state_reset"] = "Сбросить значок боя"
 
   -- stance state
   rgpvpw.L["configuration_menu_stance_state"] = "Стойка"
@@ -69,11 +69,13 @@ if (GetLocale() == "ruRU") then
   rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Отслеживает стойку вражеской цели"
   rgpvpw.L["hide_unknown_stance"] = "Скрывать неизвестную стойку"
   rgpvpw.L["hide_unknown_stance_tooltip"] = "Скрывает иконку стойки, если она неизвестна"
-  rgpvpw.L["stance_state_reset_position"] = "Сбросить позицию значка стойки"
+  rgpvpw.L["stance_state_reset"] = "Сбросить значок стойки"
 
   -- state frames (shared by combat state and stance state)
   rgpvpw.L["state_frame_position"] = "Разместить значки состояния"
   rgpvpw.L["state_frame_done"] = "Готово"
+  rgpvpw.L["state_frame_icon_size_label"] = "Размер значка:"
+  rgpvpw.L["state_frame_icon_size_unit"] = "px"
   rgpvpw.L["configuration_mode_no_target"] = "Выберите цель, чтобы увидеть рамку"
 
   -- voice pack

@@ -170,6 +170,7 @@ One file per test case under [test/manual/](manual/). Case IDs follow `TC-<AREA>
 | [TC-CS-02](manual/TC-CS-02-stance-state-icon.md)          | Stance state icon and unknown stance        |
 | [TC-CS-03](manual/TC-CS-03-frame-drag-and-persist.md)     | Frame drag, click-through and persistence   |
 | [TC-CS-04](manual/TC-CS-04-shared-positioning-mode.md)    | Shared positioning mode for both icons      |
+| [TC-CS-05](manual/TC-CS-05-icon-size.md)                  | Per-frame state icon size                   |
 
 ### Zones
 

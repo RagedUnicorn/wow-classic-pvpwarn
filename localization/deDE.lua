@@ -62,7 +62,7 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["combat_state_title"] = "Kampfzustand Konfiguration"
   rgpvpw.L["enable_combat_state_tracking"] = "Aktiviere Kampfstatus Überwachung"
   rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Überwacht den Kampfstatus eines gegnerischen Zieles"
-  rgpvpw.L["combat_state_reset_position"] = "Kampfzustand Position zurücksetzen"
+  rgpvpw.L["combat_state_reset"] = "Kampfzustand Symbol zurücksetzen"
 
   -- stance state
   rgpvpw.L["configuration_menu_stance_state"] = "Haltungszustand"
@@ -71,11 +71,13 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Überwacht den Haltungszustand eines gegnerischen Zieles"
   rgpvpw.L["hide_unknown_stance"] = "Unbekannte Haltung ausblenden"
   rgpvpw.L["hide_unknown_stance_tooltip"] = "Blendet das Haltungssymbol aus, wenn die Haltung unbekannt ist"
-  rgpvpw.L["stance_state_reset_position"] = "Haltungszustand Position zurücksetzen"
+  rgpvpw.L["stance_state_reset"] = "Haltungszustand Symbol zurücksetzen"
 
   -- state frames (shared by combat state and stance state)
   rgpvpw.L["state_frame_position"] = "Zustandssymbole positionieren"
   rgpvpw.L["state_frame_done"] = "Fertig"
+  rgpvpw.L["state_frame_icon_size_label"] = "Symbolgrösse:"
+  rgpvpw.L["state_frame_icon_size_unit"] = "px"
   rgpvpw.L["configuration_mode_no_target"] = "Wähle ein Ziel aus um das Fenster zu sehen"
 
   -- voice pack

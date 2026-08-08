@@ -49,6 +49,7 @@ function me.BuildCombatStateUi()
     RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME,
     RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_TEXTURE,
     DEFAULT_POSITION,
+    mod.configuration.GetCombatStateIconSize(),
     RGPVPW_COLORS.UI.combat_active,
     function(frame)
       local startDrag, stopDrag = mod.guiHelper.CreateDragHandlers(
@@ -65,6 +66,19 @@ function me.BuildCombatStateUi()
 end
 
 --[[
+  Resize the combat state icon in place. The holder keeps its anchor point, so the icon grows
+  away from wherever the player placed it instead of drifting.
+
+  @param {number} size
+    Edge length of the icon in pixels
+]]--
+function me.SetIconSize(size)
+  if combatStateFrame == nil then return end
+
+  mod.guiHelper.ApplyIconHolderSize(combatStateFrame, size, RGPVPW_COLORS.UI.combat_active)
+end
+
+--[[
   Enable or disable positioning of the combat state icon. Enabling the mouse makes the icon
   draggable but also stops it from passing clicks through to the target frame it sits on -
   it is thus only ever enabled while configuration mode is active.
@@ -78,9 +92,9 @@ function me.SetPositioningEnabled(enabled)
 end
 
 --[[
-  Reset the combat state icon to its default position and persist it
+  Reset the combat state icon to its defaults - position and size - and persist both
 ]]--
-function me.ResetPosition()
+function me.ResetToDefault()
   if combatStateFrame == nil then return end
 
   --[[ a dragged frame can be anchored to UIParent - clear before re-anchoring to the target frame ]]--
@@ -95,6 +109,9 @@ function me.ResetPosition()
     DEFAULT_POSITION[4],
     DEFAULT_POSITION[5]
   )
+
+  mod.configuration.SetCombatStateIconSize(RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE)
+  me.SetIconSize(RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE)
 end
 
 --[[

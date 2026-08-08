@@ -54,6 +54,7 @@ function me.BuildStanceStateUi()
     RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_FRAME,
     RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_TEXTURE,
     DEFAULT_POSITION,
+    mod.configuration.GetStanceStateIconSize(),
     RGPVPW_COLORS.UI.neutral,
     function(frame)
       local startDrag, stopDrag = mod.guiHelper.CreateDragHandlers(
@@ -66,6 +67,21 @@ function me.BuildStanceStateUi()
       frame:SetScript("OnDragStop", stopDrag)
     end
   )
+end
+
+--[[
+  Resize the stance state icon in place. The holder keeps its anchor point, so the icon grows
+  away from wherever the player placed it instead of drifting.
+
+  @param {number} size
+    Edge length of the icon in pixels
+]]--
+function me.SetIconSize(size)
+  if stanceStateFrame == nil then return end
+
+  mod.guiHelper.ApplyIconHolderSize(stanceStateFrame, size)
+  --[[ SetBackdrop drops the border color - repaint it in the current target's class color ]]--
+  UpdateStanceBorderColor()
 end
 
 --[[
@@ -82,9 +98,9 @@ function me.SetPositioningEnabled(enabled)
 end
 
 --[[
-  Reset the stance state icon to its default position and persist it
+  Reset the stance state icon to its defaults - position and size - and persist both
 ]]--
-function me.ResetPosition()
+function me.ResetToDefault()
   if stanceStateFrame == nil then return end
 
   --[[ a dragged frame can be anchored to UIParent - clear before re-anchoring to the target frame ]]--
@@ -99,6 +115,9 @@ function me.ResetPosition()
     DEFAULT_POSITION[4],
     DEFAULT_POSITION[5]
   )
+
+  mod.configuration.SetStanceStateIconSize(RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE)
+  me.SetIconSize(RGPVPW_CONSTANTS.STATE_ICON_HOLDER_ICON_SIZE)
 end
 
 --[[
