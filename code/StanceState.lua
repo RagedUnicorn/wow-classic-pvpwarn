@@ -209,7 +209,23 @@ end
 function me.TrackStanceRemoved(spell, target)
   if target == nil or spell == nil then return end
 
+  local trackedStance = stanceTracker[target]
+
+  --[[
+    Only clear when the removal is for the stance that is currently tracked. A stance swap emits a
+    removal for the old stance and an application for the new one and the order of those two events
+    is not guaranteed - an unconditional clear would wipe the freshly tracked new stance.
+  ]]--
+  if trackedStance == nil or trackedStance.spell.spellId ~= spell.spellId then
+    mod.logger.LogDebug(me.tag, "Ignoring stance removal of an untracked stance: "
+      .. spell.name .. " for target: " .. target)
+
+    return
+  end
+
   stanceTracker[target] = nil
+
+  mod.logger.LogDebug(me.tag, "Cleared tracked stance: " .. spell.name .. " for target: " .. target)
 
   -- update stance of current target if the update was for the current target
   if target == mod.target.GetCurrentTargetGuid() then
