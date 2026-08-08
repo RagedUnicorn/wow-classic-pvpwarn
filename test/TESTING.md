@@ -142,7 +142,7 @@ One file per test case under [test/manual/](manual/). Case IDs follow `TC-<AREA>
 |-----------------------------------------------------------|-----------------------------------------------|
 | [TC-TF-01](manual/TC-TF-01-warn-all-mode.md)              | warnAll mode warns for every enemy            |
 | [TC-TF-02](manual/TC-TF-02-current-target-mode.md)        | currentTarget mode suppresses non-target      |
-| [TC-TF-03](manual/TC-TF-03-always-warn-exceptions.md)     | Spells on the player always warn (fail open)  |
+| [TC-TF-03](manual/TC-TF-03-always-warn-exceptions.md)     | Spells on the player always warn              |
 
 ### Detection bar
 

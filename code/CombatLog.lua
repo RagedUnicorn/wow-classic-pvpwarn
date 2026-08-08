@@ -533,6 +533,15 @@ function me.ShouldWarnForTarget(...)
     return true
   end
 
+  --[[
+    Defensive fail-open, intentionally kept but not reachable from the game: every subevent
+    we track carries the caster's GUID, and the sourceless events that do exist carry
+    COMBATLOG_OBJECT_NONE flags that never pass the hostile-player gate in
+    ProcessUnfilteredCombatLogEvent. Note the wire value for "no source" is the zero GUID
+    string ("0000000000000000"), not nil or "", so this guards a payload shape the combat log
+    does not currently produce. Covered by test/headless/spec/TargetFilterSpec.lua; there is
+    deliberately no manual test case for it (see test/manual/TC-TF-03-always-warn-exceptions.md)
+  ]]--
   if sourceGuid == nil or sourceGuid == "" then return true end
 
   mod.logger.LogDebug(me.tag, "Suppressing warning because the event did not pass the target filter")
