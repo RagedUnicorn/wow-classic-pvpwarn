@@ -92,6 +92,15 @@ PVPWarn can track a target's stance state and will display it next to the target
 moved to another place if required. Tracking the stance is limited to certain classes and is only possible if
 PVPWarn was able to observe the stance in the combat log.
 
+### Moving the state icons
+
+Both icons are placed with **Position state icons** on either the Combat State or the Stance State
+options panel. It shows the combat and the stance icon at the same time and makes both draggable,
+so they can be arranged next to each other in one pass; **Done** — or closing the options window,
+or entering combat — puts them back to normal, where they never intercept clicks meant for the
+target frame. **Reset position** on each panel restores that icon's default spot. The icons hang
+off the target frame, so a target is needed to see them.
+
 ![](docs/pvpwarn_switching_stance.gif)
 
 If PVPWarn is unable to determine the stance it will display a question mark for an icon.

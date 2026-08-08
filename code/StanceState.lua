@@ -44,6 +44,13 @@ local supportedClasses = {"WARRIOR", "DRUID", "PRIEST", "WARLOCK"}
 local stanceExpiredTimeout = 120
 
 --[[
+  Callback invoked whenever configuration mode is entered or exited. The slot is owned by
+  mod.stateFramePositioning, which fans the change out to every registered listener - do not
+  assign to it from anywhere else or those listeners stop being notified.
+]]--
+me.onConfigurationModeChanged = nil
+
+--[[
   Update the stance state of the current target (if there is a valid one)
 ]]--
 function me.UpdateStanceState()
@@ -58,10 +65,12 @@ function me.UpdateStanceState()
 
     if currentTargetGuid == nil then
       --[[
-        This can only happen in configurationMode because the target check is ignored
+        This can only happen in configurationMode because the target check is ignored. Keep the
+        icon painted the way UpdateCombatState keeps the combat icon shown - configuration mode
+        exists to place the frame and must not blank it.
       ]]--
       mod.logger.LogDebug(me.tag, "No current target guid available")
-      mod.stanceFrame.HideStanceState()
+      mod.stanceFrame.UpdateStanceStateUi(RGPVPW_CONSTANTS.STANCE_STATE_UNKNOWN_STANCE_ICON_ID)
 
       return
     end
@@ -122,16 +131,23 @@ end
 
 --[[
   Enable configuration mode
+
+  @param {boolean} silent
+    Optional - skip the no target hint. Used by mod.stateFramePositioning which enables both
+    state frames at once and prints the hint itself to avoid duplicating it
 ]]--
-function me.EnableConfigurationMode()
+function me.EnableConfigurationMode(silent)
   configurationMode = true
   mod.logger.LogInfo(me.tag, "Enabled stance state configuration mode")
 
-  if mod.target.GetCurrentTargetGuid() == nil then
-    mod.logger.PrintUserError("Make sure to target something to see the frame")
+  if not silent and mod.target.GetCurrentTargetGuid() == nil then
+    mod.logger.PrintUserError(rgpvpw.L["configuration_mode_no_target"])
   end
 
   mod.stanceFrame.UpdateStanceStateUi(RGPVPW_CONSTANTS.STANCE_STATE_UNKNOWN_STANCE_ICON_ID)
+  mod.stanceFrame.SetPositioningEnabled(true)
+
+  if me.onConfigurationModeChanged then me.onConfigurationModeChanged() end
 end
 
 --[[
@@ -141,6 +157,29 @@ function me.DisableConfigurationMode()
   configurationMode = false
   mod.logger.LogInfo(me.tag, "Disabled stance state configuration mode")
   mod.stanceFrame.HideStanceState()
+  mod.stanceFrame.SetPositioningEnabled(false)
+
+  if me.onConfigurationModeChanged then me.onConfigurationModeChanged() end
+end
+
+--[[
+  Toggle configuration mode
+]]--
+function me.ToggleConfigurationMode()
+  if configurationMode then
+    me.DisableConfigurationMode()
+  else
+    me.EnableConfigurationMode()
+  end
+end
+
+--[[
+  @return {boolean}
+    true - if configuration mode is currently enabled
+    false - if configuration mode is currently disabled
+]]--
+function me.IsConfigurationModeEnabled()
+  return configurationMode
 end
 
 --[[

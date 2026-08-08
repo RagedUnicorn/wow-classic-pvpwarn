@@ -32,6 +32,13 @@ me.tag = "CombatFrame"
 local combatStateFrame
 
 --[[
+  Default anchor of the combat state icon - flush with the right edge of the target frame.
+  relativeTo is the region name, never the frame object - a frame cannot round-trip through
+  SavedVariables (see mod.configuration.SaveUserPlacedFramePosition).
+]]--
+local DEFAULT_POSITION = {"RIGHT", "TargetFrame", "RIGHT", 0, 0}
+
+--[[
   Build the combat state ui. Displaying an icon to the player indicating that his
   target is currently in combat
 ]]--
@@ -41,17 +48,52 @@ function me.BuildCombatStateUi()
   combatStateFrame = mod.guiHelper.BuildIconHolderUi(
     RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME,
     RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_TEXTURE,
-    {"RIGHT", 0, 0},
+    DEFAULT_POSITION,
     RGPVPW_COLORS.UI.combat_active,
     function(frame)
       local startDrag, stopDrag = mod.guiHelper.CreateDragHandlers(
         RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME,
-        function() return not mod.configuration.IsCombatStateFrameLocked() end
+        --[[ the icon is only mouse enabled while positioning mode is active - the predicate
+             mirrors that so a stale drag can never move the frame afterwards ]]--
+        function() return mod.combatState.IsConfigurationModeEnabled() end
       )
-      frame:SetScript("OnMouseDown", startDrag)
-      frame:SetScript("OnMouseUp", stopDrag)
+      frame:SetScript("OnDragStart", startDrag)
+      frame:SetScript("OnDragStop", stopDrag)
     end,
     RGPVPW_CONSTANTS.COMBAT_STATE_ACTIVE_ICON_ID
+  )
+end
+
+--[[
+  Enable or disable positioning of the combat state icon. Enabling the mouse makes the icon
+  draggable but also stops it from passing clicks through to the target frame it sits on -
+  it is thus only ever enabled while configuration mode is active.
+
+  @param {boolean} enabled
+]]--
+function me.SetPositioningEnabled(enabled)
+  if combatStateFrame == nil then return end
+
+  combatStateFrame.iconHolder:EnableMouse(enabled)
+end
+
+--[[
+  Reset the combat state icon to its default position and persist it
+]]--
+function me.ResetPosition()
+  if combatStateFrame == nil then return end
+
+  --[[ a dragged frame can be anchored to UIParent - clear before re-anchoring to the target frame ]]--
+  combatStateFrame.iconHolder:ClearAllPoints()
+  combatStateFrame.iconHolder:SetPoint(unpack(DEFAULT_POSITION))
+
+  mod.configuration.SaveUserPlacedFramePosition(
+    RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_FRAME,
+    DEFAULT_POSITION[1],
+    DEFAULT_POSITION[2],
+    DEFAULT_POSITION[3],
+    DEFAULT_POSITION[4],
+    DEFAULT_POSITION[5]
   )
 end
 

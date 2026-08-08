@@ -103,7 +103,8 @@ A short pass to confirm the addon behaves on the non-primary client:
 - [ ] `/rgpvpw opt` opens the options panel; every category panel and tab opens without errors
 - [ ] A TBC-only spell from `code/spellmap/overlay/Tbc.lua` warns correctly
 - [ ] `/rgpvpw bar test` fills the stack; `/rgpvpw flash test` fires a vignette
-- [ ] The combat state and stance state icons appear and can be dragged when unlocked
+- [ ] The combat state and stance state icons appear and can be dragged while positioning mode
+      is active (Options > Combat State > **Position state icons**)
 - [ ] Quick profile round trip: create, export, import under a new name, load
 - [ ] `/reload` produces no Lua errors
 
@@ -167,7 +168,8 @@ One file per test case under [test/manual/](manual/). Case IDs follow `TC-<AREA>
 |-----------------------------------------------------------|---------------------------------------------|
 | [TC-CS-01](manual/TC-CS-01-combat-state-icon.md)          | Combat state icon tracks the enemy target   |
 | [TC-CS-02](manual/TC-CS-02-stance-state-icon.md)          | Stance state icon and unknown stance        |
-| [TC-CS-03](manual/TC-CS-03-frame-drag-lock-persist.md)    | Frame drag, lock and position persistence   |
+| [TC-CS-03](manual/TC-CS-03-frame-drag-and-persist.md)     | Frame drag, click-through and persistence   |
+| [TC-CS-04](manual/TC-CS-04-shared-positioning-mode.md)    | Shared positioning mode for both icons      |
 
 ### Zones
 

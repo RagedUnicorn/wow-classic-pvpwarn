@@ -23,10 +23,11 @@
 ]]--
 
 --[[
-  Dedicated options sub-panel for the stance state tracker. Provides the tracking enable toggle
-  and the frame lock / hide unknown stance toggles that depend on it. Registered as a
-  sub-category under the addon Settings panel via gui/AddonConfiguration.lua. Mirrors the
-  structure of gui/CombatStateMenu.lua.
+  Dedicated options sub-panel for the stance state tracker. Provides the tracking enable toggle,
+  the hide unknown stance toggle that depends on it, the shared positioning mode toggle (see
+  gui/StateFramePositioning.lua - it shows both state icons so they can be aligned in one pass)
+  and a reset button for this icon's position. Registered as a sub-category under the addon
+  Settings panel via gui/AddonConfiguration.lua. Mirrors the structure of gui/CombatStateMenu.lua.
 ]]--
 
 local mod = rgpvpw
@@ -37,6 +38,20 @@ me.tag = "StanceStateMenu"
 
 -- track whether the menu was already built
 local builtMenu = false
+-- reference to the positioning toggle button so its label can be kept in sync
+local positionButton
+
+--[[
+  OnShow handler for the panel. Builds the ui once, then syncs the positioning button label
+  because the slash command can have changed positioning mode while the panel was closed.
+
+  @param {table} frame
+    The addon configuration (sub-category) frame
+]]--
+function me.OnPanelShow(frame)
+  me.BuildUi(frame)
+  me.UpdatePositionButtonLabel()
+end
 
 --[[
   Build the ui for the stance state menu
@@ -53,6 +68,12 @@ function me.BuildUi(frame)
     rgpvpw.L["stance_state_title"]
   )
   me.BuildStanceStateOptions(frame)
+  me.BuildPositionButton(frame)
+  me.BuildResetPositionButton(frame)
+
+  --[[ positioning mode is shared and can also be flipped by the slash commands - the coordinator
+       owns the callback slots and fans changes out to every registered listener ]]--
+  mod.stateFramePositioning.RegisterListener(me.UpdatePositionButtonLabel)
 
   builtMenu = true
 end
@@ -65,19 +86,9 @@ end
 ]]--
 function me.BuildStanceStateOptions(frame)
   mod.guiHelper.CreateCheckBox(
-    RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_OPT_LOCK_FRAME,
-    frame,
-    {"TOPLEFT", 40, -100},
-    me.LockFrameStanceStateOnClick,
-    me.LockFrameStanceStateOnShow,
-    rgpvpw.L["lock_frame_stance_state"],
-    rgpvpw.L["lock_frame_stance_state_tooltip"]
-  )
-
-  mod.guiHelper.CreateCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_OPT_HIDE_UNKNOWN,
     frame,
-    {"TOPLEFT", 40, -148},
+    {"TOPLEFT", 40, -100},
     me.HideUnknownStanceOnClick,
     me.HideUnknownStanceOnShow,
     rgpvpw.L["hide_unknown_stance"],
@@ -92,39 +103,59 @@ function me.BuildStanceStateOptions(frame)
     me.EnableStanceStateTrackingOnShow,
     rgpvpw.L["enable_stance_state_tracking"],
     rgpvpw.L["enable_stance_state_tracking_tooltip"],
-    {
-      RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_OPT_LOCK_FRAME,
-      RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_OPT_HIDE_UNKNOWN
-    }
+    { RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_OPT_HIDE_UNKNOWN }
   )
 end
 
 --[[
-  OnShow callback for checkbuttons - lock stance state frame
+  Build the positioning mode toggle button. Entering positioning mode shows both state icons -
+  the combat and the stance one - and makes them draggable, so they can be placed next to each
+  other without a target in combat; the button flips to "Done" to hide them again.
 
-  @param {table} self
+  @param {table} frame
 ]]--
-function me.LockFrameStanceStateOnShow(self)
-  if mod.configuration.IsStanceStateFrameLocked() then
-    self:SetChecked(true)
-  else
-    self:SetChecked(false)
-  end
+function me.BuildPositionButton(frame)
+  positionButton = mod.guiHelper.CreateTextButton(
+    RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_POSITION_BUTTON,
+    frame,
+    {"TOPLEFT", 20, -155},
+    function()
+      mod.stateFramePositioning.TogglePositioning()
+    end,
+    rgpvpw.L["state_frame_position"]
+  )
 end
 
 --[[
-  OnClick callback for checkbuttons - lock stance state frame
+  Build the button that resets the stance state icon back to its default position
 
-  @param {table} self
+  @param {table} frame
 ]]--
-function me.LockFrameStanceStateOnClick(self)
-  local enabled = self:GetChecked()
+function me.BuildResetPositionButton(frame)
+  mod.guiHelper.CreateTextButton(
+    RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_RESET_BUTTON,
+    frame,
+    {"TOPLEFT", 20, -210},
+    function()
+      mod.stanceFrame.ResetPosition()
+    end,
+    rgpvpw.L["stance_state_reset_position"]
+  )
+end
 
-  if enabled then
-    mod.configuration.LockStanceStateFrame()
+--[[
+  Update the position button's label to reflect the current positioning mode state.
+]]--
+function me.UpdatePositionButtonLabel()
+  if positionButton == nil then return end
+
+  if mod.stateFramePositioning.IsPositioning() then
+    positionButton:SetText(rgpvpw.L["state_frame_done"])
   else
-    mod.configuration.UnlockStanceStateFrame()
+    positionButton:SetText(rgpvpw.L["state_frame_position"])
   end
+
+  mod.guiHelper.ResizeButtonToText(positionButton)
 end
 
 --[[

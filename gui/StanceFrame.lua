@@ -37,6 +37,14 @@ local stanceStateFrame
 local UpdateStanceBorderColor
 
 --[[
+  Default anchor of the stance state icon - directly next to the combat state icon, which is
+  flush with the right edge of the target frame and exactly 25 pixels wide. relativeTo is the
+  region name, never the frame object - a frame cannot round-trip through SavedVariables
+  (see mod.configuration.SaveUserPlacedFramePosition).
+]]--
+local DEFAULT_POSITION = {"RIGHT", "TargetFrame", "RIGHT", 25, 0}
+
+--[[
   Build the stance state ui. Displaying an icon to the player indicating what stance the current target is
 ]]--
 function me.BuildStanceStateUi()
@@ -45,16 +53,51 @@ function me.BuildStanceStateUi()
   stanceStateFrame = mod.guiHelper.BuildIconHolderUi(
     RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_FRAME,
     RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_TEXTURE,
-    {"RIGHT", 25, 0},
+    DEFAULT_POSITION,
     RGPVPW_COLORS.UI.neutral,
     function(frame)
       local startDrag, stopDrag = mod.guiHelper.CreateDragHandlers(
         RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_FRAME,
-        function() return not mod.configuration.IsStanceStateFrameLocked() end
+        --[[ the icon is only mouse enabled while positioning mode is active - the predicate
+             mirrors that so a stale drag can never move the frame afterwards ]]--
+        function() return mod.stanceState.IsConfigurationModeEnabled() end
       )
-      frame:SetScript("OnMouseDown", startDrag)
-      frame:SetScript("OnMouseUp", stopDrag)
+      frame:SetScript("OnDragStart", startDrag)
+      frame:SetScript("OnDragStop", stopDrag)
     end
+  )
+end
+
+--[[
+  Enable or disable positioning of the stance state icon. Enabling the mouse makes the icon
+  draggable but also stops it from passing clicks through to the target frame it sits on -
+  it is thus only ever enabled while configuration mode is active.
+
+  @param {boolean} enabled
+]]--
+function me.SetPositioningEnabled(enabled)
+  if stanceStateFrame == nil then return end
+
+  stanceStateFrame.iconHolder:EnableMouse(enabled)
+end
+
+--[[
+  Reset the stance state icon to its default position and persist it
+]]--
+function me.ResetPosition()
+  if stanceStateFrame == nil then return end
+
+  --[[ a dragged frame can be anchored to UIParent - clear before re-anchoring to the target frame ]]--
+  stanceStateFrame.iconHolder:ClearAllPoints()
+  stanceStateFrame.iconHolder:SetPoint(unpack(DEFAULT_POSITION))
+
+  mod.configuration.SaveUserPlacedFramePosition(
+    RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_FRAME,
+    DEFAULT_POSITION[1],
+    DEFAULT_POSITION[2],
+    DEFAULT_POSITION[3],
+    DEFAULT_POSITION[4],
+    DEFAULT_POSITION[5]
   )
 end
 

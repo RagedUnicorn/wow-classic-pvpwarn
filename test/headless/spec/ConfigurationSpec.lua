@@ -265,18 +265,6 @@ describe("configuration state blocks", function()
       assert.is_true(configuration.IsCombatStateTrackingEnabled())
     end)
 
-    it("reads and writes the combat state frame lock through the block", function()
-      configuration.UnlockCombatStateFrame()
-
-      assert.is_false(_G.PVPWarnConfiguration.combatState.locked)
-      assert.is_false(configuration.IsCombatStateFrameLocked())
-
-      configuration.LockCombatStateFrame()
-
-      assert.is_true(_G.PVPWarnConfiguration.combatState.locked)
-      assert.is_true(configuration.IsCombatStateFrameLocked())
-    end)
-
     it("reads and writes stance state tracking through the block", function()
       configuration.DisableStanceStateTracking()
 
@@ -287,18 +275,6 @@ describe("configuration state blocks", function()
 
       assert.is_true(_G.PVPWarnConfiguration.stanceState.enabled)
       assert.is_true(configuration.IsStanceStateTrackingEnabled())
-    end)
-
-    it("reads and writes the stance state frame lock through the block", function()
-      configuration.UnlockStanceStateFrame()
-
-      assert.is_false(_G.PVPWarnConfiguration.stanceState.locked)
-      assert.is_false(configuration.IsStanceStateFrameLocked())
-
-      configuration.LockStanceStateFrame()
-
-      assert.is_true(_G.PVPWarnConfiguration.stanceState.locked)
-      assert.is_true(configuration.IsStanceStateFrameLocked())
     end)
 
     it("reads and writes hide unknown stance through the block", function()

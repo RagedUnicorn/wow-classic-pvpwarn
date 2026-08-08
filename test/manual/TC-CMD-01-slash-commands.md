@@ -30,6 +30,10 @@
   invalid second argument on `combatstate`, `stancestate`, `bar` and `flash`
 - `bar` and `flash` are registered in **every** build, release included, and each prints its
   own confirmation message
+- `combatstate enable` / `stancestate enable` stay **per feature** — each shows only its own icon
+  (the options panel button is the one that shows both) — and the shown icon is draggable
+- Entering combat cancels either configuration mode, so no icon is left mouse-enabled on top of
+  the target frame
 - `/rgpvpw rl` and `/rgpvpw reload` both reload the UI
 - `/pvpwarn` works identically to `/rgpvpw`
 - No Lua errors

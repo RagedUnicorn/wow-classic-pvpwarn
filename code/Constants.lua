@@ -185,15 +185,17 @@ RGPVPW_CONSTANTS = {
   ELEMENT_COMBAT_STATE_SUB_OPTION_FRAME = "PVPW_CombatStateMenuOptionsFrame",
   ELEMENT_COMBAT_STATE_TITLE = "PVPW_CombatStateTitle",
   ELEMENT_COMBAT_STATE_OPT_ENABLE = "PVPW_CombatStateOptEnable",
-  ELEMENT_COMBAT_STATE_OPT_LOCK_FRAME = "PVPW_CombatStateOptLockFrame",
+  ELEMENT_COMBAT_STATE_POSITION_BUTTON = "PVPW_CombatStatePositionButton",
+  ELEMENT_COMBAT_STATE_RESET_BUTTON = "PVPW_CombatStateResetButton",
   --[[
     StanceStateMenu
   ]]--
   ELEMENT_STANCE_STATE_SUB_OPTION_FRAME = "PVPW_StanceStateMenuOptionsFrame",
   ELEMENT_STANCE_STATE_TITLE = "PVPW_StanceStateTitle",
   ELEMENT_STANCE_STATE_OPT_ENABLE = "PVPW_StanceStateOptEnable",
-  ELEMENT_STANCE_STATE_OPT_LOCK_FRAME = "PVPW_StanceStateOptLockFrame",
   ELEMENT_STANCE_STATE_OPT_HIDE_UNKNOWN = "PVPW_StanceStateOptHideUnknownStance",
+  ELEMENT_STANCE_STATE_POSITION_BUTTON = "PVPW_StanceStatePositionButton",
+  ELEMENT_STANCE_STATE_RESET_BUTTON = "PVPW_StanceStateResetButton",
   --[[
     ZoneMenu
   ]]--

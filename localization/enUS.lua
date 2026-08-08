@@ -59,18 +59,21 @@ rgpvpw.L["configuration_menu_combat_state"] = "Combat State"
 rgpvpw.L["combat_state_title"] = "Combat State Configuration"
 rgpvpw.L["enable_combat_state_tracking"] = "Enable combatstate tracking"
 rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Tracks the combatstate of an enemy target"
-rgpvpw.L["lock_frame_combat_state"] = "Lock combatstate frame"
-rgpvpw.L["lock_frame_combat_state_tooltip"] = "Locks or unlocks the combatstate frame"
+rgpvpw.L["combat_state_reset_position"] = "Reset combatstate position"
 
 -- stance state
 rgpvpw.L["configuration_menu_stance_state"] = "Stance State"
 rgpvpw.L["stance_state_title"] = "Stance State Configuration"
 rgpvpw.L["enable_stance_state_tracking"] = "Enable stancestate tracking"
 rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Tracks the stancestate of an enemy target"
-rgpvpw.L["lock_frame_stance_state"] = "Lock stancestate frame"
-rgpvpw.L["lock_frame_stance_state_tooltip"] = "Locks or unlocks the stancestate frame"
 rgpvpw.L["hide_unknown_stance"] = "Hide unknown stance"
 rgpvpw.L["hide_unknown_stance_tooltip"] = "Hides the stance icon when the stance is unknown"
+rgpvpw.L["stance_state_reset_position"] = "Reset stancestate position"
+
+-- state frames (shared by combat state and stance state)
+rgpvpw.L["state_frame_position"] = "Position state icons"
+rgpvpw.L["state_frame_done"] = "Done"
+rgpvpw.L["configuration_mode_no_target"] = "Make sure to target something to see the frame"
 
 -- voice pack
 rgpvpw.L["configuration_menu_voice_pack"] = "Voice Packs"

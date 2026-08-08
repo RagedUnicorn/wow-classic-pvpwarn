@@ -88,7 +88,7 @@ function me.SetupAddonConfiguration()
     RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_combat_state"],
-    mod.combatStateMenu.BuildUi
+    mod.combatStateMenu.OnPanelShow
   )
   categoryIds.combatState = combatStateSubCategory.ID
 
@@ -96,7 +96,7 @@ function me.SetupAddonConfiguration()
     RGPVPW_CONSTANTS.ELEMENT_STANCE_STATE_SUB_OPTION_FRAME,
     category,
     rgpvpw.L["configuration_menu_stance_state"],
-    mod.stanceStateMenu.BuildUi
+    mod.stanceStateMenu.OnPanelShow
   )
   categoryIds.stanceState = stanceStateSubCategory.ID
 

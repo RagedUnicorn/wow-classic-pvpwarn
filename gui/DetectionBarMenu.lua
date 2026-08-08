@@ -22,9 +22,6 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame
--- luacheck: globals SettingsPanel InterfaceOptionsFrame
-
 --[[
   Dedicated options sub-panel for the detection bar feature. Provides a global enable toggle,
   a positioning toggle button, max-bars / bar-scale sliders and an anchor reset button. Registered as
@@ -70,19 +67,11 @@ end
   ExitPositioning is idempotent, so this can safely run alongside the panel OnHide.
 ]]--
 function me.HookSettingsClose()
-  if me.settingsCloseHooked then return end
-
-  local settingsFrame = SettingsPanel or InterfaceOptionsFrame
-
-  if settingsFrame == nil then return end
-
-  settingsFrame:HookScript("OnHide", function()
+  mod.guiHelper.HookSettingsClose(me.tag, function()
     if mod.detectionBarAnchor.IsPositioning() then
       me.OnPanelHide()
     end
   end)
-
-  me.settingsCloseHooked = true
 end
 
 --[[

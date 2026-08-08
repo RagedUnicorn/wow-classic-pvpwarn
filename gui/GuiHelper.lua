@@ -24,12 +24,40 @@
 
 -- luacheck: globals CreateFrame STANDARD_TEXT_FONT TargetFrame
 -- luacheck: globals Settings MinimalSliderWithSteppersMixin GameTooltip
+-- luacheck: globals SettingsPanel InterfaceOptionsFrame
 
 local mod = rgpvpw
 local me = {}
 mod.guiHelper = me
 
 me.tag = "GuiHelper"
+
+--[[
+  Tracks which hookNames already hooked the Settings window OnHide
+]]--
+local settingsCloseHooks = {}
+
+--[[
+  Hook the Settings window itself so closing it (Escape / close button) can finish a transient
+  positioning or configuration mode - as if "Done" was clicked - even if the sub-panel's own
+  OnHide does not fire. Callbacks must be idempotent since they can run alongside a panel OnHide.
+
+  @param {string} hookName
+    Unique name of the caller - guards against hooking more than once
+  @param {function} callback
+    Invoked whenever the Settings window is hidden
+]]--
+function me.HookSettingsClose(hookName, callback)
+  if settingsCloseHooks[hookName] then return end
+
+  local settingsFrame = SettingsPanel or InterfaceOptionsFrame
+
+  if settingsFrame == nil then return end
+
+  settingsFrame:HookScript("OnHide", callback)
+
+  settingsCloseHooks[hookName] = true
+end
 
 --[[
   Apply one of the RGPVPW_CONSTANTS.COLOR { r, g, b } tokens to a font string.
@@ -802,7 +830,8 @@ end
   @param {string} textureName
     A reference name for the texture
   @param {table} position
-    The initial position of the frame
+    The default position of the frame - SetPoint arguments, also used as the fallback whenever
+    no user placed position is saved
   @param {table} borderColor
     The color to use for the border of the iconHolder
   @param {function} dragFrameCallback
@@ -822,8 +851,15 @@ function me.BuildIconHolderUi(frameName, textureName, position, borderColor, dra
   iconHolder:SetPoint(unpack(position))
   iconHolder:SetMovable(true)
   iconHolder:SetClampedToScreen(true)
+  --[[
+    The icon sits on top of the blizzard TargetFrame - with the mouse enabled it would swallow
+    clicks meant for the target frame. It is enabled only while positioning mode is active
+    (see mod.combatFrame.SetPositioningEnabled / mod.stanceFrame.SetPositioningEnabled).
+  ]]--
+  iconHolder:EnableMouse(false)
+  iconHolder:RegisterForDrag("LeftButton")
 
-  me.LoadFramePosition(iconHolder, frameName)
+  me.LoadFramePosition(iconHolder, frameName, position)
   dragFrameCallback(iconHolder)
 
   local texture = iconHolder:CreateTexture(textureName, "ARTWORK")

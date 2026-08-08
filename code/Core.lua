@@ -104,6 +104,8 @@ function me.Initialize()
   me.combatFrame.BuildCombatStateUi()
   -- setup stance state ui
   me.stanceFrame.BuildStanceStateUi()
+  -- setup the shared positioning mode for both state frames
+  me.stateFramePositioning.Init()
   -- setup detection bar ui
   me.detectionBarManager.Init(me.detectionBarAnchor.BuildAnchor())
   -- suppress the vignette flash during loading screens

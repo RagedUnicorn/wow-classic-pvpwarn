@@ -62,18 +62,21 @@ if (GetLocale() == "deDE") then
   rgpvpw.L["combat_state_title"] = "Kampfzustand Konfiguration"
   rgpvpw.L["enable_combat_state_tracking"] = "Aktiviere Kampfstatus Überwachung"
   rgpvpw.L["enable_combat_state_tracking_tooltip"] = "Überwacht den Kampfstatus eines gegnerischen Zieles"
-  rgpvpw.L["lock_frame_combat_state"] = "Blockiere das Kampfzustand Fenster"
-  rgpvpw.L["lock_frame_combat_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Kampfzustand Fenster"
+  rgpvpw.L["combat_state_reset_position"] = "Kampfzustand Position zurücksetzen"
 
   -- stance state
   rgpvpw.L["configuration_menu_stance_state"] = "Haltungszustand"
   rgpvpw.L["stance_state_title"] = "Haltungszustand Konfiguration"
   rgpvpw.L["enable_stance_state_tracking"] = "Aktiviere Haltungszustand Überwachung"
   rgpvpw.L["enable_stance_state_tracking_tooltip"] = "Überwacht den Haltungszustand eines gegnerischen Zieles"
-  rgpvpw.L["lock_frame_stance_state"] = "Blockiere das Haltungszustand Fenster"
-  rgpvpw.L["lock_frame_stance_state_tooltip"] = "Aktiviert oder deaktiviert das bewegen des Haltungszustand Fenster"
   rgpvpw.L["hide_unknown_stance"] = "Unbekannte Haltung ausblenden"
   rgpvpw.L["hide_unknown_stance_tooltip"] = "Blendet das Haltungssymbol aus, wenn die Haltung unbekannt ist"
+  rgpvpw.L["stance_state_reset_position"] = "Haltungszustand Position zurücksetzen"
+
+  -- state frames (shared by combat state and stance state)
+  rgpvpw.L["state_frame_position"] = "Zustandssymbole positionieren"
+  rgpvpw.L["state_frame_done"] = "Fertig"
+  rgpvpw.L["configuration_mode_no_target"] = "Wähle ein Ziel aus um das Fenster zu sehen"
 
   -- voice pack
   rgpvpw.L["configuration_menu_voice_pack"] = "Sprachpakete"

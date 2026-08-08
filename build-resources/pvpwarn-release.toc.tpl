@@ -90,6 +90,7 @@ gui/CategoryMenuAvoidTab.lua
 gui/EnemyAvoidMenu.lua
 gui/CombatFrame.lua
 gui/StanceFrame.lua
+gui/StateFramePositioning.lua
 gui/GuiHelper.lua
 gui/Flash.lua
 gui/DetectionBar.lua

@@ -140,7 +140,9 @@ PVPWarnConfiguration = {
 
     combatState = {
       enabled = {boolean},    -- whether combat state tracking is enabled
-      locked = {boolean}      -- whether the combat state frame can be dragged
+      locked = {boolean}      -- retained for compatibility only - the icon is draggable while
+                              --   positioning mode is active and click through otherwise
+                              --   (see gui/StateFramePositioning.lua)
     }
   ]]--
   ["combatState"] = mod.common.Clone(combatStateDefaults),
@@ -150,7 +152,9 @@ PVPWarnConfiguration = {
 
     stanceState = {
       enabled = {boolean},       -- whether stance state tracking is enabled
-      locked = {boolean},        -- whether the stance state frame can be dragged
+      locked = {boolean},        -- retained for compatibility only - the icon is draggable while
+                                 --   positioning mode is active and click through otherwise
+                                 --   (see gui/StateFramePositioning.lua)
       hideUnknown = {boolean}    -- whether to hide the icon instead of showing "?" for an
                                  --   unobserved stance
     }
@@ -505,29 +509,6 @@ function me.IsCombatStateTrackingEnabled()
 end
 
 --[[
-  Lock combat state frame
-]]--
-function me.LockCombatStateFrame()
-  PVPWarnConfiguration.combatState.locked = true
-end
-
---[[
-  Unlock combat state frame
-]]--
-function me.UnlockCombatStateFrame()
-  PVPWarnConfiguration.combatState.locked = false
-end
-
---[[
-  @return {boolean}
-    true - if combat state frame is locked
-    false - if combat state frame is unlocked
-]]--
-function me.IsCombatStateFrameLocked()
-  return PVPWarnConfiguration.combatState.locked
-end
-
---[[
   Enable stance state tracking
 ]]--
 function me.EnableStanceStateTracking()
@@ -550,29 +531,6 @@ end
 ]]--
 function me.IsStanceStateTrackingEnabled()
   return PVPWarnConfiguration.stanceState.enabled
-end
-
---[[
-  Lock stance state frame
-]]--
-function me.LockStanceStateFrame()
-  PVPWarnConfiguration.stanceState.locked = true
-end
-
---[[
-  Unlock stance state frame
-]]--
-function me.UnlockStanceStateFrame()
-  PVPWarnConfiguration.stanceState.locked = false
-end
-
---[[
-  @return {boolean}
-    true - if stance state frame is locked
-    false - if stance state frame is unlocked
-]]--
-function me.IsStanceStateFrameLocked()
-  return PVPWarnConfiguration.stanceState.locked
 end
 
 --[[

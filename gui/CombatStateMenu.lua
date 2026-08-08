@@ -23,9 +23,11 @@
 ]]--
 
 --[[
-  Dedicated options sub-panel for the combat state tracker. Provides the tracking enable toggle
-  and the frame lock toggle that depends on it. Registered as a sub-category under the addon
-  Settings panel via gui/AddonConfiguration.lua. Mirrors the structure of gui/FlashMenu.lua.
+  Dedicated options sub-panel for the combat state tracker. Provides the tracking enable toggle,
+  the shared positioning mode toggle (see gui/StateFramePositioning.lua - it shows both state
+  icons so they can be aligned in one pass) and a reset button for this icon's position.
+  Registered as a sub-category under the addon Settings panel via gui/AddonConfiguration.lua.
+  Mirrors the structure of gui/StanceStateMenu.lua.
 ]]--
 
 local mod = rgpvpw
@@ -36,6 +38,20 @@ me.tag = "CombatStateMenu"
 
 -- track whether the menu was already built
 local builtMenu = false
+-- reference to the positioning toggle button so its label can be kept in sync
+local positionButton
+
+--[[
+  OnShow handler for the panel. Builds the ui once, then syncs the positioning button label
+  because the slash command can have changed positioning mode while the panel was closed.
+
+  @param {table} frame
+    The addon configuration (sub-category) frame
+]]--
+function me.OnPanelShow(frame)
+  me.BuildUi(frame)
+  me.UpdatePositionButtonLabel()
+end
 
 --[[
   Build the ui for the combat state menu
@@ -52,65 +68,82 @@ function me.BuildUi(frame)
     rgpvpw.L["combat_state_title"]
   )
   me.BuildCombatStateOptions(frame)
+  me.BuildPositionButton(frame)
+  me.BuildResetPositionButton(frame)
+
+  --[[ positioning mode is shared and can also be flipped by the slash commands - the coordinator
+       owns the callback slots and fans changes out to every registered listener ]]--
+  mod.stateFramePositioning.RegisterListener(me.UpdatePositionButtonLabel)
 
   builtMenu = true
 end
 
 --[[
-  Creates all checkButtons for the combatState configuration. Make sure to create checkbuttons
-  that are dependant on others first
+  Creates all checkButtons for the combatState configuration
 
   @param {table} frame
 ]]--
 function me.BuildCombatStateOptions(frame)
   mod.guiHelper.CreateCheckBox(
-    RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_OPT_LOCK_FRAME,
-    frame,
-    {"TOPLEFT", 40, -100},
-    me.LockFrameCombatStateOnClick,
-    me.LockFrameCombatStateOnShow,
-    rgpvpw.L["lock_frame_combat_state"],
-    rgpvpw.L["lock_frame_combat_state_tooltip"]
-  )
-
-  mod.guiHelper.CreateLinkedCheckBox(
     RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_OPT_ENABLE,
     frame,
     {"TOPLEFT", 20, -52},
     me.EnableCombatStateTrackingOnClick,
     me.EnableCombatStateTrackingOnShow,
     rgpvpw.L["enable_combat_state_tracking"],
-    rgpvpw.L["enable_combat_state_tracking_tooltip"],
-    { RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_OPT_LOCK_FRAME }
+    rgpvpw.L["enable_combat_state_tracking_tooltip"]
   )
 end
 
 --[[
-  OnShow callback for checkbuttons - lock combat state frame
+  Build the positioning mode toggle button. Entering positioning mode shows both state icons -
+  the combat and the stance one - and makes them draggable, so they can be placed next to each
+  other without a target in combat; the button flips to "Done" to hide them again.
 
-  @param {table} self
+  @param {table} frame
 ]]--
-function me.LockFrameCombatStateOnShow(self)
-  if mod.configuration.IsCombatStateFrameLocked() then
-    self:SetChecked(true)
-  else
-    self:SetChecked(false)
-  end
+function me.BuildPositionButton(frame)
+  positionButton = mod.guiHelper.CreateTextButton(
+    RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_POSITION_BUTTON,
+    frame,
+    {"TOPLEFT", 20, -107},
+    function()
+      mod.stateFramePositioning.TogglePositioning()
+    end,
+    rgpvpw.L["state_frame_position"]
+  )
 end
 
 --[[
-  OnClick callback for checkbuttons - lock combat state frame
+  Build the button that resets the combat state icon back to its default position
 
-  @param {table} self
+  @param {table} frame
 ]]--
-function me.LockFrameCombatStateOnClick(self)
-  local enabled = self:GetChecked()
+function me.BuildResetPositionButton(frame)
+  mod.guiHelper.CreateTextButton(
+    RGPVPW_CONSTANTS.ELEMENT_COMBAT_STATE_RESET_BUTTON,
+    frame,
+    {"TOPLEFT", 20, -162},
+    function()
+      mod.combatFrame.ResetPosition()
+    end,
+    rgpvpw.L["combat_state_reset_position"]
+  )
+end
 
-  if enabled then
-    mod.configuration.LockCombatStateFrame()
+--[[
+  Update the position button's label to reflect the current positioning mode state.
+]]--
+function me.UpdatePositionButtonLabel()
+  if positionButton == nil then return end
+
+  if mod.stateFramePositioning.IsPositioning() then
+    positionButton:SetText(rgpvpw.L["state_frame_done"])
   else
-    mod.configuration.UnlockCombatStateFrame()
+    positionButton:SetText(rgpvpw.L["state_frame_position"])
   end
+
+  mod.guiHelper.ResizeButtonToText(positionButton)
 end
 
 --[[
@@ -121,10 +154,8 @@ end
 function me.EnableCombatStateTrackingOnShow(self)
   if mod.configuration.IsCombatStateTrackingEnabled() then
     self:SetChecked(true)
-    mod.guiHelper.EnableCheckButtons(self.linkedCheckButtonNames)
   else
     self:SetChecked(false)
-    mod.guiHelper.DisableCheckButtons(self.linkedCheckButtonNames)
   end
 end
 
@@ -138,9 +169,7 @@ function me.EnableCombatStateTrackingOnClick(self)
 
   if enabled then
     mod.configuration.EnableCombatStateTracking()
-    mod.guiHelper.EnableCheckButtons(self.linkedCheckButtonNames)
   else
     mod.configuration.DisableCombatStateTracking()
-    mod.guiHelper.DisableCheckButtons(self.linkedCheckButtonNames)
   end
 end
