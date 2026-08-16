@@ -11,6 +11,12 @@
     <addon.author>Michael Wiesendanger &lt;michael.wiesendanger@gmail.com&gt;</addon.author>
     <addon.description>PVPWarn aims to warn players visually and acoustically about pvp events</addon.description>
     <addon.name>PVPWarn</addon.name>
+    <!--
+      The AddOn folder name. Must match the .toc basename or WoW will not load the AddOn.
+      Used as the package finalName, which drives both the zip filename and - where
+      includeBaseDirectory is enabled - the base directory inside the zip.
+    -->
+    <addon.folderName>PVPWarn</addon.folderName>
     <addon.displayName>pvpwarn</addon.displayName>
     <addon.curseforge.projectId>475326</addon.curseforge.projectId>
     <!--
@@ -58,8 +64,9 @@
         <profile.id.value>development</profile.id.value>
         <package.descriptor>${project.basedir}/build-resources/assembly-development.xml</package.descriptor>
         <package.filter>${project.basedir}/build-resources/addon-development.properties</package.filter>
-        <package.finalName>${addon.name}</package.finalName>
+        <package.finalName>${addon.folderName}</package.finalName>
         <package.appendAssemblyId>true</package.appendAssemblyId>
+        <package.includeBaseDirectory>false</package.includeBaseDirectory>
         <generate.sources.skip>false</generate.sources.skip>
         <generate.sources.filter>${project.basedir}/build-resources/addon-development.properties</generate.sources.filter>
         <generate.sources.descriptor>${project.basedir}/build-resources/generate-development.xml</generate.sources.descriptor>
@@ -72,8 +79,9 @@
         <profile.id.value>release</profile.id.value>
         <package.descriptor>${project.basedir}/build-resources/assembly-release.xml</package.descriptor>
         <package.filter>${project.basedir}/build-resources/addon-release.properties</package.filter>
-        <package.finalName>${addon.name}</package.finalName>
+        <package.finalName>${addon.folderName}</package.finalName>
         <package.appendAssemblyId>false</package.appendAssemblyId>
+        <package.includeBaseDirectory>false</package.includeBaseDirectory>
         <generate.sources.skip>false</generate.sources.skip>
         <generate.sources.filter>${project.basedir}/build-resources/addon-release.properties</generate.sources.filter>
         <generate.sources.descriptor>${project.basedir}/build-resources/generate-release.xml</generate.sources.descriptor>
@@ -86,8 +94,9 @@
         <profile.id.value>deploy</profile.id.value>
         <package.descriptor>${project.basedir}/build-resources/assembly-release.xml</package.descriptor>
         <package.filter>${project.basedir}/build-resources/addon-release.properties</package.filter>
-        <package.finalName>${addon.name}</package.finalName>
+        <package.finalName>${addon.folderName}</package.finalName>
         <package.appendAssemblyId>false</package.appendAssemblyId>
+        <package.includeBaseDirectory>false</package.includeBaseDirectory>
         <generate.sources.skip>true</generate.sources.skip>
       </properties>
       <build>
@@ -112,7 +121,7 @@
                   <name>${addon.tag.version}</name>
                   <releaseNotes>${project.basedir}/build-resources/release-notes.md</releaseNotes>
                   <assets>
-                    <asset>${project.basedir}/target/${addon.name}.zip</asset>
+                    <asset>${project.basedir}/target/${addon.folderName}.zip</asset>
                   </assets>
                 </configuration>
               </execution>
@@ -127,7 +136,7 @@
         <profile.id.value>deploy</profile.id.value>
         <package.descriptor>${project.basedir}/build-resources/assembly-release.xml</package.descriptor>
         <package.filter>${project.basedir}/build-resources/addon-release.properties</package.filter>
-        <package.finalName>${addon.name}</package.finalName>
+        <package.finalName>${addon.folderName}</package.finalName>
         <package.appendAssemblyId>false</package.appendAssemblyId>
         <package.includeBaseDirectory>true</package.includeBaseDirectory>
         <generate.sources.skip>true</generate.sources.skip>
@@ -156,7 +165,7 @@
                     <gameVersion>${addon.curseforge.gameVersionTbcc}</gameVersion>
                   </gameVersions>
                   <releaseType>release</releaseType>
-                  <file>${project.basedir}/target/${addon.name}.zip</file>
+                  <file>${project.basedir}/target/${addon.folderName}.zip</file>
                   <!--suppress UnresolvedMavenProperty -->
                   <authToken>${curseforge.auth-token}</authToken>
                 </configuration>
@@ -172,7 +181,7 @@
         <profile.id.value>deploy</profile.id.value>
         <package.descriptor>${project.basedir}/build-resources/assembly-release.xml</package.descriptor>
         <package.filter>${project.basedir}/build-resources/addon-release.properties</package.filter>
-        <package.finalName>${addon.name}</package.finalName>
+        <package.finalName>${addon.folderName}</package.finalName>
         <package.appendAssemblyId>false</package.appendAssemblyId>
         <package.includeBaseDirectory>true</package.includeBaseDirectory>
         <generate.sources.skip>true</generate.sources.skip>
@@ -197,7 +206,7 @@
                   <supportedClassicPatch>${addon.supported.patch.classic}</supportedClassicPatch>
                   <supportedBccPatch>${addon.supported.patch.tbcc}</supportedBccPatch>
                   <stability>stable</stability>
-                  <file>${project.basedir}/target/${addon.name}.zip</file>
+                  <file>${project.basedir}/target/${addon.folderName}.zip</file>
                   <!--suppress UnresolvedMavenProperty -->
                   <authToken>${wago.auth-token}</authToken>
                 </configuration>
