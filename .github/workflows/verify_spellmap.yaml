@@ -24,6 +24,7 @@ on:
 jobs:
   verify-spellmap:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: Verify SpellMap and SpellAvoidMap
     steps:
       - name: Checkout Repository

@@ -28,6 +28,7 @@ permissions:
 jobs:
   export-spellmap:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: Export SpellMap and SpellAvoidMap
     steps:
       - name: Checkout Repository

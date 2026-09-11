@@ -26,6 +26,7 @@ on:
 jobs:
   verify-default-sounds:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: Verify Default Sounds
     steps:
       - name: Checkout Repository
@@ -107,6 +108,7 @@ jobs:
 
   verify-external-sounds:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
@@ -214,6 +216,7 @@ jobs:
     needs: [verify-default-sounds, verify-external-sounds]
     if: always()
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: Verification Summary
     steps:
       - name: Create summary

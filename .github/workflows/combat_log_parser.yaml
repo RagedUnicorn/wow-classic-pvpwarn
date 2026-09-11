@@ -26,6 +26,7 @@ permissions:
 jobs:
   parse-combat-logs:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     
     env:
       AWS_REGION: eu-central-1
