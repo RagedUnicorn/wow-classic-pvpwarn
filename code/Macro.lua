@@ -28,8 +28,18 @@ me.tag = "Macro"
   Macro bridge for loading pvpwarn profiles via macro. Note that this is just an interface for the player to use.
   Changing this interface may break created macros in the future.
   /run _G["RGPVPW_MACRO_LOADPROFILE"](profileName)
+
+  Switches like the Profiles page does: the profile that was active keeps every edit made
+  up to now (it is mirrored first), the named one takes over and becomes the active one.
+  Naming the active profile is a no-op; an unknown name prints a user message.
+
   @param {string} profileName
 ]]--
 _G["RGPVPW_MACRO_LOADPROFILE"] = function(profileName)
-  mod.profile.LoadProfile(profileName)
+  if not mod.profile.ProfileExists(profileName) then
+    mod.logger.PrintUserError(string.format(rgpvpw.L["user_message_profile_not_found"], tostring(profileName)))
+    return
+  end
+
+  mod.profile.SwitchProfile(profileName)
 end

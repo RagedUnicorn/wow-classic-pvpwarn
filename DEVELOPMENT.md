@@ -187,6 +187,96 @@ logs every rule violation) and by the `verify-spellmap` tool.
 
 PVPWarn supports custom voice packs as separate addons that can provide alternative sound files. Voice packs register themselves with the main addon and users can select them through the settings menu. For detailed information about how voice packs work and implementation details, see [docs/voice_pack_loading_flow.md](docs/voice_pack_loading_flow.md).
 
+### Profiles
+
+The settings profiles (`profiles/Profile.lua`, `rgpvpw.profile`; the page is
+`gui/ProfileMenu.lua`) are the family feature every sibling addon carries. Quartermaster is
+the reference implementation; PVPWarn clones its semantics onto its own array store and
+keeps the switch it always had - no reload. The diagrams live in
+[docs/profile_flow.md](docs/profile_flow.md).
+
+#### How It Works
+
+**Two data homes.** The live configuration is `PVPWarnConfiguration`, whose three per-spell
+lists (`spellList` / `spellSelfAvoidList` / `spellEnemyAvoidList`) every setter in
+`code/SpellConfiguration.lua` writes and the combat-log path reads. The profile store is
+`PVPWarnProfiles`, an array of `{ name, version, spellConfiguration,
+spellSelfAvoidConfiguration, spellEnemyAvoidConfiguration }` plus the bookkeeping field
+`activeProfile`, the name of the profile the live lists belong to. A profile captures exactly
+the three lists (`PROFILE_PAYLOAD_FIELDS`); `activeProfile` is written only by
+`EnsureActiveProfile`, `SwitchProfile`, `CreateProfile`, `DeleteProfile`, `RenameProfile` and
+the repair inside `SaveActiveProfile`.
+
+**The mirror rule.** Edits always belong to the active profile, but nothing hooks the
+setters. `SaveActiveProfile()` clones the live lists into the active profile's stored copy
+(and stamps the running version) at five moments: before a switch, on `PLAYER_LOGOUT` (a
+gated bus registration in `Core`; the event fires on logout, `/reload` and disconnect before
+the SavedVariables are written, and not on a crash), on export, after a reset, and at the end
+of `EnsureActiveProfile()` at every login - the self-heal for a logout the mirror missed.
+Between those moments the live SavedVariable is the truth. A nil or dangling active name is
+repaired to Default before the mirror lands (and Default is seeded if even that is missing).
+
+**Adoption at login.** `Core.Initialize` runs `EnsureDefaultProfile()`, which seeds Default
+from the class factory lists only when the store has none, and then `EnsureActiveProfile()`:
+a store that names a stored profile keeps it - unless it still carries the retired
+`modified` flag set to `true`, which the snapshot model used to say "the live lists are not
+this profile any more"; that store, a nil name and a dangling name all fall back to Default.
+The flag is dropped either way, and the login ends with the active profile equal to the live
+lists. `InitializeDefaultProfile()` - wipe the store, seed Default, load it - stays the
+fresh-install path (`Configuration.SetupConfiguration`) and the v2.0.0 upgrade path
+(`Configuration.UpgradeToV2_0_0`) only.
+
+**Default and Reset to defaults.** Default is the editable home profile every character
+starts on: never deleted or renamed, never created over (a taken name), otherwise a profile
+like any other. The factory settings are not a profile any more - `ResetActiveProfile()`
+writes the class factory lists (`mod.<class>Profile.GetSpellProfile(...)`) into the live
+configuration and mirrors them into the active profile.
+
+**Switch, delete, export - no reload.** `SwitchProfile(name)` mirrors, clones `store[name]`'s
+lists over the live ones and makes it active; it returns `false` for the active profile and
+for an unknown name. The three lists are plain tables the combat-log path reads on every
+event, so the switch takes effect at once; an open category panel shows stale state until it
+is re-opened (accepted - the panels re-read on show). `LoadProfile` is an alias of
+`SwitchProfile` and the macro bridge `RGPVPW_MACRO_LOADPROFILE` (`code/Macro.lua`) goes
+through it, printing `user_message_profile_not_found` for an unknown name.
+`DeleteProfile(name)` of the active profile applies Default and returns a second value
+`fellBack`, with no mirror before or after (it would resurrect the deleted profile). Export
+mirrors first inside `ExportString` and then exports the stored copy, so the active row
+exports the live lists; an import is stored inactive.
+
+**Adding a field to a profile.** One entry in `PROFILE_PAYLOAD_FIELDS` plus its
+`PROFILE_FIELD_TO_SPELL_TYPE` mapping in `profiles/Profile.lua`; `ImportString` validates
+every payload field is a table. Never `activeProfile`.
+
+#### Key Files
+
+- `profiles/Profile.lua` - the store, the mirror (`SaveActiveProfile`), adoption
+  (`EnsureDefaultProfile` / `EnsureActiveProfile`), switch / create / rename / delete / reset,
+  export / import
+- `profiles/<Class>Profile.lua` + `profiles/ProfileHelper.lua` - the class factory lists
+- `code/Core.lua` - the `PLAYER_LOGOUT` mirror and the login adoption after `SetupConfiguration`
+- `code/Macro.lua` - the macro bridge
+- `gui/ProfileMenu.lua` - the Profiles page
+- `test/headless/spec/ProfileSpec.lua` - the module's headless spec; `test/manual/TC-PR-*.md`
+  - the page's manual cases
+
+#### Page to Module
+
+Every confirm answers Yes / No, every name prompt Accept / Cancel and stays open on a refused
+name (`OnAccept` returning `true`); the click guards print the refusal a greyed button already
+shows. Nothing reloads - every action ends in `RefreshProfileList`.
+
+| Button / popup | Module call | Greyed while | Reloads |
+|---|---|---|---|
+| Create new Profile (`RGPVPW_CHOOSE_PROFILE_NAME`, name prompt) | `CreateProfile(name)` - mirror, snapshot, activate | never | no |
+| Load (`RGPVPW_LOAD_PROFILE_WARNING`) | `SwitchProfile(name)` | nothing selected, the active row | no |
+| Rename (`RGPVPW_RENAME_PROFILE_NAME`, name prompt prefilled) | `RenameProfile(old, new)` - the active name follows | nothing selected, Default | no |
+| Delete (`RGPVPW_DELETE_PROFILE_WARNING`, `RGPVPW_DELETE_ACTIVE_PROFILE_WARNING` on the active row) | `DeleteProfile(name)` -> `deleted, fellBack` | nothing selected, Default | no |
+| Reset to defaults (`RGPVPW_RESET_PROFILE_WARNING`) | `ResetActiveProfile()` | never | no |
+| Export | `ExportString(name)` - mirrors first | nothing selected | no |
+| Import (`RGPVPW_IMPORT_PROFILE_NAME`, name prompt prefilled from the string) | `ImportString(text)`, then `AddImportedProfile(name, payload)` - stored inactive | never | no |
+| Macro `RGPVPW_MACRO_LOADPROFILE(name)` | `SwitchProfile(name)` (see diagram C in the flow doc) | - | no |
+
 ## Development Tools
 
 ### Docker Compose Services

@@ -198,14 +198,14 @@ One file per test case under [test/manual/](manual/). Case IDs follow `TC-<AREA>
 
 ### Profiles
 
-| ID                                                       | Case                                      |
-|----------------------------------------------------------|-------------------------------------------|
-| [TC-PR-01](manual/TC-PR-01-class-default-profile.md)     | Class default profile seeded on first run |
-| [TC-PR-02](manual/TC-PR-02-create-load-update-delete.md) | Create, load, update and delete           |
-| [TC-PR-03](manual/TC-PR-03-export-import-round-trip.md)  | Export / import round-trip                |
-| [TC-PR-04](manual/TC-PR-04-corrupted-import-rejected.md) | Corrupted import string rejected          |
-| [TC-PR-05](manual/TC-PR-05-name-and-count-limits.md)     | Profile name and count limits             |
-| [TC-PR-06](manual/TC-PR-06-macro-load-bridge.md)         | Macro profile load bridge                 |
+| ID                                                       | Case                                       |
+|----------------------------------------------------------|--------------------------------------------|
+| [TC-PR-01](manual/TC-PR-01-class-default-profile.md)     | Class default profile seeded on first run  |
+| [TC-PR-02](manual/TC-PR-02-create-load-delete-reset.md)  | Create, load, delete and reset to defaults |
+| [TC-PR-03](manual/TC-PR-03-export-import-round-trip.md)  | Export / import round-trip                 |
+| [TC-PR-04](manual/TC-PR-04-corrupted-import-rejected.md) | Corrupted import string rejected           |
+| [TC-PR-05](manual/TC-PR-05-name-and-count-limits.md)     | Profile name and count limits              |
+| [TC-PR-06](manual/TC-PR-06-macro-load-bridge.md)         | Macro profile load bridge                  |
 
 ### Slash commands
 

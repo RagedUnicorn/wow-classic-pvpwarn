@@ -391,7 +391,8 @@ RGPVPW_CONSTANTS = {
   ELEMENT_CREATE_PROFILE_BUTTON = "PVPW_CreateProfile",
   ELEMENT_DELETE_PROFILE_BUTTON = "PVPW_DeleteProfile",
   ELEMENT_LOAD_PROFILE_BUTTON = "PVPW_LoadProfile",
-  ELEMENT_UPDATE_PROFILE_BUTTON = "PVPW_UpdateProfile",
+  ELEMENT_RENAME_PROFILE_BUTTON = "PVPW_RenameProfile",
+  ELEMENT_RESET_PROFILE_BUTTON = "PVPW_ResetProfile",
   ELEMENT_PROFILE_STRING_LABEL = "PVPW_ProfileStringLabel",
   ELEMENT_PROFILE_STRING_SCROLL_FRAME = "PVPW_ProfileStringScrollFrame",
   ELEMENT_PROFILE_EXPORT_BUTTON = "PVPW_ExportProfile",
@@ -399,6 +400,11 @@ RGPVPW_CONSTANTS = {
   PROFILE_STRING_BOX_WIDTH = 540,
   PROFILE_STRING_BOX_HEIGHT = 90,
   ELEMENT_PROFILE_LIST_ROW_HIGHLIGHT = "$parentHighlight",
+  --[[
+    The reserved name of the editable home profile every character starts on. Seeded from the
+    class factory lists when missing, never deleted or renamed, reset through "Reset to
+    defaults". A saved-variable key that also travels inside export strings - not localized
+  ]]--
   DEFAULT_PROFILE_NAME = "Default",
 
   --[[

@@ -31,6 +31,7 @@ me.tag = "Core"
 
 -- forward declarations
 local OnEnteringWorld
+local OnPlayerLogout
 local OnCombatLog
 local OnTargetChanged
 local OnZoneChanged
@@ -52,6 +53,9 @@ end
 function me.RegisterEvents(self)
   -- Fired when the player logs in, /reloads the UI, or zones between map instances
   me.event.Register("PLAYER_ENTERING_WORLD", OnEnteringWorld)
+  -- Fires before the SavedVariables are written on logout, /reload and disconnect. Gated until
+  -- initialization completes so the mirror never runs against a configuration that was not set up.
+  me.event.Register("PLAYER_LOGOUT", OnPlayerLogout, { gated = true })
   --[[
     Register to combat event unfiltered. Gated so combat log events are ignored
     until initialization completes.
@@ -98,6 +102,10 @@ function me.Initialize()
   me.voicePack.RegisterDefaultVoicePack()
   -- load addon variables
   me.configuration.SetupConfiguration()
+  -- seed the Default settings profile when the store has none, then adopt the active
+  -- profile and mirror the live configuration into it
+  me.profile.EnsureDefaultProfile()
+  me.profile.EnsureActiveProfile()
   -- setup addon configuration ui
   me.addonConfiguration.SetupAddonConfiguration()
   -- setup combat state ui
@@ -164,6 +172,16 @@ OnEnteringWorld = function(isInitialLogin, isReloadingUi)
   end
 
   me.comm.BroadcastVersion()
+end
+
+--[[
+  The player is logging out, reloading the UI or got disconnected; the client writes
+  the SavedVariables right after this. Mirror the live configuration into the active
+  settings profile so its stored copy is what the player last saw (a crash skips this
+  the way it skips the write - the login adoption mirrors again).
+]]--
+OnPlayerLogout = function()
+  me.profile.SaveActiveProfile()
 end
 
 --[[

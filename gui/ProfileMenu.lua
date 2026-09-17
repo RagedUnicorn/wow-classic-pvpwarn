@@ -43,11 +43,13 @@ local currentSelectedProfileName
 -- the multiline edit box used for export/import strings
 local profileStringEditBox
 --[[
-  The two action buttons that are greyed out while the immutable default profile is
-  selected
+  The action buttons that act on the selected profile and are greyed out while they could
+  not act - see UpdateActionButtonState
 ]]--
-local updateProfileButton
+local loadProfileButton
+local renameProfileButton
 local deleteProfileButton
+local exportProfileButton
 
 -- forward declaration
 local FinishProfileImport
@@ -122,9 +124,61 @@ StaticPopupDialogs["RGPVPW_CHOOSE_PROFILE_NAME"] = {
     end
   end,
   OnAccept = function(dialog)
-    mod.profile.CreateProfile(dialog:GetEditBox():GetText())
+    local profileName = dialog:GetEditBox():GetText()
+
+    -- a refused name keeps the prompt open so it can be corrected in place
+    if not mod.profile.CreateProfile(profileName) then
+      return true
+    end
+
+    -- the new profile is the active one now; keep it selected
+    me.SetCurrentSelectedProfileName(profileName)
     me.RefreshProfileList()
-    me.ClearSelectedProfile()
+  end,
+  EditBoxOnTextChanged = function(editBox)
+    ProfileNameEditBoxOnTextChanged(editBox)
+  end,
+  timeout = 0,
+  whileDead = true,
+  preferredIndex = 3,
+  hasEditBox = true,
+  maxLetters = mod.profile.GetMaxProfileNameLength()
+}
+
+--[[
+  Popup dialog for choosing a new name for the selected profile. The name of the profile
+  to rename is passed as the dialog data payload and prefilled into the edit box.
+]]--
+StaticPopupDialogs["RGPVPW_RENAME_PROFILE_NAME"] = {
+  text = rgpvpw.L["choose_new_profile_name_dialog_text"],
+  button1 = rgpvpw.L["choose_profile_name_accept_button"],
+  button2 = rgpvpw.L["choose_profile_name_cancel_button"],
+  OnShow = function(dialog)
+    local editBox = dialog:GetEditBox()
+    local button1 = dialog:GetButton1()
+
+    if editBox ~= nil and button1 ~= nil then
+      editBox:SetText(dialog.data or "")
+      editBox:SetFocus()
+      editBox:HighlightText()
+
+      if string.len(editBox:GetText()) > 0 then
+        button1:Enable()
+      else
+        button1:Disable()
+      end
+    end
+  end,
+  OnAccept = function(dialog)
+    local newName = dialog:GetEditBox():GetText()
+
+    -- a refused name keeps the prompt open so it can be corrected in place
+    if not mod.profile.RenameProfile(dialog.data, newName) then
+      return true
+    end
+
+    me.SetCurrentSelectedProfileName(newName)
+    me.RefreshProfileList()
   end,
   EditBoxOnTextChanged = function(editBox)
     ProfileNameEditBoxOnTextChanged(editBox)
@@ -144,9 +198,7 @@ StaticPopupDialogs["RGPVPW_DELETE_PROFILE_WARNING"] = {
   button1 = rgpvpw.L["confirm_delete_profile_yes_button"],
   button2 = rgpvpw.L["confirm_delete_profile_no_button"],
   OnAccept = function()
-    mod.profile.DeleteProfile(me.GetCurrentSelectedProfileName())
-    me.RefreshProfileList()
-    me.ClearSelectedProfile()
+    me.DeleteSelectedProfile()
   end,
   timeout = 0,
   whileDead = true,
@@ -154,16 +206,32 @@ StaticPopupDialogs["RGPVPW_DELETE_PROFILE_WARNING"] = {
 }
 
 --[[
-  Popup dialog warning before loading a profile
+  Popup dialog warning before deleting the active profile - says what follows: the Default
+  profile takes over the live configuration
+]]--
+StaticPopupDialogs["RGPVPW_DELETE_ACTIVE_PROFILE_WARNING"] = {
+  text = rgpvpw.L["confirm_delete_active_profile_dialog_text"],
+  button1 = rgpvpw.L["confirm_delete_profile_yes_button"],
+  button2 = rgpvpw.L["confirm_delete_profile_no_button"],
+  OnAccept = function()
+    me.DeleteSelectedProfile()
+  end,
+  timeout = 0,
+  whileDead = true,
+  preferredIndex = 4
+}
+
+--[[
+  Popup dialog warning before loading a profile. The profile that is active now keeps
+  every edit made up to now - SwitchProfile mirrors it before the selected one takes over.
 ]]--
 StaticPopupDialogs["RGPVPW_LOAD_PROFILE_WARNING"] = {
   text = rgpvpw.L["confirm_load_profile_dialog_text"],
   button1 = rgpvpw.L["confirm_load_profile_yes_button"],
   button2 = rgpvpw.L["confirm_load_profile_no_button"],
   OnAccept = function()
-    mod.profile.LoadProfile(me.GetCurrentSelectedProfileName())
+    mod.profile.SwitchProfile(me.GetCurrentSelectedProfileName())
     me.RefreshProfileList()
-    me.ClearSelectedProfile()
   end,
   timeout = 0,
   whileDead = true,
@@ -171,16 +239,15 @@ StaticPopupDialogs["RGPVPW_LOAD_PROFILE_WARNING"] = {
 }
 
 --[[
-  Popup dialog warning before updating the selected profile
+  Popup dialog warning before resetting the active profile to the class factory lists
 ]]--
-StaticPopupDialogs["RGPVPW_UPDATE_PROFILE_WARNING"] = {
-  text = rgpvpw.L["confirm_override_profile_dialog_text"],
-  button1 = rgpvpw.L["confirm_override_profile_yes_button"],
-  button2 = rgpvpw.L["confirm_override_profile_no_button"],
+StaticPopupDialogs["RGPVPW_RESET_PROFILE_WARNING"] = {
+  text = rgpvpw.L["confirm_reset_profile_dialog_text"],
+  button1 = rgpvpw.L["confirm_reset_profile_yes_button"],
+  button2 = rgpvpw.L["confirm_reset_profile_no_button"],
   OnAccept = function()
-    mod.profile.UpdateProfile(me.GetCurrentSelectedProfileName())
+    mod.profile.ResetActiveProfile()
     me.RefreshProfileList()
-    me.ClearSelectedProfile()
   end,
   timeout = 0,
   whileDead = true,
@@ -212,7 +279,8 @@ StaticPopupDialogs["RGPVPW_IMPORT_PROFILE_NAME"] = {
     end
   end,
   OnAccept = function(dialog)
-    FinishProfileImport(dialog:GetEditBox():GetText(), dialog.data)
+    -- a refused name keeps the prompt open so it can be corrected in place
+    return not FinishProfileImport(dialog:GetEditBox():GetText(), dialog.data)
   end,
   EditBoxOnTextChanged = function(editBox)
     ProfileNameEditBoxOnTextChanged(editBox)
@@ -258,7 +326,7 @@ function me.BuildUi(frame)
     me.CreateProfileButtonOnClick
   )
   -- create a button that loads the selected profile
-  me.CreateConfigurationButton(
+  loadProfileButton = me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_LOAD_PROFILE_BUTTON,
     actionButtonWidth,
@@ -266,14 +334,14 @@ function me.BuildUi(frame)
     rgpvpw.L["load_selected_profile_button"],
     me.LoadSelectedProfileButtonOnClick
   )
-  -- create a button that updates the selected profile
-  updateProfileButton = me.CreateConfigurationButton(
+  -- create a button that renames the selected profile
+  renameProfileButton = me.CreateConfigurationButton(
     frame,
-    RGPVPW_CONSTANTS.ELEMENT_UPDATE_PROFILE_BUTTON,
+    RGPVPW_CONSTANTS.ELEMENT_RENAME_PROFILE_BUTTON,
     actionButtonWidth,
     {"TOPLEFT", actionButtonLeft, listTop - actionButtonSpacing * 2},
-    rgpvpw.L["update_profile_button"],
-    me.UpdateProfileButtonOnClick
+    rgpvpw.L["rename_selected_profile_button"],
+    me.RenameSelectedProfileButtonOnClick
   )
   -- create a button that allows to delete the selected profile
   deleteProfileButton = me.CreateConfigurationButton(
@@ -284,11 +352,20 @@ function me.BuildUi(frame)
     rgpvpw.L["delete_selected_profile_button"],
     me.DeleteSelectedProfileButtonOnClick
   )
+  -- create a button that resets the active profile to the class factory lists
+  me.CreateConfigurationButton(
+    frame,
+    RGPVPW_CONSTANTS.ELEMENT_RESET_PROFILE_BUTTON,
+    actionButtonWidth,
+    {"TOPLEFT", actionButtonLeft, listTop - actionButtonSpacing * 4},
+    rgpvpw.L["reset_profile_button"],
+    me.ResetProfileButtonOnClick
+  )
 
   me.CreateProfileStringLabel(frame)
   me.CreateProfileStringBox(frame)
   -- create a button that exports the selected profile into the string box
-  me.CreateConfigurationButton(
+  exportProfileButton = me.CreateConfigurationButton(
     frame,
     RGPVPW_CONSTANTS.ELEMENT_PROFILE_EXPORT_BUTTON,
     stringButtonWidth,
@@ -429,11 +506,18 @@ end
 
 --[[
   Update the profile list rows to reflect the current profiles. Rows are created
-  lazily - one per profile - and surplus rows are hidden. Also recolors the rows, the
-  active profile being the one drawn in gold.
+  lazily - one per profile - and surplus rows are hidden. The active profile's row reads
+  "<name> (active)" in gold, every other row in the body colour; the translucent selection
+  texture is a separate signal that follows the selected name, so a row can be active,
+  selected or both. A selection that no longer exists is dropped.
 ]]--
 function me.RefreshProfileList()
   local profiles = PVPWarnProfiles
+  local activeProfileName = mod.profile.GetActiveProfileName()
+
+  if currentSelectedProfileName ~= nil and not mod.profile.ProfileExists(currentSelectedProfileName) then
+    currentSelectedProfileName = nil
+  end
 
   for i = 1, math.max(#profiles, #profileRows) do
     local profile = profiles[i]
@@ -445,23 +529,28 @@ function me.RefreshProfileList()
     local row = profileRows[i]
 
     if profile ~= nil then
-      --[[
-        The active profile is marked by the color of its label alone - the name itself is
-        left untouched so a row always reads exactly like the profile it stands for. The
-        gold selection highlight is a separate signal: a row can be active, selected or both
-      ]]--
-      local isActive = mod.profile.GetActiveProfileName() == profile.name
-
+      -- the row keeps the raw name; only the drawn label carries the active suffix
       row.profileName.name = profile.name
-      row.profileName:SetText(profile.name)
-      mod.guiHelper.SetColor(
-        row.profileName,
-        isActive and RGPVPW_CONSTANTS.COLOR.TITLE_GOLD or RGPVPW_CONSTANTS.COLOR.BODY
-      )
+
+      if profile.name == activeProfileName then
+        row.profileName:SetText(string.format(rgpvpw.L["profile_active_suffix"], profile.name))
+        mod.guiHelper.SetColor(row.profileName, RGPVPW_CONSTANTS.COLOR.TITLE_GOLD)
+      else
+        row.profileName:SetText(profile.name)
+        mod.guiHelper.SetColor(row.profileName, RGPVPW_CONSTANTS.COLOR.BODY)
+      end
+
+      if profile.name == currentSelectedProfileName then
+        row.highlight:Show()
+      else
+        row.highlight:Hide()
+      end
+
       row:Show()
     else
       row.profileName:SetText("")
       row.profileName.name = ""
+      row.highlight:Hide()
       row:Hide()
     end
   end
@@ -622,7 +711,8 @@ end
 
 --[[
   Button callback to delete the selected user configuration. This will invoke a popup
-  dialog for the user to confirm the action.
+  dialog for the user to confirm the action - the active profile gets the variant that
+  says the Default profile takes over.
 ]]--
 function me.DeleteSelectedProfileButtonOnClick()
   local selectedProfileName = me.GetCurrentSelectedProfileName()
@@ -632,46 +722,80 @@ function me.DeleteSelectedProfileButtonOnClick()
     return
   end
 
-  if selectedProfileName == RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME then
+  if mod.profile.IsDefaultProfile(selectedProfileName) then
     mod.logger.PrintUserError(rgpvpw.L["user_message_default_profile_cannot_be_deleted"])
     return
   end
 
-  StaticPopup_Show("RGPVPW_DELETE_PROFILE_WARNING")
+  if selectedProfileName == mod.profile.GetActiveProfileName() then
+    StaticPopup_Show(
+      "RGPVPW_DELETE_ACTIVE_PROFILE_WARNING", selectedProfileName, RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME)
+    return
+  end
+
+  StaticPopup_Show("RGPVPW_DELETE_PROFILE_WARNING", selectedProfileName)
+end
+
+--[[
+  Delete the selected profile after the confirm. Deleting the active profile falls back
+  to Default (the module applies it); either way the list is refreshed and the selection
+  cleared.
+]]--
+function me.DeleteSelectedProfile()
+  mod.profile.DeleteProfile(me.GetCurrentSelectedProfileName())
+  me.ClearSelectedProfile()
+  me.RefreshProfileList()
 end
 
 --[[
   Button callback to load the selected user configuration. This will invoke a popup
-  dialog for the user to confirm the action.
+  dialog for the user to confirm the action. The active profile is loaded already (the
+  button is greyed for it).
 ]]--
 function me.LoadSelectedProfileButtonOnClick()
   local selectedProfileName = me.GetCurrentSelectedProfileName()
 
-  if selectedProfileName and selectedProfileName ~= "" then
-    StaticPopup_Show("RGPVPW_LOAD_PROFILE_WARNING")
-  else
+  if not selectedProfileName or selectedProfileName == "" then
     mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_load"])
+    return
   end
+
+  local activeProfileName = mod.profile.GetActiveProfileName()
+
+  if selectedProfileName == activeProfileName then
+    return
+  end
+
+  StaticPopup_Show("RGPVPW_LOAD_PROFILE_WARNING", selectedProfileName, activeProfileName)
 end
 
 --[[
-  Button callback to update the selected profiles configuration with the current one. This will invoke a popup
-  dialog for the user to confirm the action.
+  Button callback to rename the selected profile. This will invoke a popup dialog prefilled
+  with the current name. The Default profile cannot be renamed.
 ]]--
-function me.UpdateProfileButtonOnClick()
+function me.RenameSelectedProfileButtonOnClick()
   local selectedProfileName = me.GetCurrentSelectedProfileName()
 
   if not selectedProfileName or selectedProfileName == "" then
-    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_update"])
+    mod.logger.PrintUserError(rgpvpw.L["user_message_select_profile_before_rename"])
     return
   end
 
-  if selectedProfileName == RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME then
-    mod.logger.PrintUserError(rgpvpw.L["user_message_default_profile_cannot_be_modified"])
+  if mod.profile.IsDefaultProfile(selectedProfileName) then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_default_profile_cannot_be_renamed"])
     return
   end
 
-  StaticPopup_Show("RGPVPW_UPDATE_PROFILE_WARNING")
+  StaticPopup_Show("RGPVPW_RENAME_PROFILE_NAME", nil, nil, selectedProfileName)
+end
+
+--[[
+  Button callback to reset the active profile to the class factory lists. This will invoke
+  a popup dialog for the user to confirm the action. Acts on the active profile, not the
+  selection.
+]]--
+function me.ResetProfileButtonOnClick()
+  StaticPopup_Show("RGPVPW_RESET_PROFILE_WARNING", mod.profile.GetActiveProfileName())
 end
 
 --[[
@@ -716,37 +840,51 @@ end
 
 --[[
   Store an imported, already validated envelope under the passed profile name.
-  The imported profile is added to the profile list but not activated.
+  The imported profile is added to the profile list and selected but not activated.
 
   @param {string} profileName
   @param {table} envelope
     A validated envelope as returned by mod.profile.ImportString
+
+  @return {boolean}
+    true - if the profile was stored (the prompt may close)
+    false - if the name was refused
 ]]--
 FinishProfileImport = function(profileName, envelope)
   if not mod.profile.AddImportedProfile(profileName, envelope.payload) then
-    return
+    return false
   end
 
+  -- the string served its purpose; clearing it signals success and prevents a
+  -- confusing re-import of the leftover text (kept on failure paths for retry)
   profileStringEditBox:SetText("")
+  me.SetCurrentSelectedProfileName(profileName)
   me.RefreshProfileList()
-  me.ClearSelectedProfile()
   mod.logger.PrintUserMessage(string.format(rgpvpw.L["profile_import_success"], profileName))
+
+  return true
 end
 
 --[[
-  Grey out the update and delete buttons while the immutable default profile is selected.
-  The click handlers guard the same condition - this only makes the refusal visible before
-  the click. A selection of nothing leaves both buttons enabled, their click handlers print
-  the "select a profile first" message.
+  Grey out the buttons that act on the selection while they could not act: Load, Rename,
+  Delete and Export with nothing selected, Load also on the active profile (it is loaded
+  already), Rename and Delete also on the Default profile. Create new Profile, Reset to
+  defaults and Import never depend on the selection. The click handlers guard the same
+  conditions - this only makes the refusal visible before the click.
 ]]--
 UpdateActionButtonState = function()
-  if not updateProfileButton or not deleteProfileButton then return end
+  if not loadProfileButton or not renameProfileButton or not deleteProfileButton or not exportProfileButton then
+    return
+  end
 
-  local isDefault = currentSelectedProfileName ~= nil
-    and currentSelectedProfileName == RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME
+  local selected = currentSelectedProfileName ~= nil and mod.profile.ProfileExists(currentSelectedProfileName)
+  local editable = selected and not mod.profile.IsDefaultProfile(currentSelectedProfileName)
+  local loadable = selected and currentSelectedProfileName ~= mod.profile.GetActiveProfileName()
 
-  updateProfileButton:SetEnabled(not isDefault)
-  deleteProfileButton:SetEnabled(not isDefault)
+  loadProfileButton:SetEnabled(loadable)
+  renameProfileButton:SetEnabled(editable)
+  deleteProfileButton:SetEnabled(editable)
+  exportProfileButton:SetEnabled(selected)
 end
 
 --[[

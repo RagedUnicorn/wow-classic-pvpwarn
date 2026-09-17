@@ -25,8 +25,8 @@
 --[[
   Headless spec for code/SpellConfiguration.lua (rgpvpw.spellConfiguration). The logger print path
   reaches mod.filter and C_AddOns which do not exist headlessly, so LogError/LogInfo/LogDebug are
-  replaced with capturing stubs per test. mod.profile and mod.spellMap are not loaded by the
-  bootstrap and are stubbed with a SetModified counter and a controllable GetSpellMetadata result.
+  replaced with capturing stubs per test. mod.spellMap is not loaded by the bootstrap and is
+  stubbed with a controllable GetSpellMetadata result.
 
   RGPVPW_ENVIRONMENT.TEST stays false (bootstrap default) so IsOptionActive does not short-circuit
   to true; the short-circuit itself is pinned in a dedicated test. Argument-validation tests assert
@@ -44,7 +44,6 @@ local SPELL_LISTS = { "spellList", "spellSelfAvoidList", "spellEnemyAvoidList" }
 describe("spellConfiguration", function()
   local spellConfiguration
   local loggedErrors
-  local setModifiedCount
   local spellMetadataResult
   local originalLogError
   local originalLogInfo
@@ -70,13 +69,6 @@ describe("spellConfiguration", function()
     rgpvpw.logger.LogInfo = function() end
     rgpvpw.logger.LogDebug = function() end
 
-    setModifiedCount = 0
-    rgpvpw.profile = {
-      SetModified = function()
-        setModifiedCount = setModifiedCount + 1
-      end
-    }
-
     spellMetadataResult = nil
     rgpvpw.spellMap = {
       GetSpellMetadata = function()
@@ -89,7 +81,6 @@ describe("spellConfiguration", function()
     rgpvpw.logger.LogError = originalLogError
     rgpvpw.logger.LogInfo = originalLogInfo
     rgpvpw.logger.LogDebug = originalLogDebug
-    rgpvpw.profile = nil
     rgpvpw.spellMap = nil
     _G.PVPWarnConfiguration = nil
   end)
@@ -208,7 +199,6 @@ describe("spellConfiguration", function()
       spellConfiguration.ToggleOption("spellList", "priest", 8122, "Psychic Scream", "spellActive")
 
       assert.is_false(PVPWarnConfiguration.spellList.priest[8122].spellActive)
-      assert.are.equal(2, setModifiedCount)
       assert.are.equal(0, #loggedErrors)
     end)
 
@@ -217,7 +207,6 @@ describe("spellConfiguration", function()
 
       assert.are.equal(1, #loggedErrors)
       assert.matches("Option 'bogusOption' is not a boolean", loggedErrors[1].message)
-      assert.are.equal(0, setModifiedCount)
       assert.is_nil(PVPWarnConfiguration.spellList.priest[8122].bogusOption)
     end)
   end)
@@ -265,11 +254,10 @@ describe("spellConfiguration", function()
       end)
     end)
 
-    it("updates the color, creates the prerequisite entry and marks the profile modified", function()
+    it("updates the color and creates the prerequisite entry", function()
       spellConfiguration.UpdateVisualWarningColor("spellSelfAvoidList", "priest", 8122, "Psychic Scream", 3)
 
       assert.are.equal(3, PVPWarnConfiguration.spellSelfAvoidList.priest[8122].visualWarningColor)
-      assert.are.equal(1, setModifiedCount)
       assert.are.equal(3, spellConfiguration.GetVisualWarningColor("spellSelfAvoidList", "priest", 8122))
     end)
 

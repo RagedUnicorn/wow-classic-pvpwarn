@@ -44,10 +44,12 @@ SavedVariables came from a real v1.2.8 install, or the fixture below.
   `user_message_profiles_reset_for_upgrade` ("Your profiles have been reset to default due
   to the upgrade to v2.0.0"). That chat message is the observable proof the path ran
 - `PVPWarnProfiles` afterwards holds **exactly one** entry named `Default`, carrying a
-  `version` field with the new release version, plus `activeProfile = "Default"` and
-  `modified = false`
-- The three spell lists are **replaced**, not preserved. `InitializeDefaultProfile()` ends in
-  `LoadProfile("Default")`, which clones the class defaults over
+  `version` field with the new release version, plus `activeProfile = "Default"`. The
+  fixture's `modified = true` is **gone** — the flag was retired with the live active profile
+  model; `InitializeDefaultProfile()` wipes it and `EnsureActiveProfile()` would drop it on
+  any store that still carried it
+- The three spell lists are **replaced**, not preserved. `InitializeDefaultProfile()` seeds
+  the class default profile and clones its lists over
   `PVPWarnConfiguration.spellList` / `spellSelfAvoidList` / `spellEnemyAvoidList`. After
   login they are keyed by **numeric spellId**; the fixture's name-keyed entries are gone.
   Losing the old per-spell customization is the expected cost of the reset and is what the

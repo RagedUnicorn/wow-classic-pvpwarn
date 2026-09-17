@@ -128,37 +128,45 @@ rgpvpw.L["label_battlegrounds_description"] = "Warnings are only active in enabl
 -- profiles
 rgpvpw.L["configuration_menu_profiles"] = "Profiles"
 rgpvpw.L["create_new_profile_button"] = "Create new Profile"
-rgpvpw.L["delete_selected_profile_button"] = "Delete Profile"
-rgpvpw.L["load_selected_profile_button"] = "Load Profile"
-rgpvpw.L["update_profile_button"] = "Update Profile"
+rgpvpw.L["load_selected_profile_button"] = "Load"
+rgpvpw.L["rename_selected_profile_button"] = "Rename"
+rgpvpw.L["delete_selected_profile_button"] = "Delete"
+rgpvpw.L["reset_profile_button"] = "Reset to defaults"
+-- the active profile's row in the list
+rgpvpw.L["profile_active_suffix"] = "%s (active)"
 
 -- create new profile
 rgpvpw.L["choose_profile_name_dialog_text"] = "Choose a name for the new profile"
 rgpvpw.L["choose_profile_name_accept_button"] = "Accept"
 rgpvpw.L["choose_profile_name_cancel_button"] = "Cancel"
+-- rename profile
+rgpvpw.L["choose_new_profile_name_dialog_text"] = "Enter a new name for the profile:"
 -- delete profile
-rgpvpw.L["confirm_delete_profile_dialog_text"] = "This will delete your selected profile. Do you want to continue?"
+rgpvpw.L["confirm_delete_profile_dialog_text"] = "Delete profile \"%s\"?"
+rgpvpw.L["confirm_delete_active_profile_dialog_text"] = "Delete profile \"%s\"? It is the active profile - "
+  .. "\"%s\" takes over your settings."
 rgpvpw.L["confirm_delete_profile_yes_button"] = "Yes"
 rgpvpw.L["confirm_delete_profile_no_button"] = "No"
 -- load profile
-rgpvpw.L["confirm_load_profile_dialog_text"] = "This will override your current profile. Do you want to continue?"
+rgpvpw.L["confirm_load_profile_dialog_text"] = "Load profile \"%s\"? Your current settings stay saved in \"%s\"."
 rgpvpw.L["confirm_load_profile_yes_button"] = "Yes"
 rgpvpw.L["confirm_load_profile_no_button"] = "No"
--- update profile
-rgpvpw.L["confirm_override_profile_dialog_text"] = "This will update the selected profile with "
-  .. "your current configuration. Do you want to continue?"
-rgpvpw.L["confirm_override_profile_yes_button"] = "Yes"
-rgpvpw.L["confirm_override_profile_no_button"] = "No"
+-- reset profile
+rgpvpw.L["confirm_reset_profile_dialog_text"] = "Reset profile \"%s\" to the factory settings?|n|nEvery spell "
+  .. "setting goes back to your class defaults."
+rgpvpw.L["confirm_reset_profile_yes_button"] = "Yes"
+rgpvpw.L["confirm_reset_profile_no_button"] = "No"
 -- user messages
 rgpvpw.L["user_message_select_profile_before_delete"] = "Select a profile to delete"
 rgpvpw.L["user_message_select_profile_before_load"] = "Select a profile to load"
-rgpvpw.L["user_message_select_profile_before_update"] = "Select a profile to update"
+rgpvpw.L["user_message_select_profile_before_rename"] = "Select a profile to rename"
 rgpvpw.L["user_message_select_profile_before_export"] = "Select a profile to export"
 rgpvpw.L["user_message_select_profile_already_exists"] = "Profile already exist - choose another name"
 rgpvpw.L["user_message_profile_name_too_long"] = "The profile name cannot be longer than %d characters"
 rgpvpw.L["user_message_add_new_profile_max_reached"] = "A maximum of %s profiles is allowed you reached the maximum"
 rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "The default profile cannot be deleted"
-rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "The default profile cannot be modified"
+rgpvpw.L["user_message_default_profile_cannot_be_renamed"] = "The default profile cannot be renamed"
+rgpvpw.L["user_message_profile_not_found"] = "No profile named \"%s\""
 rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Your profiles have been reset to default due to the upgrade "
   .. "to v2.0.0"
 -- profile export / import

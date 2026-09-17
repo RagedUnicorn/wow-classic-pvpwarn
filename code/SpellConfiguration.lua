@@ -210,7 +210,6 @@ function me.UpdateVisualWarningColor(spellList, categoryName, spellId, spellName
   )
 
   spell.visualWarningColor = color
-  mod.profile.SetModified()
 end
 
 --[[
@@ -351,7 +350,6 @@ function me.ToggleOption(spellList, categoryName, spellId, spellName, optionName
   )
 
   spell[optionName] = not currentState
-  mod.profile.SetModified()
 end
 
 --[[

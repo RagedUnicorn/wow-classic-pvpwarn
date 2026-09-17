@@ -27,7 +27,7 @@
   `spellActive`, `soundWarningActive` and `visualWarningColor`, plus
   `soundFadeWarningActive` / `soundStartWarningActive` only for spells declaring
   `hasFade` / `hasCast`
-- Changing a setting marks the active profile as modified — the flag is no longer surfaced
-  in the UI, so check `PVPWarnProfiles.modified` in the SavedVariables file (or via
-  `/dump PVPWarnProfiles.modified`) rather than looking for a marker in the profile list
+- Changing a setting edits the active profile: after the `/reload` the active profile's stored
+  lists in `PVPWarnProfiles` equal the three live lists (the PLAYER_LOGOUT mirror), and no
+  `modified` flag exists on `PVPWarnProfiles` any more
 - No Lua errors

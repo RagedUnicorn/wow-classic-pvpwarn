@@ -58,7 +58,15 @@ To configure the resist warning for your own class, use the `Enemy Avoid` naviga
 
 ### Profiles
 
-PVPWarn loads a default profile based on your class when the addon loads for the first time. The default profile can be loaded again at any point. If you start modifying which spells are tracked, however, you can create a new profile, or even keep multiple different profiles that you can load depending on your situation.
+Your spell settings always belong to one profile - the active one, drawn in gold on the Profiles page. Every change you make in the settings is saved into it, so there is nothing to update by hand. Keep several profiles and load the one that fits your situation; the profile you leave keeps everything you changed while it was active.
+
+- **Create new Profile** stores your current settings under a new name and makes it the active profile
+- **Load** switches to the selected profile; your current settings stay saved in the profile you leave
+- **Rename** gives the selected profile a new name
+- **Delete** removes the selected profile - deleting the active one loads `Default` instead
+- **Reset to defaults** restores the class defaults into the active profile
+
+`Default` is your editable home profile: PVPWarn creates it from your class when the addon loads for the first time, and it cannot be renamed or deleted. It is not frozen - change it as you like and use **Reset to defaults** whenever you want the factory settings back.
 
 ![](docs/pvpwarn_configure_profiles.png)
 
@@ -66,7 +74,7 @@ Profiles can also be exported to a string and imported on another character, whi
 
 #### Loading Profiles with Macros
 
-Once a profile is created, it can be loaded manually or with a macro.
+Once a profile is created, it can be loaded manually or with a macro. A macro switch behaves exactly like **Load**: the profile you leave keeps your current settings and the named profile becomes the active one.
 
 ```lua
 /run _G["RGPVPW_MACRO_LOADPROFILE"]("[profileName]")

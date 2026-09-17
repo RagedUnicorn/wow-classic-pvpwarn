@@ -134,40 +134,47 @@ if (GetLocale() == "deDE") then
   -- profiles
   rgpvpw.L["configuration_menu_profiles"] = "Profile"
   rgpvpw.L["create_new_profile_button"] = "Erstelle Profil"
-  rgpvpw.L["delete_selected_profile_button"] = "Lösche Profil"
-  rgpvpw.L["load_selected_profile_button"] = "Lade Profil"
-  rgpvpw.L["update_profile_button"] = "Aktualisiere Profil"
+  rgpvpw.L["load_selected_profile_button"] = "Laden"
+  rgpvpw.L["rename_selected_profile_button"] = "Umbenennen"
+  rgpvpw.L["delete_selected_profile_button"] = "Löschen"
+  rgpvpw.L["reset_profile_button"] = "Auf Standard zurücksetzen"
+  -- the active profile's row in the list
+  rgpvpw.L["profile_active_suffix"] = "%s (aktiv)"
 
   -- create new profile
   rgpvpw.L["choose_profile_name_dialog_text"] = "Wähle einen Namen für das neue Profil"
   rgpvpw.L["choose_profile_name_accept_button"] = "Akzeptieren"
   rgpvpw.L["choose_profile_name_cancel_button"] = "Abbrechen"
+  -- rename profile
+  rgpvpw.L["choose_new_profile_name_dialog_text"] = "Gib einen neuen Namen für das Profil ein:"
   -- delete profile
-  rgpvpw.L["confirm_delete_profile_dialog_text"] = "Dieser Vorgang löscht das ausgewählte Profil. "
-    .. "Willst du fortfahren?"
+  rgpvpw.L["confirm_delete_profile_dialog_text"] = "Profil \"%s\" löschen?"
+  rgpvpw.L["confirm_delete_active_profile_dialog_text"] = "Profil \"%s\" löschen? Es ist das aktive Profil - "
+    .. "\"%s\" übernimmt deine Einstellungen."
   rgpvpw.L["confirm_delete_profile_yes_button"] = "Ja"
   rgpvpw.L["confirm_delete_profile_no_button"] = "Nein"
   -- load profile
-  rgpvpw.L["confirm_load_profile_dialog_text"] = "Dieser Vorgang überschreibt deine jetzige Konfiguration. "
-    .. "Willst du fortfahren?"
+  rgpvpw.L["confirm_load_profile_dialog_text"] = "Profil \"%s\" laden? Deine jetzigen Einstellungen bleiben in "
+    .. "\"%s\" gespeichert."
   rgpvpw.L["confirm_load_profile_yes_button"] = "Ja"
   rgpvpw.L["confirm_load_profile_no_button"] = "Nein"
-  -- update profile
-  rgpvpw.L["confirm_override_profile_dialog_text"] = "Dieser Vorgang lädt das ausgewählte Profil und "
-    .. "überschreibt deine jetzige Konfiguration. Willst du fortfahren?"
-  rgpvpw.L["confirm_override_profile_yes_button"] = "Ja"
-  rgpvpw.L["confirm_override_profile_no_button"] = "Nein"
+  -- reset profile
+  rgpvpw.L["confirm_reset_profile_dialog_text"] = "Profil \"%s\" auf die Werkseinstellungen zurücksetzen?|n|nJede "
+    .. "Zaubereinstellung geht auf den Standard deiner Klasse zurück."
+  rgpvpw.L["confirm_reset_profile_yes_button"] = "Ja"
+  rgpvpw.L["confirm_reset_profile_no_button"] = "Nein"
   -- user messages
   rgpvpw.L["user_message_select_profile_before_delete"] = "Wähle ein Profil aus um es zu löschen"
   rgpvpw.L["user_message_select_profile_before_load"] = "Wähle ein Profil aus um es zu laden"
-  rgpvpw.L["user_message_select_profile_before_update"] = "Wähle ein Profil aus um es zu aktualisieren"
+  rgpvpw.L["user_message_select_profile_before_rename"] = "Wähle ein Profil aus um es umzubenennen"
   rgpvpw.L["user_message_select_profile_before_export"] = "Wähle ein Profil aus um es zu exportieren"
   rgpvpw.L["user_message_select_profile_already_exists"] = "Das Profil existiert bereits - wähle einen anderen Name"
   rgpvpw.L["user_message_profile_name_too_long"] = "Der Profilname darf nicht länger als %d Zeichen sein"
   rgpvpw.L["user_message_add_new_profile_max_reached"] = "Eine maximale Anzahl von %s Profilen ist erlaubt. "
     .. "Du hast das maximum erreicht"
   rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "Das Standard Profil kann nicht gelöscht werden"
-  rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "Das Standard Profil kann nicht verändert werden"
+  rgpvpw.L["user_message_default_profile_cannot_be_renamed"] = "Das Standard Profil kann nicht umbenannt werden"
+  rgpvpw.L["user_message_profile_not_found"] = "Kein Profil mit dem Namen \"%s\""
   rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Deine Profile wurden aufgrund des Upgrades auf v2.0.0 auf die "
     .. "Standardeinstellungen zurückgesetzt."
 

@@ -132,36 +132,46 @@ if (GetLocale() == "ruRU") then
   -- profiles
   rgpvpw.L["configuration_menu_profiles"] = "Профили"
   rgpvpw.L["create_new_profile_button"] = "Создать новый профиль"
-  rgpvpw.L["delete_selected_profile_button"] = "Удалить профиль"
-  rgpvpw.L["load_selected_profile_button"] = "Загрузить профиль"
-  rgpvpw.L["update_profile_button"] = "Обновить профиль"
+  rgpvpw.L["load_selected_profile_button"] = "Загрузить"
+  rgpvpw.L["rename_selected_profile_button"] = "Переименовать"
+  rgpvpw.L["delete_selected_profile_button"] = "Удалить"
+  rgpvpw.L["reset_profile_button"] = "Сбросить на стандартные"
+  -- the active profile's row in the list
+  rgpvpw.L["profile_active_suffix"] = "%s (активный)"
 
   -- create new profile
   rgpvpw.L["choose_profile_name_dialog_text"] = "Выберите имя для нового профиля"
   rgpvpw.L["choose_profile_name_accept_button"] = "Принять"
   rgpvpw.L["choose_profile_name_cancel_button"] = "Отмена"
+  -- rename profile
+  rgpvpw.L["choose_new_profile_name_dialog_text"] = "Введите новое имя для профиля:"
   -- delete profile
-  rgpvpw.L["confirm_delete_profile_dialog_text"] = "Это удалит выбранный профиль. Продолжить?"
+  rgpvpw.L["confirm_delete_profile_dialog_text"] = "Удалить профиль \"%s\"?"
+  rgpvpw.L["confirm_delete_active_profile_dialog_text"] = "Удалить профиль \"%s\"? Это активный профиль - "
+    .. "\"%s\" возьмёт на себя ваши настройки."
   rgpvpw.L["confirm_delete_profile_yes_button"] = "Да"
   rgpvpw.L["confirm_delete_profile_no_button"] = "Нет"
   -- load profile
-  rgpvpw.L["confirm_load_profile_dialog_text"] = "Это заменит текущий профиль. Продолжить?"
+  rgpvpw.L["confirm_load_profile_dialog_text"] = "Загрузить профиль \"%s\"? Ваши текущие настройки останутся "
+    .. "сохранёнными в \"%s\"."
   rgpvpw.L["confirm_load_profile_yes_button"] = "Да"
   rgpvpw.L["confirm_load_profile_no_button"] = "Нет"
-  -- update profile
-  rgpvpw.L["confirm_override_profile_dialog_text"] = "Это обновит выбранный профиль текущими настройками. Продолжить?"
-  rgpvpw.L["confirm_override_profile_yes_button"] = "Да"
-  rgpvpw.L["confirm_override_profile_no_button"] = "Нет"
+  -- reset profile
+  rgpvpw.L["confirm_reset_profile_dialog_text"] = "Сбросить профиль \"%s\" на заводские настройки?|n|nКаждая "
+    .. "настройка заклинаний вернётся к стандартным для вашего класса."
+  rgpvpw.L["confirm_reset_profile_yes_button"] = "Да"
+  rgpvpw.L["confirm_reset_profile_no_button"] = "Нет"
   -- user messages
   rgpvpw.L["user_message_select_profile_before_delete"] = "Выберите профиль для удаления"
   rgpvpw.L["user_message_select_profile_before_load"] = "Выберите профиль для загрузки"
-  rgpvpw.L["user_message_select_profile_before_update"] = "Выберите профиль для обновления"
+  rgpvpw.L["user_message_select_profile_before_rename"] = "Выберите профиль для переименования"
   rgpvpw.L["user_message_select_profile_before_export"] = "Выберите профиль для экспорта"
   rgpvpw.L["user_message_select_profile_already_exists"] = "Профиль уже существует - выберите другое имя"
   rgpvpw.L["user_message_profile_name_too_long"] = "Имя профиля не может быть длиннее %d символов"
   rgpvpw.L["user_message_add_new_profile_max_reached"] = "Достигнут максимум из %s профилей"
   rgpvpw.L["user_message_default_profile_cannot_be_deleted"] = "Профиль по умолчанию нельзя удалить"
-  rgpvpw.L["user_message_default_profile_cannot_be_modified"] = "Профиль по умолчанию нельзя изменить"
+  rgpvpw.L["user_message_default_profile_cannot_be_renamed"] = "Профиль по умолчанию нельзя переименовать"
+  rgpvpw.L["user_message_profile_not_found"] = "Нет профиля с именем \"%s\""
   rgpvpw.L["user_message_profiles_reset_for_upgrade"] = "Ваши профили были сброшены на стандартные "
     .. "из-за обновления до v2.0.0"
   -- profile export / import

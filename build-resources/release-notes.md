@@ -43,11 +43,26 @@ A new **Warning mode** setting in General Settings controls which events warn yo
 Spells cast directly at you always warn regardless of the mode, so filtering can never hide
 something aimed your way.
 
+### Profiles - your settings always belong to the active profile
+
+Profiles no longer need an **Update Profile** button, and there is none. The profile drawn
+in gold on the Profiles page is the active one: every spell setting you change is saved into
+it, and switching to another profile keeps everything you changed in the one you leave. A
+macro switch (`RGPVPW_MACRO_LOADPROFILE`) behaves the same way.
+
+- **Default** is now your editable home profile - change it as you like. Loading it no longer
+  resets anything; the new **Reset to defaults** button restores the class defaults into
+  whichever profile is active
+- **Rename** gives a profile a new name in place
+- Deleting the active profile loads **Default** instead of leaving you on nothing
+- The page reads Create new Profile / Load / Rename / Delete / Reset to defaults, and the
+  active profile is remembered across logins
+
 ### Profile Import & Export
 
 Profiles can now be exported to a share string and imported back - copy a setup between
 characters, back it up, or share it with your guild. Imports are validated before they are
-applied.
+applied. Exporting the active profile always carries your current settings.
 
 ### TBC Anniversary Support
 
