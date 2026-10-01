@@ -29,14 +29,6 @@ local me = rgpvpw
 
 me.tag = "Core"
 
--- forward declarations
-local OnEnteringWorld
-local OnRosterChanged
-local OnPlayerLogout
-local OnCombatLog
-local OnTargetChanged
-local OnZoneChanged
-
 --[[
   Addon load
 
@@ -44,6 +36,78 @@ local OnZoneChanged
 ]]--
 function me.OnLoad(self)
   me.RegisterEvents(self)
+end
+
+--[[
+  Run the bootstrap sequence on login or /reload, then open the readiness gate
+  so gated handlers (combat log, target changes) begin processing. Every entering
+  world edge (including instance transfers) broadcasts the running addon version to
+  the group; the guild is announced to only on login and reload - a loading screen
+  changes no guild. The broadcast has its own cooldown against bursts.
+
+  The initialization runs only on the login / reload edge, so a step of Initialize
+  that raises must not keep the gate closed for the rest of the session - the error
+  is logged and handed to the client's error handler (the script error frame,
+  BugSack) and the gate opens regardless.
+
+  @param {boolean} isInitialLogin
+  @param {boolean} isReloadingUi
+]]--
+local function OnEnteringWorld(isInitialLogin, isReloadingUi)
+  if isInitialLogin or isReloadingUi then
+    xpcall(me.Initialize, function(err)
+      me.logger.LogError(me.tag, "Initialization failed: " .. tostring(err))
+
+      return geterrorhandler()(err)
+    end)
+
+    me.event.SetReady()
+    me.zone.UpdateZone()
+  end
+
+  me.comm.BroadcastVersion(isInitialLogin == true or isReloadingUi == true)
+end
+
+--[[
+  Announce the version on GROUP_ROSTER_UPDATE. A group change announces to the group
+  only - the guild already got the version at login.
+]]--
+local function OnRosterChanged()
+  me.comm.BroadcastVersion(false)
+end
+
+--[[
+  The player is logging out, reloading the UI or got disconnected; the client writes
+  the SavedVariables right after this. Mirror the live configuration into the active
+  settings profile so its stored copy is what the player last saw (a crash skips this
+  the way it skips the write - the login adoption mirrors again).
+]]--
+local function OnPlayerLogout()
+  me.profile.SaveActiveProfile()
+end
+
+--[[
+  Process the current unfiltered combat log event. Gated until initialization
+  is complete (see RegisterEvents).
+]]--
+local function OnCombatLog()
+  me.combatLog.ProcessUnfilteredCombatLogEvent(nil, CombatLogGetCurrentEventInfo())
+end
+
+--[[
+  Update the tracked target when the player's target changes. Gated until
+  initialization is complete (see RegisterEvents).
+]]--
+local function OnTargetChanged()
+  me.target.UpdateCurrentTarget()
+  me.targetFilter.UpdateCurrentTarget()
+end
+
+--[[
+  Update the zone state when the player enters a new zone or city
+]]--
+local function OnZoneChanged()
+  me.zone.UpdateZone()
 end
 
 --[[
@@ -154,76 +218,4 @@ function me.ShowDetectionBarHint()
 
   print("|cFF00FFB0" .. RGPVPW_CONSTANTS.ADDON_NAME .. ":|r " .. rgpvpw.L["detection_bar_hint"])
   me.configuration.SetDetectionBarHintShown()
-end
-
---[[
-  Run the bootstrap sequence on login or /reload, then open the readiness gate
-  so gated handlers (combat log, target changes) begin processing. Every entering
-  world edge (including instance transfers) broadcasts the running addon version to
-  the group; the guild is announced to only on login and reload - a loading screen
-  changes no guild. The broadcast has its own cooldown against bursts.
-
-  The initialization runs only on the login / reload edge, so a step of Initialize
-  that raises must not keep the gate closed for the rest of the session - the error
-  is logged and handed to the client's error handler (the script error frame,
-  BugSack) and the gate opens regardless.
-
-  @param {boolean} isInitialLogin
-  @param {boolean} isReloadingUi
-]]--
-OnEnteringWorld = function(isInitialLogin, isReloadingUi)
-  if isInitialLogin or isReloadingUi then
-    xpcall(me.Initialize, function(err)
-      me.logger.LogError(me.tag, "Initialization failed: " .. tostring(err))
-
-      return geterrorhandler()(err)
-    end)
-
-    me.event.SetReady()
-    me.zone.UpdateZone()
-  end
-
-  me.comm.BroadcastVersion(isInitialLogin == true or isReloadingUi == true)
-end
-
---[[
-  Announce the version on GROUP_ROSTER_UPDATE. A group change announces to the group
-  only - the guild already got the version at login.
-]]--
-OnRosterChanged = function()
-  me.comm.BroadcastVersion(false)
-end
-
---[[
-  The player is logging out, reloading the UI or got disconnected; the client writes
-  the SavedVariables right after this. Mirror the live configuration into the active
-  settings profile so its stored copy is what the player last saw (a crash skips this
-  the way it skips the write - the login adoption mirrors again).
-]]--
-OnPlayerLogout = function()
-  me.profile.SaveActiveProfile()
-end
-
---[[
-  Process the current unfiltered combat log event. Gated until initialization
-  is complete (see RegisterEvents).
-]]--
-OnCombatLog = function()
-  me.combatLog.ProcessUnfilteredCombatLogEvent(nil, CombatLogGetCurrentEventInfo())
-end
-
---[[
-  Update the tracked target when the player's target changes. Gated until
-  initialization is complete (see RegisterEvents).
-]]--
-OnTargetChanged = function()
-  me.target.UpdateCurrentTarget()
-  me.targetFilter.UpdateCurrentTarget()
-end
-
---[[
-  Update the zone state when the player enters a new zone or city
-]]--
-OnZoneChanged = function()
-  me.zone.UpdateZone()
 end

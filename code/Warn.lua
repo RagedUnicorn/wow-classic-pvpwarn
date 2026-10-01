@@ -41,13 +41,6 @@ local warnQueue = {}
 local visualChannel
 local detectionBarChannel
 
--- forward declaration
-local RemoveFromQueue
-local DispatchWarning
-local EngageBusyGate
-local PlaySound
-local PlayVisual
-
 --[[
  Whether queue is currently busy playing a sound. Preventing multiple sounds and
  warnings playing at the same time. Queue is first in first served.
@@ -111,9 +104,114 @@ end
 --[[
   @param {number} position
 ]]--
-RemoveFromQueue = function(position)
+local function RemoveFromQueue(position)
   table.remove(warnQueue, position)
   mod.logger.LogDebug(me.tag, "Removed warning with position '" .. position .. "' from queue")
+end
+
+--[[
+  @param {table} warning
+  @param {number} spellType
+
+  @return {boolean}
+    true - if a sound was played
+    false - if no sound was played
+]]--
+local function PlaySound(warning, spellType)
+  if warning.playSound then
+    mod.sound.PlaySound(
+      warning.category,
+      spellType,
+      warning.spell.soundFileName
+    )
+
+    return true
+  else
+    mod.logger.LogDebug(me.tag, string.format("Skipping playing normal %s for spell"
+      .. " '%s' because sound is disabled for spell", spellType, warning.spell.name))
+
+    return false
+  end
+end
+
+--[[
+  @param {table} warning
+
+  @return {boolean}
+    true - if a visual warning was played
+    false - if no visual warning was played
+]]--
+local function PlayVisual(warning)
+  if not warning.playVisual then
+    mod.logger.LogDebug(me.tag, "Skipping playing visual for spell - " .. warning.spell.name
+      .. " because visual is disabled for this spell")
+
+    return false
+  end
+
+  if not mod.configuration.IsFlashEnabled() then
+    mod.logger.LogDebug(me.tag, "Skipping playing visual for spell - " .. warning.spell.name
+      .. " because the flash channel is disabled")
+
+    return false
+  end
+
+  if visualChannel == nil then
+    mod.logger.LogDebug(me.tag, "Skipping playing visual for spell - " .. warning.spell.name
+      .. " because no visual channel is registered")
+
+    return false
+  end
+
+  visualChannel(warning.spell.visualWarningColor)
+
+  return true
+end
+
+--[[
+  Route a warning to its output channels based on the warning's spellType
+
+  @param {table} warning
+
+  @return {boolean}
+    true - if at least one channel played the warning
+    false - if no channel played the warning
+]]--
+local function DispatchWarning(warning)
+  local playedSound = false
+  local playedVisual = false
+  local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
+
+  if warning.spellType == spellTypes.NORMAL or
+    warning.spellType == spellTypes.APPLIED or
+    warning.spellType == spellTypes.REFRESH then
+    playedSound = PlaySound(warning, spellTypes.NORMAL)
+    playedVisual = PlayVisual(warning)
+  elseif warning.spellType == spellTypes.REMOVED then
+    playedSound = PlaySound(warning, spellTypes.REMOVED)
+  elseif warning.spellType == spellTypes.MISSED_SELF then
+    playedSound = PlaySound(warning, spellTypes.MISSED_SELF)
+    playedVisual = PlayVisual(warning)
+  elseif warning.spellType == spellTypes.MISSED_ENEMY then
+    playedSound = PlaySound(warning, spellTypes.MISSED_ENEMY)
+    playedVisual = PlayVisual(warning)
+  elseif warning.spellType == spellTypes.START then
+    playedSound = PlaySound(warning, spellTypes.START)
+  else
+    mod.logger.LogError(me.tag, "Found invalid spelltype: " .. warning.spellType)
+  end
+
+  return playedSound or playedVisual
+end
+
+--[[
+  Block the queue for WARN_QUEUE_BUSY_GATE so consecutive warnings do not talk over each other
+]]--
+local function EngageBusyGate()
+  isQueueBusy = true
+  C_Timer.After(RGPVPW_CONSTANTS.WARN_QUEUE_BUSY_GATE, function()
+    isQueueBusy = false
+  end)
 end
 
 --[[
@@ -147,52 +245,6 @@ function me.ProcessQueue()
   end
 
   RemoveFromQueue(1)
-end
-
---[[
-  Route a warning to its output channels based on the warning's spellType
-
-  @param {table} warning
-
-  @return {boolean}
-    true - if at least one channel played the warning
-    false - if no channel played the warning
-]]--
-DispatchWarning = function(warning)
-  local playedSound = false
-  local playedVisual = false
-  local spellTypes = RGPVPW_CONSTANTS.SPELL_TYPES
-
-  if warning.spellType == spellTypes.NORMAL or
-    warning.spellType == spellTypes.APPLIED or
-    warning.spellType == spellTypes.REFRESH then
-    playedSound = PlaySound(warning, spellTypes.NORMAL)
-    playedVisual = PlayVisual(warning)
-  elseif warning.spellType == spellTypes.REMOVED then
-    playedSound = PlaySound(warning, spellTypes.REMOVED)
-  elseif warning.spellType == spellTypes.MISSED_SELF then
-    playedSound = PlaySound(warning, spellTypes.MISSED_SELF)
-    playedVisual = PlayVisual(warning)
-  elseif warning.spellType == spellTypes.MISSED_ENEMY then
-    playedSound = PlaySound(warning, spellTypes.MISSED_ENEMY)
-    playedVisual = PlayVisual(warning)
-  elseif warning.spellType == spellTypes.START then
-    playedSound = PlaySound(warning, spellTypes.START)
-  else
-    mod.logger.LogError(me.tag, "Found invalid spelltype: " .. warning.spellType)
-  end
-
-  return playedSound or playedVisual
-end
-
---[[
-  Block the queue for WARN_QUEUE_BUSY_GATE so consecutive warnings do not talk over each other
-]]--
-EngageBusyGate = function()
-  isQueueBusy = true
-  C_Timer.After(RGPVPW_CONSTANTS.WARN_QUEUE_BUSY_GATE, function()
-    isQueueBusy = false
-  end)
 end
 
 --[[
@@ -237,63 +289,4 @@ function me.PlayWarning(category, spellType, spell, callback, playSound, playVis
 
     callback(category, spellType, spell)
   end
-end
-
---[[
-  @param {table} warning
-  @param {number} spellType
-
-  @return {boolean}
-    true - if a sound was played
-    false - if no sound was played
-]]--
-PlaySound = function(warning, spellType)
-  if warning.playSound then
-    mod.sound.PlaySound(
-      warning.category,
-      spellType,
-      warning.spell.soundFileName
-    )
-
-    return true
-  else
-    mod.logger.LogDebug(me.tag, string.format("Skipping playing normal %s for spell"
-      .. " '%s' because sound is disabled for spell", spellType, warning.spell.name))
-
-    return false
-  end
-end
-
---[[
-  @param {table} warning
-
-  @return {boolean}
-    true - if a visual warning was played
-    false - if no visual warning was played
-]]--
-PlayVisual = function(warning)
-  if not warning.playVisual then
-    mod.logger.LogDebug(me.tag, "Skipping playing visual for spell - " .. warning.spell.name
-      .. " because visual is disabled for this spell")
-
-    return false
-  end
-
-  if not mod.configuration.IsFlashEnabled() then
-    mod.logger.LogDebug(me.tag, "Skipping playing visual for spell - " .. warning.spell.name
-      .. " because the flash channel is disabled")
-
-    return false
-  end
-
-  if visualChannel == nil then
-    mod.logger.LogDebug(me.tag, "Skipping playing visual for spell - " .. warning.spell.name
-      .. " because no visual channel is registered")
-
-    return false
-  end
-
-  visualChannel(warning.spell.visualWarningColor)
-
-  return true
 end

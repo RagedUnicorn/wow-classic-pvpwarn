@@ -35,9 +35,6 @@ me.tag = "CombatLog"
 -- lazily cached player GUID (see GetPlayerGuid) - stable for the whole session
 local playerGuid
 
--- forward declaration
-local ProcessDetectedSpell
-
 --[[
   Processing the details of the current combat log event. Invoked when 'COMBAT_LOG_EVENT_UNFILTERED' is fired
 
@@ -101,6 +98,44 @@ function me.ProcessEventMine(event, callback, ...)
   if event == "SPELL_MISSED" then
     me.ProcessMissed(event, RGPVPW_CONSTANTS.TARGET_ENEMY, callback, ...)
   end
+end
+
+--[[
+  Shared tail of the combat log handlers. Gates the detected spell on its configuration,
+  resolves the visual warning color and detection bar payload and plays the warning.
+
+  @param {number} spellType
+    RGPVPW_CONSTANTS.SPELL_TYPES
+  @param {string} category
+  @param {number} spellId
+    The spellId of the spell as found in the spellMap
+  @param {table} spell
+  @param {string} spellName
+  @param {function} callback
+    Optional function that is invoked with status infos. Currently only used for testing
+  @param {vararg} ...
+    The raw combat-log event args, forwarded for the detection bar payload
+]]--
+local function ProcessDetectedSpell(spellType, category, spellId, spell, spellName, callback, ...)
+  if not me.IsValidSpellType(spellType) then return end
+  if not me.ShouldWarnForTarget(...) then return end
+
+  local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
+  local spellMap = mod.common.GetSpellMap(spellType)
+
+  if not me.IsSpellActive(spellMap, category, spellId, normalizedSpellName) then return end
+
+  local playSound = me.IsSoundWarningActive(spellMap, category, spellId, normalizedSpellName)
+  local playVisual = me.IsVisualWarningActive(spellMap, category, spellId, normalizedSpellName)
+  local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(spellMap, category, spellId)
+
+  if playVisual then
+    spell.visualWarningColor = visualWarningColor
+  end
+
+  local detectionBarPayload = me.ResolveDetectionBarPayload(spellType, spellId, spellName, visualWarningColor, ...)
+
+  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual, detectionBarPayload)
 end
 
 --[[
@@ -547,42 +582,4 @@ function me.ShouldWarnForTarget(...)
   mod.logger.LogDebug(me.tag, "Suppressing warning because the event did not pass the target filter")
 
   return false
-end
-
---[[
-  Shared tail of the combat log handlers. Gates the detected spell on its configuration,
-  resolves the visual warning color and detection bar payload and plays the warning.
-
-  @param {number} spellType
-    RGPVPW_CONSTANTS.SPELL_TYPES
-  @param {string} category
-  @param {number} spellId
-    The spellId of the spell as found in the spellMap
-  @param {table} spell
-  @param {string} spellName
-  @param {function} callback
-    Optional function that is invoked with status infos. Currently only used for testing
-  @param {vararg} ...
-    The raw combat-log event args, forwarded for the detection bar payload
-]]--
-ProcessDetectedSpell = function(spellType, category, spellId, spell, spellName, callback, ...)
-  if not me.IsValidSpellType(spellType) then return end
-  if not me.ShouldWarnForTarget(...) then return end
-
-  local normalizedSpellName = mod.common.NormalizeSpellName(spellName)
-  local spellMap = mod.common.GetSpellMap(spellType)
-
-  if not me.IsSpellActive(spellMap, category, spellId, normalizedSpellName) then return end
-
-  local playSound = me.IsSoundWarningActive(spellMap, category, spellId, normalizedSpellName)
-  local playVisual = me.IsVisualWarningActive(spellMap, category, spellId, normalizedSpellName)
-  local visualWarningColor = mod.spellConfiguration.GetVisualWarningColor(spellMap, category, spellId)
-
-  if playVisual then
-    spell.visualWarningColor = visualWarningColor
-  end
-
-  local detectionBarPayload = me.ResolveDetectionBarPayload(spellType, spellId, spellName, visualWarningColor, ...)
-
-  mod.warn.PlayWarning(category, spellType, spell, callback, playSound, playVisual, detectionBarPayload)
 end

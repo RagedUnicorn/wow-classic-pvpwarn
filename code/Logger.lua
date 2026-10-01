@@ -66,8 +66,31 @@ me.colors.info = "|cff18f3ff"   -- blue
 me.colors.debug = "|cff7413d9"  -- magenta
 me.colors.event = "|cff1cdb4f"  -- green
 
--- forward declaration
-local PrintLogMessage
+--[[
+  Writes string message to the default chat frame. When format arguments are passed the
+  message is treated as a string.format pattern and formatted lazily - only once the log
+  level and tag filter allowed the message through.
+
+  @param {string} levelColor
+  @param {string} tag
+  @param {string} message
+  @param {vararg} ...
+    Optional string.format arguments for message
+]]--
+local function PrintLogMessage(levelColor, tag, message, ...)
+  if tag == nil then
+    tag = "Unknown"
+  end
+
+  if not mod.filter.ShouldFilterTag(tag) then
+    if select("#", ...) > 0 then
+      message = string.format(message, ...)
+    end
+
+    print(levelColor ..
+        C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Title") .. ":" .. tag .. " - " .. message)
+  end
+end
 
 --[[
   @param {string} tag
@@ -148,30 +171,4 @@ end
 function me.PrintUserMessage(msg)
   print(me.colors.info ..
     C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Title") .. ":|r " .. msg)
-end
-
---[[
-  Writes string message to the default chat frame. When format arguments are passed the
-  message is treated as a string.format pattern and formatted lazily - only once the log
-  level and tag filter allowed the message through.
-
-  @param {string} levelColor
-  @param {string} tag
-  @param {string} message
-  @param {vararg} ...
-    Optional string.format arguments for message
-]]--
-PrintLogMessage = function(levelColor, tag, message, ...)
-  if tag == nil then
-    tag = "Unknown"
-  end
-
-  if not mod.filter.ShouldFilterTag(tag) then
-    if select("#", ...) > 0 then
-      message = string.format(message, ...)
-    end
-
-    print(levelColor ..
-        C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Title") .. ":" .. tag .. " - " .. message)
-  end
 end

@@ -82,9 +82,6 @@ local stanceStateLegacyKeys = {
   ["hideUnknown"] = "hideUnknownStance"
 }
 
--- forward declaration
-local MigrateLegacyKeys
-
 --[[
   Single source of truth for the top-level defaults - referenced by both the initial
   SavedVariables literal below and the SetupConfiguration backfill loop that runs after an
@@ -242,6 +239,32 @@ function me.SetupConfiguration()
     a migration path applies to the current saved variables or not
   ]]--
   me.SetAddonVersion()
+end
+
+--[[
+  Lift pre-v2.0.0 flat top-level settings into their configuration block and drop the flat
+  key. A value already present in the block wins - it was written by a version that had the
+  block, so it is the newer one - but the stale flat key is cleared either way so the lift
+  runs exactly once.
+
+  @param {table} block
+    The configuration block to migrate into
+  @param {table} legacyKeys
+    Map of block sub-key to the flat PVPWarnConfiguration key it replaced
+]]--
+local function MigrateLegacyKeys(block, legacyKeys)
+  for key, legacyKey in pairs(legacyKeys) do
+    local legacyValue = PVPWarnConfiguration[legacyKey]
+
+    if legacyValue ~= nil then
+      if block[key] == nil then
+        mod.logger.LogInfo(me.tag, "Migrating " .. legacyKey .. " into its configuration block")
+        block[key] = legacyValue
+      end
+
+      PVPWarnConfiguration[legacyKey] = nil
+    end
+  end
 end
 
 --[[
@@ -918,32 +941,6 @@ function me.SetTargetFilterMode(mode)
     PVPWarnConfiguration.targetFilter.mode = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_CURRENT_TARGET
   else
     PVPWarnConfiguration.targetFilter.mode = RGPVPW_CONSTANTS.TARGET_FILTER_MODE_WARN_ALL
-  end
-end
-
---[[
-  Lift pre-v2.0.0 flat top-level settings into their configuration block and drop the flat
-  key. A value already present in the block wins - it was written by a version that had the
-  block, so it is the newer one - but the stale flat key is cleared either way so the lift
-  runs exactly once.
-
-  @param {table} block
-    The configuration block to migrate into
-  @param {table} legacyKeys
-    Map of block sub-key to the flat PVPWarnConfiguration key it replaced
-]]--
-MigrateLegacyKeys = function(block, legacyKeys)
-  for key, legacyKey in pairs(legacyKeys) do
-    local legacyValue = PVPWarnConfiguration[legacyKey]
-
-    if legacyValue ~= nil then
-      if block[key] == nil then
-        mod.logger.LogInfo(me.tag, "Migrating " .. legacyKey .. " into its configuration block")
-        block[key] = legacyValue
-      end
-
-      PVPWarnConfiguration[legacyKey] = nil
-    end
   end
 end
 

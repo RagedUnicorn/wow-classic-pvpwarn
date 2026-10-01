@@ -37,10 +37,6 @@
 
 local mod = rgpvpw
 
--- forward declaration
-local ApplyOverlay
-local CreateAssembler
-
 --[[
   Violation messages for the ApplyOne flavor (sent to mod.logger.LogError). The rule
   predicates live in ApplyOverlay - these builders only differ from validateViolationMessage
@@ -122,7 +118,7 @@ local validateViolationMessage = {
     Called as onViolation(kind, category, primaryId, secondaryId) where kind is a key of the
     violation message tables above. secondaryId is only set for appendRanksDuplicate.
 ]]--
-ApplyOverlay = function(map, overlay, onViolation)
+local function ApplyOverlay(map, overlay, onViolation)
   for category, ops in pairs(overlay) do
     if map[category] == nil then
       map[category] = {}
@@ -203,7 +199,7 @@ end
   @return {table}
     The assembler module table.
 ]]--
-CreateAssembler = function(tag)
+local function CreateAssembler(tag)
   local me = {}
 
   me.tag = tag

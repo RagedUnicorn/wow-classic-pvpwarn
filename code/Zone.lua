@@ -30,9 +30,6 @@ mod.zone = me
 
 me.tag = "Zone"
 
--- forward declaration
-local UpdateZoneStatus
-
 --[[
   List of supported zones and their respective map or instance id
 ]]--
@@ -89,6 +86,22 @@ function me.InitializeDefaultZoneConfiguration()
 end
 
 --[[
+  Updates the cached zone state
+
+  @param {number} zone
+    A zone from RGPVPW_ZONE
+]]--
+local function UpdateZoneStatus(zone)
+  if mod.configuration.IsZoneEnabled(zone) then
+    isZoneEnabled = true
+    mod.logger.LogInfo(me.tag, "Enabled addon for zone with id {" .. zone .. "}")
+  else
+    isZoneEnabled = false
+    mod.logger.LogInfo(me.tag, "Disabled addon for zone with id {" .. zone .. "}")
+  end
+end
+
+--[[
   Zone is updated as a response of ZONE_CHANGED_NEW_AREA event
 
   Battlegrounds and the open world consult the zone configuration. Arenas are
@@ -119,22 +132,6 @@ function me.UpdateZone()
     zoneIdentifier = select(8, GetInstanceInfo()) or "unknown"
     isZoneEnabled = false
     mod.logger.LogInfo(me.tag, "Disabled addon for unknown zone type: " .. instanceType)
-  end
-end
-
---[[
-  Updates the cached zone state
-
-  @param {number} zone
-    A zone from RGPVPW_ZONE
-]]--
-UpdateZoneStatus = function(zone)
-  if mod.configuration.IsZoneEnabled(zone) then
-    isZoneEnabled = true
-    mod.logger.LogInfo(me.tag, "Enabled addon for zone with id {" .. zone .. "}")
-  else
-    isZoneEnabled = false
-    mod.logger.LogInfo(me.tag, "Disabled addon for zone with id {" .. zone .. "}")
   end
 end
 

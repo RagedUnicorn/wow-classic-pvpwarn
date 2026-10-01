@@ -36,47 +36,6 @@ local assembledByBranch = {}
 -- map so combat-log searches resolve with a single lookup instead of a category scan
 local categoryIndexByBranch = {}
 
--- forward declaration
-local BuildAssembledMap
-local EnsureAssembled
-local EnsureCategoryIndex
-
---[[
-  Get the spellAvoidMap as a deep clone that is safe to mutate. Has no production caller
-  today - it is the mutable half of the accessor clone contract (mirroring
-  SpellMap.GetSpellMap) that GetRawSpellAvoidMap points to.
-
-  @return {table}
-    The spellAvoidMap
-]]--
-function me.GetSpellAvoidMap()
-  return mod.common.Clone(EnsureAssembled())
-end
-
---[[
-  Get the assembled spellAvoidMap without cloning it. Intended for read-only lookups on
-  the combat-log hot path — callers must not mutate the returned table. Consumers that
-  need a mutable copy use GetSpellAvoidMap instead.
-
-  @return {table}
-    The assembled spellAvoidMap
-]]--
-function me.GetRawSpellAvoidMap()
-  return EnsureAssembled()
-end
-
---[[
-  Find the category that contains the passed spellId
-
-  @param {number} spellId
-
-  @return {string | nil}
-    The category name or nil if the spellId is not present in the spellAvoidMap
-]]--
-function me.GetCategoryBySpellId(spellId)
-  return EnsureCategoryIndex()[spellId]
-end
-
 --[[
   Assemble the spellAvoidMap for the passed branch by applying its overlays to the base map
 
@@ -85,7 +44,7 @@ end
   @return {table}
     The assembled spellAvoidMap
 ]]--
-BuildAssembledMap = function(branch)
+local function BuildAssembledMap(branch)
   local overlays = {}
 
   if branch == "sod" then
@@ -117,7 +76,7 @@ end
   @return {table}
     The assembled spellAvoidMap
 ]]--
-EnsureAssembled = function()
+local function EnsureAssembled()
   local branch = mod.season.GetActiveBranch()
 
   if assembledByBranch[branch] == nil then
@@ -128,12 +87,36 @@ EnsureAssembled = function()
 end
 
 --[[
+  Get the spellAvoidMap as a deep clone that is safe to mutate. Has no production caller
+  today - it is the mutable half of the accessor clone contract (mirroring
+  SpellMap.GetSpellMap) that GetRawSpellAvoidMap points to.
+
+  @return {table}
+    The spellAvoidMap
+]]--
+function me.GetSpellAvoidMap()
+  return mod.common.Clone(EnsureAssembled())
+end
+
+--[[
+  Get the assembled spellAvoidMap without cloning it. Intended for read-only lookups on
+  the combat-log hot path — callers must not mutate the returned table. Consumers that
+  need a mutable copy use GetSpellAvoidMap instead.
+
+  @return {table}
+    The assembled spellAvoidMap
+]]--
+function me.GetRawSpellAvoidMap()
+  return EnsureAssembled()
+end
+
+--[[
   Build (once per branch) and return the flat spellId → category index for the active branch
 
   @return {table}
     The spellId → category index
 ]]--
-EnsureCategoryIndex = function()
+local function EnsureCategoryIndex()
   local branch = mod.season.GetActiveBranch()
 
   if categoryIndexByBranch[branch] == nil then
@@ -149,4 +132,16 @@ EnsureCategoryIndex = function()
   end
 
   return categoryIndexByBranch[branch]
+end
+
+--[[
+  Find the category that contains the passed spellId
+
+  @param {number} spellId
+
+  @return {string | nil}
+    The category name or nil if the spellId is not present in the spellAvoidMap
+]]--
+function me.GetCategoryBySpellId(spellId)
+  return EnsureCategoryIndex()[spellId]
 end

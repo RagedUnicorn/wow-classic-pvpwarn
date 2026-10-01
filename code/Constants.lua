@@ -23,9 +23,6 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- forward declaration
-local BuildWarnTextures
-
 RGPVPW_CONSTANTS = {
   ADDON_NAME = "PVPWarn",
   --[[
@@ -540,7 +537,7 @@ RGPVPW_CONSTANTS = {
     {colorName = "<colorName>", textureName = "texture_<colorName>", colorValue = <number>}
     entries sorted ascending by colorValue
 ]]--
-BuildWarnTextures = function()
+local function BuildWarnTextures()
   local textures = {}
   local orderedTextures = {}
 

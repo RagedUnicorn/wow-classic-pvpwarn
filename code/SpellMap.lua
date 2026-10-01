@@ -37,10 +37,55 @@ local assembledByBranch = {}
 -- map so combat-log searches resolve with a single lookup instead of a category scan
 local categoryIndexByBranch = {}
 
--- forward declaration
-local BuildAssembledMap
-local EnsureAssembled
-local EnsureCategoryIndex
+--[[
+  Assemble the spellMap for the passed branch by applying its overlays to the base map
+
+  @param {string} branch
+
+  @return {table}
+    The assembled spellMap
+]]--
+local function BuildAssembledMap(branch)
+  local overlays = {}
+
+  if branch == "sod" then
+    table.insert(overlays, mod.spellMapOverlaySod.GetOverlay())
+  elseif branch == "tbc" then
+    table.insert(overlays, mod.spellMapOverlayTbc.GetOverlay())
+  end
+
+  local base = mod.spellMapBase.GetMap()
+  local ok, errs = mod.spellMapAssembler.Validate(base, overlays)
+
+  if not ok then
+    for _, errMsg in ipairs(errs) do
+      mod.logger.LogError(me.tag, "spellMap overlay validation: " .. errMsg)
+    end
+  end
+
+  local assembled = mod.spellMapAssembler.Apply(base, overlays)
+  -- rank aliases are synthesized from the primaries' allRanks arrays after overlay
+  -- application, so overlay-appended ranks get their alias too
+  mod.spellMapAssembler.SynthesizeRankAliases(assembled)
+
+  return assembled
+end
+
+--[[
+  Build (once per branch) and return the assembled spellMap for the active branch
+
+  @return {table}
+    The assembled spellMap
+]]--
+local function EnsureAssembled()
+  local branch = mod.season.GetActiveBranch()
+
+  if assembledByBranch[branch] == nil then
+    assembledByBranch[branch] = BuildAssembledMap(branch)
+  end
+
+  return assembledByBranch[branch]
+end
 
 --[[
   Get the spellMap as a deep clone that is safe to mutate. Has no production caller
@@ -64,6 +109,30 @@ end
 ]]--
 function me.GetRawSpellMap()
   return EnsureAssembled()
+end
+
+--[[
+  Build (once per branch) and return the flat spellId → category index for the active branch
+
+  @return {table}
+    The spellId → category index
+]]--
+local function EnsureCategoryIndex()
+  local branch = mod.season.GetActiveBranch()
+
+  if categoryIndexByBranch[branch] == nil then
+    local index = {}
+
+    for category, spells in pairs(EnsureAssembled()) do
+      for spellId in pairs(spells) do
+        index[spellId] = category
+      end
+    end
+
+    categoryIndexByBranch[branch] = index
+  end
+
+  return categoryIndexByBranch[branch]
 end
 
 --[[
@@ -99,78 +168,4 @@ function me.GetSpellMetadata(category, spellId)
   end
 
   return nil
-end
-
---[[
-  Assemble the spellMap for the passed branch by applying its overlays to the base map
-
-  @param {string} branch
-
-  @return {table}
-    The assembled spellMap
-]]--
-BuildAssembledMap = function(branch)
-  local overlays = {}
-
-  if branch == "sod" then
-    table.insert(overlays, mod.spellMapOverlaySod.GetOverlay())
-  elseif branch == "tbc" then
-    table.insert(overlays, mod.spellMapOverlayTbc.GetOverlay())
-  end
-
-  local base = mod.spellMapBase.GetMap()
-  local ok, errs = mod.spellMapAssembler.Validate(base, overlays)
-
-  if not ok then
-    for _, errMsg in ipairs(errs) do
-      mod.logger.LogError(me.tag, "spellMap overlay validation: " .. errMsg)
-    end
-  end
-
-  local assembled = mod.spellMapAssembler.Apply(base, overlays)
-  -- rank aliases are synthesized from the primaries' allRanks arrays after overlay
-  -- application, so overlay-appended ranks get their alias too
-  mod.spellMapAssembler.SynthesizeRankAliases(assembled)
-
-  return assembled
-end
-
---[[
-  Build (once per branch) and return the assembled spellMap for the active branch
-
-  @return {table}
-    The assembled spellMap
-]]--
-EnsureAssembled = function()
-  local branch = mod.season.GetActiveBranch()
-
-  if assembledByBranch[branch] == nil then
-    assembledByBranch[branch] = BuildAssembledMap(branch)
-  end
-
-  return assembledByBranch[branch]
-end
-
---[[
-  Build (once per branch) and return the flat spellId → category index for the active branch
-
-  @return {table}
-    The spellId → category index
-]]--
-EnsureCategoryIndex = function()
-  local branch = mod.season.GetActiveBranch()
-
-  if categoryIndexByBranch[branch] == nil then
-    local index = {}
-
-    for category, spells in pairs(EnsureAssembled()) do
-      for spellId in pairs(spells) do
-        index[spellId] = category
-      end
-    end
-
-    categoryIndexByBranch[branch] = index
-  end
-
-  return categoryIndexByBranch[branch]
 end

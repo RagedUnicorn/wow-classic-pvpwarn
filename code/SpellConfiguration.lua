@@ -28,9 +28,6 @@ mod.spellConfiguration = me
 
 me.tag = "SpellConfiguration"
 
--- forward declaration
-local AssertArgumentType
-
 --[[
   @param {string} spellList
     See constants RGPVPW_CONSTANTS.SPELL_TYPE
@@ -150,6 +147,24 @@ end
 ]]--
 function me.IsSoundStartWarningActive(spellList, categoryName, spellId)
   return me.IsOptionActive(spellList, categoryName, spellId, "soundStartWarningActive")
+end
+
+--[[
+  Validates the type of an argument, building the error message only on failure. Used
+  instead of assert(cond, string.format(...)) on the combat-log hot path because Lua
+  evaluates the assert message eagerly even when the assertion passes.
+
+  @param {any} value
+  @param {string} expectedType
+  @param {number} argumentIndex
+  @param {string} functionName
+]]--
+local function AssertArgumentType(value, expectedType, argumentIndex, functionName)
+  if type(value) ~= expectedType then
+    error(string.format(
+      "bad argument #%d to `%s` (expected %s, got %s)",
+      argumentIndex, functionName, expectedType, type(value)), 3)
+  end
 end
 
 --[[
@@ -375,22 +390,4 @@ function me.IsOptionActive(spellList, categoryName, spellId, optionName)
   local spell = me.GetSpellEntry(spellList, categoryName, spellId)
 
   return spell and spell[optionName] or false
-end
-
---[[
-  Validates the type of an argument, building the error message only on failure. Used
-  instead of assert(cond, string.format(...)) on the combat-log hot path because Lua
-  evaluates the assert message eagerly even when the assertion passes.
-
-  @param {any} value
-  @param {string} expectedType
-  @param {number} argumentIndex
-  @param {string} functionName
-]]--
-AssertArgumentType = function(value, expectedType, argumentIndex, functionName)
-  if type(value) ~= expectedType then
-    error(string.format(
-      "bad argument #%d to `%s` (expected %s, got %s)",
-      argumentIndex, functionName, expectedType, type(value)), 3)
-  end
 end
