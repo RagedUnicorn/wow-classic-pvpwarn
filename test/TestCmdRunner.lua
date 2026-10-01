@@ -32,8 +32,55 @@ mod.testCmdRunner = me
 
 me.tag = "TestCmdRunner"
 
--- forward declaration
-local RunTestForCategory
+--[[
+  Run tests for a single category (unified logic for all test types)
+
+  @param {string} categoryName - Name of the category
+  @param {string} moduleName - Name of the test module
+  @param {string} testType - Type of test (for logging purposes)
+  @param {function} completionCallback - Invoked once all selected branches finish
+  @param {table|nil} branchFilter - Optional 1-element PascalCase branch list from
+    `testHelper.ResolveBranchFilter`; when nil, the default 3-branch list is used.
+
+  @return {boolean} - True if tests were run successfully
+]]--
+local function RunTestForCategory(categoryName, moduleName, testType, completionCallback, branchFilter)
+  local branches = branchFilter or { "Classic", "Sod", "Tbc" }
+  local index = 1
+  local anyRan = false
+
+  local function runNext()
+    while index <= #branches do
+      local branch = branches[index]
+      index = index + 1
+      local testModule = mod[moduleName .. branch]
+
+      if testModule and type(testModule.Test) == "function" then
+        anyRan = true
+        mod.testHelper.SetActiveBranch(string.lower(branch))
+        mod.logger.LogInfo(me.tag,
+          "Running " .. categoryName .. " " .. testType .. " tests (" .. branch .. ")...")
+        testModule.Test(runNext)
+
+        return
+      end
+    end
+
+    if not anyRan then
+      local scope = branchFilter
+        and ("on branch " .. string.lower(branchFilter[1]))
+        or "in any branch"
+      mod.logger.LogError(me.tag,
+        testType .. " test module for category '" .. categoryName .. "' not found " .. scope)
+    end
+
+    completionCallback()
+  end
+
+  runNext()
+
+  return true
+end
 
 --[[
   Generic handler for test commands - handles both "all" and single category cases
@@ -106,54 +153,4 @@ function me.HandleTestCommand(commandType, testCommand, branchArg, availableCate
   return mod.testSessionManager.StartSession(commandType, category, function(completionCallback)
     RunTestForCategory(category, moduleName, testTypeName, completionCallback, branchFilter)
   end)
-end
-
---[[
-  Run tests for a single category (unified logic for all test types)
-
-  @param {string} categoryName - Name of the category
-  @param {string} moduleName - Name of the test module
-  @param {string} testType - Type of test (for logging purposes)
-  @param {function} completionCallback - Invoked once all selected branches finish
-  @param {table|nil} branchFilter - Optional 1-element PascalCase branch list from
-    `testHelper.ResolveBranchFilter`; when nil, the default 3-branch list is used.
-
-  @return {boolean} - True if tests were run successfully
-]]--
-RunTestForCategory = function(categoryName, moduleName, testType, completionCallback, branchFilter)
-  local branches = branchFilter or { "Classic", "Sod", "Tbc" }
-  local index = 1
-  local anyRan = false
-
-  local function runNext()
-    while index <= #branches do
-      local branch = branches[index]
-      index = index + 1
-      local testModule = mod[moduleName .. branch]
-
-      if testModule and type(testModule.Test) == "function" then
-        anyRan = true
-        mod.testHelper.SetActiveBranch(string.lower(branch))
-        mod.logger.LogInfo(me.tag,
-          "Running " .. categoryName .. " " .. testType .. " tests (" .. branch .. ")...")
-        testModule.Test(runNext)
-
-        return
-      end
-    end
-
-    if not anyRan then
-      local scope = branchFilter
-        and ("on branch " .. string.lower(branchFilter[1]))
-        or "in any branch"
-      mod.logger.LogError(me.tag,
-        testType .. " test module for category '" .. categoryName .. "' not found " .. scope)
-    end
-
-    completionCallback()
-  end
-
-  runNext()
-
-  return true
 end

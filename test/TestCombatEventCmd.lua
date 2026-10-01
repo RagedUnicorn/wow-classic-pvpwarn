@@ -33,16 +33,13 @@ mod.testCombatEventCmd = me
 me.tag = "TestCombatEventCmd"
 
 -- Forward declarations for local functions
-local GetAvailableCategories
-local GetAvailableSelfAvoidCategories
-local GetAvailableEnemyAvoidCategories
 
 --[[
   Get available test combat event categories mapping
 
   @return {table} - Map of category names to module names
 ]]--
-GetAvailableCategories = function()
+local function GetAvailableCategories()
   return {
     druid = "testCombatEventsDruid",
     hunter = "testCombatEventsHunter",
@@ -64,7 +61,7 @@ end
 
   @return {table} - Map of category names to module names
 ]]--
-GetAvailableSelfAvoidCategories = function()
+local function GetAvailableSelfAvoidCategories()
   return {
     druid = "testCombatEventsSelfAvoidDruid",
     hunter = "testCombatEventsSelfAvoidHunter",
@@ -83,7 +80,7 @@ end
 
   @return {table} - Map of category names to module names
 ]]--
-GetAvailableEnemyAvoidCategories = function()
+local function GetAvailableEnemyAvoidCategories()
   return {
     druid = "testCombatEventsEnemyAvoidDruid",
     hunter = "testCombatEventsEnemyAvoidHunter",

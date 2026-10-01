@@ -36,19 +36,6 @@ mod.testReporter = me
 
 me.tag = "TestReporter"
 
--- forward declaration
-local GetRunContext
-local getMessageData
-local initializeTestLogStructure
-local pruneTestLog
-local logTestGroupStart
-local logTestGroupSummary
-local logFailedTests
-local logFinalSummary
-local playImmediateTests
-local playDelayedTests
-local executeTestFunction
-
 -- test groups kept in PVPWarnTestLog - older ones are pruned when a new group starts
 local TEST_LOG_MAX_GROUPS = 20
 
@@ -62,6 +49,96 @@ end
 function me.ClearSavedTestReports()
   PVPWarnTestLog = {}
   mod.logger.LogInfo(me.tag, "Cleared PVPWarnTestLog")
+end
+
+--[[
+  Resolve the run context of the active test session
+
+  @return {table|nil} - The active run context or nil if no session is running
+]]--
+local function GetRunContext()
+  return mod.testSessionManager.GetRunContext()
+end
+
+--[[
+  Drop the oldest test groups until at most TEST_LOG_MAX_GROUPS remain. Groups are
+  ordered by their startedAt time (groups logged before it was recorded count as the
+  oldest); the current group is never dropped.
+
+  @param {string} currentGroupName
+]]--
+local function pruneTestLog(currentGroupName)
+  local groupNames = {}
+
+  for groupName, groupData in pairs(PVPWarnTestLog) do
+    if groupName ~= currentGroupName and type(groupData) == "table" then
+      table.insert(groupNames, groupName)
+    end
+  end
+
+  table.sort(groupNames, function(a, b)
+    local startedA = PVPWarnTestLog[a].startedAt or 0
+    local startedB = PVPWarnTestLog[b].startedAt or 0
+
+    if startedA ~= startedB then
+      return startedA < startedB
+    end
+
+    return a < b
+  end)
+
+  local excess = #groupNames + 1 - TEST_LOG_MAX_GROUPS
+
+  for i = 1, excess do
+    PVPWarnTestLog[groupNames[i]] = nil
+  end
+end
+
+--[[
+  Initialize PVPWarnTestLog structure for a test group
+
+  @param {string} groupName
+]]--
+local function initializeTestLogStructure(groupName)
+  PVPWarnTestLog[groupName] = {}
+  PVPWarnTestLog[groupName].startedAt = time()
+  PVPWarnTestLog[groupName].testCount = 0
+  PVPWarnTestLog[groupName].testSuccess = 0
+  PVPWarnTestLog[groupName].testFailure = 0
+  pruneTestLog(groupName)
+end
+
+--[[
+  Get next sequence number and current timestamp for message ordering
+
+  @param {table} context - The run context owning the sequence counter
+
+  @return {number, number} - sequence number, timestamp
+]]--
+local function getMessageData(context)
+  context.messageSequence = context.messageSequence + 1
+  local baseTime = time()
+  local gameTime = GetTime()
+  local fractionalSeconds = gameTime - math.floor(gameTime)
+  return context.messageSequence, baseTime + fractionalSeconds
+end
+
+--[[
+  Log and display test group start message
+
+  @param {table} context - The active run context
+  @param {string} groupName
+]]--
+local function logTestGroupStart(context, groupName)
+  local logMessage = string.format("Starting test group with name %s", groupName)
+  local sequence, timestamp = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = logMessage, timestamp = timestamp, sequence = sequence, messageType = "INFO"}
+  )
+
+  me.NotifyTestLogWindow("=== Test Group: " .. groupName .. " ===", "GROUP_HEADER")
+  me.NotifyTestLogWindow(logMessage)
 end
 
 --[[
@@ -92,6 +169,113 @@ function me.StartTestGroup(groupName)
   context.testGroupName = groupName
   initializeTestLogStructure(groupName)
   logTestGroupStart(context, groupName)
+end
+
+--[[
+  Log and display individual test group summary lines
+
+  @param {table} context - The active run context
+  @param {string} groupName
+]]--
+local function logTestGroupSummary(context, groupName)
+  local finishedMessage = string.format("Finished test group with name: %s", groupName)
+  me.NotifyTestLogWindow(finishedMessage)
+  local sequence1, timestamp1 = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = finishedMessage, timestamp = timestamp1, sequence = sequence1, messageType = "INFO"}
+  )
+
+  local succeededMessage = string.format("Tests succeeded: %i", PVPWarnTestLog[groupName].testSuccess)
+  me.NotifyTestLogWindow(succeededMessage, "SUCCESS")
+  local sequence2, timestamp2 = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = succeededMessage, timestamp = timestamp2, sequence = sequence2, messageType = "SUCCESS"}
+  )
+
+  local failedMessage = string.format("Tests failed: %i", PVPWarnTestLog[groupName].testFailure)
+  local failedMessageType = PVPWarnTestLog[groupName].testFailure > 0 and "FAILURE" or "INFO"
+  me.NotifyTestLogWindow(failedMessage, failedMessageType)
+  local sequence3, timestamp3 = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = failedMessage, timestamp = timestamp3, sequence = sequence3, messageType = failedMessageType}
+  )
+
+  local totalMessage = string.format("Tests total: %i", PVPWarnTestLog[groupName].testCount)
+  me.NotifyTestLogWindow(totalMessage, "INFO")
+  local sequence4, timestamp4 = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {message = totalMessage, timestamp = timestamp4, sequence = sequence4, messageType = "INFO"}
+  )
+end
+
+--[[
+  Log and display failed test details
+
+  @param {table} context - The active run context
+  @param {string} groupName
+]]--
+local function logFailedTests(context, groupName)
+  if #context.failedTests == 0 then
+    return
+  end
+
+  local failedTestsMessage = "Failed tests:"
+  me.NotifyTestLogWindow(failedTestsMessage, "FAILURE")
+  local failedSequence, failedTimestamp = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {
+      message = failedTestsMessage,
+      timestamp = failedTimestamp,
+      sequence = failedSequence,
+      messageType = "FAILURE"
+    }
+  )
+
+  for i = 1, #context.failedTests do
+    me.NotifyTestLogWindow(context.failedTests[i], "FAILURE")
+    local testSequence, testTimestamp = getMessageData(context)
+    table.insert(
+      PVPWarnTestLog[groupName],
+      {
+        message = context.failedTests[i],
+        timestamp = testTimestamp,
+        sequence = testSequence,
+        messageType = "FAILURE"
+      }
+    )
+  end
+end
+
+--[[
+  Log and display final summary statistics
+
+  @param {table} context - The active run context
+  @param {string} groupName
+]]--
+local function logFinalSummary(context, groupName)
+  local summaryStats = string.format("Total: %d, Success: %d, Failure: %d",
+    PVPWarnTestLog[groupName].testCount,
+    PVPWarnTestLog[groupName].testSuccess,
+    PVPWarnTestLog[groupName].testFailure)
+
+  me.NotifyTestLogWindow(summaryStats, "INFO")
+  local summarySequence, summaryTimestamp = getMessageData(context)
+  table.insert(
+    PVPWarnTestLog[groupName],
+    {
+      message = summaryStats,
+      timestamp = summaryTimestamp,
+      sequence = summarySequence,
+      messageType = "INFO"
+    }
+  )
+
+  me.NotifyTestLogWindow("", "SEPARATOR")
 end
 
 --[[
@@ -276,6 +460,65 @@ function me.AddToTestQueueImmediate(testFunction)
 end
 
 --[[
+  Execute a queued test function with error isolation. A thrown error must not
+  abort the queue - it would strand the session with no way to recover short
+  of a reload. An error in a started test is reported as its failure.
+
+  @param {table} context - The run context the test executes under
+  @param {function} testFunction
+]]--
+local function executeTestFunction(context, testFunction)
+  local status, err = pcall(testFunction)
+
+  if not status then
+    mod.logger.LogError(me.tag, "Test function failed with error: " .. tostring(err))
+
+    if context.currentTest ~= nil then
+      me.ReportFailureTestRun("LuaError", context.currentTest, tostring(err))
+    end
+  end
+end
+
+--[[
+  Execute immediate tests without delay
+
+  @param {table} context - The run context whose immediate queue is drained
+]]--
+local function playImmediateTests(context)
+  while context.testQueueImmediate[1] ~= nil do
+    executeTestFunction(context, context.testQueueImmediate[1])
+    table.remove(context.testQueueImmediate, 1)
+  end
+end
+
+--[[
+  Execute delayed tests with 0.8s delay between each. The timer chain captures its
+  run context - if that run was cancelled (completed or force reset) a still-pending
+  timer does nothing instead of draining a newer run's queue.
+
+  @param {table} context - The run context whose delayed queue is drained
+  @param {function} callback
+    Callback function that is invoked once the delayed queue is empty/done
+]]--
+local function playDelayedTests(context, callback)
+  if context.cancelled then
+    return
+  end
+
+  if context.testQueueWithDelay[1] == nil then
+    callback()
+    return -- queue is empty abort...
+  end
+
+  executeTestFunction(context, context.testQueueWithDelay[1])
+  table.remove(context.testQueueWithDelay, 1)
+
+  C_Timer.After(0.8, function()
+    playDelayedTests(context, callback)
+  end)
+end
+
+--[[
   Execute all immediate tests first, then delayed tests
   @param {function} callback
     Callback function that is invoked once all test queues are empty/done
@@ -310,260 +553,4 @@ function me.NotifyTestLogWindow(message, messageType)
   end
 
   mod.testLogWindow.AppendMessage(message, messageType)
-end
-
---[[
-  Resolve the run context of the active test session
-
-  @return {table|nil} - The active run context or nil if no session is running
-]]--
-GetRunContext = function()
-  return mod.testSessionManager.GetRunContext()
-end
-
---[[
-  Get next sequence number and current timestamp for message ordering
-
-  @param {table} context - The run context owning the sequence counter
-
-  @return {number, number} - sequence number, timestamp
-]]--
-getMessageData = function(context)
-  context.messageSequence = context.messageSequence + 1
-  local baseTime = time()
-  local gameTime = GetTime()
-  local fractionalSeconds = gameTime - math.floor(gameTime)
-  return context.messageSequence, baseTime + fractionalSeconds
-end
-
---[[
-  Initialize PVPWarnTestLog structure for a test group
-
-  @param {string} groupName
-]]--
-initializeTestLogStructure = function(groupName)
-  PVPWarnTestLog[groupName] = {}
-  PVPWarnTestLog[groupName].startedAt = time()
-  PVPWarnTestLog[groupName].testCount = 0
-  PVPWarnTestLog[groupName].testSuccess = 0
-  PVPWarnTestLog[groupName].testFailure = 0
-  pruneTestLog(groupName)
-end
-
---[[
-  Drop the oldest test groups until at most TEST_LOG_MAX_GROUPS remain. Groups are
-  ordered by their startedAt time (groups logged before it was recorded count as the
-  oldest); the current group is never dropped.
-
-  @param {string} currentGroupName
-]]--
-pruneTestLog = function(currentGroupName)
-  local groupNames = {}
-
-  for groupName, groupData in pairs(PVPWarnTestLog) do
-    if groupName ~= currentGroupName and type(groupData) == "table" then
-      table.insert(groupNames, groupName)
-    end
-  end
-
-  table.sort(groupNames, function(a, b)
-    local startedA = PVPWarnTestLog[a].startedAt or 0
-    local startedB = PVPWarnTestLog[b].startedAt or 0
-
-    if startedA ~= startedB then
-      return startedA < startedB
-    end
-
-    return a < b
-  end)
-
-  local excess = #groupNames + 1 - TEST_LOG_MAX_GROUPS
-
-  for i = 1, excess do
-    PVPWarnTestLog[groupNames[i]] = nil
-  end
-end
-
---[[
-  Log and display test group start message
-
-  @param {table} context - The active run context
-  @param {string} groupName
-]]--
-logTestGroupStart = function(context, groupName)
-  local logMessage = string.format("Starting test group with name %s", groupName)
-  local sequence, timestamp = getMessageData(context)
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {message = logMessage, timestamp = timestamp, sequence = sequence, messageType = "INFO"}
-  )
-
-  me.NotifyTestLogWindow("=== Test Group: " .. groupName .. " ===", "GROUP_HEADER")
-  me.NotifyTestLogWindow(logMessage)
-end
-
---[[
-  Log and display individual test group summary lines
-
-  @param {table} context - The active run context
-  @param {string} groupName
-]]--
-logTestGroupSummary = function(context, groupName)
-  local finishedMessage = string.format("Finished test group with name: %s", groupName)
-  me.NotifyTestLogWindow(finishedMessage)
-  local sequence1, timestamp1 = getMessageData(context)
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {message = finishedMessage, timestamp = timestamp1, sequence = sequence1, messageType = "INFO"}
-  )
-
-  local succeededMessage = string.format("Tests succeeded: %i", PVPWarnTestLog[groupName].testSuccess)
-  me.NotifyTestLogWindow(succeededMessage, "SUCCESS")
-  local sequence2, timestamp2 = getMessageData(context)
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {message = succeededMessage, timestamp = timestamp2, sequence = sequence2, messageType = "SUCCESS"}
-  )
-
-  local failedMessage = string.format("Tests failed: %i", PVPWarnTestLog[groupName].testFailure)
-  local failedMessageType = PVPWarnTestLog[groupName].testFailure > 0 and "FAILURE" or "INFO"
-  me.NotifyTestLogWindow(failedMessage, failedMessageType)
-  local sequence3, timestamp3 = getMessageData(context)
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {message = failedMessage, timestamp = timestamp3, sequence = sequence3, messageType = failedMessageType}
-  )
-
-  local totalMessage = string.format("Tests total: %i", PVPWarnTestLog[groupName].testCount)
-  me.NotifyTestLogWindow(totalMessage, "INFO")
-  local sequence4, timestamp4 = getMessageData(context)
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {message = totalMessage, timestamp = timestamp4, sequence = sequence4, messageType = "INFO"}
-  )
-end
-
---[[
-  Log and display failed test details
-
-  @param {table} context - The active run context
-  @param {string} groupName
-]]--
-logFailedTests = function(context, groupName)
-  if #context.failedTests == 0 then
-    return
-  end
-
-  local failedTestsMessage = "Failed tests:"
-  me.NotifyTestLogWindow(failedTestsMessage, "FAILURE")
-  local failedSequence, failedTimestamp = getMessageData(context)
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {
-      message = failedTestsMessage,
-      timestamp = failedTimestamp,
-      sequence = failedSequence,
-      messageType = "FAILURE"
-    }
-  )
-
-  for i = 1, #context.failedTests do
-    me.NotifyTestLogWindow(context.failedTests[i], "FAILURE")
-    local testSequence, testTimestamp = getMessageData(context)
-    table.insert(
-      PVPWarnTestLog[groupName],
-      {
-        message = context.failedTests[i],
-        timestamp = testTimestamp,
-        sequence = testSequence,
-        messageType = "FAILURE"
-      }
-    )
-  end
-end
-
---[[
-  Log and display final summary statistics
-
-  @param {table} context - The active run context
-  @param {string} groupName
-]]--
-logFinalSummary = function(context, groupName)
-  local summaryStats = string.format("Total: %d, Success: %d, Failure: %d",
-    PVPWarnTestLog[groupName].testCount,
-    PVPWarnTestLog[groupName].testSuccess,
-    PVPWarnTestLog[groupName].testFailure)
-
-  me.NotifyTestLogWindow(summaryStats, "INFO")
-  local summarySequence, summaryTimestamp = getMessageData(context)
-  table.insert(
-    PVPWarnTestLog[groupName],
-    {
-      message = summaryStats,
-      timestamp = summaryTimestamp,
-      sequence = summarySequence,
-      messageType = "INFO"
-    }
-  )
-
-  me.NotifyTestLogWindow("", "SEPARATOR")
-end
-
---[[
-  Execute immediate tests without delay
-
-  @param {table} context - The run context whose immediate queue is drained
-]]--
-playImmediateTests = function(context)
-  while context.testQueueImmediate[1] ~= nil do
-    executeTestFunction(context, context.testQueueImmediate[1])
-    table.remove(context.testQueueImmediate, 1)
-  end
-end
-
---[[
-  Execute delayed tests with 0.8s delay between each. The timer chain captures its
-  run context - if that run was cancelled (completed or force reset) a still-pending
-  timer does nothing instead of draining a newer run's queue.
-
-  @param {table} context - The run context whose delayed queue is drained
-  @param {function} callback
-    Callback function that is invoked once the delayed queue is empty/done
-]]--
-playDelayedTests = function(context, callback)
-  if context.cancelled then
-    return
-  end
-
-  if context.testQueueWithDelay[1] == nil then
-    callback()
-    return -- queue is empty abort...
-  end
-
-  executeTestFunction(context, context.testQueueWithDelay[1])
-  table.remove(context.testQueueWithDelay, 1)
-
-  C_Timer.After(0.8, function()
-    playDelayedTests(context, callback)
-  end)
-end
-
---[[
-  Execute a queued test function with error isolation. A thrown error must not
-  abort the queue - it would strand the session with no way to recover short
-  of a reload. An error in a started test is reported as its failure.
-
-  @param {table} context - The run context the test executes under
-  @param {function} testFunction
-]]--
-executeTestFunction = function(context, testFunction)
-  local status, err = pcall(testFunction)
-
-  if not status then
-    mod.logger.LogError(me.tag, "Test function failed with error: " .. tostring(err))
-
-    if context.currentTest ~= nil then
-      me.ReportFailureTestRun("LuaError", context.currentTest, tostring(err))
-    end
-  end
 end

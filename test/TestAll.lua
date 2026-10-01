@@ -43,9 +43,6 @@ mod.testAll = me
 
 me.tag = "TestAll"
 
--- forward declaration
-local queueIfPresent
-
 -- Branch names as they appear when appended to a module name (e.g. testSoundHunterClassic).
 local branches = { "Classic", "Sod", "Tbc" }
 
@@ -69,6 +66,21 @@ function me.TestAll(branchArg)
   mod.testSessionManager.StartSession("All", category, function(completionCallback)
     me.RunAllTests(branchFilter, completionCallback)
   end)
+end
+
+--[[
+  Enqueue a test module's test cases if the module exists for the given branch
+
+  @param {string} modulePrefix - Module name prefix, e.g. "testSound"
+  @param {string} classCap - Capitalized category name, e.g. "Warrior"
+  @param {string} branchCap - Capitalized branch name, e.g. "Classic"
+]]--
+local function queueIfPresent(modulePrefix, classCap, branchCap)
+  local moduleTable = mod[modulePrefix .. classCap .. branchCap]
+
+  if moduleTable and type(moduleTable.CollectTestCases) == "function" then
+    moduleTable.CollectTestCases()
+  end
 end
 
 --[[
@@ -145,19 +157,4 @@ function me.RunAllTests(branchFilter, completionCallback)
   end
 
   processNextBranch()
-end
-
---[[
-  Enqueue a test module's test cases if the module exists for the given branch
-
-  @param {string} modulePrefix - Module name prefix, e.g. "testSound"
-  @param {string} classCap - Capitalized category name, e.g. "Warrior"
-  @param {string} branchCap - Capitalized branch name, e.g. "Classic"
-]]--
-queueIfPresent = function(modulePrefix, classCap, branchCap)
-  local moduleTable = mod[modulePrefix .. classCap .. branchCap]
-
-  if moduleTable and type(moduleTable.CollectTestCases) == "function" then
-    moduleTable.CollectTestCases()
-  end
 end

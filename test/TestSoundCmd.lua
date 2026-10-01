@@ -33,16 +33,13 @@ mod.testSoundCmd = me
 me.tag = "TestSoundCmd"
 
 -- Forward declarations for local functions
-local GetAvailableCategories
-local GetAvailableSelfAvoidCategories
-local GetAvailableEnemyAvoidCategories
 
 --[[
   Get available test sound categories mapping
 
   @return {table} - Map of category names to module names
 ]]--
-GetAvailableCategories = function()
+local function GetAvailableCategories()
   return {
     druid = "testSoundDruid",
     hunter = "testSoundHunter",
@@ -64,7 +61,7 @@ end
 
   @return {table} - Map of category names to module names
 ]]--
-GetAvailableSelfAvoidCategories = function()
+local function GetAvailableSelfAvoidCategories()
   return {
     druid = "testSoundSelfAvoidDruid",
     hunter = "testSoundSelfAvoidHunter",
@@ -83,7 +80,7 @@ end
 
   @return {table} - Map of category names to module names
 ]]--
-GetAvailableEnemyAvoidCategories = function()
+local function GetAvailableEnemyAvoidCategories()
   return {
     druid = "testSoundEnemyAvoidDruid",
     hunter = "testSoundEnemyAvoidHunter",

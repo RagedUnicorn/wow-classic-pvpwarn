@@ -35,9 +35,6 @@ mod.testSessionManager = me
 
 me.tag = "TestSessionManager"
 
--- forward declaration
-local CreateRunContext
-
 --[[
   The active run context, or nil when no session is running. Created by StartSession
   and dropped on completion or force reset. All mutable test framework state for a
@@ -84,6 +81,58 @@ function me.GetCurrentSession()
     commandType = runContext.commandType,
     commandCategory = runContext.commandCategory,
     startTime = runContext.startTime
+  }
+end
+
+--[[
+  A session name unique within PVPWarnTestLog. The timestamp has a one-second
+  resolution, so a second run of the same command and category within the same second
+  gets a numeric suffix instead of replacing the first run's test group.
+
+  @param {string} baseName
+
+  @return {string}
+]]--
+local function CreateUniqueSessionName(baseName)
+  local sessionName = baseName
+  local suffix = 1
+
+  while PVPWarnTestLog ~= nil and PVPWarnTestLog[sessionName] ~= nil do
+    suffix = suffix + 1
+    sessionName = baseName .. "_" .. suffix
+  end
+
+  return sessionName
+end
+
+--[[
+  Create a fresh run context for a starting session
+
+  @param {string} commandType - Type of command (e.g., "Sound", "CombatEvent", "Validation", "All")
+  @param {string} category - Category name (e.g., "mage", "all")
+
+  @return {table} - The new run context
+]]--
+local function CreateRunContext(commandType, category)
+  local timestamp = date("%Y%m%d_%H%M%S")
+
+  return {
+    sessionName = CreateUniqueSessionName(string.format("%s_%s_%s", commandType, category, timestamp)),
+    sessionId = timestamp,
+    commandType = commandType,
+    commandCategory = category,
+    startTime = date("%Y-%m-%d %H:%M:%S"),
+    -- set when the run ends (normally or forcibly); stale async callbacks check it
+    cancelled = false,
+    -- test branch consumed by spell map assembly and test-case discovery (TestHelper)
+    activeBranch = "classic",
+    -- reporter state (owned by TestReporter)
+    testGroupName = nil,
+    currentTest = nil,
+    failedTests = {},
+    messageSequence = 0,
+    testQueueWithDelay = {},
+    testQueueImmediate = {}
   }
 end
 
@@ -188,56 +237,4 @@ function me.CreateCompletionCallback()
     -- Call StopTestGroup with the cleanup callback
     mod.testReporter.StopTestGroup(sessionCleanupCallback)
   end
-end
-
---[[
-  A session name unique within PVPWarnTestLog. The timestamp has a one-second
-  resolution, so a second run of the same command and category within the same second
-  gets a numeric suffix instead of replacing the first run's test group.
-
-  @param {string} baseName
-
-  @return {string}
-]]--
-local function CreateUniqueSessionName(baseName)
-  local sessionName = baseName
-  local suffix = 1
-
-  while PVPWarnTestLog ~= nil and PVPWarnTestLog[sessionName] ~= nil do
-    suffix = suffix + 1
-    sessionName = baseName .. "_" .. suffix
-  end
-
-  return sessionName
-end
-
---[[
-  Create a fresh run context for a starting session
-
-  @param {string} commandType - Type of command (e.g., "Sound", "CombatEvent", "Validation", "All")
-  @param {string} category - Category name (e.g., "mage", "all")
-
-  @return {table} - The new run context
-]]--
-CreateRunContext = function(commandType, category)
-  local timestamp = date("%Y%m%d_%H%M%S")
-
-  return {
-    sessionName = CreateUniqueSessionName(string.format("%s_%s_%s", commandType, category, timestamp)),
-    sessionId = timestamp,
-    commandType = commandType,
-    commandCategory = category,
-    startTime = date("%Y-%m-%d %H:%M:%S"),
-    -- set when the run ends (normally or forcibly); stale async callbacks check it
-    cancelled = false,
-    -- test branch consumed by spell map assembly and test-case discovery (TestHelper)
-    activeBranch = "classic",
-    -- reporter state (owned by TestReporter)
-    testGroupName = nil,
-    currentTest = nil,
-    failedTests = {},
-    messageSequence = 0,
-    testQueueWithDelay = {},
-    testQueueImmediate = {}
-  }
 end

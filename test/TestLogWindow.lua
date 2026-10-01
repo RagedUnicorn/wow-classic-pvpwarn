@@ -43,8 +43,6 @@ me.selectedSession = nil
 local sessionDropdown
 local scrollBar
 
--- forward declaration
-local ReleaseMessageFrame
 
 -- Color codes for different message types
 me.messageColors = {
@@ -332,6 +330,19 @@ function me.Hide()
   if testLogWindow then
     testLogWindow:Hide()
   end
+end
+
+--[[
+  Return a message frame to the pool so it can be reused instead of stranding the
+  underlying UI regions (WoW never garbage-collects frames or font strings)
+
+  @param {Frame} messageFrame - The message frame to recycle
+]]--
+local function ReleaseMessageFrame(messageFrame)
+  messageFrame:Hide()
+  messageFrame:ClearAllPoints()
+  messageFrame:SetParent(nil)
+  table.insert(me.messageFramePool, messageFrame)
 end
 
 --[[
@@ -654,19 +665,6 @@ function me.OnSessionEnd(completedSessionName)
       me.ShowEmptyState()
     end
   end)
-end
-
---[[
-  Return a message frame to the pool so it can be reused instead of stranding the
-  underlying UI regions (WoW never garbage-collects frames or font strings)
-
-  @param {Frame} messageFrame - The message frame to recycle
-]]--
-ReleaseMessageFrame = function(messageFrame)
-  messageFrame:Hide()
-  messageFrame:ClearAllPoints()
-  messageFrame:SetParent(nil)
-  table.insert(me.messageFramePool, messageFrame)
 end
 
 -- StaticPopup for confirming clear all logs action
