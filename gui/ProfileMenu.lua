@@ -52,11 +52,6 @@ local renameProfileButton
 local deleteProfileButton
 local exportProfileButton
 
--- forward declaration
-local FinishProfileImport
-local ProfileNameEditBoxOnTextChanged
-local UpdateActionButtonState
-
 --[[
   Panel layout. Positions are derived from the shared dimension constants and from each
   other so a resized element moves its siblings along.
@@ -104,6 +99,24 @@ function me.SetCurrentSelectedProfileName(profileName)
     currentSelectedProfileName = profileName
   else
     currentSelectedProfileName = nil
+  end
+end
+
+--[[
+  Shared EditBoxOnTextChanged handler for the profile name dialogs - the accept button is
+  only enabled while a non-empty name is entered.
+
+  @param {table} editBox
+]]--
+local function ProfileNameEditBoxOnTextChanged(editBox)
+  local button1 = editBox:GetParent():GetButton1()
+
+  if button1 ~= nil then
+    if string.len(editBox:GetText()) > 0 then
+      button1:Enable()
+    else
+      button1:Disable()
+    end
   end
 end
 
@@ -254,6 +267,33 @@ StaticPopupDialogs["RGPVPW_RESET_PROFILE_WARNING"] = {
   whileDead = true,
   preferredIndex = 4
 }
+
+--[[
+  Store an imported, already validated envelope under the passed profile name.
+  The imported profile is added to the profile list and selected but not activated.
+
+  @param {string} profileName
+  @param {table} envelope
+    A validated envelope as returned by mod.profile.ImportString
+
+  @return {boolean}
+    true - if the profile was stored (the prompt may close)
+    false - if the name was refused
+]]--
+local function FinishProfileImport(profileName, envelope)
+  if not mod.profile.AddImportedProfile(profileName, envelope.payload) then
+    return false
+  end
+
+  -- the string served its purpose; clearing it signals success and prevents a
+  -- confusing re-import of the leftover text (kept on failure paths for retry)
+  profileStringEditBox:SetText("")
+  me.SetCurrentSelectedProfileName(profileName)
+  me.RefreshProfileList()
+  mod.logger.PrintUserMessage(string.format(rgpvpw.L["profile_import_success"], profileName))
+
+  return true
+end
 
 --[[
   Popup dialog for choosing a name for an imported profile. The validated
@@ -503,6 +543,28 @@ function me.CreateHighlightTexture(row)
   highlightTexture:Hide()
 
   return highlightTexture
+end
+
+--[[
+  Grey out the buttons that act on the selection while they could not act: Load, Rename,
+  Delete and Export with nothing selected, Load also on the active profile (it is loaded
+  already), Rename and Delete also on the Default profile. Create new Profile, Reset to
+  defaults and Import never depend on the selection. The click handlers guard the same
+  conditions - this only makes the refusal visible before the click.
+]]--
+local function UpdateActionButtonState()
+  if not loadProfileButton or not renameProfileButton or not deleteProfileButton or not exportProfileButton then
+    return
+  end
+
+  local selected = currentSelectedProfileName ~= nil and mod.profile.ProfileExists(currentSelectedProfileName)
+  local editable = selected and not mod.profile.IsDefaultProfile(currentSelectedProfileName)
+  local loadable = selected and currentSelectedProfileName ~= mod.profile.GetActiveProfileName()
+
+  loadProfileButton:SetEnabled(loadable)
+  renameProfileButton:SetEnabled(editable)
+  deleteProfileButton:SetEnabled(editable)
+  exportProfileButton:SetEnabled(selected)
 end
 
 --[[
@@ -837,71 +899,4 @@ function me.ImportProfileButtonOnClick()
   end
 
   StaticPopup_Show("RGPVPW_IMPORT_PROFILE_NAME", nil, nil, envelope)
-end
-
---[[
-  Store an imported, already validated envelope under the passed profile name.
-  The imported profile is added to the profile list and selected but not activated.
-
-  @param {string} profileName
-  @param {table} envelope
-    A validated envelope as returned by mod.profile.ImportString
-
-  @return {boolean}
-    true - if the profile was stored (the prompt may close)
-    false - if the name was refused
-]]--
-FinishProfileImport = function(profileName, envelope)
-  if not mod.profile.AddImportedProfile(profileName, envelope.payload) then
-    return false
-  end
-
-  -- the string served its purpose; clearing it signals success and prevents a
-  -- confusing re-import of the leftover text (kept on failure paths for retry)
-  profileStringEditBox:SetText("")
-  me.SetCurrentSelectedProfileName(profileName)
-  me.RefreshProfileList()
-  mod.logger.PrintUserMessage(string.format(rgpvpw.L["profile_import_success"], profileName))
-
-  return true
-end
-
---[[
-  Grey out the buttons that act on the selection while they could not act: Load, Rename,
-  Delete and Export with nothing selected, Load also on the active profile (it is loaded
-  already), Rename and Delete also on the Default profile. Create new Profile, Reset to
-  defaults and Import never depend on the selection. The click handlers guard the same
-  conditions - this only makes the refusal visible before the click.
-]]--
-UpdateActionButtonState = function()
-  if not loadProfileButton or not renameProfileButton or not deleteProfileButton or not exportProfileButton then
-    return
-  end
-
-  local selected = currentSelectedProfileName ~= nil and mod.profile.ProfileExists(currentSelectedProfileName)
-  local editable = selected and not mod.profile.IsDefaultProfile(currentSelectedProfileName)
-  local loadable = selected and currentSelectedProfileName ~= mod.profile.GetActiveProfileName()
-
-  loadProfileButton:SetEnabled(loadable)
-  renameProfileButton:SetEnabled(editable)
-  deleteProfileButton:SetEnabled(editable)
-  exportProfileButton:SetEnabled(selected)
-end
-
---[[
-  Shared EditBoxOnTextChanged handler for the profile name dialogs - the accept button is
-  only enabled while a non-empty name is entered.
-
-  @param {table} editBox
-]]--
-ProfileNameEditBoxOnTextChanged = function(editBox)
-  local button1 = editBox:GetParent():GetButton1()
-
-  if button1 ~= nil then
-    if string.len(editBox:GetText()) > 0 then
-      button1:Enable()
-    else
-      button1:Disable()
-    end
-  end
 end

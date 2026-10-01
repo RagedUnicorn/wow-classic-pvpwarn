@@ -34,7 +34,6 @@ me.tag = "StanceFrame"
 local stanceStateFrame
 
 -- Forward declaration
-local UpdateStanceBorderColor
 
 --[[
   Default anchor of the stance state icon - directly next to the combat state icon, which is
@@ -67,6 +66,22 @@ function me.BuildStanceStateUi()
       frame:SetScript("OnDragStop", stopDrag)
     end
   )
+end
+
+--[[
+  Update the stance frame border color based on the target's class
+]]--
+local function UpdateStanceBorderColor()
+  if not stanceStateFrame or not stanceStateFrame.iconHolder then
+    return
+  end
+
+  local targetClass = mod.target.GetCurrentTargetClass()
+  local color
+
+  color = RGPVPW_COLORS.GetCategoryColor(targetClass)
+
+  stanceStateFrame.iconHolder:SetBackdropBorderColor(unpack(color))
 end
 
 --[[
@@ -148,20 +163,4 @@ end
 ]]--
 function me.ShowStanceState()
   stanceStateFrame.iconHolder:Show()
-end
-
---[[
-  Update the stance frame border color based on the target's class
-]]--
-UpdateStanceBorderColor = function()
-  if not stanceStateFrame or not stanceStateFrame.iconHolder then
-    return
-  end
-
-  local targetClass = mod.target.GetCurrentTargetClass()
-  local color
-
-  color = RGPVPW_COLORS.GetCategoryColor(targetClass)
-
-  stanceStateFrame.iconHolder:SetBackdropBorderColor(unpack(color))
 end
