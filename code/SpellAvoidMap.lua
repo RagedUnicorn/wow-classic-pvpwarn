@@ -42,7 +42,9 @@ local EnsureAssembled
 local EnsureCategoryIndex
 
 --[[
-  Get the spellAvoidMap
+  Get the spellAvoidMap as a deep clone that is safe to mutate. Has no production caller
+  today - it is the mutable half of the accessor clone contract (mirroring
+  SpellMap.GetSpellMap) that GetRawSpellAvoidMap points to.
 
   @return {table}
     The spellAvoidMap

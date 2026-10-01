@@ -43,7 +43,9 @@ local EnsureAssembled
 local EnsureCategoryIndex
 
 --[[
-  Get the spellMap
+  Get the spellMap as a deep clone that is safe to mutate. Has no production caller
+  today - it is the mutable half of the accessor clone contract that GetRawSpellMap
+  points to.
 
   @return {table}
     The spellMap

@@ -408,6 +408,21 @@ documented in [test/TESTING.md](test/TESTING.md). The `test/manual/` subfolder k
 manual in-game test cases separate from the headless specs under `test/headless/` and the
 in-game test framework under `test/classic|sod|tbc/`.
 
+### Filtering Logs
+
+`code/Filter.lua` is a debugging tool with no production caller: it **hides** log lines whose
+module tag matches a registered pattern, to cut the noise of modules you are not debugging (with
+`LOG_EVENT` on, the combat log alone floods the chat).
+
+```
+/run rgpvpw.filter.RegisterFilter("combatlog", "^CombatLog$")
+/run rgpvpw.filter.DeregisterFilter("combatlog")
+```
+
+The first argument names the filter for deregistering, the second is a Lua pattern matched
+against the `me.tag` of the logging module. Filters live for the session only - a `/reload`
+clears them.
+
 ## Dependency Management
 
 This repository uses [Renovate](https://renovatebot.com/) for automated dependency updates. Renovate monitors and updates:

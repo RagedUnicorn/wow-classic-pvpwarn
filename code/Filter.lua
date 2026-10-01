@@ -23,6 +23,19 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
+--[[
+  Log-tag filter - a debugging tool, deliberately without a production caller.
+  With event logging on, the combat log floods the chat; mute a module's tag while
+  debugging another one:
+
+    /run rgpvpw.filter.RegisterFilter("combatlog", "^CombatLog$")
+    /run rgpvpw.filter.DeregisterFilter("combatlog")
+
+  Filters live for the session only (a /reload clears them). The Logger checks
+  every line against the list; with no filter registered that is an empty loop.
+  See "Filtering Logs" in DEVELOPMENT.md.
+]]--
+
 local mod = rgpvpw
 local me = {}
 
