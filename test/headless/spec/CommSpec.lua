@@ -59,6 +59,8 @@ describe("Comm", function()
   local inGuild
   local inRaid
   local inGroup
+  -- C_Timer.After callbacks captured so the trailing broadcast fires explicitly
+  local timers
 
   -- deep fields of the shared `rgpvpw` table replaced below; busted's file insulation only
   -- snapshots the top-level `rgpvpw` reference, so restore them manually in after_each
@@ -77,6 +79,7 @@ describe("Comm", function()
     inGuild = false
     inRaid = false
     inGroup = false
+    timers = {}
 
     restoreGlobals = wowStubs.install({
       C_AddOns = wowStubs.stubs.C_AddOns({ Version = "v1.2.0", Title = "PVPWarn" }),
@@ -92,7 +95,12 @@ describe("Comm", function()
       IsInGuild = function() return inGuild end,
       IsInRaid = function() return inRaid end,
       IsInGroup = function() return inGroup end,
-      GetTime = wowStubs.stubs.GetTime(clock)
+      GetTime = wowStubs.stubs.GetTime(clock),
+      C_Timer = {
+        After = function(delay, callback)
+          timers[#timers + 1] = { delay = delay, callback = callback }
+        end
+      }
     })
 
     -- the real logger print path reaches mod.filter and C_AddOns; capture the user facing
@@ -133,7 +141,7 @@ describe("Comm", function()
       inGuild = true
       inRaid = true
 
-      comm.BroadcastVersion()
+      comm.BroadcastVersion(true)
 
       assert.are.equal(2, #sentMessages)
       assert.are.same(
@@ -150,7 +158,7 @@ describe("Comm", function()
       inGuild = true
       inGroup = true
 
-      comm.BroadcastVersion()
+      comm.BroadcastVersion(true)
 
       assert.are.equal(2, #sentMessages)
       assert.are.equal("GUILD", sentMessages[1].channel)
@@ -158,24 +166,78 @@ describe("Comm", function()
     end)
 
     it("broadcasts nothing when solo and unguilded", function()
-      comm.BroadcastVersion()
+      comm.BroadcastVersion(true)
 
       assert.are.same({}, sentMessages)
     end)
 
-    it("skips a broadcast within the cooldown and sends again after it elapsed", function()
+    it("sends to the group only when the guild is not asked for", function()
+      inGuild = true
+      inGroup = true
+
+      comm.BroadcastVersion(false)
+
+      assert.are.equal(1, #sentMessages)
+      assert.are.equal("PARTY", sentMessages[1].channel)
+    end)
+
+    it("defers a broadcast within the cooldown to one trailing broadcast", function()
+      inGuild = true
+      inGroup = true
+
+      comm.BroadcastVersion(true)
+      assert.are.equal(2, #sentMessages)
+
+      -- a roster burst right after the first broadcast folds into one trailing broadcast
+      clock.now = clock.now + 4
+      comm.BroadcastVersion(false)
+      comm.BroadcastVersion(false)
+      assert.are.equal(2, #sentMessages)
+      assert.are.equal(1, #timers)
+      assert.are.equal(6, timers[1].delay)
+
+      clock.now = clock.now + 6
+      timers[1].callback()
+      assert.are.equal(3, #sentMessages)
+      assert.are.equal("PARTY", sentMessages[3].channel)
+    end)
+
+    it("keeps the guild in a deferred broadcast when any folded call asked for it", function()
       inGuild = true
 
-      comm.BroadcastVersion()
-      assert.are.equal(1, #sentMessages)
+      comm.BroadcastVersion(false)
+      comm.BroadcastVersion(true)
+      comm.BroadcastVersion(false)
+      assert.are.equal(1, #timers)
 
-      -- a roster burst right after the first broadcast is swallowed by the cooldown
-      comm.BroadcastVersion()
+      clock.now = clock.now + 10
+      timers[1].callback()
       assert.are.equal(1, #sentMessages)
+      assert.are.equal("GUILD", sentMessages[1].channel)
+    end)
 
-      clock.now = clock.now + 60
-      comm.BroadcastVersion()
+    it("schedules a new trailing broadcast once the previous one fired", function()
+      inGroup = true
+
+      comm.BroadcastVersion(false)
+      comm.BroadcastVersion(false)
+      clock.now = clock.now + 10
+      timers[1].callback()
       assert.are.equal(2, #sentMessages)
+
+      comm.BroadcastVersion(false)
+      assert.are.equal(2, #timers)
+    end)
+
+    it("sends immediately again after the cooldown elapsed", function()
+      inGroup = true
+
+      comm.BroadcastVersion(false)
+      clock.now = clock.now + 60
+      comm.BroadcastVersion(false)
+
+      assert.are.equal(2, #sentMessages)
+      assert.are.same({}, timers)
     end)
   end)
 

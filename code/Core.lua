@@ -31,6 +31,7 @@ me.tag = "Core"
 
 -- forward declarations
 local OnEnteringWorld
+local OnRosterChanged
 local OnPlayerLogout
 local OnCombatLog
 local OnTargetChanged
@@ -70,8 +71,8 @@ function me.RegisterEvents(self)
   me.event.Register("ZONE_CHANGED_NEW_AREA", OnZoneChanged)
   -- Version broadcasts from other players. Gated until initialization completes.
   me.event.Register("CHAT_MSG_ADDON", me.comm.OnChatMsgAddon, { gated = true })
-  -- Rebroadcast the running version on roster edges. Gated until initialization completes.
-  me.event.Register("GROUP_ROSTER_UPDATE", me.comm.BroadcastVersion, { gated = true })
+  -- Rebroadcast the running version to the group on roster edges. Gated until initialization completes.
+  me.event.Register("GROUP_ROSTER_UPDATE", OnRosterChanged, { gated = true })
 
   me.event.Setup(self)
 end
@@ -158,8 +159,9 @@ end
 --[[
   Run the bootstrap sequence on login or /reload, then open the readiness gate
   so gated handlers (combat log, target changes) begin processing. Every entering
-  world edge (including instance transfers) broadcasts the running addon version;
-  the broadcast has its own cooldown against bursts.
+  world edge (including instance transfers) broadcasts the running addon version to
+  the group; the guild is announced to only on login and reload - a loading screen
+  changes no guild. The broadcast has its own cooldown against bursts.
 
   @param {boolean} isInitialLogin
   @param {boolean} isReloadingUi
@@ -171,7 +173,15 @@ OnEnteringWorld = function(isInitialLogin, isReloadingUi)
     me.zone.UpdateZone()
   end
 
-  me.comm.BroadcastVersion()
+  me.comm.BroadcastVersion(isInitialLogin == true or isReloadingUi == true)
+end
+
+--[[
+  Announce the version on GROUP_ROSTER_UPDATE. A group change announces to the group
+  only - the guild already got the version at login.
+]]--
+OnRosterChanged = function()
+  me.comm.BroadcastVersion(false)
 end
 
 --[[
