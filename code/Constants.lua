@@ -398,6 +398,13 @@ RGPVPW_CONSTANTS = {
   ELEMENT_PROFILE_EXPORT_BUTTON = "PVPW_ExportProfile",
   ELEMENT_PROFILE_IMPORT_BUTTON = "PVPW_ImportProfile",
   PROFILE_STRING_BOX_WIDTH = 540,
+  --[[
+    Upper bound for a pasted profile import string, counted in characters. The largest
+    realistic export - every spell of every list configured with every option, on the
+    branch with the most spells - is about 74000 characters, so this leaves ample
+    headroom for new spells while keeping an arbitrary paste from being decoded
+  ]]--
+  PROFILE_IMPORT_MAX_LENGTH = 262144,
   PROFILE_STRING_BOX_HEIGHT = 90,
   ELEMENT_PROFILE_LIST_ROW_HIGHLIGHT = "$parentHighlight",
   --[[

@@ -507,7 +507,7 @@ end
     or nil plus a localization key describing the failure
 ]]--
 function me.ImportString(encoded)
-  if type(encoded) ~= "string" then
+  if type(encoded) ~= "string" or #encoded > RGPVPW_CONSTANTS.PROFILE_IMPORT_MAX_LENGTH then
     return nil, "profile_error_invalid"
   end
 

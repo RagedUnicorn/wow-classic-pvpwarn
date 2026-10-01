@@ -691,7 +691,7 @@ function me.CreateProfileStringBox(frame)
   end
 
   profileStringEditBox = scrollContainer.EditBox
-  profileStringEditBox:SetMaxLetters(0)
+  profileStringEditBox:SetMaxLetters(RGPVPW_CONSTANTS.PROFILE_IMPORT_MAX_LENGTH)
   profileStringEditBox:SetFontObject("ChatFontNormal")
   profileStringEditBox:SetWidth(RGPVPW_CONSTANTS.PROFILE_STRING_BOX_WIDTH - 30)
   profileStringEditBox:SetScript("OnEscapePressed", function(self)

@@ -53,7 +53,7 @@
 -- busted extends `assert` with .same / .equal / etc. at runtime; luacheck
 -- cannot verify those fields statically. Suppress warning 143 (accessing
 -- undefined field of a global variable) for this file.
--- luacheck: globals describe it before_each after_each table.wipe
+-- luacheck: globals describe it setup teardown before_each after_each table.wipe
 -- luacheck: ignore 143
 
 local wowStubs = require("WowStubs")
@@ -771,6 +771,32 @@ describe("profile", function()
       payload.spellConfiguration.imported = "mutated"
 
       assert.are.equal("spellList", PVPWarnProfiles[2].spellConfiguration.imported)
+    end)
+  end)
+
+  describe("ImportString", function()
+    local originalSerializer
+    local originalEncoder
+
+    setup(function()
+      originalSerializer = rgpvpw.serializer
+      originalEncoder = rgpvpw.encoder
+      dofile("code/Serializer.lua")
+      dofile("code/Encoder.lua")
+    end)
+
+    teardown(function()
+      rgpvpw.serializer = originalSerializer
+      rgpvpw.encoder = originalEncoder
+    end)
+
+    it("rejects an input longer than the import limit before decoding", function()
+      local oversized = "PVPWarn1:" .. string.rep("A", RGPVPW_CONSTANTS.PROFILE_IMPORT_MAX_LENGTH)
+
+      local envelope, err = profile.ImportString(oversized)
+
+      assert.is_nil(envelope)
+      assert.are.equal("profile_error_invalid", err)
     end)
   end)
 end)
