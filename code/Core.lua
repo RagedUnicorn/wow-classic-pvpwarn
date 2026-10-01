@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals C_AddOns CombatLogGetCurrentEventInfo
+-- luacheck: globals C_AddOns CombatLogGetCurrentEventInfo geterrorhandler
 
 rgpvpw = rgpvpw or {}
 local me = rgpvpw
@@ -163,12 +163,22 @@ end
   the group; the guild is announced to only on login and reload - a loading screen
   changes no guild. The broadcast has its own cooldown against bursts.
 
+  The initialization runs only on the login / reload edge, so a step of Initialize
+  that raises must not keep the gate closed for the rest of the session - the error
+  is logged and handed to the client's error handler (the script error frame,
+  BugSack) and the gate opens regardless.
+
   @param {boolean} isInitialLogin
   @param {boolean} isReloadingUi
 ]]--
 OnEnteringWorld = function(isInitialLogin, isReloadingUi)
   if isInitialLogin or isReloadingUi then
-    me.Initialize()
+    xpcall(me.Initialize, function(err)
+      me.logger.LogError(me.tag, "Initialization failed: " .. tostring(err))
+
+      return geterrorhandler()(err)
+    end)
+
     me.event.SetReady()
     me.zone.UpdateZone()
   end
