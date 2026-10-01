@@ -798,5 +798,35 @@ describe("profile", function()
       assert.is_nil(envelope)
       assert.are.equal("profile_error_invalid", err)
     end)
+
+    it("drops an envelope name that is not a string on import", function()
+      for _, craftedName in ipairs({ { nested = "table" }, 42, true }) do
+        local serialized = rgpvpw.serializer.Serialize({
+          addon = "PVPWarn",
+          schemaVersion = 1,
+          name = craftedName,
+          payload = importPayload()
+        })
+
+        local envelope, err = profile.ImportString("PVPWarn1:" .. rgpvpw.encoder.Encode(serialized))
+
+        assert.is_nil(err)
+        assert.is_nil(envelope.name)
+        assert.are.same(importPayload(), envelope.payload)
+      end
+    end)
+
+    it("keeps a string envelope name to prefill the import popup", function()
+      local serialized = rgpvpw.serializer.Serialize({
+        addon = "PVPWarn",
+        schemaVersion = 1,
+        name = "Arena",
+        payload = importPayload()
+      })
+
+      local envelope = profile.ImportString("PVPWarn1:" .. rgpvpw.encoder.Encode(serialized))
+
+      assert.are.equal("Arena", envelope.name)
+    end)
   end)
 end)
