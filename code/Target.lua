@@ -23,7 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals UnitGUID UnitName UnitClass
+-- luacheck: globals UnitGUID UnitClass
 
 local mod = rgpvpw
 local me = {}
@@ -33,7 +33,6 @@ mod.target = me
 me.tag = "Target"
 
 local currentTargetGuid
-local currentTargetName
 local currentTargetClassName
 
 --[[
@@ -43,15 +42,6 @@ local currentTargetClassName
 ]]--
 function me.GetCurrentTargetGuid()
   return currentTargetGuid
-end
-
---[[
-  Returns the players current target name or an empty string if the player has no target.
-
-  @return {string | nil}
-]]--
-function me.GetCurrentTargetName()
-  return currentTargetName
 end
 
 --[[
@@ -68,7 +58,6 @@ end
 ]]--
 function me.UpdateCurrentTarget()
   local targetId = UnitGUID(RGPVPW_CONSTANTS.UNIT_ID_TARGET)
-  local targetName = UnitName(RGPVPW_CONSTANTS.UNIT_ID_TARGET)
   local _, unitClassName = UnitClass(RGPVPW_CONSTANTS.UNIT_ID_TARGET)
 
   if targetId == nil then
@@ -77,14 +66,6 @@ function me.UpdateCurrentTarget()
   else
     currentTargetGuid = targetId
     mod.logger.LogDebug(me.tag, "Update players targetGUID: " .. currentTargetGuid)
-  end
-
-  if targetName == nil then
-    currentTargetName = nil
-    mod.logger.LogDebug(me.tag, "Update players targetName: [Empty-target]")
-  else
-    currentTargetName = targetName
-    mod.logger.LogDebug(me.tag, "Update players targetName: " .. currentTargetName)
   end
 
   if unitClassName == nil then

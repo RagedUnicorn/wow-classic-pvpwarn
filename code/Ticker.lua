@@ -47,17 +47,6 @@ function me.StartTickerWarnQueue()
 end
 
 --[[
-  Stop the repeating update ticker for warnQueue
-]]--
-function me.StopTickerWarnQueue()
-  if warnQueueTicker then
-    warnQueueTicker:Cancel()
-    warnQueueTicker = nil
-    mod.logger.LogInfo(me.tag, "Stopped 'WarnQueueTicker'")
-  end
-end
-
---[[
   Start the repeating update ticker for combatState
 ]]--
 function me.StartTickerCheckCombatState()
