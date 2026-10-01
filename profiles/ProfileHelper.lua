@@ -29,9 +29,6 @@ mod.profileHelper = me
 
 me.tag = "ProfileHelper"
 
--- forward declaration
-local NormalizeSpellConfigEntries
-
 --[[
   Helper function to create spell configuration. The returned entry is aligned with the
   spell's metadata when the profile is retrieved through GetSpellProfile - see
@@ -54,29 +51,6 @@ function me.CreateSpellConfig(active, sound, soundFade, color)
 end
 
 --[[
-  Generic GetSpellProfile function for all profile modules
-
-  @param {table} profiles - Table containing profile mappings
-  @param {string} spellType - The type of spell profile to retrieve
-  @param {string} tag - The calling module's tag for error logging
-
-  @return {table | nil} - Cloned spell profile or nil if invalid type
-]]--
-function me.GetSpellProfile(profiles, spellType, tag)
-  local profile = profiles[spellType]
-
-  if profile then
-    local clonedProfile = mod.common.Clone(profile)
-    NormalizeSpellConfigEntries(clonedProfile)
-
-    return clonedProfile
-  else
-    mod.logger.LogError(tag, "Invalid spellType: " .. tostring(spellType))
-    return nil
-  end
-end
-
---[[
   Align profile-seeded entries with the shape SpellConfiguration.SetupPrerequisiteForOptionEntry
   creates lazily: soundFadeWarningActive / soundStartWarningActive are present exactly when the
   spell's metadata has hasFade / hasCast. Entries without metadata are left untouched.
@@ -84,7 +58,7 @@ end
   @param {table} profile
     A profile table shaped [categoryName][spellId] = spellConfig
 ]]--
-NormalizeSpellConfigEntries = function(profile)
+local function NormalizeSpellConfigEntries(profile)
   for categoryName, spells in pairs(profile) do
     for spellId, spellConfig in pairs(spells) do
       local spellMetadata = mod.spellMap.GetSpellMetadata(categoryName, spellId)
@@ -107,5 +81,28 @@ NormalizeSpellConfigEntries = function(profile)
         end
       end
     end
+  end
+end
+
+--[[
+  Generic GetSpellProfile function for all profile modules
+
+  @param {table} profiles - Table containing profile mappings
+  @param {string} spellType - The type of spell profile to retrieve
+  @param {string} tag - The calling module's tag for error logging
+
+  @return {table | nil} - Cloned spell profile or nil if invalid type
+]]--
+function me.GetSpellProfile(profiles, spellType, tag)
+  local profile = profiles[spellType]
+
+  if profile then
+    local clonedProfile = mod.common.Clone(profile)
+    NormalizeSpellConfigEntries(clonedProfile)
+
+    return clonedProfile
+  else
+    mod.logger.LogError(tag, "Invalid spellType: " .. tostring(spellType))
+    return nil
   end
 end

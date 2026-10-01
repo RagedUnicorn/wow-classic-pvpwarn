@@ -91,13 +91,6 @@ local PROFILE_FIELD_TO_SPELL_TYPE = {
   ["spellEnemyAvoidConfiguration"] = RGPVPW_CONSTANTS.SPELL_TYPE.SPELL_ENEMY_AVOID
 }
 
--- forward declaration
-local FindProfile
-local IsNameTooLong
-local GetAddonVersion
-local BuildDefaultProfile
-local ApplyProfile
-
 --[[
   Default profiles consider the class from the player that uses the addon. As an
   example lets assume the player is a warrior. What are the spells a warrior absolutely
@@ -126,6 +119,24 @@ function me.IsDefaultProfile(profileName)
 end
 
 --[[
+  Search for the profile with the passed name in the PVPWarnProfiles store.
+
+  @param {string} profileName
+
+  @return {table | nil}, {number | nil}
+    the stored profile and its index, or nil if no such profile exists
+]]--
+local function FindProfile(profileName)
+  for i = 1, #PVPWarnProfiles do
+    if PVPWarnProfiles[i].name == profileName then
+      return PVPWarnProfiles[i], i
+    end
+  end
+
+  return nil
+end
+
+--[[
   @param {string} profileName
 
   @return {boolean}
@@ -134,6 +145,51 @@ end
 ]]--
 function me.ProfileExists(profileName)
   return FindProfile(profileName) ~= nil
+end
+
+--[[
+  @return {string}
+    the running addon version, stamped onto every stored profile
+]]--
+local function GetAddonVersion()
+  return C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
+end
+
+--[[
+  Build the class factory profile: the Default profile as a fresh character gets it, seeded
+  from the per-class profile module of the logged-in character. Every call returns fresh
+  tables (GetSpellProfile clones), so a caller may hand them to the live configuration.
+
+  @return {table}
+    a stored-profile shaped table named RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME
+]]--
+local function BuildDefaultProfile()
+  local _, englishClass = UnitClass(RGPVPW_CONSTANTS.UNIT_ID_PLAYER)
+  local classProfile = mod[strlower(englishClass) .. "Profile"]
+  local profile = {
+    ["name"] = RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME,
+    ["version"] = GetAddonVersion()
+  }
+
+  for _, field in ipairs(PROFILE_PAYLOAD_FIELDS) do
+    profile[field] = classProfile.GetSpellProfile(PROFILE_FIELD_TO_SPELL_TYPE[field])
+  end
+
+  return profile
+end
+
+--[[
+  Overwrite the three live spell lists of PVPWarnConfiguration with clones of a stored
+  profile's lists. Does not touch activeProfile - the caller decides what the live
+  configuration now belongs to.
+
+  @param {table} profile
+    a stored profile (or a table shaped like one)
+]]--
+local function ApplyProfile(profile)
+  for _, field in ipairs(PROFILE_PAYLOAD_FIELDS) do
+    PVPWarnConfiguration[PROFILE_FIELD_TO_SPELL_TYPE[field]] = mod.common.Clone(profile[field])
+  end
 end
 
 --[[
@@ -236,6 +292,27 @@ function me.SaveActiveProfile()
   profile.version = GetAddonVersion()
 
   return name
+end
+
+--[[
+  Whether a profile name exceeds the maximum allowed length. A plain `#profileName`
+  would count bytes and cut a localized name short, so continuation bytes (0x80-0xBF)
+  of a utf-8 sequence are not counted.
+
+  @param {string} profileName
+
+  @return {boolean}
+    true - if the name is longer than maxProfileNameLength characters
+    false - otherwise
+]]--
+local function IsNameTooLong(profileName)
+  if type(profileName) ~= "string" then
+    return false
+  end
+
+  local _, count = string.gsub(profileName, "[^\128-\191]", "")
+
+  return count > maxProfileNameLength
 end
 
 --[[
@@ -617,88 +694,4 @@ function me.AddImportedProfile(profileName, payload)
   mod.logger.LogInfo(me.tag, "Added imported profile with name - " .. profileName)
 
   return true
-end
-
---[[
-  Whether a profile name exceeds the maximum allowed length. A plain `#profileName`
-  would count bytes and cut a localized name short, so continuation bytes (0x80-0xBF)
-  of a utf-8 sequence are not counted.
-
-  @param {string} profileName
-
-  @return {boolean}
-    true - if the name is longer than maxProfileNameLength characters
-    false - otherwise
-]]--
-IsNameTooLong = function(profileName)
-  if type(profileName) ~= "string" then
-    return false
-  end
-
-  local _, count = string.gsub(profileName, "[^\128-\191]", "")
-
-  return count > maxProfileNameLength
-end
-
---[[
-  Search for the profile with the passed name in the PVPWarnProfiles store.
-
-  @param {string} profileName
-
-  @return {table | nil}, {number | nil}
-    the stored profile and its index, or nil if no such profile exists
-]]--
-FindProfile = function(profileName)
-  for i = 1, #PVPWarnProfiles do
-    if PVPWarnProfiles[i].name == profileName then
-      return PVPWarnProfiles[i], i
-    end
-  end
-
-  return nil
-end
-
---[[
-  @return {string}
-    the running addon version, stamped onto every stored profile
-]]--
-GetAddonVersion = function()
-  return C_AddOns.GetAddOnMetadata(RGPVPW_CONSTANTS.ADDON_NAME, "Version")
-end
-
---[[
-  Build the class factory profile: the Default profile as a fresh character gets it, seeded
-  from the per-class profile module of the logged-in character. Every call returns fresh
-  tables (GetSpellProfile clones), so a caller may hand them to the live configuration.
-
-  @return {table}
-    a stored-profile shaped table named RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME
-]]--
-BuildDefaultProfile = function()
-  local _, englishClass = UnitClass(RGPVPW_CONSTANTS.UNIT_ID_PLAYER)
-  local classProfile = mod[strlower(englishClass) .. "Profile"]
-  local profile = {
-    ["name"] = RGPVPW_CONSTANTS.DEFAULT_PROFILE_NAME,
-    ["version"] = GetAddonVersion()
-  }
-
-  for _, field in ipairs(PROFILE_PAYLOAD_FIELDS) do
-    profile[field] = classProfile.GetSpellProfile(PROFILE_FIELD_TO_SPELL_TYPE[field])
-  end
-
-  return profile
-end
-
---[[
-  Overwrite the three live spell lists of PVPWarnConfiguration with clones of a stored
-  profile's lists. Does not touch activeProfile - the caller decides what the live
-  configuration now belongs to.
-
-  @param {table} profile
-    a stored profile (or a table shaped like one)
-]]--
-ApplyProfile = function(profile)
-  for _, field in ipairs(PROFILE_PAYLOAD_FIELDS) do
-    PVPWarnConfiguration[PROFILE_FIELD_TO_SPELL_TYPE[field]] = mod.common.Clone(profile[field])
-  end
 end
