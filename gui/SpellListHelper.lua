@@ -30,36 +30,6 @@ mod.spellListHelper = me
 
 me.tag = "SpellListHelper"
 
--- forward declaration
-local BuildUi
-local UpdateListAnchor
-local CreateSpellListContainer
-local AnchorContainer
-local GetVisibleRowCount
-local UpdateContentSize
-local CreateRowFrame
-local CreateControlColumn
-local UpdateControlColumnWidth
-local CreateSpellStateCheckBox
-local CreateSoundCheckBox
-local CreateSoundSpecialCheckBox
-local SoundSpecialCheckBoxOnClick
-local SoundSpecialCheckBoxOnShow
-local PlaySoundButtonOnClick
-local PlaySoundSpecialButtonOnClick
-local CreateVisualAlertDropdown
-local DropDownMenuCallback
-local PlayVisualAlertButtonOnClick
-local UpdateSpellRows
-local UpdateIcon
-local UpdateSpellStateCheckBox
-local UpdateSound
-local UpdateSoundSpecial
-local UpdateChooseVisualDropdownMenu
-local UpdateCheckButtonState
-local UpdateChooseVisualDropdownMenuState
-local UpdateSpellTitleState
-
 --[[
   Create a new per-spell settings list instance. The instance carries the configuration
   of a concrete menu and the ui state of its scrollable spell list. All configuration
@@ -119,54 +89,58 @@ function me.NewSpellList(options)
 end
 
 --[[
-  Build the spell list on first invocation or update it to its new parent
-  category on later ones
+  Anchor the spell list container to fill the content frame it belongs to
 
-  @param {table} spellList
-    A spell list instance created through me.NewSpellList
-  @param {table} frame
-  @param {string} categoryName
-]]--
-function me.Init(spellList, frame, categoryName)
-  frame.categoryName = categoryName
-
-  if spellList.builtMenu then
-    spellList.cachedCategoryData = nil
-    mod.logger.LogDebug(me.tag, string.format(
-      "Wiped cached %s after category switch", spellList.options.spellList)
-    )
-
-    UpdateListAnchor(spellList, frame)
-    -- update the scrolllist with new category data
-    UpdateSpellRows(spellList, categoryName)
-  else
-    BuildUi(spellList, frame, categoryName)
-    spellList.builtMenu = true
-  end
-end
-
---[[
-  Create the spelllist configuration menu
-
-  @param {table} spellList
-  @param {table} frame
-  @param {string} categoryName
-]]--
-BuildUi = function(spellList, frame, categoryName)
-  spellList.container = CreateSpellListContainer(spellList, frame, categoryName)
-  UpdateSpellRows(spellList, categoryName)
-end
-
---[[
-  Update the spell list to its new parent category
-
-  @param {table} spellList
+  @param {table} container
   @param {table} parentFrame
 ]]--
-UpdateListAnchor = function(spellList, parentFrame)
-  spellList.container:SetParent(parentFrame)
-  AnchorContainer(spellList.container, parentFrame)
-  spellList.scrollFrame:SetVerticalScroll(0) -- reset scroll position to top
+local function AnchorContainer(container, parentFrame)
+  container:ClearAllPoints()
+  container:SetPoint("TOPLEFT", parentFrame)
+  container:SetPoint("BOTTOMRIGHT", parentFrame)
+end
+
+--[[
+  Derive how many rows fit into the visible area of the list. The height the settings canvas
+  hands out decides this - options.maxRows is only a fallback while the list has no measurable
+  size yet.
+
+  @param {table} spellList
+
+  @return {number}
+    The amount of rows that fit into the visible area
+]]--
+local function GetVisibleRowCount(spellList)
+  local options = spellList.options
+  local availableHeight = spellList.scrollFrame:GetHeight()
+
+  if availableHeight <= 0 then
+    return options.maxRows
+  end
+
+  return math.max(math.floor(availableHeight / options.rowHeight), 1)
+end
+
+--[[
+  Size the scroll child to the scroll frame. The width has to follow the frame for the rows to
+  span the whole canvas, the height has to cover at least the visible area so a category with
+  fewer spells than fit does not leave the scroll child short.
+
+  @param {table} spellList
+]]--
+local function UpdateContentSize(spellList)
+  local options = spellList.options
+  local availableWidth = spellList.scrollFrame:GetWidth()
+
+  if availableWidth > 0 then
+    spellList.content:SetWidth(availableWidth)
+  end
+
+  local spellCount = spellList.cachedCategoryData ~= nil and #spellList.cachedCategoryData or 0
+
+  spellList.content:SetHeight(
+    math.max(spellCount, GetVisibleRowCount(spellList)) * options.rowHeight
+  )
 end
 
 --[[
@@ -180,7 +154,7 @@ end
   @return {table}
     The created container
 ]]--
-CreateSpellListContainer = function(spellList, frame, categoryName)
+local function CreateSpellListContainer(spellList, frame, categoryName)
   local options = spellList.options
 
   local container = CreateFrame("Frame", nil, frame)
@@ -230,58 +204,376 @@ CreateSpellListContainer = function(spellList, frame, categoryName)
 end
 
 --[[
-  Anchor the spell list container to fill the content frame it belongs to
+  Create the column that holds the control clusters of a row. The column is an anchor only
+  frame - it carries no visuals and exists to pin both control columns to the rows right edge
+  at once, which is what lets the spell title to its left absorb the width of the list.
 
-  @param {table} container
-  @param {table} parentFrame
+  @param {table} row
+
+  @return {table}
+    The created control column
 ]]--
-AnchorContainer = function(container, parentFrame)
-  container:ClearAllPoints()
-  container:SetPoint("TOPLEFT", parentFrame)
-  container:SetPoint("BOTTOMRIGHT", parentFrame)
+local function CreateControlColumn(row)
+  local controls = CreateFrame("Frame", nil, row)
+
+  controls:SetPoint("TOPRIGHT", row, "TOPRIGHT", RGPVPW_CONSTANTS.SPELL_LIST_ROW_INSET_RIGHT * -1, 0)
+  controls:SetPoint("BOTTOMRIGHT", row, "BOTTOMRIGHT", RGPVPW_CONSTANTS.SPELL_LIST_ROW_INSET_RIGHT * -1, 0)
+
+  return controls
 end
 
 --[[
-  Derive how many rows fit into the visible area of the list. The height the settings canvas
-  hands out decides this - options.maxRows is only a fallback while the list has no measurable
-  size yet.
+  Give every play button of a row the same width and size the control column to hold a
+  checkbox, its label and that button. Uniform buttons keep both edges of the button column
+  aligned - the right one against the rows inset, the left one against the checkbox and
+  dropdown column to its left.
 
-  @param {table} spellList
-
-  @return {number}
-    The amount of rows that fit into the visible area
+  @param {table} row
 ]]--
-GetVisibleRowCount = function(spellList)
-  local options = spellList.options
-  local availableHeight = spellList.scrollFrame:GetHeight()
+local function UpdateControlColumnWidth(row)
+  local buttons = {row.playSound, row.playVisual}
 
-  if availableHeight <= 0 then
-    return options.maxRows
+  if row.playSoundSpecial ~= nil then
+    table.insert(buttons, row.playSoundSpecial)
   end
 
-  return math.max(math.floor(availableHeight / options.rowHeight), 1)
-end
+  local buttonWidth = 0
 
---[[
-  Size the scroll child to the scroll frame. The width has to follow the frame for the rows to
-  span the whole canvas, the height has to cover at least the visible area so a category with
-  fewer spells than fit does not leave the scroll child short.
-
-  @param {table} spellList
-]]--
-UpdateContentSize = function(spellList)
-  local options = spellList.options
-  local availableWidth = spellList.scrollFrame:GetWidth()
-
-  if availableWidth > 0 then
-    spellList.content:SetWidth(availableWidth)
+  for _, button in ipairs(buttons) do
+    buttonWidth = math.max(buttonWidth, button:GetWidth())
   end
 
-  local spellCount = spellList.cachedCategoryData ~= nil and #spellList.cachedCategoryData or 0
+  for _, button in ipairs(buttons) do
+    button:SetWidth(buttonWidth)
+  end
 
-  spellList.content:SetHeight(
-    math.max(spellCount, GetVisibleRowCount(spellList)) * options.rowHeight
+  row.controls:SetWidth(
+    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE
+      + RGPVPW_CONSTANTS.SPELL_LIST_ROW_LABEL_COLUMN_WIDTH
+      + buttonWidth
   )
+end
+
+--[[
+  Updates a checkbutton based on its state or a dependent checkButton
+
+  @param {table} checkButton
+  @param {table} dependentCheckButton
+]]--
+local function UpdateCheckButtonState(checkButton, dependentCheckButton)
+  if checkButton:GetChecked() then
+    if dependentCheckButton ~= nil then
+      mod.guiHelper.EnableCheckButton(dependentCheckButton)
+    else
+      mod.guiHelper.EnableCheckButton(checkButton)
+    end
+  else
+    if dependentCheckButton ~= nil then
+      mod.guiHelper.DisableCheckButton(dependentCheckButton)
+    else
+      mod.guiHelper.DisableCheckButton(checkButton)
+    end
+  end
+end
+
+--[[
+  Enables or disables the chooseVisual dropdown and its label based
+  on the checkButton state of the spell itself
+
+  @param {table} frame
+  @param {boolean} enable
+]]--
+local function UpdateChooseVisualDropdownMenuState(frame, enable)
+  if enable then
+    frame.chooseVisual:SetEnabled(true)
+    mod.guiHelper.SetColor(frame.chooseVisualLabel, RGPVPW_CONSTANTS.COLOR.BODY)
+  else
+    frame.chooseVisual:SetEnabled(false)
+    mod.guiHelper.SetColor(frame.chooseVisualLabel, RGPVPW_CONSTANTS.COLOR.DISABLED)
+  end
+end
+
+--[[
+  Grays out the spell title while the spell itself is deactivated, matching the
+  disabled look of the row's other labels
+
+  @param {table} frame
+  @param {boolean} enable
+]]--
+local function UpdateSpellTitleState(frame, enable)
+  if enable then
+    mod.guiHelper.SetColor(frame.spellTitle, RGPVPW_CONSTANTS.COLOR.SPELL_TITLE)
+  else
+    mod.guiHelper.SetColor(frame.spellTitle, RGPVPW_CONSTANTS.COLOR.DISABLED)
+  end
+end
+
+--[[
+  Create checkbox for configuring whether a spell is active or not
+
+  @param {table} spellList
+  @param {table} spellFrame
+
+  @return {table}
+    The created checkbox
+]]--
+local function CreateSpellStateCheckBox(spellList, spellFrame)
+  return mod.guiHelper.CreateCheckBox(
+    spellList.options.elementNames.enableSpell,
+    spellFrame,
+    --[[ inset so the checkbox does not sit flush against the border of the list ]]--
+    {"LEFT", RGPVPW_CONSTANTS.SPELL_LIST_ROW_INSET_LEFT, 0},
+    function(self)
+      mod.spellConfiguration.ToggleSpellState(
+        spellList.options.spellList,
+        spellList.activeCategory,
+        spellFrame.spellId,
+        spellFrame.normalizedSpellName
+      )
+
+      local parentFrame = self:GetParent()
+
+      UpdateCheckButtonState(self, parentFrame.soundCheckBox)
+
+      if parentFrame.soundSpecialCheckBox ~= nil then
+        UpdateCheckButtonState(self, parentFrame.soundSpecialCheckBox)
+      end
+
+      UpdateChooseVisualDropdownMenuState(parentFrame, self:GetChecked())
+      UpdateSpellTitleState(parentFrame, self:GetChecked())
+    end,
+    function(self)
+      local isActive = mod.spellConfiguration.IsSpellActive(
+        spellList.options.spellList,
+        spellList.activeCategory,
+        spellFrame.spellId
+      )
+
+      if isActive then
+        self:SetChecked(true)
+      else
+        self:SetChecked(false)
+      end
+    end,
+    nil,
+    nil,
+    true -- the row's spellId is populated after creation; sync via the real OnShow event
+  )
+end
+
+--[[
+  Create checkbox for configuring sound alert configuration
+
+  @param {table} spellList
+  @param {table} spellFrame
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+
+  @return {table}
+    The created checkbox
+]]--
+local function CreateSoundCheckBox(spellList, spellFrame, position)
+  return mod.guiHelper.CreateCheckBox(
+    spellList.options.elementNames.enableSound,
+    spellFrame,
+    position,
+    function()
+      mod.spellConfiguration.ToggleSoundWarning(
+        spellList.options.spellList,
+        spellList.activeCategory,
+        spellFrame.spellId,
+        spellFrame.normalizedSpellName
+      )
+    end,
+    function(self)
+      local isActive = mod.spellConfiguration.IsSoundWarningActive(
+        spellList.options.spellList,
+        spellList.activeCategory,
+        spellFrame.spellId
+      )
+
+      if isActive then
+        self:SetChecked(true)
+      else
+        self:SetChecked(false)
+      end
+    end,
+    spellList.options.labels.enableSound,
+    nil,
+    true -- the row's spellId is populated after creation; sync via the real OnShow event
+  )
+end
+
+--[[
+  Sound special checkbox onClick callback
+
+  @param {table} spellList
+  @param {table} self
+]]--
+local function SoundSpecialCheckBoxOnClick(spellList, self)
+  if self.type == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
+    mod.spellConfiguration.ToggleSoundFadeWarning(
+      spellList.options.spellList,
+      spellList.activeCategory,
+      self:GetParent().spellId,
+      self:GetParent().normalizedSpellName
+    )
+  elseif self.type == RGPVPW_CONSTANTS.SPELL_TYPES.START then
+    mod.spellConfiguration.ToggleSoundStartWarning(
+      spellList.options.spellList,
+      spellList.activeCategory,
+      self:GetParent().spellId,
+      self:GetParent().normalizedSpellName
+    )
+  else
+    mod.logger.LogError(me.tag, "Invalid type on special checkbox")
+  end
+end
+
+--[[
+  Sound special checkbox onShow callback
+
+  @param {table} spellList
+  @param {table} self
+]]--
+local function SoundSpecialCheckBoxOnShow(spellList, self)
+  local isActive
+
+  if self.type == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
+    isActive = mod.spellConfiguration.IsSoundFadeWarningActive(
+      spellList.options.spellList,
+      spellList.activeCategory,
+      self:GetParent().spellId
+    )
+  elseif self.type == RGPVPW_CONSTANTS.SPELL_TYPES.START then
+    isActive = mod.spellConfiguration.IsSoundStartWarningActive(
+      spellList.options.spellList,
+      spellList.activeCategory,
+      self:GetParent().spellId
+    )
+  else
+    mod.logger.LogError(me.tag, "Invalid type on special checkbox")
+
+    return
+  end
+
+  if isActive then
+    self:SetChecked(true)
+  else
+    self:SetChecked(false)
+  end
+end
+
+--[[
+  Create checkbox for configuring sound down alert configuration. Used for fade
+  and spellcast sound
+
+  @param {table} spellList
+  @param {table} spellFrame
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+
+  @return {table}
+    The created checkbox
+]]--
+local function CreateSoundSpecialCheckBox(spellList, spellFrame, position)
+  return mod.guiHelper.CreateCheckBox(
+    spellList.options.elementNames.enableSoundSpecial,
+    spellFrame,
+    position,
+    function(self)
+      SoundSpecialCheckBoxOnClick(spellList, self)
+    end,
+    function(self)
+      SoundSpecialCheckBoxOnShow(spellList, self)
+    end,
+    nil,
+    nil,
+    true -- the row's spellId and type are populated after creation; sync via the real OnShow event
+  )
+end
+
+--[[
+  Click callback for sound button
+
+  @param {table} spellList
+  @param {table} self
+]]--
+local function PlaySoundButtonOnClick(spellList, self)
+  mod.sound.PlaySound(self:GetParent().category, spellList.options.soundType, self.soundFileName)
+end
+
+--[[
+  Click callback for sound special button. Used for fade and spellcast sound
+
+  @param {table} self
+]]--
+local function PlaySoundSpecialButtonOnClick(self)
+  mod.sound.PlaySound(self:GetParent().category, self:GetParent().soundSpecialCheckBox.type, self.soundFileName)
+end
+
+--[[
+  Callback for color dropdownmenu
+
+  @param {table} spellList
+  @param {table} dropdown
+    A reference to the dropdown
+  @param {number} colorValue
+    The selected color value
+]]--
+local function DropDownMenuCallback(spellList, dropdown, colorValue)
+  mod.spellConfiguration.UpdateVisualWarningColor(
+    spellList.options.spellList,
+    spellList.activeCategory,
+    dropdown:GetParent().spellId,
+    dropdown:GetParent().normalizedSpellName,
+    colorValue
+  )
+end
+
+--[[
+  Create a dropdown with alert color textures to choose
+
+  @param {table} spellList
+  @param {table} spellFrame
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+
+  @return {table}
+    The created dropdown
+]]--
+local function CreateVisualAlertDropdown(spellList, spellFrame, position)
+  return mod.guiHelper.CreateVisualWarningDropdown(
+    spellFrame,
+    spellList.options.elementNames.visualWarningDropdown,
+    position,
+    function(dropdown, colorValue)
+      DropDownMenuCallback(spellList, dropdown, colorValue)
+    end
+  )
+end
+
+--[[
+  Click callback for previewing the spell's configured visual warning - fires the flash
+  in the spell's chosen color or asks the user to pick a color first
+
+  @param {table} spellList
+  @param {table} self
+]]--
+local function PlayVisualAlertButtonOnClick(spellList, self)
+  -- retrieve color for specific spell and category from configuration
+  local color = mod.spellConfiguration.GetVisualWarningColor(
+    spellList.options.spellList,
+    self:GetParent().category,
+    self:GetParent().spellId
+  )
+
+  if color == RGPVPW_CONSTANTS.DEFAULT_COLOR then
+    mod.logger.PrintUserError(rgpvpw.L["user_message_choose_color"])
+    return
+  end
+
+  mod.flash.Show(color)
 end
 
 --[[
@@ -292,7 +584,7 @@ end
   @return {table}
     The created row
 ]]--
-CreateRowFrame = function(spellList, frame, position)
+local function CreateRowFrame(spellList, frame, position)
   local options = spellList.options
   local row = mod.guiHelper.CreateSpellFrame(
     frame,
@@ -382,322 +674,136 @@ CreateRowFrame = function(spellList, frame, position)
 end
 
 --[[
-  Create the column that holds the control clusters of a row. The column is an anchor only
-  frame - it carries no visuals and exists to pin both control columns to the rows right edge
-  at once, which is what lets the spell title to its left absorb the width of the list.
-
-  @param {table} row
-
-  @return {table}
-    The created control column
+  @param {table} spellIcon
+  @param {string} categoryName
+  @param {table} spell
 ]]--
-CreateControlColumn = function(row)
-  local controls = CreateFrame("Frame", nil, row)
+local function UpdateIcon(spellIcon, categoryName, spell)
+  local iconId
+  local color = RGPVPW_COLORS.GetCategoryColor(categoryName)
 
-  controls:SetPoint("TOPRIGHT", row, "TOPRIGHT", RGPVPW_CONSTANTS.SPELL_LIST_ROW_INSET_RIGHT * -1, 0)
-  controls:SetPoint("BOTTOMRIGHT", row, "BOTTOMRIGHT", RGPVPW_CONSTANTS.SPELL_LIST_ROW_INSET_RIGHT * -1, 0)
-
-  return controls
-end
-
---[[
-  Give every play button of a row the same width and size the control column to hold a
-  checkbox, its label and that button. Uniform buttons keep both edges of the button column
-  aligned - the right one against the rows inset, the left one against the checkbox and
-  dropdown column to its left.
-
-  @param {table} row
-]]--
-UpdateControlColumnWidth = function(row)
-  local buttons = {row.playSound, row.playVisual}
-
-  if row.playSoundSpecial ~= nil then
-    table.insert(buttons, row.playSoundSpecial)
-  end
-
-  local buttonWidth = 0
-
-  for _, button in ipairs(buttons) do
-    buttonWidth = math.max(buttonWidth, button:GetWidth())
-  end
-
-  for _, button in ipairs(buttons) do
-    button:SetWidth(buttonWidth)
-  end
-
-  row.controls:SetWidth(
-    RGPVPW_CONSTANTS.CATEGORY_CHECK_BOX_SIZE
-      + RGPVPW_CONSTANTS.SPELL_LIST_ROW_LABEL_COLUMN_WIDTH
-      + buttonWidth
-  )
-end
-
---[[
-  Create checkbox for configuring whether a spell is active or not
-
-  @param {table} spellList
-  @param {table} spellFrame
-
-  @return {table}
-    The created checkbox
-]]--
-CreateSpellStateCheckBox = function(spellList, spellFrame)
-  return mod.guiHelper.CreateCheckBox(
-    spellList.options.elementNames.enableSpell,
-    spellFrame,
-    --[[ inset so the checkbox does not sit flush against the border of the list ]]--
-    {"LEFT", RGPVPW_CONSTANTS.SPELL_LIST_ROW_INSET_LEFT, 0},
-    function(self)
-      mod.spellConfiguration.ToggleSpellState(
-        spellList.options.spellList,
-        spellList.activeCategory,
-        spellFrame.spellId,
-        spellFrame.normalizedSpellName
-      )
-
-      local parentFrame = self:GetParent()
-
-      UpdateCheckButtonState(self, parentFrame.soundCheckBox)
-
-      if parentFrame.soundSpecialCheckBox ~= nil then
-        UpdateCheckButtonState(self, parentFrame.soundSpecialCheckBox)
-      end
-
-      UpdateChooseVisualDropdownMenuState(parentFrame, self:GetChecked())
-      UpdateSpellTitleState(parentFrame, self:GetChecked())
-    end,
-    function(self)
-      local isActive = mod.spellConfiguration.IsSpellActive(
-        spellList.options.spellList,
-        spellList.activeCategory,
-        spellFrame.spellId
-      )
-
-      if isActive then
-        self:SetChecked(true)
-      else
-        self:SetChecked(false)
-      end
-    end,
-    nil,
-    nil,
-    true -- the row's spellId is populated after creation; sync via the real OnShow event
-  )
-end
-
---[[
-  Create checkbox for configuring sound alert configuration
-
-  @param {table} spellList
-  @param {table} spellFrame
-  @param {table} position
-    An object containing configuration parameters for a SetPoint function call
-
-  @return {table}
-    The created checkbox
-]]--
-CreateSoundCheckBox = function(spellList, spellFrame, position)
-  return mod.guiHelper.CreateCheckBox(
-    spellList.options.elementNames.enableSound,
-    spellFrame,
-    position,
-    function()
-      mod.spellConfiguration.ToggleSoundWarning(
-        spellList.options.spellList,
-        spellList.activeCategory,
-        spellFrame.spellId,
-        spellFrame.normalizedSpellName
-      )
-    end,
-    function(self)
-      local isActive = mod.spellConfiguration.IsSoundWarningActive(
-        spellList.options.spellList,
-        spellList.activeCategory,
-        spellFrame.spellId
-      )
-
-      if isActive then
-        self:SetChecked(true)
-      else
-        self:SetChecked(false)
-      end
-    end,
-    spellList.options.labels.enableSound,
-    nil,
-    true -- the row's spellId is populated after creation; sync via the real OnShow event
-  )
-end
-
---[[
-  Create checkbox for configuring sound down alert configuration. Used for fade
-  and spellcast sound
-
-  @param {table} spellList
-  @param {table} spellFrame
-  @param {table} position
-    An object containing configuration parameters for a SetPoint function call
-
-  @return {table}
-    The created checkbox
-]]--
-CreateSoundSpecialCheckBox = function(spellList, spellFrame, position)
-  return mod.guiHelper.CreateCheckBox(
-    spellList.options.elementNames.enableSoundSpecial,
-    spellFrame,
-    position,
-    function(self)
-      SoundSpecialCheckBoxOnClick(spellList, self)
-    end,
-    function(self)
-      SoundSpecialCheckBoxOnShow(spellList, self)
-    end,
-    nil,
-    nil,
-    true -- the row's spellId and type are populated after creation; sync via the real OnShow event
-  )
-end
-
---[[
-  Sound special checkbox onClick callback
-
-  @param {table} spellList
-  @param {table} self
-]]--
-SoundSpecialCheckBoxOnClick = function(spellList, self)
-  if self.type == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
-    mod.spellConfiguration.ToggleSoundFadeWarning(
-      spellList.options.spellList,
-      spellList.activeCategory,
-      self:GetParent().spellId,
-      self:GetParent().normalizedSpellName
-    )
-  elseif self.type == RGPVPW_CONSTANTS.SPELL_TYPES.START then
-    mod.spellConfiguration.ToggleSoundStartWarning(
-      spellList.options.spellList,
-      spellList.activeCategory,
-      self:GetParent().spellId,
-      self:GetParent().normalizedSpellName
-    )
+  --[[
+    For most items we have to track the actual spelleffect in the combat log. However for
+    people to recognize the item it is much better to use items icon itself.
+  ]]--
+  if spell.itemId ~= nil then
+    iconId = GetItemIcon(spell.itemId)
   else
-    mod.logger.LogError(me.tag, "Invalid type on special checkbox")
+    iconId = select(3, GetSpellInfo(spell.spellId))
   end
+
+  spellIcon:SetTexture(iconId)
+  spellIcon.iconHolder:SetBackdropBorderColor(unpack(color))
+  -- itemId may be nil which clears a stale value when the row is reused
+  spellIcon.iconHolder.spellId = spell.spellId
+  spellIcon.iconHolder.itemId = spell.itemId
 end
 
 --[[
-  Sound special checkbox onShow callback
-
   @param {table} spellList
-  @param {table} self
+  @param {table} spellStateCheckBox
+  @param {string} categoryName
+  @param {number} spellId
 ]]--
-SoundSpecialCheckBoxOnShow = function(spellList, self)
-  local isActive
+local function UpdateSpellStateCheckBox(spellList, spellStateCheckBox, categoryName, spellId)
+  local isSpellActive = mod.spellConfiguration.IsSpellActive(
+    spellList.options.spellList,
+    categoryName,
+    spellId
+  )
 
-  if self.type == RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED then
-    isActive = mod.spellConfiguration.IsSoundFadeWarningActive(
-      spellList.options.spellList,
-      spellList.activeCategory,
-      self:GetParent().spellId
+  local parentFrame = spellStateCheckBox:GetParent()
+
+  if isSpellActive then
+    mod.logger.LogDebug(me.tag, string.format(
+      "Spell %s for category %s is active", spellId, categoryName)
     )
-  elseif self.type == RGPVPW_CONSTANTS.SPELL_TYPES.START then
-    isActive = mod.spellConfiguration.IsSoundStartWarningActive(
-      spellList.options.spellList,
-      spellList.activeCategory,
-      self:GetParent().spellId
-    )
+    spellStateCheckBox:SetChecked(true)
   else
-    mod.logger.LogError(me.tag, "Invalid type on special checkbox")
+    mod.logger.LogDebug(me.tag, string.format(
+      "Spell %s for category %s is inactive", spellId, categoryName)
+    )
+    spellStateCheckBox:SetChecked(false)
+  end
+
+  UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundCheckBox)
+
+  if parentFrame.soundSpecialCheckBox ~= nil then
+    UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundSpecialCheckBox)
+  end
+
+  UpdateChooseVisualDropdownMenuState(parentFrame, isSpellActive)
+  UpdateSpellTitleState(parentFrame, isSpellActive)
+end
+
+--[[
+  @param {table} spellList
+  @param {table} soundCheckBox
+  @param {string} categoryName
+  @param {number} spellId
+]]--
+local function UpdateSound(spellList, soundCheckBox, categoryName, spellId)
+  -- update sound checkbox state
+  soundCheckBox:SetChecked(
+    mod.spellConfiguration.IsSoundWarningActive(
+      spellList.options.spellList,
+      categoryName,
+      spellId
+    )
+  )
+end
+
+--[[
+  @param {table} spellList
+  @param {table} soundSpecialCheckBox
+  @param {table} soundSpecialButton
+  @param {string} categoryName
+  @param {table} spell
+]]--
+local function UpdateSoundSpecial(spellList, soundSpecialCheckBox, soundSpecialButton, categoryName, spell)
+  if spell.hasFade then
+    soundSpecialCheckBox:SetChecked(mod.spellConfiguration.IsSoundFadeWarningActive(
+      spellList.options.spellList,
+      categoryName,
+      spell.spellId
+    ))
+    soundSpecialCheckBox.text:SetText(rgpvpw.L["label_enable_sound_fade"])
+    soundSpecialCheckBox.type = RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED
+  elseif spell.hasCast then
+    soundSpecialCheckBox:SetChecked(mod.spellConfiguration.IsSoundStartWarningActive(
+      spellList.options.spellList,
+      categoryName,
+      spell.spellId
+    ))
+    soundSpecialCheckBox.text:SetText(rgpvpw.L["label_enable_sound_cast"])
+    soundSpecialCheckBox.type = RGPVPW_CONSTANTS.SPELL_TYPES.START
+  else
+    soundSpecialCheckBox:Hide()
+    soundSpecialButton:Hide()
 
     return
   end
 
-  if isActive then
-    self:SetChecked(true)
-  else
-    self:SetChecked(false)
-  end
+  soundSpecialCheckBox:Show()
+  soundSpecialButton:Show()
 end
 
 --[[
-  Click callback for sound button
-
   @param {table} spellList
-  @param {table} self
+  @param {table} dropdownMenu
+  @param {string} categoryName
+  @param {number} spellId
 ]]--
-PlaySoundButtonOnClick = function(spellList, self)
-  mod.sound.PlaySound(self:GetParent().category, spellList.options.soundType, self.soundFileName)
-end
-
---[[
-  Click callback for sound special button. Used for fade and spellcast sound
-
-  @param {table} self
-]]--
-PlaySoundSpecialButtonOnClick = function(self)
-  mod.sound.PlaySound(self:GetParent().category, self:GetParent().soundSpecialCheckBox.type, self.soundFileName)
-end
-
---[[
-  Create a dropdown with alert color textures to choose
-
-  @param {table} spellList
-  @param {table} spellFrame
-  @param {table} position
-    An object containing configuration parameters for a SetPoint function call
-
-  @return {table}
-    The created dropdown
-]]--
-CreateVisualAlertDropdown = function(spellList, spellFrame, position)
-  return mod.guiHelper.CreateVisualWarningDropdown(
-    spellFrame,
-    spellList.options.elementNames.visualWarningDropdown,
-    position,
-    function(dropdown, colorValue)
-      DropDownMenuCallback(spellList, dropdown, colorValue)
-    end
-  )
-end
-
---[[
-  Callback for color dropdownmenu
-
-  @param {table} spellList
-  @param {table} dropdown
-    A reference to the dropdown
-  @param {number} colorValue
-    The selected color value
-]]--
-DropDownMenuCallback = function(spellList, dropdown, colorValue)
-  mod.spellConfiguration.UpdateVisualWarningColor(
+local function UpdateChooseVisualDropdownMenu(spellList, dropdownMenu, categoryName, spellId)
+  local colorValue = mod.spellConfiguration.GetVisualWarningColor(
     spellList.options.spellList,
-    spellList.activeCategory,
-    dropdown:GetParent().spellId,
-    dropdown:GetParent().normalizedSpellName,
-    colorValue
-  )
-end
-
---[[
-  Click callback for previewing the spell's configured visual warning - fires the flash
-  in the spell's chosen color or asks the user to pick a color first
-
-  @param {table} spellList
-  @param {table} self
-]]--
-PlayVisualAlertButtonOnClick = function(spellList, self)
-  -- retrieve color for specific spell and category from configuration
-  local color = mod.spellConfiguration.GetVisualWarningColor(
-    spellList.options.spellList,
-    self:GetParent().category,
-    self:GetParent().spellId
+    categoryName,
+    spellId
   )
 
-  if color == RGPVPW_CONSTANTS.DEFAULT_COLOR then
-    mod.logger.PrintUserError(rgpvpw.L["user_message_choose_color"])
-    return
-  end
-
-  mod.flash.Show(color)
+  dropdownMenu.selectedColorValue = colorValue
+  -- regenerate so the button text reflects the newly selected radio entry
+  dropdownMenu:GenerateMenu()
 end
 
 --[[
@@ -709,7 +815,7 @@ end
   @param {table} spellList
   @param {string} categoryName
 ]]--
-UpdateSpellRows = function(spellList, categoryName)
+local function UpdateSpellRows(spellList, categoryName)
   local options = spellList.options
 
   spellList.activeCategory = categoryName
@@ -761,188 +867,52 @@ UpdateSpellRows = function(spellList, categoryName)
 end
 
 --[[
-  @param {table} spellIcon
-  @param {string} categoryName
-  @param {table} spell
-]]--
-UpdateIcon = function(spellIcon, categoryName, spell)
-  local iconId
-  local color = RGPVPW_COLORS.GetCategoryColor(categoryName)
+  Create the spelllist configuration menu
 
-  --[[
-    For most items we have to track the actual spelleffect in the combat log. However for
-    people to recognize the item it is much better to use items icon itself.
-  ]]--
-  if spell.itemId ~= nil then
-    iconId = GetItemIcon(spell.itemId)
-  else
-    iconId = select(3, GetSpellInfo(spell.spellId))
-  end
-
-  spellIcon:SetTexture(iconId)
-  spellIcon.iconHolder:SetBackdropBorderColor(unpack(color))
-  -- itemId may be nil which clears a stale value when the row is reused
-  spellIcon.iconHolder.spellId = spell.spellId
-  spellIcon.iconHolder.itemId = spell.itemId
-end
-
---[[
   @param {table} spellList
-  @param {table} spellStateCheckBox
-  @param {string} categoryName
-  @param {number} spellId
-]]--
-UpdateSpellStateCheckBox = function(spellList, spellStateCheckBox, categoryName, spellId)
-  local isSpellActive = mod.spellConfiguration.IsSpellActive(
-    spellList.options.spellList,
-    categoryName,
-    spellId
-  )
-
-  local parentFrame = spellStateCheckBox:GetParent()
-
-  if isSpellActive then
-    mod.logger.LogDebug(me.tag, string.format(
-      "Spell %s for category %s is active", spellId, categoryName)
-    )
-    spellStateCheckBox:SetChecked(true)
-  else
-    mod.logger.LogDebug(me.tag, string.format(
-      "Spell %s for category %s is inactive", spellId, categoryName)
-    )
-    spellStateCheckBox:SetChecked(false)
-  end
-
-  UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundCheckBox)
-
-  if parentFrame.soundSpecialCheckBox ~= nil then
-    UpdateCheckButtonState(spellStateCheckBox, parentFrame.soundSpecialCheckBox)
-  end
-
-  UpdateChooseVisualDropdownMenuState(parentFrame, isSpellActive)
-  UpdateSpellTitleState(parentFrame, isSpellActive)
-end
-
---[[
-  @param {table} spellList
-  @param {table} soundCheckBox
-  @param {string} categoryName
-  @param {number} spellId
-]]--
-UpdateSound = function(spellList, soundCheckBox, categoryName, spellId)
-  -- update sound checkbox state
-  soundCheckBox:SetChecked(
-    mod.spellConfiguration.IsSoundWarningActive(
-      spellList.options.spellList,
-      categoryName,
-      spellId
-    )
-  )
-end
-
---[[
-  @param {table} spellList
-  @param {table} soundSpecialCheckBox
-  @param {table} soundSpecialButton
-  @param {string} categoryName
-  @param {table} spell
-]]--
-UpdateSoundSpecial = function(spellList, soundSpecialCheckBox, soundSpecialButton, categoryName, spell)
-  if spell.hasFade then
-    soundSpecialCheckBox:SetChecked(mod.spellConfiguration.IsSoundFadeWarningActive(
-      spellList.options.spellList,
-      categoryName,
-      spell.spellId
-    ))
-    soundSpecialCheckBox.text:SetText(rgpvpw.L["label_enable_sound_fade"])
-    soundSpecialCheckBox.type = RGPVPW_CONSTANTS.SPELL_TYPES.REMOVED
-  elseif spell.hasCast then
-    soundSpecialCheckBox:SetChecked(mod.spellConfiguration.IsSoundStartWarningActive(
-      spellList.options.spellList,
-      categoryName,
-      spell.spellId
-    ))
-    soundSpecialCheckBox.text:SetText(rgpvpw.L["label_enable_sound_cast"])
-    soundSpecialCheckBox.type = RGPVPW_CONSTANTS.SPELL_TYPES.START
-  else
-    soundSpecialCheckBox:Hide()
-    soundSpecialButton:Hide()
-
-    return
-  end
-
-  soundSpecialCheckBox:Show()
-  soundSpecialButton:Show()
-end
-
---[[
-  @param {table} spellList
-  @param {table} dropdownMenu
-  @param {string} categoryName
-  @param {number} spellId
-]]--
-UpdateChooseVisualDropdownMenu = function(spellList, dropdownMenu, categoryName, spellId)
-  local colorValue = mod.spellConfiguration.GetVisualWarningColor(
-    spellList.options.spellList,
-    categoryName,
-    spellId
-  )
-
-  dropdownMenu.selectedColorValue = colorValue
-  -- regenerate so the button text reflects the newly selected radio entry
-  dropdownMenu:GenerateMenu()
-end
-
---[[
-  Updates a checkbutton based on its state or a dependent checkButton
-
-  @param {table} checkButton
-  @param {table} dependentCheckButton
-]]--
-UpdateCheckButtonState = function(checkButton, dependentCheckButton)
-  if checkButton:GetChecked() then
-    if dependentCheckButton ~= nil then
-      mod.guiHelper.EnableCheckButton(dependentCheckButton)
-    else
-      mod.guiHelper.EnableCheckButton(checkButton)
-    end
-  else
-    if dependentCheckButton ~= nil then
-      mod.guiHelper.DisableCheckButton(dependentCheckButton)
-    else
-      mod.guiHelper.DisableCheckButton(checkButton)
-    end
-  end
-end
-
---[[
-  Enables or disables the chooseVisual dropdown and its label based
-  on the checkButton state of the spell itself
-
   @param {table} frame
-  @param {boolean} enable
+  @param {string} categoryName
 ]]--
-UpdateChooseVisualDropdownMenuState = function(frame, enable)
-  if enable then
-    frame.chooseVisual:SetEnabled(true)
-    mod.guiHelper.SetColor(frame.chooseVisualLabel, RGPVPW_CONSTANTS.COLOR.BODY)
-  else
-    frame.chooseVisual:SetEnabled(false)
-    mod.guiHelper.SetColor(frame.chooseVisualLabel, RGPVPW_CONSTANTS.COLOR.DISABLED)
-  end
+local function BuildUi(spellList, frame, categoryName)
+  spellList.container = CreateSpellListContainer(spellList, frame, categoryName)
+  UpdateSpellRows(spellList, categoryName)
 end
 
 --[[
-  Grays out the spell title while the spell itself is deactivated, matching the
-  disabled look of the row's other labels
+  Update the spell list to its new parent category
 
-  @param {table} frame
-  @param {boolean} enable
+  @param {table} spellList
+  @param {table} parentFrame
 ]]--
-UpdateSpellTitleState = function(frame, enable)
-  if enable then
-    mod.guiHelper.SetColor(frame.spellTitle, RGPVPW_CONSTANTS.COLOR.SPELL_TITLE)
+local function UpdateListAnchor(spellList, parentFrame)
+  spellList.container:SetParent(parentFrame)
+  AnchorContainer(spellList.container, parentFrame)
+  spellList.scrollFrame:SetVerticalScroll(0) -- reset scroll position to top
+end
+
+--[[
+  Build the spell list on first invocation or update it to its new parent
+  category on later ones
+
+  @param {table} spellList
+    A spell list instance created through me.NewSpellList
+  @param {table} frame
+  @param {string} categoryName
+]]--
+function me.Init(spellList, frame, categoryName)
+  frame.categoryName = categoryName
+
+  if spellList.builtMenu then
+    spellList.cachedCategoryData = nil
+    mod.logger.LogDebug(me.tag, string.format(
+      "Wiped cached %s after category switch", spellList.options.spellList)
+    )
+
+    UpdateListAnchor(spellList, frame)
+    -- update the scrolllist with new category data
+    UpdateSpellRows(spellList, categoryName)
   else
-    mod.guiHelper.SetColor(frame.spellTitle, RGPVPW_CONSTANTS.COLOR.DISABLED)
+    BuildUi(spellList, frame, categoryName)
+    spellList.builtMenu = true
   end
 end
