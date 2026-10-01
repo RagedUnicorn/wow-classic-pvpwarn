@@ -241,6 +241,52 @@ describe("Comm", function()
       comm.OnChatMsgAddon(RGPVPW_CONSTANTS.ADDON_MESSAGE_PREFIX, "v1.4.0", "GUILD", "Otherplayer")
       assert.are.same({ "New version v1.4.0 is available" }, notices)
     end)
+
+    it("accepts a version on every broadcast channel", function()
+      for _, channel in ipairs({ "GUILD", "RAID", "PARTY", "INSTANCE_CHAT" }) do
+        dofile("code/Comm.lua")
+        comm = rgpvpw.comm
+        _G.PVPWarnConfiguration.lastNotifiedVersion = ""
+
+        comm.OnChatMsgAddon(RGPVPW_CONSTANTS.ADDON_MESSAGE_PREFIX, "v1.3.0", channel, "Otherplayer")
+      end
+
+      assert.are.equal(4, #notices)
+    end)
+
+    it("ignores a version whispered by another player", function()
+      comm.OnChatMsgAddon(RGPVPW_CONSTANTS.ADDON_MESSAGE_PREFIX, "v1.3.0", "WHISPER", "Otherplayer")
+
+      assert.are.same({}, notices)
+      assert.are.equal("", _G.PVPWarnConfiguration.lastNotifiedVersion)
+    end)
+
+    it("ignores a version followed by trailing text and persists nothing", function()
+      comm.OnChatMsgAddon(RGPVPW_CONSTANTS.ADDON_MESSAGE_PREFIX, "v99.0.0 |cFFFF0000click", "GUILD", "Otherplayer")
+
+      assert.are.same({}, notices)
+      assert.are.equal("", _G.PVPWarnConfiguration.lastNotifiedVersion)
+    end)
+
+    it("ignores an oversized message even when it is all digits", function()
+      comm.OnChatMsgAddon(RGPVPW_CONSTANTS.ADDON_MESSAGE_PREFIX, "v99999999999999.0.0", "GUILD", "Otherplayer")
+
+      assert.are.same({}, notices)
+      assert.are.equal("", _G.PVPWarnConfiguration.lastNotifiedVersion)
+    end)
+
+    it("ignores a message that is not a string", function()
+      comm.OnChatMsgAddon(RGPVPW_CONSTANTS.ADDON_MESSAGE_PREFIX, nil, "GUILD", "Otherplayer")
+
+      assert.are.same({}, notices)
+    end)
+
+    it("persists and prints the normalized version only", function()
+      comm.OnChatMsgAddon(RGPVPW_CONSTANTS.ADDON_MESSAGE_PREFIX, "1.03.0", "GUILD", "Otherplayer")
+
+      assert.are.same({ "New version v1.3.0 is available" }, notices)
+      assert.are.equal("v1.3.0", _G.PVPWarnConfiguration.lastNotifiedVersion)
+    end)
   end)
 
   describe("SetupConfiguration", function()
