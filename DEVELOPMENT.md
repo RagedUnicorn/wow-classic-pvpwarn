@@ -497,6 +497,12 @@ This generates an addon package for development. For generating a release packag
 mvn package -D generate.sources.overwrite=true -P release
 ```
 
+**Note:** Packaging a release switches the working tree to release state. The release package takes `code/Environment.lua` from the working tree (only `PVPWarn.toc` is rendered by the assembly itself), so the overwrite cannot be skipped. Switch back to development afterwards so the release-state `PVPWarn.toc` and `code/Environment.lua` are not committed:
+
+```
+mvn generate-resources -D generate.sources.overwrite=true -P development
+```
+
 **Note:** This packaging and switching resources can also be done one after another.
 
 **Note:** The packaging is not fit to be used for CurseForge because CurseForge expects a specific packaging
@@ -519,7 +525,7 @@ mvn generate-resources -D generate.sources.overwrite=true -P release
 mvn package -P deploy-github -D github.auth-token=[token]
 ```
 
-**Note:** This is only intended for manual deployment to GitHub. With GitHub actions the token is supplied as a secret to the build process
+**Note:** This is only intended for manual deployment to GitHub. With GitHub actions the token is supplied as a secret to the build process. Switch back to development afterwards, see [Packaging the Addon](#packaging-the-addon).
 
 ## Deploy CurseForge Release
 
@@ -532,7 +538,7 @@ mvn generate-resources -D generate.sources.overwrite=true -P release
 mvn package -P deploy-curseforge -D curseforge.auth-token=[token]
 ```
 
-**Note:** This is only intended for manual deployment to CurseForge. With GitHub actions the token is supplied as a secret to the build process
+**Note:** This is only intended for manual deployment to CurseForge. With GitHub actions the token is supplied as a secret to the build process. Switch back to development afterwards, see [Packaging the Addon](#packaging-the-addon).
 
 ## Deploy Wago.io Release
 
@@ -545,7 +551,7 @@ mvn generate-resources -D generate.sources.overwrite=true -P release
 mvn package -P deploy-wago -D wago.auth-token=[token]
 ```
 
-**Note:** This is only intended for manual deployment to Wago.io. With GitHub actions the token is supplied as a secret to the build process
+**Note:** This is only intended for manual deployment to Wago.io. With GitHub actions the token is supplied as a secret to the build process. Switch back to development afterwards, see [Packaging the Addon](#packaging-the-addon).
 
 ## GitHub Action Profiles
 
