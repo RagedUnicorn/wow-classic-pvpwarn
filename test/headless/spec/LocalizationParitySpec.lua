@@ -27,8 +27,13 @@
   lfs glob-discovering variant with GearMenu's placeholder comparison on top.
 
   The recurring bug this pins down: a string added to enUS but not mirrored to the other locales
-  (or vice versa). The locale set is glob-discovered (lfs over localization/) rather than
-  hard-coded, so a future locale file is picked up automatically.
+  (or vice versa). deDE.lua / ruRU.lua layer their table over the enUS one (an __index
+  fallback), so at runtime such a key shows the English text instead of resolving to nil - but
+  that fallback only hides the gap, so parity is still enforced here: every locale must ship the
+  exact same key set. Each locale is loaded with rgpvpw.L cleared and its key set read with
+  pairs, which sees a locale's own keys only, so the fallback cannot mask a missing key. The
+  locale set is glob-discovered (lfs over localization/) rather than hard-coded, so a future
+  locale file is picked up automatically.
 
   Loading mechanics: enUS.lua sets rgpvpw.L unconditionally, while deDE.lua / ruRU.lua wrap their
   assignments in `if (GetLocale() == "<locale>")`. So each file is dofile'd with GetLocale()
@@ -190,6 +195,29 @@ describe("localization parity", function()
     assert.is_true(discovered.enUS)
     assert.is_true(discovered.deDE)
     assert.is_true(discovered.ruRU)
+  end)
+
+  it("falls back to the enUS table for a key a non-English locale does not ship", function()
+    for _, file in ipairs(localeFiles) do
+      if file.locale ~= REFERENCE_LOCALE then
+        local restore = wowStubs.install({
+          GetLocale = wowStubs.stubs.GetLocale(file.locale),
+          C_AddOns = wowStubs.stubs.C_AddOns({ Version = "0.0.0-test" })
+        })
+
+        rgpvpw.L = { onlyInEnUS = "english text" }
+        dofile(file.path)
+
+        local fallback = rgpvpw.L.onlyInEnUS
+        local own = rawget(rgpvpw.L, "onlyInEnUS")
+
+        restore()
+        rgpvpw.L = originalL
+
+        assert.are.equal("english text", fallback, file.locale)
+        assert.is_nil(own, file.locale)
+      end
+    end
   end)
 
   it("loads a non-empty key set for every discovered locale", function()

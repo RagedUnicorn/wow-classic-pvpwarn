@@ -26,7 +26,8 @@
 
 if (GetLocale() == "deDE") then
   rgpvpw = rgpvpw or {}
-  rgpvpw.L = {}
+  -- layer over the enUS table (loaded first) so a key missing here falls back to English
+  rgpvpw.L = setmetatable({}, { __index = rgpvpw.L or {} })
 
   rgpvpw.L["addon_name"] = "PVPWarn"
 
