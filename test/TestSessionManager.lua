@@ -23,7 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals date
+-- luacheck: read globals date
 
 -- Test session management for PVPWarn addon
 -- Manages complete test lifecycle with single entry point through commands

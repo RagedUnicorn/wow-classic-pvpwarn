@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals STANDARD_TEXT_FONT
+-- luacheck: read globals STANDARD_TEXT_FONT
 
 local mod = rgpvpw
 local me = {}

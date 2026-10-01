@@ -31,11 +31,6 @@
   file insulation does not roll back, so the original is restored in teardown.
 ]]--
 
--- busted extends `assert` with .same / .equal / etc. at runtime; luacheck cannot verify those
--- fields statically. Suppress warning 143 (accessing undefined field of a global variable).
--- luacheck: globals describe it setup teardown
--- luacheck: ignore 143
-
 describe("Serializer", function()
   local serializer
   local originalSerializer = rgpvpw.serializer

@@ -344,9 +344,13 @@ docker compose run --rm luacheck-report
 
 **Configuration:**
 - `.luacheckrc` - Contains Luacheck configuration, including:
-  - Global variables specific to WoW addons
-  - Lua 5.1 standard for compatibility
+  - Writable globals - only `rgpvpw` and the SavedVariables
+  - Read-only globals - the `RGPVPW_*` tables; only the file that defines a table may assign it
+  - Lua 5.1 standard for compatibility (`lua51+busted` for `test/headless/spec`)
   - Excluded directories (e.g., `target/`, `tools/`)
+- Each file declares the WoW API it reads in an inline `-- luacheck: read globals ...` header, so
+  an accidental assignment is reported. Only a name the file really assigns (a slash command,
+  `StaticPopupDialogs`, a test-mode API replacement) goes into a `-- luacheck: globals ...` line.
 
 ### Headless Unit Tests (busted)
 

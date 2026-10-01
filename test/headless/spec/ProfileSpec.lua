@@ -50,11 +50,7 @@
   what a reset restores and what the mirror writes can each be told apart.
 ]]--
 
--- busted extends `assert` with .same / .equal / etc. at runtime; luacheck
--- cannot verify those fields statically. Suppress warning 143 (accessing
--- undefined field of a global variable) for this file.
--- luacheck: globals describe it setup teardown before_each after_each table.wipe
--- luacheck: ignore 143
+-- luacheck: globals table.wipe
 
 local wowStubs = require("WowStubs")
 

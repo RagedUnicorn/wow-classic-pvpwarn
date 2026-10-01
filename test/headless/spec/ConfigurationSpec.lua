@@ -36,12 +36,6 @@
   by the bootstrap and are stubbed for the two accessors that notify them.
 ]]--
 
--- busted extends `assert` with .same / .equal / etc. at runtime; luacheck
--- cannot verify those fields statically. Suppress warning 143 (accessing
--- undefined field of a global variable) for this file.
--- luacheck: globals describe it before_each after_each
--- luacheck: ignore 143
-
 local wowStubs = require("WowStubs")
 
 local ADDON_VERSION = "v2.0.0"

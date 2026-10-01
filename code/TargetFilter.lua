@@ -23,7 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals UnitIsEnemy UnitGUID
+-- luacheck: read globals UnitIsEnemy UnitGUID
 
 --[[
   Enemy-gated target tracker for the target filter (see code/CombatLog.lua

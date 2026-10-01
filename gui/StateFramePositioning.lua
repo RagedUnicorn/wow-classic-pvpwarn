@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame
+-- luacheck: read globals CreateFrame
 
 --[[
   Shared positioning mode for the two state icons (combat state and stance state).

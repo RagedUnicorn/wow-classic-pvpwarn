@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals C_AddOns UnitClass strlower
+-- luacheck: read globals C_AddOns UnitClass strlower
 
 local mod = rgpvpw
 local me = {}

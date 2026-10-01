@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals PlaySoundFile
+-- luacheck: read globals PlaySoundFile
 
 local mod = rgpvpw
 local me = {}

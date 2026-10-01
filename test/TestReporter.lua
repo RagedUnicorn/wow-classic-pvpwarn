@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals C_Timer GetTime time
+-- luacheck: read globals C_Timer GetTime time
 
 -- Test reporting for PVPWarn addon. Holds no module-global run state - all
 -- bookkeeping (current test group, current test, failed tests, test queues,

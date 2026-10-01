@@ -39,7 +39,7 @@
     )
 ]]--
 
--- luacheck: globals tContains
+-- luacheck: read globals tContains
 
 local mod = rgpvpw
 local me = {}

@@ -39,12 +39,6 @@
   replaced deep fields of the shared rgpvpw table are restored in after_each.
 ]]--
 
--- busted extends `assert` with .same / .equal / etc. at runtime; luacheck
--- cannot verify those fields statically. Suppress warning 143 (accessing
--- undefined field of a global variable) for this file.
--- luacheck: globals describe it before_each after_each
--- luacheck: ignore 143
-
 local wowStubs = require("WowStubs")
 
 describe("Comm", function()

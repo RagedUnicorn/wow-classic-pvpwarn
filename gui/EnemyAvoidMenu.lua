@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame UnitClass
+-- luacheck: read globals CreateFrame UnitClass
 
 local mod = rgpvpw
 local me = {}

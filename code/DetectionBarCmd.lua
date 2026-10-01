@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals C_Timer GetSpellInfo
+-- luacheck: read globals C_Timer GetSpellInfo
 
 --[[
   Registers the `bar` subcommand on the /rgpvpw and /pvpwarn registry:

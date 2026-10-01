@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals STANDARD_TEXT_FONT
+-- luacheck: read globals STANDARD_TEXT_FONT
 
 --[[
   General options sub-panel. Holds the settings that are not tied to a single feature - the

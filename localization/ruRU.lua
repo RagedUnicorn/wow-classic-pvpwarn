@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetLocale C_AddOns
+-- luacheck: read globals GetLocale C_AddOns
 -- Translator ZamestoTV
 if (GetLocale() == "ruRU") then
   rgpvpw = rgpvpw or {}

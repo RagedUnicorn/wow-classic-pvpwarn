@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals C_AddOns
+-- luacheck: read globals C_AddOns
 
 rgpvpw = rgpvpw or {}
 rgpvpw.L = {}

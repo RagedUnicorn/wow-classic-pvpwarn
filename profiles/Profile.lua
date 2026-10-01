@@ -47,7 +47,7 @@
   category panel shows stale state until it is re-opened.
 ]]--
 
--- luacheck: globals UnitClass strlower C_AddOns table.wipe
+-- luacheck: read globals UnitClass strlower C_AddOns table.wipe
 
 local mod = rgpvpw
 local me = {}

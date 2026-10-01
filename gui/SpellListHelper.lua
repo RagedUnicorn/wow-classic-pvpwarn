@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame ScrollUtil GetSpellInfo GetItemIcon
+-- luacheck: read globals CreateFrame ScrollUtil GetSpellInfo GetItemIcon
 
 local mod = rgpvpw
 local me = {}

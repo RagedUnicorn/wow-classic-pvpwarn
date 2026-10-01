@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame UIParent STANDARD_TEXT_FONT
+-- luacheck: read globals CreateFrame UIParent STANDARD_TEXT_FONT
 
 --[[
   The user-movable anchor frame the detection bar stack hangs from.

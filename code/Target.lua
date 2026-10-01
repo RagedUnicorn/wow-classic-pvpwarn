@@ -23,7 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals UnitGUID UnitClass
+-- luacheck: read globals UnitGUID UnitClass
 
 local mod = rgpvpw
 local me = {}

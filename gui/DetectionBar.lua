@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame RAID_CLASS_COLORS GetSpellInfo
+-- luacheck: read globals CreateFrame RAID_CLASS_COLORS GetSpellInfo
 
 --[[
   Visual primitive for a single detection bar. A detection bar surfaces one detected enemy

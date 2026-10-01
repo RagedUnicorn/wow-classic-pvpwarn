@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals C_AddOns CombatLogGetCurrentEventInfo geterrorhandler
+-- luacheck: read globals C_AddOns CombatLogGetCurrentEventInfo geterrorhandler
 
 rgpvpw = rgpvpw or {}
 local me = rgpvpw

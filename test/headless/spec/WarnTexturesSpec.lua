@@ -28,12 +28,6 @@
   (gui/GuiHelper.lua CreateVisualWarningDropdown).
 ]]--
 
--- busted extends `assert` with .same / .equal / etc. at runtime; luacheck
--- cannot verify those fields statically. Suppress warning 143 (accessing
--- undefined field of a global variable) for this file.
--- luacheck: globals describe it
--- luacheck: ignore 143
-
 describe("warn textures", function()
   it("derives one keyed entry per warning color", function()
     local expectedCount = 0

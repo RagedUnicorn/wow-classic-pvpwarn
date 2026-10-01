@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetLocale
+-- luacheck: read globals GetLocale
 
 local mod = rgpvpw
 local me = {}

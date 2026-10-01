@@ -22,9 +22,9 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT TargetFrame
--- luacheck: globals Settings MinimalSliderWithSteppersMixin GameTooltip
--- luacheck: globals SettingsPanel InterfaceOptionsFrame
+-- luacheck: read globals CreateFrame STANDARD_TEXT_FONT TargetFrame
+-- luacheck: read globals Settings MinimalSliderWithSteppersMixin GameTooltip
+-- luacheck: read globals SettingsPanel InterfaceOptionsFrame
 
 local mod = rgpvpw
 local me = {}

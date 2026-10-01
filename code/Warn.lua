@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals GetTime C_Timer
+-- luacheck: read globals GetTime C_Timer
 
 local mod = rgpvpw
 local me = {}

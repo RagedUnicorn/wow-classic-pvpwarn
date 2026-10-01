@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals IsInInstance GetInstanceInfo C_Map
+-- luacheck: read globals IsInInstance GetInstanceInfo C_Map
 
 local mod = rgpvpw
 local me = {}

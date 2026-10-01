@@ -22,7 +22,8 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals C_Timer CreateFrame date StaticPopup_Show StaticPopupDialogs ScrollUtil
+-- luacheck: read globals C_Timer CreateFrame date StaticPopup_Show ScrollUtil
+-- luacheck: globals StaticPopupDialogs
 
 local mod = rgpvpw
 local me = {}

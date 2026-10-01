@@ -30,12 +30,6 @@
   logged-and-skipped error branches without reaching the chat-frame printer.
 ]]--
 
--- busted extends `assert` with .same / .equal / etc. at runtime; luacheck
--- cannot verify those fields statically. Suppress warning 143 (accessing
--- undefined field of a global variable) for this file.
--- luacheck: globals describe it setup before_each after_each
--- luacheck: ignore 143
-
 describe("spellMapAssembler", function()
   local assembler
   local loggedErrors

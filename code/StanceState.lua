@@ -23,7 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals UnitIsPlayer UnitIsEnemy GetSpellInfo GetTime
+-- luacheck: read globals UnitIsPlayer UnitIsEnemy GetSpellInfo GetTime
 
 local mod = rgpvpw
 local me = {}

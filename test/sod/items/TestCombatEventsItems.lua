@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals UnitFactionGroup
+-- luacheck: read globals UnitFactionGroup
 
 local mod = rgpvpw
 local me = {}

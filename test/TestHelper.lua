@@ -22,7 +22,9 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CombatLogGetCurrentEventInfo COMBATLOG_FILTER_HOSTILE_PLAYERS COMBATLOG_FILTER_MINE
+-- luacheck: read globals COMBATLOG_FILTER_HOSTILE_PLAYERS COMBATLOG_FILTER_MINE
+-- the test mode replaces the combat log API and flips RGPVPW_ENVIRONMENT.TEST / MAX_WARN_AGE
+-- luacheck: globals CombatLogGetCurrentEventInfo RGPVPW_CONSTANTS RGPVPW_ENVIRONMENT
 
 local mod = rgpvpw
 local me = {}

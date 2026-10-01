@@ -22,7 +22,8 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals SLASH_PVPWARN1 SLASH_PVPWARN2 SlashCmdList ReloadUI
+-- luacheck: read globals ReloadUI
+-- luacheck: globals SLASH_PVPWARN1 SLASH_PVPWARN2 SlashCmdList
 
 local mod = rgpvpw
 local me = {}

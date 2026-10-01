@@ -33,11 +33,8 @@
   on the throw behavior only, not on the exact assert message text.
 ]]--
 
--- busted extends `assert` with .same / .equal / etc. at runtime; luacheck
--- cannot verify those fields statically. Suppress warning 143 (accessing
--- undefined field of a global variable) for this file.
--- luacheck: globals describe it before_each after_each
--- luacheck: ignore 143
+-- the TEST short-circuit cases flip RGPVPW_ENVIRONMENT.TEST
+-- luacheck: globals RGPVPW_ENVIRONMENT
 
 local SPELL_LISTS = { "spellList", "spellSelfAvoidList", "spellEnemyAvoidList" }
 

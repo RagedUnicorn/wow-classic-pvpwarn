@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals C_Seasons Enum WOW_PROJECT_ID WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+-- luacheck: read globals C_Seasons Enum WOW_PROJECT_ID WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 
 local mod = rgpvpw
 local me = {}

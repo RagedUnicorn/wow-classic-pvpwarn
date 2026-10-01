@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame
+-- luacheck: read globals CreateFrame
 
 --[[
   Dedicated options sub-panel for the vignette flash feature. Provides a global enable toggle,

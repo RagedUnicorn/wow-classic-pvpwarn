@@ -22,7 +22,8 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame StaticPopupDialogs StaticPopup_Show STANDARD_TEXT_FONT ScrollUtil
+-- luacheck: read globals CreateFrame StaticPopup_Show STANDARD_TEXT_FONT ScrollUtil
+-- luacheck: globals StaticPopupDialogs
 
 local mod = rgpvpw
 local me = {}

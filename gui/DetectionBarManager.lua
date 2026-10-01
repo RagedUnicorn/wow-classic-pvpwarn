@@ -22,7 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame GetTime GetSpellInfo
+-- luacheck: read globals CreateFrame GetTime GetSpellInfo
 
 --[[
   Owns the vertical stack of detection bars: newest at the top, older ones below with a
