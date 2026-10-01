@@ -183,7 +183,8 @@ test sessions.
 - **Real-time Updates**: See test results as they execute
 - **Filtering**: Focus on specific test categories or sessions
 - **Persistent Storage**: Test logs are saved to the `PVPWarnTestLog` saved variable
-  (declared `SavedVariablesPerCharacter` in `PVPWarn.toc`)
+  (declared `SavedVariablesPerCharacter` in `PVPWarn.toc`); only the 20 most recent test runs are
+  kept - older ones are pruned when a new run starts
 - **Color-coded Results**: Visual indicators for passed/failed tests
 
 #### Test Log Commands

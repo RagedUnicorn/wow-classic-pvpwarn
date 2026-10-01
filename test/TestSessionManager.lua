@@ -191,6 +191,27 @@ function me.CreateCompletionCallback()
 end
 
 --[[
+  A session name unique within PVPWarnTestLog. The timestamp has a one-second
+  resolution, so a second run of the same command and category within the same second
+  gets a numeric suffix instead of replacing the first run's test group.
+
+  @param {string} baseName
+
+  @return {string}
+]]--
+local function CreateUniqueSessionName(baseName)
+  local sessionName = baseName
+  local suffix = 1
+
+  while PVPWarnTestLog ~= nil and PVPWarnTestLog[sessionName] ~= nil do
+    suffix = suffix + 1
+    sessionName = baseName .. "_" .. suffix
+  end
+
+  return sessionName
+end
+
+--[[
   Create a fresh run context for a starting session
 
   @param {string} commandType - Type of command (e.g., "Sound", "CombatEvent", "Validation", "All")
@@ -202,7 +223,7 @@ CreateRunContext = function(commandType, category)
   local timestamp = date("%Y%m%d_%H%M%S")
 
   return {
-    sessionName = string.format("%s_%s_%s", commandType, category, timestamp),
+    sessionName = CreateUniqueSessionName(string.format("%s_%s_%s", commandType, category, timestamp)),
     sessionId = timestamp,
     commandType = commandType,
     commandCategory = category,

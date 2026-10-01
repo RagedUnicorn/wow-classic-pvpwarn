@@ -40,6 +40,7 @@ me.tag = "TestReporter"
 local GetRunContext
 local getMessageData
 local initializeTestLogStructure
+local pruneTestLog
 local logTestGroupStart
 local logTestGroupSummary
 local logFailedTests
@@ -47,6 +48,9 @@ local logFinalSummary
 local playImmediateTests
 local playDelayedTests
 local executeTestFunction
+
+-- test groups kept in PVPWarnTestLog - older ones are pruned when a new group starts
+local TEST_LOG_MAX_GROUPS = 20
 
 if PVPWarnTestLog == nil then
   PVPWarnTestLog = {}
@@ -339,9 +343,45 @@ end
 ]]--
 initializeTestLogStructure = function(groupName)
   PVPWarnTestLog[groupName] = {}
+  PVPWarnTestLog[groupName].startedAt = time()
   PVPWarnTestLog[groupName].testCount = 0
   PVPWarnTestLog[groupName].testSuccess = 0
   PVPWarnTestLog[groupName].testFailure = 0
+  pruneTestLog(groupName)
+end
+
+--[[
+  Drop the oldest test groups until at most TEST_LOG_MAX_GROUPS remain. Groups are
+  ordered by their startedAt time (groups logged before it was recorded count as the
+  oldest); the current group is never dropped.
+
+  @param {string} currentGroupName
+]]--
+pruneTestLog = function(currentGroupName)
+  local groupNames = {}
+
+  for groupName, groupData in pairs(PVPWarnTestLog) do
+    if groupName ~= currentGroupName and type(groupData) == "table" then
+      table.insert(groupNames, groupName)
+    end
+  end
+
+  table.sort(groupNames, function(a, b)
+    local startedA = PVPWarnTestLog[a].startedAt or 0
+    local startedB = PVPWarnTestLog[b].startedAt or 0
+
+    if startedA ~= startedB then
+      return startedA < startedB
+    end
+
+    return a < b
+  end)
+
+  local excess = #groupNames + 1 - TEST_LOG_MAX_GROUPS
+
+  for i = 1, excess do
+    PVPWarnTestLog[groupNames[i]] = nil
+  end
 end
 
 --[[
