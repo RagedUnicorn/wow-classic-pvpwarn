@@ -13,8 +13,8 @@ PVPWarn uses both visual and acoustic effects to make the player aware of certai
 
 ## Providers
 
-[![](docs/curseforge.svg)](https://www.curseforge.com/wow/addons/pvpwarn)
-[![](docs/wago.svg)](https://addons.wago.io/addons/pvpwarn)
+[![](docs/curseforge.svg)](https://www.curseforge.com/wow/addons/pvpwarn-rg)
+[![](docs/wago.svg)](https://addons.wago.io/addons/pvpwarn-rg)
 
 ## Installation
 
