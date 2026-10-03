@@ -90,15 +90,21 @@ The addon can be configured to automatically enable or disable itself in certain
 
 ### Combat State
 
-PVPWarn can track a target's combat state and will display it next to the target frame. The combat icon can be moved to another place if required.
+PVPWarn can track a target's combat state and will display it next to the target frame. Combat state tracking has its own **Combat State** page in the settings, where it can be enabled and the icon size adjusted.
 
 ![](docs/pvpwarn_combat.gif)
 
 ### Stance State
 
-PVPWarn can track a target's stance state and will display it next to the target frame. The stance icon can be
-moved to another place if required. Tracking the stance is limited to certain classes and is only possible if
-PVPWarn was able to observe the stance in the combat log.
+PVPWarn can track a target's stance state and will display it next to the target frame. Stance tracking covers:
+
+- **Warriors** - Battle, Defensive and Berserker Stance
+- **Druids** - Bear, Dire Bear, Cat, Travel, Aquatic and Moonkin Form
+- **Priests** - Shadowform
+- **Hunters** - Aspect of the Monkey, Hawk, Pack, Cheetah, Wild and Beast
+- **Warlocks** - Metamorphosis (Season of Discovery)
+
+Season of Discovery adds Gladiator Stance, Tree of Life and Aspect of the Falcon and Viper; TBC Anniversary adds Aspect of the Viper. A stance can only be shown if PVPWarn was able to observe it in the combat log. Party-wide aspects such as Aspect of the Pack never overwrite the stance of the player standing next to the hunter. Stance tracking has its own **Stance State** page in the settings, where it can be enabled and the icon size adjusted.
 
 ### Sizing and moving the state icons
 
@@ -115,7 +121,7 @@ has an actual stance to read rather than a yes/no state.
 
 ![](docs/pvpwarn_switching_stance.gif)
 
-If PVPWarn is unable to determine the stance it will display a question mark for an icon.
+If PVPWarn is unable to determine the stance it will display a question mark for an icon - enable **Hide unknown stance** to hide the icon instead.
 
 ### Detection Bar
 
@@ -180,9 +186,11 @@ PVPWarn is not complete, and certain spells might have simply been forgotten. If
 
 #### PVPWarn shows me a question mark instead of the stance of the player
 
-This is a limitation of the WoW API. Stances can only be observed when a warrior is switching from one stance to
-another. It is not possible to query the current stance directly. PVPWarn will, however, display the stance as soon
-as it is able to observe it.
+This is a limitation of the WoW API. It is not possible to query another player's current stance directly - PVPWarn
+can only learn it from the combat log when the player switches into it, such as a warrior changing stance, a druid
+shifting form or a hunter changing aspect. A player who took their stance before you saw them shows a question mark
+until they switch again. PVPWarn will display the stance as soon as it is able to observe it. If you prefer no icon
+over a question mark, enable **Hide unknown stance** on the Stance State page.
 
 ## Contributing Combat Logs
 
