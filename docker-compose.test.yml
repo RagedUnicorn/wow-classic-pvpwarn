@@ -3,7 +3,7 @@ services:
   # tools/spellmap_core package, so every service mounts all of tools/ to keep the
   # repo's relative layout intact inside the container.
   spellmap-core-tests:
-    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.3-1
     volumes:
       - ./tools:/app
       - ./target:/target
@@ -24,7 +24,7 @@ services:
           --junit-xml=/target/test_results/spellmap_core/junit.xml
 
   verify-sounds-tests:
-    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.3-1
     volumes:
       - ./tools:/app
       - ./target:/target
@@ -42,7 +42,7 @@ services:
           --junit-xml=/target/test_results/verify_sounds/junit.xml
 
   voice-generator-tests:
-    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.3-1
     volumes:
       - ./tools:/app
       - ./target:/target
@@ -60,7 +60,7 @@ services:
           --junit-xml=/target/test_results/voice_generator/junit.xml
 
   verify-spellmap-tests:
-    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.3-1
     volumes:
       - ./tools:/app
       - ./target:/target
@@ -81,7 +81,7 @@ services:
           --junit-xml=/target/test_results/verify_spellmap/junit.xml
 
   export-spellmap-tests:
-    image: ragedunicorn/python:3.14.6-alpine3.24.1-1
+    image: ragedunicorn/python:3.14.6-alpine3.24.3-1
     volumes:
       - ./tools:/app
       - ./target:/target
